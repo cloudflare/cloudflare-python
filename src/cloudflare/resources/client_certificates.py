@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -53,7 +53,7 @@ class ClientCertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ClientCertificate:
+    ) -> Optional[ClientCertificate]:
         """
         Create a new API Shield mTLS Client Certificate
 
@@ -88,9 +88,9 @@ class ClientCertificatesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ClientCertificate]._unwrapper,
+                post_parser=ResultWrapper[Optional[ClientCertificate]]._unwrapper,
             ),
-            cast_to=cast(Type[ClientCertificate], ResultWrapper[ClientCertificate]),
+            cast_to=cast(Type[Optional[ClientCertificate]], ResultWrapper[ClientCertificate]),
         )
 
     def list(
@@ -170,7 +170,7 @@ class ClientCertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ClientCertificate:
+    ) -> Optional[ClientCertificate]:
         """
         Set a API Shield mTLS Client Certificate to pending_revocation status for
         processing to revoked status.
@@ -201,9 +201,9 @@ class ClientCertificatesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ClientCertificate]._unwrapper,
+                post_parser=ResultWrapper[Optional[ClientCertificate]]._unwrapper,
             ),
-            cast_to=cast(Type[ClientCertificate], ResultWrapper[ClientCertificate]),
+            cast_to=cast(Type[Optional[ClientCertificate]], ResultWrapper[ClientCertificate]),
         )
 
     def edit(
@@ -217,7 +217,7 @@ class ClientCertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ClientCertificate:
+    ) -> Optional[ClientCertificate]:
         """
         If a API Shield mTLS Client Certificate is in a pending_revocation state, you
         may reactivate it with this endpoint.
@@ -248,9 +248,9 @@ class ClientCertificatesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ClientCertificate]._unwrapper,
+                post_parser=ResultWrapper[Optional[ClientCertificate]]._unwrapper,
             ),
-            cast_to=cast(Type[ClientCertificate], ResultWrapper[ClientCertificate]),
+            cast_to=cast(Type[Optional[ClientCertificate]], ResultWrapper[ClientCertificate]),
         )
 
     def get(
@@ -264,7 +264,7 @@ class ClientCertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ClientCertificate:
+    ) -> Optional[ClientCertificate]:
         """
         Get Details for a single mTLS API Shield Client Certificate
 
@@ -294,9 +294,9 @@ class ClientCertificatesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ClientCertificate]._unwrapper,
+                post_parser=ResultWrapper[Optional[ClientCertificate]]._unwrapper,
             ),
-            cast_to=cast(Type[ClientCertificate], ResultWrapper[ClientCertificate]),
+            cast_to=cast(Type[Optional[ClientCertificate]], ResultWrapper[ClientCertificate]),
         )
 
 
@@ -321,7 +321,7 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ClientCertificate:
+    ) -> Optional[ClientCertificate]:
         """
         Create a new API Shield mTLS Client Certificate
 
@@ -356,9 +356,9 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ClientCertificate]._unwrapper,
+                post_parser=ResultWrapper[Optional[ClientCertificate]]._unwrapper,
             ),
-            cast_to=cast(Type[ClientCertificate], ResultWrapper[ClientCertificate]),
+            cast_to=cast(Type[Optional[ClientCertificate]], ResultWrapper[ClientCertificate]),
         )
 
     def list(
@@ -438,7 +438,7 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ClientCertificate:
+    ) -> Optional[ClientCertificate]:
         """
         Set a API Shield mTLS Client Certificate to pending_revocation status for
         processing to revoked status.
@@ -469,9 +469,9 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ClientCertificate]._unwrapper,
+                post_parser=ResultWrapper[Optional[ClientCertificate]]._unwrapper,
             ),
-            cast_to=cast(Type[ClientCertificate], ResultWrapper[ClientCertificate]),
+            cast_to=cast(Type[Optional[ClientCertificate]], ResultWrapper[ClientCertificate]),
         )
 
     async def edit(
@@ -485,7 +485,7 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ClientCertificate:
+    ) -> Optional[ClientCertificate]:
         """
         If a API Shield mTLS Client Certificate is in a pending_revocation state, you
         may reactivate it with this endpoint.
@@ -516,9 +516,9 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ClientCertificate]._unwrapper,
+                post_parser=ResultWrapper[Optional[ClientCertificate]]._unwrapper,
             ),
-            cast_to=cast(Type[ClientCertificate], ResultWrapper[ClientCertificate]),
+            cast_to=cast(Type[Optional[ClientCertificate]], ResultWrapper[ClientCertificate]),
         )
 
     async def get(
@@ -532,7 +532,7 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ClientCertificate:
+    ) -> Optional[ClientCertificate]:
         """
         Get Details for a single mTLS API Shield Client Certificate
 
@@ -562,9 +562,9 @@ class AsyncClientCertificatesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ClientCertificate]._unwrapper,
+                post_parser=ResultWrapper[Optional[ClientCertificate]]._unwrapper,
             ),
-            cast_to=cast(Type[ClientCertificate], ResultWrapper[ClientCertificate]),
+            cast_to=cast(Type[Optional[ClientCertificate]], ResultWrapper[ClientCertificate]),
         )
 
 

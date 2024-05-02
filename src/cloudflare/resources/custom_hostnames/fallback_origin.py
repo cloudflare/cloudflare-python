@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import httpx
 
@@ -51,7 +51,7 @@ class FallbackOriginResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FallbackOriginUpdateResponse:
+    ) -> Optional[FallbackOriginUpdateResponse]:
         """
         Update Fallback Origin for Custom Hostnames
 
@@ -71,7 +71,7 @@ class FallbackOriginResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            FallbackOriginUpdateResponse,
+            Optional[FallbackOriginUpdateResponse],
             self._put(
                 f"/zones/{zone_id}/custom_hostnames/fallback_origin",
                 body=maybe_transform({"origin": origin}, fallback_origin_update_params.FallbackOriginUpdateParams),
@@ -80,7 +80,7 @@ class FallbackOriginResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[FallbackOriginUpdateResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[FallbackOriginUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[FallbackOriginUpdateResponse]
@@ -98,7 +98,7 @@ class FallbackOriginResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FallbackOriginDeleteResponse:
+    ) -> Optional[FallbackOriginDeleteResponse]:
         """
         Delete Fallback Origin for Custom Hostnames
 
@@ -116,7 +116,7 @@ class FallbackOriginResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            FallbackOriginDeleteResponse,
+            Optional[FallbackOriginDeleteResponse],
             self._delete(
                 f"/zones/{zone_id}/custom_hostnames/fallback_origin",
                 options=make_request_options(
@@ -124,7 +124,7 @@ class FallbackOriginResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[FallbackOriginDeleteResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[FallbackOriginDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[FallbackOriginDeleteResponse]
@@ -142,7 +142,7 @@ class FallbackOriginResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FallbackOriginGetResponse:
+    ) -> Optional[FallbackOriginGetResponse]:
         """
         Get Fallback Origin for Custom Hostnames
 
@@ -160,7 +160,7 @@ class FallbackOriginResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            FallbackOriginGetResponse,
+            Optional[FallbackOriginGetResponse],
             self._get(
                 f"/zones/{zone_id}/custom_hostnames/fallback_origin",
                 options=make_request_options(
@@ -168,7 +168,7 @@ class FallbackOriginResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[FallbackOriginGetResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[FallbackOriginGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[FallbackOriginGetResponse]
@@ -197,7 +197,7 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FallbackOriginUpdateResponse:
+    ) -> Optional[FallbackOriginUpdateResponse]:
         """
         Update Fallback Origin for Custom Hostnames
 
@@ -217,7 +217,7 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            FallbackOriginUpdateResponse,
+            Optional[FallbackOriginUpdateResponse],
             await self._put(
                 f"/zones/{zone_id}/custom_hostnames/fallback_origin",
                 body=await async_maybe_transform(
@@ -228,7 +228,7 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[FallbackOriginUpdateResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[FallbackOriginUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[FallbackOriginUpdateResponse]
@@ -246,7 +246,7 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FallbackOriginDeleteResponse:
+    ) -> Optional[FallbackOriginDeleteResponse]:
         """
         Delete Fallback Origin for Custom Hostnames
 
@@ -264,7 +264,7 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            FallbackOriginDeleteResponse,
+            Optional[FallbackOriginDeleteResponse],
             await self._delete(
                 f"/zones/{zone_id}/custom_hostnames/fallback_origin",
                 options=make_request_options(
@@ -272,7 +272,7 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[FallbackOriginDeleteResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[FallbackOriginDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[FallbackOriginDeleteResponse]
@@ -290,7 +290,7 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FallbackOriginGetResponse:
+    ) -> Optional[FallbackOriginGetResponse]:
         """
         Get Fallback Origin for Custom Hostnames
 
@@ -308,7 +308,7 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            FallbackOriginGetResponse,
+            Optional[FallbackOriginGetResponse],
             await self._get(
                 f"/zones/{zone_id}/custom_hostnames/fallback_origin",
                 options=make_request_options(
@@ -316,7 +316,7 @@ class AsyncFallbackOriginResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[FallbackOriginGetResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[FallbackOriginGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[FallbackOriginGetResponse]

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
+from typing import Any, Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -121,7 +121,7 @@ class CertificatePacksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificatePackDeleteResponse:
+    ) -> Optional[CertificatePackDeleteResponse]:
         """
         For a given zone, delete an advanced certificate pack.
 
@@ -151,9 +151,9 @@ class CertificatePacksResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CertificatePackDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[CertificatePackDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CertificatePackDeleteResponse], ResultWrapper[CertificatePackDeleteResponse]),
+            cast_to=cast(Type[Optional[CertificatePackDeleteResponse]], ResultWrapper[CertificatePackDeleteResponse]),
         )
 
     def edit(
@@ -168,7 +168,7 @@ class CertificatePacksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificatePackEditResponse:
+    ) -> Optional[CertificatePackEditResponse]:
         """For a given zone, restart validation for an advanced certificate pack.
 
         This is
@@ -202,9 +202,9 @@ class CertificatePacksResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CertificatePackEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[CertificatePackEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CertificatePackEditResponse], ResultWrapper[CertificatePackEditResponse]),
+            cast_to=cast(Type[Optional[CertificatePackEditResponse]], ResultWrapper[CertificatePackEditResponse]),
         )
 
     def get(
@@ -218,7 +218,7 @@ class CertificatePacksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificatePackGetResponse:
+    ) -> Optional[CertificatePackGetResponse]:
         """
         For a given zone, get a certificate pack.
 
@@ -242,7 +242,7 @@ class CertificatePacksResource(SyncAPIResource):
                 f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
             )
         return cast(
-            CertificatePackGetResponse,
+            Optional[CertificatePackGetResponse],
             self._get(
                 f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
                 options=make_request_options(
@@ -250,7 +250,7 @@ class CertificatePacksResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[CertificatePackGetResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[CertificatePackGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CertificatePackGetResponse]
@@ -330,7 +330,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificatePackDeleteResponse:
+    ) -> Optional[CertificatePackDeleteResponse]:
         """
         For a given zone, delete an advanced certificate pack.
 
@@ -360,9 +360,9 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CertificatePackDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[CertificatePackDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CertificatePackDeleteResponse], ResultWrapper[CertificatePackDeleteResponse]),
+            cast_to=cast(Type[Optional[CertificatePackDeleteResponse]], ResultWrapper[CertificatePackDeleteResponse]),
         )
 
     async def edit(
@@ -377,7 +377,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificatePackEditResponse:
+    ) -> Optional[CertificatePackEditResponse]:
         """For a given zone, restart validation for an advanced certificate pack.
 
         This is
@@ -411,9 +411,9 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CertificatePackEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[CertificatePackEditResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CertificatePackEditResponse], ResultWrapper[CertificatePackEditResponse]),
+            cast_to=cast(Type[Optional[CertificatePackEditResponse]], ResultWrapper[CertificatePackEditResponse]),
         )
 
     async def get(
@@ -427,7 +427,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificatePackGetResponse:
+    ) -> Optional[CertificatePackGetResponse]:
         """
         For a given zone, get a certificate pack.
 
@@ -451,7 +451,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
                 f"Expected a non-empty value for `certificate_pack_id` but received {certificate_pack_id!r}"
             )
         return cast(
-            CertificatePackGetResponse,
+            Optional[CertificatePackGetResponse],
             await self._get(
                 f"/zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}",
                 options=make_request_options(
@@ -459,7 +459,7 @@ class AsyncCertificatePacksResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[CertificatePackGetResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[CertificatePackGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CertificatePackGetResponse]

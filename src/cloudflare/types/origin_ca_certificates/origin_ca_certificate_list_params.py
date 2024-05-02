@@ -8,5 +8,5 @@ __all__ = ["OriginCACertificateListParams"]
 
 
 class OriginCACertificateListParams(TypedDict, total=False):
-    identifier: str
+    zone_id: str
     """Identifier"""

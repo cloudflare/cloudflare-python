@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -22,7 +22,7 @@ class TestUUID:
         uuid = client.dcv_delegation.uuid.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DCVDelegationUUID, uuid, path=["response"])
+        assert_matches_type(Optional[DCVDelegationUUID], uuid, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -33,7 +33,7 @@ class TestUUID:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         uuid = response.parse()
-        assert_matches_type(DCVDelegationUUID, uuid, path=["response"])
+        assert_matches_type(Optional[DCVDelegationUUID], uuid, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -44,7 +44,7 @@ class TestUUID:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             uuid = response.parse()
-            assert_matches_type(DCVDelegationUUID, uuid, path=["response"])
+            assert_matches_type(Optional[DCVDelegationUUID], uuid, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -64,7 +64,7 @@ class TestAsyncUUID:
         uuid = await async_client.dcv_delegation.uuid.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DCVDelegationUUID, uuid, path=["response"])
+        assert_matches_type(Optional[DCVDelegationUUID], uuid, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -75,7 +75,7 @@ class TestAsyncUUID:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         uuid = await response.parse()
-        assert_matches_type(DCVDelegationUUID, uuid, path=["response"])
+        assert_matches_type(Optional[DCVDelegationUUID], uuid, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -86,7 +86,7 @@ class TestAsyncUUID:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             uuid = await response.parse()
-            assert_matches_type(DCVDelegationUUID, uuid, path=["response"])
+            assert_matches_type(Optional[DCVDelegationUUID], uuid, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

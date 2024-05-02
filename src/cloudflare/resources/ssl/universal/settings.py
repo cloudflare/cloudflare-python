@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -49,7 +49,7 @@ class SettingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UniversalSSLSettings:
+    ) -> Optional[UniversalSSLSettings]:
         """
         Patch Universal SSL Settings for a Zone.
 
@@ -100,9 +100,9 @@ class SettingsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[UniversalSSLSettings]._unwrapper,
+                post_parser=ResultWrapper[Optional[UniversalSSLSettings]]._unwrapper,
             ),
-            cast_to=cast(Type[UniversalSSLSettings], ResultWrapper[UniversalSSLSettings]),
+            cast_to=cast(Type[Optional[UniversalSSLSettings]], ResultWrapper[UniversalSSLSettings]),
         )
 
     def get(
@@ -115,7 +115,7 @@ class SettingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UniversalSSLSettings:
+    ) -> Optional[UniversalSSLSettings]:
         """
         Get Universal SSL Settings for a Zone.
 
@@ -139,9 +139,9 @@ class SettingsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[UniversalSSLSettings]._unwrapper,
+                post_parser=ResultWrapper[Optional[UniversalSSLSettings]]._unwrapper,
             ),
-            cast_to=cast(Type[UniversalSSLSettings], ResultWrapper[UniversalSSLSettings]),
+            cast_to=cast(Type[Optional[UniversalSSLSettings]], ResultWrapper[UniversalSSLSettings]),
         )
 
 
@@ -165,7 +165,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UniversalSSLSettings:
+    ) -> Optional[UniversalSSLSettings]:
         """
         Patch Universal SSL Settings for a Zone.
 
@@ -216,9 +216,9 @@ class AsyncSettingsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[UniversalSSLSettings]._unwrapper,
+                post_parser=ResultWrapper[Optional[UniversalSSLSettings]]._unwrapper,
             ),
-            cast_to=cast(Type[UniversalSSLSettings], ResultWrapper[UniversalSSLSettings]),
+            cast_to=cast(Type[Optional[UniversalSSLSettings]], ResultWrapper[UniversalSSLSettings]),
         )
 
     async def get(
@@ -231,7 +231,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UniversalSSLSettings:
+    ) -> Optional[UniversalSSLSettings]:
         """
         Get Universal SSL Settings for a Zone.
 
@@ -255,9 +255,9 @@ class AsyncSettingsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[UniversalSSLSettings]._unwrapper,
+                post_parser=ResultWrapper[Optional[UniversalSSLSettings]]._unwrapper,
             ),
-            cast_to=cast(Type[UniversalSSLSettings], ResultWrapper[UniversalSSLSettings]),
+            cast_to=cast(Type[Optional[UniversalSSLSettings]], ResultWrapper[UniversalSSLSettings]),
         )
 
 

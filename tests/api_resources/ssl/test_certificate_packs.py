@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -74,7 +74,7 @@ class TestCertificatePacks:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CertificatePackDeleteResponse, certificate_pack, path=["response"])
+        assert_matches_type(Optional[CertificatePackDeleteResponse], certificate_pack, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -86,7 +86,7 @@ class TestCertificatePacks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate_pack = response.parse()
-        assert_matches_type(CertificatePackDeleteResponse, certificate_pack, path=["response"])
+        assert_matches_type(Optional[CertificatePackDeleteResponse], certificate_pack, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -98,7 +98,7 @@ class TestCertificatePacks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate_pack = response.parse()
-            assert_matches_type(CertificatePackDeleteResponse, certificate_pack, path=["response"])
+            assert_matches_type(Optional[CertificatePackDeleteResponse], certificate_pack, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -123,7 +123,7 @@ class TestCertificatePacks:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(CertificatePackEditResponse, certificate_pack, path=["response"])
+        assert_matches_type(Optional[CertificatePackEditResponse], certificate_pack, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -136,7 +136,7 @@ class TestCertificatePacks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate_pack = response.parse()
-        assert_matches_type(CertificatePackEditResponse, certificate_pack, path=["response"])
+        assert_matches_type(Optional[CertificatePackEditResponse], certificate_pack, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -149,7 +149,7 @@ class TestCertificatePacks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate_pack = response.parse()
-            assert_matches_type(CertificatePackEditResponse, certificate_pack, path=["response"])
+            assert_matches_type(Optional[CertificatePackEditResponse], certificate_pack, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -175,7 +175,7 @@ class TestCertificatePacks:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CertificatePackGetResponse, certificate_pack, path=["response"])
+        assert_matches_type(Optional[CertificatePackGetResponse], certificate_pack, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -187,7 +187,7 @@ class TestCertificatePacks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate_pack = response.parse()
-        assert_matches_type(CertificatePackGetResponse, certificate_pack, path=["response"])
+        assert_matches_type(Optional[CertificatePackGetResponse], certificate_pack, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -199,7 +199,7 @@ class TestCertificatePacks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate_pack = response.parse()
-            assert_matches_type(CertificatePackGetResponse, certificate_pack, path=["response"])
+            assert_matches_type(Optional[CertificatePackGetResponse], certificate_pack, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -273,7 +273,7 @@ class TestAsyncCertificatePacks:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CertificatePackDeleteResponse, certificate_pack, path=["response"])
+        assert_matches_type(Optional[CertificatePackDeleteResponse], certificate_pack, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -285,7 +285,7 @@ class TestAsyncCertificatePacks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate_pack = await response.parse()
-        assert_matches_type(CertificatePackDeleteResponse, certificate_pack, path=["response"])
+        assert_matches_type(Optional[CertificatePackDeleteResponse], certificate_pack, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -297,7 +297,7 @@ class TestAsyncCertificatePacks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate_pack = await response.parse()
-            assert_matches_type(CertificatePackDeleteResponse, certificate_pack, path=["response"])
+            assert_matches_type(Optional[CertificatePackDeleteResponse], certificate_pack, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -322,7 +322,7 @@ class TestAsyncCertificatePacks:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
-        assert_matches_type(CertificatePackEditResponse, certificate_pack, path=["response"])
+        assert_matches_type(Optional[CertificatePackEditResponse], certificate_pack, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -335,7 +335,7 @@ class TestAsyncCertificatePacks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate_pack = await response.parse()
-        assert_matches_type(CertificatePackEditResponse, certificate_pack, path=["response"])
+        assert_matches_type(Optional[CertificatePackEditResponse], certificate_pack, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -348,7 +348,7 @@ class TestAsyncCertificatePacks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate_pack = await response.parse()
-            assert_matches_type(CertificatePackEditResponse, certificate_pack, path=["response"])
+            assert_matches_type(Optional[CertificatePackEditResponse], certificate_pack, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -374,7 +374,7 @@ class TestAsyncCertificatePacks:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CertificatePackGetResponse, certificate_pack, path=["response"])
+        assert_matches_type(Optional[CertificatePackGetResponse], certificate_pack, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -386,7 +386,7 @@ class TestAsyncCertificatePacks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         certificate_pack = await response.parse()
-        assert_matches_type(CertificatePackGetResponse, certificate_pack, path=["response"])
+        assert_matches_type(Optional[CertificatePackGetResponse], certificate_pack, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -398,7 +398,7 @@ class TestAsyncCertificatePacks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             certificate_pack = await response.parse()
-            assert_matches_type(CertificatePackGetResponse, certificate_pack, path=["response"])
+            assert_matches_type(Optional[CertificatePackGetResponse], certificate_pack, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -22,7 +22,7 @@ class TestQuota:
         quota = client.ssl.certificate_packs.quota.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(QuotaGetResponse, quota, path=["response"])
+        assert_matches_type(Optional[QuotaGetResponse], quota, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -33,7 +33,7 @@ class TestQuota:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         quota = response.parse()
-        assert_matches_type(QuotaGetResponse, quota, path=["response"])
+        assert_matches_type(Optional[QuotaGetResponse], quota, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -44,7 +44,7 @@ class TestQuota:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             quota = response.parse()
-            assert_matches_type(QuotaGetResponse, quota, path=["response"])
+            assert_matches_type(Optional[QuotaGetResponse], quota, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -64,7 +64,7 @@ class TestAsyncQuota:
         quota = await async_client.ssl.certificate_packs.quota.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(QuotaGetResponse, quota, path=["response"])
+        assert_matches_type(Optional[QuotaGetResponse], quota, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -75,7 +75,7 @@ class TestAsyncQuota:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         quota = await response.parse()
-        assert_matches_type(QuotaGetResponse, quota, path=["response"])
+        assert_matches_type(Optional[QuotaGetResponse], quota, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -86,7 +86,7 @@ class TestAsyncQuota:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             quota = await response.parse()
-            assert_matches_type(QuotaGetResponse, quota, path=["response"])
+            assert_matches_type(Optional[QuotaGetResponse], quota, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

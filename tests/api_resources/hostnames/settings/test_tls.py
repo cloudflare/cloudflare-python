@@ -29,7 +29,7 @@ class TestTLS:
             setting_id="ciphers",
             value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-GCM-SHA256"],
         )
-        assert_matches_type(Setting, tls, path=["response"])
+        assert_matches_type(Optional[Setting], tls, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -43,7 +43,7 @@ class TestTLS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tls = response.parse()
-        assert_matches_type(Setting, tls, path=["response"])
+        assert_matches_type(Optional[Setting], tls, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -57,7 +57,7 @@ class TestTLS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tls = response.parse()
-            assert_matches_type(Setting, tls, path=["response"])
+            assert_matches_type(Optional[Setting], tls, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -86,7 +86,7 @@ class TestTLS:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             setting_id="ciphers",
         )
-        assert_matches_type(TLSDeleteResponse, tls, path=["response"])
+        assert_matches_type(Optional[TLSDeleteResponse], tls, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -99,7 +99,7 @@ class TestTLS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tls = response.parse()
-        assert_matches_type(TLSDeleteResponse, tls, path=["response"])
+        assert_matches_type(Optional[TLSDeleteResponse], tls, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -112,7 +112,7 @@ class TestTLS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tls = response.parse()
-            assert_matches_type(TLSDeleteResponse, tls, path=["response"])
+            assert_matches_type(Optional[TLSDeleteResponse], tls, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -186,7 +186,7 @@ class TestAsyncTLS:
             setting_id="ciphers",
             value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-GCM-SHA256"],
         )
-        assert_matches_type(Setting, tls, path=["response"])
+        assert_matches_type(Optional[Setting], tls, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -200,7 +200,7 @@ class TestAsyncTLS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tls = await response.parse()
-        assert_matches_type(Setting, tls, path=["response"])
+        assert_matches_type(Optional[Setting], tls, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -214,7 +214,7 @@ class TestAsyncTLS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tls = await response.parse()
-            assert_matches_type(Setting, tls, path=["response"])
+            assert_matches_type(Optional[Setting], tls, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -243,7 +243,7 @@ class TestAsyncTLS:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             setting_id="ciphers",
         )
-        assert_matches_type(TLSDeleteResponse, tls, path=["response"])
+        assert_matches_type(Optional[TLSDeleteResponse], tls, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -256,7 +256,7 @@ class TestAsyncTLS:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         tls = await response.parse()
-        assert_matches_type(TLSDeleteResponse, tls, path=["response"])
+        assert_matches_type(Optional[TLSDeleteResponse], tls, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -269,7 +269,7 @@ class TestAsyncTLS:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             tls = await response.parse()
-            assert_matches_type(TLSDeleteResponse, tls, path=["response"])
+            assert_matches_type(Optional[TLSDeleteResponse], tls, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

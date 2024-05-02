@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -31,7 +31,7 @@ class TestCustomHostnames:
             hostname="app.example.com",
             ssl={},
         )
-        assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
+        assert_matches_type(Optional[CustomHostnameCreateResponse], custom_hostname, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -56,7 +56,7 @@ class TestCustomHostnames:
             },
             custom_metadata={"key": "value"},
         )
-        assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
+        assert_matches_type(Optional[CustomHostnameCreateResponse], custom_hostname, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -69,7 +69,7 @@ class TestCustomHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = response.parse()
-        assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
+        assert_matches_type(Optional[CustomHostnameCreateResponse], custom_hostname, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -82,7 +82,7 @@ class TestCustomHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = response.parse()
-            assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
+            assert_matches_type(Optional[CustomHostnameCreateResponse], custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -203,7 +203,7 @@ class TestCustomHostnames:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
+        assert_matches_type(Optional[CustomHostnameEditResponse], custom_hostname, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
@@ -230,7 +230,7 @@ class TestCustomHostnames:
                 "wildcard": False,
             },
         )
-        assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
+        assert_matches_type(Optional[CustomHostnameEditResponse], custom_hostname, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -242,7 +242,7 @@ class TestCustomHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = response.parse()
-        assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
+        assert_matches_type(Optional[CustomHostnameEditResponse], custom_hostname, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -254,7 +254,7 @@ class TestCustomHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = response.parse()
-            assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
+            assert_matches_type(Optional[CustomHostnameEditResponse], custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -278,7 +278,7 @@ class TestCustomHostnames:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CustomHostnameGetResponse, custom_hostname, path=["response"])
+        assert_matches_type(Optional[CustomHostnameGetResponse], custom_hostname, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -290,7 +290,7 @@ class TestCustomHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = response.parse()
-        assert_matches_type(CustomHostnameGetResponse, custom_hostname, path=["response"])
+        assert_matches_type(Optional[CustomHostnameGetResponse], custom_hostname, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -302,7 +302,7 @@ class TestCustomHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = response.parse()
-            assert_matches_type(CustomHostnameGetResponse, custom_hostname, path=["response"])
+            assert_matches_type(Optional[CustomHostnameGetResponse], custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -331,7 +331,7 @@ class TestAsyncCustomHostnames:
             hostname="app.example.com",
             ssl={},
         )
-        assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
+        assert_matches_type(Optional[CustomHostnameCreateResponse], custom_hostname, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -356,7 +356,7 @@ class TestAsyncCustomHostnames:
             },
             custom_metadata={"key": "value"},
         )
-        assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
+        assert_matches_type(Optional[CustomHostnameCreateResponse], custom_hostname, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -369,7 +369,7 @@ class TestAsyncCustomHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = await response.parse()
-        assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
+        assert_matches_type(Optional[CustomHostnameCreateResponse], custom_hostname, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -382,7 +382,7 @@ class TestAsyncCustomHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = await response.parse()
-            assert_matches_type(CustomHostnameCreateResponse, custom_hostname, path=["response"])
+            assert_matches_type(Optional[CustomHostnameCreateResponse], custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -503,7 +503,7 @@ class TestAsyncCustomHostnames:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
+        assert_matches_type(Optional[CustomHostnameEditResponse], custom_hostname, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -530,7 +530,7 @@ class TestAsyncCustomHostnames:
                 "wildcard": False,
             },
         )
-        assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
+        assert_matches_type(Optional[CustomHostnameEditResponse], custom_hostname, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -542,7 +542,7 @@ class TestAsyncCustomHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = await response.parse()
-        assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
+        assert_matches_type(Optional[CustomHostnameEditResponse], custom_hostname, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -554,7 +554,7 @@ class TestAsyncCustomHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = await response.parse()
-            assert_matches_type(CustomHostnameEditResponse, custom_hostname, path=["response"])
+            assert_matches_type(Optional[CustomHostnameEditResponse], custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -578,7 +578,7 @@ class TestAsyncCustomHostnames:
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(CustomHostnameGetResponse, custom_hostname, path=["response"])
+        assert_matches_type(Optional[CustomHostnameGetResponse], custom_hostname, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -590,7 +590,7 @@ class TestAsyncCustomHostnames:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_hostname = await response.parse()
-        assert_matches_type(CustomHostnameGetResponse, custom_hostname, path=["response"])
+        assert_matches_type(Optional[CustomHostnameGetResponse], custom_hostname, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -602,7 +602,7 @@ class TestAsyncCustomHostnames:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_hostname = await response.parse()
-            assert_matches_type(CustomHostnameGetResponse, custom_hostname, path=["response"])
+            assert_matches_type(Optional[CustomHostnameGetResponse], custom_hostname, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

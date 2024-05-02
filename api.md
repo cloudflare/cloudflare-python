@@ -81,10 +81,10 @@ from cloudflare.types.origin_ca_certificates import (
 
 Methods:
 
-- <code title="post /certificates">client.origin_ca_certificates.<a href="./src/cloudflare/resources/origin_ca_certificates.py">create</a>(\*\*<a href="src/cloudflare/types/origin_ca_certificates/origin_ca_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_ca_certificates/origin_ca_certificate_create_response.py">OriginCACertificateCreateResponse</a></code>
+- <code title="post /certificates">client.origin_ca_certificates.<a href="./src/cloudflare/resources/origin_ca_certificates.py">create</a>(\*\*<a href="src/cloudflare/types/origin_ca_certificates/origin_ca_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_ca_certificates/origin_ca_certificate_create_response.py">Optional</a></code>
 - <code title="get /certificates">client.origin_ca_certificates.<a href="./src/cloudflare/resources/origin_ca_certificates.py">list</a>(\*\*<a href="src/cloudflare/types/origin_ca_certificates/origin_ca_certificate_list_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_ca_certificates/origin_ca_certificate.py">SyncSinglePage[OriginCACertificate]</a></code>
-- <code title="delete /certificates/{certificate_id}">client.origin_ca_certificates.<a href="./src/cloudflare/resources/origin_ca_certificates.py">delete</a>(certificate_id) -> <a href="./src/cloudflare/types/origin_ca_certificates/origin_ca_certificate_delete_response.py">OriginCACertificateDeleteResponse</a></code>
-- <code title="get /certificates/{certificate_id}">client.origin_ca_certificates.<a href="./src/cloudflare/resources/origin_ca_certificates.py">get</a>(certificate_id) -> <a href="./src/cloudflare/types/origin_ca_certificates/origin_ca_certificate_get_response.py">OriginCACertificateGetResponse</a></code>
+- <code title="delete /certificates/{certificate_id}">client.origin_ca_certificates.<a href="./src/cloudflare/resources/origin_ca_certificates.py">delete</a>(certificate_id) -> <a href="./src/cloudflare/types/origin_ca_certificates/origin_ca_certificate_delete_response.py">Optional</a></code>
+- <code title="get /certificates/{certificate_id}">client.origin_ca_certificates.<a href="./src/cloudflare/resources/origin_ca_certificates.py">get</a>(certificate_id) -> <a href="./src/cloudflare/types/origin_ca_certificates/origin_ca_certificate_get_response.py">Optional</a></code>
 
 # IPs
 
@@ -1270,7 +1270,7 @@ from cloudflare.types.ssl import AnalyzeCreateResponse
 
 Methods:
 
-- <code title="post /zones/{zone_id}/ssl/analyze">client.ssl.analyze.<a href="./src/cloudflare/resources/ssl/analyze.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/ssl/analyze_create_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/analyze_create_response.py">AnalyzeCreateResponse</a></code>
+- <code title="post /zones/{zone_id}/ssl/analyze">client.ssl.analyze.<a href="./src/cloudflare/resources/ssl/analyze.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/ssl/analyze_create_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/analyze_create_response.py">Optional</a></code>
 
 ## CertificatePacks
 
@@ -1289,9 +1289,9 @@ from cloudflare.types.ssl import (
 Methods:
 
 - <code title="get /zones/{zone_id}/ssl/certificate_packs">client.ssl.certificate_packs.<a href="./src/cloudflare/resources/ssl/certificate_packs/certificate_packs.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/ssl/certificate_pack_list_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/certificate_pack_list_response.py">SyncSinglePage[object]</a></code>
-- <code title="delete /zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}">client.ssl.certificate_packs.<a href="./src/cloudflare/resources/ssl/certificate_packs/certificate_packs.py">delete</a>(certificate_pack_id, \*, zone_id) -> <a href="./src/cloudflare/types/ssl/certificate_pack_delete_response.py">CertificatePackDeleteResponse</a></code>
-- <code title="patch /zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}">client.ssl.certificate_packs.<a href="./src/cloudflare/resources/ssl/certificate_packs/certificate_packs.py">edit</a>(certificate_pack_id, \*, zone_id, \*\*<a href="src/cloudflare/types/ssl/certificate_pack_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/certificate_pack_edit_response.py">CertificatePackEditResponse</a></code>
-- <code title="get /zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}">client.ssl.certificate_packs.<a href="./src/cloudflare/resources/ssl/certificate_packs/certificate_packs.py">get</a>(certificate_pack_id, \*, zone_id) -> <a href="./src/cloudflare/types/ssl/certificate_pack_get_response.py">CertificatePackGetResponse</a></code>
+- <code title="delete /zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}">client.ssl.certificate_packs.<a href="./src/cloudflare/resources/ssl/certificate_packs/certificate_packs.py">delete</a>(certificate_pack_id, \*, zone_id) -> <a href="./src/cloudflare/types/ssl/certificate_pack_delete_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}">client.ssl.certificate_packs.<a href="./src/cloudflare/resources/ssl/certificate_packs/certificate_packs.py">edit</a>(certificate_pack_id, \*, zone_id, \*\*<a href="src/cloudflare/types/ssl/certificate_pack_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/certificate_pack_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/ssl/certificate_packs/{certificate_pack_id}">client.ssl.certificate_packs.<a href="./src/cloudflare/resources/ssl/certificate_packs/certificate_packs.py">get</a>(certificate_pack_id, \*, zone_id) -> <a href="./src/cloudflare/types/ssl/certificate_pack_get_response.py">Optional</a></code>
 
 ### Order
 
@@ -1303,7 +1303,7 @@ from cloudflare.types.ssl.certificate_packs import OrderCreateResponse
 
 Methods:
 
-- <code title="post /zones/{zone_id}/ssl/certificate_packs/order">client.ssl.certificate_packs.order.<a href="./src/cloudflare/resources/ssl/certificate_packs/order.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/ssl/certificate_packs/order_create_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/certificate_packs/order_create_response.py">OrderCreateResponse</a></code>
+- <code title="post /zones/{zone_id}/ssl/certificate_packs/order">client.ssl.certificate_packs.order.<a href="./src/cloudflare/resources/ssl/certificate_packs/order.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/ssl/certificate_packs/order_create_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/certificate_packs/order_create_response.py">Optional</a></code>
 
 ### Quota
 
@@ -1315,7 +1315,7 @@ from cloudflare.types.ssl.certificate_packs import QuotaGetResponse
 
 Methods:
 
-- <code title="get /zones/{zone_id}/ssl/certificate_packs/quota">client.ssl.certificate_packs.quota.<a href="./src/cloudflare/resources/ssl/certificate_packs/quota.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/ssl/certificate_packs/quota_get_response.py">QuotaGetResponse</a></code>
+- <code title="get /zones/{zone_id}/ssl/certificate_packs/quota">client.ssl.certificate_packs.quota.<a href="./src/cloudflare/resources/ssl/certificate_packs/quota.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/ssl/certificate_packs/quota_get_response.py">Optional</a></code>
 
 ## Recommendations
 
@@ -1341,8 +1341,8 @@ from cloudflare.types.ssl.universal import UniversalSSLSettings
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/ssl/universal/settings">client.ssl.universal.settings.<a href="./src/cloudflare/resources/ssl/universal/settings.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/ssl/universal/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/universal/universal_ssl_settings.py">UniversalSSLSettings</a></code>
-- <code title="get /zones/{zone_id}/ssl/universal/settings">client.ssl.universal.settings.<a href="./src/cloudflare/resources/ssl/universal/settings.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/ssl/universal/universal_ssl_settings.py">UniversalSSLSettings</a></code>
+- <code title="patch /zones/{zone_id}/ssl/universal/settings">client.ssl.universal.settings.<a href="./src/cloudflare/resources/ssl/universal/settings.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/ssl/universal/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/universal/universal_ssl_settings.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/ssl/universal/settings">client.ssl.universal.settings.<a href="./src/cloudflare/resources/ssl/universal/settings.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/ssl/universal/universal_ssl_settings.py">Optional</a></code>
 
 ## Verification
 
@@ -1354,7 +1354,7 @@ from cloudflare.types.ssl import Verification, VerificationEditResponse, Verific
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/ssl/verification/{certificate_pack_id}">client.ssl.verification.<a href="./src/cloudflare/resources/ssl/verification.py">edit</a>(certificate_pack_id, \*, zone_id, \*\*<a href="src/cloudflare/types/ssl/verification_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/verification_edit_response.py">VerificationEditResponse</a></code>
+- <code title="patch /zones/{zone_id}/ssl/verification/{certificate_pack_id}">client.ssl.verification.<a href="./src/cloudflare/resources/ssl/verification.py">edit</a>(certificate_pack_id, \*, zone_id, \*\*<a href="src/cloudflare/types/ssl/verification_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/verification_edit_response.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/ssl/verification">client.ssl.verification.<a href="./src/cloudflare/resources/ssl/verification.py">get</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/ssl/verification_get_params.py">params</a>) -> <a href="./src/cloudflare/types/ssl/verification_get_response.py">Optional</a></code>
 
 # Subscriptions
@@ -1390,8 +1390,8 @@ from cloudflare.types.acm import TotalTLSCreateResponse, TotalTLSGetResponse
 
 Methods:
 
-- <code title="post /zones/{zone_id}/acm/total_tls">client.acm.total_tls.<a href="./src/cloudflare/resources/acm/total_tls.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/acm/total_tls_create_params.py">params</a>) -> <a href="./src/cloudflare/types/acm/total_tls_create_response.py">TotalTLSCreateResponse</a></code>
-- <code title="get /zones/{zone_id}/acm/total_tls">client.acm.total_tls.<a href="./src/cloudflare/resources/acm/total_tls.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/acm/total_tls_get_response.py">TotalTLSGetResponse</a></code>
+- <code title="post /zones/{zone_id}/acm/total_tls">client.acm.total_tls.<a href="./src/cloudflare/resources/acm/total_tls.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/acm/total_tls_create_params.py">params</a>) -> <a href="./src/cloudflare/types/acm/total_tls_create_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/acm/total_tls">client.acm.total_tls.<a href="./src/cloudflare/resources/acm/total_tls.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/acm/total_tls_get_response.py">Optional</a></code>
 
 # Argo
 
@@ -1463,8 +1463,8 @@ from cloudflare.types.certificate_authorities import (
 
 Methods:
 
-- <code title="put /zones/{zone_id}/certificate_authorities/hostname_associations">client.certificate_authorities.hostname_associations.<a href="./src/cloudflare/resources/certificate_authorities/hostname_associations.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/certificate_authorities/hostname_association_update_params.py">params</a>) -> <a href="./src/cloudflare/types/certificate_authorities/hostname_association_update_response.py">HostnameAssociationUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/certificate_authorities/hostname_associations">client.certificate_authorities.hostname_associations.<a href="./src/cloudflare/resources/certificate_authorities/hostname_associations.py">get</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/certificate_authorities/hostname_association_get_params.py">params</a>) -> <a href="./src/cloudflare/types/certificate_authorities/hostname_association_get_response.py">HostnameAssociationGetResponse</a></code>
+- <code title="put /zones/{zone_id}/certificate_authorities/hostname_associations">client.certificate_authorities.hostname_associations.<a href="./src/cloudflare/resources/certificate_authorities/hostname_associations.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/certificate_authorities/hostname_association_update_params.py">params</a>) -> <a href="./src/cloudflare/types/certificate_authorities/hostname_association_update_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/certificate_authorities/hostname_associations">client.certificate_authorities.hostname_associations.<a href="./src/cloudflare/resources/certificate_authorities/hostname_associations.py">get</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/certificate_authorities/hostname_association_get_params.py">params</a>) -> <a href="./src/cloudflare/types/certificate_authorities/hostname_association_get_response.py">Optional</a></code>
 
 # ClientCertificates
 
@@ -1476,11 +1476,11 @@ from cloudflare.types.client_certificates import ClientCertificate
 
 Methods:
 
-- <code title="post /zones/{zone_id}/client_certificates">client.client_certificates.<a href="./src/cloudflare/resources/client_certificates.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/client_certificates/client_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/client_certificates/client_certificate.py">ClientCertificate</a></code>
+- <code title="post /zones/{zone_id}/client_certificates">client.client_certificates.<a href="./src/cloudflare/resources/client_certificates.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/client_certificates/client_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/client_certificates/client_certificate.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/client_certificates">client.client_certificates.<a href="./src/cloudflare/resources/client_certificates.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/client_certificates/client_certificate_list_params.py">params</a>) -> <a href="./src/cloudflare/types/client_certificates/client_certificate.py">SyncV4PagePaginationArray[ClientCertificate]</a></code>
-- <code title="delete /zones/{zone_id}/client_certificates/{client_certificate_id}">client.client_certificates.<a href="./src/cloudflare/resources/client_certificates.py">delete</a>(client_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/client_certificates/client_certificate.py">ClientCertificate</a></code>
-- <code title="patch /zones/{zone_id}/client_certificates/{client_certificate_id}">client.client_certificates.<a href="./src/cloudflare/resources/client_certificates.py">edit</a>(client_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/client_certificates/client_certificate.py">ClientCertificate</a></code>
-- <code title="get /zones/{zone_id}/client_certificates/{client_certificate_id}">client.client_certificates.<a href="./src/cloudflare/resources/client_certificates.py">get</a>(client_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/client_certificates/client_certificate.py">ClientCertificate</a></code>
+- <code title="delete /zones/{zone_id}/client_certificates/{client_certificate_id}">client.client_certificates.<a href="./src/cloudflare/resources/client_certificates.py">delete</a>(client_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/client_certificates/client_certificate.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/client_certificates/{client_certificate_id}">client.client_certificates.<a href="./src/cloudflare/resources/client_certificates.py">edit</a>(client_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/client_certificates/client_certificate.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/client_certificates/{client_certificate_id}">client.client_certificates.<a href="./src/cloudflare/resources/client_certificates.py">get</a>(client_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/client_certificates/client_certificate.py">Optional</a></code>
 
 # CustomCertificates
 
@@ -1499,11 +1499,11 @@ from cloudflare.types.custom_certificates import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/custom_certificates">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/custom_certificates/custom_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_certificates/custom_certificate_create_response.py">CustomCertificateCreateResponse</a></code>
+- <code title="post /zones/{zone_id}/custom_certificates">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/custom_certificates/custom_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_certificates/custom_certificate_create_response.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/custom_certificates">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/custom_certificates/custom_certificate_list_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_certificates/custom_certificate.py">SyncV4PagePaginationArray[CustomCertificate]</a></code>
-- <code title="delete /zones/{zone_id}/custom_certificates/{custom_certificate_id}">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">delete</a>(custom_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/custom_certificates/custom_certificate_delete_response.py">CustomCertificateDeleteResponse</a></code>
-- <code title="patch /zones/{zone_id}/custom_certificates/{custom_certificate_id}">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">edit</a>(custom_certificate_id, \*, zone_id, \*\*<a href="src/cloudflare/types/custom_certificates/custom_certificate_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_certificates/custom_certificate_edit_response.py">CustomCertificateEditResponse</a></code>
-- <code title="get /zones/{zone_id}/custom_certificates/{custom_certificate_id}">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">get</a>(custom_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/custom_certificates/custom_certificate_get_response.py">CustomCertificateGetResponse</a></code>
+- <code title="delete /zones/{zone_id}/custom_certificates/{custom_certificate_id}">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">delete</a>(custom_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/custom_certificates/custom_certificate_delete_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/custom_certificates/{custom_certificate_id}">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">edit</a>(custom_certificate_id, \*, zone_id, \*\*<a href="src/cloudflare/types/custom_certificates/custom_certificate_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_certificates/custom_certificate_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/custom_certificates/{custom_certificate_id}">client.custom_certificates.<a href="./src/cloudflare/resources/custom_certificates/custom_certificates.py">get</a>(custom_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/custom_certificates/custom_certificate_get_response.py">Optional</a></code>
 
 ## Prioritize
 
@@ -1537,11 +1537,11 @@ from cloudflare.types.custom_hostnames import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/custom_hostnames">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/custom_hostnames/custom_hostname_create_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_hostnames/custom_hostname_create_response.py">CustomHostnameCreateResponse</a></code>
+- <code title="post /zones/{zone_id}/custom_hostnames">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/custom_hostnames/custom_hostname_create_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_hostnames/custom_hostname_create_response.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/custom_hostnames">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/custom_hostnames/custom_hostname_list_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_hostnames/custom_hostname_list_response.py">SyncV4PagePaginationArray[CustomHostnameListResponse]</a></code>
 - <code title="delete /zones/{zone_id}/custom_hostnames/{custom_hostname_id}">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">delete</a>(custom_hostname_id, \*, zone_id) -> <a href="./src/cloudflare/types/custom_hostnames/custom_hostname_delete_response.py">CustomHostnameDeleteResponse</a></code>
-- <code title="patch /zones/{zone_id}/custom_hostnames/{custom_hostname_id}">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">edit</a>(custom_hostname_id, \*, zone_id, \*\*<a href="src/cloudflare/types/custom_hostnames/custom_hostname_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_hostnames/custom_hostname_edit_response.py">CustomHostnameEditResponse</a></code>
-- <code title="get /zones/{zone_id}/custom_hostnames/{custom_hostname_id}">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">get</a>(custom_hostname_id, \*, zone_id) -> <a href="./src/cloudflare/types/custom_hostnames/custom_hostname_get_response.py">CustomHostnameGetResponse</a></code>
+- <code title="patch /zones/{zone_id}/custom_hostnames/{custom_hostname_id}">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">edit</a>(custom_hostname_id, \*, zone_id, \*\*<a href="src/cloudflare/types/custom_hostnames/custom_hostname_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_hostnames/custom_hostname_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/custom_hostnames/{custom_hostname_id}">client.custom_hostnames.<a href="./src/cloudflare/resources/custom_hostnames/custom_hostnames.py">get</a>(custom_hostname_id, \*, zone_id) -> <a href="./src/cloudflare/types/custom_hostnames/custom_hostname_get_response.py">Optional</a></code>
 
 ## FallbackOrigin
 
@@ -1557,9 +1557,9 @@ from cloudflare.types.custom_hostnames import (
 
 Methods:
 
-- <code title="put /zones/{zone_id}/custom_hostnames/fallback_origin">client.custom_hostnames.fallback_origin.<a href="./src/cloudflare/resources/custom_hostnames/fallback_origin.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/custom_hostnames/fallback_origin_update_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_hostnames/fallback_origin_update_response.py">FallbackOriginUpdateResponse</a></code>
-- <code title="delete /zones/{zone_id}/custom_hostnames/fallback_origin">client.custom_hostnames.fallback_origin.<a href="./src/cloudflare/resources/custom_hostnames/fallback_origin.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/custom_hostnames/fallback_origin_delete_response.py">FallbackOriginDeleteResponse</a></code>
-- <code title="get /zones/{zone_id}/custom_hostnames/fallback_origin">client.custom_hostnames.fallback_origin.<a href="./src/cloudflare/resources/custom_hostnames/fallback_origin.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/custom_hostnames/fallback_origin_get_response.py">FallbackOriginGetResponse</a></code>
+- <code title="put /zones/{zone_id}/custom_hostnames/fallback_origin">client.custom_hostnames.fallback_origin.<a href="./src/cloudflare/resources/custom_hostnames/fallback_origin.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/custom_hostnames/fallback_origin_update_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_hostnames/fallback_origin_update_response.py">Optional</a></code>
+- <code title="delete /zones/{zone_id}/custom_hostnames/fallback_origin">client.custom_hostnames.fallback_origin.<a href="./src/cloudflare/resources/custom_hostnames/fallback_origin.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/custom_hostnames/fallback_origin_delete_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/custom_hostnames/fallback_origin">client.custom_hostnames.fallback_origin.<a href="./src/cloudflare/resources/custom_hostnames/fallback_origin.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/custom_hostnames/fallback_origin_get_response.py">Optional</a></code>
 
 # CustomNameservers
 
@@ -2028,11 +2028,11 @@ from cloudflare.types.keyless_certificates import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/keyless_certificates">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/keyless_certificates/keyless_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/keyless_certificates/keyless_certificate.py">KeylessCertificate</a></code>
+- <code title="post /zones/{zone_id}/keyless_certificates">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/keyless_certificates/keyless_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/keyless_certificates/keyless_certificate.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/keyless_certificates">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/keyless_certificates/keyless_certificate.py">SyncSinglePage[KeylessCertificate]</a></code>
-- <code title="delete /zones/{zone_id}/keyless_certificates/{keyless_certificate_id}">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">delete</a>(keyless_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/keyless_certificates/keyless_certificate_delete_response.py">KeylessCertificateDeleteResponse</a></code>
-- <code title="patch /zones/{zone_id}/keyless_certificates/{keyless_certificate_id}">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">edit</a>(keyless_certificate_id, \*, zone_id, \*\*<a href="src/cloudflare/types/keyless_certificates/keyless_certificate_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/keyless_certificates/keyless_certificate.py">KeylessCertificate</a></code>
-- <code title="get /zones/{zone_id}/keyless_certificates/{keyless_certificate_id}">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">get</a>(keyless_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/keyless_certificates/keyless_certificate.py">KeylessCertificate</a></code>
+- <code title="delete /zones/{zone_id}/keyless_certificates/{keyless_certificate_id}">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">delete</a>(keyless_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/keyless_certificates/keyless_certificate_delete_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/keyless_certificates/{keyless_certificate_id}">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">edit</a>(keyless_certificate_id, \*, zone_id, \*\*<a href="src/cloudflare/types/keyless_certificates/keyless_certificate_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/keyless_certificates/keyless_certificate.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/keyless_certificates/{keyless_certificate_id}">client.keyless_certificates.<a href="./src/cloudflare/resources/keyless_certificates.py">get</a>(keyless_certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/keyless_certificates/keyless_certificate.py">Optional</a></code>
 
 # Logpush
 
@@ -2203,10 +2203,10 @@ from cloudflare.types.origin_tls_client_auth import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/origin_tls_client_auth">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/origin_tls_client_auth_create_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/origin_tls_client_auth_create_response.py">OriginTLSClientAuthCreateResponse</a></code>
+- <code title="post /zones/{zone_id}/origin_tls_client_auth">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/origin_tls_client_auth_create_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/origin_tls_client_auth_create_response.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/origin_tls_client_auth">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/zone_authenticated_origin_pull.py">SyncSinglePage[ZoneAuthenticatedOriginPull]</a></code>
-- <code title="delete /zones/{zone_id}/origin_tls_client_auth/{certificate_id}">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">delete</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/origin_tls_client_auth_delete_response.py">OriginTLSClientAuthDeleteResponse</a></code>
-- <code title="get /zones/{zone_id}/origin_tls_client_auth/{certificate_id}">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">get</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/origin_tls_client_auth_get_response.py">OriginTLSClientAuthGetResponse</a></code>
+- <code title="delete /zones/{zone_id}/origin_tls_client_auth/{certificate_id}">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">delete</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/origin_tls_client_auth_delete_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/origin_tls_client_auth/{certificate_id}">client.origin_tls_client_auth.<a href="./src/cloudflare/resources/origin_tls_client_auth/origin_tls_client_auth.py">get</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/origin_tls_client_auth_get_response.py">Optional</a></code>
 
 ## Hostnames
 
@@ -2219,7 +2219,7 @@ from cloudflare.types.origin_tls_client_auth import AuthenticatedOriginPull, Hos
 Methods:
 
 - <code title="put /zones/{zone_id}/origin_tls_client_auth/hostnames">client.origin_tls_client_auth.hostnames.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/hostnames.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/hostname_update_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostname_update_response.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/origin_tls_client_auth/hostnames/{hostname}">client.origin_tls_client_auth.hostnames.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/hostnames.py">get</a>(hostname, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/authenticated_origin_pull.py">AuthenticatedOriginPull</a></code>
+- <code title="get /zones/{zone_id}/origin_tls_client_auth/hostnames/{hostname}">client.origin_tls_client_auth.hostnames.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/hostnames.py">get</a>(hostname, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/authenticated_origin_pull.py">Optional</a></code>
 
 ### Certificates
 
@@ -2236,10 +2236,10 @@ from cloudflare.types.origin_tls_client_auth.hostnames import (
 
 Methods:
 
-- <code title="post /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_create_response.py">CertificateCreateResponse</a></code>
+- <code title="post /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_create_response.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/authenticated_origin_pull.py">SyncSinglePage[AuthenticatedOriginPull]</a></code>
-- <code title="delete /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">delete</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_delete_response.py">CertificateDeleteResponse</a></code>
-- <code title="get /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">get</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_get_response.py">CertificateGetResponse</a></code>
+- <code title="delete /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">delete</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_delete_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}">client.origin_tls_client_auth.hostnames.certificates.<a href="./src/cloudflare/resources/origin_tls_client_auth/hostnames/certificates.py">get</a>(certificate_id, \*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/hostnames/certificate_get_response.py">Optional</a></code>
 
 ## Settings
 
@@ -2251,8 +2251,8 @@ from cloudflare.types.origin_tls_client_auth import SettingUpdateResponse, Setti
 
 Methods:
 
-- <code title="put /zones/{zone_id}/origin_tls_client_auth/settings">client.origin_tls_client_auth.settings.<a href="./src/cloudflare/resources/origin_tls_client_auth/settings.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/setting_update_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/setting_update_response.py">SettingUpdateResponse</a></code>
-- <code title="get /zones/{zone_id}/origin_tls_client_auth/settings">client.origin_tls_client_auth.settings.<a href="./src/cloudflare/resources/origin_tls_client_auth/settings.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/setting_get_response.py">SettingGetResponse</a></code>
+- <code title="put /zones/{zone_id}/origin_tls_client_auth/settings">client.origin_tls_client_auth.settings.<a href="./src/cloudflare/resources/origin_tls_client_auth/settings.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/origin_tls_client_auth/setting_update_params.py">params</a>) -> <a href="./src/cloudflare/types/origin_tls_client_auth/setting_update_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/origin_tls_client_auth/settings">client.origin_tls_client_auth.settings.<a href="./src/cloudflare/resources/origin_tls_client_auth/settings.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/origin_tls_client_auth/setting_get_response.py">Optional</a></code>
 
 # Pagerules
 
@@ -3957,10 +3957,10 @@ from cloudflare.types.mtls_certificates import MTLSCertificate, MTLSCertificateC
 
 Methods:
 
-- <code title="post /accounts/{account_id}/mtls_certificates">client.mtls_certificates.<a href="./src/cloudflare/resources/mtls_certificates/mtls_certificates.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/mtls_certificates/mtls_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/mtls_certificates/mtls_certificate_create_response.py">MTLSCertificateCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/mtls_certificates">client.mtls_certificates.<a href="./src/cloudflare/resources/mtls_certificates/mtls_certificates.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/mtls_certificates/mtls_certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/mtls_certificates/mtls_certificate_create_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/mtls_certificates">client.mtls_certificates.<a href="./src/cloudflare/resources/mtls_certificates/mtls_certificates.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/mtls_certificates/mtls_certificate.py">SyncSinglePage[MTLSCertificate]</a></code>
-- <code title="delete /accounts/{account_id}/mtls_certificates/{mtls_certificate_id}">client.mtls_certificates.<a href="./src/cloudflare/resources/mtls_certificates/mtls_certificates.py">delete</a>(mtls_certificate_id, \*, account_id) -> <a href="./src/cloudflare/types/mtls_certificates/mtls_certificate.py">MTLSCertificate</a></code>
-- <code title="get /accounts/{account_id}/mtls_certificates/{mtls_certificate_id}">client.mtls_certificates.<a href="./src/cloudflare/resources/mtls_certificates/mtls_certificates.py">get</a>(mtls_certificate_id, \*, account_id) -> <a href="./src/cloudflare/types/mtls_certificates/mtls_certificate.py">MTLSCertificate</a></code>
+- <code title="delete /accounts/{account_id}/mtls_certificates/{mtls_certificate_id}">client.mtls_certificates.<a href="./src/cloudflare/resources/mtls_certificates/mtls_certificates.py">delete</a>(mtls_certificate_id, \*, account_id) -> <a href="./src/cloudflare/types/mtls_certificates/mtls_certificate.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/mtls_certificates/{mtls_certificate_id}">client.mtls_certificates.<a href="./src/cloudflare/resources/mtls_certificates/mtls_certificates.py">get</a>(mtls_certificate_id, \*, account_id) -> <a href="./src/cloudflare/types/mtls_certificates/mtls_certificate.py">Optional</a></code>
 
 ## Associations
 
@@ -7245,7 +7245,7 @@ from cloudflare.types.dcv_delegation import DCVDelegationUUID
 
 Methods:
 
-- <code title="get /zones/{zone_id}/dcv_delegation/uuid">client.dcv_delegation.uuid.<a href="./src/cloudflare/resources/dcv_delegation/uuid.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dcv_delegation/dcv_delegation_uuid.py">DCVDelegationUUID</a></code>
+- <code title="get /zones/{zone_id}/dcv_delegation/uuid">client.dcv_delegation.uuid.<a href="./src/cloudflare/resources/dcv_delegation/uuid.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dcv_delegation/dcv_delegation_uuid.py">Optional</a></code>
 
 # Hostnames
 
@@ -7266,8 +7266,8 @@ from cloudflare.types.hostnames.settings import (
 
 Methods:
 
-- <code title="put /zones/{zone_id}/hostnames/settings/{setting_id}/{hostname}">client.hostnames.settings.tls.<a href="./src/cloudflare/resources/hostnames/settings/tls.py">update</a>(hostname, \*, zone_id, setting_id, \*\*<a href="src/cloudflare/types/hostnames/settings/tls_update_params.py">params</a>) -> <a href="./src/cloudflare/types/hostnames/settings/setting.py">Setting</a></code>
-- <code title="delete /zones/{zone_id}/hostnames/settings/{setting_id}/{hostname}">client.hostnames.settings.tls.<a href="./src/cloudflare/resources/hostnames/settings/tls.py">delete</a>(hostname, \*, zone_id, setting_id) -> <a href="./src/cloudflare/types/hostnames/settings/tls_delete_response.py">TLSDeleteResponse</a></code>
+- <code title="put /zones/{zone_id}/hostnames/settings/{setting_id}/{hostname}">client.hostnames.settings.tls.<a href="./src/cloudflare/resources/hostnames/settings/tls.py">update</a>(hostname, \*, zone_id, setting_id, \*\*<a href="src/cloudflare/types/hostnames/settings/tls_update_params.py">params</a>) -> <a href="./src/cloudflare/types/hostnames/settings/setting.py">Optional</a></code>
+- <code title="delete /zones/{zone_id}/hostnames/settings/{setting_id}/{hostname}">client.hostnames.settings.tls.<a href="./src/cloudflare/resources/hostnames/settings/tls.py">delete</a>(hostname, \*, zone_id, setting_id) -> <a href="./src/cloudflare/types/hostnames/settings/tls_delete_response.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/hostnames/settings/{setting_id}">client.hostnames.settings.tls.<a href="./src/cloudflare/resources/hostnames/settings/tls.py">get</a>(setting_id, \*, zone_id) -> <a href="./src/cloudflare/types/hostnames/settings/tls_get_response.py">Optional</a></code>
 
 # Snippets

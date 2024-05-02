@@ -107,7 +107,7 @@ class HostnamesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AuthenticatedOriginPull:
+    ) -> Optional[AuthenticatedOriginPull]:
         """
         Get the Hostname Status for Client Authentication
 
@@ -136,9 +136,9 @@ class HostnamesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[AuthenticatedOriginPull]._unwrapper,
+                post_parser=ResultWrapper[Optional[AuthenticatedOriginPull]]._unwrapper,
             ),
-            cast_to=cast(Type[AuthenticatedOriginPull], ResultWrapper[AuthenticatedOriginPull]),
+            cast_to=cast(Type[Optional[AuthenticatedOriginPull]], ResultWrapper[AuthenticatedOriginPull]),
         )
 
 
@@ -211,7 +211,7 @@ class AsyncHostnamesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AuthenticatedOriginPull:
+    ) -> Optional[AuthenticatedOriginPull]:
         """
         Get the Hostname Status for Client Authentication
 
@@ -240,9 +240,9 @@ class AsyncHostnamesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[AuthenticatedOriginPull]._unwrapper,
+                post_parser=ResultWrapper[Optional[AuthenticatedOriginPull]]._unwrapper,
             ),
-            cast_to=cast(Type[AuthenticatedOriginPull], ResultWrapper[AuthenticatedOriginPull]),
+            cast_to=cast(Type[Optional[AuthenticatedOriginPull]], ResultWrapper[AuthenticatedOriginPull]),
         )
 
 

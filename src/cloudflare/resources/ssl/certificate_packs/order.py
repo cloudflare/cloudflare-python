@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
+from typing import List, Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -56,7 +56,7 @@ class OrderResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OrderCreateResponse:
+    ) -> Optional[OrderCreateResponse]:
         """
         For a given zone, order an advanced certificate pack.
 
@@ -107,9 +107,9 @@ class OrderResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[OrderCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[OrderCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[OrderCreateResponse], ResultWrapper[OrderCreateResponse]),
+            cast_to=cast(Type[Optional[OrderCreateResponse]], ResultWrapper[OrderCreateResponse]),
         )
 
 
@@ -138,7 +138,7 @@ class AsyncOrderResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OrderCreateResponse:
+    ) -> Optional[OrderCreateResponse]:
         """
         For a given zone, order an advanced certificate pack.
 
@@ -189,9 +189,9 @@ class AsyncOrderResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[OrderCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[OrderCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[OrderCreateResponse], ResultWrapper[OrderCreateResponse]),
+            cast_to=cast(Type[Optional[OrderCreateResponse]], ResultWrapper[OrderCreateResponse]),
         )
 
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, cast
+from typing import List, Type, Optional, cast
 
 import httpx
 
@@ -52,7 +52,7 @@ class HostnameAssociationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HostnameAssociationUpdateResponse:
+    ) -> Optional[HostnameAssociationUpdateResponse]:
         """
         Replace Hostname Associations
 
@@ -87,9 +87,11 @@ class HostnameAssociationsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[HostnameAssociationUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[HostnameAssociationUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[HostnameAssociationUpdateResponse], ResultWrapper[HostnameAssociationUpdateResponse]),
+            cast_to=cast(
+                Type[Optional[HostnameAssociationUpdateResponse]], ResultWrapper[HostnameAssociationUpdateResponse]
+            ),
         )
 
     def get(
@@ -103,7 +105,7 @@ class HostnameAssociationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HostnameAssociationGetResponse:
+    ) -> Optional[HostnameAssociationGetResponse]:
         """
         List Hostname Associations
 
@@ -135,9 +137,9 @@ class HostnameAssociationsResource(SyncAPIResource):
                     {"mtls_certificate_id": mtls_certificate_id},
                     hostname_association_get_params.HostnameAssociationGetParams,
                 ),
-                post_parser=ResultWrapper[HostnameAssociationGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[HostnameAssociationGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[HostnameAssociationGetResponse], ResultWrapper[HostnameAssociationGetResponse]),
+            cast_to=cast(Type[Optional[HostnameAssociationGetResponse]], ResultWrapper[HostnameAssociationGetResponse]),
         )
 
 
@@ -162,7 +164,7 @@ class AsyncHostnameAssociationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HostnameAssociationUpdateResponse:
+    ) -> Optional[HostnameAssociationUpdateResponse]:
         """
         Replace Hostname Associations
 
@@ -197,9 +199,11 @@ class AsyncHostnameAssociationsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[HostnameAssociationUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[HostnameAssociationUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[HostnameAssociationUpdateResponse], ResultWrapper[HostnameAssociationUpdateResponse]),
+            cast_to=cast(
+                Type[Optional[HostnameAssociationUpdateResponse]], ResultWrapper[HostnameAssociationUpdateResponse]
+            ),
         )
 
     async def get(
@@ -213,7 +217,7 @@ class AsyncHostnameAssociationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> HostnameAssociationGetResponse:
+    ) -> Optional[HostnameAssociationGetResponse]:
         """
         List Hostname Associations
 
@@ -245,9 +249,9 @@ class AsyncHostnameAssociationsResource(AsyncAPIResource):
                     {"mtls_certificate_id": mtls_certificate_id},
                     hostname_association_get_params.HostnameAssociationGetParams,
                 ),
-                post_parser=ResultWrapper[HostnameAssociationGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[HostnameAssociationGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[HostnameAssociationGetResponse], ResultWrapper[HostnameAssociationGetResponse]),
+            cast_to=cast(Type[Optional[HostnameAssociationGetResponse]], ResultWrapper[HostnameAssociationGetResponse]),
         )
 
 
