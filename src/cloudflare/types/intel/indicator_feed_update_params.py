@@ -11,5 +11,11 @@ class IndicatorFeedUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    source: str
-    """The file to upload"""
+    feed_description: str
+    """The new description of the feed"""
+
+    is_attributable: bool
+    """The new is_attributable value of the feed"""
+
+    is_public: bool
+    """The new is_public value of the feed"""

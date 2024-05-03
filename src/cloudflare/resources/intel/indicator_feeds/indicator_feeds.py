@@ -11,6 +11,14 @@ from ...._utils import (
     maybe_transform,
     async_maybe_transform,
 )
+from .snapshots import (
+    SnapshotsResource,
+    AsyncSnapshotsResource,
+    SnapshotsResourceWithRawResponse,
+    AsyncSnapshotsResourceWithRawResponse,
+    SnapshotsResourceWithStreamingResponse,
+    AsyncSnapshotsResourceWithStreamingResponse,
+)
 from ...._compat import cached_property
 from .permissions import (
     PermissionsResource,
@@ -43,6 +51,10 @@ __all__ = ["IndicatorFeedsResource", "AsyncIndicatorFeedsResource"]
 
 
 class IndicatorFeedsResource(SyncAPIResource):
+    @cached_property
+    def snapshots(self) -> SnapshotsResource:
+        return SnapshotsResource(self._client)
+
     @cached_property
     def permissions(self) -> PermissionsResource:
         return PermissionsResource(self._client)
@@ -112,7 +124,9 @@ class IndicatorFeedsResource(SyncAPIResource):
         feed_id: int,
         *,
         account_id: str,
-        source: str | NotGiven = NOT_GIVEN,
+        feed_description: str | NotGiven = NOT_GIVEN,
+        is_attributable: bool | NotGiven = NOT_GIVEN,
+        is_public: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -121,14 +135,18 @@ class IndicatorFeedsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[IndicatorFeedUpdateResponse]:
         """
-        Update indicator feed data
+        Update indicator feed metadata
 
         Args:
           account_id: Identifier
 
           feed_id: Indicator feed ID
 
-          source: The file to upload
+          feed_description: The new description of the feed
+
+          is_attributable: The new is_attributable value of the feed
+
+          is_public: The new is_public value of the feed
 
           extra_headers: Send extra headers
 
@@ -141,8 +159,15 @@ class IndicatorFeedsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
-            f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}/snapshot",
-            body=maybe_transform({"source": source}, indicator_feed_update_params.IndicatorFeedUpdateParams),
+            f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}",
+            body=maybe_transform(
+                {
+                    "feed_description": feed_description,
+                    "is_attributable": is_attributable,
+                    "is_public": is_public,
+                },
+                indicator_feed_update_params.IndicatorFeedUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -273,6 +298,10 @@ class IndicatorFeedsResource(SyncAPIResource):
 
 class AsyncIndicatorFeedsResource(AsyncAPIResource):
     @cached_property
+    def snapshots(self) -> AsyncSnapshotsResource:
+        return AsyncSnapshotsResource(self._client)
+
+    @cached_property
     def permissions(self) -> AsyncPermissionsResource:
         return AsyncPermissionsResource(self._client)
 
@@ -341,7 +370,9 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         feed_id: int,
         *,
         account_id: str,
-        source: str | NotGiven = NOT_GIVEN,
+        feed_description: str | NotGiven = NOT_GIVEN,
+        is_attributable: bool | NotGiven = NOT_GIVEN,
+        is_public: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -350,14 +381,18 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[IndicatorFeedUpdateResponse]:
         """
-        Update indicator feed data
+        Update indicator feed metadata
 
         Args:
           account_id: Identifier
 
           feed_id: Indicator feed ID
 
-          source: The file to upload
+          feed_description: The new description of the feed
+
+          is_attributable: The new is_attributable value of the feed
+
+          is_public: The new is_public value of the feed
 
           extra_headers: Send extra headers
 
@@ -370,9 +405,14 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}/snapshot",
+            f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}",
             body=await async_maybe_transform(
-                {"source": source}, indicator_feed_update_params.IndicatorFeedUpdateParams
+                {
+                    "feed_description": feed_description,
+                    "is_attributable": is_attributable,
+                    "is_public": is_public,
+                },
+                indicator_feed_update_params.IndicatorFeedUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -523,6 +563,10 @@ class IndicatorFeedsResourceWithRawResponse:
         )
 
     @cached_property
+    def snapshots(self) -> SnapshotsResourceWithRawResponse:
+        return SnapshotsResourceWithRawResponse(self._indicator_feeds.snapshots)
+
+    @cached_property
     def permissions(self) -> PermissionsResourceWithRawResponse:
         return PermissionsResourceWithRawResponse(self._indicator_feeds.permissions)
 
@@ -546,6 +590,10 @@ class AsyncIndicatorFeedsResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             indicator_feeds.get,
         )
+
+    @cached_property
+    def snapshots(self) -> AsyncSnapshotsResourceWithRawResponse:
+        return AsyncSnapshotsResourceWithRawResponse(self._indicator_feeds.snapshots)
 
     @cached_property
     def permissions(self) -> AsyncPermissionsResourceWithRawResponse:
@@ -573,6 +621,10 @@ class IndicatorFeedsResourceWithStreamingResponse:
         )
 
     @cached_property
+    def snapshots(self) -> SnapshotsResourceWithStreamingResponse:
+        return SnapshotsResourceWithStreamingResponse(self._indicator_feeds.snapshots)
+
+    @cached_property
     def permissions(self) -> PermissionsResourceWithStreamingResponse:
         return PermissionsResourceWithStreamingResponse(self._indicator_feeds.permissions)
 
@@ -596,6 +648,10 @@ class AsyncIndicatorFeedsResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             indicator_feeds.get,
         )
+
+    @cached_property
+    def snapshots(self) -> AsyncSnapshotsResourceWithStreamingResponse:
+        return AsyncSnapshotsResourceWithStreamingResponse(self._indicator_feeds.snapshots)
 
     @cached_property
     def permissions(self) -> AsyncPermissionsResourceWithStreamingResponse:
