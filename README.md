@@ -234,7 +234,7 @@ client = Cloudflare(
 )
 
 # Override per-request:
-client.with_options(timeout=5 * 1000).zones.edit(
+client.with_options(timeout=5.0).zones.edit(
     zone_id="023e105f4ecef8ad9ca31a8372d0c353",
 )
 ```
