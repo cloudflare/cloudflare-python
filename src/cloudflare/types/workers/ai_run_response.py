@@ -93,6 +93,7 @@ class ImageToText(BaseModel):
 AIRunResponse = Union[
     List[TextClassification],
     object,
+    object,
     List[float],
     TextEmbeddings,
     SpeechRecognition,
