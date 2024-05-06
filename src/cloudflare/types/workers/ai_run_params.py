@@ -62,13 +62,13 @@ class TextEmbeddings(TypedDict, total=False):
 class SpeechRecognition(TypedDict, total=False):
     account_id: Required[str]
 
-    audio: Iterable[float]
+    audio: Required[Iterable[float]]
 
 
 class ImageClassification(TypedDict, total=False):
     account_id: Required[str]
 
-    image: Iterable[float]
+    image: Required[Iterable[float]]
 
 
 class ObjectDetection(TypedDict, total=False):
@@ -120,7 +120,7 @@ class Summarization(TypedDict, total=False):
 class ImageToText(TypedDict, total=False):
     account_id: Required[str]
 
-    image: Required[Union[Iterable[float], str]]
+    image: Required[Iterable[float]]
 
     max_tokens: int
 
