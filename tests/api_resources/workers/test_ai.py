@@ -253,14 +253,6 @@ class TestAI:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @parametrize
-    def test_method_run_with_all_params_overload_5(self, client: Cloudflare) -> None:
-        ai = client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             audio=[0, 0, 0],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
@@ -270,6 +262,7 @@ class TestAI:
         response = client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            audio=[0, 0, 0],
         )
 
         assert response.is_closed is True
@@ -282,6 +275,7 @@ class TestAI:
         with client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            audio=[0, 0, 0],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -297,24 +291,18 @@ class TestAI:
             client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
+                audio=[0, 0, 0],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                audio=[0, 0, 0],
             )
 
     @parametrize
     def test_method_run_overload_6(self, client: Cloudflare) -> None:
-        ai = client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @parametrize
-    def test_method_run_with_all_params_overload_6(self, client: Cloudflare) -> None:
         ai = client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -327,6 +315,7 @@ class TestAI:
         response = client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            image=[0, 0, 0],
         )
 
         assert response.is_closed is True
@@ -339,6 +328,7 @@ class TestAI:
         with client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            image=[0, 0, 0],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -354,12 +344,14 @@ class TestAI:
             client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
+                image=[0, 0, 0],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                image=[0, 0, 0],
             )
 
     @parametrize
@@ -946,14 +938,6 @@ class TestAsyncAI:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @parametrize
-    async def test_method_run_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
-        ai = await async_client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             audio=[0, 0, 0],
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
@@ -963,6 +947,7 @@ class TestAsyncAI:
         response = await async_client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            audio=[0, 0, 0],
         )
 
         assert response.is_closed is True
@@ -975,6 +960,7 @@ class TestAsyncAI:
         async with async_client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            audio=[0, 0, 0],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -990,24 +976,18 @@ class TestAsyncAI:
             await async_client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
+                audio=[0, 0, 0],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             await async_client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                audio=[0, 0, 0],
             )
 
     @parametrize
     async def test_method_run_overload_6(self, async_client: AsyncCloudflare) -> None:
-        ai = await async_client.workers.ai.run(
-            "string",
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
-        assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
-
-    @parametrize
-    async def test_method_run_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
         ai = await async_client.workers.ai.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1020,6 +1000,7 @@ class TestAsyncAI:
         response = await async_client.workers.ai.with_raw_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            image=[0, 0, 0],
         )
 
         assert response.is_closed is True
@@ -1032,6 +1013,7 @@ class TestAsyncAI:
         async with async_client.workers.ai.with_streaming_response.run(
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            image=[0, 0, 0],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1047,12 +1029,14 @@ class TestAsyncAI:
             await async_client.workers.ai.with_raw_response.run(
                 "string",
                 account_id="",
+                image=[0, 0, 0],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `model_name` but received ''"):
             await async_client.workers.ai.with_raw_response.run(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                image=[0, 0, 0],
             )
 
     @parametrize
