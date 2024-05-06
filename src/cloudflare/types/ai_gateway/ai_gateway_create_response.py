@@ -1,0 +1,36 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from typing import Optional
+from datetime import datetime
+
+from ..._models import BaseModel
+
+__all__ = ["AIGatewayCreateResponse", "Task"]
+
+
+class Task(BaseModel):
+    id: str
+
+    cache_invalidate_on_update: bool
+
+    cache_ttl: int
+
+    collect_logs: bool
+
+    created_at: datetime
+
+    modified_at: datetime
+
+    name: str
+
+    slug: str
+
+    rate_limiting_interval: Optional[int] = None
+
+    rate_limiting_limit: Optional[int] = None
+
+    rate_limiting_technique: Optional[str] = None
+
+
+class AIGatewayCreateResponse(BaseModel):
+    task: Task
