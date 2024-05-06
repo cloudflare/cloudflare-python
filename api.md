@@ -1571,17 +1571,15 @@ from cloudflare.types.custom_nameservers import (
     CustomNameserverDeleteResponse,
     CustomNameserverAvailabiltyResponse,
     CustomNameserverGetResponse,
-    CustomNameserverVerifyResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/custom_ns">client.custom_nameservers.<a href="./src/cloudflare/resources/custom_nameservers.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/custom_nameservers/custom_nameserver_create_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_nameservers/custom_nameserver.py">CustomNameserver</a></code>
+- <code title="post /accounts/{account_id}/custom_ns">client.custom_nameservers.<a href="./src/cloudflare/resources/custom_nameservers.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/custom_nameservers/custom_nameserver_create_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_nameservers/custom_nameserver.py">Optional</a></code>
 - <code title="delete /accounts/{account_id}/custom_ns/{custom_ns_id}">client.custom_nameservers.<a href="./src/cloudflare/resources/custom_nameservers.py">delete</a>(custom_ns_id, \*, account_id) -> <a href="./src/cloudflare/types/custom_nameservers/custom_nameserver_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/custom_ns/availability">client.custom_nameservers.<a href="./src/cloudflare/resources/custom_nameservers.py">availabilty</a>(\*, account_id) -> <a href="./src/cloudflare/types/custom_nameservers/custom_nameserver_availabilty_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/custom_ns">client.custom_nameservers.<a href="./src/cloudflare/resources/custom_nameservers.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/custom_nameservers/custom_nameserver_get_response.py">Optional</a></code>
-- <code title="post /accounts/{account_id}/custom_ns/verify">client.custom_nameservers.<a href="./src/cloudflare/resources/custom_nameservers.py">verify</a>(\*, account_id, \*\*<a href="src/cloudflare/types/custom_nameservers/custom_nameserver_verify_params.py">params</a>) -> <a href="./src/cloudflare/types/custom_nameservers/custom_nameserver_verify_response.py">Optional</a></code>
 
 # DNS
 

@@ -13,7 +13,6 @@ from cloudflare.types.custom_nameservers import (
     CustomNameserver,
     CustomNameserverGetResponse,
     CustomNameserverDeleteResponse,
-    CustomNameserverVerifyResponse,
     CustomNameserverAvailabiltyResponse,
 )
 
@@ -29,7 +28,7 @@ class TestCustomNameservers:
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
             ns_name="ns1.example.com",
         )
-        assert_matches_type(CustomNameserver, custom_nameserver, path=["response"])
+        assert_matches_type(Optional[CustomNameserver], custom_nameserver, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -38,7 +37,7 @@ class TestCustomNameservers:
             ns_name="ns1.example.com",
             ns_set=1,
         )
-        assert_matches_type(CustomNameserver, custom_nameserver, path=["response"])
+        assert_matches_type(Optional[CustomNameserver], custom_nameserver, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -50,7 +49,7 @@ class TestCustomNameservers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_nameserver = response.parse()
-        assert_matches_type(CustomNameserver, custom_nameserver, path=["response"])
+        assert_matches_type(Optional[CustomNameserver], custom_nameserver, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -62,7 +61,7 @@ class TestCustomNameservers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_nameserver = response.parse()
-            assert_matches_type(CustomNameserver, custom_nameserver, path=["response"])
+            assert_matches_type(Optional[CustomNameserver], custom_nameserver, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -198,48 +197,6 @@ class TestCustomNameservers:
                 account_id="",
             )
 
-    @parametrize
-    def test_method_verify(self, client: Cloudflare) -> None:
-        custom_nameserver = client.custom_nameservers.verify(
-            account_id="372e67954025e0ba6aaa6d586b9e0b59",
-            body={},
-        )
-        assert_matches_type(Optional[CustomNameserverVerifyResponse], custom_nameserver, path=["response"])
-
-    @parametrize
-    def test_raw_response_verify(self, client: Cloudflare) -> None:
-        response = client.custom_nameservers.with_raw_response.verify(
-            account_id="372e67954025e0ba6aaa6d586b9e0b59",
-            body={},
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        custom_nameserver = response.parse()
-        assert_matches_type(Optional[CustomNameserverVerifyResponse], custom_nameserver, path=["response"])
-
-    @parametrize
-    def test_streaming_response_verify(self, client: Cloudflare) -> None:
-        with client.custom_nameservers.with_streaming_response.verify(
-            account_id="372e67954025e0ba6aaa6d586b9e0b59",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            custom_nameserver = response.parse()
-            assert_matches_type(Optional[CustomNameserverVerifyResponse], custom_nameserver, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    def test_path_params_verify(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            client.custom_nameservers.with_raw_response.verify(
-                account_id="",
-                body={},
-            )
-
 
 class TestAsyncCustomNameservers:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -250,7 +207,7 @@ class TestAsyncCustomNameservers:
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
             ns_name="ns1.example.com",
         )
-        assert_matches_type(CustomNameserver, custom_nameserver, path=["response"])
+        assert_matches_type(Optional[CustomNameserver], custom_nameserver, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -259,7 +216,7 @@ class TestAsyncCustomNameservers:
             ns_name="ns1.example.com",
             ns_set=1,
         )
-        assert_matches_type(CustomNameserver, custom_nameserver, path=["response"])
+        assert_matches_type(Optional[CustomNameserver], custom_nameserver, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -271,7 +228,7 @@ class TestAsyncCustomNameservers:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         custom_nameserver = await response.parse()
-        assert_matches_type(CustomNameserver, custom_nameserver, path=["response"])
+        assert_matches_type(Optional[CustomNameserver], custom_nameserver, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -283,7 +240,7 @@ class TestAsyncCustomNameservers:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             custom_nameserver = await response.parse()
-            assert_matches_type(CustomNameserver, custom_nameserver, path=["response"])
+            assert_matches_type(Optional[CustomNameserver], custom_nameserver, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -417,46 +374,4 @@ class TestAsyncCustomNameservers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.custom_nameservers.with_raw_response.get(
                 account_id="",
-            )
-
-    @parametrize
-    async def test_method_verify(self, async_client: AsyncCloudflare) -> None:
-        custom_nameserver = await async_client.custom_nameservers.verify(
-            account_id="372e67954025e0ba6aaa6d586b9e0b59",
-            body={},
-        )
-        assert_matches_type(Optional[CustomNameserverVerifyResponse], custom_nameserver, path=["response"])
-
-    @parametrize
-    async def test_raw_response_verify(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.custom_nameservers.with_raw_response.verify(
-            account_id="372e67954025e0ba6aaa6d586b9e0b59",
-            body={},
-        )
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        custom_nameserver = await response.parse()
-        assert_matches_type(Optional[CustomNameserverVerifyResponse], custom_nameserver, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_verify(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.custom_nameservers.with_streaming_response.verify(
-            account_id="372e67954025e0ba6aaa6d586b9e0b59",
-            body={},
-        ) as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            custom_nameserver = await response.parse()
-            assert_matches_type(Optional[CustomNameserverVerifyResponse], custom_nameserver, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_path_params_verify(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-            await async_client.custom_nameservers.with_raw_response.verify(
-                account_id="",
-                body={},
             )
