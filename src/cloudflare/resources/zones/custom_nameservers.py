@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -76,28 +76,23 @@ class CustomNameserversResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[CustomNameserverUpdateResponse],
-            self._put(
-                f"/zones/{zone_id}/custom_ns",
-                body=maybe_transform(
-                    {
-                        "enabled": enabled,
-                        "ns_set": ns_set,
-                    },
-                    custom_nameserver_update_params.CustomNameserverUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomNameserverUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CustomNameserverUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/zones/{zone_id}/custom_ns",
+            body=maybe_transform(
+                {
+                    "enabled": enabled,
+                    "ns_set": ns_set,
+                },
+                custom_nameserver_update_params.CustomNameserverUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomNameserverUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CustomNameserverUpdateResponse]], ResultWrapper[CustomNameserverUpdateResponse]),
         )
 
     def get(
@@ -127,21 +122,16 @@ class CustomNameserversResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[CustomNameserverGetResponse],
-            self._get(
-                f"/zones/{zone_id}/custom_ns",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomNameserverGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CustomNameserverGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/zones/{zone_id}/custom_ns",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomNameserverGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[CustomNameserverGetResponse]], ResultWrapper[CustomNameserverGetResponse]),
         )
 
 
@@ -191,28 +181,23 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[CustomNameserverUpdateResponse],
-            await self._put(
-                f"/zones/{zone_id}/custom_ns",
-                body=await async_maybe_transform(
-                    {
-                        "enabled": enabled,
-                        "ns_set": ns_set,
-                    },
-                    custom_nameserver_update_params.CustomNameserverUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomNameserverUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CustomNameserverUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/zones/{zone_id}/custom_ns",
+            body=await async_maybe_transform(
+                {
+                    "enabled": enabled,
+                    "ns_set": ns_set,
+                },
+                custom_nameserver_update_params.CustomNameserverUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomNameserverUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CustomNameserverUpdateResponse]], ResultWrapper[CustomNameserverUpdateResponse]),
         )
 
     async def get(
@@ -242,21 +227,16 @@ class AsyncCustomNameserversResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[CustomNameserverGetResponse],
-            await self._get(
-                f"/zones/{zone_id}/custom_ns",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomNameserverGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CustomNameserverGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/zones/{zone_id}/custom_ns",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomNameserverGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[CustomNameserverGetResponse]], ResultWrapper[CustomNameserverGetResponse]),
         )
 
 
