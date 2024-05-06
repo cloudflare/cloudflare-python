@@ -195,7 +195,7 @@ class AIResource(SyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        audio: Iterable[float] | NotGiven = NOT_GIVEN,
+        audio: Iterable[float],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -231,7 +231,7 @@ class AIResource(SyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        image: Iterable[float] | NotGiven = NOT_GIVEN,
+        image: Iterable[float],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -419,7 +419,7 @@ class AIResource(SyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        image: Union[Iterable[float], str],
+        image: Iterable[float],
         max_tokens: int | NotGiven = NOT_GIVEN,
         messages: Iterable[ai_run_params.ImageToTextMessage] | NotGiven = NOT_GIVEN,
         prompt: str | NotGiven = NOT_GIVEN,
@@ -459,8 +459,8 @@ class AIResource(SyncAPIResource):
         ["account_id", "prompt"],
         ["account_id", "sentences", "source"],
         ["account_id", "text"],
-        ["account_id"],
-        ["account_id"],
+        ["account_id", "audio"],
+        ["account_id", "image"],
         ["account_id"],
         ["account_id"],
         ["account_id", "target_lang", "text"],
@@ -475,7 +475,7 @@ class AIResource(SyncAPIResource):
         text: str | Union[str, List[str]] | NotGiven = NOT_GIVEN,
         prompt: str | NotGiven = NOT_GIVEN,
         guidance: float | NotGiven = NOT_GIVEN,
-        image: Iterable[float] | Union[Iterable[float], str] | NotGiven = NOT_GIVEN,
+        image: Iterable[float] | NotGiven = NOT_GIVEN,
         mask: Iterable[float] | NotGiven = NOT_GIVEN,
         num_steps: int | NotGiven = NOT_GIVEN,
         strength: float | NotGiven = NOT_GIVEN,
@@ -711,7 +711,7 @@ class AsyncAIResource(AsyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        audio: Iterable[float] | NotGiven = NOT_GIVEN,
+        audio: Iterable[float],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -747,7 +747,7 @@ class AsyncAIResource(AsyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        image: Iterable[float] | NotGiven = NOT_GIVEN,
+        image: Iterable[float],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -935,7 +935,7 @@ class AsyncAIResource(AsyncAPIResource):
         model_name: str,
         *,
         account_id: str,
-        image: Union[Iterable[float], str],
+        image: Iterable[float],
         max_tokens: int | NotGiven = NOT_GIVEN,
         messages: Iterable[ai_run_params.ImageToTextMessage] | NotGiven = NOT_GIVEN,
         prompt: str | NotGiven = NOT_GIVEN,
@@ -975,8 +975,8 @@ class AsyncAIResource(AsyncAPIResource):
         ["account_id", "prompt"],
         ["account_id", "sentences", "source"],
         ["account_id", "text"],
-        ["account_id"],
-        ["account_id"],
+        ["account_id", "audio"],
+        ["account_id", "image"],
         ["account_id"],
         ["account_id"],
         ["account_id", "target_lang", "text"],
@@ -991,7 +991,7 @@ class AsyncAIResource(AsyncAPIResource):
         text: str | Union[str, List[str]] | NotGiven = NOT_GIVEN,
         prompt: str | NotGiven = NOT_GIVEN,
         guidance: float | NotGiven = NOT_GIVEN,
-        image: Iterable[float] | Union[Iterable[float], str] | NotGiven = NOT_GIVEN,
+        image: Iterable[float] | NotGiven = NOT_GIVEN,
         mask: Iterable[float] | NotGiven = NOT_GIVEN,
         num_steps: int | NotGiven = NOT_GIVEN,
         strength: float | NotGiven = NOT_GIVEN,
