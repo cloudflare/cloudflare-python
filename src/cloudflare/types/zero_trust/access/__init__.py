@@ -33,7 +33,6 @@ from .self_hosted_domains import SelfHostedDomains as SelfHostedDomains
 from .tag_delete_response import TagDeleteResponse as TagDeleteResponse
 from .associated_hostnames import AssociatedHostnames as AssociatedHostnames
 from .saas_app_name_format import SaaSAppNameFormat as SaaSAppNameFormat
-from .allowed_methods_param import AllowedMethodsParam as AllowedMethodsParam
 from .group_delete_response import GroupDeleteResponse as GroupDeleteResponse
 from .saas_app_source_param import SaaSAppSourceParam as SaaSAppSourceParam
 from .bookmark_create_params import BookmarkCreateParams as BookmarkCreateParams
