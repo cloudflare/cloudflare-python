@@ -43,7 +43,7 @@ __all__ = [
     "RouteRule",
     "RouteRuleActionParameters",
     "RouteRuleActionParametersOrigin",
-    "RouteRuleActionParametersSni",
+    "RouteRuleActionParametersSNI",
     "ScoreRule",
     "ScoreRuleActionParameters",
     "ServeErrorRule",
@@ -588,7 +588,7 @@ class RouteRuleActionParametersOrigin(TypedDict, total=False):
     """Override the destination port."""
 
 
-class RouteRuleActionParametersSni(TypedDict, total=False):
+class RouteRuleActionParametersSNI(TypedDict, total=False):
     value: Required[str]
     """The SNI override."""
 
@@ -600,7 +600,7 @@ class RouteRuleActionParameters(TypedDict, total=False):
     origin: RouteRuleActionParametersOrigin
     """Override the IP/TCP destination."""
 
-    sni: RouteRuleActionParametersSni
+    sni: RouteRuleActionParametersSNI
     """Override the Server Name Indication (SNI)."""
 
 

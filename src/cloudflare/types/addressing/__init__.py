@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .prefix import Prefix as Prefix
 from .address_map import AddressMap as AddressMap
+from .address_map_kind import AddressMapKind as AddressMapKind
 from .prefix_edit_params import PrefixEditParams as PrefixEditParams
 from .prefix_create_params import PrefixCreateParams as PrefixCreateParams
 from .service_list_response import ServiceListResponse as ServiceListResponse
