@@ -11,9 +11,11 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust import (
-    IdentityProvider,
+    IdentityProviderGetResponse,
     IdentityProviderListResponse,
+    IdentityProviderCreateResponse,
     IdentityProviderDeleteResponse,
+    IdentityProviderUpdateResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -31,7 +33,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -58,7 +60,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -73,7 +75,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -88,7 +90,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -120,7 +122,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -145,7 +147,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -160,7 +162,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -175,7 +177,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -207,7 +209,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -228,7 +230,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -243,7 +245,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -258,7 +260,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -290,7 +292,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -311,7 +313,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -326,7 +328,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -341,7 +343,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -373,7 +375,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -396,7 +398,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -411,7 +413,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -426,7 +428,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -458,7 +460,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -482,7 +484,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -497,7 +499,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -512,7 +514,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -544,7 +546,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -565,7 +567,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -580,7 +582,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -595,7 +597,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -627,7 +629,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -654,7 +656,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -669,7 +671,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -684,7 +686,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -716,7 +718,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -741,7 +743,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -756,7 +758,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -771,7 +773,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -803,7 +805,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -827,7 +829,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -842,7 +844,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -857,7 +859,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -889,7 +891,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -913,7 +915,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -928,7 +930,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -943,7 +945,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -975,7 +977,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1014,7 +1016,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1029,7 +1031,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1044,7 +1046,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1076,7 +1078,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1097,7 +1099,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1112,7 +1114,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1127,7 +1129,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1159,7 +1161,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1177,7 +1179,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1192,7 +1194,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1207,7 +1209,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1240,7 +1242,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1268,7 +1270,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1284,7 +1286,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1300,7 +1302,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1344,7 +1346,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1370,7 +1372,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1386,7 +1388,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1402,7 +1404,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1446,7 +1448,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1468,7 +1470,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1484,7 +1486,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1500,7 +1502,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1544,7 +1546,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1566,7 +1568,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1582,7 +1584,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1598,7 +1600,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1642,7 +1644,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1666,7 +1668,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1682,7 +1684,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1698,7 +1700,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1742,7 +1744,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1767,7 +1769,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1783,7 +1785,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1799,7 +1801,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1843,7 +1845,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1865,7 +1867,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1881,7 +1883,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1897,7 +1899,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1941,7 +1943,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1969,7 +1971,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1985,7 +1987,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2001,7 +2003,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2045,7 +2047,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2071,7 +2073,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2087,7 +2089,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2103,7 +2105,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2147,7 +2149,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2172,7 +2174,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2188,7 +2190,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2204,7 +2206,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2248,7 +2250,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2273,7 +2275,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2289,7 +2291,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2305,7 +2307,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2349,7 +2351,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2389,7 +2391,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2405,7 +2407,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2421,7 +2423,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2465,7 +2467,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2487,7 +2489,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2503,7 +2505,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2519,7 +2521,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2563,7 +2565,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2582,7 +2584,7 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2598,7 +2600,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2614,7 +2616,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2777,7 +2779,7 @@ class TestIdentityProviders:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderGetResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2786,7 +2788,7 @@ class TestIdentityProviders:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderGetResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2799,7 +2801,7 @@ class TestIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderGetResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2812,7 +2814,7 @@ class TestIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderGetResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2850,7 +2852,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2877,7 +2879,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2892,7 +2894,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2907,7 +2909,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2939,7 +2941,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2964,7 +2966,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2979,7 +2981,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2994,7 +2996,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3026,7 +3028,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3047,7 +3049,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3062,7 +3064,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3077,7 +3079,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3109,7 +3111,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3130,7 +3132,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3145,7 +3147,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3160,7 +3162,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3192,7 +3194,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3215,7 +3217,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3230,7 +3232,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3245,7 +3247,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3277,7 +3279,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3301,7 +3303,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3316,7 +3318,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3331,7 +3333,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3363,7 +3365,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3384,7 +3386,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3399,7 +3401,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3414,7 +3416,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3446,7 +3448,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3473,7 +3475,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3488,7 +3490,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3503,7 +3505,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3535,7 +3537,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3560,7 +3562,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3575,7 +3577,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3590,7 +3592,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3622,7 +3624,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3646,7 +3648,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3661,7 +3663,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3676,7 +3678,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3708,7 +3710,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3732,7 +3734,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3747,7 +3749,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3762,7 +3764,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3794,7 +3796,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3833,7 +3835,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3848,7 +3850,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3863,7 +3865,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3895,7 +3897,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3916,7 +3918,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3931,7 +3933,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3946,7 +3948,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3978,7 +3980,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3996,7 +3998,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4011,7 +4013,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4026,7 +4028,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderCreateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4059,7 +4061,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4087,7 +4089,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4103,7 +4105,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4119,7 +4121,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4163,7 +4165,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4189,7 +4191,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4205,7 +4207,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4221,7 +4223,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4265,7 +4267,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4287,7 +4289,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4303,7 +4305,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4319,7 +4321,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4363,7 +4365,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4385,7 +4387,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4401,7 +4403,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4417,7 +4419,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4461,7 +4463,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4485,7 +4487,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4501,7 +4503,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4517,7 +4519,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4561,7 +4563,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4586,7 +4588,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4602,7 +4604,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4618,7 +4620,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4662,7 +4664,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4684,7 +4686,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4700,7 +4702,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4716,7 +4718,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4760,7 +4762,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4788,7 +4790,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4804,7 +4806,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4820,7 +4822,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4864,7 +4866,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4890,7 +4892,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4906,7 +4908,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4922,7 +4924,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4966,7 +4968,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4991,7 +4993,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5007,7 +5009,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5023,7 +5025,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5067,7 +5069,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5092,7 +5094,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5108,7 +5110,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5124,7 +5126,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5168,7 +5170,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5208,7 +5210,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5224,7 +5226,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5240,7 +5242,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5284,7 +5286,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5306,7 +5308,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5322,7 +5324,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5338,7 +5340,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5382,7 +5384,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5401,7 +5403,7 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5417,7 +5419,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5433,7 +5435,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderUpdateResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5596,7 +5598,7 @@ class TestAsyncIdentityProviders:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderGetResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5605,7 +5607,7 @@ class TestAsyncIdentityProviders:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="string",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderGetResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5618,7 +5620,7 @@ class TestAsyncIdentityProviders:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+        assert_matches_type(Optional[IdentityProviderGetResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5631,7 +5633,7 @@ class TestAsyncIdentityProviders:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
+            assert_matches_type(Optional[IdentityProviderGetResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
