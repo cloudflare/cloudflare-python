@@ -7,7 +7,7 @@ from typing_extensions import TypedDict
 
 from .allowed_headers import AllowedHeaders
 from .allowed_origins import AllowedOrigins
-from .allowed_http_methods_param import AllowedHTTPMethodsParam
+from .allowed_methods_param import AllowedMethodsParam
 
 __all__ = ["CORSHeadersParam"]
 
@@ -31,7 +31,7 @@ class CORSHeadersParam(TypedDict, total=False):
     allowed_headers: List[AllowedHeaders]
     """Allowed HTTP request headers."""
 
-    allowed_methods: AllowedHTTPMethodsParam
+    allowed_methods: AllowedMethodsParam
     """Allowed HTTP request methods."""
 
     allowed_origins: List[AllowedOrigins]

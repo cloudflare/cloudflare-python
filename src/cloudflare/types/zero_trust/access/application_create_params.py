@@ -6,7 +6,7 @@ from typing import Dict, List, Union
 from typing_extensions import Literal, Required, TypedDict
 
 from .allowed_idps import AllowedIdPs
-from .custom_pages import CustomPages
+from .application_type import ApplicationType
 from .cors_headers_param import CORSHeadersParam
 from .saml_saas_app_param import SAMLSaaSAppParam
 from .self_hosted_domains import SelfHostedDomains
@@ -90,7 +90,7 @@ class SelfHostedApplication(TypedDict, total=False):
     application when failing non-identity rules.
     """
 
-    custom_pages: List[CustomPages]
+    custom_pages: List[str]
     """The custom pages that will be displayed when applicable for this application"""
 
     enable_binding_cookie: bool
@@ -176,7 +176,7 @@ class SaaSApplication(TypedDict, total=False):
     You must specify only one identity provider in allowed_idps.
     """
 
-    custom_pages: List[CustomPages]
+    custom_pages: List[str]
     """The custom pages that will be displayed when applicable for this application"""
 
     logo_url: str
@@ -320,7 +320,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     application when failing non-identity rules.
     """
 
-    custom_pages: List[CustomPages]
+    custom_pages: List[str]
     """The custom pages that will be displayed when applicable for this application"""
 
     enable_binding_cookie: bool
@@ -444,7 +444,7 @@ class BrowserVncApplication(TypedDict, total=False):
     application when failing non-identity rules.
     """
 
-    custom_pages: List[CustomPages]
+    custom_pages: List[str]
     """The custom pages that will be displayed when applicable for this application"""
 
     enable_binding_cookie: bool
@@ -507,7 +507,7 @@ class BrowserVncApplication(TypedDict, total=False):
 
 
 class AppLauncherApplication(TypedDict, total=False):
-    type: Required[Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]]
+    type: Required[ApplicationType]
     """The application type."""
 
     account_id: str
@@ -539,7 +539,7 @@ class AppLauncherApplication(TypedDict, total=False):
 
 
 class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
-    type: Required[Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]]
+    type: Required[ApplicationType]
     """The application type."""
 
     account_id: str
@@ -571,7 +571,7 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
 
 
 class BrowserIsolationPermissionsApplication(TypedDict, total=False):
-    type: Required[Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]]
+    type: Required[ApplicationType]
     """The application type."""
 
     account_id: str
