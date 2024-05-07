@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .type import Type as Type
 from .zone import Zone as Zone
 from .zone_hold import ZoneHold as ZoneHold
 from .nameserver import Nameserver as Nameserver

@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
+from ..shared.sort_direction import SortDirection
+
 __all__ = ["RecordListParams", "Comment", "Tag"]
 
 
@@ -16,7 +18,7 @@ class RecordListParams(TypedDict, total=False):
     content: str
     """DNS record content."""
 
-    direction: Literal["asc", "desc"]
+    direction: SortDirection
     """Direction to order DNS records in."""
 
     match: Literal["any", "all"]

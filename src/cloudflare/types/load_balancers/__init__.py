@@ -8,6 +8,7 @@ from .rules import Rules as Rules
 from .header import Header as Header
 from .origin import Origin as Origin
 from .monitor import Monitor as Monitor
+from .region_id import RegionID as RegionID
 from .rules_param import RulesParam as RulesParam
 from .check_region import CheckRegion as CheckRegion
 from .header_param import HeaderParam as HeaderParam
@@ -18,6 +19,7 @@ from .load_shedding import LoadShedding as LoadShedding
 from .filter_options import FilterOptions as FilterOptions
 from .origin_steering import OriginSteering as OriginSteering
 from .random_steering import RandomSteering as RandomSteering
+from .region_id_param import RegionIDParam as RegionIDParam
 from .steering_policy import SteeringPolicy as SteeringPolicy
 from .adaptive_routing import AdaptiveRouting as AdaptiveRouting
 from .pool_edit_params import PoolEditParams as PoolEditParams

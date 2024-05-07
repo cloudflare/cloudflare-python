@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .state import State as State
 from .cache_reserve import CacheReserve as CacheReserve
 from .cache_variant import CacheVariant as CacheVariant
 from .cache_purge_params import CachePurgeParams as CachePurgeParams
