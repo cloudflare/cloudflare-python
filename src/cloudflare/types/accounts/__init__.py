@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .account import Account as Account
+from .member_status import MemberStatus as MemberStatus
 from .role_get_response import RoleGetResponse as RoleGetResponse
 from .member_list_params import MemberListParams as MemberListParams
 from .account_list_params import AccountListParams as AccountListParams

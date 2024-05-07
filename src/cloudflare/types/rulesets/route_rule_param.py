@@ -6,7 +6,7 @@ from typing_extensions import Literal, Required, TypedDict
 
 from .logging_param import LoggingParam
 
-__all__ = ["RouteRuleParam", "ActionParameters", "ActionParametersOrigin", "ActionParametersSni"]
+__all__ = ["RouteRuleParam", "ActionParameters", "ActionParametersOrigin", "ActionParametersSNI"]
 
 
 class ActionParametersOrigin(TypedDict, total=False):
@@ -17,7 +17,7 @@ class ActionParametersOrigin(TypedDict, total=False):
     """Override the destination port."""
 
 
-class ActionParametersSni(TypedDict, total=False):
+class ActionParametersSNI(TypedDict, total=False):
     value: Required[str]
     """The SNI override."""
 
@@ -29,7 +29,7 @@ class ActionParameters(TypedDict, total=False):
     origin: ActionParametersOrigin
     """Override the IP/TCP destination."""
 
-    sni: ActionParametersSni
+    sni: ActionParametersSNI
     """Override the Server Name Indication (SNI)."""
 
 

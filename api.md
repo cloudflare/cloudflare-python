@@ -42,7 +42,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.accounts import UserWithInviteCode, MemberListResponse, MemberDeleteResponse
+from cloudflare.types.accounts import (
+    MemberStatus,
+    UserWithInviteCode,
+    MemberListResponse,
+    MemberDeleteResponse,
+)
 ```
 
 Methods:
@@ -1390,7 +1395,11 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.acm import TotalTLSCreateResponse, TotalTLSGetResponse
+from cloudflare.types.acm import (
+    TotalTLSCertificateAuthority,
+    TotalTLSCreateResponse,
+    TotalTLSGetResponse,
+)
 ```
 
 Methods:
@@ -3225,6 +3234,7 @@ Types:
 ```python
 from cloudflare.types.addressing import (
     AddressMap,
+    AddressMapKind,
     AddressMapCreateResponse,
     AddressMapDeleteResponse,
     AddressMapGetResponse,
