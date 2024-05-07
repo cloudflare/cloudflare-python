@@ -11,13 +11,13 @@ from .custom_page import CustomPage as CustomPage
 from .allowed_idps import AllowedIdPs as AllowedIdPs
 from .app_id_param import AppIDParam as AppIDParam
 from .cors_headers import CORSHeaders as CORSHeaders
-from .custom_pages import CustomPages as CustomPages
 from .saml_saas_app import SAMLSaaSApp as SAMLSaaSApp
 from .service_token import ServiceToken as ServiceToken
 from .allowed_headers import AllowedHeaders as AllowedHeaders
 from .allowed_methods import AllowedMethods as AllowedMethods
 from .allowed_origins import AllowedOrigins as AllowedOrigins
 from .saas_app_source import SaaSAppSource as SaaSAppSource
+from .application_type import ApplicationType as ApplicationType
 from .key_get_response import KeyGetResponse as KeyGetResponse
 from .zero_trust_group import ZeroTrustGroup as ZeroTrustGroup
 from .key_update_params import KeyUpdateParams as KeyUpdateParams
@@ -31,9 +31,9 @@ from .key_update_response import KeyUpdateResponse as KeyUpdateResponse
 from .saml_saas_app_param import SAMLSaaSAppParam as SAMLSaaSAppParam
 from .self_hosted_domains import SelfHostedDomains as SelfHostedDomains
 from .tag_delete_response import TagDeleteResponse as TagDeleteResponse
-from .allowed_http_methods import AllowedHTTPMethods as AllowedHTTPMethods
 from .associated_hostnames import AssociatedHostnames as AssociatedHostnames
 from .saas_app_name_format import SaaSAppNameFormat as SaaSAppNameFormat
+from .allowed_methods_param import AllowedMethodsParam as AllowedMethodsParam
 from .group_delete_response import GroupDeleteResponse as GroupDeleteResponse
 from .saas_app_source_param import SaaSAppSourceParam as SaaSAppSourceParam
 from .bookmark_create_params import BookmarkCreateParams as BookmarkCreateParams
@@ -47,7 +47,6 @@ from .certificate_create_params import CertificateCreateParams as CertificateCre
 from .certificate_update_params import CertificateUpdateParams as CertificateUpdateParams
 from .custom_page_create_params import CustomPageCreateParams as CustomPageCreateParams
 from .custom_page_update_params import CustomPageUpdateParams as CustomPageUpdateParams
-from .allowed_http_methods_param import AllowedHTTPMethodsParam as AllowedHTTPMethodsParam
 from .application_delete_response import ApplicationDeleteResponse as ApplicationDeleteResponse
 from .certificate_delete_response import CertificateDeleteResponse as CertificateDeleteResponse
 from .custom_page_delete_response import CustomPageDeleteResponse as CustomPageDeleteResponse

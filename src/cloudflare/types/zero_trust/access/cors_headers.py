@@ -4,8 +4,8 @@ from typing import List, Optional
 
 from ...._models import BaseModel
 from .allowed_headers import AllowedHeaders
+from .allowed_methods import AllowedMethods
 from .allowed_origins import AllowedOrigins
-from .allowed_http_methods import AllowedHTTPMethods
 
 __all__ = ["CORSHeaders"]
 
@@ -29,7 +29,7 @@ class CORSHeaders(BaseModel):
     allowed_headers: Optional[List[AllowedHeaders]] = None
     """Allowed HTTP request headers."""
 
-    allowed_methods: Optional[AllowedHTTPMethods] = None
+    allowed_methods: Optional[AllowedMethods] = None
     """Allowed HTTP request methods."""
 
     allowed_origins: Optional[List[AllowedOrigins]] = None

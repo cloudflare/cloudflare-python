@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import Any, List, Type, Optional, cast, overload
-from typing_extensions import Literal
 
 import httpx
 
@@ -50,11 +49,15 @@ from .user_policy_checks import (
     UserPolicyChecksResourceWithStreamingResponse,
     AsyncUserPolicyChecksResourceWithStreamingResponse,
 )
-from .....types.zero_trust.access import application_create_params, application_update_params
+from .....types.zero_trust.access import (
+    ApplicationType,
+    application_create_params,
+    application_update_params,
+)
 from .....types.zero_trust.access.application import Application
 from .....types.zero_trust.access.allowed_idps import AllowedIdPs
 from .....types.zero_trust.access.app_id_param import AppIDParam
-from .....types.zero_trust.access.custom_pages import CustomPages
+from .....types.zero_trust.access.application_type import ApplicationType
 from .....types.zero_trust.access.cors_headers_param import CORSHeadersParam
 from .....types.zero_trust.access.self_hosted_domains import SelfHostedDomains
 from .....types.zero_trust.access.application_delete_response import ApplicationDeleteResponse
@@ -99,7 +102,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -207,7 +210,7 @@ class ApplicationsResource(SyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
@@ -273,7 +276,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -388,7 +391,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -491,7 +494,7 @@ class ApplicationsResource(SyncAPIResource):
     def create(
         self,
         *,
-        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
+        type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
@@ -538,7 +541,7 @@ class ApplicationsResource(SyncAPIResource):
     def create(
         self,
         *,
-        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
+        type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
@@ -585,7 +588,7 @@ class ApplicationsResource(SyncAPIResource):
     def create(
         self,
         *,
-        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
+        type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
@@ -682,9 +685,7 @@ class ApplicationsResource(SyncAPIResource):
         self,
         *,
         domain: str | NotGiven = NOT_GIVEN,
-        type: str
-        | Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]
-        | NotGiven = NOT_GIVEN,
+        type: str | ApplicationType | NotGiven = NOT_GIVEN,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
@@ -695,7 +696,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -791,7 +792,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -902,7 +903,7 @@ class ApplicationsResource(SyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
@@ -971,7 +972,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -1089,7 +1090,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -1195,7 +1196,7 @@ class ApplicationsResource(SyncAPIResource):
         self,
         app_id: AppIDParam,
         *,
-        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
+        type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
@@ -1245,7 +1246,7 @@ class ApplicationsResource(SyncAPIResource):
         self,
         app_id: AppIDParam,
         *,
-        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
+        type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
@@ -1295,7 +1296,7 @@ class ApplicationsResource(SyncAPIResource):
         self,
         app_id: AppIDParam,
         *,
-        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
+        type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
@@ -1398,9 +1399,7 @@ class ApplicationsResource(SyncAPIResource):
         app_id: AppIDParam,
         *,
         domain: str | NotGiven = NOT_GIVEN,
-        type: str
-        | Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]
-        | NotGiven = NOT_GIVEN,
+        type: str | ApplicationType | NotGiven = NOT_GIVEN,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
@@ -1411,7 +1410,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -1747,7 +1746,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -1855,7 +1854,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
@@ -1921,7 +1920,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -2036,7 +2035,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -2139,7 +2138,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
+        type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
@@ -2186,7 +2185,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
+        type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
@@ -2233,7 +2232,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
+        type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
@@ -2330,9 +2329,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         *,
         domain: str | NotGiven = NOT_GIVEN,
-        type: str
-        | Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]
-        | NotGiven = NOT_GIVEN,
+        type: str | ApplicationType | NotGiven = NOT_GIVEN,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
@@ -2343,7 +2340,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -2439,7 +2436,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -2550,7 +2547,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         app_launcher_visible: bool | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
@@ -2619,7 +2616,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -2737,7 +2734,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
@@ -2843,7 +2840,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         app_id: AppIDParam,
         *,
-        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
+        type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
@@ -2893,7 +2890,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         app_id: AppIDParam,
         *,
-        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
+        type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
@@ -2943,7 +2940,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         self,
         app_id: AppIDParam,
         *,
-        type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"],
+        type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
@@ -3046,9 +3043,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         app_id: AppIDParam,
         *,
         domain: str | NotGiven = NOT_GIVEN,
-        type: str
-        | Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]
-        | NotGiven = NOT_GIVEN,
+        type: str | ApplicationType | NotGiven = NOT_GIVEN,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
@@ -3059,7 +3054,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_deny_message: str | NotGiven = NOT_GIVEN,
         custom_deny_url: str | NotGiven = NOT_GIVEN,
         custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-        custom_pages: List[CustomPages] | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
         enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
         http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,

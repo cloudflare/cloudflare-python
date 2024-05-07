@@ -7,8 +7,8 @@ from typing_extensions import Literal
 from ...._models import BaseModel
 from .allowed_idps import AllowedIdPs
 from .cors_headers import CORSHeaders
-from .custom_pages import CustomPages
 from .saml_saas_app import SAMLSaaSApp
+from .application_type import ApplicationType
 from .self_hosted_domains import SelfHostedDomains
 
 __all__ = [
@@ -92,7 +92,7 @@ class SelfHostedApplication(BaseModel):
     application when failing non-identity rules.
     """
 
-    custom_pages: Optional[List[CustomPages]] = None
+    custom_pages: Optional[List[str]] = None
     """The custom pages that will be displayed when applicable for this application"""
 
     enable_binding_cookie: Optional[bool] = None
@@ -247,7 +247,7 @@ class SaaSApplication(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    custom_pages: Optional[List[CustomPages]] = None
+    custom_pages: Optional[List[str]] = None
     """The custom pages that will be displayed when applicable for this application"""
 
     logo_url: Optional[str] = None
@@ -334,7 +334,7 @@ class BrowserSSHApplication(BaseModel):
     application when failing non-identity rules.
     """
 
-    custom_pages: Optional[List[CustomPages]] = None
+    custom_pages: Optional[List[str]] = None
     """The custom pages that will be displayed when applicable for this application"""
 
     enable_binding_cookie: Optional[bool] = None
@@ -462,7 +462,7 @@ class BrowserVncApplication(BaseModel):
     application when failing non-identity rules.
     """
 
-    custom_pages: Optional[List[CustomPages]] = None
+    custom_pages: Optional[List[str]] = None
     """The custom pages that will be displayed when applicable for this application"""
 
     enable_binding_cookie: Optional[bool] = None
@@ -527,7 +527,7 @@ class BrowserVncApplication(BaseModel):
 
 
 class AppLauncherApplication(BaseModel):
-    type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]
+    type: ApplicationType
     """The application type."""
 
     id: Optional[str] = None
@@ -573,7 +573,7 @@ class AppLauncherApplication(BaseModel):
 
 
 class DeviceEnrollmentPermissionsApplication(BaseModel):
-    type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]
+    type: ApplicationType
     """The application type."""
 
     id: Optional[str] = None
@@ -619,7 +619,7 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
 
 
 class BrowserIsolationPermissionsApplication(BaseModel):
-    type: Literal["self_hosted", "saas", "ssh", "vnc", "app_launcher", "warp", "biso", "bookmark", "dash_sso"]
+    type: ApplicationType
     """The application type."""
 
     id: Optional[str] = None
