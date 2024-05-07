@@ -20,15 +20,15 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._wrappers import ResultWrapper
-from ..types.ssl import RequestType, RequestValidity
+from ..types.ssl import RequestValidity
 from ..pagination import SyncSinglePage, AsyncSinglePage
 from .._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.ssl.request_type import RequestType
 from ..types.ssl.request_validity import RequestValidity
 from ..types.origin_ca_certificates import origin_ca_certificate_list_params, origin_ca_certificate_create_params
+from ..types.shared.certificate_pack_request_type import CertificatePackRequestType
 from ..types.origin_ca_certificates.origin_ca_certificate import OriginCACertificate
 from ..types.origin_ca_certificates.origin_ca_certificate_get_response import OriginCACertificateGetResponse
 from ..types.origin_ca_certificates.origin_ca_certificate_create_response import OriginCACertificateCreateResponse
@@ -51,7 +51,7 @@ class OriginCACertificatesResource(SyncAPIResource):
         *,
         csr: str | NotGiven = NOT_GIVEN,
         hostnames: Iterable[object] | NotGiven = NOT_GIVEN,
-        request_type: RequestType | NotGiven = NOT_GIVEN,
+        request_type: CertificatePackRequestType | NotGiven = NOT_GIVEN,
         requested_validity: RequestValidity | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -259,7 +259,7 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
         *,
         csr: str | NotGiven = NOT_GIVEN,
         hostnames: Iterable[object] | NotGiven = NOT_GIVEN,
-        request_type: RequestType | NotGiven = NOT_GIVEN,
+        request_type: CertificatePackRequestType | NotGiven = NOT_GIVEN,
         requested_validity: RequestValidity | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
