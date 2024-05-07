@@ -4,8 +4,8 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from .host import Host
+from .status import Status
 from ..._models import BaseModel
-from .certificate_pack_status import CertificatePackStatus
 
 __all__ = ["CertificatePackEditResponse"]
 
@@ -34,7 +34,7 @@ class CertificatePackEditResponse(BaseModel):
     empty.
     """
 
-    status: Optional[CertificatePackStatus] = None
+    status: Optional[Status] = None
     """Status of certificate pack."""
 
     type: Optional[Literal["advanced"]] = None

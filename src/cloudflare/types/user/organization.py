@@ -3,8 +3,8 @@
 from typing import List, Optional
 
 from ..._models import BaseModel
+from ..accounts.status import Status
 from ..shared.permission import Permission
-from ..accounts.member_status import MemberStatus
 
 __all__ = ["Organization"]
 
@@ -22,5 +22,5 @@ class Organization(BaseModel):
     roles: Optional[List[str]] = None
     """List of roles that a user has within an organization."""
 
-    status: Optional[MemberStatus] = None
+    status: Optional[Status] = None
     """Whether the user is a member of the organization or has an inivitation pending."""

@@ -2,6 +2,6 @@
 
 from typing_extensions import Literal
 
-__all__ = ["MemberStatus"]
+__all__ = ["RequestValidity"]
 
-MemberStatus = Literal["member", "invited"]
+RequestValidity = Literal[7, 30, 90, 365, 730, 1095, 5475]

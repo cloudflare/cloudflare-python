@@ -20,13 +20,13 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.acm import TotalTLSCertificateAuthority, total_tls_create_params
+from ...types.acm import CertificateAuthority, total_tls_create_params
 from ..._base_client import (
     make_request_options,
 )
+from ...types.acm.certificate_authority import CertificateAuthority
 from ...types.acm.total_tls_get_response import TotalTLSGetResponse
 from ...types.acm.total_tls_create_response import TotalTLSCreateResponse
-from ...types.acm.total_tls_certificate_authority import TotalTLSCertificateAuthority
 
 __all__ = ["TotalTLSResource", "AsyncTotalTLSResource"]
 
@@ -45,7 +45,7 @@ class TotalTLSResource(SyncAPIResource):
         *,
         zone_id: str,
         enabled: bool,
-        certificate_authority: TotalTLSCertificateAuthority | NotGiven = NOT_GIVEN,
+        certificate_authority: CertificateAuthority | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -147,7 +147,7 @@ class AsyncTotalTLSResource(AsyncAPIResource):
         *,
         zone_id: str,
         enabled: bool,
-        certificate_authority: TotalTLSCertificateAuthority | NotGiven = NOT_GIVEN,
+        certificate_authority: CertificateAuthority | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

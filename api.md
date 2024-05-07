@@ -43,7 +43,7 @@ Types:
 
 ```python
 from cloudflare.types.accounts import (
-    MemberStatus,
+    Status,
     UserWithInviteCode,
     MemberListResponse,
     MemberDeleteResponse,
@@ -1283,12 +1283,12 @@ Types:
 
 ```python
 from cloudflare.types.ssl import (
-    CertificatePackCA,
-    CertificatePackRequestType,
-    CertificatePackRequestValidity,
-    CertificatePackStatus,
-    CertificatePackValidationMethod,
+    CertificateAuthority,
     Host,
+    RequestType,
+    RequestValidity,
+    Status,
+    ValidationMethod,
     CertificatePackListResponse,
     CertificatePackDeleteResponse,
     CertificatePackEditResponse,
@@ -1395,11 +1395,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.acm import (
-    TotalTLSCertificateAuthority,
-    TotalTLSCreateResponse,
-    TotalTLSGetResponse,
-)
+from cloudflare.types.acm import CertificateAuthority, TotalTLSCreateResponse, TotalTLSGetResponse
 ```
 
 Methods:
@@ -1504,6 +1500,7 @@ Types:
 from cloudflare.types.custom_certificates import (
     CustomCertificate,
     GeoRestrictions,
+    Status,
     CustomCertificateCreateResponse,
     CustomCertificateDeleteResponse,
     CustomCertificateEditResponse,
@@ -3234,7 +3231,7 @@ Types:
 ```python
 from cloudflare.types.addressing import (
     AddressMap,
-    AddressMapKind,
+    Kind,
     AddressMapCreateResponse,
     AddressMapDeleteResponse,
     AddressMapGetResponse,
