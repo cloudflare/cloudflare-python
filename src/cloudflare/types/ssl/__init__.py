@@ -6,6 +6,7 @@ from .host import Host as Host
 from .verification import Verification as Verification
 from .analyze_create_params import AnalyzeCreateParams as AnalyzeCreateParams
 from .analyze_create_response import AnalyzeCreateResponse as AnalyzeCreateResponse
+from .certificate_pack_status import CertificatePackStatus as CertificatePackStatus
 from .verification_get_params import VerificationGetParams as VerificationGetParams
 from .verification_edit_params import VerificationEditParams as VerificationEditParams
 from .verification_get_response import VerificationGetResponse as VerificationGetResponse
