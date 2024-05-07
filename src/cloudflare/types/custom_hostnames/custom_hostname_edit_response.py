@@ -8,6 +8,7 @@ from ..._models import BaseModel
 from .dcv_method import DCVMethod
 from .bundle_method import BundleMethod
 from .domain_validation_type import DomainValidationType
+from ..ssl.certificate_pack_ca import CertificatePackCA
 
 __all__ = [
     "CustomHostnameEditResponse",
@@ -87,7 +88,7 @@ class SSL(BaseModel):
     chain, but does not otherwise modify it.
     """
 
-    certificate_authority: Optional[Literal["digicert", "google", "lets_encrypt"]] = None
+    certificate_authority: Optional[CertificatePackCA] = None
     """The Certificate Authority that will issue the certificate"""
 
     custom_certificate: Optional[str] = None
