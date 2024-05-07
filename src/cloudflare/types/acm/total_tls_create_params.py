@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-from .total_tls_certificate_authority import TotalTLSCertificateAuthority
+from .certificate_authority import CertificateAuthority
 
 __all__ = ["TotalTLSCreateParams"]
 
@@ -19,5 +19,5 @@ class TotalTLSCreateParams(TypedDict, total=False):
     proxied A, AAAA, or CNAME record in your zone.
     """
 
-    certificate_authority: TotalTLSCertificateAuthority
+    certificate_authority: CertificateAuthority
     """The Certificate Authority that Total TLS certificates will be issued through."""

@@ -2,6 +2,6 @@
 
 from typing_extensions import Literal
 
-__all__ = ["TotalTLSCertificateAuthority"]
+__all__ = ["Kind"]
 
-TotalTLSCertificateAuthority = Literal["google", "lets_encrypt"]
+Kind = Literal["zone", "account"]

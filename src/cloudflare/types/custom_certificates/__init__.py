@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .status import Status as Status
 from .geo_restrictions import GeoRestrictions as GeoRestrictions
 from .custom_certificate import CustomCertificate as CustomCertificate
 from .geo_restrictions_param import GeoRestrictionsParam as GeoRestrictionsParam
