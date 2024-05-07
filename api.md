@@ -5083,19 +5083,20 @@ Types:
 
 ```python
 from cloudflare.types.zero_trust.access import (
-    AllowedHeadersh,
-    AllowedIdpsh,
-    AllowedMethodsh,
-    AllowedOriginsh,
+    AllowedHeaders,
+    AllowedHTTPMethods,
+    AllowedIdPs,
+    AllowedMethods,
+    AllowedOrigins,
     AppID,
     Application,
     CORSHeaders,
-    CustomPagesh,
+    CustomPages,
     SaaSAppNameFormat,
     SaaSAppNameIDFormat,
     SaaSAppSource,
     SAMLSaaSApp,
-    SelfHostedDomainsh,
+    SelfHostedDomains,
     ApplicationDeleteResponse,
     ApplicationRevokeTokensResponse,
 )

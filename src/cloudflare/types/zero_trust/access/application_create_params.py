@@ -5,11 +5,11 @@ from __future__ import annotations
 from typing import Dict, List, Union
 from typing_extensions import Literal, Required, TypedDict
 
-from .allowed_idpsh import AllowedIdpsh
-from .custom_pagesh import CustomPagesh
+from .allowed_idps import AllowedIdPs
+from .custom_pages import CustomPages
 from .cors_headers_param import CORSHeadersParam
 from .saml_saas_app_param import SAMLSaaSAppParam
-from .self_hosted_domainsh import SelfHostedDomainsh
+from .self_hosted_domains import SelfHostedDomains
 
 __all__ = [
     "ApplicationCreateParams",
@@ -53,7 +53,7 @@ class SelfHostedApplication(TypedDict, total=False):
     authentication.
     """
 
-    allowed_idps: List[AllowedIdpsh]
+    allowed_idps: List[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -90,7 +90,7 @@ class SelfHostedApplication(TypedDict, total=False):
     application when failing non-identity rules.
     """
 
-    custom_pages: List[CustomPagesh]
+    custom_pages: List[CustomPages]
     """The custom pages that will be displayed when applicable for this application"""
 
     enable_binding_cookie: bool
@@ -129,7 +129,7 @@ class SelfHostedApplication(TypedDict, total=False):
     attacks.
     """
 
-    self_hosted_domains: List[SelfHostedDomainsh]
+    self_hosted_domains: List[SelfHostedDomains]
     """List of domains that Access will secure."""
 
     service_auth_401_redirect: bool
@@ -159,7 +159,7 @@ class SaaSApplication(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    allowed_idps: List[AllowedIdpsh]
+    allowed_idps: List[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -176,7 +176,7 @@ class SaaSApplication(TypedDict, total=False):
     You must specify only one identity provider in allowed_idps.
     """
 
-    custom_pages: List[CustomPagesh]
+    custom_pages: List[CustomPages]
     """The custom pages that will be displayed when applicable for this application"""
 
     logo_url: str
@@ -283,7 +283,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     authentication.
     """
 
-    allowed_idps: List[AllowedIdpsh]
+    allowed_idps: List[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -320,7 +320,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     application when failing non-identity rules.
     """
 
-    custom_pages: List[CustomPagesh]
+    custom_pages: List[CustomPages]
     """The custom pages that will be displayed when applicable for this application"""
 
     enable_binding_cookie: bool
@@ -359,7 +359,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     attacks.
     """
 
-    self_hosted_domains: List[SelfHostedDomainsh]
+    self_hosted_domains: List[SelfHostedDomains]
     """List of domains that Access will secure."""
 
     service_auth_401_redirect: bool
@@ -407,7 +407,7 @@ class BrowserVncApplication(TypedDict, total=False):
     authentication.
     """
 
-    allowed_idps: List[AllowedIdpsh]
+    allowed_idps: List[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -444,7 +444,7 @@ class BrowserVncApplication(TypedDict, total=False):
     application when failing non-identity rules.
     """
 
-    custom_pages: List[CustomPagesh]
+    custom_pages: List[CustomPages]
     """The custom pages that will be displayed when applicable for this application"""
 
     enable_binding_cookie: bool
@@ -483,7 +483,7 @@ class BrowserVncApplication(TypedDict, total=False):
     attacks.
     """
 
-    self_hosted_domains: List[SelfHostedDomainsh]
+    self_hosted_domains: List[SelfHostedDomains]
     """List of domains that Access will secure."""
 
     service_auth_401_redirect: bool
@@ -516,7 +516,7 @@ class AppLauncherApplication(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    allowed_idps: List[AllowedIdpsh]
+    allowed_idps: List[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -548,7 +548,7 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    allowed_idps: List[AllowedIdpsh]
+    allowed_idps: List[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
 
@@ -580,7 +580,7 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     zone_id: str
     """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
 
-    allowed_idps: List[AllowedIdpsh]
+    allowed_idps: List[AllowedIdPs]
     """The identity providers your users can select when connecting to this
     application.
 
