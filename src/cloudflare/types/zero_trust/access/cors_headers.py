@@ -29,7 +29,7 @@ class CORSHeaders(BaseModel):
     allowed_headers: Optional[List[AllowedHeaders]] = None
     """Allowed HTTP request headers."""
 
-    allowed_methods: Optional[AllowedMethods] = None
+    allowed_methods: Optional[List[AllowedMethods]] = None
     """Allowed HTTP request methods."""
 
     allowed_origins: Optional[List[AllowedOrigins]] = None
