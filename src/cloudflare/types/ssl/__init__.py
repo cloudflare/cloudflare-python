@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from .host import Host as Host
 from .status import Status as Status
-from .request_type import RequestType as RequestType
 from .verification import Verification as Verification
 from .request_validity import RequestValidity as RequestValidity
 from .validation_method import ValidationMethod as ValidationMethod

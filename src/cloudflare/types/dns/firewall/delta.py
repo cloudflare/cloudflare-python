@@ -2,6 +2,6 @@
 
 from typing_extensions import Literal
 
-__all__ = ["RequestType"]
+__all__ = ["Delta"]
 
-RequestType = Literal["origin-rsa", "origin-ecc", "keyless-certificate"]
+Delta = Literal["all", "auto", "year", "quarter", "month", "week", "day", "hour", "dekaminute", "minute"]

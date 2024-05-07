@@ -4,8 +4,8 @@ from typing import List, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
-from ..ssl.request_type import RequestType
 from ..ssl.request_validity import RequestValidity
+from ..shared.certificate_pack_request_type import CertificatePackRequestType
 
 __all__ = ["OriginCACertificate"]
 
@@ -20,7 +20,7 @@ class OriginCACertificate(BaseModel):
     certificate.
     """
 
-    request_type: RequestType
+    request_type: CertificatePackRequestType
     """
     Signature type desired on certificate ("origin-rsa" (rsa), "origin-ecc" (ecdsa),
     or "keyless-certificate" (for Keyless SSL servers).
