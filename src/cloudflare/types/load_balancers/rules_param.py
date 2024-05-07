@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 from typing import List
-from typing_extensions import Literal, TypedDict
+from typing_extensions import TypedDict
 
 from .default_pools import DefaultPools
+from .steering_policy import SteeringPolicy
+from .session_affinity import SessionAffinity
 from .random_steering_param import RandomSteeringParam
 from .adaptive_routing_param import AdaptiveRoutingParam
 from .location_strategy_param import LocationStrategyParam
@@ -89,7 +91,7 @@ class Overrides(TypedDict, total=False):
     back to using default_pools.
     """
 
-    session_affinity: Literal["none", "cookie", "ip_cookie", "header", '""']
+    session_affinity: SessionAffinity
     """
     Specifies the type of session affinity the load balancer should use unless
     specified as `"none"` or "" (default). The supported types are:
@@ -133,9 +135,7 @@ class Overrides(TypedDict, total=False):
       number of seconds specified.
     """
 
-    steering_policy: Literal[
-        "off", "geo", "random", "dynamic_latency", "proximity", "least_outstanding_requests", "least_connections", '""'
-    ]
+    steering_policy: SteeringPolicy
     """Steering Policy for this load balancer.
 
     - `"off"`: Use `default_pools`.

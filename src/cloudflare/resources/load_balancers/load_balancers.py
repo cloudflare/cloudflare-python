@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import List, Type, Iterable, cast
-from typing_extensions import Literal
 
 import httpx
 
@@ -69,6 +68,8 @@ from ..._base_client import (
 )
 from .monitors.monitors import MonitorsResource, AsyncMonitorsResource
 from ...types.load_balancers import (
+    SteeringPolicy,
+    SessionAffinity,
     load_balancer_edit_params,
     load_balancer_create_params,
     load_balancer_update_params,
@@ -76,6 +77,8 @@ from ...types.load_balancers import (
 from ...types.load_balancers.rules_param import RulesParam
 from ...types.load_balancers.default_pools import DefaultPools
 from ...types.load_balancers.load_balancer import LoadBalancer
+from ...types.load_balancers.steering_policy import SteeringPolicy
+from ...types.load_balancers.session_affinity import SessionAffinity
 from ...types.load_balancers.random_steering_param import RandomSteeringParam
 from ...types.load_balancers.adaptive_routing_param import AdaptiveRoutingParam
 from ...types.load_balancers.location_strategy_param import LocationStrategyParam
@@ -130,20 +133,10 @@ class LoadBalancersResource(SyncAPIResource):
         random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
         region_pools: object | NotGiven = NOT_GIVEN,
         rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
-        session_affinity: Literal["none", "cookie", "ip_cookie", "header", '""'] | NotGiven = NOT_GIVEN,
+        session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
         session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
         session_affinity_ttl: float | NotGiven = NOT_GIVEN,
-        steering_policy: Literal[
-            "off",
-            "geo",
-            "random",
-            "dynamic_latency",
-            "proximity",
-            "least_outstanding_requests",
-            "least_connections",
-            '""',
-        ]
-        | NotGiven = NOT_GIVEN,
+        steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
         ttl: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -330,20 +323,10 @@ class LoadBalancersResource(SyncAPIResource):
         random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
         region_pools: object | NotGiven = NOT_GIVEN,
         rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
-        session_affinity: Literal["none", "cookie", "ip_cookie", "header", '""'] | NotGiven = NOT_GIVEN,
+        session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
         session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
         session_affinity_ttl: float | NotGiven = NOT_GIVEN,
-        steering_policy: Literal[
-            "off",
-            "geo",
-            "random",
-            "dynamic_latency",
-            "proximity",
-            "least_outstanding_requests",
-            "least_connections",
-            '""',
-        ]
-        | NotGiven = NOT_GIVEN,
+        steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
         ttl: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -609,20 +592,10 @@ class LoadBalancersResource(SyncAPIResource):
         random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
         region_pools: object | NotGiven = NOT_GIVEN,
         rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
-        session_affinity: Literal["none", "cookie", "ip_cookie", "header", '""'] | NotGiven = NOT_GIVEN,
+        session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
         session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
         session_affinity_ttl: float | NotGiven = NOT_GIVEN,
-        steering_policy: Literal[
-            "off",
-            "geo",
-            "random",
-            "dynamic_latency",
-            "proximity",
-            "least_outstanding_requests",
-            "least_connections",
-            '""',
-        ]
-        | NotGiven = NOT_GIVEN,
+        steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
         ttl: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -882,20 +855,10 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
         region_pools: object | NotGiven = NOT_GIVEN,
         rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
-        session_affinity: Literal["none", "cookie", "ip_cookie", "header", '""'] | NotGiven = NOT_GIVEN,
+        session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
         session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
         session_affinity_ttl: float | NotGiven = NOT_GIVEN,
-        steering_policy: Literal[
-            "off",
-            "geo",
-            "random",
-            "dynamic_latency",
-            "proximity",
-            "least_outstanding_requests",
-            "least_connections",
-            '""',
-        ]
-        | NotGiven = NOT_GIVEN,
+        steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
         ttl: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1082,20 +1045,10 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
         region_pools: object | NotGiven = NOT_GIVEN,
         rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
-        session_affinity: Literal["none", "cookie", "ip_cookie", "header", '""'] | NotGiven = NOT_GIVEN,
+        session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
         session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
         session_affinity_ttl: float | NotGiven = NOT_GIVEN,
-        steering_policy: Literal[
-            "off",
-            "geo",
-            "random",
-            "dynamic_latency",
-            "proximity",
-            "least_outstanding_requests",
-            "least_connections",
-            '""',
-        ]
-        | NotGiven = NOT_GIVEN,
+        steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
         ttl: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1361,20 +1314,10 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
         random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
         region_pools: object | NotGiven = NOT_GIVEN,
         rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
-        session_affinity: Literal["none", "cookie", "ip_cookie", "header", '""'] | NotGiven = NOT_GIVEN,
+        session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
         session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
         session_affinity_ttl: float | NotGiven = NOT_GIVEN,
-        steering_policy: Literal[
-            "off",
-            "geo",
-            "random",
-            "dynamic_latency",
-            "proximity",
-            "least_outstanding_requests",
-            "least_connections",
-            '""',
-        ]
-        | NotGiven = NOT_GIVEN,
+        steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
         ttl: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
