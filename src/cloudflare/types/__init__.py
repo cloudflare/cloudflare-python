@@ -16,5 +16,5 @@ from .shared import (
     PermissionGrant as PermissionGrant,
     CloudflareTunnel as CloudflareTunnel,
     LoadBalancerPreview as LoadBalancerPreview,
-    CertificatePackRequestType as CertificatePackRequestType,
+    CertificateRequestType as CertificateRequestType,
 )

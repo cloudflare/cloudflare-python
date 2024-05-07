@@ -13,4 +13,4 @@ from .pagination_info import PaginationInfo as PaginationInfo
 from .permission_grant import PermissionGrant as PermissionGrant
 from .cloudflare_tunnel import CloudflareTunnel as CloudflareTunnel
 from .load_balancer_preview import LoadBalancerPreview as LoadBalancerPreview
-from .certificate_pack_request_type import CertificatePackRequestType as CertificatePackRequestType
+from .certificate_request_type import CertificateRequestType as CertificateRequestType

@@ -4,7 +4,7 @@
 from cloudflare.types import (
     ASN,
     AuditLog,
-    CertificatePackRequestType,
+    CertificateRequestType,
     CloudflareTunnel,
     ErrorData,
     Identifier,
