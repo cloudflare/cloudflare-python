@@ -18,9 +18,11 @@ from .load_shedding import LoadShedding as LoadShedding
 from .filter_options import FilterOptions as FilterOptions
 from .origin_steering import OriginSteering as OriginSteering
 from .random_steering import RandomSteering as RandomSteering
+from .steering_policy import SteeringPolicy as SteeringPolicy
 from .adaptive_routing import AdaptiveRouting as AdaptiveRouting
 from .pool_edit_params import PoolEditParams as PoolEditParams
 from .pool_list_params import PoolListParams as PoolListParams
+from .session_affinity import SessionAffinity as SessionAffinity
 from .location_strategy import LocationStrategy as LocationStrategy
 from .search_get_params import SearchGetParams as SearchGetParams
 from .pool_create_params import PoolCreateParams as PoolCreateParams

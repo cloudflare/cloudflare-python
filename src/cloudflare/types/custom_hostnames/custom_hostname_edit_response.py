@@ -7,8 +7,8 @@ from typing_extensions import Literal
 from ..._models import BaseModel
 from .dcv_method import DCVMethod
 from .bundle_method import BundleMethod
+from ..shared.certificate_ca import CertificateCA
 from .domain_validation_type import DomainValidationType
-from ..ssl.certificate_authority import CertificateAuthority
 
 __all__ = [
     "CustomHostnameEditResponse",
@@ -88,7 +88,7 @@ class SSL(BaseModel):
     chain, but does not otherwise modify it.
     """
 
-    certificate_authority: Optional[CertificateAuthority] = None
+    certificate_authority: Optional[CertificateCA] = None
     """The Certificate Authority that will issue the certificate"""
 
     custom_certificate: Optional[str] = None

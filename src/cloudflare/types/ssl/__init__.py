@@ -8,7 +8,6 @@ from .verification import Verification as Verification
 from .request_validity import RequestValidity as RequestValidity
 from .validation_method import ValidationMethod as ValidationMethod
 from .analyze_create_params import AnalyzeCreateParams as AnalyzeCreateParams
-from .certificate_authority import CertificateAuthority as CertificateAuthority
 from .analyze_create_response import AnalyzeCreateResponse as AnalyzeCreateResponse
 from .verification_get_params import VerificationGetParams as VerificationGetParams
 from .verification_edit_params import VerificationEditParams as VerificationEditParams
