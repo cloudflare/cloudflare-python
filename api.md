@@ -4,6 +4,7 @@
 from cloudflare.types import (
     ASN,
     AuditLog,
+    CertificatePackRequestType,
     CloudflareTunnel,
     ErrorData,
     Identifier,
@@ -1285,7 +1286,6 @@ Types:
 from cloudflare.types.ssl import (
     CertificateAuthority,
     Host,
-    RequestType,
     RequestValidity,
     Status,
     ValidationMethod,
@@ -1699,6 +1699,12 @@ Methods:
 - <code title="get /accounts/{account_id}/dns_firewall/{dns_firewall_id}">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">get</a>(dns_firewall_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/firewall/firewall.py">Firewall</a></code>
 
 ### Analytics
+
+Types:
+
+```python
+from cloudflare.types.dns.firewall import Delta
+```
 
 #### Reports
 
