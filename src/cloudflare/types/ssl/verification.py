@@ -4,6 +4,7 @@ from typing import Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
+from .certificate_pack_validation_method import CertificatePackValidationMethod
 
 __all__ = ["Verification", "VerificationInfo"]
 
@@ -31,7 +32,7 @@ class Verification(BaseModel):
     signature: Optional[Literal["ECDSAWithSHA256", "SHA1WithRSA", "SHA256WithRSA"]] = None
     """Certificate's signature algorithm."""
 
-    validation_method: Optional[Literal["http", "cname", "txt"]] = None
+    validation_method: Optional[CertificatePackValidationMethod] = None
     """Validation method in use for a certificate pack order."""
 
     verification_info: Optional[VerificationInfo] = None
