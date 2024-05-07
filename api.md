@@ -4,6 +4,7 @@
 from cloudflare.types import (
     ASN,
     AuditLog,
+    CertificateCA,
     CertificateRequestType,
     CloudflareTunnel,
     ErrorData,
@@ -1042,7 +1043,9 @@ from cloudflare.types.load_balancers import (
     OriginSteering,
     RandomSteering,
     Rules,
+    SessionAffinity,
     SessionAffinityAttributes,
+    SteeringPolicy,
     LoadBalancerDeleteResponse,
 )
 ```
@@ -1284,7 +1287,6 @@ Types:
 
 ```python
 from cloudflare.types.ssl import (
-    CertificateAuthority,
     Host,
     RequestValidity,
     Status,

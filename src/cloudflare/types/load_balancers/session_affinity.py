@@ -2,6 +2,6 @@
 
 from typing_extensions import Literal
 
-__all__ = ["CertificateAuthority"]
+__all__ = ["SessionAffinity"]
 
-CertificateAuthority = Literal["digicert", "google", "lets_encrypt"]
+SessionAffinity = Literal["none", "cookie", "ip_cookie", "header", '""']
