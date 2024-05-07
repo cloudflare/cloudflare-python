@@ -2,6 +2,6 @@
 
 from typing_extensions import Literal
 
-__all__ = ["CertificatePackValidationMethod"]
+__all__ = ["Status"]
 
-CertificatePackValidationMethod = Literal["http", "cname", "txt"]
+Status = Literal["active", "pending_reactivation", "pending_revocation", "revoked"]

@@ -2,9 +2,9 @@
 
 from typing_extensions import Literal
 
-__all__ = ["CertificatePackStatus"]
+__all__ = ["Status"]
 
-CertificatePackStatus = Literal[
+Status = Literal[
     "initializing",
     "pending_validation",
     "deleted",

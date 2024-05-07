@@ -8,7 +8,7 @@ from ..._models import BaseModel
 from .dcv_method import DCVMethod
 from .bundle_method import BundleMethod
 from .domain_validation_type import DomainValidationType
-from ..ssl.certificate_pack_ca import CertificatePackCA
+from ..ssl.certificate_authority import CertificateAuthority
 
 __all__ = [
     "CustomHostnameListResponse",
@@ -88,7 +88,7 @@ class SSL(BaseModel):
     chain, but does not otherwise modify it.
     """
 
-    certificate_authority: Optional[CertificatePackCA] = None
+    certificate_authority: Optional[CertificateAuthority] = None
     """The Certificate Authority that will issue the certificate"""
 
     custom_certificate: Optional[str] = None

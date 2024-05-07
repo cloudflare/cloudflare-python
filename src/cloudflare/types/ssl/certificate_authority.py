@@ -2,6 +2,6 @@
 
 from typing_extensions import Literal
 
-__all__ = ["AddressMapKind"]
+__all__ = ["CertificateAuthority"]
 
-AddressMapKind = Literal["zone", "account"]
+CertificateAuthority = Literal["digicert", "google", "lets_encrypt"]
