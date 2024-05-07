@@ -17,6 +17,7 @@ from cloudflare.types import (
     ResponseInfo,
     Result,
     Role,
+    SortDirection,
 )
 ```
 
@@ -278,7 +279,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zones import Zone, ZoneDeleteResponse
+from cloudflare.types.zones import Type, Zone, ZoneDeleteResponse
 ```
 
 Methods:
@@ -1159,7 +1160,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.load_balancers import RegionListResponse, RegionGetResponse
+from cloudflare.types.load_balancers import RegionID, RegionListResponse, RegionGetResponse
 ```
 
 Methods:
@@ -1199,6 +1200,7 @@ Types:
 from cloudflare.types.cache import (
     CacheReserve,
     CacheReserveClear,
+    State,
     CacheReserveClearResponse,
     CacheReserveEditResponse,
     CacheReserveGetResponse,
@@ -3021,6 +3023,8 @@ Types:
 
 ```python
 from cloudflare.types.rulesets import (
+    Kind,
+    Phase,
     Ruleset,
     RulesetCreateResponse,
     RulesetUpdateResponse,

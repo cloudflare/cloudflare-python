@@ -13,6 +13,7 @@ from .shared import (
     Permission as Permission,
     ResponseInfo as ResponseInfo,
     CertificateCA as CertificateCA,
+    SortDirection as SortDirection,
     PaginationInfo as PaginationInfo,
     PermissionGrant as PermissionGrant,
     CloudflareTunnel as CloudflareTunnel,
