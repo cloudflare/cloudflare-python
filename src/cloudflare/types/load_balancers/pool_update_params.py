@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import List, Iterable, Optional
 from typing_extensions import Required, TypedDict
 
+from .check_region import CheckRegion
 from .origin_param import OriginParam
-from .region_id_param import RegionIDParam
 from .load_shedding_param import LoadSheddingParam
 from .origin_steering_param import OriginSteeringParam
 from .notification_filter_param import NotificationFilterParam
@@ -31,7 +31,7 @@ class PoolUpdateParams(TypedDict, total=False):
     provided the pool itself is healthy.
     """
 
-    check_regions: Optional[RegionIDParam]
+    check_regions: Optional[List[CheckRegion]]
     """A list of regions from which to run health checks.
 
     Null means every Cloudflare data center.
