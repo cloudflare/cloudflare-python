@@ -2,4 +2,4 @@
 
 from .asn import ASN as ASN
 from .permission_grant import PermissionGrant as PermissionGrant
-from .certificate_pack_request_type import CertificatePackRequestType as CertificatePackRequestType
+from .certificate_request_type import CertificateRequestType as CertificateRequestType
