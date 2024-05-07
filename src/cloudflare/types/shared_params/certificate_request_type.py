@@ -4,6 +4,6 @@ from __future__ import annotations
 
 from typing_extensions import Literal
 
-__all__ = ["CertificatePackRequestType"]
+__all__ = ["CertificateRequestType"]
 
-CertificatePackRequestType = Literal["origin-rsa", "origin-ecc", "keyless-certificate"]
+CertificateRequestType = Literal["origin-rsa", "origin-ecc", "keyless-certificate"]
