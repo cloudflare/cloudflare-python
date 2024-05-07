@@ -9,7 +9,7 @@ from .generic_oauth_config import GenericOAuthConfig
 from .identity_provider_type import IdentityProviderType
 
 __all__ = [
-    "IdentityProviderUpdateResponse",
+    "IdentityProvider",
     "AccessCentrify",
     "AccessCentrifyConfig",
     "AccessFacebook",
@@ -570,7 +570,7 @@ class AccessOnetimepin(BaseModel):
     """
 
 
-IdentityProviderUpdateResponse = Union[
+IdentityProvider = Union[
     AzureAD,
     AccessCentrify,
     AccessFacebook,
