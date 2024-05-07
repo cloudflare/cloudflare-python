@@ -1160,7 +1160,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.load_balancers import RegionID, RegionListResponse, RegionGetResponse
+from cloudflare.types.load_balancers import RegionListResponse, RegionGetResponse
 ```
 
 Methods:

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, Optional, cast
+from typing import List, Type, Iterable, Optional, cast
 
 import httpx
 
@@ -48,8 +48,8 @@ from ....types.load_balancers import (
     pool_update_params,
 )
 from ....types.load_balancers.pool import Pool
+from ....types.load_balancers.check_region import CheckRegion
 from ....types.load_balancers.origin_param import OriginParam
-from ....types.load_balancers.region_id_param import RegionIDParam
 from ....types.load_balancers.load_shedding_param import LoadSheddingParam
 from ....types.load_balancers.pool_delete_response import PoolDeleteResponse
 from ....types.load_balancers.origin_steering_param import OriginSteeringParam
@@ -189,7 +189,7 @@ class PoolsResource(SyncAPIResource):
         account_id: str,
         name: str,
         origins: Iterable[OriginParam],
-        check_regions: Optional[RegionIDParam] | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         latitude: float | NotGiven = NOT_GIVEN,
@@ -388,7 +388,7 @@ class PoolsResource(SyncAPIResource):
         pool_id: str,
         *,
         account_id: str,
-        check_regions: Optional[RegionIDParam] | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         latitude: float | NotGiven = NOT_GIVEN,
@@ -672,7 +672,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         account_id: str,
         name: str,
         origins: Iterable[OriginParam],
-        check_regions: Optional[RegionIDParam] | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         latitude: float | NotGiven = NOT_GIVEN,
@@ -871,7 +871,7 @@ class AsyncPoolsResource(AsyncAPIResource):
         pool_id: str,
         *,
         account_id: str,
-        check_regions: Optional[RegionIDParam] | NotGiven = NOT_GIVEN,
+        check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         latitude: float | NotGiven = NOT_GIVEN,
