@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
+
+from .type import Type
 
 __all__ = ["ZoneCreateParams", "Account"]
 
@@ -13,7 +15,7 @@ class ZoneCreateParams(TypedDict, total=False):
     name: Required[str]
     """The domain name"""
 
-    type: Literal["full", "partial", "secondary"]
+    type: Type
     """A full zone implies that DNS is hosted with Cloudflare.
 
     A partial zone is typically a partner-hosted zone or a CNAME setup.

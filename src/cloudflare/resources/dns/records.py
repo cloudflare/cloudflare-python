@@ -38,6 +38,7 @@ from ..._base_client import (
 from ...types.dns.record import Record
 from ...types.dns.ttl_param import TTLParam
 from ...types.dns.record_tags import RecordTags
+from ...types.shared.sort_direction import SortDirection
 from ...types.dns.record_scan_response import RecordScanResponse
 from ...types.dns.record_delete_response import RecordDeleteResponse
 from ...types.dns.record_import_response import RecordImportResponse
@@ -2597,7 +2598,7 @@ class RecordsResource(SyncAPIResource):
         zone_id: str,
         comment: record_list_params.Comment | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        direction: SortDirection | NotGiven = NOT_GIVEN,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         order: Literal["type", "name", "content", "ttl", "proxied"] | NotGiven = NOT_GIVEN,
@@ -6801,7 +6802,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         zone_id: str,
         comment: record_list_params.Comment | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        direction: SortDirection | NotGiven = NOT_GIVEN,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         order: Literal["type", "name", "content", "ttl", "proxied"] | NotGiven = NOT_GIVEN,

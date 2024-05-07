@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import List, Type as TypingType, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -68,6 +68,7 @@ from .activation_check import (
     AsyncActivationCheckResourceWithStreamingResponse,
 )
 from .settings.settings import SettingsResource, AsyncSettingsResource
+from ...types.zones.type import Type as ZonesType
 from ...types.zones.zone import Zone
 from .custom_nameservers import (
     CustomNameserversResource,
@@ -120,7 +121,7 @@ class ZonesResource(SyncAPIResource):
         *,
         account: zone_create_params.Account,
         name: str,
-        type: Literal["full", "partial", "secondary"] | NotGiven = NOT_GIVEN,
+        type: ZonesType | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -162,7 +163,7 @@ class ZonesResource(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper[Optional[Zone]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Zone]], ResultWrapper[Zone]),
+            cast_to=cast(TypingType[Optional[Zone]], ResultWrapper[Zone]),
         )
 
     def list(
@@ -280,7 +281,7 @@ class ZonesResource(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper[Optional[ZoneDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneDeleteResponse]], ResultWrapper[ZoneDeleteResponse]),
+            cast_to=cast(TypingType[Optional[ZoneDeleteResponse]], ResultWrapper[ZoneDeleteResponse]),
         )
 
     def edit(
@@ -343,7 +344,7 @@ class ZonesResource(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper[Optional[Zone]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Zone]], ResultWrapper[Zone]),
+            cast_to=cast(TypingType[Optional[Zone]], ResultWrapper[Zone]),
         )
 
     def get(
@@ -382,7 +383,7 @@ class ZonesResource(SyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper[Optional[Zone]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Zone]], ResultWrapper[Zone]),
+            cast_to=cast(TypingType[Optional[Zone]], ResultWrapper[Zone]),
         )
 
 
@@ -424,7 +425,7 @@ class AsyncZonesResource(AsyncAPIResource):
         *,
         account: zone_create_params.Account,
         name: str,
-        type: Literal["full", "partial", "secondary"] | NotGiven = NOT_GIVEN,
+        type: ZonesType | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -466,7 +467,7 @@ class AsyncZonesResource(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper[Optional[Zone]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Zone]], ResultWrapper[Zone]),
+            cast_to=cast(TypingType[Optional[Zone]], ResultWrapper[Zone]),
         )
 
     def list(
@@ -584,7 +585,7 @@ class AsyncZonesResource(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper[Optional[ZoneDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ZoneDeleteResponse]], ResultWrapper[ZoneDeleteResponse]),
+            cast_to=cast(TypingType[Optional[ZoneDeleteResponse]], ResultWrapper[ZoneDeleteResponse]),
         )
 
     async def edit(
@@ -647,7 +648,7 @@ class AsyncZonesResource(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper[Optional[Zone]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Zone]], ResultWrapper[Zone]),
+            cast_to=cast(TypingType[Optional[Zone]], ResultWrapper[Zone]),
         )
 
     async def get(
@@ -686,7 +687,7 @@ class AsyncZonesResource(AsyncAPIResource):
                 timeout=timeout,
                 post_parser=ResultWrapper[Optional[Zone]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Zone]], ResultWrapper[Zone]),
+            cast_to=cast(TypingType[Optional[Zone]], ResultWrapper[Zone]),
         )
 
 
