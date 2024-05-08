@@ -20,21 +20,21 @@ class TestObjects:
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
-        object = client.durable_objects.namespaces.objects.list(
+        object_ = client.durable_objects.namespaces.objects.list(
             "5fd1cafff895419c8bcc647fc64ab8f0",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncCursorLimitPagination[DurableObject], object, path=["response"])
+        assert_matches_type(SyncCursorLimitPagination[DurableObject], object_, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
-        object = client.durable_objects.namespaces.objects.list(
+        object_ = client.durable_objects.namespaces.objects.list(
             "5fd1cafff895419c8bcc647fc64ab8f0",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cursor="AAAAANuhDN7SjacTnSVsDu3WW1Lvst6dxJGTjRY5BhxPXdf6L6uTcpd_NVtjhn11OUYRsVEykxoUwF-JQU4dn6QylZSKTOJuG0indrdn_MlHpMRtsxgXjs-RPdHYIVm3odE_uvEQ_dTQGFm8oikZMohns34DLBgrQpc",
             limit=10,
         )
-        assert_matches_type(SyncCursorLimitPagination[DurableObject], object, path=["response"])
+        assert_matches_type(SyncCursorLimitPagination[DurableObject], object_, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -45,8 +45,8 @@ class TestObjects:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        object = response.parse()
-        assert_matches_type(SyncCursorLimitPagination[DurableObject], object, path=["response"])
+        object_ = response.parse()
+        assert_matches_type(SyncCursorLimitPagination[DurableObject], object_, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -57,8 +57,8 @@ class TestObjects:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            object = response.parse()
-            assert_matches_type(SyncCursorLimitPagination[DurableObject], object, path=["response"])
+            object_ = response.parse()
+            assert_matches_type(SyncCursorLimitPagination[DurableObject], object_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -82,21 +82,21 @@ class TestAsyncObjects:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        object = await async_client.durable_objects.namespaces.objects.list(
+        object_ = await async_client.durable_objects.namespaces.objects.list(
             "5fd1cafff895419c8bcc647fc64ab8f0",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncCursorLimitPagination[DurableObject], object, path=["response"])
+        assert_matches_type(AsyncCursorLimitPagination[DurableObject], object_, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        object = await async_client.durable_objects.namespaces.objects.list(
+        object_ = await async_client.durable_objects.namespaces.objects.list(
             "5fd1cafff895419c8bcc647fc64ab8f0",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cursor="AAAAANuhDN7SjacTnSVsDu3WW1Lvst6dxJGTjRY5BhxPXdf6L6uTcpd_NVtjhn11OUYRsVEykxoUwF-JQU4dn6QylZSKTOJuG0indrdn_MlHpMRtsxgXjs-RPdHYIVm3odE_uvEQ_dTQGFm8oikZMohns34DLBgrQpc",
             limit=10,
         )
-        assert_matches_type(AsyncCursorLimitPagination[DurableObject], object, path=["response"])
+        assert_matches_type(AsyncCursorLimitPagination[DurableObject], object_, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -107,8 +107,8 @@ class TestAsyncObjects:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        object = await response.parse()
-        assert_matches_type(AsyncCursorLimitPagination[DurableObject], object, path=["response"])
+        object_ = await response.parse()
+        assert_matches_type(AsyncCursorLimitPagination[DurableObject], object_, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -119,8 +119,8 @@ class TestAsyncObjects:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            object = await response.parse()
-            assert_matches_type(AsyncCursorLimitPagination[DurableObject], object, path=["response"])
+            object_ = await response.parse()
+            assert_matches_type(AsyncCursorLimitPagination[DurableObject], object_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

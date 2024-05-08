@@ -8,8 +8,6 @@ __all__ = ["MTLSCERTBindingParam"]
 
 
 class MTLSCERTBindingParam(TypedDict, total=False):
-    certificate: Required[object]
-
     type: Required[Literal["mtls_certificate"]]
     """The class of resource that the binding provides."""
 
