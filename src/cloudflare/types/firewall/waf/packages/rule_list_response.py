@@ -80,8 +80,6 @@ class WAFManagedRulesTraditionalAllowRule(BaseModel):
     allowed_modes: List[Literal["on", "off"]]
     """Defines the available modes for the current WAF rule."""
 
-    default_mode: object
-
     description: str
     """The public description of the WAF rule."""
 
