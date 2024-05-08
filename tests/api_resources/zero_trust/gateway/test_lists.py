@@ -24,23 +24,23 @@ class TestLists:
 
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
-        list = client.zero_trust.gateway.lists.create(
+        list_ = client.zero_trust.gateway.lists.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="SERIAL",
         )
-        assert_matches_type(Optional[ListCreateResponse], list, path=["response"])
+        assert_matches_type(Optional[ListCreateResponse], list_, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        list = client.zero_trust.gateway.lists.create(
+        list_ = client.zero_trust.gateway.lists.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="SERIAL",
             description="The serial numbers for administrators",
             items=[{"value": "8GE8721REF"}, {"value": "8GE8721REF"}, {"value": "8GE8721REF"}],
         )
-        assert_matches_type(Optional[ListCreateResponse], list, path=["response"])
+        assert_matches_type(Optional[ListCreateResponse], list_, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -52,8 +52,8 @@ class TestLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = response.parse()
-        assert_matches_type(Optional[ListCreateResponse], list, path=["response"])
+        list_ = response.parse()
+        assert_matches_type(Optional[ListCreateResponse], list_, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -65,8 +65,8 @@ class TestLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = response.parse()
-            assert_matches_type(Optional[ListCreateResponse], list, path=["response"])
+            list_ = response.parse()
+            assert_matches_type(Optional[ListCreateResponse], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -81,22 +81,22 @@ class TestLists:
 
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
-        list = client.zero_trust.gateway.lists.update(
+        list_ = client.zero_trust.gateway.lists.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
         )
-        assert_matches_type(Optional[GatewayList], list, path=["response"])
+        assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        list = client.zero_trust.gateway.lists.update(
+        list_ = client.zero_trust.gateway.lists.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             description="The serial numbers for administrators",
         )
-        assert_matches_type(Optional[GatewayList], list, path=["response"])
+        assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -108,8 +108,8 @@ class TestLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = response.parse()
-        assert_matches_type(Optional[GatewayList], list, path=["response"])
+        list_ = response.parse()
+        assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -121,8 +121,8 @@ class TestLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = response.parse()
-            assert_matches_type(Optional[GatewayList], list, path=["response"])
+            list_ = response.parse()
+            assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -144,10 +144,10 @@ class TestLists:
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
-        list = client.zero_trust.gateway.lists.list(
+        list_ = client.zero_trust.gateway.lists.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(SyncSinglePage[GatewayList], list, path=["response"])
+        assert_matches_type(SyncSinglePage[GatewayList], list_, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -157,8 +157,8 @@ class TestLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = response.parse()
-        assert_matches_type(SyncSinglePage[GatewayList], list, path=["response"])
+        list_ = response.parse()
+        assert_matches_type(SyncSinglePage[GatewayList], list_, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -168,8 +168,8 @@ class TestLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = response.parse()
-            assert_matches_type(SyncSinglePage[GatewayList], list, path=["response"])
+            list_ = response.parse()
+            assert_matches_type(SyncSinglePage[GatewayList], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -182,11 +182,11 @@ class TestLists:
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
-        list = client.zero_trust.gateway.lists.delete(
+        list_ = client.zero_trust.gateway.lists.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[ListDeleteResponse], list, path=["response"])
+        assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -197,8 +197,8 @@ class TestLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = response.parse()
-        assert_matches_type(Optional[ListDeleteResponse], list, path=["response"])
+        list_ = response.parse()
+        assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -209,8 +209,8 @@ class TestLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = response.parse()
-            assert_matches_type(Optional[ListDeleteResponse], list, path=["response"])
+            list_ = response.parse()
+            assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -230,21 +230,21 @@ class TestLists:
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
-        list = client.zero_trust.gateway.lists.edit(
+        list_ = client.zero_trust.gateway.lists.edit(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[GatewayList], list, path=["response"])
+        assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
-        list = client.zero_trust.gateway.lists.edit(
+        list_ = client.zero_trust.gateway.lists.edit(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             append=[{"value": "8GE8721REF"}, {"value": "8GE8721REF"}, {"value": "8GE8721REF"}],
             remove=["8GE8721REF", "8GE8721REF", "8GE8721REF"],
         )
-        assert_matches_type(Optional[GatewayList], list, path=["response"])
+        assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -255,8 +255,8 @@ class TestLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = response.parse()
-        assert_matches_type(Optional[GatewayList], list, path=["response"])
+        list_ = response.parse()
+        assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -267,8 +267,8 @@ class TestLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = response.parse()
-            assert_matches_type(Optional[GatewayList], list, path=["response"])
+            list_ = response.parse()
+            assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -288,11 +288,11 @@ class TestLists:
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        list = client.zero_trust.gateway.lists.get(
+        list_ = client.zero_trust.gateway.lists.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[GatewayList], list, path=["response"])
+        assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -303,8 +303,8 @@ class TestLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = response.parse()
-        assert_matches_type(Optional[GatewayList], list, path=["response"])
+        list_ = response.parse()
+        assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -315,8 +315,8 @@ class TestLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = response.parse()
-            assert_matches_type(Optional[GatewayList], list, path=["response"])
+            list_ = response.parse()
+            assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -340,23 +340,23 @@ class TestAsyncLists:
 
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        list = await async_client.zero_trust.gateway.lists.create(
+        list_ = await async_client.zero_trust.gateway.lists.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="SERIAL",
         )
-        assert_matches_type(Optional[ListCreateResponse], list, path=["response"])
+        assert_matches_type(Optional[ListCreateResponse], list_, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        list = await async_client.zero_trust.gateway.lists.create(
+        list_ = await async_client.zero_trust.gateway.lists.create(
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="SERIAL",
             description="The serial numbers for administrators",
             items=[{"value": "8GE8721REF"}, {"value": "8GE8721REF"}, {"value": "8GE8721REF"}],
         )
-        assert_matches_type(Optional[ListCreateResponse], list, path=["response"])
+        assert_matches_type(Optional[ListCreateResponse], list_, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -368,8 +368,8 @@ class TestAsyncLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = await response.parse()
-        assert_matches_type(Optional[ListCreateResponse], list, path=["response"])
+        list_ = await response.parse()
+        assert_matches_type(Optional[ListCreateResponse], list_, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -381,8 +381,8 @@ class TestAsyncLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = await response.parse()
-            assert_matches_type(Optional[ListCreateResponse], list, path=["response"])
+            list_ = await response.parse()
+            assert_matches_type(Optional[ListCreateResponse], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -397,22 +397,22 @@ class TestAsyncLists:
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        list = await async_client.zero_trust.gateway.lists.update(
+        list_ = await async_client.zero_trust.gateway.lists.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
         )
-        assert_matches_type(Optional[GatewayList], list, path=["response"])
+        assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        list = await async_client.zero_trust.gateway.lists.update(
+        list_ = await async_client.zero_trust.gateway.lists.update(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             description="The serial numbers for administrators",
         )
-        assert_matches_type(Optional[GatewayList], list, path=["response"])
+        assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -424,8 +424,8 @@ class TestAsyncLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = await response.parse()
-        assert_matches_type(Optional[GatewayList], list, path=["response"])
+        list_ = await response.parse()
+        assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -437,8 +437,8 @@ class TestAsyncLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = await response.parse()
-            assert_matches_type(Optional[GatewayList], list, path=["response"])
+            list_ = await response.parse()
+            assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -460,10 +460,10 @@ class TestAsyncLists:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        list = await async_client.zero_trust.gateway.lists.list(
+        list_ = await async_client.zero_trust.gateway.lists.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(AsyncSinglePage[GatewayList], list, path=["response"])
+        assert_matches_type(AsyncSinglePage[GatewayList], list_, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -473,8 +473,8 @@ class TestAsyncLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = await response.parse()
-        assert_matches_type(AsyncSinglePage[GatewayList], list, path=["response"])
+        list_ = await response.parse()
+        assert_matches_type(AsyncSinglePage[GatewayList], list_, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -484,8 +484,8 @@ class TestAsyncLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = await response.parse()
-            assert_matches_type(AsyncSinglePage[GatewayList], list, path=["response"])
+            list_ = await response.parse()
+            assert_matches_type(AsyncSinglePage[GatewayList], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -498,11 +498,11 @@ class TestAsyncLists:
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
-        list = await async_client.zero_trust.gateway.lists.delete(
+        list_ = await async_client.zero_trust.gateway.lists.delete(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[ListDeleteResponse], list, path=["response"])
+        assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -513,8 +513,8 @@ class TestAsyncLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = await response.parse()
-        assert_matches_type(Optional[ListDeleteResponse], list, path=["response"])
+        list_ = await response.parse()
+        assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -525,8 +525,8 @@ class TestAsyncLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = await response.parse()
-            assert_matches_type(Optional[ListDeleteResponse], list, path=["response"])
+            list_ = await response.parse()
+            assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -546,21 +546,21 @@ class TestAsyncLists:
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
-        list = await async_client.zero_trust.gateway.lists.edit(
+        list_ = await async_client.zero_trust.gateway.lists.edit(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[GatewayList], list, path=["response"])
+        assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        list = await async_client.zero_trust.gateway.lists.edit(
+        list_ = await async_client.zero_trust.gateway.lists.edit(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             append=[{"value": "8GE8721REF"}, {"value": "8GE8721REF"}, {"value": "8GE8721REF"}],
             remove=["8GE8721REF", "8GE8721REF", "8GE8721REF"],
         )
-        assert_matches_type(Optional[GatewayList], list, path=["response"])
+        assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -571,8 +571,8 @@ class TestAsyncLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = await response.parse()
-        assert_matches_type(Optional[GatewayList], list, path=["response"])
+        list_ = await response.parse()
+        assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -583,8 +583,8 @@ class TestAsyncLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = await response.parse()
-            assert_matches_type(Optional[GatewayList], list, path=["response"])
+            list_ = await response.parse()
+            assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -604,11 +604,11 @@ class TestAsyncLists:
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        list = await async_client.zero_trust.gateway.lists.get(
+        list_ = await async_client.zero_trust.gateway.lists.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[GatewayList], list, path=["response"])
+        assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -619,8 +619,8 @@ class TestAsyncLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = await response.parse()
-        assert_matches_type(Optional[GatewayList], list, path=["response"])
+        list_ = await response.parse()
+        assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -631,8 +631,8 @@ class TestAsyncLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = await response.parse()
-            assert_matches_type(Optional[GatewayList], list, path=["response"])
+            list_ = await response.parse()
+            assert_matches_type(Optional[GatewayList], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -21,23 +21,23 @@ class TestLists:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
-        list = client.rules.lists.create(
+        list_ = client.rules.lists.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             kind="ip",
             name="list1",
         )
-        assert_matches_type(Optional[ListsList], list, path=["response"])
+        assert_matches_type(Optional[ListsList], list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        list = client.rules.lists.create(
+        list_ = client.rules.lists.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             kind="ip",
             name="list1",
             description="This is a note",
         )
-        assert_matches_type(Optional[ListsList], list, path=["response"])
+        assert_matches_type(Optional[ListsList], list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -50,8 +50,8 @@ class TestLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = response.parse()
-        assert_matches_type(Optional[ListsList], list, path=["response"])
+        list_ = response.parse()
+        assert_matches_type(Optional[ListsList], list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -64,8 +64,8 @@ class TestLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = response.parse()
-            assert_matches_type(Optional[ListsList], list, path=["response"])
+            list_ = response.parse()
+            assert_matches_type(Optional[ListsList], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -82,21 +82,21 @@ class TestLists:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
-        list = client.rules.lists.update(
+        list_ = client.rules.lists.update(
             "2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ListsList], list, path=["response"])
+        assert_matches_type(Optional[ListsList], list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        list = client.rules.lists.update(
+        list_ = client.rules.lists.update(
             "2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="This is a note",
         )
-        assert_matches_type(Optional[ListsList], list, path=["response"])
+        assert_matches_type(Optional[ListsList], list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -108,8 +108,8 @@ class TestLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = response.parse()
-        assert_matches_type(Optional[ListsList], list, path=["response"])
+        list_ = response.parse()
+        assert_matches_type(Optional[ListsList], list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -121,8 +121,8 @@ class TestLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = response.parse()
-            assert_matches_type(Optional[ListsList], list, path=["response"])
+            list_ = response.parse()
+            assert_matches_type(Optional[ListsList], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -143,10 +143,10 @@ class TestLists:
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
-        list = client.rules.lists.list(
+        list_ = client.rules.lists.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[ListsList], list, path=["response"])
+        assert_matches_type(SyncSinglePage[ListsList], list_, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -156,8 +156,8 @@ class TestLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = response.parse()
-        assert_matches_type(SyncSinglePage[ListsList], list, path=["response"])
+        list_ = response.parse()
+        assert_matches_type(SyncSinglePage[ListsList], list_, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -167,8 +167,8 @@ class TestLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = response.parse()
-            assert_matches_type(SyncSinglePage[ListsList], list, path=["response"])
+            list_ = response.parse()
+            assert_matches_type(SyncSinglePage[ListsList], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -181,11 +181,11 @@ class TestLists:
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
-        list = client.rules.lists.delete(
+        list_ = client.rules.lists.delete(
             "2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ListDeleteResponse], list, path=["response"])
+        assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -196,8 +196,8 @@ class TestLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = response.parse()
-        assert_matches_type(Optional[ListDeleteResponse], list, path=["response"])
+        list_ = response.parse()
+        assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -208,8 +208,8 @@ class TestLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = response.parse()
-            assert_matches_type(Optional[ListDeleteResponse], list, path=["response"])
+            list_ = response.parse()
+            assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -230,11 +230,11 @@ class TestLists:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
-        list = client.rules.lists.get(
+        list_ = client.rules.lists.get(
             "2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ListsList], list, path=["response"])
+        assert_matches_type(Optional[ListsList], list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -246,8 +246,8 @@ class TestLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = response.parse()
-        assert_matches_type(Optional[ListsList], list, path=["response"])
+        list_ = response.parse()
+        assert_matches_type(Optional[ListsList], list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -259,8 +259,8 @@ class TestLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = response.parse()
-            assert_matches_type(Optional[ListsList], list, path=["response"])
+            list_ = response.parse()
+            assert_matches_type(Optional[ListsList], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -286,23 +286,23 @@ class TestAsyncLists:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
-        list = await async_client.rules.lists.create(
+        list_ = await async_client.rules.lists.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             kind="ip",
             name="list1",
         )
-        assert_matches_type(Optional[ListsList], list, path=["response"])
+        assert_matches_type(Optional[ListsList], list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        list = await async_client.rules.lists.create(
+        list_ = await async_client.rules.lists.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             kind="ip",
             name="list1",
             description="This is a note",
         )
-        assert_matches_type(Optional[ListsList], list, path=["response"])
+        assert_matches_type(Optional[ListsList], list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -315,8 +315,8 @@ class TestAsyncLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = await response.parse()
-        assert_matches_type(Optional[ListsList], list, path=["response"])
+        list_ = await response.parse()
+        assert_matches_type(Optional[ListsList], list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -329,8 +329,8 @@ class TestAsyncLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = await response.parse()
-            assert_matches_type(Optional[ListsList], list, path=["response"])
+            list_ = await response.parse()
+            assert_matches_type(Optional[ListsList], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -347,21 +347,21 @@ class TestAsyncLists:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
-        list = await async_client.rules.lists.update(
+        list_ = await async_client.rules.lists.update(
             "2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ListsList], list, path=["response"])
+        assert_matches_type(Optional[ListsList], list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        list = await async_client.rules.lists.update(
+        list_ = await async_client.rules.lists.update(
             "2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="This is a note",
         )
-        assert_matches_type(Optional[ListsList], list, path=["response"])
+        assert_matches_type(Optional[ListsList], list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -373,8 +373,8 @@ class TestAsyncLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = await response.parse()
-        assert_matches_type(Optional[ListsList], list, path=["response"])
+        list_ = await response.parse()
+        assert_matches_type(Optional[ListsList], list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -386,8 +386,8 @@ class TestAsyncLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = await response.parse()
-            assert_matches_type(Optional[ListsList], list, path=["response"])
+            list_ = await response.parse()
+            assert_matches_type(Optional[ListsList], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -408,10 +408,10 @@ class TestAsyncLists:
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
-        list = await async_client.rules.lists.list(
+        list_ = await async_client.rules.lists.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[ListsList], list, path=["response"])
+        assert_matches_type(AsyncSinglePage[ListsList], list_, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -421,8 +421,8 @@ class TestAsyncLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = await response.parse()
-        assert_matches_type(AsyncSinglePage[ListsList], list, path=["response"])
+        list_ = await response.parse()
+        assert_matches_type(AsyncSinglePage[ListsList], list_, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -432,8 +432,8 @@ class TestAsyncLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = await response.parse()
-            assert_matches_type(AsyncSinglePage[ListsList], list, path=["response"])
+            list_ = await response.parse()
+            assert_matches_type(AsyncSinglePage[ListsList], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -446,11 +446,11 @@ class TestAsyncLists:
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
-        list = await async_client.rules.lists.delete(
+        list_ = await async_client.rules.lists.delete(
             "2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ListDeleteResponse], list, path=["response"])
+        assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -461,8 +461,8 @@ class TestAsyncLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = await response.parse()
-        assert_matches_type(Optional[ListDeleteResponse], list, path=["response"])
+        list_ = await response.parse()
+        assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -473,8 +473,8 @@ class TestAsyncLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = await response.parse()
-            assert_matches_type(Optional[ListDeleteResponse], list, path=["response"])
+            list_ = await response.parse()
+            assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -495,11 +495,11 @@ class TestAsyncLists:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
-        list = await async_client.rules.lists.get(
+        list_ = await async_client.rules.lists.get(
             "2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[ListsList], list, path=["response"])
+        assert_matches_type(Optional[ListsList], list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -511,8 +511,8 @@ class TestAsyncLists:
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        list = await response.parse()
-        assert_matches_type(Optional[ListsList], list, path=["response"])
+        list_ = await response.parse()
+        assert_matches_type(Optional[ListsList], list_, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -524,8 +524,8 @@ class TestAsyncLists:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
-            list = await response.parse()
-            assert_matches_type(Optional[ListsList], list, path=["response"])
+            list_ = await response.parse()
+            assert_matches_type(Optional[ListsList], list_, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

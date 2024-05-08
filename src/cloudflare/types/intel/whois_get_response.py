@@ -9,8 +9,6 @@ __all__ = ["WhoisGetResponse"]
 
 
 class WhoisGetResponse(BaseModel):
-    dnnsec: object
-
     domain: str
 
     extension: str

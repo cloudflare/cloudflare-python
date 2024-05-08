@@ -16,15 +16,11 @@ class DeviceListResponse(BaseModel):
     device_id: str = FieldInfo(alias="deviceId")
     """Device identifier (UUID v4)"""
 
-    mode: object
-
     platform: str
     """Operating system"""
 
     status: str
     """Network status"""
-
-    timestamp: object
 
     version: str
     """WARP client version"""
