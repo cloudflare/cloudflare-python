@@ -5,6 +5,7 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from ...._models import BaseModel
+from .issue_type import IssueType
 from ...shared.response_info import ResponseInfo
 
 __all__ = ["IssueListResponse", "Result", "ResultIssue"]
@@ -17,15 +18,7 @@ class ResultIssue(BaseModel):
 
     issue_class: Optional[str] = None
 
-    issue_type: Optional[
-        Literal[
-            "compliance_violation",
-            "email_security",
-            "exposed_infrastructure",
-            "insecure_configuration",
-            "weak_authentication",
-        ]
-    ] = None
+    issue_type: Optional[IssueType] = None
 
     payload: Optional[object] = None
 
