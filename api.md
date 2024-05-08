@@ -2282,7 +2282,6 @@ from cloudflare.types.pagerules import (
     PageRule,
     Route,
     Target,
-    URLTarget,
     PageruleCreateResponse,
     PageruleUpdateResponse,
     PageruleListResponse,
