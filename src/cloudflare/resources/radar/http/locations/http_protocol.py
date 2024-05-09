@@ -46,6 +46,7 @@ class HTTPProtocolResource(SyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
@@ -99,6 +100,8 @@ class HTTPProtocolResource(SyncAPIResource):
 
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filter for browser family.
 
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start
               with `-` to exclude from results. For example, `-EU,NA` excludes results from
@@ -151,6 +154,7 @@ class HTTPProtocolResource(SyncAPIResource):
                     {
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -187,6 +191,7 @@ class AsyncHTTPProtocolResource(AsyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
@@ -241,6 +246,8 @@ class AsyncHTTPProtocolResource(AsyncAPIResource):
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
+          browser_family: Filter for browser family.
+
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start
               with `-` to exclude from results. For example, `-EU,NA` excludes results from
               Europe, but includes results from North America.
@@ -292,6 +299,7 @@ class AsyncHTTPProtocolResource(AsyncAPIResource):
                     {
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,

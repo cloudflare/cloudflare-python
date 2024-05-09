@@ -54,13 +54,16 @@ from .....types.zero_trust.access import (
     application_create_params,
     application_update_params,
 )
-from .....types.zero_trust.access.application import Application
 from .....types.zero_trust.access.allowed_idps import AllowedIdPs
 from .....types.zero_trust.access.app_id_param import AppIDParam
 from .....types.zero_trust.access.application_type import ApplicationType
 from .....types.zero_trust.access.cors_headers_param import CORSHeadersParam
 from .....types.zero_trust.access.self_hosted_domains import SelfHostedDomains
+from .....types.zero_trust.access.application_get_response import ApplicationGetResponse
+from .....types.zero_trust.access.application_list_response import ApplicationListResponse
+from .....types.zero_trust.access.application_create_response import ApplicationCreateResponse
 from .....types.zero_trust.access.application_delete_response import ApplicationDeleteResponse
+from .....types.zero_trust.access.application_update_response import ApplicationUpdateResponse
 
 __all__ = ["ApplicationsResource", "AsyncApplicationsResource"]
 
@@ -109,6 +112,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
@@ -121,7 +125,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -175,6 +179,10 @@ class ApplicationsResource(SyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -213,6 +221,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
         saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
@@ -222,7 +231,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -244,6 +253,10 @@ class ApplicationsResource(SyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
+
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -283,6 +296,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
@@ -295,7 +309,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -349,6 +363,10 @@ class ApplicationsResource(SyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -398,6 +416,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserVncApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
@@ -410,7 +429,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -464,6 +483,10 @@ class ApplicationsResource(SyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -499,6 +522,7 @@ class ApplicationsResource(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -506,7 +530,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -522,6 +546,10 @@ class ApplicationsResource(SyncAPIResource):
 
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -546,6 +574,7 @@ class ApplicationsResource(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -553,7 +582,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -569,6 +598,10 @@ class ApplicationsResource(SyncAPIResource):
 
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -593,6 +626,7 @@ class ApplicationsResource(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -600,7 +634,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -616,6 +650,10 @@ class ApplicationsResource(SyncAPIResource):
 
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -649,7 +687,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -703,6 +741,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
@@ -716,7 +755,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationCreateResponse]:
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -730,7 +769,7 @@ class ApplicationsResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[Application],
+            Optional[ApplicationCreateResponse],
             self._post(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps",
                 body=maybe_transform(
@@ -752,6 +791,7 @@ class ApplicationsResource(SyncAPIResource):
                         "name": name,
                         "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
+                        "policies": policies,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "self_hosted_domains": self_hosted_domains,
                         "service_auth_401_redirect": service_auth_401_redirect,
@@ -767,10 +807,10 @@ class ApplicationsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[Application]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[ApplicationCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[Application]
+                    Any, ResultWrapper[ApplicationCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -799,6 +839,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
@@ -811,7 +852,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -867,6 +908,10 @@ class ApplicationsResource(SyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -906,6 +951,7 @@ class ApplicationsResource(SyncAPIResource):
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
         saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
@@ -915,7 +961,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -939,6 +985,10 @@ class ApplicationsResource(SyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
+
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -979,6 +1029,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
@@ -991,7 +1042,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -1047,6 +1098,10 @@ class ApplicationsResource(SyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -1097,6 +1152,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserVncApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
@@ -1109,7 +1165,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -1165,6 +1221,10 @@ class ApplicationsResource(SyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -1201,6 +1261,7 @@ class ApplicationsResource(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1208,7 +1269,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -1226,6 +1287,10 @@ class ApplicationsResource(SyncAPIResource):
 
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -1251,6 +1316,7 @@ class ApplicationsResource(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1258,7 +1324,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -1276,6 +1342,10 @@ class ApplicationsResource(SyncAPIResource):
 
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -1301,6 +1371,7 @@ class ApplicationsResource(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1308,7 +1379,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -1326,6 +1397,10 @@ class ApplicationsResource(SyncAPIResource):
 
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -1360,7 +1435,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -1417,6 +1492,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
@@ -1430,7 +1506,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationUpdateResponse]:
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1444,7 +1520,7 @@ class ApplicationsResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[Application],
+            Optional[ApplicationUpdateResponse],
             self._put(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 body=maybe_transform(
@@ -1466,6 +1542,7 @@ class ApplicationsResource(SyncAPIResource):
                         "name": name,
                         "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
+                        "policies": policies,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "self_hosted_domains": self_hosted_domains,
                         "service_auth_401_redirect": service_auth_401_redirect,
@@ -1481,10 +1558,10 @@ class ApplicationsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[Application]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[ApplicationUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[Application]
+                    Any, ResultWrapper[ApplicationUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -1500,7 +1577,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Application]:
+    ) -> SyncSinglePage[ApplicationListResponse]:
         """
         Lists all Access applications in an account or zone.
 
@@ -1531,11 +1608,11 @@ class ApplicationsResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps",
-            page=SyncSinglePage[Application],
+            page=SyncSinglePage[ApplicationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=cast(Any, Application),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, ApplicationListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     def delete(
@@ -1605,7 +1682,7 @@ class ApplicationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationGetResponse]:
         """
         Fetches information about an Access application.
 
@@ -1637,7 +1714,7 @@ class ApplicationsResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[Application],
+            Optional[ApplicationGetResponse],
             self._get(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 options=make_request_options(
@@ -1645,10 +1722,10 @@ class ApplicationsResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[Application]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[ApplicationGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[Application]
+                    Any, ResultWrapper[ApplicationGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -1753,6 +1830,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
@@ -1765,7 +1843,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -1819,6 +1897,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -1857,6 +1939,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
         saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
@@ -1866,7 +1949,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -1888,6 +1971,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
+
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -1927,6 +2014,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
@@ -1939,7 +2027,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -1993,6 +2081,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -2042,6 +2134,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserVncApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
@@ -2054,7 +2147,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -2108,6 +2201,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -2143,6 +2240,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2150,7 +2248,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -2166,6 +2264,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -2190,6 +2292,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2197,7 +2300,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -2213,6 +2316,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -2237,6 +2344,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2244,7 +2352,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -2260,6 +2368,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -2293,7 +2405,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -2347,6 +2459,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
@@ -2360,7 +2473,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationCreateResponse]:
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -2374,7 +2487,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[Application],
+            Optional[ApplicationCreateResponse],
             await self._post(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps",
                 body=await async_maybe_transform(
@@ -2396,6 +2509,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "name": name,
                         "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
+                        "policies": policies,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "self_hosted_domains": self_hosted_domains,
                         "service_auth_401_redirect": service_auth_401_redirect,
@@ -2411,10 +2525,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[Application]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[ApplicationCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[Application]
+                    Any, ResultWrapper[ApplicationCreateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -2443,6 +2557,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
@@ -2455,7 +2570,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -2511,6 +2626,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -2550,6 +2669,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         custom_pages: List[str] | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
         saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
@@ -2559,7 +2679,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -2583,6 +2703,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
+
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -2623,6 +2747,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
@@ -2635,7 +2760,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -2691,6 +2816,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -2741,6 +2870,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserVncApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
@@ -2753,7 +2883,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -2809,6 +2939,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
           path_cookie_attribute: Enables cookie paths to scope an application's JWT to the application path. If
               disabled, the JWT will scope to the hostname by default
 
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
+
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
@@ -2845,6 +2979,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2852,7 +2987,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -2870,6 +3005,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -2895,6 +3034,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2902,7 +3042,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -2920,6 +3060,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -2945,6 +3089,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2952,7 +3097,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -2970,6 +3115,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          policies: The policies that will apply to the application, in ascending order of
+              precedence. Items can reference existing policies or create new policies
+              exclusive to the application.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -3004,7 +3153,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -3061,6 +3210,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
@@ -3074,7 +3224,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationUpdateResponse]:
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3088,7 +3238,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[Application],
+            Optional[ApplicationUpdateResponse],
             await self._put(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 body=await async_maybe_transform(
@@ -3110,6 +3260,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "name": name,
                         "options_preflight_bypass": options_preflight_bypass,
                         "path_cookie_attribute": path_cookie_attribute,
+                        "policies": policies,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
                         "self_hosted_domains": self_hosted_domains,
                         "service_auth_401_redirect": service_auth_401_redirect,
@@ -3125,10 +3276,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[Application]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[ApplicationUpdateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[Application]
+                    Any, ResultWrapper[ApplicationUpdateResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -3144,7 +3295,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Application, AsyncSinglePage[Application]]:
+    ) -> AsyncPaginator[ApplicationListResponse, AsyncSinglePage[ApplicationListResponse]]:
         """
         Lists all Access applications in an account or zone.
 
@@ -3175,11 +3326,11 @@ class AsyncApplicationsResource(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps",
-            page=AsyncSinglePage[Application],
+            page=AsyncSinglePage[ApplicationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=cast(Any, Application),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, ApplicationListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def delete(
@@ -3249,7 +3400,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Application]:
+    ) -> Optional[ApplicationGetResponse]:
         """
         Fetches information about an Access application.
 
@@ -3281,7 +3432,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return cast(
-            Optional[Application],
+            Optional[ApplicationGetResponse],
             await self._get(
                 f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
                 options=make_request_options(
@@ -3289,10 +3440,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[Application]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[ApplicationGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[Application]
+                    Any, ResultWrapper[ApplicationGetResponse]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

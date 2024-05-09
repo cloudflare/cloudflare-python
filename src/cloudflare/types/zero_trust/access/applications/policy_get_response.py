@@ -8,12 +8,12 @@ from ....._models import BaseModel
 from ...access_rule import AccessRule
 from .approval_group import ApprovalGroup
 
-__all__ = ["Policy"]
+__all__ = ["PolicyGetResponse"]
 
 
-class Policy(BaseModel):
+class PolicyGetResponse(BaseModel):
     id: Optional[str] = None
-    """UUID"""
+    """The ID of the Access policy."""
 
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
@@ -50,9 +50,6 @@ class Policy(BaseModel):
 
     name: Optional[str] = None
     """The name of the Access policy."""
-
-    precedence: Optional[int] = None
-    """The order of execution for this policy. Must be unique for each policy."""
 
     purpose_justification_prompt: Optional[str] = None
     """A custom message that will appear on the purpose justification screen."""

@@ -114,7 +114,7 @@ class SippyResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["account_id"], ["account_id"])
+    @required_args(["account_id"])
     def update(
         self,
         bucket_name: str,
@@ -326,7 +326,7 @@ class AsyncSippyResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["account_id"], ["account_id"])
+    @required_args(["account_id"])
     async def update(
         self,
         bucket_name: str,

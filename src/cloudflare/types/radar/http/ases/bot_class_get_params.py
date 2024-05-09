@@ -19,6 +19,9 @@ class BotClassGetParams(TypedDict, total=False):
     AS3356.
     """
 
+    browser_family: Annotated[List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]], PropertyInfo(alias="browserFamily")]
+    """Filter for browser family."""
+
     continent: List[str]
     """Array of comma separated list of continents (alpha-2 continent codes).
 
