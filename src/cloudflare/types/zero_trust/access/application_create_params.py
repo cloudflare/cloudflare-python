@@ -2,29 +2,53 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union
+from typing import Dict, List, Union, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from .allowed_idps import AllowedIdPs
 from .application_type import ApplicationType
+from ..access_rule_param import AccessRuleParam
 from .cors_headers_param import CORSHeadersParam
 from .saml_saas_app_param import SAMLSaaSAppParam
 from .self_hosted_domains import SelfHostedDomains
+from .applications.approval_group_param import ApprovalGroupParam
 
 __all__ = [
     "ApplicationCreateParams",
     "SelfHostedApplication",
+    "SelfHostedApplicationPolicy",
+    "SelfHostedApplicationPolicyAccessAppPolicyLink",
+    "SelfHostedApplicationPolicyUnionMember2",
     "SaaSApplication",
+    "SaaSApplicationPolicy",
+    "SaaSApplicationPolicyAccessAppPolicyLink",
+    "SaaSApplicationPolicyUnionMember2",
     "SaaSApplicationSaaSApp",
     "SaaSApplicationSaaSAppAccessOIDCSaaSApp",
     "SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims",
     "SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource",
+    "SaaSApplicationSaaSAppAccessOIDCSaaSAppRefreshTokenOptions",
     "BrowserSSHApplication",
+    "BrowserSSHApplicationPolicy",
+    "BrowserSSHApplicationPolicyAccessAppPolicyLink",
+    "BrowserSSHApplicationPolicyUnionMember2",
     "BrowserVncApplication",
+    "BrowserVncApplicationPolicy",
+    "BrowserVncApplicationPolicyAccessAppPolicyLink",
+    "BrowserVncApplicationPolicyUnionMember2",
     "AppLauncherApplication",
+    "AppLauncherApplicationPolicy",
+    "AppLauncherApplicationPolicyAccessAppPolicyLink",
+    "AppLauncherApplicationPolicyUnionMember2",
     "DeviceEnrollmentPermissionsApplication",
+    "DeviceEnrollmentPermissionsApplicationPolicy",
+    "DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink",
+    "DeviceEnrollmentPermissionsApplicationPolicyUnionMember2",
     "BrowserIsolationPermissionsApplication",
-    "BookmarkApplication",
+    "BrowserIsolationPermissionsApplicationPolicy",
+    "BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink",
+    "BrowserIsolationPermissionsApplicationPolicyUnionMember2",
+    "AccessBookmarkProps",
 ]
 
 
@@ -123,6 +147,13 @@ class SelfHostedApplication(TypedDict, total=False):
     If disabled, the JWT will scope to the hostname by default
     """
 
+    policies: List[SelfHostedApplicationPolicy]
+    """
+    The policies that will apply to the application, in ascending order of
+    precedence. Items can reference existing policies or create new policies
+    exclusive to the application.
+    """
+
     same_site_cookie_attribute: str
     """
     Sets the SameSite cookie setting, which provides increased security against CSRF
@@ -150,6 +181,86 @@ class SelfHostedApplication(TypedDict, total=False):
 
     Tags are used to filter applications in the App Launcher dashboard.
     """
+
+
+class SelfHostedApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    id: str
+    """The ID of the Access policy."""
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+
+class SelfHostedApplicationPolicyUnionMember2(TypedDict, total=False):
+    decision: Required[Literal["allow", "deny", "non_identity", "bypass"]]
+    """The action Access will take if a user matches this policy."""
+
+    include: Required[Iterable[AccessRuleParam]]
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    name: Required[str]
+    """The name of the Access policy."""
+
+    id: str
+    """The ID of the Access policy."""
+
+    approval_groups: Iterable[ApprovalGroupParam]
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: bool
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    exclude: Iterable[AccessRuleParam]
+    """Rules evaluated with a NOT logical operator.
+
+    To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    isolation_required: bool
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: str
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: bool
+    """Require users to enter a justification when they log in to the application."""
+
+    require: Iterable[AccessRuleParam]
+    """Rules evaluated with an AND logical operator.
+
+    To match the policy, a user must meet all of the Require rules.
+    """
+
+    session_duration: str
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
+SelfHostedApplicationPolicy = Union[
+    SelfHostedApplicationPolicyAccessAppPolicyLink, str, SelfHostedApplicationPolicyUnionMember2
+]
 
 
 class SaaSApplication(TypedDict, total=False):
@@ -185,6 +296,13 @@ class SaaSApplication(TypedDict, total=False):
     name: str
     """The name of the application."""
 
+    policies: List[SaaSApplicationPolicy]
+    """
+    The policies that will apply to the application, in ascending order of
+    precedence. Items can reference existing policies or create new policies
+    exclusive to the application.
+    """
+
     saas_app: SaaSApplicationSaaSApp
 
     tags: List[str]
@@ -195,6 +313,84 @@ class SaaSApplication(TypedDict, total=False):
 
     type: str
     """The application type."""
+
+
+class SaaSApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    id: str
+    """The ID of the Access policy."""
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+
+class SaaSApplicationPolicyUnionMember2(TypedDict, total=False):
+    decision: Required[Literal["allow", "deny", "non_identity", "bypass"]]
+    """The action Access will take if a user matches this policy."""
+
+    include: Required[Iterable[AccessRuleParam]]
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    name: Required[str]
+    """The name of the Access policy."""
+
+    id: str
+    """The ID of the Access policy."""
+
+    approval_groups: Iterable[ApprovalGroupParam]
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: bool
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    exclude: Iterable[AccessRuleParam]
+    """Rules evaluated with a NOT logical operator.
+
+    To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    isolation_required: bool
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: str
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: bool
+    """Require users to enter a justification when they log in to the application."""
+
+    require: Iterable[AccessRuleParam]
+    """Rules evaluated with an AND logical operator.
+
+    To match the policy, a user must meet all of the Require rules.
+    """
+
+    session_duration: str
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
+SaaSApplicationPolicy = Union[SaaSApplicationPolicyAccessAppPolicyLink, str, SaaSApplicationPolicyUnionMember2]
 
 
 class SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource(TypedDict, total=False):
@@ -218,7 +414,21 @@ class SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims(TypedDict, total=False
     source: SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource
 
 
+class SaaSApplicationSaaSAppAccessOIDCSaaSAppRefreshTokenOptions(TypedDict, total=False):
+    lifetime: str
+    """How long a refresh token will be valid for after creation.
+
+    Valid units are m,h,d. Must be longer than 1m.
+    """
+
+
 class SaaSApplicationSaaSAppAccessOIDCSaaSApp(TypedDict, total=False):
+    allow_pkce_without_client_secret: bool
+    """
+    If client secret should be required on the token endpoint when
+    authorization_code_with_pkce grant is used.
+    """
+
     app_launcher_url: str
     """The URL where this applications tile redirects users"""
 
@@ -236,7 +446,7 @@ class SaaSApplicationSaaSAppAccessOIDCSaaSApp(TypedDict, total=False):
 
     custom_claims: SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims
 
-    grant_types: List[Literal["authorization_code", "authorization_code_with_pkce"]]
+    grant_types: List[Literal["authorization_code", "authorization_code_with_pkce", "refresh_tokens"]]
     """The OIDC flows supported by this application"""
 
     group_filter_regex: str
@@ -251,8 +461,13 @@ class SaaSApplicationSaaSAppAccessOIDCSaaSApp(TypedDict, total=False):
     tokens
     """
 
+    refresh_token_options: SaaSApplicationSaaSAppAccessOIDCSaaSAppRefreshTokenOptions
+
     scopes: List[Literal["openid", "groups", "email", "profile"]]
-    """Define the user information shared with access"""
+    """
+    Define the user information shared with access, "offline_access" scope will be
+    automatically enabled if refresh tokens are enabled
+    """
 
 
 SaaSApplicationSaaSApp = Union[SAMLSaaSAppParam, SaaSApplicationSaaSAppAccessOIDCSaaSApp]
@@ -353,6 +568,13 @@ class BrowserSSHApplication(TypedDict, total=False):
     If disabled, the JWT will scope to the hostname by default
     """
 
+    policies: List[BrowserSSHApplicationPolicy]
+    """
+    The policies that will apply to the application, in ascending order of
+    precedence. Items can reference existing policies or create new policies
+    exclusive to the application.
+    """
+
     same_site_cookie_attribute: str
     """
     Sets the SameSite cookie setting, which provides increased security against CSRF
@@ -380,6 +602,86 @@ class BrowserSSHApplication(TypedDict, total=False):
 
     Tags are used to filter applications in the App Launcher dashboard.
     """
+
+
+class BrowserSSHApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    id: str
+    """The ID of the Access policy."""
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+
+class BrowserSSHApplicationPolicyUnionMember2(TypedDict, total=False):
+    decision: Required[Literal["allow", "deny", "non_identity", "bypass"]]
+    """The action Access will take if a user matches this policy."""
+
+    include: Required[Iterable[AccessRuleParam]]
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    name: Required[str]
+    """The name of the Access policy."""
+
+    id: str
+    """The ID of the Access policy."""
+
+    approval_groups: Iterable[ApprovalGroupParam]
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: bool
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    exclude: Iterable[AccessRuleParam]
+    """Rules evaluated with a NOT logical operator.
+
+    To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    isolation_required: bool
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: str
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: bool
+    """Require users to enter a justification when they log in to the application."""
+
+    require: Iterable[AccessRuleParam]
+    """Rules evaluated with an AND logical operator.
+
+    To match the policy, a user must meet all of the Require rules.
+    """
+
+    session_duration: str
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
+BrowserSSHApplicationPolicy = Union[
+    BrowserSSHApplicationPolicyAccessAppPolicyLink, str, BrowserSSHApplicationPolicyUnionMember2
+]
 
 
 class BrowserVncApplication(TypedDict, total=False):
@@ -477,6 +779,13 @@ class BrowserVncApplication(TypedDict, total=False):
     If disabled, the JWT will scope to the hostname by default
     """
 
+    policies: List[BrowserVncApplicationPolicy]
+    """
+    The policies that will apply to the application, in ascending order of
+    precedence. Items can reference existing policies or create new policies
+    exclusive to the application.
+    """
+
     same_site_cookie_attribute: str
     """
     Sets the SameSite cookie setting, which provides increased security against CSRF
@@ -506,6 +815,86 @@ class BrowserVncApplication(TypedDict, total=False):
     """
 
 
+class BrowserVncApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    id: str
+    """The ID of the Access policy."""
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+
+class BrowserVncApplicationPolicyUnionMember2(TypedDict, total=False):
+    decision: Required[Literal["allow", "deny", "non_identity", "bypass"]]
+    """The action Access will take if a user matches this policy."""
+
+    include: Required[Iterable[AccessRuleParam]]
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    name: Required[str]
+    """The name of the Access policy."""
+
+    id: str
+    """The ID of the Access policy."""
+
+    approval_groups: Iterable[ApprovalGroupParam]
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: bool
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    exclude: Iterable[AccessRuleParam]
+    """Rules evaluated with a NOT logical operator.
+
+    To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    isolation_required: bool
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: str
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: bool
+    """Require users to enter a justification when they log in to the application."""
+
+    require: Iterable[AccessRuleParam]
+    """Rules evaluated with an AND logical operator.
+
+    To match the policy, a user must meet all of the Require rules.
+    """
+
+    session_duration: str
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
+BrowserVncApplicationPolicy = Union[
+    BrowserVncApplicationPolicyAccessAppPolicyLink, str, BrowserVncApplicationPolicyUnionMember2
+]
+
+
 class AppLauncherApplication(TypedDict, total=False):
     type: Required[ApplicationType]
     """The application type."""
@@ -530,12 +919,99 @@ class AppLauncherApplication(TypedDict, total=False):
     You must specify only one identity provider in allowed_idps.
     """
 
+    policies: List[AppLauncherApplicationPolicy]
+    """
+    The policies that will apply to the application, in ascending order of
+    precedence. Items can reference existing policies or create new policies
+    exclusive to the application.
+    """
+
     session_duration: str
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
     ms, s, m, h.
     """
+
+
+class AppLauncherApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    id: str
+    """The ID of the Access policy."""
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+
+class AppLauncherApplicationPolicyUnionMember2(TypedDict, total=False):
+    decision: Required[Literal["allow", "deny", "non_identity", "bypass"]]
+    """The action Access will take if a user matches this policy."""
+
+    include: Required[Iterable[AccessRuleParam]]
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    name: Required[str]
+    """The name of the Access policy."""
+
+    id: str
+    """The ID of the Access policy."""
+
+    approval_groups: Iterable[ApprovalGroupParam]
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: bool
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    exclude: Iterable[AccessRuleParam]
+    """Rules evaluated with a NOT logical operator.
+
+    To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    isolation_required: bool
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: str
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: bool
+    """Require users to enter a justification when they log in to the application."""
+
+    require: Iterable[AccessRuleParam]
+    """Rules evaluated with an AND logical operator.
+
+    To match the policy, a user must meet all of the Require rules.
+    """
+
+    session_duration: str
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
+AppLauncherApplicationPolicy = Union[
+    AppLauncherApplicationPolicyAccessAppPolicyLink, str, AppLauncherApplicationPolicyUnionMember2
+]
 
 
 class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
@@ -562,12 +1038,101 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     You must specify only one identity provider in allowed_idps.
     """
 
+    policies: List[DeviceEnrollmentPermissionsApplicationPolicy]
+    """
+    The policies that will apply to the application, in ascending order of
+    precedence. Items can reference existing policies or create new policies
+    exclusive to the application.
+    """
+
     session_duration: str
     """The amount of time that tokens issued for this application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
     ms, s, m, h.
     """
+
+
+class DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    id: str
+    """The ID of the Access policy."""
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+
+class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2(TypedDict, total=False):
+    decision: Required[Literal["allow", "deny", "non_identity", "bypass"]]
+    """The action Access will take if a user matches this policy."""
+
+    include: Required[Iterable[AccessRuleParam]]
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    name: Required[str]
+    """The name of the Access policy."""
+
+    id: str
+    """The ID of the Access policy."""
+
+    approval_groups: Iterable[ApprovalGroupParam]
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: bool
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    exclude: Iterable[AccessRuleParam]
+    """Rules evaluated with a NOT logical operator.
+
+    To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    isolation_required: bool
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: str
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: bool
+    """Require users to enter a justification when they log in to the application."""
+
+    require: Iterable[AccessRuleParam]
+    """Rules evaluated with an AND logical operator.
+
+    To match the policy, a user must meet all of the Require rules.
+    """
+
+    session_duration: str
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
+DeviceEnrollmentPermissionsApplicationPolicy = Union[
+    DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink,
+    str,
+    DeviceEnrollmentPermissionsApplicationPolicyUnionMember2,
+]
 
 
 class BrowserIsolationPermissionsApplication(TypedDict, total=False):
@@ -594,6 +1159,13 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     You must specify only one identity provider in allowed_idps.
     """
 
+    policies: List[BrowserIsolationPermissionsApplicationPolicy]
+    """
+    The policies that will apply to the application, in ascending order of
+    precedence. Items can reference existing policies or create new policies
+    exclusive to the application.
+    """
+
     session_duration: str
     """The amount of time that tokens issued for this application will be valid.
 
@@ -602,7 +1174,89 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     """
 
 
-class BookmarkApplication(TypedDict, total=False):
+class BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    id: str
+    """The ID of the Access policy."""
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+
+class BrowserIsolationPermissionsApplicationPolicyUnionMember2(TypedDict, total=False):
+    decision: Required[Literal["allow", "deny", "non_identity", "bypass"]]
+    """The action Access will take if a user matches this policy."""
+
+    include: Required[Iterable[AccessRuleParam]]
+    """Rules evaluated with an OR logical operator.
+
+    A user needs to meet only one of the Include rules.
+    """
+
+    name: Required[str]
+    """The name of the Access policy."""
+
+    id: str
+    """The ID of the Access policy."""
+
+    approval_groups: Iterable[ApprovalGroupParam]
+    """Administrators who can approve a temporary authentication request."""
+
+    approval_required: bool
+    """
+    Requires the user to request access from an administrator at the start of each
+    session.
+    """
+
+    exclude: Iterable[AccessRuleParam]
+    """Rules evaluated with a NOT logical operator.
+
+    To match the policy, a user cannot meet any of the Exclude rules.
+    """
+
+    isolation_required: bool
+    """
+    Require this application to be served in an isolated browser for users matching
+    this policy. 'Client Web Isolation' must be on for the account in order to use
+    this feature.
+    """
+
+    precedence: int
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
+
+    purpose_justification_prompt: str
+    """A custom message that will appear on the purpose justification screen."""
+
+    purpose_justification_required: bool
+    """Require users to enter a justification when they log in to the application."""
+
+    require: Iterable[AccessRuleParam]
+    """Rules evaluated with an AND logical operator.
+
+    To match the policy, a user must meet all of the Require rules.
+    """
+
+    session_duration: str
+    """The amount of time that tokens issued for the application will be valid.
+
+    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
+    ms, s, m, h.
+    """
+
+
+BrowserIsolationPermissionsApplicationPolicy = Union[
+    BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink,
+    str,
+    BrowserIsolationPermissionsApplicationPolicyUnionMember2,
+]
+
+
+class AccessBookmarkProps(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
@@ -639,5 +1293,5 @@ ApplicationCreateParams = Union[
     AppLauncherApplication,
     DeviceEnrollmentPermissionsApplication,
     BrowserIsolationPermissionsApplication,
-    BookmarkApplication,
+    AccessBookmarkProps,
 ]

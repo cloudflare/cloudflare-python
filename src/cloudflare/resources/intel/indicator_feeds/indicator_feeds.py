@@ -124,7 +124,7 @@ class IndicatorFeedsResource(SyncAPIResource):
         feed_id: int,
         *,
         account_id: str,
-        feed_description: str | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
         is_attributable: bool | NotGiven = NOT_GIVEN,
         is_public: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -142,7 +142,7 @@ class IndicatorFeedsResource(SyncAPIResource):
 
           feed_id: Indicator feed ID
 
-          feed_description: The new description of the feed
+          description: The new description of the feed
 
           is_attributable: The new is_attributable value of the feed
 
@@ -162,7 +162,7 @@ class IndicatorFeedsResource(SyncAPIResource):
             f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}",
             body=maybe_transform(
                 {
-                    "feed_description": feed_description,
+                    "description": description,
                     "is_attributable": is_attributable,
                     "is_public": is_public,
                 },
@@ -370,7 +370,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         feed_id: int,
         *,
         account_id: str,
-        feed_description: str | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
         is_attributable: bool | NotGiven = NOT_GIVEN,
         is_public: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -388,7 +388,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
 
           feed_id: Indicator feed ID
 
-          feed_description: The new description of the feed
+          description: The new description of the feed
 
           is_attributable: The new is_attributable value of the feed
 
@@ -408,7 +408,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
             f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}",
             body=await async_maybe_transform(
                 {
-                    "feed_description": feed_description,
+                    "description": description,
                     "is_attributable": is_attributable,
                     "is_public": is_public,
                 },

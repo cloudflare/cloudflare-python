@@ -188,7 +188,7 @@ class ScriptsResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "dispatch_namespace"], ["account_id", "dispatch_namespace"])
+    @required_args(["account_id", "dispatch_namespace"])
     def update(
         self,
         script_name: str,
@@ -455,7 +455,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["account_id", "dispatch_namespace"], ["account_id", "dispatch_namespace"])
+    @required_args(["account_id", "dispatch_namespace"])
     async def update(
         self,
         script_name: str,

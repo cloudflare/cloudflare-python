@@ -19,7 +19,7 @@ class CallsAppWithSecret(BaseModel):
     """A short description of Calls app, not shown to end users."""
 
     secret: Optional[str] = None
-    """Bearer token to use the Calls API."""
+    """Bearer token"""
 
     uid: Optional[str] = None
     """A Cloudflare-generated unique identifier for a item."""

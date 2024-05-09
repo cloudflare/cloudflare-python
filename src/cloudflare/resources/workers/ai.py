@@ -458,14 +458,11 @@ class AIResource(SyncAPIResource):
         ["account_id", "text"],
         ["account_id", "prompt"],
         ["account_id", "sentences", "source"],
-        ["account_id", "text"],
         ["account_id", "audio"],
         ["account_id", "image"],
         ["account_id"],
-        ["account_id"],
         ["account_id", "target_lang", "text"],
         ["account_id", "input_text"],
-        ["account_id", "image"],
     )
     def run(
         self,
@@ -974,14 +971,11 @@ class AsyncAIResource(AsyncAPIResource):
         ["account_id", "text"],
         ["account_id", "prompt"],
         ["account_id", "sentences", "source"],
-        ["account_id", "text"],
         ["account_id", "audio"],
         ["account_id", "image"],
         ["account_id"],
-        ["account_id"],
         ["account_id", "target_lang", "text"],
         ["account_id", "input_text"],
-        ["account_id", "image"],
     )
     async def run(
         self,
