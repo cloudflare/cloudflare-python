@@ -232,7 +232,7 @@ client = Cloudflare(
 )
 
 # Override per-request:
-client.with_options(timeout=5 * 1000).zones.edit(
+client.with_options(timeout=5.0).zones.edit(
     zone_id="023e105f4ecef8ad9ca31a8372d0c353",
 )
 ```
@@ -312,7 +312,7 @@ The context manager is required so that the response will reliably be closed.
 
 ### Making custom/undocumented requests
 
-This library is typed for convenient access the documented API.
+This library is typed for convenient access to the documented API.
 
 If you need to access undocumented endpoints, params, or response properties, the library can still be used.
 

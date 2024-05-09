@@ -3,16 +3,17 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.cloudforce_one.item import Item
-from cloudflare.types.cloudforce_one.quota import Quota
-from cloudflare.types.cloudforce_one.requests.priority import Priority
-from cloudflare.types.cloudforce_one.requests.priority_delete_response import PriorityDeleteResponse
+from cloudflare.types.cloudforce_one import Item, Quota
+from cloudflare.types.cloudforce_one.requests import (
+    Priority,
+    PriorityDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,7 +21,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPriority:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         priority = client.cloudforce_one.requests.priority.create(
@@ -30,9 +30,8 @@ class TestPriority:
             requirement="DoS attacks carried out by CVEs",
             tlp="clear",
         )
-        assert_matches_type(Priority, priority, path=["response"])
+        assert_matches_type(Optional[Priority], priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.requests.priority.with_raw_response.create(
@@ -46,9 +45,8 @@ class TestPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = response.parse()
-        assert_matches_type(Priority, priority, path=["response"])
+        assert_matches_type(Optional[Priority], priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.cloudforce_one.requests.priority.with_streaming_response.create(
@@ -62,11 +60,10 @@ class TestPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = response.parse()
-            assert_matches_type(Priority, priority, path=["response"])
+            assert_matches_type(Optional[Priority], priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -78,7 +75,6 @@ class TestPriority:
                 tlp="clear",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         priority = client.cloudforce_one.requests.priority.update(
@@ -89,9 +85,8 @@ class TestPriority:
             requirement="DoS attacks carried out by CVEs",
             tlp="clear",
         )
-        assert_matches_type(Item, priority, path=["response"])
+        assert_matches_type(Optional[Item], priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.requests.priority.with_raw_response.update(
@@ -106,9 +101,8 @@ class TestPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = response.parse()
-        assert_matches_type(Item, priority, path=["response"])
+        assert_matches_type(Optional[Item], priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.cloudforce_one.requests.priority.with_streaming_response.update(
@@ -123,11 +117,10 @@ class TestPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = response.parse()
-            assert_matches_type(Item, priority, path=["response"])
+            assert_matches_type(Optional[Item], priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -150,7 +143,6 @@ class TestPriority:
                 tlp="clear",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         priority = client.cloudforce_one.requests.priority.delete(
@@ -159,7 +151,6 @@ class TestPriority:
         )
         assert_matches_type(PriorityDeleteResponse, priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.requests.priority.with_raw_response.delete(
@@ -172,7 +163,6 @@ class TestPriority:
         priority = response.parse()
         assert_matches_type(PriorityDeleteResponse, priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.cloudforce_one.requests.priority.with_streaming_response.delete(
@@ -187,7 +177,6 @@ class TestPriority:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -202,16 +191,14 @@ class TestPriority:
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         priority = client.cloudforce_one.requests.priority.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Item, priority, path=["response"])
+        assert_matches_type(Optional[Item], priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.requests.priority.with_raw_response.get(
@@ -222,9 +209,8 @@ class TestPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = response.parse()
-        assert_matches_type(Item, priority, path=["response"])
+        assert_matches_type(Optional[Item], priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.cloudforce_one.requests.priority.with_streaming_response.get(
@@ -235,11 +221,10 @@ class TestPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = response.parse()
-            assert_matches_type(Item, priority, path=["response"])
+            assert_matches_type(Optional[Item], priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -254,15 +239,13 @@ class TestPriority:
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_quota(self, client: Cloudflare) -> None:
         priority = client.cloudforce_one.requests.priority.quota(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Quota, priority, path=["response"])
+        assert_matches_type(Optional[Quota], priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_quota(self, client: Cloudflare) -> None:
         response = client.cloudforce_one.requests.priority.with_raw_response.quota(
@@ -272,9 +255,8 @@ class TestPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = response.parse()
-        assert_matches_type(Quota, priority, path=["response"])
+        assert_matches_type(Optional[Quota], priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_quota(self, client: Cloudflare) -> None:
         with client.cloudforce_one.requests.priority.with_streaming_response.quota(
@@ -284,11 +266,10 @@ class TestPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = response.parse()
-            assert_matches_type(Quota, priority, path=["response"])
+            assert_matches_type(Optional[Quota], priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_quota(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -300,7 +281,6 @@ class TestPriority:
 class TestAsyncPriority:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         priority = await async_client.cloudforce_one.requests.priority.create(
@@ -310,9 +290,8 @@ class TestAsyncPriority:
             requirement="DoS attacks carried out by CVEs",
             tlp="clear",
         )
-        assert_matches_type(Priority, priority, path=["response"])
+        assert_matches_type(Optional[Priority], priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.requests.priority.with_raw_response.create(
@@ -326,9 +305,8 @@ class TestAsyncPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = await response.parse()
-        assert_matches_type(Priority, priority, path=["response"])
+        assert_matches_type(Optional[Priority], priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.requests.priority.with_streaming_response.create(
@@ -342,11 +320,10 @@ class TestAsyncPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = await response.parse()
-            assert_matches_type(Priority, priority, path=["response"])
+            assert_matches_type(Optional[Priority], priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -358,7 +335,6 @@ class TestAsyncPriority:
                 tlp="clear",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         priority = await async_client.cloudforce_one.requests.priority.update(
@@ -369,9 +345,8 @@ class TestAsyncPriority:
             requirement="DoS attacks carried out by CVEs",
             tlp="clear",
         )
-        assert_matches_type(Item, priority, path=["response"])
+        assert_matches_type(Optional[Item], priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.requests.priority.with_raw_response.update(
@@ -386,9 +361,8 @@ class TestAsyncPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = await response.parse()
-        assert_matches_type(Item, priority, path=["response"])
+        assert_matches_type(Optional[Item], priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.requests.priority.with_streaming_response.update(
@@ -403,11 +377,10 @@ class TestAsyncPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = await response.parse()
-            assert_matches_type(Item, priority, path=["response"])
+            assert_matches_type(Optional[Item], priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -430,7 +403,6 @@ class TestAsyncPriority:
                 tlp="clear",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         priority = await async_client.cloudforce_one.requests.priority.delete(
@@ -439,7 +411,6 @@ class TestAsyncPriority:
         )
         assert_matches_type(PriorityDeleteResponse, priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.requests.priority.with_raw_response.delete(
@@ -452,7 +423,6 @@ class TestAsyncPriority:
         priority = await response.parse()
         assert_matches_type(PriorityDeleteResponse, priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.requests.priority.with_streaming_response.delete(
@@ -467,7 +437,6 @@ class TestAsyncPriority:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -482,16 +451,14 @@ class TestAsyncPriority:
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         priority = await async_client.cloudforce_one.requests.priority.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Item, priority, path=["response"])
+        assert_matches_type(Optional[Item], priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.requests.priority.with_raw_response.get(
@@ -502,9 +469,8 @@ class TestAsyncPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = await response.parse()
-        assert_matches_type(Item, priority, path=["response"])
+        assert_matches_type(Optional[Item], priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.requests.priority.with_streaming_response.get(
@@ -515,11 +481,10 @@ class TestAsyncPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = await response.parse()
-            assert_matches_type(Item, priority, path=["response"])
+            assert_matches_type(Optional[Item], priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -534,15 +499,13 @@ class TestAsyncPriority:
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_quota(self, async_client: AsyncCloudflare) -> None:
         priority = await async_client.cloudforce_one.requests.priority.quota(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Quota, priority, path=["response"])
+        assert_matches_type(Optional[Quota], priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_quota(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cloudforce_one.requests.priority.with_raw_response.quota(
@@ -552,9 +515,8 @@ class TestAsyncPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = await response.parse()
-        assert_matches_type(Quota, priority, path=["response"])
+        assert_matches_type(Optional[Quota], priority, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_quota(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cloudforce_one.requests.priority.with_streaming_response.quota(
@@ -564,11 +526,10 @@ class TestAsyncPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = await response.parse()
-            assert_matches_type(Quota, priority, path=["response"])
+            assert_matches_type(Optional[Quota], priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_quota(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):

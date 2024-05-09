@@ -27,7 +27,6 @@ from ...types.dns import (
     record_list_params,
     record_scan_params,
     record_create_params,
-    record_delete_params,
     record_import_params,
     record_update_params,
 )
@@ -39,6 +38,7 @@ from ..._base_client import (
 from ...types.dns.record import Record
 from ...types.dns.ttl_param import TTLParam
 from ...types.dns.record_tags import RecordTags
+from ...types.shared.sort_direction import SortDirection
 from ...types.dns.record_scan_response import RecordScanResponse
 from ...types.dns.record_delete_response import RecordDeleteResponse
 from ...types.dns.record_import_response import RecordImportResponse
@@ -2598,7 +2598,7 @@ class RecordsResource(SyncAPIResource):
         zone_id: str,
         comment: record_list_params.Comment | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        direction: SortDirection | NotGiven = NOT_GIVEN,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         order: Literal["type", "name", "content", "ttl", "proxied"] | NotGiven = NOT_GIVEN,
@@ -2722,7 +2722,6 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2752,7 +2751,6 @@ class RecordsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return self._delete(
             f"/zones/{zone_id}/dns_records/{dns_record_id}",
-            body=maybe_transform(body, record_delete_params.RecordDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -6804,7 +6802,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         zone_id: str,
         comment: record_list_params.Comment | NotGiven = NOT_GIVEN,
         content: str | NotGiven = NOT_GIVEN,
-        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        direction: SortDirection | NotGiven = NOT_GIVEN,
         match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         order: Literal["type", "name", "content", "ttl", "proxied"] | NotGiven = NOT_GIVEN,
@@ -6928,7 +6926,6 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6958,7 +6955,6 @@ class AsyncRecordsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return await self._delete(
             f"/zones/{zone_id}/dns_records/{dns_record_id}",
-            body=await async_maybe_transform(body, record_delete_params.RecordDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

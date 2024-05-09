@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zones.settings.hotlink_protection import HotlinkProtection
+from cloudflare.types.zones.settings import HotlinkProtection
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestHotlinkProtection:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         hotlink_protection = client.zones.settings.hotlink_protection.edit(
@@ -26,7 +25,6 @@ class TestHotlinkProtection:
         )
         assert_matches_type(Optional[HotlinkProtection], hotlink_protection, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.zones.settings.hotlink_protection.with_raw_response.edit(
@@ -39,7 +37,6 @@ class TestHotlinkProtection:
         hotlink_protection = response.parse()
         assert_matches_type(Optional[HotlinkProtection], hotlink_protection, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.zones.settings.hotlink_protection.with_streaming_response.edit(
@@ -54,7 +51,6 @@ class TestHotlinkProtection:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -63,7 +59,6 @@ class TestHotlinkProtection:
                 value="on",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         hotlink_protection = client.zones.settings.hotlink_protection.get(
@@ -71,7 +66,6 @@ class TestHotlinkProtection:
         )
         assert_matches_type(Optional[HotlinkProtection], hotlink_protection, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zones.settings.hotlink_protection.with_raw_response.get(
@@ -83,7 +77,6 @@ class TestHotlinkProtection:
         hotlink_protection = response.parse()
         assert_matches_type(Optional[HotlinkProtection], hotlink_protection, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zones.settings.hotlink_protection.with_streaming_response.get(
@@ -97,7 +90,6 @@ class TestHotlinkProtection:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -109,7 +101,6 @@ class TestHotlinkProtection:
 class TestAsyncHotlinkProtection:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         hotlink_protection = await async_client.zones.settings.hotlink_protection.edit(
@@ -118,7 +109,6 @@ class TestAsyncHotlinkProtection:
         )
         assert_matches_type(Optional[HotlinkProtection], hotlink_protection, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.hotlink_protection.with_raw_response.edit(
@@ -131,7 +121,6 @@ class TestAsyncHotlinkProtection:
         hotlink_protection = await response.parse()
         assert_matches_type(Optional[HotlinkProtection], hotlink_protection, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.hotlink_protection.with_streaming_response.edit(
@@ -146,7 +135,6 @@ class TestAsyncHotlinkProtection:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -155,7 +143,6 @@ class TestAsyncHotlinkProtection:
                 value="on",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         hotlink_protection = await async_client.zones.settings.hotlink_protection.get(
@@ -163,7 +150,6 @@ class TestAsyncHotlinkProtection:
         )
         assert_matches_type(Optional[HotlinkProtection], hotlink_protection, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.hotlink_protection.with_raw_response.get(
@@ -175,7 +161,6 @@ class TestAsyncHotlinkProtection:
         hotlink_protection = await response.parse()
         assert_matches_type(Optional[HotlinkProtection], hotlink_protection, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.hotlink_protection.with_streaming_response.get(
@@ -189,7 +174,6 @@ class TestAsyncHotlinkProtection:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

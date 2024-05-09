@@ -9,12 +9,14 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.magic_transit.route_get_response import RouteGetResponse
-from cloudflare.types.magic_transit.route_list_response import RouteListResponse
-from cloudflare.types.magic_transit.route_empty_response import RouteEmptyResponse
-from cloudflare.types.magic_transit.route_create_response import RouteCreateResponse
-from cloudflare.types.magic_transit.route_delete_response import RouteDeleteResponse
-from cloudflare.types.magic_transit.route_update_response import RouteUpdateResponse
+from cloudflare.types.magic_transit import (
+    RouteGetResponse,
+    RouteListResponse,
+    RouteEmptyResponse,
+    RouteCreateResponse,
+    RouteDeleteResponse,
+    RouteUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +24,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestRoutes:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         route = client.magic_transit.routes.create(
@@ -31,7 +33,7 @@ class TestRoutes:
         )
         assert_matches_type(RouteCreateResponse, route, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.magic_transit.routes.with_raw_response.create(
@@ -44,7 +46,7 @@ class TestRoutes:
         route = response.parse()
         assert_matches_type(RouteCreateResponse, route, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.magic_transit.routes.with_streaming_response.create(
@@ -59,7 +61,7 @@ class TestRoutes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -68,7 +70,6 @@ class TestRoutes:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         route = client.magic_transit.routes.update(
@@ -80,7 +81,6 @@ class TestRoutes:
         )
         assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         route = client.magic_transit.routes.update(
@@ -98,7 +98,6 @@ class TestRoutes:
         )
         assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.magic_transit.routes.with_raw_response.update(
@@ -114,7 +113,6 @@ class TestRoutes:
         route = response.parse()
         assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.magic_transit.routes.with_streaming_response.update(
@@ -132,7 +130,6 @@ class TestRoutes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -153,7 +150,6 @@ class TestRoutes:
                 priority=0,
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         route = client.magic_transit.routes.list(
@@ -161,7 +157,6 @@ class TestRoutes:
         )
         assert_matches_type(RouteListResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.magic_transit.routes.with_raw_response.list(
@@ -173,7 +168,6 @@ class TestRoutes:
         route = response.parse()
         assert_matches_type(RouteListResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.magic_transit.routes.with_streaming_response.list(
@@ -187,7 +181,6 @@ class TestRoutes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -195,23 +188,19 @@ class TestRoutes:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         route = client.magic_transit.routes.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(RouteDeleteResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.magic_transit.routes.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -219,13 +208,11 @@ class TestRoutes:
         route = response.parse()
         assert_matches_type(RouteDeleteResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.magic_transit.routes.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -235,38 +222,31 @@ class TestRoutes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.routes.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_identifier` but received ''"):
             client.magic_transit.routes.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_empty(self, client: Cloudflare) -> None:
         route = client.magic_transit.routes.empty(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            routes=[{}, {}, {}],
         )
         assert_matches_type(RouteEmptyResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_empty(self, client: Cloudflare) -> None:
         response = client.magic_transit.routes.with_raw_response.empty(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            routes=[{}, {}, {}],
         )
 
         assert response.is_closed is True
@@ -274,12 +254,10 @@ class TestRoutes:
         route = response.parse()
         assert_matches_type(RouteEmptyResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_empty(self, client: Cloudflare) -> None:
         with client.magic_transit.routes.with_streaming_response.empty(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            routes=[{}, {}, {}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -289,16 +267,13 @@ class TestRoutes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_empty(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.routes.with_raw_response.empty(
                 account_id="",
-                routes=[{}, {}, {}],
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         route = client.magic_transit.routes.get(
@@ -307,7 +282,6 @@ class TestRoutes:
         )
         assert_matches_type(RouteGetResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.magic_transit.routes.with_raw_response.get(
@@ -320,7 +294,6 @@ class TestRoutes:
         route = response.parse()
         assert_matches_type(RouteGetResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.magic_transit.routes.with_streaming_response.get(
@@ -335,7 +308,6 @@ class TestRoutes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -354,7 +326,7 @@ class TestRoutes:
 class TestAsyncRoutes:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.magic_transit.routes.create(
@@ -363,7 +335,7 @@ class TestAsyncRoutes:
         )
         assert_matches_type(RouteCreateResponse, route, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.routes.with_raw_response.create(
@@ -376,7 +348,7 @@ class TestAsyncRoutes:
         route = await response.parse()
         assert_matches_type(RouteCreateResponse, route, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.routes.with_streaming_response.create(
@@ -391,7 +363,7 @@ class TestAsyncRoutes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -400,7 +372,6 @@ class TestAsyncRoutes:
                 body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.magic_transit.routes.update(
@@ -412,7 +383,6 @@ class TestAsyncRoutes:
         )
         assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.magic_transit.routes.update(
@@ -430,7 +400,6 @@ class TestAsyncRoutes:
         )
         assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.routes.with_raw_response.update(
@@ -446,7 +415,6 @@ class TestAsyncRoutes:
         route = await response.parse()
         assert_matches_type(RouteUpdateResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.routes.with_streaming_response.update(
@@ -464,7 +432,6 @@ class TestAsyncRoutes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -485,7 +452,6 @@ class TestAsyncRoutes:
                 priority=0,
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.magic_transit.routes.list(
@@ -493,7 +459,6 @@ class TestAsyncRoutes:
         )
         assert_matches_type(RouteListResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.routes.with_raw_response.list(
@@ -505,7 +470,6 @@ class TestAsyncRoutes:
         route = await response.parse()
         assert_matches_type(RouteListResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.routes.with_streaming_response.list(
@@ -519,7 +483,6 @@ class TestAsyncRoutes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -527,23 +490,19 @@ class TestAsyncRoutes:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.magic_transit.routes.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(RouteDeleteResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.routes.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -551,13 +510,11 @@ class TestAsyncRoutes:
         route = await response.parse()
         assert_matches_type(RouteDeleteResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.routes.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -567,38 +524,31 @@ class TestAsyncRoutes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.routes.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_identifier` but received ''"):
             await async_client.magic_transit.routes.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_empty(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.magic_transit.routes.empty(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            routes=[{}, {}, {}],
         )
         assert_matches_type(RouteEmptyResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_empty(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.routes.with_raw_response.empty(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            routes=[{}, {}, {}],
         )
 
         assert response.is_closed is True
@@ -606,12 +556,10 @@ class TestAsyncRoutes:
         route = await response.parse()
         assert_matches_type(RouteEmptyResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_empty(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.routes.with_streaming_response.empty(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            routes=[{}, {}, {}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -621,16 +569,13 @@ class TestAsyncRoutes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_empty(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.routes.with_raw_response.empty(
                 account_id="",
-                routes=[{}, {}, {}],
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.magic_transit.routes.get(
@@ -639,7 +584,6 @@ class TestAsyncRoutes:
         )
         assert_matches_type(RouteGetResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.routes.with_raw_response.get(
@@ -652,7 +596,6 @@ class TestAsyncRoutes:
         route = await response.parse()
         assert_matches_type(RouteGetResponse, route, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.routes.with_streaming_response.get(
@@ -667,7 +610,6 @@ class TestAsyncRoutes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

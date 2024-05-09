@@ -9,8 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.radar.dataset_list_response import DatasetListResponse
-from cloudflare.types.radar.dataset_download_response import DatasetDownloadResponse
+from cloudflare.types.radar import (
+    DatasetListResponse,
+    DatasetDownloadResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -18,13 +20,11 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestDatasets:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         dataset = client.radar.datasets.list()
         assert_matches_type(DatasetListResponse, dataset, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         dataset = client.radar.datasets.list(
@@ -35,7 +35,6 @@ class TestDatasets:
         )
         assert_matches_type(DatasetListResponse, dataset, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.radar.datasets.with_raw_response.list()
@@ -45,7 +44,6 @@ class TestDatasets:
         dataset = response.parse()
         assert_matches_type(DatasetListResponse, dataset, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.radar.datasets.with_streaming_response.list() as response:
@@ -57,7 +55,6 @@ class TestDatasets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_download(self, client: Cloudflare) -> None:
         dataset = client.radar.datasets.download(
@@ -65,7 +62,6 @@ class TestDatasets:
         )
         assert_matches_type(DatasetDownloadResponse, dataset, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_download_with_all_params(self, client: Cloudflare) -> None:
         dataset = client.radar.datasets.download(
@@ -74,7 +70,6 @@ class TestDatasets:
         )
         assert_matches_type(DatasetDownloadResponse, dataset, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_download(self, client: Cloudflare) -> None:
         response = client.radar.datasets.with_raw_response.download(
@@ -86,7 +81,6 @@ class TestDatasets:
         dataset = response.parse()
         assert_matches_type(DatasetDownloadResponse, dataset, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_download(self, client: Cloudflare) -> None:
         with client.radar.datasets.with_streaming_response.download(
@@ -100,7 +94,6 @@ class TestDatasets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         dataset = client.radar.datasets.get(
@@ -108,7 +101,6 @@ class TestDatasets:
         )
         assert_matches_type(str, dataset, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         dataset = client.radar.datasets.get(
@@ -117,7 +109,6 @@ class TestDatasets:
         )
         assert_matches_type(str, dataset, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.radar.datasets.with_raw_response.get(
@@ -129,7 +120,6 @@ class TestDatasets:
         dataset = response.parse()
         assert_matches_type(str, dataset, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.radar.datasets.with_streaming_response.get(
@@ -143,7 +133,6 @@ class TestDatasets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `alias` but received ''"):
@@ -155,13 +144,11 @@ class TestDatasets:
 class TestAsyncDatasets:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         dataset = await async_client.radar.datasets.list()
         assert_matches_type(DatasetListResponse, dataset, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         dataset = await async_client.radar.datasets.list(
@@ -172,7 +159,6 @@ class TestAsyncDatasets:
         )
         assert_matches_type(DatasetListResponse, dataset, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.datasets.with_raw_response.list()
@@ -182,7 +168,6 @@ class TestAsyncDatasets:
         dataset = await response.parse()
         assert_matches_type(DatasetListResponse, dataset, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.datasets.with_streaming_response.list() as response:
@@ -194,7 +179,6 @@ class TestAsyncDatasets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_download(self, async_client: AsyncCloudflare) -> None:
         dataset = await async_client.radar.datasets.download(
@@ -202,7 +186,6 @@ class TestAsyncDatasets:
         )
         assert_matches_type(DatasetDownloadResponse, dataset, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_download_with_all_params(self, async_client: AsyncCloudflare) -> None:
         dataset = await async_client.radar.datasets.download(
@@ -211,7 +194,6 @@ class TestAsyncDatasets:
         )
         assert_matches_type(DatasetDownloadResponse, dataset, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_download(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.datasets.with_raw_response.download(
@@ -223,7 +205,6 @@ class TestAsyncDatasets:
         dataset = await response.parse()
         assert_matches_type(DatasetDownloadResponse, dataset, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_download(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.datasets.with_streaming_response.download(
@@ -237,7 +218,6 @@ class TestAsyncDatasets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         dataset = await async_client.radar.datasets.get(
@@ -245,7 +225,6 @@ class TestAsyncDatasets:
         )
         assert_matches_type(str, dataset, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         dataset = await async_client.radar.datasets.get(
@@ -254,7 +233,6 @@ class TestAsyncDatasets:
         )
         assert_matches_type(str, dataset, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.datasets.with_raw_response.get(
@@ -266,7 +244,6 @@ class TestAsyncDatasets:
         dataset = await response.parse()
         assert_matches_type(str, dataset, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.datasets.with_streaming_response.get(
@@ -280,7 +257,6 @@ class TestAsyncDatasets:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `alias` but received ''"):

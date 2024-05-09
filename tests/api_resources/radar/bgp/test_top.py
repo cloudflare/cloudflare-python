@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.radar.bgp.top_prefixes_response import TopPrefixesResponse
+from cloudflare.types.radar.bgp import TopPrefixesResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -18,13 +18,11 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestTop:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_prefixes(self, client: Cloudflare) -> None:
         top = client.radar.bgp.top.prefixes()
         assert_matches_type(TopPrefixesResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_prefixes_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.bgp.top.prefixes(
@@ -47,7 +45,6 @@ class TestTop:
         )
         assert_matches_type(TopPrefixesResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_prefixes(self, client: Cloudflare) -> None:
         response = client.radar.bgp.top.with_raw_response.prefixes()
@@ -57,7 +54,6 @@ class TestTop:
         top = response.parse()
         assert_matches_type(TopPrefixesResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_prefixes(self, client: Cloudflare) -> None:
         with client.radar.bgp.top.with_streaming_response.prefixes() as response:
@@ -73,13 +69,11 @@ class TestTop:
 class TestAsyncTop:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_prefixes(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.bgp.top.prefixes()
         assert_matches_type(TopPrefixesResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_prefixes_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.bgp.top.prefixes(
@@ -102,7 +96,6 @@ class TestAsyncTop:
         )
         assert_matches_type(TopPrefixesResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_prefixes(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.bgp.top.with_raw_response.prefixes()
@@ -112,7 +105,6 @@ class TestAsyncTop:
         top = await response.parse()
         assert_matches_type(TopPrefixesResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_prefixes(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.bgp.top.with_streaming_response.prefixes() as response:

@@ -4,11 +4,9 @@ from __future__ import annotations
 
 from .ip import IP as IP
 from .dns import DNS as DNS
-from .whois import Whois as Whois
 from .domain import Domain as Domain
 from .ip_list import IPList as IPList
 from .sinkhole import Sinkhole as Sinkhole
-from .dns_param import DNSParam as DNSParam
 from .ip_get_params import IPGetParams as IPGetParams
 from .domain_history import DomainHistory as DomainHistory
 from .dns_list_params import DNSListParams as DNSListParams
@@ -16,6 +14,7 @@ from .ip_get_response import IPGetResponse as IPGetResponse
 from .whois_get_params import WhoisGetParams as WhoisGetParams
 from .dns_list_response import DNSListResponse as DNSListResponse
 from .domain_get_params import DomainGetParams as DomainGetParams
+from .whois_get_response import WhoisGetResponse as WhoisGetResponse
 from .ip_list_get_response import IPListGetResponse as IPListGetResponse
 from .domain_history_get_params import DomainHistoryGetParams as DomainHistoryGetParams
 from .domain_history_get_response import DomainHistoryGetResponse as DomainHistoryGetResponse

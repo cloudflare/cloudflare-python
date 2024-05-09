@@ -19,12 +19,14 @@ from .summary_tls_version_params import SummaryTLSVersionParams as SummaryTLSVer
 from .timeseries_group_os_params import TimeseriesGroupOSParams as TimeseriesGroupOSParams
 from .summary_http_version_params import SummaryHTTPVersionParams as SummaryHTTPVersionParams
 from .summary_ip_version_response import SummaryIPVersionResponse as SummaryIPVersionResponse
+from .summary_post_quantum_params import SummaryPostQuantumParams as SummaryPostQuantumParams
 from .top_browser_families_params import TopBrowserFamiliesParams as TopBrowserFamiliesParams
 from .summary_device_type_response import SummaryDeviceTypeResponse as SummaryDeviceTypeResponse
 from .summary_http_protocol_params import SummaryHTTPProtocolParams as SummaryHTTPProtocolParams
 from .summary_tls_version_response import SummaryTLSVersionResponse as SummaryTLSVersionResponse
 from .timeseries_group_os_response import TimeseriesGroupOSResponse as TimeseriesGroupOSResponse
 from .summary_http_version_response import SummaryHTTPVersionResponse as SummaryHTTPVersionResponse
+from .summary_post_quantum_response import SummaryPostQuantumResponse as SummaryPostQuantumResponse
 from .top_browser_families_response import TopBrowserFamiliesResponse as TopBrowserFamiliesResponse
 from .summary_http_protocol_response import SummaryHTTPProtocolResponse as SummaryHTTPProtocolResponse
 from .timeseries_group_browser_params import TimeseriesGroupBrowserParams as TimeseriesGroupBrowserParams
@@ -36,6 +38,7 @@ from .timeseries_group_device_type_params import TimeseriesGroupDeviceTypeParams
 from .timeseries_group_tls_version_params import TimeseriesGroupTLSVersionParams as TimeseriesGroupTLSVersionParams
 from .timeseries_group_http_version_params import TimeseriesGroupHTTPVersionParams as TimeseriesGroupHTTPVersionParams
 from .timeseries_group_ip_version_response import TimeseriesGroupIPVersionResponse as TimeseriesGroupIPVersionResponse
+from .timeseries_group_post_quantum_params import TimeseriesGroupPostQuantumParams as TimeseriesGroupPostQuantumParams
 from .timeseries_group_device_type_response import (
     TimeseriesGroupDeviceTypeResponse as TimeseriesGroupDeviceTypeResponse,
 )
@@ -50,6 +53,9 @@ from .timeseries_group_browser_family_params import (
 )
 from .timeseries_group_http_version_response import (
     TimeseriesGroupHTTPVersionResponse as TimeseriesGroupHTTPVersionResponse,
+)
+from .timeseries_group_post_quantum_response import (
+    TimeseriesGroupPostQuantumResponse as TimeseriesGroupPostQuantumResponse,
 )
 from .timeseries_group_http_protocol_response import (
     TimeseriesGroupHTTPProtocolResponse as TimeseriesGroupHTTPProtocolResponse,

@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.rulesets.versions.by_tag_get_response import ByTagGetResponse
+from cloudflare.types.rulesets.versions import ByTagGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestByTag:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         by_tag = client.rulesets.versions.by_tag.get(
@@ -28,7 +27,6 @@ class TestByTag:
         )
         assert_matches_type(ByTagGetResponse, by_tag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.rulesets.versions.by_tag.with_raw_response.get(
@@ -43,7 +41,6 @@ class TestByTag:
         by_tag = response.parse()
         assert_matches_type(ByTagGetResponse, by_tag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.rulesets.versions.by_tag.with_streaming_response.get(
@@ -60,7 +57,6 @@ class TestByTag:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -99,7 +95,6 @@ class TestByTag:
 class TestAsyncByTag:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         by_tag = await async_client.rulesets.versions.by_tag.get(
@@ -110,7 +105,6 @@ class TestAsyncByTag:
         )
         assert_matches_type(ByTagGetResponse, by_tag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.versions.by_tag.with_raw_response.get(
@@ -125,7 +119,6 @@ class TestAsyncByTag:
         by_tag = await response.parse()
         assert_matches_type(ByTagGetResponse, by_tag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.versions.by_tag.with_streaming_response.get(
@@ -142,7 +135,6 @@ class TestAsyncByTag:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

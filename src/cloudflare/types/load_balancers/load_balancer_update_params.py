@@ -3,10 +3,12 @@
 from __future__ import annotations
 
 from typing import List, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
 from .rules_param import RulesParam
 from .default_pools import DefaultPools
+from .steering_policy import SteeringPolicy
+from .session_affinity import SessionAffinity
 from .random_steering_param import RandomSteeringParam
 from .adaptive_routing_param import AdaptiveRoutingParam
 from .location_strategy_param import LocationStrategyParam
@@ -100,7 +102,7 @@ class LoadBalancerUpdateParams(TypedDict, total=False):
     execute.
     """
 
-    session_affinity: Literal["none", "cookie", "ip_cookie", "header", '""']
+    session_affinity: SessionAffinity
     """
     Specifies the type of session affinity the load balancer should use unless
     specified as `"none"` or "" (default). The supported types are:
@@ -144,9 +146,7 @@ class LoadBalancerUpdateParams(TypedDict, total=False):
       number of seconds specified.
     """
 
-    steering_policy: Literal[
-        "off", "geo", "random", "dynamic_latency", "proximity", "least_outstanding_requests", "least_connections", '""'
-    ]
+    steering_policy: SteeringPolicy
     """Steering Policy for this load balancer.
 
     - `"off"`: Use `default_pools`.

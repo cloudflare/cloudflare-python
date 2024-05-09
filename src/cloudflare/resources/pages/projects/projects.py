@@ -37,7 +37,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ....types.pages import Deployment, project_edit_params, project_create_params, project_delete_params
+from ....types.pages import Deployment, project_edit_params, project_create_params
 from ...._base_client import (
     AsyncPaginator,
     make_request_options,
@@ -179,7 +179,6 @@ class ProjectsResource(SyncAPIResource):
         project_name: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -209,7 +208,6 @@ class ProjectsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return self._delete(
             f"/accounts/{account_id}/pages/projects/{project_name}",
-            body=maybe_transform(body, project_delete_params.ProjectDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -481,7 +479,6 @@ class AsyncProjectsResource(AsyncAPIResource):
         project_name: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -511,7 +508,6 @@ class AsyncProjectsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         return await self._delete(
             f"/accounts/{account_id}/pages/projects/{project_name}",
-            body=await async_maybe_transform(body, project_delete_params.ProjectDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

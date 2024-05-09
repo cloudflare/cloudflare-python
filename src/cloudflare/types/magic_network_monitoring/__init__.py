@@ -6,10 +6,7 @@ from .configuration import Configuration as Configuration
 from .rule_edit_params import RuleEditParams as RuleEditParams
 from .config_edit_params import ConfigEditParams as ConfigEditParams
 from .rule_create_params import RuleCreateParams as RuleCreateParams
-from .rule_delete_params import RuleDeleteParams as RuleDeleteParams
 from .rule_update_params import RuleUpdateParams as RuleUpdateParams
-from .configuration_param import ConfigurationParam as ConfigurationParam
 from .config_create_params import ConfigCreateParams as ConfigCreateParams
-from .config_delete_params import ConfigDeleteParams as ConfigDeleteParams
 from .config_update_params import ConfigUpdateParams as ConfigUpdateParams
 from .magic_network_monitoring_rule import MagicNetworkMonitoringRule as MagicNetworkMonitoringRule

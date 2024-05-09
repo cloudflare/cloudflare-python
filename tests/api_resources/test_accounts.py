@@ -10,8 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.accounts.account_get_response import AccountGetResponse
-from cloudflare.types.accounts.account_update_response import AccountUpdateResponse
+from cloudflare.types.accounts import (
+    AccountGetResponse,
+    AccountUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,7 +21,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAccounts:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         account = client.accounts.update(
@@ -28,7 +29,6 @@ class TestAccounts:
         )
         assert_matches_type(AccountUpdateResponse, account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         account = client.accounts.update(
@@ -42,7 +42,6 @@ class TestAccounts:
         )
         assert_matches_type(AccountUpdateResponse, account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.accounts.with_raw_response.update(
@@ -55,7 +54,6 @@ class TestAccounts:
         account = response.parse()
         assert_matches_type(AccountUpdateResponse, account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.accounts.with_streaming_response.update(
@@ -70,13 +68,11 @@ class TestAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         account = client.accounts.list()
         assert_matches_type(SyncV4PagePaginationArray[object], account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         account = client.accounts.list(
@@ -87,7 +83,6 @@ class TestAccounts:
         )
         assert_matches_type(SyncV4PagePaginationArray[object], account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.accounts.with_raw_response.list()
@@ -97,7 +92,6 @@ class TestAccounts:
         account = response.parse()
         assert_matches_type(SyncV4PagePaginationArray[object], account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.accounts.with_streaming_response.list() as response:
@@ -109,7 +103,6 @@ class TestAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         account = client.accounts.get(
@@ -117,7 +110,6 @@ class TestAccounts:
         )
         assert_matches_type(AccountGetResponse, account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.accounts.with_raw_response.get(
@@ -129,7 +121,6 @@ class TestAccounts:
         account = response.parse()
         assert_matches_type(AccountGetResponse, account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.accounts.with_streaming_response.get(
@@ -147,7 +138,6 @@ class TestAccounts:
 class TestAsyncAccounts:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         account = await async_client.accounts.update(
@@ -156,7 +146,6 @@ class TestAsyncAccounts:
         )
         assert_matches_type(AccountUpdateResponse, account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         account = await async_client.accounts.update(
@@ -170,7 +159,6 @@ class TestAsyncAccounts:
         )
         assert_matches_type(AccountUpdateResponse, account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.with_raw_response.update(
@@ -183,7 +171,6 @@ class TestAsyncAccounts:
         account = await response.parse()
         assert_matches_type(AccountUpdateResponse, account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.with_streaming_response.update(
@@ -198,13 +185,11 @@ class TestAsyncAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         account = await async_client.accounts.list()
         assert_matches_type(AsyncV4PagePaginationArray[object], account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         account = await async_client.accounts.list(
@@ -215,7 +200,6 @@ class TestAsyncAccounts:
         )
         assert_matches_type(AsyncV4PagePaginationArray[object], account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.with_raw_response.list()
@@ -225,7 +209,6 @@ class TestAsyncAccounts:
         account = await response.parse()
         assert_matches_type(AsyncV4PagePaginationArray[object], account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.with_streaming_response.list() as response:
@@ -237,7 +220,6 @@ class TestAsyncAccounts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         account = await async_client.accounts.get(
@@ -245,7 +227,6 @@ class TestAsyncAccounts:
         )
         assert_matches_type(AccountGetResponse, account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.with_raw_response.get(
@@ -257,7 +238,6 @@ class TestAsyncAccounts:
         account = await response.parse()
         assert_matches_type(AccountGetResponse, account, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.with_streaming_response.get(

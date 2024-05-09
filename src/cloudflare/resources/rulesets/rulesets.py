@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import Type, Iterable, cast
-from typing_extensions import Literal
 
 import httpx
 
@@ -51,8 +50,10 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.rulesets import ruleset_create_params, ruleset_update_params
+from ...types.rulesets import Kind, Phase, ruleset_create_params, ruleset_update_params
 from .versions.versions import VersionsResource, AsyncVersionsResource
+from ...types.rulesets.kind import Kind
+from ...types.rulesets.phase import Phase
 from ...types.rulesets.ruleset import Ruleset
 from ...types.rulesets.ruleset_get_response import RulesetGetResponse
 from ...types.rulesets.ruleset_create_response import RulesetCreateResponse
@@ -85,33 +86,9 @@ class RulesetsResource(SyncAPIResource):
     def create(
         self,
         *,
-        kind: Literal["managed", "custom", "root", "zone"],
+        kind: Kind,
         name: str,
-        phase: Literal[
-            "ddos_l4",
-            "ddos_l7",
-            "http_config_settings",
-            "http_custom_errors",
-            "http_log_custom_fields",
-            "http_ratelimit",
-            "http_request_cache_settings",
-            "http_request_dynamic_redirect",
-            "http_request_firewall_custom",
-            "http_request_firewall_managed",
-            "http_request_late_transform",
-            "http_request_origin",
-            "http_request_redirect",
-            "http_request_sanitize",
-            "http_request_sbfm",
-            "http_request_select_configuration",
-            "http_request_transform",
-            "http_response_compression",
-            "http_response_firewall_managed",
-            "http_response_headers_transform",
-            "magic_transit",
-            "magic_transit_ids_managed",
-            "magic_transit_managed",
-        ],
+        phase: Phase,
         rules: Iterable[ruleset_create_params.Rule],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -191,34 +168,9 @@ class RulesetsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        kind: Literal["managed", "custom", "root", "zone"] | NotGiven = NOT_GIVEN,
+        kind: Kind | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        phase: Literal[
-            "ddos_l4",
-            "ddos_l7",
-            "http_config_settings",
-            "http_custom_errors",
-            "http_log_custom_fields",
-            "http_ratelimit",
-            "http_request_cache_settings",
-            "http_request_dynamic_redirect",
-            "http_request_firewall_custom",
-            "http_request_firewall_managed",
-            "http_request_late_transform",
-            "http_request_origin",
-            "http_request_redirect",
-            "http_request_sanitize",
-            "http_request_sbfm",
-            "http_request_select_configuration",
-            "http_request_transform",
-            "http_response_compression",
-            "http_response_firewall_managed",
-            "http_response_headers_transform",
-            "magic_transit",
-            "magic_transit_ids_managed",
-            "magic_transit_managed",
-        ]
-        | NotGiven = NOT_GIVEN,
+        phase: Phase | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -475,33 +427,9 @@ class AsyncRulesetsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        kind: Literal["managed", "custom", "root", "zone"],
+        kind: Kind,
         name: str,
-        phase: Literal[
-            "ddos_l4",
-            "ddos_l7",
-            "http_config_settings",
-            "http_custom_errors",
-            "http_log_custom_fields",
-            "http_ratelimit",
-            "http_request_cache_settings",
-            "http_request_dynamic_redirect",
-            "http_request_firewall_custom",
-            "http_request_firewall_managed",
-            "http_request_late_transform",
-            "http_request_origin",
-            "http_request_redirect",
-            "http_request_sanitize",
-            "http_request_sbfm",
-            "http_request_select_configuration",
-            "http_request_transform",
-            "http_response_compression",
-            "http_response_firewall_managed",
-            "http_response_headers_transform",
-            "magic_transit",
-            "magic_transit_ids_managed",
-            "magic_transit_managed",
-        ],
+        phase: Phase,
         rules: Iterable[ruleset_create_params.Rule],
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -581,34 +509,9 @@ class AsyncRulesetsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        kind: Literal["managed", "custom", "root", "zone"] | NotGiven = NOT_GIVEN,
+        kind: Kind | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        phase: Literal[
-            "ddos_l4",
-            "ddos_l7",
-            "http_config_settings",
-            "http_custom_errors",
-            "http_log_custom_fields",
-            "http_ratelimit",
-            "http_request_cache_settings",
-            "http_request_dynamic_redirect",
-            "http_request_firewall_custom",
-            "http_request_firewall_managed",
-            "http_request_late_transform",
-            "http_request_origin",
-            "http_request_redirect",
-            "http_request_sanitize",
-            "http_request_sbfm",
-            "http_request_select_configuration",
-            "http_request_transform",
-            "http_response_compression",
-            "http_response_firewall_managed",
-            "http_response_headers_transform",
-            "magic_transit",
-            "magic_transit_ids_managed",
-            "magic_transit_managed",
-        ]
-        | NotGiven = NOT_GIVEN,
+        phase: Phase | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

@@ -25,7 +25,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.addressing.prefixes import delegation_create_params, delegation_delete_params
+from ....types.addressing.prefixes import delegation_create_params
 from ....types.addressing.prefixes.delegations import Delegations
 from ....types.addressing.prefixes.delegation_delete_response import DelegationDeleteResponse
 
@@ -145,7 +145,6 @@ class DelegationsResource(SyncAPIResource):
         *,
         account_id: str,
         prefix_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -179,7 +178,6 @@ class DelegationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `delegation_id` but received {delegation_id!r}")
         return self._delete(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations/{delegation_id}",
-            body=maybe_transform(body, delegation_delete_params.DelegationDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -304,7 +302,6 @@ class AsyncDelegationsResource(AsyncAPIResource):
         *,
         account_id: str,
         prefix_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -338,7 +335,6 @@ class AsyncDelegationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `delegation_id` but received {delegation_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}/delegations/{delegation_id}",
-            body=await async_maybe_transform(body, delegation_delete_params.DelegationDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

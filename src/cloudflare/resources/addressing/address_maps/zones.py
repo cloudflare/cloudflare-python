@@ -23,7 +23,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.addressing.address_maps import zone_delete_params, zone_update_params
+from ....types.addressing.address_maps import zone_update_params
 from ....types.addressing.address_maps.zone_delete_response import ZoneDeleteResponse
 from ....types.addressing.address_maps.zone_update_response import ZoneUpdateResponse
 
@@ -96,7 +96,6 @@ class ZonesResource(SyncAPIResource):
         *,
         zone_id: str,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -130,7 +129,6 @@ class ZonesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
-            body=maybe_transform(body, zone_delete_params.ZoneDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -208,7 +206,6 @@ class AsyncZonesResource(AsyncAPIResource):
         *,
         zone_id: str,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -242,7 +239,6 @@ class AsyncZonesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `address_map_id` but received {address_map_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
-            body=await async_maybe_transform(body, zone_delete_params.ZoneDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

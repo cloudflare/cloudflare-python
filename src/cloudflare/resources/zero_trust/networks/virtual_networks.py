@@ -29,7 +29,6 @@ from ....types.zero_trust.networks import (
     virtual_network_edit_params,
     virtual_network_list_params,
     virtual_network_create_params,
-    virtual_network_delete_params,
 )
 from ....types.zero_trust.networks.virtual_network import VirtualNetwork
 from ....types.zero_trust.networks.virtual_network_edit_response import VirtualNetworkEditResponse
@@ -176,7 +175,6 @@ class VirtualNetworksResource(SyncAPIResource):
         virtual_network_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -208,7 +206,6 @@ class VirtualNetworksResource(SyncAPIResource):
             VirtualNetworkDeleteResponse,
             self._delete(
                 f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
-                body=maybe_transform(body, virtual_network_delete_params.VirtualNetworkDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -426,7 +423,6 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         virtual_network_id: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -458,7 +454,6 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
             VirtualNetworkDeleteResponse,
             await self._delete(
                 f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
-                body=await async_maybe_transform(body, virtual_network_delete_params.VirtualNetworkDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

@@ -10,8 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.hyperdrive.hyperdrive import Hyperdrive
-from cloudflare.types.hyperdrive.config_delete_response import ConfigDeleteResponse
+from cloudflare.types.hyperdrive import (
+    Hyperdrive,
+    ConfigDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,7 +21,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestConfigs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         config = client.hyperdrive.configs.create(
@@ -28,14 +30,14 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         config = client.hyperdrive.configs.create(
@@ -44,7 +46,7 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -56,7 +58,7 @@ class TestConfigs:
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.hyperdrive.configs.with_raw_response.create(
@@ -65,7 +67,7 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -76,7 +78,7 @@ class TestConfigs:
         config = response.parse()
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.hyperdrive.configs.with_streaming_response.create(
@@ -85,7 +87,7 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -98,7 +100,7 @@ class TestConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -108,13 +110,13 @@ class TestConfigs:
                 origin={
                     "database": "postgres",
                     "host": "database.example.com",
-                    "port": 0,
+                    "port": 5432,
                     "scheme": "postgres",
                     "user": "postgres",
                 },
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         config = client.hyperdrive.configs.update(
@@ -124,14 +126,14 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         config = client.hyperdrive.configs.update(
@@ -141,7 +143,7 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -153,7 +155,7 @@ class TestConfigs:
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.hyperdrive.configs.with_raw_response.update(
@@ -163,7 +165,7 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -174,7 +176,7 @@ class TestConfigs:
         config = response.parse()
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.hyperdrive.configs.with_streaming_response.update(
@@ -184,7 +186,7 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -197,7 +199,7 @@ class TestConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -208,7 +210,7 @@ class TestConfigs:
                 origin={
                     "database": "postgres",
                     "host": "database.example.com",
-                    "port": 0,
+                    "port": 5432,
                     "scheme": "postgres",
                     "user": "postgres",
                 },
@@ -222,13 +224,12 @@ class TestConfigs:
                 origin={
                     "database": "postgres",
                     "host": "database.example.com",
-                    "port": 0,
+                    "port": 5432,
                     "scheme": "postgres",
                     "user": "postgres",
                 },
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         config = client.hyperdrive.configs.list(
@@ -236,7 +237,6 @@ class TestConfigs:
         )
         assert_matches_type(SyncSinglePage[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.hyperdrive.configs.with_raw_response.list(
@@ -248,7 +248,6 @@ class TestConfigs:
         config = response.parse()
         assert_matches_type(SyncSinglePage[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.hyperdrive.configs.with_streaming_response.list(
@@ -262,7 +261,6 @@ class TestConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -270,7 +268,6 @@ class TestConfigs:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         config = client.hyperdrive.configs.delete(
@@ -279,7 +276,6 @@ class TestConfigs:
         )
         assert_matches_type(ConfigDeleteResponse, config, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.hyperdrive.configs.with_raw_response.delete(
@@ -292,7 +288,6 @@ class TestConfigs:
         config = response.parse()
         assert_matches_type(ConfigDeleteResponse, config, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.hyperdrive.configs.with_streaming_response.delete(
@@ -307,7 +302,6 @@ class TestConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -322,7 +316,7 @@ class TestConfigs:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         config = client.hyperdrive.configs.edit(
@@ -331,7 +325,7 @@ class TestConfigs:
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         config = client.hyperdrive.configs.edit(
@@ -346,14 +340,14 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.hyperdrive.configs.with_raw_response.edit(
@@ -366,7 +360,7 @@ class TestConfigs:
         config = response.parse()
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.hyperdrive.configs.with_streaming_response.edit(
@@ -381,7 +375,7 @@ class TestConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -396,7 +390,6 @@ class TestConfigs:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         config = client.hyperdrive.configs.get(
@@ -405,7 +398,6 @@ class TestConfigs:
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.hyperdrive.configs.with_raw_response.get(
@@ -418,7 +410,6 @@ class TestConfigs:
         config = response.parse()
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.hyperdrive.configs.with_streaming_response.get(
@@ -433,7 +424,6 @@ class TestConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -452,7 +442,7 @@ class TestConfigs:
 class TestAsyncConfigs:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         config = await async_client.hyperdrive.configs.create(
@@ -461,14 +451,14 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         config = await async_client.hyperdrive.configs.create(
@@ -477,7 +467,7 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -489,7 +479,7 @@ class TestAsyncConfigs:
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.hyperdrive.configs.with_raw_response.create(
@@ -498,7 +488,7 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -509,7 +499,7 @@ class TestAsyncConfigs:
         config = await response.parse()
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.hyperdrive.configs.with_streaming_response.create(
@@ -518,7 +508,7 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -531,7 +521,7 @@ class TestAsyncConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -541,13 +531,13 @@ class TestAsyncConfigs:
                 origin={
                     "database": "postgres",
                     "host": "database.example.com",
-                    "port": 0,
+                    "port": 5432,
                     "scheme": "postgres",
                     "user": "postgres",
                 },
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         config = await async_client.hyperdrive.configs.update(
@@ -557,14 +547,14 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         config = await async_client.hyperdrive.configs.update(
@@ -574,7 +564,7 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -586,7 +576,7 @@ class TestAsyncConfigs:
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.hyperdrive.configs.with_raw_response.update(
@@ -596,7 +586,7 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -607,7 +597,7 @@ class TestAsyncConfigs:
         config = await response.parse()
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.hyperdrive.configs.with_streaming_response.update(
@@ -617,7 +607,7 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -630,7 +620,7 @@ class TestAsyncConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -641,7 +631,7 @@ class TestAsyncConfigs:
                 origin={
                     "database": "postgres",
                     "host": "database.example.com",
-                    "port": 0,
+                    "port": 5432,
                     "scheme": "postgres",
                     "user": "postgres",
                 },
@@ -655,13 +645,12 @@ class TestAsyncConfigs:
                 origin={
                     "database": "postgres",
                     "host": "database.example.com",
-                    "port": 0,
+                    "port": 5432,
                     "scheme": "postgres",
                     "user": "postgres",
                 },
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         config = await async_client.hyperdrive.configs.list(
@@ -669,7 +658,6 @@ class TestAsyncConfigs:
         )
         assert_matches_type(AsyncSinglePage[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.hyperdrive.configs.with_raw_response.list(
@@ -681,7 +669,6 @@ class TestAsyncConfigs:
         config = await response.parse()
         assert_matches_type(AsyncSinglePage[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.hyperdrive.configs.with_streaming_response.list(
@@ -695,7 +682,6 @@ class TestAsyncConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -703,7 +689,6 @@ class TestAsyncConfigs:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         config = await async_client.hyperdrive.configs.delete(
@@ -712,7 +697,6 @@ class TestAsyncConfigs:
         )
         assert_matches_type(ConfigDeleteResponse, config, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.hyperdrive.configs.with_raw_response.delete(
@@ -725,7 +709,6 @@ class TestAsyncConfigs:
         config = await response.parse()
         assert_matches_type(ConfigDeleteResponse, config, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.hyperdrive.configs.with_streaming_response.delete(
@@ -740,7 +723,6 @@ class TestAsyncConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -755,7 +737,7 @@ class TestAsyncConfigs:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         config = await async_client.hyperdrive.configs.edit(
@@ -764,7 +746,7 @@ class TestAsyncConfigs:
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         config = await async_client.hyperdrive.configs.edit(
@@ -779,14 +761,14 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 0,
+                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.hyperdrive.configs.with_raw_response.edit(
@@ -799,7 +781,7 @@ class TestAsyncConfigs:
         config = await response.parse()
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.hyperdrive.configs.with_streaming_response.edit(
@@ -814,7 +796,7 @@ class TestAsyncConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -829,7 +811,6 @@ class TestAsyncConfigs:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         config = await async_client.hyperdrive.configs.get(
@@ -838,7 +819,6 @@ class TestAsyncConfigs:
         )
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.hyperdrive.configs.with_raw_response.get(
@@ -851,7 +831,6 @@ class TestAsyncConfigs:
         config = await response.parse()
         assert_matches_type(Optional[Hyperdrive], config, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.hyperdrive.configs.with_streaming_response.get(
@@ -866,7 +845,6 @@ class TestAsyncConfigs:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

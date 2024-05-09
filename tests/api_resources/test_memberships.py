@@ -10,10 +10,12 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.memberships.membership import Membership
-from cloudflare.types.memberships.membership_get_response import MembershipGetResponse
-from cloudflare.types.memberships.membership_delete_response import MembershipDeleteResponse
-from cloudflare.types.memberships.membership_update_response import MembershipUpdateResponse
+from cloudflare.types.memberships import (
+    Membership,
+    MembershipGetResponse,
+    MembershipDeleteResponse,
+    MembershipUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -21,7 +23,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestMemberships:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         membership = client.memberships.update(
@@ -30,7 +31,6 @@ class TestMemberships:
         )
         assert_matches_type(MembershipUpdateResponse, membership, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.memberships.with_raw_response.update(
@@ -43,7 +43,6 @@ class TestMemberships:
         membership = response.parse()
         assert_matches_type(MembershipUpdateResponse, membership, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.memberships.with_streaming_response.update(
@@ -58,7 +57,6 @@ class TestMemberships:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `membership_id` but received ''"):
@@ -67,13 +65,11 @@ class TestMemberships:
                 status="accepted",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         membership = client.memberships.list()
         assert_matches_type(SyncV4PagePaginationArray[Membership], membership, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         membership = client.memberships.list(
@@ -87,7 +83,6 @@ class TestMemberships:
         )
         assert_matches_type(SyncV4PagePaginationArray[Membership], membership, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.memberships.with_raw_response.list()
@@ -97,7 +92,6 @@ class TestMemberships:
         membership = response.parse()
         assert_matches_type(SyncV4PagePaginationArray[Membership], membership, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.memberships.with_streaming_response.list() as response:
@@ -109,21 +103,17 @@ class TestMemberships:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         membership = client.memberships.delete(
             "4536bcfad5faccb111b47003c79917fa",
-            body={},
         )
         assert_matches_type(MembershipDeleteResponse, membership, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.memberships.with_raw_response.delete(
             "4536bcfad5faccb111b47003c79917fa",
-            body={},
         )
 
         assert response.is_closed is True
@@ -131,12 +121,10 @@ class TestMemberships:
         membership = response.parse()
         assert_matches_type(MembershipDeleteResponse, membership, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.memberships.with_streaming_response.delete(
             "4536bcfad5faccb111b47003c79917fa",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -146,16 +134,13 @@ class TestMemberships:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `membership_id` but received ''"):
             client.memberships.with_raw_response.delete(
                 "",
-                body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         membership = client.memberships.get(
@@ -163,7 +148,6 @@ class TestMemberships:
         )
         assert_matches_type(MembershipGetResponse, membership, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.memberships.with_raw_response.get(
@@ -175,7 +159,6 @@ class TestMemberships:
         membership = response.parse()
         assert_matches_type(MembershipGetResponse, membership, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.memberships.with_streaming_response.get(
@@ -189,7 +172,6 @@ class TestMemberships:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `membership_id` but received ''"):
@@ -201,7 +183,6 @@ class TestMemberships:
 class TestAsyncMemberships:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         membership = await async_client.memberships.update(
@@ -210,7 +191,6 @@ class TestAsyncMemberships:
         )
         assert_matches_type(MembershipUpdateResponse, membership, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.memberships.with_raw_response.update(
@@ -223,7 +203,6 @@ class TestAsyncMemberships:
         membership = await response.parse()
         assert_matches_type(MembershipUpdateResponse, membership, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.memberships.with_streaming_response.update(
@@ -238,7 +217,6 @@ class TestAsyncMemberships:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `membership_id` but received ''"):
@@ -247,13 +225,11 @@ class TestAsyncMemberships:
                 status="accepted",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         membership = await async_client.memberships.list()
         assert_matches_type(AsyncV4PagePaginationArray[Membership], membership, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         membership = await async_client.memberships.list(
@@ -267,7 +243,6 @@ class TestAsyncMemberships:
         )
         assert_matches_type(AsyncV4PagePaginationArray[Membership], membership, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.memberships.with_raw_response.list()
@@ -277,7 +252,6 @@ class TestAsyncMemberships:
         membership = await response.parse()
         assert_matches_type(AsyncV4PagePaginationArray[Membership], membership, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.memberships.with_streaming_response.list() as response:
@@ -289,21 +263,17 @@ class TestAsyncMemberships:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         membership = await async_client.memberships.delete(
             "4536bcfad5faccb111b47003c79917fa",
-            body={},
         )
         assert_matches_type(MembershipDeleteResponse, membership, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.memberships.with_raw_response.delete(
             "4536bcfad5faccb111b47003c79917fa",
-            body={},
         )
 
         assert response.is_closed is True
@@ -311,12 +281,10 @@ class TestAsyncMemberships:
         membership = await response.parse()
         assert_matches_type(MembershipDeleteResponse, membership, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.memberships.with_streaming_response.delete(
             "4536bcfad5faccb111b47003c79917fa",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -326,16 +294,13 @@ class TestAsyncMemberships:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `membership_id` but received ''"):
             await async_client.memberships.with_raw_response.delete(
                 "",
-                body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         membership = await async_client.memberships.get(
@@ -343,7 +308,6 @@ class TestAsyncMemberships:
         )
         assert_matches_type(MembershipGetResponse, membership, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.memberships.with_raw_response.get(
@@ -355,7 +319,6 @@ class TestAsyncMemberships:
         membership = await response.parse()
         assert_matches_type(MembershipGetResponse, membership, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.memberships.with_streaming_response.get(
@@ -369,7 +332,6 @@ class TestAsyncMemberships:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `membership_id` but received ''"):

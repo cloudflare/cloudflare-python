@@ -9,8 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.kv.namespaces.bulk_delete_response import BulkDeleteResponse
-from cloudflare.types.kv.namespaces.bulk_update_response import BulkUpdateResponse
+from cloudflare.types.kv.namespaces import BulkDeleteResponse, BulkUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -18,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestBulk:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         bulk = client.kv.namespaces.bulk.update(
@@ -28,7 +26,6 @@ class TestBulk:
         )
         assert_matches_type(BulkUpdateResponse, bulk, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.kv.namespaces.bulk.with_raw_response.update(
@@ -42,7 +39,6 @@ class TestBulk:
         bulk = response.parse()
         assert_matches_type(BulkUpdateResponse, bulk, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.kv.namespaces.bulk.with_streaming_response.update(
@@ -58,7 +54,6 @@ class TestBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -75,23 +70,19 @@ class TestBulk:
                 body=[{}, {}, {}],
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         bulk = client.kv.namespaces.bulk.delete(
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=["My-Key", "My-Key", "My-Key"],
         )
         assert_matches_type(BulkDeleteResponse, bulk, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.kv.namespaces.bulk.with_raw_response.delete(
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=["My-Key", "My-Key", "My-Key"],
         )
 
         assert response.is_closed is True
@@ -99,13 +90,11 @@ class TestBulk:
         bulk = response.parse()
         assert_matches_type(BulkDeleteResponse, bulk, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.kv.namespaces.bulk.with_streaming_response.delete(
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=["My-Key", "My-Key", "My-Key"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -115,28 +104,24 @@ class TestBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.kv.namespaces.bulk.with_raw_response.delete(
                 "0f2ac74b498b48028cb68387c421e279",
                 account_id="",
-                body=["My-Key", "My-Key", "My-Key"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             client.kv.namespaces.bulk.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=["My-Key", "My-Key", "My-Key"],
             )
 
 
 class TestAsyncBulk:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         bulk = await async_client.kv.namespaces.bulk.update(
@@ -146,7 +131,6 @@ class TestAsyncBulk:
         )
         assert_matches_type(BulkUpdateResponse, bulk, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.kv.namespaces.bulk.with_raw_response.update(
@@ -160,7 +144,6 @@ class TestAsyncBulk:
         bulk = await response.parse()
         assert_matches_type(BulkUpdateResponse, bulk, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.kv.namespaces.bulk.with_streaming_response.update(
@@ -176,7 +159,6 @@ class TestAsyncBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -193,23 +175,19 @@ class TestAsyncBulk:
                 body=[{}, {}, {}],
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         bulk = await async_client.kv.namespaces.bulk.delete(
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=["My-Key", "My-Key", "My-Key"],
         )
         assert_matches_type(BulkDeleteResponse, bulk, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.kv.namespaces.bulk.with_raw_response.delete(
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=["My-Key", "My-Key", "My-Key"],
         )
 
         assert response.is_closed is True
@@ -217,13 +195,11 @@ class TestAsyncBulk:
         bulk = await response.parse()
         assert_matches_type(BulkDeleteResponse, bulk, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.kv.namespaces.bulk.with_streaming_response.delete(
             "0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body=["My-Key", "My-Key", "My-Key"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -233,19 +209,16 @@ class TestAsyncBulk:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.kv.namespaces.bulk.with_raw_response.delete(
                 "0f2ac74b498b48028cb68387c421e279",
                 account_id="",
-                body=["My-Key", "My-Key", "My-Key"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             await async_client.kv.namespaces.bulk.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body=["My-Key", "My-Key", "My-Key"],
             )

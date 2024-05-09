@@ -10,8 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.radar.quality.speed_summary_response import SpeedSummaryResponse
-from cloudflare.types.radar.quality.speed_histogram_response import SpeedHistogramResponse
+from cloudflare.types.radar.quality import (
+    SpeedSummaryResponse,
+    SpeedHistogramResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,13 +21,11 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSpeed:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_histogram(self, client: Cloudflare) -> None:
         speed = client.radar.quality.speed.histogram()
         assert_matches_type(SpeedHistogramResponse, speed, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_histogram_with_all_params(self, client: Cloudflare) -> None:
         speed = client.radar.quality.speed.histogram(
@@ -44,7 +44,6 @@ class TestSpeed:
         )
         assert_matches_type(SpeedHistogramResponse, speed, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_histogram(self, client: Cloudflare) -> None:
         response = client.radar.quality.speed.with_raw_response.histogram()
@@ -54,7 +53,6 @@ class TestSpeed:
         speed = response.parse()
         assert_matches_type(SpeedHistogramResponse, speed, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_histogram(self, client: Cloudflare) -> None:
         with client.radar.quality.speed.with_streaming_response.histogram() as response:
@@ -66,13 +64,11 @@ class TestSpeed:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_summary(self, client: Cloudflare) -> None:
         speed = client.radar.quality.speed.summary()
         assert_matches_type(SpeedSummaryResponse, speed, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_summary_with_all_params(self, client: Cloudflare) -> None:
         speed = client.radar.quality.speed.summary(
@@ -89,7 +85,6 @@ class TestSpeed:
         )
         assert_matches_type(SpeedSummaryResponse, speed, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_summary(self, client: Cloudflare) -> None:
         response = client.radar.quality.speed.with_raw_response.summary()
@@ -99,7 +94,6 @@ class TestSpeed:
         speed = response.parse()
         assert_matches_type(SpeedSummaryResponse, speed, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_summary(self, client: Cloudflare) -> None:
         with client.radar.quality.speed.with_streaming_response.summary() as response:
@@ -115,13 +109,11 @@ class TestSpeed:
 class TestAsyncSpeed:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_histogram(self, async_client: AsyncCloudflare) -> None:
         speed = await async_client.radar.quality.speed.histogram()
         assert_matches_type(SpeedHistogramResponse, speed, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_histogram_with_all_params(self, async_client: AsyncCloudflare) -> None:
         speed = await async_client.radar.quality.speed.histogram(
@@ -140,7 +132,6 @@ class TestAsyncSpeed:
         )
         assert_matches_type(SpeedHistogramResponse, speed, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_histogram(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.quality.speed.with_raw_response.histogram()
@@ -150,7 +141,6 @@ class TestAsyncSpeed:
         speed = await response.parse()
         assert_matches_type(SpeedHistogramResponse, speed, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_histogram(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.quality.speed.with_streaming_response.histogram() as response:
@@ -162,13 +152,11 @@ class TestAsyncSpeed:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_summary(self, async_client: AsyncCloudflare) -> None:
         speed = await async_client.radar.quality.speed.summary()
         assert_matches_type(SpeedSummaryResponse, speed, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_summary_with_all_params(self, async_client: AsyncCloudflare) -> None:
         speed = await async_client.radar.quality.speed.summary(
@@ -185,7 +173,6 @@ class TestAsyncSpeed:
         )
         assert_matches_type(SpeedSummaryResponse, speed, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_summary(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.quality.speed.with_raw_response.summary()
@@ -195,7 +182,6 @@ class TestAsyncSpeed:
         speed = await response.parse()
         assert_matches_type(SpeedSummaryResponse, speed, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_summary(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.quality.speed.with_streaming_response.summary() as response:

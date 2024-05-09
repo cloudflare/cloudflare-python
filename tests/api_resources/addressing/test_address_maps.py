@@ -10,10 +10,12 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.addressing.address_map import AddressMap
-from cloudflare.types.addressing.address_map_get_response import AddressMapGetResponse
-from cloudflare.types.addressing.address_map_create_response import AddressMapCreateResponse
-from cloudflare.types.addressing.address_map_delete_response import AddressMapDeleteResponse
+from cloudflare.types.addressing import (
+    AddressMap,
+    AddressMapGetResponse,
+    AddressMapCreateResponse,
+    AddressMapDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -21,7 +23,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAddressMaps:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         address_map = client.addressing.address_maps.create(
@@ -29,7 +30,6 @@ class TestAddressMaps:
         )
         assert_matches_type(Optional[AddressMapCreateResponse], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         address_map = client.addressing.address_maps.create(
@@ -39,7 +39,6 @@ class TestAddressMaps:
         )
         assert_matches_type(Optional[AddressMapCreateResponse], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.addressing.address_maps.with_raw_response.create(
@@ -51,7 +50,6 @@ class TestAddressMaps:
         address_map = response.parse()
         assert_matches_type(Optional[AddressMapCreateResponse], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.addressing.address_maps.with_streaming_response.create(
@@ -65,7 +63,6 @@ class TestAddressMaps:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -73,7 +70,6 @@ class TestAddressMaps:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         address_map = client.addressing.address_maps.list(
@@ -81,7 +77,6 @@ class TestAddressMaps:
         )
         assert_matches_type(SyncSinglePage[AddressMap], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.addressing.address_maps.with_raw_response.list(
@@ -93,7 +88,6 @@ class TestAddressMaps:
         address_map = response.parse()
         assert_matches_type(SyncSinglePage[AddressMap], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.addressing.address_maps.with_streaming_response.list(
@@ -107,7 +101,6 @@ class TestAddressMaps:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -115,23 +108,19 @@ class TestAddressMaps:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         address_map = client.addressing.address_maps.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(Optional[AddressMapDeleteResponse], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.addressing.address_maps.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -139,13 +128,11 @@ class TestAddressMaps:
         address_map = response.parse()
         assert_matches_type(Optional[AddressMapDeleteResponse], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.addressing.address_maps.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -155,24 +142,20 @@ class TestAddressMaps:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.addressing.address_maps.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
             client.addressing.address_maps.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         address_map = client.addressing.address_maps.edit(
@@ -181,7 +164,6 @@ class TestAddressMaps:
         )
         assert_matches_type(Optional[AddressMap], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         address_map = client.addressing.address_maps.edit(
@@ -193,7 +175,6 @@ class TestAddressMaps:
         )
         assert_matches_type(Optional[AddressMap], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.addressing.address_maps.with_raw_response.edit(
@@ -206,7 +187,6 @@ class TestAddressMaps:
         address_map = response.parse()
         assert_matches_type(Optional[AddressMap], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.addressing.address_maps.with_streaming_response.edit(
@@ -221,7 +201,6 @@ class TestAddressMaps:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -236,7 +215,6 @@ class TestAddressMaps:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         address_map = client.addressing.address_maps.get(
@@ -245,7 +223,6 @@ class TestAddressMaps:
         )
         assert_matches_type(Optional[AddressMapGetResponse], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.addressing.address_maps.with_raw_response.get(
@@ -258,7 +235,6 @@ class TestAddressMaps:
         address_map = response.parse()
         assert_matches_type(Optional[AddressMapGetResponse], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.addressing.address_maps.with_streaming_response.get(
@@ -273,7 +249,6 @@ class TestAddressMaps:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -292,7 +267,6 @@ class TestAddressMaps:
 class TestAsyncAddressMaps:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         address_map = await async_client.addressing.address_maps.create(
@@ -300,7 +274,6 @@ class TestAsyncAddressMaps:
         )
         assert_matches_type(Optional[AddressMapCreateResponse], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         address_map = await async_client.addressing.address_maps.create(
@@ -310,7 +283,6 @@ class TestAsyncAddressMaps:
         )
         assert_matches_type(Optional[AddressMapCreateResponse], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.address_maps.with_raw_response.create(
@@ -322,7 +294,6 @@ class TestAsyncAddressMaps:
         address_map = await response.parse()
         assert_matches_type(Optional[AddressMapCreateResponse], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.address_maps.with_streaming_response.create(
@@ -336,7 +307,6 @@ class TestAsyncAddressMaps:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -344,7 +314,6 @@ class TestAsyncAddressMaps:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         address_map = await async_client.addressing.address_maps.list(
@@ -352,7 +321,6 @@ class TestAsyncAddressMaps:
         )
         assert_matches_type(AsyncSinglePage[AddressMap], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.address_maps.with_raw_response.list(
@@ -364,7 +332,6 @@ class TestAsyncAddressMaps:
         address_map = await response.parse()
         assert_matches_type(AsyncSinglePage[AddressMap], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.address_maps.with_streaming_response.list(
@@ -378,7 +345,6 @@ class TestAsyncAddressMaps:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -386,23 +352,19 @@ class TestAsyncAddressMaps:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         address_map = await async_client.addressing.address_maps.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(Optional[AddressMapDeleteResponse], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.address_maps.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -410,13 +372,11 @@ class TestAsyncAddressMaps:
         address_map = await response.parse()
         assert_matches_type(Optional[AddressMapDeleteResponse], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.address_maps.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -426,24 +386,20 @@ class TestAsyncAddressMaps:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.addressing.address_maps.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
             await async_client.addressing.address_maps.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         address_map = await async_client.addressing.address_maps.edit(
@@ -452,7 +408,6 @@ class TestAsyncAddressMaps:
         )
         assert_matches_type(Optional[AddressMap], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         address_map = await async_client.addressing.address_maps.edit(
@@ -464,7 +419,6 @@ class TestAsyncAddressMaps:
         )
         assert_matches_type(Optional[AddressMap], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.address_maps.with_raw_response.edit(
@@ -477,7 +431,6 @@ class TestAsyncAddressMaps:
         address_map = await response.parse()
         assert_matches_type(Optional[AddressMap], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.address_maps.with_streaming_response.edit(
@@ -492,7 +445,6 @@ class TestAsyncAddressMaps:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -507,7 +459,6 @@ class TestAsyncAddressMaps:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         address_map = await async_client.addressing.address_maps.get(
@@ -516,7 +467,6 @@ class TestAsyncAddressMaps:
         )
         assert_matches_type(Optional[AddressMapGetResponse], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.address_maps.with_raw_response.get(
@@ -529,7 +479,6 @@ class TestAsyncAddressMaps:
         address_map = await response.parse()
         assert_matches_type(Optional[AddressMapGetResponse], address_map, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.address_maps.with_streaming_response.get(
@@ -544,7 +493,6 @@ class TestAsyncAddressMaps:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

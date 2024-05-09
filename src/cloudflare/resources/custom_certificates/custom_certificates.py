@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
+from typing import Any, Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -39,7 +39,6 @@ from ...types.custom_certificates import (
     custom_certificate_edit_params,
     custom_certificate_list_params,
     custom_certificate_create_params,
-    custom_certificate_delete_params,
 )
 from ...types.custom_hostnames.bundle_method import BundleMethod
 from ...types.custom_certificates.custom_certificate import CustomCertificate
@@ -81,7 +80,7 @@ class CustomCertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomCertificateCreateResponse:
+    ) -> Optional[CustomCertificateCreateResponse]:
         """
         Upload a new SSL certificate for a zone.
 
@@ -129,7 +128,7 @@ class CustomCertificatesResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            CustomCertificateCreateResponse,
+            Optional[CustomCertificateCreateResponse],
             self._post(
                 f"/zones/{zone_id}/custom_certificates",
                 body=maybe_transform(
@@ -148,7 +147,7 @@ class CustomCertificatesResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[CustomCertificateCreateResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[CustomCertificateCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CustomCertificateCreateResponse]
@@ -224,14 +223,13 @@ class CustomCertificatesResource(SyncAPIResource):
         custom_certificate_id: str,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomCertificateDeleteResponse:
+    ) -> Optional[CustomCertificateDeleteResponse]:
         """
         Remove a SSL certificate from a zone.
 
@@ -256,15 +254,16 @@ class CustomCertificatesResource(SyncAPIResource):
             )
         return self._delete(
             f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
-            body=maybe_transform(body, custom_certificate_delete_params.CustomCertificateDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CustomCertificateDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[CustomCertificateDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CustomCertificateDeleteResponse], ResultWrapper[CustomCertificateDeleteResponse]),
+            cast_to=cast(
+                Type[Optional[CustomCertificateDeleteResponse]], ResultWrapper[CustomCertificateDeleteResponse]
+            ),
         )
 
     def edit(
@@ -283,7 +282,7 @@ class CustomCertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomCertificateEditResponse:
+    ) -> Optional[CustomCertificateEditResponse]:
         """Upload a new private key and/or PEM/CRT for the SSL certificate.
 
         Note: PATCHing
@@ -337,7 +336,7 @@ class CustomCertificatesResource(SyncAPIResource):
                 f"Expected a non-empty value for `custom_certificate_id` but received {custom_certificate_id!r}"
             )
         return cast(
-            CustomCertificateEditResponse,
+            Optional[CustomCertificateEditResponse],
             self._patch(
                 f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
                 body=maybe_transform(
@@ -355,7 +354,7 @@ class CustomCertificatesResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[CustomCertificateEditResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[CustomCertificateEditResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CustomCertificateEditResponse]
@@ -374,7 +373,7 @@ class CustomCertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomCertificateGetResponse:
+    ) -> Optional[CustomCertificateGetResponse]:
         """
         SSL Configuration Details
 
@@ -398,7 +397,7 @@ class CustomCertificatesResource(SyncAPIResource):
                 f"Expected a non-empty value for `custom_certificate_id` but received {custom_certificate_id!r}"
             )
         return cast(
-            CustomCertificateGetResponse,
+            Optional[CustomCertificateGetResponse],
             self._get(
                 f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
                 options=make_request_options(
@@ -406,7 +405,7 @@ class CustomCertificatesResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[CustomCertificateGetResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[CustomCertificateGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CustomCertificateGetResponse]
@@ -444,7 +443,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomCertificateCreateResponse:
+    ) -> Optional[CustomCertificateCreateResponse]:
         """
         Upload a new SSL certificate for a zone.
 
@@ -492,7 +491,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            CustomCertificateCreateResponse,
+            Optional[CustomCertificateCreateResponse],
             await self._post(
                 f"/zones/{zone_id}/custom_certificates",
                 body=await async_maybe_transform(
@@ -511,7 +510,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[CustomCertificateCreateResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[CustomCertificateCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CustomCertificateCreateResponse]
@@ -587,14 +586,13 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         custom_certificate_id: str,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomCertificateDeleteResponse:
+    ) -> Optional[CustomCertificateDeleteResponse]:
         """
         Remove a SSL certificate from a zone.
 
@@ -619,15 +617,16 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
             )
         return await self._delete(
             f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
-            body=await async_maybe_transform(body, custom_certificate_delete_params.CustomCertificateDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CustomCertificateDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[CustomCertificateDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CustomCertificateDeleteResponse], ResultWrapper[CustomCertificateDeleteResponse]),
+            cast_to=cast(
+                Type[Optional[CustomCertificateDeleteResponse]], ResultWrapper[CustomCertificateDeleteResponse]
+            ),
         )
 
     async def edit(
@@ -646,7 +645,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomCertificateEditResponse:
+    ) -> Optional[CustomCertificateEditResponse]:
         """Upload a new private key and/or PEM/CRT for the SSL certificate.
 
         Note: PATCHing
@@ -700,7 +699,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `custom_certificate_id` but received {custom_certificate_id!r}"
             )
         return cast(
-            CustomCertificateEditResponse,
+            Optional[CustomCertificateEditResponse],
             await self._patch(
                 f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
                 body=await async_maybe_transform(
@@ -718,7 +717,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[CustomCertificateEditResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[CustomCertificateEditResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CustomCertificateEditResponse]
@@ -737,7 +736,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CustomCertificateGetResponse:
+    ) -> Optional[CustomCertificateGetResponse]:
         """
         SSL Configuration Details
 
@@ -761,7 +760,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
                 f"Expected a non-empty value for `custom_certificate_id` but received {custom_certificate_id!r}"
             )
         return cast(
-            CustomCertificateGetResponse,
+            Optional[CustomCertificateGetResponse],
             await self._get(
                 f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
                 options=make_request_options(
@@ -769,7 +768,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[CustomCertificateGetResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[CustomCertificateGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[CustomCertificateGetResponse]

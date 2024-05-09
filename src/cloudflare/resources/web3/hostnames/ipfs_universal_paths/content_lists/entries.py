@@ -24,11 +24,7 @@ from ......_wrappers import ResultWrapper
 from ......_base_client import (
     make_request_options,
 )
-from ......types.web3.hostnames.ipfs_universal_paths.content_lists import (
-    entry_create_params,
-    entry_delete_params,
-    entry_update_params,
-)
+from ......types.web3.hostnames.ipfs_universal_paths.content_lists import entry_create_params, entry_update_params
 from ......types.web3.hostnames.ipfs_universal_paths.content_lists.entry_get_response import EntryGetResponse
 from ......types.web3.hostnames.ipfs_universal_paths.content_lists.entry_list_response import EntryListResponse
 from ......types.web3.hostnames.ipfs_universal_paths.content_lists.entry_create_response import EntryCreateResponse
@@ -226,7 +222,6 @@ class EntriesResource(SyncAPIResource):
         *,
         zone_identifier: str,
         identifier: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -262,7 +257,6 @@ class EntriesResource(SyncAPIResource):
             )
         return self._delete(
             f"/zones/{zone_identifier}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries/{content_list_entry_identifier}",
-            body=maybe_transform(body, entry_delete_params.EntryDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -513,7 +507,6 @@ class AsyncEntriesResource(AsyncAPIResource):
         *,
         zone_identifier: str,
         identifier: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -549,7 +542,6 @@ class AsyncEntriesResource(AsyncAPIResource):
             )
         return await self._delete(
             f"/zones/{zone_identifier}/web3/hostnames/{identifier}/ipfs_universal_path/content_list/entries/{content_list_entry_identifier}",
-            body=await async_maybe_transform(body, entry_delete_params.EntryDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -22,11 +22,9 @@ from .list_edit_params import ListEditParams as ListEditParams
 from .location_network import LocationNetwork as LocationNetwork
 from .gateway_item_param import GatewayItemParam as GatewayItemParam
 from .list_create_params import ListCreateParams as ListCreateParams
-from .list_delete_params import ListDeleteParams as ListDeleteParams
 from .list_update_params import ListUpdateParams as ListUpdateParams
 from .protocol_detection import ProtocolDetection as ProtocolDetection
 from .rule_create_params import RuleCreateParams as RuleCreateParams
-from .rule_delete_params import RuleDeleteParams as RuleDeleteParams
 from .rule_setting_param import RuleSettingParam as RuleSettingParam
 from .rule_update_params import RuleUpdateParams as RuleUpdateParams
 from .tls_settings_param import TLSSettingsParam as TLSSettingsParam
@@ -41,7 +39,6 @@ from .logging_update_params import LoggingUpdateParams as LoggingUpdateParams
 from .notification_settings import NotificationSettings as NotificationSettings
 from .body_scanning_settings import BodyScanningSettings as BodyScanningSettings
 from .location_create_params import LocationCreateParams as LocationCreateParams
-from .location_delete_params import LocationDeleteParams as LocationDeleteParams
 from .location_network_param import LocationNetworkParam as LocationNetworkParam
 from .location_update_params import LocationUpdateParams as LocationUpdateParams
 from .extended_email_matching import ExtendedEmailMatching as ExtendedEmailMatching
@@ -62,7 +59,6 @@ from .custom_certificate_settings import CustomCertificateSettings as CustomCert
 from .notification_settings_param import NotificationSettingsParam as NotificationSettingsParam
 from .body_scanning_settings_param import BodyScanningSettingsParam as BodyScanningSettingsParam
 from .proxy_endpoint_create_params import ProxyEndpointCreateParams as ProxyEndpointCreateParams
-from .proxy_endpoint_delete_params import ProxyEndpointDeleteParams as ProxyEndpointDeleteParams
 from .configuration_update_response import ConfigurationUpdateResponse as ConfigurationUpdateResponse
 from .extended_email_matching_param import ExtendedEmailMatchingParam as ExtendedEmailMatchingParam
 from .dns_resolver_settings_v4_param import DNSResolverSettingsV4Param as DNSResolverSettingsV4Param

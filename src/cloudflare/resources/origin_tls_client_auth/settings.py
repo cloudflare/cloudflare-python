@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -50,7 +50,7 @@ class SettingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingUpdateResponse:
+    ) -> Optional[SettingUpdateResponse]:
         """Enable or disable zone-level authenticated origin pulls.
 
         'enabled' should be set
@@ -80,9 +80,9 @@ class SettingsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SettingUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[SettingUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[SettingUpdateResponse], ResultWrapper[SettingUpdateResponse]),
+            cast_to=cast(Type[Optional[SettingUpdateResponse]], ResultWrapper[SettingUpdateResponse]),
         )
 
     def get(
@@ -95,7 +95,7 @@ class SettingsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingGetResponse:
+    ) -> Optional[SettingGetResponse]:
         """Get whether zone-level authenticated origin pulls is enabled or not.
 
         It is false
@@ -121,9 +121,9 @@ class SettingsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SettingGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[SettingGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[SettingGetResponse], ResultWrapper[SettingGetResponse]),
+            cast_to=cast(Type[Optional[SettingGetResponse]], ResultWrapper[SettingGetResponse]),
         )
 
 
@@ -147,7 +147,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingUpdateResponse:
+    ) -> Optional[SettingUpdateResponse]:
         """Enable or disable zone-level authenticated origin pulls.
 
         'enabled' should be set
@@ -177,9 +177,9 @@ class AsyncSettingsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SettingUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[SettingUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[SettingUpdateResponse], ResultWrapper[SettingUpdateResponse]),
+            cast_to=cast(Type[Optional[SettingUpdateResponse]], ResultWrapper[SettingUpdateResponse]),
         )
 
     async def get(
@@ -192,7 +192,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SettingGetResponse:
+    ) -> Optional[SettingGetResponse]:
         """Get whether zone-level authenticated origin pulls is enabled or not.
 
         It is false
@@ -218,9 +218,9 @@ class AsyncSettingsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[SettingGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[SettingGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[SettingGetResponse], ResultWrapper[SettingGetResponse]),
+            cast_to=cast(Type[Optional[SettingGetResponse]], ResultWrapper[SettingGetResponse]),
         )
 
 

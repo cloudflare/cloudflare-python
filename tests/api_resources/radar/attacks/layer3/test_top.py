@@ -10,9 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.radar.attacks.layer3.top_attacks_response import TopAttacksResponse
-from cloudflare.types.radar.attacks.layer3.top_industry_response import TopIndustryResponse
-from cloudflare.types.radar.attacks.layer3.top_vertical_response import TopVerticalResponse
+from cloudflare.types.radar.attacks.layer3 import (
+    TopAttacksResponse,
+    TopIndustryResponse,
+    TopVerticalResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,13 +22,11 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestTop:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_attacks(self, client: Cloudflare) -> None:
         top = client.radar.attacks.layer3.top.attacks()
         assert_matches_type(TopAttacksResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_attacks_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.attacks.layer3.top.attacks(
@@ -53,7 +53,6 @@ class TestTop:
         )
         assert_matches_type(TopAttacksResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_attacks(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer3.top.with_raw_response.attacks()
@@ -63,7 +62,6 @@ class TestTop:
         top = response.parse()
         assert_matches_type(TopAttacksResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_attacks(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer3.top.with_streaming_response.attacks() as response:
@@ -75,13 +73,11 @@ class TestTop:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_industry(self, client: Cloudflare) -> None:
         top = client.radar.attacks.layer3.top.industry()
         assert_matches_type(TopIndustryResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_industry_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.attacks.layer3.top.industry(
@@ -106,7 +102,6 @@ class TestTop:
         )
         assert_matches_type(TopIndustryResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_industry(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer3.top.with_raw_response.industry()
@@ -116,7 +111,6 @@ class TestTop:
         top = response.parse()
         assert_matches_type(TopIndustryResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_industry(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer3.top.with_streaming_response.industry() as response:
@@ -128,13 +122,11 @@ class TestTop:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_vertical(self, client: Cloudflare) -> None:
         top = client.radar.attacks.layer3.top.vertical()
         assert_matches_type(TopVerticalResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_vertical_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.attacks.layer3.top.vertical(
@@ -159,7 +151,6 @@ class TestTop:
         )
         assert_matches_type(TopVerticalResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_vertical(self, client: Cloudflare) -> None:
         response = client.radar.attacks.layer3.top.with_raw_response.vertical()
@@ -169,7 +160,6 @@ class TestTop:
         top = response.parse()
         assert_matches_type(TopVerticalResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_vertical(self, client: Cloudflare) -> None:
         with client.radar.attacks.layer3.top.with_streaming_response.vertical() as response:
@@ -185,13 +175,11 @@ class TestTop:
 class TestAsyncTop:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_attacks(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.attacks.layer3.top.attacks()
         assert_matches_type(TopAttacksResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_attacks_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.attacks.layer3.top.attacks(
@@ -218,7 +206,6 @@ class TestAsyncTop:
         )
         assert_matches_type(TopAttacksResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_attacks(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer3.top.with_raw_response.attacks()
@@ -228,7 +215,6 @@ class TestAsyncTop:
         top = await response.parse()
         assert_matches_type(TopAttacksResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_attacks(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer3.top.with_streaming_response.attacks() as response:
@@ -240,13 +226,11 @@ class TestAsyncTop:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_industry(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.attacks.layer3.top.industry()
         assert_matches_type(TopIndustryResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_industry_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.attacks.layer3.top.industry(
@@ -271,7 +255,6 @@ class TestAsyncTop:
         )
         assert_matches_type(TopIndustryResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_industry(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer3.top.with_raw_response.industry()
@@ -281,7 +264,6 @@ class TestAsyncTop:
         top = await response.parse()
         assert_matches_type(TopIndustryResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_industry(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer3.top.with_streaming_response.industry() as response:
@@ -293,13 +275,11 @@ class TestAsyncTop:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_vertical(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.attacks.layer3.top.vertical()
         assert_matches_type(TopVerticalResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_vertical_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.attacks.layer3.top.vertical(
@@ -324,7 +304,6 @@ class TestAsyncTop:
         )
         assert_matches_type(TopVerticalResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_vertical(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.attacks.layer3.top.with_raw_response.vertical()
@@ -334,7 +313,6 @@ class TestAsyncTop:
         top = await response.parse()
         assert_matches_type(TopVerticalResponse, top, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_vertical(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.attacks.layer3.top.with_streaming_response.vertical() as response:

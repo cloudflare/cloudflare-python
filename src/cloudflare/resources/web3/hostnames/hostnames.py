@@ -22,7 +22,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ....types.web3 import hostname_edit_params, hostname_create_params, hostname_delete_params
+from ....types.web3 import hostname_edit_params, hostname_create_params
 from ...._base_client import (
     AsyncPaginator,
     make_request_options,
@@ -152,7 +152,6 @@ class HostnamesResource(SyncAPIResource):
         identifier: str,
         *,
         zone_identifier: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -182,7 +181,6 @@ class HostnamesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._delete(
             f"/zones/{zone_identifier}/web3/hostnames/{identifier}",
-            body=maybe_transform(body, hostname_delete_params.HostnameDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -405,7 +403,6 @@ class AsyncHostnamesResource(AsyncAPIResource):
         identifier: str,
         *,
         zone_identifier: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -435,7 +432,6 @@ class AsyncHostnamesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._delete(
             f"/zones/{zone_identifier}/web3/hostnames/{identifier}",
-            body=await async_maybe_transform(body, hostname_delete_params.HostnameDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -2,8 +2,8 @@
 
 from typing import List, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
+from .kind import Kind
 from ..._models import BaseModel
 
 __all__ = ["AddressMapGetResponse", "IP", "Membership"]
@@ -25,7 +25,7 @@ class Membership(BaseModel):
     identifier: Optional[str] = None
     """Identifier"""
 
-    kind: Optional[Literal["zone", "account"]] = None
+    kind: Optional[Kind] = None
     """The type of the membership."""
 
 

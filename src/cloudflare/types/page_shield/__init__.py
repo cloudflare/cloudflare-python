@@ -6,7 +6,6 @@ from .policy import Policy as Policy
 from .script import Script as Script
 from .setting import Setting as Setting
 from .connection import Connection as Connection
-from .policy_param import PolicyParam as PolicyParam
 from .script_list_params import ScriptListParams as ScriptListParams
 from .script_get_response import ScriptGetResponse as ScriptGetResponse
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams

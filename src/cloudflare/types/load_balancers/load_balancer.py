@@ -2,13 +2,14 @@
 
 from typing import List, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from .rules import Rules
 from ..._models import BaseModel
 from .default_pools import DefaultPools
 from .random_steering import RandomSteering
+from .steering_policy import SteeringPolicy
 from .adaptive_routing import AdaptiveRouting
+from .session_affinity import SessionAffinity
 from .location_strategy import LocationStrategy
 from .session_affinity_attributes import SessionAffinityAttributes
 
@@ -104,7 +105,7 @@ class LoadBalancer(BaseModel):
     execute.
     """
 
-    session_affinity: Optional[Literal["none", "cookie", "ip_cookie", "header", '""']] = None
+    session_affinity: Optional[SessionAffinity] = None
     """
     Specifies the type of session affinity the load balancer should use unless
     specified as `"none"` or "" (default). The supported types are:
@@ -148,18 +149,7 @@ class LoadBalancer(BaseModel):
       number of seconds specified.
     """
 
-    steering_policy: Optional[
-        Literal[
-            "off",
-            "geo",
-            "random",
-            "dynamic_latency",
-            "proximity",
-            "least_outstanding_requests",
-            "least_connections",
-            '""',
-        ]
-    ] = None
+    steering_policy: Optional[SteeringPolicy] = None
     """Steering Policy for this load balancer.
 
     - `"off"`: Use `default_pools`.

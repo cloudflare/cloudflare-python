@@ -46,16 +46,18 @@ class URLScannerScanParams(TypedDict, total=False):
     """Filter scans by main page Autonomous System Number (ASN)."""
 
     page_hostname: str
-    """Filter scans by main page hostname ."""
+    """Filter scans by main page hostname (domain of effective URL)."""
 
     page_ip: str
     """Filter scans by main page IP address (IPv4 or IPv6)."""
 
     page_path: str
-    """Filter scans by exact match URL path (also supports suffix search)."""
+    """
+    Filter scans by exact match of effective URL path (also supports suffix search).
+    """
 
     page_url: str
-    """Filter scans by exact match to scanned URL (_after redirects_)"""
+    """Filter scans by submitted or scanned URL"""
 
     path: str
     """Filter scans by url path of _any_ request made by the webpage."""
@@ -64,4 +66,4 @@ class URLScannerScanParams(TypedDict, total=False):
     """Scan uuid"""
 
     url: str
-    """Filter scans by exact match URL of _any_ request made by the webpage"""
+    """Filter scans by URL of _any_ request made by the webpage"""

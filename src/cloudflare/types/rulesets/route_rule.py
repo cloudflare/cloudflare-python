@@ -7,7 +7,7 @@ from typing_extensions import Literal
 from .logging import Logging
 from ..._models import BaseModel
 
-__all__ = ["RouteRule", "ActionParameters", "ActionParametersOrigin", "ActionParametersSni"]
+__all__ = ["RouteRule", "ActionParameters", "ActionParametersOrigin", "ActionParametersSNI"]
 
 
 class ActionParametersOrigin(BaseModel):
@@ -18,7 +18,7 @@ class ActionParametersOrigin(BaseModel):
     """Override the destination port."""
 
 
-class ActionParametersSni(BaseModel):
+class ActionParametersSNI(BaseModel):
     value: str
     """The SNI override."""
 
@@ -30,7 +30,7 @@ class ActionParameters(BaseModel):
     origin: Optional[ActionParametersOrigin] = None
     """Override the IP/TCP destination."""
 
-    sni: Optional[ActionParametersSni] = None
+    sni: Optional[ActionParametersSNI] = None
     """Override the Server Name Indication (SNI)."""
 
 

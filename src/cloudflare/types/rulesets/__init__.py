@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from .kind import Kind as Kind
+from .phase import Phase as Phase
 from .logging import Logging as Logging
 from .ruleset import Ruleset as Ruleset
 from .log_rule import LogRule as LogRule

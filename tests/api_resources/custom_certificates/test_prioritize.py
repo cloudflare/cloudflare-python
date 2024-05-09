@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.custom_certificates.prioritize_update_response import PrioritizeUpdateResponse
+from cloudflare.types.custom_certificates import PrioritizeUpdateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPrioritize:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         prioritize = client.custom_certificates.prioritize.update(
@@ -26,7 +25,6 @@ class TestPrioritize:
         )
         assert_matches_type(Optional[PrioritizeUpdateResponse], prioritize, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.custom_certificates.prioritize.with_raw_response.update(
@@ -39,7 +37,6 @@ class TestPrioritize:
         prioritize = response.parse()
         assert_matches_type(Optional[PrioritizeUpdateResponse], prioritize, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.custom_certificates.prioritize.with_streaming_response.update(
@@ -54,7 +51,6 @@ class TestPrioritize:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -67,7 +63,6 @@ class TestPrioritize:
 class TestAsyncPrioritize:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         prioritize = await async_client.custom_certificates.prioritize.update(
@@ -76,7 +71,6 @@ class TestAsyncPrioritize:
         )
         assert_matches_type(Optional[PrioritizeUpdateResponse], prioritize, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_certificates.prioritize.with_raw_response.update(
@@ -89,7 +83,6 @@ class TestAsyncPrioritize:
         prioritize = await response.parse()
         assert_matches_type(Optional[PrioritizeUpdateResponse], prioritize, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_certificates.prioritize.with_streaming_response.update(
@@ -104,7 +97,6 @@ class TestAsyncPrioritize:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

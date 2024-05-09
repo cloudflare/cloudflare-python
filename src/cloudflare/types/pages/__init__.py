@@ -9,6 +9,5 @@ from .stage_param import StageParam as StageParam
 from .deployment_param import DeploymentParam as DeploymentParam
 from .project_edit_params import ProjectEditParams as ProjectEditParams
 from .project_create_params import ProjectCreateParams as ProjectCreateParams
-from .project_delete_params import ProjectDeleteParams as ProjectDeleteParams
 from .project_edit_response import ProjectEditResponse as ProjectEditResponse
 from .project_create_response import ProjectCreateResponse as ProjectCreateResponse

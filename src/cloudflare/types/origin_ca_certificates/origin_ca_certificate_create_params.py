@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Literal, TypedDict
+from typing_extensions import TypedDict
+
+from ..ssl.request_validity import RequestValidity
+from ..shared.certificate_request_type import CertificateRequestType
 
 __all__ = ["OriginCACertificateCreateParams"]
 
@@ -18,11 +21,11 @@ class OriginCACertificateCreateParams(TypedDict, total=False):
     certificate.
     """
 
-    request_type: Literal["origin-rsa", "origin-ecc", "keyless-certificate"]
+    request_type: CertificateRequestType
     """
     Signature type desired on certificate ("origin-rsa" (rsa), "origin-ecc" (ecdsa),
     or "keyless-certificate" (for Keyless SSL servers).
     """
 
-    requested_validity: Literal[7, 30, 90, 365, 730, 1095, 5475]
+    requested_validity: RequestValidity
     """The number of days for which the certificate should be valid."""

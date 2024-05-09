@@ -9,8 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.logs.control.retention.flag_get_response import FlagGetResponse
-from cloudflare.types.logs.control.retention.flag_create_response import FlagCreateResponse
+from cloudflare.types.logs.control.retention import FlagGetResponse, FlagCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -18,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestFlag:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         flag = client.logs.control.retention.flag.create(
@@ -27,7 +25,6 @@ class TestFlag:
         )
         assert_matches_type(FlagCreateResponse, flag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.logs.control.retention.flag.with_raw_response.create(
@@ -40,7 +37,6 @@ class TestFlag:
         flag = response.parse()
         assert_matches_type(FlagCreateResponse, flag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.logs.control.retention.flag.with_streaming_response.create(
@@ -55,7 +51,6 @@ class TestFlag:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -64,7 +59,6 @@ class TestFlag:
                 flag=True,
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         flag = client.logs.control.retention.flag.get(
@@ -72,7 +66,6 @@ class TestFlag:
         )
         assert_matches_type(FlagGetResponse, flag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.logs.control.retention.flag.with_raw_response.get(
@@ -84,7 +77,6 @@ class TestFlag:
         flag = response.parse()
         assert_matches_type(FlagGetResponse, flag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.logs.control.retention.flag.with_streaming_response.get(
@@ -98,7 +90,6 @@ class TestFlag:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -110,7 +101,6 @@ class TestFlag:
 class TestAsyncFlag:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         flag = await async_client.logs.control.retention.flag.create(
@@ -119,7 +109,6 @@ class TestAsyncFlag:
         )
         assert_matches_type(FlagCreateResponse, flag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logs.control.retention.flag.with_raw_response.create(
@@ -132,7 +121,6 @@ class TestAsyncFlag:
         flag = await response.parse()
         assert_matches_type(FlagCreateResponse, flag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logs.control.retention.flag.with_streaming_response.create(
@@ -147,7 +135,6 @@ class TestAsyncFlag:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
@@ -156,7 +143,6 @@ class TestAsyncFlag:
                 flag=True,
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         flag = await async_client.logs.control.retention.flag.get(
@@ -164,7 +150,6 @@ class TestAsyncFlag:
         )
         assert_matches_type(FlagGetResponse, flag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logs.control.retention.flag.with_raw_response.get(
@@ -176,7 +161,6 @@ class TestAsyncFlag:
         flag = await response.parse()
         assert_matches_type(FlagGetResponse, flag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logs.control.retention.flag.with_streaming_response.get(
@@ -190,7 +174,6 @@ class TestAsyncFlag:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):

@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.radar.search_global_response import SearchGlobalResponse
+from cloudflare.types.radar import SearchGlobalResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -17,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSearch:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_global(self, client: Cloudflare) -> None:
         search = client.radar.search.global_(
@@ -25,7 +24,6 @@ class TestSearch:
         )
         assert_matches_type(SearchGlobalResponse, search, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_global_with_all_params(self, client: Cloudflare) -> None:
         search = client.radar.search.global_(
@@ -38,7 +36,6 @@ class TestSearch:
         )
         assert_matches_type(SearchGlobalResponse, search, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_global(self, client: Cloudflare) -> None:
         response = client.radar.search.with_raw_response.global_(
@@ -50,7 +47,6 @@ class TestSearch:
         search = response.parse()
         assert_matches_type(SearchGlobalResponse, search, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_global(self, client: Cloudflare) -> None:
         with client.radar.search.with_streaming_response.global_(
@@ -68,7 +64,6 @@ class TestSearch:
 class TestAsyncSearch:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_global(self, async_client: AsyncCloudflare) -> None:
         search = await async_client.radar.search.global_(
@@ -76,7 +71,6 @@ class TestAsyncSearch:
         )
         assert_matches_type(SearchGlobalResponse, search, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_global_with_all_params(self, async_client: AsyncCloudflare) -> None:
         search = await async_client.radar.search.global_(
@@ -89,7 +83,6 @@ class TestAsyncSearch:
         )
         assert_matches_type(SearchGlobalResponse, search, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_global(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.search.with_raw_response.global_(
@@ -101,7 +94,6 @@ class TestAsyncSearch:
         search = await response.parse()
         assert_matches_type(SearchGlobalResponse, search, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_global(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.search.with_streaming_response.global_(

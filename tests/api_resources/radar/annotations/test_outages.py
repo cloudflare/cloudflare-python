@@ -10,8 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.radar.annotations.outage_get_response import OutageGetResponse
-from cloudflare.types.radar.annotations.outage_locations_response import OutageLocationsResponse
+from cloudflare.types.radar.annotations import (
+    OutageGetResponse,
+    OutageLocationsResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,17 +21,15 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestOutages:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         outage = client.radar.annotations.outages.get()
         assert_matches_type(OutageGetResponse, outage, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         outage = client.radar.annotations.outages.get(
-            asn=0,
+            asn=174,
             date_end=parse_datetime("2023-09-01T11:41:33.782Z"),
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
@@ -40,7 +40,6 @@ class TestOutages:
         )
         assert_matches_type(OutageGetResponse, outage, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.radar.annotations.outages.with_raw_response.get()
@@ -50,7 +49,6 @@ class TestOutages:
         outage = response.parse()
         assert_matches_type(OutageGetResponse, outage, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.radar.annotations.outages.with_streaming_response.get() as response:
@@ -62,13 +60,11 @@ class TestOutages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_locations(self, client: Cloudflare) -> None:
         outage = client.radar.annotations.outages.locations()
         assert_matches_type(OutageLocationsResponse, outage, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_locations_with_all_params(self, client: Cloudflare) -> None:
         outage = client.radar.annotations.outages.locations(
@@ -80,7 +76,6 @@ class TestOutages:
         )
         assert_matches_type(OutageLocationsResponse, outage, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_locations(self, client: Cloudflare) -> None:
         response = client.radar.annotations.outages.with_raw_response.locations()
@@ -90,7 +85,6 @@ class TestOutages:
         outage = response.parse()
         assert_matches_type(OutageLocationsResponse, outage, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_locations(self, client: Cloudflare) -> None:
         with client.radar.annotations.outages.with_streaming_response.locations() as response:
@@ -106,17 +100,15 @@ class TestOutages:
 class TestAsyncOutages:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         outage = await async_client.radar.annotations.outages.get()
         assert_matches_type(OutageGetResponse, outage, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         outage = await async_client.radar.annotations.outages.get(
-            asn=0,
+            asn=174,
             date_end=parse_datetime("2023-09-01T11:41:33.782Z"),
             date_range="7d",
             date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
@@ -127,7 +119,6 @@ class TestAsyncOutages:
         )
         assert_matches_type(OutageGetResponse, outage, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.annotations.outages.with_raw_response.get()
@@ -137,7 +128,6 @@ class TestAsyncOutages:
         outage = await response.parse()
         assert_matches_type(OutageGetResponse, outage, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.annotations.outages.with_streaming_response.get() as response:
@@ -149,13 +139,11 @@ class TestAsyncOutages:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_locations(self, async_client: AsyncCloudflare) -> None:
         outage = await async_client.radar.annotations.outages.locations()
         assert_matches_type(OutageLocationsResponse, outage, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_locations_with_all_params(self, async_client: AsyncCloudflare) -> None:
         outage = await async_client.radar.annotations.outages.locations(
@@ -167,7 +155,6 @@ class TestAsyncOutages:
         )
         assert_matches_type(OutageLocationsResponse, outage, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_locations(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.annotations.outages.with_raw_response.locations()
@@ -177,7 +164,6 @@ class TestAsyncOutages:
         outage = await response.parse()
         assert_matches_type(OutageLocationsResponse, outage, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_locations(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.annotations.outages.with_streaming_response.locations() as response:

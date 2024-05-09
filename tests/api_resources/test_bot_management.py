@@ -3,14 +3,16 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.bot_management.bot_management_get_response import BotManagementGetResponse
-from cloudflare.types.bot_management.bot_management_update_response import BotManagementUpdateResponse
+from cloudflare.types.bot_management import (
+    BotManagementGetResponse,
+    BotManagementUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -18,15 +20,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestBotManagement:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_1(self, client: Cloudflare) -> None:
         bot_management = client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_1(self, client: Cloudflare) -> None:
         bot_management = client.bot_management.update(
@@ -34,9 +34,8 @@ class TestBotManagement:
             enable_js=True,
             fight_mode=True,
         )
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_1(self, client: Cloudflare) -> None:
         response = client.bot_management.with_raw_response.update(
@@ -46,9 +45,8 @@ class TestBotManagement:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bot_management = response.parse()
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_1(self, client: Cloudflare) -> None:
         with client.bot_management.with_streaming_response.update(
@@ -58,11 +56,10 @@ class TestBotManagement:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bot_management = response.parse()
-            assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+            assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -70,15 +67,13 @@ class TestBotManagement:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_2(self, client: Cloudflare) -> None:
         bot_management = client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_2(self, client: Cloudflare) -> None:
         bot_management = client.bot_management.update(
@@ -89,9 +84,8 @@ class TestBotManagement:
             sbfm_static_resource_protection=True,
             sbfm_verified_bots="allow",
         )
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_2(self, client: Cloudflare) -> None:
         response = client.bot_management.with_raw_response.update(
@@ -101,9 +95,8 @@ class TestBotManagement:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bot_management = response.parse()
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_2(self, client: Cloudflare) -> None:
         with client.bot_management.with_streaming_response.update(
@@ -113,11 +106,10 @@ class TestBotManagement:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bot_management = response.parse()
-            assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+            assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -125,15 +117,13 @@ class TestBotManagement:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_3(self, client: Cloudflare) -> None:
         bot_management = client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_3(self, client: Cloudflare) -> None:
         bot_management = client.bot_management.update(
@@ -145,9 +135,8 @@ class TestBotManagement:
             sbfm_static_resource_protection=True,
             sbfm_verified_bots="allow",
         )
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_3(self, client: Cloudflare) -> None:
         response = client.bot_management.with_raw_response.update(
@@ -157,9 +146,8 @@ class TestBotManagement:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bot_management = response.parse()
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_3(self, client: Cloudflare) -> None:
         with client.bot_management.with_streaming_response.update(
@@ -169,11 +157,10 @@ class TestBotManagement:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bot_management = response.parse()
-            assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+            assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -181,15 +168,13 @@ class TestBotManagement:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_overload_4(self, client: Cloudflare) -> None:
         bot_management = client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params_overload_4(self, client: Cloudflare) -> None:
         bot_management = client.bot_management.update(
@@ -198,9 +183,8 @@ class TestBotManagement:
             enable_js=True,
             suppress_session_score=False,
         )
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update_overload_4(self, client: Cloudflare) -> None:
         response = client.bot_management.with_raw_response.update(
@@ -210,9 +194,8 @@ class TestBotManagement:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bot_management = response.parse()
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update_overload_4(self, client: Cloudflare) -> None:
         with client.bot_management.with_streaming_response.update(
@@ -222,11 +205,10 @@ class TestBotManagement:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bot_management = response.parse()
-            assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+            assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -234,15 +216,13 @@ class TestBotManagement:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         bot_management = client.bot_management.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BotManagementGetResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementGetResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.bot_management.with_raw_response.get(
@@ -252,9 +232,8 @@ class TestBotManagement:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bot_management = response.parse()
-        assert_matches_type(BotManagementGetResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementGetResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.bot_management.with_streaming_response.get(
@@ -264,11 +243,10 @@ class TestBotManagement:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bot_management = response.parse()
-            assert_matches_type(BotManagementGetResponse, bot_management, path=["response"])
+            assert_matches_type(Optional[BotManagementGetResponse], bot_management, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -280,15 +258,13 @@ class TestBotManagement:
 class TestAsyncBotManagement:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         bot_management = await async_client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         bot_management = await async_client.bot_management.update(
@@ -296,9 +272,8 @@ class TestAsyncBotManagement:
             enable_js=True,
             fight_mode=True,
         )
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.bot_management.with_raw_response.update(
@@ -308,9 +283,8 @@ class TestAsyncBotManagement:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bot_management = await response.parse()
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.bot_management.with_streaming_response.update(
@@ -320,11 +294,10 @@ class TestAsyncBotManagement:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bot_management = await response.parse()
-            assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+            assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -332,15 +305,13 @@ class TestAsyncBotManagement:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         bot_management = await async_client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         bot_management = await async_client.bot_management.update(
@@ -351,9 +322,8 @@ class TestAsyncBotManagement:
             sbfm_static_resource_protection=True,
             sbfm_verified_bots="allow",
         )
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.bot_management.with_raw_response.update(
@@ -363,9 +333,8 @@ class TestAsyncBotManagement:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bot_management = await response.parse()
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.bot_management.with_streaming_response.update(
@@ -375,11 +344,10 @@ class TestAsyncBotManagement:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bot_management = await response.parse()
-            assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+            assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -387,15 +355,13 @@ class TestAsyncBotManagement:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         bot_management = await async_client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
         bot_management = await async_client.bot_management.update(
@@ -407,9 +373,8 @@ class TestAsyncBotManagement:
             sbfm_static_resource_protection=True,
             sbfm_verified_bots="allow",
         )
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.bot_management.with_raw_response.update(
@@ -419,9 +384,8 @@ class TestAsyncBotManagement:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bot_management = await response.parse()
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.bot_management.with_streaming_response.update(
@@ -431,11 +395,10 @@ class TestAsyncBotManagement:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bot_management = await response.parse()
-            assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+            assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -443,15 +406,13 @@ class TestAsyncBotManagement:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         bot_management = await async_client.bot_management.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
         bot_management = await async_client.bot_management.update(
@@ -460,9 +421,8 @@ class TestAsyncBotManagement:
             enable_js=True,
             suppress_session_score=False,
         )
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.bot_management.with_raw_response.update(
@@ -472,9 +432,8 @@ class TestAsyncBotManagement:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bot_management = await response.parse()
-        assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         async with async_client.bot_management.with_streaming_response.update(
@@ -484,11 +443,10 @@ class TestAsyncBotManagement:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bot_management = await response.parse()
-            assert_matches_type(BotManagementUpdateResponse, bot_management, path=["response"])
+            assert_matches_type(Optional[BotManagementUpdateResponse], bot_management, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -496,15 +454,13 @@ class TestAsyncBotManagement:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         bot_management = await async_client.bot_management.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(BotManagementGetResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementGetResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.bot_management.with_raw_response.get(
@@ -514,9 +470,8 @@ class TestAsyncBotManagement:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         bot_management = await response.parse()
-        assert_matches_type(BotManagementGetResponse, bot_management, path=["response"])
+        assert_matches_type(Optional[BotManagementGetResponse], bot_management, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.bot_management.with_streaming_response.get(
@@ -526,11 +481,10 @@ class TestAsyncBotManagement:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             bot_management = await response.parse()
-            assert_matches_type(BotManagementGetResponse, bot_management, path=["response"])
+            assert_matches_type(Optional[BotManagementGetResponse], bot_management, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

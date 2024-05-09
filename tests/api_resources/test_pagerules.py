@@ -9,12 +9,14 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.pagerules.pagerule_get_response import PageruleGetResponse
-from cloudflare.types.pagerules.pagerule_edit_response import PageruleEditResponse
-from cloudflare.types.pagerules.pagerule_list_response import PageruleListResponse
-from cloudflare.types.pagerules.pagerule_create_response import PageruleCreateResponse
-from cloudflare.types.pagerules.pagerule_delete_response import PageruleDeleteResponse
-from cloudflare.types.pagerules.pagerule_update_response import PageruleUpdateResponse
+from cloudflare.types.pagerules import (
+    PageruleGetResponse,
+    PageruleEditResponse,
+    PageruleListResponse,
+    PageruleCreateResponse,
+    PageruleDeleteResponse,
+    PageruleUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,12 +24,11 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestPagerules:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         pagerule = client.pagerules.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
+            actions=[{}, {}, {}],
             targets=[
                 {
                     "constraint": {
@@ -40,7 +41,6 @@ class TestPagerules:
         )
         assert_matches_type(PageruleCreateResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         pagerule = client.pagerules.create(
@@ -52,7 +52,21 @@ class TestPagerules:
                         "type": "temporary",
                         "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
                     },
-                }
+                },
+                {
+                    "name": "forward_url",
+                    "value": {
+                        "type": "temporary",
+                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
+                    },
+                },
+                {
+                    "name": "forward_url",
+                    "value": {
+                        "type": "temporary",
+                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
+                    },
+                },
             ],
             targets=[
                 {
@@ -68,12 +82,11 @@ class TestPagerules:
         )
         assert_matches_type(PageruleCreateResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.pagerules.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
+            actions=[{}, {}, {}],
             targets=[
                 {
                     "constraint": {
@@ -90,12 +103,11 @@ class TestPagerules:
         pagerule = response.parse()
         assert_matches_type(PageruleCreateResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.pagerules.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
+            actions=[{}, {}, {}],
             targets=[
                 {
                     "constraint": {
@@ -114,13 +126,12 @@ class TestPagerules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.pagerules.with_raw_response.create(
                 zone_id="",
-                actions=[{}],
+                actions=[{}, {}, {}],
                 targets=[
                     {
                         "constraint": {
@@ -132,13 +143,12 @@ class TestPagerules:
                 ],
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         pagerule = client.pagerules.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
+            actions=[{}, {}, {}],
             targets=[
                 {
                     "constraint": {
@@ -151,7 +161,6 @@ class TestPagerules:
         )
         assert_matches_type(PageruleUpdateResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         pagerule = client.pagerules.update(
@@ -164,7 +173,21 @@ class TestPagerules:
                         "type": "temporary",
                         "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
                     },
-                }
+                },
+                {
+                    "name": "forward_url",
+                    "value": {
+                        "type": "temporary",
+                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
+                    },
+                },
+                {
+                    "name": "forward_url",
+                    "value": {
+                        "type": "temporary",
+                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
+                    },
+                },
             ],
             targets=[
                 {
@@ -180,13 +203,12 @@ class TestPagerules:
         )
         assert_matches_type(PageruleUpdateResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.pagerules.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
+            actions=[{}, {}, {}],
             targets=[
                 {
                     "constraint": {
@@ -203,13 +225,12 @@ class TestPagerules:
         pagerule = response.parse()
         assert_matches_type(PageruleUpdateResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.pagerules.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
+            actions=[{}, {}, {}],
             targets=[
                 {
                     "constraint": {
@@ -228,14 +249,13 @@ class TestPagerules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.pagerules.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
-                actions=[{}],
+                actions=[{}, {}, {}],
                 targets=[
                     {
                         "constraint": {
@@ -251,7 +271,7 @@ class TestPagerules:
             client.pagerules.with_raw_response.update(
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                actions=[{}],
+                actions=[{}, {}, {}],
                 targets=[
                     {
                         "constraint": {
@@ -263,7 +283,6 @@ class TestPagerules:
                 ],
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         pagerule = client.pagerules.list(
@@ -271,7 +290,6 @@ class TestPagerules:
         )
         assert_matches_type(PageruleListResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         pagerule = client.pagerules.list(
@@ -283,7 +301,6 @@ class TestPagerules:
         )
         assert_matches_type(PageruleListResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.pagerules.with_raw_response.list(
@@ -295,7 +312,6 @@ class TestPagerules:
         pagerule = response.parse()
         assert_matches_type(PageruleListResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.pagerules.with_streaming_response.list(
@@ -309,7 +325,6 @@ class TestPagerules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -317,23 +332,19 @@ class TestPagerules:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         pagerule = client.pagerules.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(Optional[PageruleDeleteResponse], pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.pagerules.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -341,13 +352,11 @@ class TestPagerules:
         pagerule = response.parse()
         assert_matches_type(Optional[PageruleDeleteResponse], pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.pagerules.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -357,24 +366,20 @@ class TestPagerules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.pagerules.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
             client.pagerules.with_raw_response.delete(
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         pagerule = client.pagerules.edit(
@@ -383,7 +388,6 @@ class TestPagerules:
         )
         assert_matches_type(PageruleEditResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         pagerule = client.pagerules.edit(
@@ -396,7 +400,21 @@ class TestPagerules:
                         "type": "temporary",
                         "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
                     },
-                }
+                },
+                {
+                    "name": "forward_url",
+                    "value": {
+                        "type": "temporary",
+                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
+                    },
+                },
+                {
+                    "name": "forward_url",
+                    "value": {
+                        "type": "temporary",
+                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
+                    },
+                },
             ],
             priority=0,
             status="active",
@@ -412,7 +430,6 @@ class TestPagerules:
         )
         assert_matches_type(PageruleEditResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.pagerules.with_raw_response.edit(
@@ -425,7 +442,6 @@ class TestPagerules:
         pagerule = response.parse()
         assert_matches_type(PageruleEditResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.pagerules.with_streaming_response.edit(
@@ -440,7 +456,6 @@ class TestPagerules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -455,7 +470,6 @@ class TestPagerules:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         pagerule = client.pagerules.get(
@@ -464,7 +478,6 @@ class TestPagerules:
         )
         assert_matches_type(PageruleGetResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.pagerules.with_raw_response.get(
@@ -477,7 +490,6 @@ class TestPagerules:
         pagerule = response.parse()
         assert_matches_type(PageruleGetResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.pagerules.with_streaming_response.get(
@@ -492,7 +504,6 @@ class TestPagerules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -511,12 +522,11 @@ class TestPagerules:
 class TestAsyncPagerules:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         pagerule = await async_client.pagerules.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
+            actions=[{}, {}, {}],
             targets=[
                 {
                     "constraint": {
@@ -529,7 +539,6 @@ class TestAsyncPagerules:
         )
         assert_matches_type(PageruleCreateResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         pagerule = await async_client.pagerules.create(
@@ -541,7 +550,21 @@ class TestAsyncPagerules:
                         "type": "temporary",
                         "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
                     },
-                }
+                },
+                {
+                    "name": "forward_url",
+                    "value": {
+                        "type": "temporary",
+                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
+                    },
+                },
+                {
+                    "name": "forward_url",
+                    "value": {
+                        "type": "temporary",
+                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
+                    },
+                },
             ],
             targets=[
                 {
@@ -557,12 +580,11 @@ class TestAsyncPagerules:
         )
         assert_matches_type(PageruleCreateResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pagerules.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
+            actions=[{}, {}, {}],
             targets=[
                 {
                     "constraint": {
@@ -579,12 +601,11 @@ class TestAsyncPagerules:
         pagerule = await response.parse()
         assert_matches_type(PageruleCreateResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pagerules.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
+            actions=[{}, {}, {}],
             targets=[
                 {
                     "constraint": {
@@ -603,13 +624,12 @@ class TestAsyncPagerules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.pagerules.with_raw_response.create(
                 zone_id="",
-                actions=[{}],
+                actions=[{}, {}, {}],
                 targets=[
                     {
                         "constraint": {
@@ -621,13 +641,12 @@ class TestAsyncPagerules:
                 ],
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         pagerule = await async_client.pagerules.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
+            actions=[{}, {}, {}],
             targets=[
                 {
                     "constraint": {
@@ -640,7 +659,6 @@ class TestAsyncPagerules:
         )
         assert_matches_type(PageruleUpdateResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         pagerule = await async_client.pagerules.update(
@@ -653,7 +671,21 @@ class TestAsyncPagerules:
                         "type": "temporary",
                         "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
                     },
-                }
+                },
+                {
+                    "name": "forward_url",
+                    "value": {
+                        "type": "temporary",
+                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
+                    },
+                },
+                {
+                    "name": "forward_url",
+                    "value": {
+                        "type": "temporary",
+                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
+                    },
+                },
             ],
             targets=[
                 {
@@ -669,13 +701,12 @@ class TestAsyncPagerules:
         )
         assert_matches_type(PageruleUpdateResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pagerules.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
+            actions=[{}, {}, {}],
             targets=[
                 {
                     "constraint": {
@@ -692,13 +723,12 @@ class TestAsyncPagerules:
         pagerule = await response.parse()
         assert_matches_type(PageruleUpdateResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pagerules.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            actions=[{}],
+            actions=[{}, {}, {}],
             targets=[
                 {
                     "constraint": {
@@ -717,14 +747,13 @@ class TestAsyncPagerules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.pagerules.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
-                actions=[{}],
+                actions=[{}, {}, {}],
                 targets=[
                     {
                         "constraint": {
@@ -740,7 +769,7 @@ class TestAsyncPagerules:
             await async_client.pagerules.with_raw_response.update(
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                actions=[{}],
+                actions=[{}, {}, {}],
                 targets=[
                     {
                         "constraint": {
@@ -752,7 +781,6 @@ class TestAsyncPagerules:
                 ],
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         pagerule = await async_client.pagerules.list(
@@ -760,7 +788,6 @@ class TestAsyncPagerules:
         )
         assert_matches_type(PageruleListResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         pagerule = await async_client.pagerules.list(
@@ -772,7 +799,6 @@ class TestAsyncPagerules:
         )
         assert_matches_type(PageruleListResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pagerules.with_raw_response.list(
@@ -784,7 +810,6 @@ class TestAsyncPagerules:
         pagerule = await response.parse()
         assert_matches_type(PageruleListResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pagerules.with_streaming_response.list(
@@ -798,7 +823,6 @@ class TestAsyncPagerules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -806,23 +830,19 @@ class TestAsyncPagerules:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         pagerule = await async_client.pagerules.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
         assert_matches_type(Optional[PageruleDeleteResponse], pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pagerules.with_raw_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         )
 
         assert response.is_closed is True
@@ -830,13 +850,11 @@ class TestAsyncPagerules:
         pagerule = await response.parse()
         assert_matches_type(Optional[PageruleDeleteResponse], pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pagerules.with_streaming_response.delete(
             "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -846,24 +864,20 @@ class TestAsyncPagerules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.pagerules.with_raw_response.delete(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
             await async_client.pagerules.with_raw_response.delete(
                 "",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         pagerule = await async_client.pagerules.edit(
@@ -872,7 +886,6 @@ class TestAsyncPagerules:
         )
         assert_matches_type(PageruleEditResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         pagerule = await async_client.pagerules.edit(
@@ -885,7 +898,21 @@ class TestAsyncPagerules:
                         "type": "temporary",
                         "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
                     },
-                }
+                },
+                {
+                    "name": "forward_url",
+                    "value": {
+                        "type": "temporary",
+                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
+                    },
+                },
+                {
+                    "name": "forward_url",
+                    "value": {
+                        "type": "temporary",
+                        "url": "http://www.example.com/somewhere/$1/astring/$2/anotherstring/$3",
+                    },
+                },
             ],
             priority=0,
             status="active",
@@ -901,7 +928,6 @@ class TestAsyncPagerules:
         )
         assert_matches_type(PageruleEditResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pagerules.with_raw_response.edit(
@@ -914,7 +940,6 @@ class TestAsyncPagerules:
         pagerule = await response.parse()
         assert_matches_type(PageruleEditResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pagerules.with_streaming_response.edit(
@@ -929,7 +954,6 @@ class TestAsyncPagerules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -944,7 +968,6 @@ class TestAsyncPagerules:
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         pagerule = await async_client.pagerules.get(
@@ -953,7 +976,6 @@ class TestAsyncPagerules:
         )
         assert_matches_type(PageruleGetResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pagerules.with_raw_response.get(
@@ -966,7 +988,6 @@ class TestAsyncPagerules:
         pagerule = await response.parse()
         assert_matches_type(PageruleGetResponse, pagerule, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pagerules.with_streaming_response.get(
@@ -981,7 +1002,6 @@ class TestAsyncPagerules:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

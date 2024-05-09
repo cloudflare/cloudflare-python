@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -25,7 +25,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.origin_tls_client_auth.hostnames import certificate_create_params, certificate_delete_params
+from ....types.origin_tls_client_auth.hostnames import certificate_create_params
 from ....types.origin_tls_client_auth.authenticated_origin_pull import AuthenticatedOriginPull
 from ....types.origin_tls_client_auth.hostnames.certificate_get_response import CertificateGetResponse
 from ....types.origin_tls_client_auth.hostnames.certificate_create_response import CertificateCreateResponse
@@ -55,7 +55,7 @@ class CertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateCreateResponse:
+    ) -> Optional[CertificateCreateResponse]:
         """Upload a certificate to be used for client authentication on a hostname.
 
         10
@@ -92,9 +92,9 @@ class CertificatesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CertificateCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[CertificateCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CertificateCreateResponse], ResultWrapper[CertificateCreateResponse]),
+            cast_to=cast(Type[Optional[CertificateCreateResponse]], ResultWrapper[CertificateCreateResponse]),
         )
 
     def list(
@@ -138,14 +138,13 @@ class CertificatesResource(SyncAPIResource):
         certificate_id: str,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateDeleteResponse:
+    ) -> Optional[CertificateDeleteResponse]:
         """
         Delete Hostname Client Certificate
 
@@ -168,15 +167,14 @@ class CertificatesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return self._delete(
             f"/zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}",
-            body=maybe_transform(body, certificate_delete_params.CertificateDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CertificateDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[CertificateDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CertificateDeleteResponse], ResultWrapper[CertificateDeleteResponse]),
+            cast_to=cast(Type[Optional[CertificateDeleteResponse]], ResultWrapper[CertificateDeleteResponse]),
         )
 
     def get(
@@ -190,7 +188,7 @@ class CertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateGetResponse:
+    ) -> Optional[CertificateGetResponse]:
         """
         Get the certificate by ID to be used for client authentication on a hostname.
 
@@ -218,9 +216,9 @@ class CertificatesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CertificateGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[CertificateGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CertificateGetResponse], ResultWrapper[CertificateGetResponse]),
+            cast_to=cast(Type[Optional[CertificateGetResponse]], ResultWrapper[CertificateGetResponse]),
         )
 
 
@@ -245,7 +243,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateCreateResponse:
+    ) -> Optional[CertificateCreateResponse]:
         """Upload a certificate to be used for client authentication on a hostname.
 
         10
@@ -282,9 +280,9 @@ class AsyncCertificatesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CertificateCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[CertificateCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CertificateCreateResponse], ResultWrapper[CertificateCreateResponse]),
+            cast_to=cast(Type[Optional[CertificateCreateResponse]], ResultWrapper[CertificateCreateResponse]),
         )
 
     def list(
@@ -328,14 +326,13 @@ class AsyncCertificatesResource(AsyncAPIResource):
         certificate_id: str,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateDeleteResponse:
+    ) -> Optional[CertificateDeleteResponse]:
         """
         Delete Hostname Client Certificate
 
@@ -358,15 +355,14 @@ class AsyncCertificatesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return await self._delete(
             f"/zones/{zone_id}/origin_tls_client_auth/hostnames/certificates/{certificate_id}",
-            body=await async_maybe_transform(body, certificate_delete_params.CertificateDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CertificateDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[CertificateDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CertificateDeleteResponse], ResultWrapper[CertificateDeleteResponse]),
+            cast_to=cast(Type[Optional[CertificateDeleteResponse]], ResultWrapper[CertificateDeleteResponse]),
         )
 
     async def get(
@@ -380,7 +376,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> CertificateGetResponse:
+    ) -> Optional[CertificateGetResponse]:
         """
         Get the certificate by ID to be used for client authentication on a hostname.
 
@@ -408,9 +404,9 @@ class AsyncCertificatesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[CertificateGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[CertificateGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[CertificateGetResponse], ResultWrapper[CertificateGetResponse]),
+            cast_to=cast(Type[Optional[CertificateGetResponse]], ResultWrapper[CertificateGetResponse]),
         )
 
 

@@ -1,9 +1,9 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
-from typing_extensions import Literal
 
 from ..._models import BaseModel
+from ..custom_certificates.status import Status
 
 __all__ = ["ClientCertificate", "CertificateAuthority"]
 
@@ -63,7 +63,7 @@ class ClientCertificate(BaseModel):
     state: Optional[str] = None
     """State, provided by the CSR"""
 
-    status: Optional[Literal["active", "pending_reactivation", "pending_revocation", "revoked"]] = None
+    status: Optional[Status] = None
     """
     Client Certificates may be active or revoked, and the pending_reactivation or
     pending_revocation represent in-progress asynchronous transitions

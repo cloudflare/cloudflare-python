@@ -26,12 +26,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.firewall import (
-    lockdown_list_params,
-    lockdown_create_params,
-    lockdown_delete_params,
-    lockdown_update_params,
-)
+from ...types.firewall import lockdown_list_params, lockdown_create_params, lockdown_update_params
 from ...types.firewall.lockdown import Lockdown
 from ...types.firewall.lockdown_delete_response import LockdownDeleteResponse
 
@@ -232,7 +227,6 @@ class LockdownsResource(SyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -262,7 +256,6 @@ class LockdownsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
             f"/zones/{zone_identifier}/firewall/lockdowns/{id}",
-            body=maybe_transform(body, lockdown_delete_params.LockdownDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -512,7 +505,6 @@ class AsyncLockdownsResource(AsyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -542,7 +534,6 @@ class AsyncLockdownsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
             f"/zones/{zone_identifier}/firewall/lockdowns/{id}",
-            body=await async_maybe_transform(body, lockdown_delete_params.LockdownDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

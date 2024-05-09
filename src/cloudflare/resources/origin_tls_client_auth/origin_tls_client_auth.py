@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import httpx
 
@@ -42,7 +42,7 @@ from ..._base_client import (
     make_request_options,
 )
 from .hostnames.hostnames import HostnamesResource, AsyncHostnamesResource
-from ...types.origin_tls_client_auth import origin_tls_client_auth_create_params, origin_tls_client_auth_delete_params
+from ...types.origin_tls_client_auth import origin_tls_client_auth_create_params
 from ...types.origin_tls_client_auth.zone_authenticated_origin_pull import ZoneAuthenticatedOriginPull
 from ...types.origin_tls_client_auth.origin_tls_client_auth_get_response import OriginTLSClientAuthGetResponse
 from ...types.origin_tls_client_auth.origin_tls_client_auth_create_response import OriginTLSClientAuthCreateResponse
@@ -80,7 +80,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginTLSClientAuthCreateResponse:
+    ) -> Optional[OriginTLSClientAuthCreateResponse]:
         """
         Upload your own certificate you want Cloudflare to use for edge-to-origin
         communication to override the shared certificate. Please note that it is
@@ -106,7 +106,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            OriginTLSClientAuthCreateResponse,
+            Optional[OriginTLSClientAuthCreateResponse],
             self._post(
                 f"/zones/{zone_id}/origin_tls_client_auth",
                 body=maybe_transform(
@@ -121,7 +121,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[OriginTLSClientAuthCreateResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[OriginTLSClientAuthCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginTLSClientAuthCreateResponse]
@@ -170,14 +170,13 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         certificate_id: str,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginTLSClientAuthDeleteResponse:
+    ) -> Optional[OriginTLSClientAuthDeleteResponse]:
         """
         Delete Certificate
 
@@ -199,16 +198,15 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return cast(
-            OriginTLSClientAuthDeleteResponse,
+            Optional[OriginTLSClientAuthDeleteResponse],
             self._delete(
                 f"/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
-                body=maybe_transform(body, origin_tls_client_auth_delete_params.OriginTLSClientAuthDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[OriginTLSClientAuthDeleteResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[OriginTLSClientAuthDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginTLSClientAuthDeleteResponse]
@@ -227,7 +225,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginTLSClientAuthGetResponse:
+    ) -> Optional[OriginTLSClientAuthGetResponse]:
         """
         Get Certificate Details
 
@@ -249,7 +247,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return cast(
-            OriginTLSClientAuthGetResponse,
+            Optional[OriginTLSClientAuthGetResponse],
             self._get(
                 f"/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
                 options=make_request_options(
@@ -257,7 +255,7 @@ class OriginTLSClientAuthResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[OriginTLSClientAuthGetResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[OriginTLSClientAuthGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginTLSClientAuthGetResponse]
@@ -295,7 +293,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginTLSClientAuthCreateResponse:
+    ) -> Optional[OriginTLSClientAuthCreateResponse]:
         """
         Upload your own certificate you want Cloudflare to use for edge-to-origin
         communication to override the shared certificate. Please note that it is
@@ -321,7 +319,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
-            OriginTLSClientAuthCreateResponse,
+            Optional[OriginTLSClientAuthCreateResponse],
             await self._post(
                 f"/zones/{zone_id}/origin_tls_client_auth",
                 body=await async_maybe_transform(
@@ -336,7 +334,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[OriginTLSClientAuthCreateResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[OriginTLSClientAuthCreateResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginTLSClientAuthCreateResponse]
@@ -385,14 +383,13 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         certificate_id: str,
         *,
         zone_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginTLSClientAuthDeleteResponse:
+    ) -> Optional[OriginTLSClientAuthDeleteResponse]:
         """
         Delete Certificate
 
@@ -414,18 +411,15 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return cast(
-            OriginTLSClientAuthDeleteResponse,
+            Optional[OriginTLSClientAuthDeleteResponse],
             await self._delete(
                 f"/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
-                body=await async_maybe_transform(
-                    body, origin_tls_client_auth_delete_params.OriginTLSClientAuthDeleteParams
-                ),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[OriginTLSClientAuthDeleteResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[OriginTLSClientAuthDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginTLSClientAuthDeleteResponse]
@@ -444,7 +438,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OriginTLSClientAuthGetResponse:
+    ) -> Optional[OriginTLSClientAuthGetResponse]:
         """
         Get Certificate Details
 
@@ -466,7 +460,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return cast(
-            OriginTLSClientAuthGetResponse,
+            Optional[OriginTLSClientAuthGetResponse],
             await self._get(
                 f"/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
                 options=make_request_options(
@@ -474,7 +468,7 @@ class AsyncOriginTLSClientAuthResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[OriginTLSClientAuthGetResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[OriginTLSClientAuthGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[OriginTLSClientAuthGetResponse]

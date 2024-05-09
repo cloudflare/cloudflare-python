@@ -8,7 +8,7 @@ __all__ = ["MemberListParams"]
 
 
 class MemberListParams(TypedDict, total=False):
-    account_id: Required[object]
+    account_id: Required[str]
 
     direction: Literal["asc", "desc"]
     """Direction to order results."""

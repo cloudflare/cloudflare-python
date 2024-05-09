@@ -9,9 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust.dex.traceroute import Traceroute
-from cloudflare.types.zero_trust.network_path_response import NetworkPathResponse
-from cloudflare.types.zero_trust.dex.traceroute_test_percentiles_response import TracerouteTestPercentilesResponse
+from cloudflare.types.zero_trust import NetworkPathResponse
+from cloudflare.types.zero_trust.dex import (
+    Traceroute,
+    TracerouteTestPercentilesResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,41 +21,38 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestTracerouteTests:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         traceroute_test = client.zero_trust.dex.traceroute_tests.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         )
         assert_matches_type(Optional[Traceroute], traceroute_test, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         traceroute_test = client.zero_trust.dex.traceroute_tests.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
             colo="string",
             device_id=["string", "string", "string"],
         )
         assert_matches_type(Optional[Traceroute], traceroute_test, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.dex.traceroute_tests.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         )
 
         assert response.is_closed is True
@@ -61,15 +60,14 @@ class TestTracerouteTests:
         traceroute_test = response.parse()
         assert_matches_type(Optional[Traceroute], traceroute_test, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.dex.traceroute_tests.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -79,7 +77,6 @@ class TestTracerouteTests:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -87,8 +84,8 @@ class TestTracerouteTests:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 interval="minute",
-                time_end="string",
-                time_start="string",
+                time_end="1689606812000",
+                time_start="1689520412000",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
@@ -96,11 +93,10 @@ class TestTracerouteTests:
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 interval="minute",
-                time_end="string",
-                time_start="string",
+                time_end="1689606812000",
+                time_start="1689520412000",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_network_path(self, client: Cloudflare) -> None:
         traceroute_test = client.zero_trust.dex.traceroute_tests.network_path(
@@ -108,12 +104,11 @@ class TestTracerouteTests:
             account_id="01a7362d577a6c3019a474fd6f485823",
             device_id="string",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         )
         assert_matches_type(Optional[NetworkPathResponse], traceroute_test, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_network_path(self, client: Cloudflare) -> None:
         response = client.zero_trust.dex.traceroute_tests.with_raw_response.network_path(
@@ -121,8 +116,8 @@ class TestTracerouteTests:
             account_id="01a7362d577a6c3019a474fd6f485823",
             device_id="string",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         )
 
         assert response.is_closed is True
@@ -130,7 +125,6 @@ class TestTracerouteTests:
         traceroute_test = response.parse()
         assert_matches_type(Optional[NetworkPathResponse], traceroute_test, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_network_path(self, client: Cloudflare) -> None:
         with client.zero_trust.dex.traceroute_tests.with_streaming_response.network_path(
@@ -138,8 +132,8 @@ class TestTracerouteTests:
             account_id="01a7362d577a6c3019a474fd6f485823",
             device_id="string",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -149,7 +143,6 @@ class TestTracerouteTests:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_network_path(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -158,8 +151,8 @@ class TestTracerouteTests:
                 account_id="",
                 device_id="string",
                 interval="minute",
-                time_end="string",
-                time_start="string",
+                time_end="1689606812000",
+                time_start="1689520412000",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
@@ -168,11 +161,10 @@ class TestTracerouteTests:
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 device_id="string",
                 interval="minute",
-                time_end="string",
-                time_start="string",
+                time_end="1689606812000",
+                time_start="1689520412000",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_percentiles(self, client: Cloudflare) -> None:
         traceroute_test = client.zero_trust.dex.traceroute_tests.percentiles(
@@ -183,7 +175,6 @@ class TestTracerouteTests:
         )
         assert_matches_type(Optional[TracerouteTestPercentilesResponse], traceroute_test, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_percentiles_with_all_params(self, client: Cloudflare) -> None:
         traceroute_test = client.zero_trust.dex.traceroute_tests.percentiles(
@@ -196,7 +187,6 @@ class TestTracerouteTests:
         )
         assert_matches_type(Optional[TracerouteTestPercentilesResponse], traceroute_test, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_percentiles(self, client: Cloudflare) -> None:
         response = client.zero_trust.dex.traceroute_tests.with_raw_response.percentiles(
@@ -211,7 +201,6 @@ class TestTracerouteTests:
         traceroute_test = response.parse()
         assert_matches_type(Optional[TracerouteTestPercentilesResponse], traceroute_test, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_percentiles(self, client: Cloudflare) -> None:
         with client.zero_trust.dex.traceroute_tests.with_streaming_response.percentiles(
@@ -228,7 +217,6 @@ class TestTracerouteTests:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_percentiles(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -251,41 +239,38 @@ class TestTracerouteTests:
 class TestAsyncTracerouteTests:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         traceroute_test = await async_client.zero_trust.dex.traceroute_tests.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         )
         assert_matches_type(Optional[Traceroute], traceroute_test, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         traceroute_test = await async_client.zero_trust.dex.traceroute_tests.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
             colo="string",
             device_id=["string", "string", "string"],
         )
         assert_matches_type(Optional[Traceroute], traceroute_test, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dex.traceroute_tests.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         )
 
         assert response.is_closed is True
@@ -293,15 +278,14 @@ class TestAsyncTracerouteTests:
         traceroute_test = await response.parse()
         assert_matches_type(Optional[Traceroute], traceroute_test, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dex.traceroute_tests.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -311,7 +295,6 @@ class TestAsyncTracerouteTests:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -319,8 +302,8 @@ class TestAsyncTracerouteTests:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 interval="minute",
-                time_end="string",
-                time_start="string",
+                time_end="1689606812000",
+                time_start="1689520412000",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
@@ -328,11 +311,10 @@ class TestAsyncTracerouteTests:
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 interval="minute",
-                time_end="string",
-                time_start="string",
+                time_end="1689606812000",
+                time_start="1689520412000",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_network_path(self, async_client: AsyncCloudflare) -> None:
         traceroute_test = await async_client.zero_trust.dex.traceroute_tests.network_path(
@@ -340,12 +322,11 @@ class TestAsyncTracerouteTests:
             account_id="01a7362d577a6c3019a474fd6f485823",
             device_id="string",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         )
         assert_matches_type(Optional[NetworkPathResponse], traceroute_test, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_network_path(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dex.traceroute_tests.with_raw_response.network_path(
@@ -353,8 +334,8 @@ class TestAsyncTracerouteTests:
             account_id="01a7362d577a6c3019a474fd6f485823",
             device_id="string",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         )
 
         assert response.is_closed is True
@@ -362,7 +343,6 @@ class TestAsyncTracerouteTests:
         traceroute_test = await response.parse()
         assert_matches_type(Optional[NetworkPathResponse], traceroute_test, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_network_path(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dex.traceroute_tests.with_streaming_response.network_path(
@@ -370,8 +350,8 @@ class TestAsyncTracerouteTests:
             account_id="01a7362d577a6c3019a474fd6f485823",
             device_id="string",
             interval="minute",
-            time_end="string",
-            time_start="string",
+            time_end="1689606812000",
+            time_start="1689520412000",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -381,7 +361,6 @@ class TestAsyncTracerouteTests:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_network_path(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -390,8 +369,8 @@ class TestAsyncTracerouteTests:
                 account_id="",
                 device_id="string",
                 interval="minute",
-                time_end="string",
-                time_start="string",
+                time_end="1689606812000",
+                time_start="1689520412000",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
@@ -400,11 +379,10 @@ class TestAsyncTracerouteTests:
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 device_id="string",
                 interval="minute",
-                time_end="string",
-                time_start="string",
+                time_end="1689606812000",
+                time_start="1689520412000",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_percentiles(self, async_client: AsyncCloudflare) -> None:
         traceroute_test = await async_client.zero_trust.dex.traceroute_tests.percentiles(
@@ -415,7 +393,6 @@ class TestAsyncTracerouteTests:
         )
         assert_matches_type(Optional[TracerouteTestPercentilesResponse], traceroute_test, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_percentiles_with_all_params(self, async_client: AsyncCloudflare) -> None:
         traceroute_test = await async_client.zero_trust.dex.traceroute_tests.percentiles(
@@ -428,7 +405,6 @@ class TestAsyncTracerouteTests:
         )
         assert_matches_type(Optional[TracerouteTestPercentilesResponse], traceroute_test, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_percentiles(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dex.traceroute_tests.with_raw_response.percentiles(
@@ -443,7 +419,6 @@ class TestAsyncTracerouteTests:
         traceroute_test = await response.parse()
         assert_matches_type(Optional[TracerouteTestPercentilesResponse], traceroute_test, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_percentiles(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dex.traceroute_tests.with_streaming_response.percentiles(
@@ -460,7 +435,6 @@ class TestAsyncTracerouteTests:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_percentiles(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

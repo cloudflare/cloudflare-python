@@ -7,6 +7,7 @@ from typing_extensions import Literal, Required, TypedDict
 
 from .dcv_method import DCVMethod
 from .bundle_method import BundleMethod
+from ..shared.certificate_ca import CertificateCA
 from .domain_validation_type import DomainValidationType
 
 __all__ = ["CustomHostnameCreateParams", "SSL", "SSLSettings", "CustomMetadata"]
@@ -55,7 +56,7 @@ class SSL(TypedDict, total=False):
     chain, but does not otherwise modify it.
     """
 
-    certificate_authority: Literal["digicert", "google", "lets_encrypt"]
+    certificate_authority: CertificateCA
     """The Certificate Authority that will issue the certificate"""
 
     custom_certificate: str

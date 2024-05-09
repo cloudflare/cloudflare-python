@@ -17,9 +17,11 @@ from cloudflare._response import (
     StreamedBinaryAPIResponse,
     AsyncStreamedBinaryAPIResponse,
 )
-from cloudflare.types.url_scanner.scan_get_response import ScanGetResponse
-from cloudflare.types.url_scanner.scan_har_response import ScanHarResponse
-from cloudflare.types.url_scanner.scan_create_response import ScanCreateResponse
+from cloudflare.types.url_scanner import (
+    ScanGetResponse,
+    ScanHarResponse,
+    ScanCreateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +29,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestScans:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         scan = client.url_scanner.scans.create(
@@ -36,7 +37,6 @@ class TestScans:
         )
         assert_matches_type(ScanCreateResponse, scan, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         scan = client.url_scanner.scans.create(
@@ -48,7 +48,6 @@ class TestScans:
         )
         assert_matches_type(ScanCreateResponse, scan, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.url_scanner.scans.with_raw_response.create(
@@ -61,7 +60,6 @@ class TestScans:
         scan = response.parse()
         assert_matches_type(ScanCreateResponse, scan, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.url_scanner.scans.with_streaming_response.create(
@@ -76,7 +74,6 @@ class TestScans:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -85,7 +82,6 @@ class TestScans:
                 url="https://www.example.com",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         scan = client.url_scanner.scans.get(
@@ -94,7 +90,6 @@ class TestScans:
         )
         assert_matches_type(ScanGetResponse, scan, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.url_scanner.scans.with_raw_response.get(
@@ -107,7 +102,6 @@ class TestScans:
         scan = response.parse()
         assert_matches_type(ScanGetResponse, scan, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.url_scanner.scans.with_streaming_response.get(
@@ -122,7 +116,6 @@ class TestScans:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -137,7 +130,6 @@ class TestScans:
                 account_id="string",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_har(self, client: Cloudflare) -> None:
         scan = client.url_scanner.scans.har(
@@ -146,7 +138,6 @@ class TestScans:
         )
         assert_matches_type(ScanHarResponse, scan, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_har(self, client: Cloudflare) -> None:
         response = client.url_scanner.scans.with_raw_response.har(
@@ -159,7 +150,6 @@ class TestScans:
         scan = response.parse()
         assert_matches_type(ScanHarResponse, scan, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_har(self, client: Cloudflare) -> None:
         with client.url_scanner.scans.with_streaming_response.har(
@@ -174,7 +164,6 @@ class TestScans:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_har(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -189,7 +178,6 @@ class TestScans:
                 account_id="string",
             )
 
-    @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_method_screenshot(self, client: Cloudflare, respx_mock: MockRouter) -> None:
@@ -205,7 +193,6 @@ class TestScans:
         assert cast(Any, scan.is_closed) is True
         assert isinstance(scan, BinaryAPIResponse)
 
-    @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_method_screenshot_with_all_params(self, client: Cloudflare, respx_mock: MockRouter) -> None:
@@ -222,7 +209,6 @@ class TestScans:
         assert cast(Any, scan.is_closed) is True
         assert isinstance(scan, BinaryAPIResponse)
 
-    @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response_screenshot(self, client: Cloudflare, respx_mock: MockRouter) -> None:
@@ -240,7 +226,6 @@ class TestScans:
         assert scan.json() == {"foo": "bar"}
         assert isinstance(scan, BinaryAPIResponse)
 
-    @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_streaming_response_screenshot(self, client: Cloudflare, respx_mock: MockRouter) -> None:
@@ -260,7 +245,6 @@ class TestScans:
 
         assert cast(Any, scan.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_path_params_screenshot(self, client: Cloudflare) -> None:
@@ -280,7 +264,6 @@ class TestScans:
 class TestAsyncScans:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         scan = await async_client.url_scanner.scans.create(
@@ -289,7 +272,6 @@ class TestAsyncScans:
         )
         assert_matches_type(ScanCreateResponse, scan, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         scan = await async_client.url_scanner.scans.create(
@@ -301,7 +283,6 @@ class TestAsyncScans:
         )
         assert_matches_type(ScanCreateResponse, scan, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.url_scanner.scans.with_raw_response.create(
@@ -314,7 +295,6 @@ class TestAsyncScans:
         scan = await response.parse()
         assert_matches_type(ScanCreateResponse, scan, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.url_scanner.scans.with_streaming_response.create(
@@ -329,7 +309,6 @@ class TestAsyncScans:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -338,7 +317,6 @@ class TestAsyncScans:
                 url="https://www.example.com",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         scan = await async_client.url_scanner.scans.get(
@@ -347,7 +325,6 @@ class TestAsyncScans:
         )
         assert_matches_type(ScanGetResponse, scan, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.url_scanner.scans.with_raw_response.get(
@@ -360,7 +337,6 @@ class TestAsyncScans:
         scan = await response.parse()
         assert_matches_type(ScanGetResponse, scan, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.url_scanner.scans.with_streaming_response.get(
@@ -375,7 +351,6 @@ class TestAsyncScans:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -390,7 +365,6 @@ class TestAsyncScans:
                 account_id="string",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_har(self, async_client: AsyncCloudflare) -> None:
         scan = await async_client.url_scanner.scans.har(
@@ -399,7 +373,6 @@ class TestAsyncScans:
         )
         assert_matches_type(ScanHarResponse, scan, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_har(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.url_scanner.scans.with_raw_response.har(
@@ -412,7 +385,6 @@ class TestAsyncScans:
         scan = await response.parse()
         assert_matches_type(ScanHarResponse, scan, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_har(self, async_client: AsyncCloudflare) -> None:
         async with async_client.url_scanner.scans.with_streaming_response.har(
@@ -427,7 +399,6 @@ class TestAsyncScans:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_har(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -442,7 +413,6 @@ class TestAsyncScans:
                 account_id="string",
             )
 
-    @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_method_screenshot(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
@@ -458,7 +428,6 @@ class TestAsyncScans:
         assert cast(Any, scan.is_closed) is True
         assert isinstance(scan, AsyncBinaryAPIResponse)
 
-    @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_method_screenshot_with_all_params(
@@ -477,7 +446,6 @@ class TestAsyncScans:
         assert cast(Any, scan.is_closed) is True
         assert isinstance(scan, AsyncBinaryAPIResponse)
 
-    @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_raw_response_screenshot(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
@@ -495,7 +463,6 @@ class TestAsyncScans:
         assert await scan.json() == {"foo": "bar"}
         assert isinstance(scan, AsyncBinaryAPIResponse)
 
-    @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_streaming_response_screenshot(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
@@ -515,7 +482,6 @@ class TestAsyncScans:
 
         assert cast(Any, scan.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_path_params_screenshot(self, async_client: AsyncCloudflare) -> None:

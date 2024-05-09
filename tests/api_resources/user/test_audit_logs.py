@@ -11,7 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.shared.audit_log import AuditLog
+from cloudflare.types.shared import AuditLog
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,13 +19,11 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAuditLogs:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         audit_log = client.user.audit_logs.list()
         assert_matches_type(SyncV4PagePaginationArray[AuditLog], audit_log, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         audit_log = client.user.audit_logs.list(
@@ -46,7 +44,6 @@ class TestAuditLogs:
         )
         assert_matches_type(SyncV4PagePaginationArray[AuditLog], audit_log, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.user.audit_logs.with_raw_response.list()
@@ -56,7 +53,6 @@ class TestAuditLogs:
         audit_log = response.parse()
         assert_matches_type(SyncV4PagePaginationArray[AuditLog], audit_log, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.user.audit_logs.with_streaming_response.list() as response:
@@ -72,13 +68,11 @@ class TestAuditLogs:
 class TestAsyncAuditLogs:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         audit_log = await async_client.user.audit_logs.list()
         assert_matches_type(AsyncV4PagePaginationArray[AuditLog], audit_log, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         audit_log = await async_client.user.audit_logs.list(
@@ -99,7 +93,6 @@ class TestAsyncAuditLogs:
         )
         assert_matches_type(AsyncV4PagePaginationArray[AuditLog], audit_log, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.audit_logs.with_raw_response.list()
@@ -109,7 +102,6 @@ class TestAsyncAuditLogs:
         audit_log = await response.parse()
         assert_matches_type(AsyncV4PagePaginationArray[AuditLog], audit_log, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.audit_logs.with_streaming_response.list() as response:

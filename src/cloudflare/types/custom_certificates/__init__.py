@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .status import Status as Status
 from .geo_restrictions import GeoRestrictions as GeoRestrictions
 from .custom_certificate import CustomCertificate as CustomCertificate
 from .geo_restrictions_param import GeoRestrictionsParam as GeoRestrictionsParam
@@ -11,7 +12,6 @@ from .custom_certificate_edit_params import CustomCertificateEditParams as Custo
 from .custom_certificate_list_params import CustomCertificateListParams as CustomCertificateListParams
 from .custom_certificate_get_response import CustomCertificateGetResponse as CustomCertificateGetResponse
 from .custom_certificate_create_params import CustomCertificateCreateParams as CustomCertificateCreateParams
-from .custom_certificate_delete_params import CustomCertificateDeleteParams as CustomCertificateDeleteParams
 from .custom_certificate_edit_response import CustomCertificateEditResponse as CustomCertificateEditResponse
 from .custom_certificate_create_response import CustomCertificateCreateResponse as CustomCertificateCreateResponse
 from .custom_certificate_delete_response import CustomCertificateDeleteResponse as CustomCertificateDeleteResponse

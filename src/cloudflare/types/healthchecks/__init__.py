@@ -7,13 +7,11 @@ from .check_region import CheckRegion as CheckRegion
 from .tcp_configuration import TCPConfiguration as TCPConfiguration
 from .http_configuration import HTTPConfiguration as HTTPConfiguration
 from .preview_create_params import PreviewCreateParams as PreviewCreateParams
-from .preview_delete_params import PreviewDeleteParams as PreviewDeleteParams
 from .healthcheck_edit_params import HealthcheckEditParams as HealthcheckEditParams
 from .healthcheck_list_params import HealthcheckListParams as HealthcheckListParams
 from .preview_delete_response import PreviewDeleteResponse as PreviewDeleteResponse
 from .tcp_configuration_param import TCPConfigurationParam as TCPConfigurationParam
 from .http_configuration_param import HTTPConfigurationParam as HTTPConfigurationParam
 from .healthcheck_create_params import HealthcheckCreateParams as HealthcheckCreateParams
-from .healthcheck_delete_params import HealthcheckDeleteParams as HealthcheckDeleteParams
 from .healthcheck_update_params import HealthcheckUpdateParams as HealthcheckUpdateParams
 from .healthcheck_delete_response import HealthcheckDeleteResponse as HealthcheckDeleteResponse

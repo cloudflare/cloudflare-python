@@ -10,7 +10,6 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.zones.settings import ImageResizing
-from cloudflare.types.zones.settings.image_resizing import ImageResizing
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -18,7 +17,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestImageResizing:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         image_resizing = client.zones.settings.image_resizing.edit(
@@ -30,7 +28,6 @@ class TestImageResizing:
         )
         assert_matches_type(Optional[ImageResizing], image_resizing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         image_resizing = client.zones.settings.image_resizing.edit(
@@ -42,7 +39,6 @@ class TestImageResizing:
         )
         assert_matches_type(Optional[ImageResizing], image_resizing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.zones.settings.image_resizing.with_raw_response.edit(
@@ -58,7 +54,6 @@ class TestImageResizing:
         image_resizing = response.parse()
         assert_matches_type(Optional[ImageResizing], image_resizing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.zones.settings.image_resizing.with_streaming_response.edit(
@@ -76,7 +71,6 @@ class TestImageResizing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -88,7 +82,6 @@ class TestImageResizing:
                 },
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         image_resizing = client.zones.settings.image_resizing.get(
@@ -96,7 +89,6 @@ class TestImageResizing:
         )
         assert_matches_type(Optional[ImageResizing], image_resizing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zones.settings.image_resizing.with_raw_response.get(
@@ -108,7 +100,6 @@ class TestImageResizing:
         image_resizing = response.parse()
         assert_matches_type(Optional[ImageResizing], image_resizing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zones.settings.image_resizing.with_streaming_response.get(
@@ -122,7 +113,6 @@ class TestImageResizing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -134,7 +124,6 @@ class TestImageResizing:
 class TestAsyncImageResizing:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         image_resizing = await async_client.zones.settings.image_resizing.edit(
@@ -146,7 +135,6 @@ class TestAsyncImageResizing:
         )
         assert_matches_type(Optional[ImageResizing], image_resizing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         image_resizing = await async_client.zones.settings.image_resizing.edit(
@@ -158,7 +146,6 @@ class TestAsyncImageResizing:
         )
         assert_matches_type(Optional[ImageResizing], image_resizing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.image_resizing.with_raw_response.edit(
@@ -174,7 +161,6 @@ class TestAsyncImageResizing:
         image_resizing = await response.parse()
         assert_matches_type(Optional[ImageResizing], image_resizing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.image_resizing.with_streaming_response.edit(
@@ -192,7 +178,6 @@ class TestAsyncImageResizing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -204,7 +189,6 @@ class TestAsyncImageResizing:
                 },
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         image_resizing = await async_client.zones.settings.image_resizing.get(
@@ -212,7 +196,6 @@ class TestAsyncImageResizing:
         )
         assert_matches_type(Optional[ImageResizing], image_resizing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.image_resizing.with_raw_response.get(
@@ -224,7 +207,6 @@ class TestAsyncImageResizing:
         image_resizing = await response.parse()
         assert_matches_type(Optional[ImageResizing], image_resizing, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.image_resizing.with_streaming_response.get(
@@ -238,7 +220,6 @@ class TestAsyncImageResizing:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

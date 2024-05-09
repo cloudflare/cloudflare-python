@@ -10,9 +10,11 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.zero_trust.devices.policies.fallback_domain import FallbackDomain
-from cloudflare.types.zero_trust.devices.policies.fallback_domain_get_response import FallbackDomainGetResponse
-from cloudflare.types.zero_trust.devices.policies.fallback_domain_update_response import FallbackDomainUpdateResponse
+from cloudflare.types.zero_trust.devices.policies import (
+    FallbackDomain,
+    FallbackDomainGetResponse,
+    FallbackDomainUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,7 +22,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestFallbackDomains:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         fallback_domain = client.zero_trust.devices.policies.fallback_domains.update(
@@ -30,7 +31,6 @@ class TestFallbackDomains:
         )
         assert_matches_type(Optional[FallbackDomainUpdateResponse], fallback_domain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.policies.fallback_domains.with_raw_response.update(
@@ -44,7 +44,6 @@ class TestFallbackDomains:
         fallback_domain = response.parse()
         assert_matches_type(Optional[FallbackDomainUpdateResponse], fallback_domain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.policies.fallback_domains.with_streaming_response.update(
@@ -60,7 +59,6 @@ class TestFallbackDomains:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -77,7 +75,6 @@ class TestFallbackDomains:
                 body=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         fallback_domain = client.zero_trust.devices.policies.fallback_domains.list(
@@ -85,7 +82,6 @@ class TestFallbackDomains:
         )
         assert_matches_type(SyncSinglePage[FallbackDomain], fallback_domain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.policies.fallback_domains.with_raw_response.list(
@@ -97,7 +93,6 @@ class TestFallbackDomains:
         fallback_domain = response.parse()
         assert_matches_type(SyncSinglePage[FallbackDomain], fallback_domain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.policies.fallback_domains.with_streaming_response.list(
@@ -111,7 +106,6 @@ class TestFallbackDomains:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -119,7 +113,6 @@ class TestFallbackDomains:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         fallback_domain = client.zero_trust.devices.policies.fallback_domains.get(
@@ -128,7 +121,6 @@ class TestFallbackDomains:
         )
         assert_matches_type(Optional[FallbackDomainGetResponse], fallback_domain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.policies.fallback_domains.with_raw_response.get(
@@ -141,7 +133,6 @@ class TestFallbackDomains:
         fallback_domain = response.parse()
         assert_matches_type(Optional[FallbackDomainGetResponse], fallback_domain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.policies.fallback_domains.with_streaming_response.get(
@@ -156,7 +147,6 @@ class TestFallbackDomains:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -175,7 +165,6 @@ class TestFallbackDomains:
 class TestAsyncFallbackDomains:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         fallback_domain = await async_client.zero_trust.devices.policies.fallback_domains.update(
@@ -185,7 +174,6 @@ class TestAsyncFallbackDomains:
         )
         assert_matches_type(Optional[FallbackDomainUpdateResponse], fallback_domain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.policies.fallback_domains.with_raw_response.update(
@@ -199,7 +187,6 @@ class TestAsyncFallbackDomains:
         fallback_domain = await response.parse()
         assert_matches_type(Optional[FallbackDomainUpdateResponse], fallback_domain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.policies.fallback_domains.with_streaming_response.update(
@@ -215,7 +202,6 @@ class TestAsyncFallbackDomains:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -232,7 +218,6 @@ class TestAsyncFallbackDomains:
                 body=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         fallback_domain = await async_client.zero_trust.devices.policies.fallback_domains.list(
@@ -240,7 +225,6 @@ class TestAsyncFallbackDomains:
         )
         assert_matches_type(AsyncSinglePage[FallbackDomain], fallback_domain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.policies.fallback_domains.with_raw_response.list(
@@ -252,7 +236,6 @@ class TestAsyncFallbackDomains:
         fallback_domain = await response.parse()
         assert_matches_type(AsyncSinglePage[FallbackDomain], fallback_domain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.policies.fallback_domains.with_streaming_response.list(
@@ -266,7 +249,6 @@ class TestAsyncFallbackDomains:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -274,7 +256,6 @@ class TestAsyncFallbackDomains:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         fallback_domain = await async_client.zero_trust.devices.policies.fallback_domains.get(
@@ -283,7 +264,6 @@ class TestAsyncFallbackDomains:
         )
         assert_matches_type(Optional[FallbackDomainGetResponse], fallback_domain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.policies.fallback_domains.with_raw_response.get(
@@ -296,7 +276,6 @@ class TestAsyncFallbackDomains:
         fallback_domain = await response.parse()
         assert_matches_type(Optional[FallbackDomainGetResponse], fallback_domain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.policies.fallback_domains.with_streaming_response.get(
@@ -311,7 +290,6 @@ class TestAsyncFallbackDomains:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

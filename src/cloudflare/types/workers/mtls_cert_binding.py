@@ -9,8 +9,6 @@ __all__ = ["MTLSCERTBinding"]
 
 
 class MTLSCERTBinding(BaseModel):
-    certificate: object
-
     name: str
     """A JavaScript variable name for the binding."""
 

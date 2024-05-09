@@ -9,9 +9,11 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.magic_transit.cf_interconnect_get_response import CfInterconnectGetResponse
-from cloudflare.types.magic_transit.cf_interconnect_list_response import CfInterconnectListResponse
-from cloudflare.types.magic_transit.cf_interconnect_update_response import CfInterconnectUpdateResponse
+from cloudflare.types.magic_transit import (
+    CfInterconnectGetResponse,
+    CfInterconnectListResponse,
+    CfInterconnectUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,7 +21,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestCfInterconnects:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         cf_interconnect = client.magic_transit.cf_interconnects.update(
@@ -28,7 +29,6 @@ class TestCfInterconnects:
         )
         assert_matches_type(CfInterconnectUpdateResponse, cf_interconnect, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         cf_interconnect = client.magic_transit.cf_interconnects.update(
@@ -47,7 +47,6 @@ class TestCfInterconnects:
         )
         assert_matches_type(CfInterconnectUpdateResponse, cf_interconnect, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.magic_transit.cf_interconnects.with_raw_response.update(
@@ -60,7 +59,6 @@ class TestCfInterconnects:
         cf_interconnect = response.parse()
         assert_matches_type(CfInterconnectUpdateResponse, cf_interconnect, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.magic_transit.cf_interconnects.with_streaming_response.update(
@@ -75,7 +73,6 @@ class TestCfInterconnects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -90,7 +87,6 @@ class TestCfInterconnects:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         cf_interconnect = client.magic_transit.cf_interconnects.list(
@@ -98,7 +94,6 @@ class TestCfInterconnects:
         )
         assert_matches_type(CfInterconnectListResponse, cf_interconnect, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.magic_transit.cf_interconnects.with_raw_response.list(
@@ -110,7 +105,6 @@ class TestCfInterconnects:
         cf_interconnect = response.parse()
         assert_matches_type(CfInterconnectListResponse, cf_interconnect, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.magic_transit.cf_interconnects.with_streaming_response.list(
@@ -124,7 +118,6 @@ class TestCfInterconnects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -132,7 +125,6 @@ class TestCfInterconnects:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         cf_interconnect = client.magic_transit.cf_interconnects.get(
@@ -141,7 +133,6 @@ class TestCfInterconnects:
         )
         assert_matches_type(CfInterconnectGetResponse, cf_interconnect, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.magic_transit.cf_interconnects.with_raw_response.get(
@@ -154,7 +145,6 @@ class TestCfInterconnects:
         cf_interconnect = response.parse()
         assert_matches_type(CfInterconnectGetResponse, cf_interconnect, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.magic_transit.cf_interconnects.with_streaming_response.get(
@@ -169,7 +159,6 @@ class TestCfInterconnects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -188,7 +177,6 @@ class TestCfInterconnects:
 class TestAsyncCfInterconnects:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         cf_interconnect = await async_client.magic_transit.cf_interconnects.update(
@@ -197,7 +185,6 @@ class TestAsyncCfInterconnects:
         )
         assert_matches_type(CfInterconnectUpdateResponse, cf_interconnect, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         cf_interconnect = await async_client.magic_transit.cf_interconnects.update(
@@ -216,7 +203,6 @@ class TestAsyncCfInterconnects:
         )
         assert_matches_type(CfInterconnectUpdateResponse, cf_interconnect, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.cf_interconnects.with_raw_response.update(
@@ -229,7 +215,6 @@ class TestAsyncCfInterconnects:
         cf_interconnect = await response.parse()
         assert_matches_type(CfInterconnectUpdateResponse, cf_interconnect, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.cf_interconnects.with_streaming_response.update(
@@ -244,7 +229,6 @@ class TestAsyncCfInterconnects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -259,7 +243,6 @@ class TestAsyncCfInterconnects:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         cf_interconnect = await async_client.magic_transit.cf_interconnects.list(
@@ -267,7 +250,6 @@ class TestAsyncCfInterconnects:
         )
         assert_matches_type(CfInterconnectListResponse, cf_interconnect, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.cf_interconnects.with_raw_response.list(
@@ -279,7 +261,6 @@ class TestAsyncCfInterconnects:
         cf_interconnect = await response.parse()
         assert_matches_type(CfInterconnectListResponse, cf_interconnect, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.cf_interconnects.with_streaming_response.list(
@@ -293,7 +274,6 @@ class TestAsyncCfInterconnects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -301,7 +281,6 @@ class TestAsyncCfInterconnects:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         cf_interconnect = await async_client.magic_transit.cf_interconnects.get(
@@ -310,7 +289,6 @@ class TestAsyncCfInterconnects:
         )
         assert_matches_type(CfInterconnectGetResponse, cf_interconnect, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.cf_interconnects.with_raw_response.get(
@@ -323,7 +301,6 @@ class TestAsyncCfInterconnects:
         cf_interconnect = await response.parse()
         assert_matches_type(CfInterconnectGetResponse, cf_interconnect, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.cf_interconnects.with_streaming_response.get(
@@ -338,7 +315,6 @@ class TestAsyncCfInterconnects:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

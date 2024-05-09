@@ -10,8 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.storage.schema import Schema
-from cloudflare.types.storage.components import Components
+from cloudflare.types.storage import Schema, Components
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,7 +18,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestAnalytics:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         analytics = client.storage.analytics.list(
@@ -27,7 +25,6 @@ class TestAnalytics:
         )
         assert_matches_type(Schema, analytics, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         analytics = client.storage.analytics.list(
@@ -44,7 +41,6 @@ class TestAnalytics:
         )
         assert_matches_type(Schema, analytics, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.storage.analytics.with_raw_response.list(
@@ -56,7 +52,6 @@ class TestAnalytics:
         analytics = response.parse()
         assert_matches_type(Schema, analytics, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.storage.analytics.with_streaming_response.list(
@@ -70,7 +65,6 @@ class TestAnalytics:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -78,7 +72,6 @@ class TestAnalytics:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_stored(self, client: Cloudflare) -> None:
         analytics = client.storage.analytics.stored(
@@ -86,7 +79,6 @@ class TestAnalytics:
         )
         assert_matches_type(Components, analytics, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_stored_with_all_params(self, client: Cloudflare) -> None:
         analytics = client.storage.analytics.stored(
@@ -103,7 +95,6 @@ class TestAnalytics:
         )
         assert_matches_type(Components, analytics, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_stored(self, client: Cloudflare) -> None:
         response = client.storage.analytics.with_raw_response.stored(
@@ -115,7 +106,6 @@ class TestAnalytics:
         analytics = response.parse()
         assert_matches_type(Components, analytics, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_stored(self, client: Cloudflare) -> None:
         with client.storage.analytics.with_streaming_response.stored(
@@ -129,7 +119,6 @@ class TestAnalytics:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_stored(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -141,7 +130,6 @@ class TestAnalytics:
 class TestAsyncAnalytics:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         analytics = await async_client.storage.analytics.list(
@@ -149,7 +137,6 @@ class TestAsyncAnalytics:
         )
         assert_matches_type(Schema, analytics, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         analytics = await async_client.storage.analytics.list(
@@ -166,7 +153,6 @@ class TestAsyncAnalytics:
         )
         assert_matches_type(Schema, analytics, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.storage.analytics.with_raw_response.list(
@@ -178,7 +164,6 @@ class TestAsyncAnalytics:
         analytics = await response.parse()
         assert_matches_type(Schema, analytics, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.storage.analytics.with_streaming_response.list(
@@ -192,7 +177,6 @@ class TestAsyncAnalytics:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -200,7 +184,6 @@ class TestAsyncAnalytics:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_stored(self, async_client: AsyncCloudflare) -> None:
         analytics = await async_client.storage.analytics.stored(
@@ -208,7 +191,6 @@ class TestAsyncAnalytics:
         )
         assert_matches_type(Components, analytics, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_stored_with_all_params(self, async_client: AsyncCloudflare) -> None:
         analytics = await async_client.storage.analytics.stored(
@@ -225,7 +207,6 @@ class TestAsyncAnalytics:
         )
         assert_matches_type(Components, analytics, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_stored(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.storage.analytics.with_raw_response.stored(
@@ -237,7 +218,6 @@ class TestAsyncAnalytics:
         analytics = await response.parse()
         assert_matches_type(Components, analytics, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_stored(self, async_client: AsyncCloudflare) -> None:
         async with async_client.storage.analytics.with_streaming_response.stored(
@@ -251,7 +231,6 @@ class TestAsyncAnalytics:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_stored(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

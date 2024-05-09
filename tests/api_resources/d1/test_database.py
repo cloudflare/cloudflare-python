@@ -9,12 +9,14 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.types.d1 import (
+    D1,
+    DatabaseListResponse,
+    DatabaseQueryResponse,
+    DatabaseCreateResponse,
+    DatabaseDeleteResponse,
+)
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from cloudflare.types.d1.d1 import D1
-from cloudflare.types.d1.database_list_response import DatabaseListResponse
-from cloudflare.types.d1.database_query_response import DatabaseQueryResponse
-from cloudflare.types.d1.database_create_response import DatabaseCreateResponse
-from cloudflare.types.d1.database_delete_response import DatabaseDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +24,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestDatabase:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         database = client.d1.database.create(
@@ -31,7 +32,6 @@ class TestDatabase:
         )
         assert_matches_type(DatabaseCreateResponse, database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.d1.database.with_raw_response.create(
@@ -44,7 +44,6 @@ class TestDatabase:
         database = response.parse()
         assert_matches_type(DatabaseCreateResponse, database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.d1.database.with_streaming_response.create(
@@ -59,7 +58,6 @@ class TestDatabase:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -68,7 +66,6 @@ class TestDatabase:
                 name="my-database",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         database = client.d1.database.list(
@@ -76,7 +73,6 @@ class TestDatabase:
         )
         assert_matches_type(SyncV4PagePaginationArray[DatabaseListResponse], database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         database = client.d1.database.list(
@@ -87,7 +83,6 @@ class TestDatabase:
         )
         assert_matches_type(SyncV4PagePaginationArray[DatabaseListResponse], database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.d1.database.with_raw_response.list(
@@ -99,7 +94,6 @@ class TestDatabase:
         database = response.parse()
         assert_matches_type(SyncV4PagePaginationArray[DatabaseListResponse], database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.d1.database.with_streaming_response.list(
@@ -113,7 +107,6 @@ class TestDatabase:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -121,7 +114,6 @@ class TestDatabase:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         database = client.d1.database.delete(
@@ -130,7 +122,6 @@ class TestDatabase:
         )
         assert_matches_type(DatabaseDeleteResponse, database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.d1.database.with_raw_response.delete(
@@ -143,7 +134,6 @@ class TestDatabase:
         database = response.parse()
         assert_matches_type(DatabaseDeleteResponse, database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.d1.database.with_streaming_response.delete(
@@ -158,7 +148,6 @@ class TestDatabase:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -173,7 +162,6 @@ class TestDatabase:
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         database = client.d1.database.get(
@@ -182,7 +170,6 @@ class TestDatabase:
         )
         assert_matches_type(D1, database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.d1.database.with_raw_response.get(
@@ -195,7 +182,6 @@ class TestDatabase:
         database = response.parse()
         assert_matches_type(D1, database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.d1.database.with_streaming_response.get(
@@ -210,7 +196,6 @@ class TestDatabase:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -225,7 +210,6 @@ class TestDatabase:
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_query(self, client: Cloudflare) -> None:
         database = client.d1.database.query(
@@ -235,7 +219,6 @@ class TestDatabase:
         )
         assert_matches_type(DatabaseQueryResponse, database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_query_with_all_params(self, client: Cloudflare) -> None:
         database = client.d1.database.query(
@@ -246,7 +229,6 @@ class TestDatabase:
         )
         assert_matches_type(DatabaseQueryResponse, database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_query(self, client: Cloudflare) -> None:
         response = client.d1.database.with_raw_response.query(
@@ -260,7 +242,6 @@ class TestDatabase:
         database = response.parse()
         assert_matches_type(DatabaseQueryResponse, database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_query(self, client: Cloudflare) -> None:
         with client.d1.database.with_streaming_response.query(
@@ -276,7 +257,6 @@ class TestDatabase:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_query(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -297,7 +277,6 @@ class TestDatabase:
 class TestAsyncDatabase:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         database = await async_client.d1.database.create(
@@ -306,7 +285,6 @@ class TestAsyncDatabase:
         )
         assert_matches_type(DatabaseCreateResponse, database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.d1.database.with_raw_response.create(
@@ -319,7 +297,6 @@ class TestAsyncDatabase:
         database = await response.parse()
         assert_matches_type(DatabaseCreateResponse, database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.d1.database.with_streaming_response.create(
@@ -334,7 +311,6 @@ class TestAsyncDatabase:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -343,7 +319,6 @@ class TestAsyncDatabase:
                 name="my-database",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         database = await async_client.d1.database.list(
@@ -351,7 +326,6 @@ class TestAsyncDatabase:
         )
         assert_matches_type(AsyncV4PagePaginationArray[DatabaseListResponse], database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         database = await async_client.d1.database.list(
@@ -362,7 +336,6 @@ class TestAsyncDatabase:
         )
         assert_matches_type(AsyncV4PagePaginationArray[DatabaseListResponse], database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.d1.database.with_raw_response.list(
@@ -374,7 +347,6 @@ class TestAsyncDatabase:
         database = await response.parse()
         assert_matches_type(AsyncV4PagePaginationArray[DatabaseListResponse], database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.d1.database.with_streaming_response.list(
@@ -388,7 +360,6 @@ class TestAsyncDatabase:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -396,7 +367,6 @@ class TestAsyncDatabase:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         database = await async_client.d1.database.delete(
@@ -405,7 +375,6 @@ class TestAsyncDatabase:
         )
         assert_matches_type(DatabaseDeleteResponse, database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.d1.database.with_raw_response.delete(
@@ -418,7 +387,6 @@ class TestAsyncDatabase:
         database = await response.parse()
         assert_matches_type(DatabaseDeleteResponse, database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.d1.database.with_streaming_response.delete(
@@ -433,7 +401,6 @@ class TestAsyncDatabase:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -448,7 +415,6 @@ class TestAsyncDatabase:
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         database = await async_client.d1.database.get(
@@ -457,7 +423,6 @@ class TestAsyncDatabase:
         )
         assert_matches_type(D1, database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.d1.database.with_raw_response.get(
@@ -470,7 +435,6 @@ class TestAsyncDatabase:
         database = await response.parse()
         assert_matches_type(D1, database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.d1.database.with_streaming_response.get(
@@ -485,7 +449,6 @@ class TestAsyncDatabase:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
@@ -500,7 +463,6 @@ class TestAsyncDatabase:
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_query(self, async_client: AsyncCloudflare) -> None:
         database = await async_client.d1.database.query(
@@ -510,7 +472,6 @@ class TestAsyncDatabase:
         )
         assert_matches_type(DatabaseQueryResponse, database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_query_with_all_params(self, async_client: AsyncCloudflare) -> None:
         database = await async_client.d1.database.query(
@@ -521,7 +482,6 @@ class TestAsyncDatabase:
         )
         assert_matches_type(DatabaseQueryResponse, database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_query(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.d1.database.with_raw_response.query(
@@ -535,7 +495,6 @@ class TestAsyncDatabase:
         database = await response.parse()
         assert_matches_type(DatabaseQueryResponse, database, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_query(self, async_client: AsyncCloudflare) -> None:
         async with async_client.d1.database.with_streaming_response.query(
@@ -551,7 +510,6 @@ class TestAsyncDatabase:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_query(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):

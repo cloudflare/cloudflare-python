@@ -45,7 +45,6 @@ from .everyone_rule_param import EveryoneRuleParam as EveryoneRuleParam
 from .tunnel_get_response import TunnelGetResponse as TunnelGetResponse
 from .generic_oauth_config import GenericOAuthConfig as GenericOAuthConfig
 from .tunnel_create_params import TunnelCreateParams as TunnelCreateParams
-from .tunnel_delete_params import TunnelDeleteParams as TunnelDeleteParams
 from .tunnel_edit_response import TunnelEditResponse as TunnelEditResponse
 from .tunnel_list_response import TunnelListResponse as TunnelListResponse
 from .email_list_rule_param import EmailListRuleParam as EmailListRuleParam

@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.radar.http.ases.device_type_get_response import DeviceTypeGetResponse
+from cloudflare.types.radar.http.ases import DeviceTypeGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -18,7 +18,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestDeviceType:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         device_type = client.radar.http.ases.device_type.get(
@@ -26,7 +25,6 @@ class TestDeviceType:
         )
         assert_matches_type(DeviceTypeGetResponse, device_type, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         device_type = client.radar.http.ases.device_type.get(
@@ -57,7 +55,6 @@ class TestDeviceType:
         )
         assert_matches_type(DeviceTypeGetResponse, device_type, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.radar.http.ases.device_type.with_raw_response.get(
@@ -69,7 +66,6 @@ class TestDeviceType:
         device_type = response.parse()
         assert_matches_type(DeviceTypeGetResponse, device_type, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.radar.http.ases.device_type.with_streaming_response.get(
@@ -87,7 +83,6 @@ class TestDeviceType:
 class TestAsyncDeviceType:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         device_type = await async_client.radar.http.ases.device_type.get(
@@ -95,7 +90,6 @@ class TestAsyncDeviceType:
         )
         assert_matches_type(DeviceTypeGetResponse, device_type, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         device_type = await async_client.radar.http.ases.device_type.get(
@@ -126,7 +120,6 @@ class TestAsyncDeviceType:
         )
         assert_matches_type(DeviceTypeGetResponse, device_type, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.http.ases.device_type.with_raw_response.get(
@@ -138,7 +131,6 @@ class TestAsyncDeviceType:
         device_type = await response.parse()
         assert_matches_type(DeviceTypeGetResponse, device_type, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.http.ases.device_type.with_streaming_response.get(

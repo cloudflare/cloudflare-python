@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -43,7 +43,7 @@ class UUIDResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DCVDelegationUUID:
+    ) -> Optional[DCVDelegationUUID]:
         """
         Retrieve the account and zone specific unique identifier used as part of the
         CNAME target for DCV Delegation.
@@ -68,9 +68,9 @@ class UUIDResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DCVDelegationUUID]._unwrapper,
+                post_parser=ResultWrapper[Optional[DCVDelegationUUID]]._unwrapper,
             ),
-            cast_to=cast(Type[DCVDelegationUUID], ResultWrapper[DCVDelegationUUID]),
+            cast_to=cast(Type[Optional[DCVDelegationUUID]], ResultWrapper[DCVDelegationUUID]),
         )
 
 
@@ -93,7 +93,7 @@ class AsyncUUIDResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DCVDelegationUUID:
+    ) -> Optional[DCVDelegationUUID]:
         """
         Retrieve the account and zone specific unique identifier used as part of the
         CNAME target for DCV Delegation.
@@ -118,9 +118,9 @@ class AsyncUUIDResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DCVDelegationUUID]._unwrapper,
+                post_parser=ResultWrapper[Optional[DCVDelegationUUID]]._unwrapper,
             ),
-            cast_to=cast(Type[DCVDelegationUUID], ResultWrapper[DCVDelegationUUID]),
+            cast_to=cast(Type[Optional[DCVDelegationUUID]], ResultWrapper[DCVDelegationUUID]),
         )
 
 

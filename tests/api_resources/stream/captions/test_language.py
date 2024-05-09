@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.stream.caption import Caption
+from cloudflare.types.stream import Caption
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestLanguage:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         language = client.stream.captions.language.update(
@@ -28,7 +28,7 @@ class TestLanguage:
         )
         assert_matches_type(Optional[Caption], language, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.stream.captions.language.with_raw_response.update(
@@ -43,7 +43,7 @@ class TestLanguage:
         language = response.parse()
         assert_matches_type(Optional[Caption], language, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.stream.captions.language.with_streaming_response.update(
@@ -60,7 +60,7 @@ class TestLanguage:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -87,25 +87,21 @@ class TestLanguage:
                 file="@/Users/kyle/Desktop/tr.vtt",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         language = client.stream.captions.language.delete(
             "tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
-            body={},
         )
         assert_matches_type(str, language, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.stream.captions.language.with_raw_response.delete(
             "tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
-            body={},
         )
 
         assert response.is_closed is True
@@ -113,14 +109,12 @@ class TestLanguage:
         language = response.parse()
         assert_matches_type(str, language, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.stream.captions.language.with_streaming_response.delete(
             "tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -130,7 +124,6 @@ class TestLanguage:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -138,7 +131,6 @@ class TestLanguage:
                 "tr",
                 account_id="",
                 identifier="ea95132c15732412d22c1476fa83f27a",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
@@ -146,7 +138,6 @@ class TestLanguage:
                 "tr",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `language` but received ''"):
@@ -154,10 +145,8 @@ class TestLanguage:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="ea95132c15732412d22c1476fa83f27a",
-                body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         language = client.stream.captions.language.get(
@@ -167,7 +156,6 @@ class TestLanguage:
         )
         assert_matches_type(Optional[Caption], language, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.stream.captions.language.with_raw_response.get(
@@ -181,7 +169,6 @@ class TestLanguage:
         language = response.parse()
         assert_matches_type(Optional[Caption], language, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.stream.captions.language.with_streaming_response.get(
@@ -197,7 +184,6 @@ class TestLanguage:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -225,7 +211,7 @@ class TestLanguage:
 class TestAsyncLanguage:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         language = await async_client.stream.captions.language.update(
@@ -236,7 +222,7 @@ class TestAsyncLanguage:
         )
         assert_matches_type(Optional[Caption], language, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.captions.language.with_raw_response.update(
@@ -251,7 +237,7 @@ class TestAsyncLanguage:
         language = await response.parse()
         assert_matches_type(Optional[Caption], language, path=["response"])
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.captions.language.with_streaming_response.update(
@@ -268,7 +254,7 @@ class TestAsyncLanguage:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
+    @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -295,25 +281,21 @@ class TestAsyncLanguage:
                 file="@/Users/kyle/Desktop/tr.vtt",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         language = await async_client.stream.captions.language.delete(
             "tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
-            body={},
         )
         assert_matches_type(str, language, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.captions.language.with_raw_response.delete(
             "tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
-            body={},
         )
 
         assert response.is_closed is True
@@ -321,14 +303,12 @@ class TestAsyncLanguage:
         language = await response.parse()
         assert_matches_type(str, language, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.captions.language.with_streaming_response.delete(
             "tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
-            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -338,7 +318,6 @@ class TestAsyncLanguage:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -346,7 +325,6 @@ class TestAsyncLanguage:
                 "tr",
                 account_id="",
                 identifier="ea95132c15732412d22c1476fa83f27a",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
@@ -354,7 +332,6 @@ class TestAsyncLanguage:
                 "tr",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="",
-                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `language` but received ''"):
@@ -362,10 +339,8 @@ class TestAsyncLanguage:
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="ea95132c15732412d22c1476fa83f27a",
-                body={},
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         language = await async_client.stream.captions.language.get(
@@ -375,7 +350,6 @@ class TestAsyncLanguage:
         )
         assert_matches_type(Optional[Caption], language, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.captions.language.with_raw_response.get(
@@ -389,7 +363,6 @@ class TestAsyncLanguage:
         language = await response.parse()
         assert_matches_type(Optional[Caption], language, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.captions.language.with_streaming_response.get(
@@ -405,7 +378,6 @@ class TestAsyncLanguage:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

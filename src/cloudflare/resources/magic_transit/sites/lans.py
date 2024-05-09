@@ -25,11 +25,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.magic_transit.sites import (
-    lan_create_params,
-    lan_delete_params,
-    lan_update_params,
-)
+from ....types.magic_transit.sites import lan_create_params, lan_update_params
 from ....types.magic_transit.sites.lan import LAN
 from ....types.magic_transit.sites.nat_param import NatParam
 from ....types.magic_transit.sites.lan_create_response import LANCreateResponse
@@ -241,7 +237,6 @@ class LANsResource(SyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -275,7 +270,6 @@ class LANsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `lan_id` but received {lan_id!r}")
         return self._delete(
             f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
-            body=maybe_transform(body, lan_delete_params.LANDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -538,7 +532,6 @@ class AsyncLANsResource(AsyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -572,7 +565,6 @@ class AsyncLANsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `lan_id` but received {lan_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}",
-            body=await async_maybe_transform(body, lan_delete_params.LANDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .state import State as State
 from .cache_reserve import CacheReserve as CacheReserve
 from .cache_variant import CacheVariant as CacheVariant
 from .cache_purge_params import CachePurgeParams as CachePurgeParams
@@ -10,7 +11,6 @@ from .variant_edit_params import VariantEditParams as VariantEditParams
 from .cache_purge_response import CachePurgeResponse as CachePurgeResponse
 from .variant_get_response import VariantGetResponse as VariantGetResponse
 from .regional_tiered_cache import RegionalTieredCache as RegionalTieredCache
-from .variant_delete_params import VariantDeleteParams as VariantDeleteParams
 from .variant_edit_response import VariantEditResponse as VariantEditResponse
 from .cache_variant_identifier import CacheVariantIdentifier as CacheVariantIdentifier
 from .cache_reserve_edit_params import CacheReserveEditParams as CacheReserveEditParams
@@ -21,7 +21,6 @@ from .cache_reserve_clear_response import CacheReserveClearResponse as CacheRese
 from .cache_reserve_status_response import CacheReserveStatusResponse as CacheReserveStatusResponse
 from .smart_tiered_cache_edit_params import SmartTieredCacheEditParams as SmartTieredCacheEditParams
 from .smart_tiered_cache_get_response import SmartTieredCacheGetResponse as SmartTieredCacheGetResponse
-from .smart_tiered_cache_delete_params import SmartTieredCacheDeleteParams as SmartTieredCacheDeleteParams
 from .smart_tiered_cache_edit_response import SmartTieredCacheEditResponse as SmartTieredCacheEditResponse
 from .regional_tiered_cache_edit_params import RegionalTieredCacheEditParams as RegionalTieredCacheEditParams
 from .regional_tiered_cache_get_response import RegionalTieredCacheGetResponse as RegionalTieredCacheGetResponse

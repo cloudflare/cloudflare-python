@@ -26,7 +26,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ...types.logpush import job_create_params, job_delete_params, job_update_params
+from ...types.logpush import job_create_params, job_update_params
 from ...types.logpush.logpush_job import LogpushJob
 from ...types.logpush.output_options_param import OutputOptionsParam
 
@@ -51,7 +51,11 @@ class JobsResource(SyncAPIResource):
         dataset: Optional[str] | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
+        kind: Optional[Literal["edge"]] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
+        max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
+        max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
+        max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
         ownership_challenge: str | NotGiven = NOT_GIVEN,
@@ -74,19 +78,42 @@ class JobsResource(SyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
-          dataset: Name of the dataset.
+          dataset: Name of the dataset. A list of supported datasets can be found on the
+              [Developer Docs](https://developers.cloudflare.com/logs/reference/log-fields/).
 
           enabled: Flag that indicates if the job is enabled.
 
-          frequency: The frequency at which Cloudflare sends batches of logs to your destination.
-              Setting frequency to high sends your logs in larger quantities of smaller files.
-              Setting frequency to low sends logs in smaller quantities of larger files.
+          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. The
+              frequency at which Cloudflare sends batches of logs to your destination. Setting
+              frequency to high sends your logs in larger quantities of smaller files. Setting
+              frequency to low sends logs in smaller quantities of larger files.
+
+          kind: The kind parameter (optional) is used to differentiate between Logpush and Edge
+              Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
+              `http_requests` dataset.
 
           logpull_options: This field is deprecated. Use `output_options` instead. Configuration string. It
               specifies things like requested fields and timestamp formats. If migrating from
               the logpull api, copy the url (full url or just the query string) of your call
               here, and logpush will keep on making this call for you, setting start and end
               times appropriately.
+
+          max_upload_bytes: The maximum uncompressed file size of a batch of logs. This setting value must
+              be between `5 MB` and `1 GB`, or `0` to disable it. Note that you cannot set a
+              minimum file size; this means that log files may be much smaller than this batch
+              size. This parameter is not available for jobs with `edge` as its kind.
+
+          max_upload_interval_seconds: The maximum interval in seconds for log batches. This setting must be between 30
+              and 300 seconds (5 minutes), or `0` to disable it. Note that you cannot specify
+              a minimum interval for log batches; this means that log files may be sent in
+              shorter intervals than this. This parameter is only used for jobs with `edge` as
+              its kind.
+
+          max_upload_records: The maximum number of log lines per batch. This setting must be between 1000 and
+              1,000,000 lines, or `0` to disable it. Note that you cannot specify a minimum
+              number of log lines per batch; this means that log files may contain many fewer
+              lines than this. This parameter is not available for jobs with `edge` as its
+              kind.
 
           name: Optional human readable job name. Not unique. Cloudflare suggests that you set
               this to a meaningful string, like the domain name, to make it easier to identify
@@ -125,7 +152,11 @@ class JobsResource(SyncAPIResource):
                     "dataset": dataset,
                     "enabled": enabled,
                     "frequency": frequency,
+                    "kind": kind,
                     "logpull_options": logpull_options,
+                    "max_upload_bytes": max_upload_bytes,
+                    "max_upload_interval_seconds": max_upload_interval_seconds,
+                    "max_upload_records": max_upload_records,
                     "name": name,
                     "output_options": output_options,
                     "ownership_challenge": ownership_challenge,
@@ -151,7 +182,11 @@ class JobsResource(SyncAPIResource):
         destination_conf: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
+        kind: Optional[Literal["edge"]] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
+        max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
+        max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
+        max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
         output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
         ownership_challenge: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -177,15 +212,37 @@ class JobsResource(SyncAPIResource):
 
           enabled: Flag that indicates if the job is enabled.
 
-          frequency: The frequency at which Cloudflare sends batches of logs to your destination.
-              Setting frequency to high sends your logs in larger quantities of smaller files.
-              Setting frequency to low sends logs in smaller quantities of larger files.
+          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. The
+              frequency at which Cloudflare sends batches of logs to your destination. Setting
+              frequency to high sends your logs in larger quantities of smaller files. Setting
+              frequency to low sends logs in smaller quantities of larger files.
+
+          kind: The kind parameter (optional) is used to differentiate between Logpush and Edge
+              Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
+              `http_requests` dataset.
 
           logpull_options: This field is deprecated. Use `output_options` instead. Configuration string. It
               specifies things like requested fields and timestamp formats. If migrating from
               the logpull api, copy the url (full url or just the query string) of your call
               here, and logpush will keep on making this call for you, setting start and end
               times appropriately.
+
+          max_upload_bytes: The maximum uncompressed file size of a batch of logs. This setting value must
+              be between `5 MB` and `1 GB`, or `0` to disable it. Note that you cannot set a
+              minimum file size; this means that log files may be much smaller than this batch
+              size. This parameter is not available for jobs with `edge` as its kind.
+
+          max_upload_interval_seconds: The maximum interval in seconds for log batches. This setting must be between 30
+              and 300 seconds (5 minutes), or `0` to disable it. Note that you cannot specify
+              a minimum interval for log batches; this means that log files may be sent in
+              shorter intervals than this. This parameter is only used for jobs with `edge` as
+              its kind.
+
+          max_upload_records: The maximum number of log lines per batch. This setting must be between 1000 and
+              1,000,000 lines, or `0` to disable it. Note that you cannot specify a minimum
+              number of log lines per batch; this means that log files may contain many fewer
+              lines than this. This parameter is not available for jobs with `edge` as its
+              kind.
 
           output_options: The structured replacement for `logpull_options`. When including this field, the
               `logpull_option` field will be ignored.
@@ -219,7 +276,11 @@ class JobsResource(SyncAPIResource):
                     "destination_conf": destination_conf,
                     "enabled": enabled,
                     "frequency": frequency,
+                    "kind": kind,
                     "logpull_options": logpull_options,
+                    "max_upload_bytes": max_upload_bytes,
+                    "max_upload_interval_seconds": max_upload_interval_seconds,
+                    "max_upload_records": max_upload_records,
                     "output_options": output_options,
                     "ownership_challenge": ownership_challenge,
                 },
@@ -288,7 +349,6 @@ class JobsResource(SyncAPIResource):
         self,
         job_id: int,
         *,
-        body: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -330,7 +390,6 @@ class JobsResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._delete(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}",
-            body=maybe_transform(body, job_delete_params.JobDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -415,7 +474,11 @@ class AsyncJobsResource(AsyncAPIResource):
         dataset: Optional[str] | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
+        kind: Optional[Literal["edge"]] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
+        max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
+        max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
+        max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
         name: Optional[str] | NotGiven = NOT_GIVEN,
         output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
         ownership_challenge: str | NotGiven = NOT_GIVEN,
@@ -438,19 +501,42 @@ class AsyncJobsResource(AsyncAPIResource):
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
-          dataset: Name of the dataset.
+          dataset: Name of the dataset. A list of supported datasets can be found on the
+              [Developer Docs](https://developers.cloudflare.com/logs/reference/log-fields/).
 
           enabled: Flag that indicates if the job is enabled.
 
-          frequency: The frequency at which Cloudflare sends batches of logs to your destination.
-              Setting frequency to high sends your logs in larger quantities of smaller files.
-              Setting frequency to low sends logs in smaller quantities of larger files.
+          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. The
+              frequency at which Cloudflare sends batches of logs to your destination. Setting
+              frequency to high sends your logs in larger quantities of smaller files. Setting
+              frequency to low sends logs in smaller quantities of larger files.
+
+          kind: The kind parameter (optional) is used to differentiate between Logpush and Edge
+              Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
+              `http_requests` dataset.
 
           logpull_options: This field is deprecated. Use `output_options` instead. Configuration string. It
               specifies things like requested fields and timestamp formats. If migrating from
               the logpull api, copy the url (full url or just the query string) of your call
               here, and logpush will keep on making this call for you, setting start and end
               times appropriately.
+
+          max_upload_bytes: The maximum uncompressed file size of a batch of logs. This setting value must
+              be between `5 MB` and `1 GB`, or `0` to disable it. Note that you cannot set a
+              minimum file size; this means that log files may be much smaller than this batch
+              size. This parameter is not available for jobs with `edge` as its kind.
+
+          max_upload_interval_seconds: The maximum interval in seconds for log batches. This setting must be between 30
+              and 300 seconds (5 minutes), or `0` to disable it. Note that you cannot specify
+              a minimum interval for log batches; this means that log files may be sent in
+              shorter intervals than this. This parameter is only used for jobs with `edge` as
+              its kind.
+
+          max_upload_records: The maximum number of log lines per batch. This setting must be between 1000 and
+              1,000,000 lines, or `0` to disable it. Note that you cannot specify a minimum
+              number of log lines per batch; this means that log files may contain many fewer
+              lines than this. This parameter is not available for jobs with `edge` as its
+              kind.
 
           name: Optional human readable job name. Not unique. Cloudflare suggests that you set
               this to a meaningful string, like the domain name, to make it easier to identify
@@ -489,7 +575,11 @@ class AsyncJobsResource(AsyncAPIResource):
                     "dataset": dataset,
                     "enabled": enabled,
                     "frequency": frequency,
+                    "kind": kind,
                     "logpull_options": logpull_options,
+                    "max_upload_bytes": max_upload_bytes,
+                    "max_upload_interval_seconds": max_upload_interval_seconds,
+                    "max_upload_records": max_upload_records,
                     "name": name,
                     "output_options": output_options,
                     "ownership_challenge": ownership_challenge,
@@ -515,7 +605,11 @@ class AsyncJobsResource(AsyncAPIResource):
         destination_conf: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         frequency: Optional[Literal["high", "low"]] | NotGiven = NOT_GIVEN,
+        kind: Optional[Literal["edge"]] | NotGiven = NOT_GIVEN,
         logpull_options: Optional[str] | NotGiven = NOT_GIVEN,
+        max_upload_bytes: Optional[int] | NotGiven = NOT_GIVEN,
+        max_upload_interval_seconds: Optional[int] | NotGiven = NOT_GIVEN,
+        max_upload_records: Optional[int] | NotGiven = NOT_GIVEN,
         output_options: Optional[OutputOptionsParam] | NotGiven = NOT_GIVEN,
         ownership_challenge: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -541,15 +635,37 @@ class AsyncJobsResource(AsyncAPIResource):
 
           enabled: Flag that indicates if the job is enabled.
 
-          frequency: The frequency at which Cloudflare sends batches of logs to your destination.
-              Setting frequency to high sends your logs in larger quantities of smaller files.
-              Setting frequency to low sends logs in smaller quantities of larger files.
+          frequency: This field is deprecated. Please use `max_upload_*` parameters instead. The
+              frequency at which Cloudflare sends batches of logs to your destination. Setting
+              frequency to high sends your logs in larger quantities of smaller files. Setting
+              frequency to low sends logs in smaller quantities of larger files.
+
+          kind: The kind parameter (optional) is used to differentiate between Logpush and Edge
+              Log Delivery jobs. Currently, Edge Log Delivery is only supported for the
+              `http_requests` dataset.
 
           logpull_options: This field is deprecated. Use `output_options` instead. Configuration string. It
               specifies things like requested fields and timestamp formats. If migrating from
               the logpull api, copy the url (full url or just the query string) of your call
               here, and logpush will keep on making this call for you, setting start and end
               times appropriately.
+
+          max_upload_bytes: The maximum uncompressed file size of a batch of logs. This setting value must
+              be between `5 MB` and `1 GB`, or `0` to disable it. Note that you cannot set a
+              minimum file size; this means that log files may be much smaller than this batch
+              size. This parameter is not available for jobs with `edge` as its kind.
+
+          max_upload_interval_seconds: The maximum interval in seconds for log batches. This setting must be between 30
+              and 300 seconds (5 minutes), or `0` to disable it. Note that you cannot specify
+              a minimum interval for log batches; this means that log files may be sent in
+              shorter intervals than this. This parameter is only used for jobs with `edge` as
+              its kind.
+
+          max_upload_records: The maximum number of log lines per batch. This setting must be between 1000 and
+              1,000,000 lines, or `0` to disable it. Note that you cannot specify a minimum
+              number of log lines per batch; this means that log files may contain many fewer
+              lines than this. This parameter is not available for jobs with `edge` as its
+              kind.
 
           output_options: The structured replacement for `logpull_options`. When including this field, the
               `logpull_option` field will be ignored.
@@ -583,7 +699,11 @@ class AsyncJobsResource(AsyncAPIResource):
                     "destination_conf": destination_conf,
                     "enabled": enabled,
                     "frequency": frequency,
+                    "kind": kind,
                     "logpull_options": logpull_options,
+                    "max_upload_bytes": max_upload_bytes,
+                    "max_upload_interval_seconds": max_upload_interval_seconds,
+                    "max_upload_records": max_upload_records,
                     "output_options": output_options,
                     "ownership_challenge": ownership_challenge,
                 },
@@ -652,7 +772,6 @@ class AsyncJobsResource(AsyncAPIResource):
         self,
         job_id: int,
         *,
-        body: object,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -694,7 +813,6 @@ class AsyncJobsResource(AsyncAPIResource):
             account_or_zone_id = zone_id
         return await self._delete(
             f"/{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}",
-            body=await async_maybe_transform(body, job_delete_params.JobDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

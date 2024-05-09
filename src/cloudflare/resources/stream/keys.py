@@ -23,7 +23,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.stream import key_create_params, key_delete_params
+from ...types.stream import key_create_params
 from ...types.stream.keys import Keys
 from ...types.stream.key_get_response import KeyGetResponse
 from ...types.stream.key_delete_response import KeyDeleteResponse
@@ -89,7 +89,6 @@ class KeysResource(SyncAPIResource):
         identifier: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -121,7 +120,6 @@ class KeysResource(SyncAPIResource):
             Optional[KeyDeleteResponse],
             self._delete(
                 f"/accounts/{account_id}/stream/keys/{identifier}",
-                body=maybe_transform(body, key_delete_params.KeyDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -233,7 +231,6 @@ class AsyncKeysResource(AsyncAPIResource):
         identifier: str,
         *,
         account_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -265,7 +262,6 @@ class AsyncKeysResource(AsyncAPIResource):
             Optional[KeyDeleteResponse],
             await self._delete(
                 f"/accounts/{account_id}/stream/keys/{identifier}",
-                body=await async_maybe_transform(body, key_delete_params.KeyDeleteParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

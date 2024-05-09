@@ -9,8 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.workers.scripts.deployment_get_response import DeploymentGetResponse
-from cloudflare.types.workers.scripts.deployment_create_response import DeploymentCreateResponse
+from cloudflare.types.workers.scripts import (
+    DeploymentGetResponse,
+    DeploymentCreateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -18,7 +20,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestDeployments:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         deployment = client.workers.scripts.deployments.create(
@@ -27,7 +28,6 @@ class TestDeployments:
         )
         assert_matches_type(Optional[DeploymentCreateResponse], deployment, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         deployment = client.workers.scripts.deployments.create(
@@ -38,7 +38,6 @@ class TestDeployments:
         )
         assert_matches_type(Optional[DeploymentCreateResponse], deployment, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.workers.scripts.deployments.with_raw_response.create(
@@ -51,7 +50,6 @@ class TestDeployments:
         deployment = response.parse()
         assert_matches_type(Optional[DeploymentCreateResponse], deployment, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.workers.scripts.deployments.with_streaming_response.create(
@@ -66,7 +64,6 @@ class TestDeployments:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -81,7 +78,6 @@ class TestDeployments:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         deployment = client.workers.scripts.deployments.get(
@@ -90,7 +86,6 @@ class TestDeployments:
         )
         assert_matches_type(Optional[DeploymentGetResponse], deployment, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.workers.scripts.deployments.with_raw_response.get(
@@ -103,7 +98,6 @@ class TestDeployments:
         deployment = response.parse()
         assert_matches_type(Optional[DeploymentGetResponse], deployment, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.workers.scripts.deployments.with_streaming_response.get(
@@ -118,7 +112,6 @@ class TestDeployments:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -137,7 +130,6 @@ class TestDeployments:
 class TestAsyncDeployments:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         deployment = await async_client.workers.scripts.deployments.create(
@@ -146,7 +138,6 @@ class TestAsyncDeployments:
         )
         assert_matches_type(Optional[DeploymentCreateResponse], deployment, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         deployment = await async_client.workers.scripts.deployments.create(
@@ -157,7 +148,6 @@ class TestAsyncDeployments:
         )
         assert_matches_type(Optional[DeploymentCreateResponse], deployment, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.deployments.with_raw_response.create(
@@ -170,7 +160,6 @@ class TestAsyncDeployments:
         deployment = await response.parse()
         assert_matches_type(Optional[DeploymentCreateResponse], deployment, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.deployments.with_streaming_response.create(
@@ -185,7 +174,6 @@ class TestAsyncDeployments:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -200,7 +188,6 @@ class TestAsyncDeployments:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         deployment = await async_client.workers.scripts.deployments.get(
@@ -209,7 +196,6 @@ class TestAsyncDeployments:
         )
         assert_matches_type(Optional[DeploymentGetResponse], deployment, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.deployments.with_raw_response.get(
@@ -222,7 +208,6 @@ class TestAsyncDeployments:
         deployment = await response.parse()
         assert_matches_type(Optional[DeploymentGetResponse], deployment, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.deployments.with_streaming_response.get(
@@ -237,7 +222,6 @@ class TestAsyncDeployments:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

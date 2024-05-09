@@ -25,7 +25,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.magic_transit.sites import acl_create_params, acl_delete_params, acl_update_params
+from ....types.magic_transit.sites import acl_create_params, acl_update_params
 from ....types.magic_transit.sites.acl import ACL
 from ....types.magic_transit.sites.allowed_protocol import AllowedProtocol
 from ....types.magic_transit.sites.acl_configuration_param import ACLConfigurationParam
@@ -234,7 +234,6 @@ class ACLsResource(SyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -268,7 +267,6 @@ class ACLsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
         return self._delete(
             f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
-            body=maybe_transform(body, acl_delete_params.ACLDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -530,7 +528,6 @@ class AsyncACLsResource(AsyncAPIResource):
         *,
         account_id: str,
         site_id: str,
-        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -564,7 +561,6 @@ class AsyncACLsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
         return await self._delete(
             f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
-            body=await async_maybe_transform(body, acl_delete_params.ACLDeleteParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -61,7 +61,7 @@ class DomainsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Domain:
+    ) -> Optional[Domain]:
         """
         Get Domain Details
 
@@ -86,9 +86,9 @@ class DomainsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"domain": domain}, domain_get_params.DomainGetParams),
-                post_parser=ResultWrapper[Domain]._unwrapper,
+                post_parser=ResultWrapper[Optional[Domain]]._unwrapper,
             ),
-            cast_to=cast(Type[Domain], ResultWrapper[Domain]),
+            cast_to=cast(Type[Optional[Domain]], ResultWrapper[Domain]),
         )
 
 
@@ -116,7 +116,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Domain:
+    ) -> Optional[Domain]:
         """
         Get Domain Details
 
@@ -141,9 +141,9 @@ class AsyncDomainsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"domain": domain}, domain_get_params.DomainGetParams),
-                post_parser=ResultWrapper[Domain]._unwrapper,
+                post_parser=ResultWrapper[Optional[Domain]]._unwrapper,
             ),
-            cast_to=cast(Type[Domain], ResultWrapper[Domain]),
+            cast_to=cast(Type[Optional[Domain]], ResultWrapper[Domain]),
         )
 
 

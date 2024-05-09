@@ -9,8 +9,10 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.managed_headers.managed_header_edit_response import ManagedHeaderEditResponse
-from cloudflare.types.managed_headers.managed_header_list_response import ManagedHeaderListResponse
+from cloudflare.types.managed_headers import (
+    ManagedHeaderEditResponse,
+    ManagedHeaderListResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -18,7 +20,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestManagedHeaders:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         managed_header = client.managed_headers.list(
@@ -26,7 +27,6 @@ class TestManagedHeaders:
         )
         assert_matches_type(ManagedHeaderListResponse, managed_header, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.managed_headers.with_raw_response.list(
@@ -38,7 +38,6 @@ class TestManagedHeaders:
         managed_header = response.parse()
         assert_matches_type(ManagedHeaderListResponse, managed_header, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.managed_headers.with_streaming_response.list(
@@ -52,7 +51,6 @@ class TestManagedHeaders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -60,7 +58,6 @@ class TestManagedHeaders:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         managed_header = client.managed_headers.edit(
@@ -70,7 +67,6 @@ class TestManagedHeaders:
         )
         assert_matches_type(ManagedHeaderEditResponse, managed_header, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.managed_headers.with_raw_response.edit(
@@ -84,7 +80,6 @@ class TestManagedHeaders:
         managed_header = response.parse()
         assert_matches_type(ManagedHeaderEditResponse, managed_header, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.managed_headers.with_streaming_response.edit(
@@ -100,7 +95,6 @@ class TestManagedHeaders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -114,7 +108,6 @@ class TestManagedHeaders:
 class TestAsyncManagedHeaders:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         managed_header = await async_client.managed_headers.list(
@@ -122,7 +115,6 @@ class TestAsyncManagedHeaders:
         )
         assert_matches_type(ManagedHeaderListResponse, managed_header, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.managed_headers.with_raw_response.list(
@@ -134,7 +126,6 @@ class TestAsyncManagedHeaders:
         managed_header = await response.parse()
         assert_matches_type(ManagedHeaderListResponse, managed_header, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.managed_headers.with_streaming_response.list(
@@ -148,7 +139,6 @@ class TestAsyncManagedHeaders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
@@ -156,7 +146,6 @@ class TestAsyncManagedHeaders:
                 zone_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         managed_header = await async_client.managed_headers.edit(
@@ -166,7 +155,6 @@ class TestAsyncManagedHeaders:
         )
         assert_matches_type(ManagedHeaderEditResponse, managed_header, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.managed_headers.with_raw_response.edit(
@@ -180,7 +168,6 @@ class TestAsyncManagedHeaders:
         managed_header = await response.parse()
         assert_matches_type(ManagedHeaderEditResponse, managed_header, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.managed_headers.with_streaming_response.edit(
@@ -196,7 +183,6 @@ class TestAsyncManagedHeaders:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):

@@ -2,9 +2,10 @@
 
 from typing import List, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
 from ..._models import BaseModel
+from ..ssl.request_validity import RequestValidity
+from ..shared.certificate_request_type import CertificateRequestType
 
 __all__ = ["OriginCACertificate"]
 
@@ -19,13 +20,13 @@ class OriginCACertificate(BaseModel):
     certificate.
     """
 
-    request_type: Literal["origin-rsa", "origin-ecc", "keyless-certificate"]
+    request_type: CertificateRequestType
     """
     Signature type desired on certificate ("origin-rsa" (rsa), "origin-ecc" (ecdsa),
     or "keyless-certificate" (for Keyless SSL servers).
     """
 
-    requested_validity: Literal[7, 30, 90, 365, 730, 1095, 5475]
+    requested_validity: RequestValidity
     """The number of days for which the certificate should be valid."""
 
     id: Optional[str] = None

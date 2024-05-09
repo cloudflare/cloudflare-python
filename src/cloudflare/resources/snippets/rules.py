@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import Type, Iterable, Optional, cast
 
 import httpx
 
@@ -43,8 +43,8 @@ class RulesResource(SyncAPIResource):
 
     def update(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         rules: Iterable[rule_update_params.Rule] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -52,12 +52,12 @@ class RulesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleUpdateResponse:
+    ) -> Optional[RuleUpdateResponse]:
         """
         Put Rules
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           rules: List of snippet rules
 
@@ -69,25 +69,25 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._put(
-            f"/zones/{zone_identifier}/snippets/snippet_rules",
+            f"/zones/{zone_id}/snippets/snippet_rules",
             body=maybe_transform({"rules": rules}, rule_update_params.RuleUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[RuleUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[RuleUpdateResponse], ResultWrapper[RuleUpdateResponse]),
+            cast_to=cast(Type[Optional[RuleUpdateResponse]], ResultWrapper[RuleUpdateResponse]),
         )
 
     def list(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -99,7 +99,7 @@ class RulesResource(SyncAPIResource):
         Rules
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -109,10 +109,10 @@ class RulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_identifier}/snippets/snippet_rules",
+            f"/zones/{zone_id}/snippets/snippet_rules",
             page=SyncSinglePage[RuleListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -132,8 +132,8 @@ class AsyncRulesResource(AsyncAPIResource):
 
     async def update(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         rules: Iterable[rule_update_params.Rule] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -141,12 +141,12 @@ class AsyncRulesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RuleUpdateResponse:
+    ) -> Optional[RuleUpdateResponse]:
         """
         Put Rules
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           rules: List of snippet rules
 
@@ -158,25 +158,25 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._put(
-            f"/zones/{zone_identifier}/snippets/snippet_rules",
+            f"/zones/{zone_id}/snippets/snippet_rules",
             body=await async_maybe_transform({"rules": rules}, rule_update_params.RuleUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[RuleUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[RuleUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[RuleUpdateResponse], ResultWrapper[RuleUpdateResponse]),
+            cast_to=cast(Type[Optional[RuleUpdateResponse]], ResultWrapper[RuleUpdateResponse]),
         )
 
     def list(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -188,7 +188,7 @@ class AsyncRulesResource(AsyncAPIResource):
         Rules
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -198,10 +198,10 @@ class AsyncRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_identifier}/snippets/snippet_rules",
+            f"/zones/{zone_id}/snippets/snippet_rules",
             page=AsyncSinglePage[RuleListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

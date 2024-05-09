@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
-from cloudflare.types.stream.direct_upload_create_response import DirectUploadCreateResponse
+from cloudflare.types.stream import DirectUploadCreateResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -18,7 +18,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestDirectUpload:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         direct_upload = client.stream.direct_upload.create(
@@ -27,7 +26,6 @@ class TestDirectUpload:
         )
         assert_matches_type(Optional[DirectUploadCreateResponse], direct_upload, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         direct_upload = client.stream.direct_upload.create(
@@ -44,7 +42,6 @@ class TestDirectUpload:
         )
         assert_matches_type(Optional[DirectUploadCreateResponse], direct_upload, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.stream.direct_upload.with_raw_response.create(
@@ -57,7 +54,6 @@ class TestDirectUpload:
         direct_upload = response.parse()
         assert_matches_type(Optional[DirectUploadCreateResponse], direct_upload, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.stream.direct_upload.with_streaming_response.create(
@@ -72,7 +68,6 @@ class TestDirectUpload:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -85,7 +80,6 @@ class TestDirectUpload:
 class TestAsyncDirectUpload:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         direct_upload = await async_client.stream.direct_upload.create(
@@ -94,7 +88,6 @@ class TestAsyncDirectUpload:
         )
         assert_matches_type(Optional[DirectUploadCreateResponse], direct_upload, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         direct_upload = await async_client.stream.direct_upload.create(
@@ -111,7 +104,6 @@ class TestAsyncDirectUpload:
         )
         assert_matches_type(Optional[DirectUploadCreateResponse], direct_upload, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.direct_upload.with_raw_response.create(
@@ -124,7 +116,6 @@ class TestAsyncDirectUpload:
         direct_upload = await response.parse()
         assert_matches_type(Optional[DirectUploadCreateResponse], direct_upload, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.direct_upload.with_streaming_response.create(
@@ -139,7 +130,6 @@ class TestAsyncDirectUpload:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

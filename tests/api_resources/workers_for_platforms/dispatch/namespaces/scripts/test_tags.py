@@ -10,8 +10,10 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts.tag_list_response import TagListResponse
-from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts.tag_update_response import TagUpdateResponse
+from cloudflare.types.workers_for_platforms.dispatch.namespaces.scripts import (
+    TagListResponse,
+    TagUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,7 +21,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestTags:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         tag = client.workers_for_platforms.dispatch.namespaces.scripts.tags.update(
@@ -30,7 +31,6 @@ class TestTags:
         )
         assert_matches_type(Optional[TagUpdateResponse], tag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.update(
@@ -45,7 +45,6 @@ class TestTags:
         tag = response.parse()
         assert_matches_type(Optional[TagUpdateResponse], tag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_streaming_response.update(
@@ -62,7 +61,6 @@ class TestTags:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -89,7 +87,6 @@ class TestTags:
                 body=["my-tag", "my-tag", "my-tag"],
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         tag = client.workers_for_platforms.dispatch.namespaces.scripts.tags.list(
@@ -99,7 +96,6 @@ class TestTags:
         )
         assert_matches_type(SyncSinglePage[TagListResponse], tag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.list(
@@ -113,7 +109,6 @@ class TestTags:
         tag = response.parse()
         assert_matches_type(SyncSinglePage[TagListResponse], tag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_streaming_response.list(
@@ -129,7 +124,6 @@ class TestTags:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -153,7 +147,6 @@ class TestTags:
                 dispatch_namespace="my-dispatch-namespace",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         tag = client.workers_for_platforms.dispatch.namespaces.scripts.tags.delete(
@@ -164,7 +157,6 @@ class TestTags:
         )
         assert_matches_type(object, tag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
@@ -179,7 +171,6 @@ class TestTags:
         tag = response.parse()
         assert_matches_type(object, tag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_streaming_response.delete(
@@ -196,7 +187,6 @@ class TestTags:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -235,7 +225,6 @@ class TestTags:
 class TestAsyncTags:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         tag = await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.update(
@@ -246,7 +235,6 @@ class TestAsyncTags:
         )
         assert_matches_type(Optional[TagUpdateResponse], tag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.update(
@@ -261,7 +249,6 @@ class TestAsyncTags:
         tag = await response.parse()
         assert_matches_type(Optional[TagUpdateResponse], tag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_streaming_response.update(
@@ -278,7 +265,6 @@ class TestAsyncTags:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -305,7 +291,6 @@ class TestAsyncTags:
                 body=["my-tag", "my-tag", "my-tag"],
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         tag = await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.list(
@@ -315,7 +300,6 @@ class TestAsyncTags:
         )
         assert_matches_type(AsyncSinglePage[TagListResponse], tag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.list(
@@ -329,7 +313,6 @@ class TestAsyncTags:
         tag = await response.parse()
         assert_matches_type(AsyncSinglePage[TagListResponse], tag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_streaming_response.list(
@@ -345,7 +328,6 @@ class TestAsyncTags:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -369,7 +351,6 @@ class TestAsyncTags:
                 dispatch_namespace="my-dispatch-namespace",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         tag = await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.delete(
@@ -380,7 +361,6 @@ class TestAsyncTags:
         )
         assert_matches_type(object, tag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
@@ -395,7 +375,6 @@ class TestAsyncTags:
         tag = await response.parse()
         assert_matches_type(object, tag, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_streaming_response.delete(
@@ -412,7 +391,6 @@ class TestAsyncTags:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

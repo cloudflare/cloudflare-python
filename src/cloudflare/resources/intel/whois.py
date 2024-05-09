@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -24,7 +24,7 @@ from ...types.intel import whois_get_params
 from ..._base_client import (
     make_request_options,
 )
-from ...types.intel.whois import Whois
+from ...types.intel.whois_get_response import WhoisGetResponse
 
 __all__ = ["WhoisResource", "AsyncWhoisResource"]
 
@@ -49,7 +49,7 @@ class WhoisResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Whois:
+    ) -> Optional[WhoisGetResponse]:
         """
         Get WHOIS Record
 
@@ -74,9 +74,9 @@ class WhoisResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"domain": domain}, whois_get_params.WhoisGetParams),
-                post_parser=ResultWrapper[Whois]._unwrapper,
+                post_parser=ResultWrapper[Optional[WhoisGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Whois], ResultWrapper[Whois]),
+            cast_to=cast(Type[Optional[WhoisGetResponse]], ResultWrapper[WhoisGetResponse]),
         )
 
 
@@ -100,7 +100,7 @@ class AsyncWhoisResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Whois:
+    ) -> Optional[WhoisGetResponse]:
         """
         Get WHOIS Record
 
@@ -125,9 +125,9 @@ class AsyncWhoisResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"domain": domain}, whois_get_params.WhoisGetParams),
-                post_parser=ResultWrapper[Whois]._unwrapper,
+                post_parser=ResultWrapper[Optional[WhoisGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Whois], ResultWrapper[Whois]),
+            cast_to=cast(Type[Optional[WhoisGetResponse]], ResultWrapper[WhoisGetResponse]),
         )
 
 

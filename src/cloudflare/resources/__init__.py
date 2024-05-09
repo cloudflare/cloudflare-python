@@ -336,6 +336,14 @@ from .addressing import (
     AddressingResourceWithStreamingResponse,
     AsyncAddressingResourceWithStreamingResponse,
 )
+from .ai_gateway import (
+    AIGatewayResource,
+    AsyncAIGatewayResource,
+    AIGatewayResourceWithRawResponse,
+    AsyncAIGatewayResourceWithRawResponse,
+    AIGatewayResourceWithStreamingResponse,
+    AsyncAIGatewayResourceWithStreamingResponse,
+)
 from .audit_logs import (
     AuditLogsResource,
     AsyncAuditLogsResource,
@@ -1136,4 +1144,10 @@ __all__ = [
     "AsyncEventNotificationsResourceWithRawResponse",
     "EventNotificationsResourceWithStreamingResponse",
     "AsyncEventNotificationsResourceWithStreamingResponse",
+    "AIGatewayResource",
+    "AsyncAIGatewayResource",
+    "AIGatewayResourceWithRawResponse",
+    "AsyncAIGatewayResourceWithRawResponse",
+    "AIGatewayResourceWithStreamingResponse",
+    "AsyncAIGatewayResourceWithStreamingResponse",
 ]

@@ -55,7 +55,7 @@ class TLSResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Setting:
+    ) -> Optional[Setting]:
         """
         Update the tls setting value for the hostname.
 
@@ -90,9 +90,9 @@ class TLSResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Setting]._unwrapper,
+                post_parser=ResultWrapper[Optional[Setting]]._unwrapper,
             ),
-            cast_to=cast(Type[Setting], ResultWrapper[Setting]),
+            cast_to=cast(Type[Optional[Setting]], ResultWrapper[Setting]),
         )
 
     def delete(
@@ -107,7 +107,7 @@ class TLSResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSDeleteResponse:
+    ) -> Optional[TLSDeleteResponse]:
         """
         Delete the tls setting value for the hostname.
 
@@ -139,9 +139,9 @@ class TLSResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[TLSDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[TLSDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[TLSDeleteResponse], ResultWrapper[TLSDeleteResponse]),
+            cast_to=cast(Type[Optional[TLSDeleteResponse]], ResultWrapper[TLSDeleteResponse]),
         )
 
     def get(
@@ -211,7 +211,7 @@ class AsyncTLSResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Setting:
+    ) -> Optional[Setting]:
         """
         Update the tls setting value for the hostname.
 
@@ -246,9 +246,9 @@ class AsyncTLSResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Setting]._unwrapper,
+                post_parser=ResultWrapper[Optional[Setting]]._unwrapper,
             ),
-            cast_to=cast(Type[Setting], ResultWrapper[Setting]),
+            cast_to=cast(Type[Optional[Setting]], ResultWrapper[Setting]),
         )
 
     async def delete(
@@ -263,7 +263,7 @@ class AsyncTLSResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TLSDeleteResponse:
+    ) -> Optional[TLSDeleteResponse]:
         """
         Delete the tls setting value for the hostname.
 
@@ -295,9 +295,9 @@ class AsyncTLSResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[TLSDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[TLSDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[TLSDeleteResponse], ResultWrapper[TLSDeleteResponse]),
+            cast_to=cast(Type[Optional[TLSDeleteResponse]], ResultWrapper[TLSDeleteResponse]),
         )
 
     async def get(

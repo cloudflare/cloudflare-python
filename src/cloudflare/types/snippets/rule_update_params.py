@@ -3,12 +3,15 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import TypedDict
+from typing_extensions import Required, TypedDict
 
 __all__ = ["RuleUpdateParams", "Rule"]
 
 
 class RuleUpdateParams(TypedDict, total=False):
+    zone_id: Required[str]
+    """Identifier"""
+
     rules: Iterable[Rule]
     """List of snippet rules"""
 

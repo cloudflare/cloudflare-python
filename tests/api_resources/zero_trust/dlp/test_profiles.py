@@ -10,8 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.zero_trust.dlp.profile import Profile
-from cloudflare.types.zero_trust.dlp.profile_get_response import ProfileGetResponse
+from cloudflare.types.zero_trust.dlp import Profile, ProfileGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,7 +18,6 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestProfiles:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         profile = client.zero_trust.dlp.profiles.list(
@@ -27,7 +25,6 @@ class TestProfiles:
         )
         assert_matches_type(SyncSinglePage[Profile], profile, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.profiles.with_raw_response.list(
@@ -39,7 +36,6 @@ class TestProfiles:
         profile = response.parse()
         assert_matches_type(SyncSinglePage[Profile], profile, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.dlp.profiles.with_streaming_response.list(
@@ -53,7 +49,6 @@ class TestProfiles:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -61,7 +56,6 @@ class TestProfiles:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         profile = client.zero_trust.dlp.profiles.get(
@@ -70,7 +64,6 @@ class TestProfiles:
         )
         assert_matches_type(ProfileGetResponse, profile, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.profiles.with_raw_response.get(
@@ -83,7 +76,6 @@ class TestProfiles:
         profile = response.parse()
         assert_matches_type(ProfileGetResponse, profile, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.dlp.profiles.with_streaming_response.get(
@@ -98,7 +90,6 @@ class TestProfiles:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -117,7 +108,6 @@ class TestProfiles:
 class TestAsyncProfiles:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         profile = await async_client.zero_trust.dlp.profiles.list(
@@ -125,7 +115,6 @@ class TestAsyncProfiles:
         )
         assert_matches_type(AsyncSinglePage[Profile], profile, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dlp.profiles.with_raw_response.list(
@@ -137,7 +126,6 @@ class TestAsyncProfiles:
         profile = await response.parse()
         assert_matches_type(AsyncSinglePage[Profile], profile, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dlp.profiles.with_streaming_response.list(
@@ -151,7 +139,6 @@ class TestAsyncProfiles:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -159,7 +146,6 @@ class TestAsyncProfiles:
                 account_id="",
             )
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         profile = await async_client.zero_trust.dlp.profiles.get(
@@ -168,7 +154,6 @@ class TestAsyncProfiles:
         )
         assert_matches_type(ProfileGetResponse, profile, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dlp.profiles.with_raw_response.get(
@@ -181,7 +166,6 @@ class TestAsyncProfiles:
         profile = await response.parse()
         assert_matches_type(ProfileGetResponse, profile, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dlp.profiles.with_streaming_response.get(
@@ -196,7 +180,6 @@ class TestAsyncProfiles:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):

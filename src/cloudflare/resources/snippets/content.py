@@ -37,7 +37,7 @@ class ContentResource(SyncAPIResource):
         self,
         snippet_name: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -49,7 +49,7 @@ class ContentResource(SyncAPIResource):
         Snippet Content
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           snippet_name: Snippet identifying name
 
@@ -61,13 +61,13 @@ class ContentResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not snippet_name:
             raise ValueError(f"Expected a non-empty value for `snippet_name` but received {snippet_name!r}")
         extra_headers = {"Accept": "multipart/form-data", **(extra_headers or {})}
         return self._get(
-            f"/zones/{zone_identifier}/snippets/{snippet_name}/content",
+            f"/zones/{zone_id}/snippets/{snippet_name}/content",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -88,7 +88,7 @@ class AsyncContentResource(AsyncAPIResource):
         self,
         snippet_name: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -100,7 +100,7 @@ class AsyncContentResource(AsyncAPIResource):
         Snippet Content
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           snippet_name: Snippet identifying name
 
@@ -112,13 +112,13 @@ class AsyncContentResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not snippet_name:
             raise ValueError(f"Expected a non-empty value for `snippet_name` but received {snippet_name!r}")
         extra_headers = {"Accept": "multipart/form-data", **(extra_headers or {})}
         return await self._get(
-            f"/zones/{zone_identifier}/snippets/{snippet_name}/content",
+            f"/zones/{zone_id}/snippets/{snippet_name}/content",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

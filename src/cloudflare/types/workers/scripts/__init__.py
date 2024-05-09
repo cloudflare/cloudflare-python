@@ -4,12 +4,10 @@ from __future__ import annotations
 
 from .schedule import Schedule as Schedule
 from .deployment import Deployment as Deployment
-from .schedule_param import ScheduleParam as ScheduleParam
 from .consumer_script import ConsumerScript as ConsumerScript
 from .deployment_param import DeploymentParam as DeploymentParam
 from .tail_get_response import TailGetResponse as TailGetResponse
 from .tail_create_params import TailCreateParams as TailCreateParams
-from .tail_delete_params import TailDeleteParams as TailDeleteParams
 from .setting_edit_params import SettingEditParams as SettingEditParams
 from .tail_create_response import TailCreateResponse as TailCreateResponse
 from .tail_delete_response import TailDeleteResponse as TailDeleteResponse

@@ -11,7 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePagination, AsyncV4PagePagination
-from cloudflare.types.radar.bgp.leaks.event_list_response import EventListResponse
+from cloudflare.types.radar.bgp.leaks import EventListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -19,13 +19,11 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestEvents:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         event = client.radar.bgp.leaks.events.list()
         assert_matches_type(SyncV4PagePagination[EventListResponse], event, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         event = client.radar.bgp.leaks.events.list(
@@ -44,7 +42,6 @@ class TestEvents:
         )
         assert_matches_type(SyncV4PagePagination[EventListResponse], event, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.radar.bgp.leaks.events.with_raw_response.list()
@@ -54,7 +51,6 @@ class TestEvents:
         event = response.parse()
         assert_matches_type(SyncV4PagePagination[EventListResponse], event, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.radar.bgp.leaks.events.with_streaming_response.list() as response:
@@ -70,13 +66,11 @@ class TestEvents:
 class TestAsyncEvents:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         event = await async_client.radar.bgp.leaks.events.list()
         assert_matches_type(AsyncV4PagePagination[EventListResponse], event, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         event = await async_client.radar.bgp.leaks.events.list(
@@ -95,7 +89,6 @@ class TestAsyncEvents:
         )
         assert_matches_type(AsyncV4PagePagination[EventListResponse], event, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.bgp.leaks.events.with_raw_response.list()
@@ -105,7 +98,6 @@ class TestAsyncEvents:
         event = await response.parse()
         assert_matches_type(AsyncV4PagePagination[EventListResponse], event, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.bgp.leaks.events.with_streaming_response.list() as response:

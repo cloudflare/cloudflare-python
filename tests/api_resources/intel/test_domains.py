@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.intel.domain import Domain
+from cloudflare.types.intel import Domain
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -17,24 +17,21 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestDomains:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         domain = client.intel.domains.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Domain, domain, path=["response"])
+        assert_matches_type(Optional[Domain], domain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         domain = client.intel.domains.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="string",
         )
-        assert_matches_type(Domain, domain, path=["response"])
+        assert_matches_type(Optional[Domain], domain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.intel.domains.with_raw_response.get(
@@ -44,9 +41,8 @@ class TestDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = response.parse()
-        assert_matches_type(Domain, domain, path=["response"])
+        assert_matches_type(Optional[Domain], domain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.intel.domains.with_streaming_response.get(
@@ -56,11 +52,10 @@ class TestDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = response.parse()
-            assert_matches_type(Domain, domain, path=["response"])
+            assert_matches_type(Optional[Domain], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -72,24 +67,21 @@ class TestDomains:
 class TestAsyncDomains:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         domain = await async_client.intel.domains.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Domain, domain, path=["response"])
+        assert_matches_type(Optional[Domain], domain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         domain = await async_client.intel.domains.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="string",
         )
-        assert_matches_type(Domain, domain, path=["response"])
+        assert_matches_type(Optional[Domain], domain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.intel.domains.with_raw_response.get(
@@ -99,9 +91,8 @@ class TestAsyncDomains:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         domain = await response.parse()
-        assert_matches_type(Domain, domain, path=["response"])
+        assert_matches_type(Optional[Domain], domain, path=["response"])
 
-    @pytest.mark.skip()
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.intel.domains.with_streaming_response.get(
@@ -111,11 +102,10 @@ class TestAsyncDomains:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             domain = await response.parse()
-            assert_matches_type(Domain, domain, path=["response"])
+            assert_matches_type(Optional[Domain], domain, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip()
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
