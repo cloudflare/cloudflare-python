@@ -30,14 +30,20 @@ class ActionParameters(TypedDict, total=False):
     bic: bool
     """Turn on or off Browser Integrity Check."""
 
-    disable_apps: bool
+    disable_apps: Literal[True]
     """Turn off all active Cloudflare Apps."""
 
-    disable_zaraz: bool
+    disable_rum: Literal[True]
+    """Turn off Real User Monitoring (RUM)."""
+
+    disable_zaraz: Literal[True]
     """Turn off Zaraz."""
 
     email_obfuscation: bool
     """Turn on or off Email Obfuscation."""
+
+    fonts: bool
+    """Turn on or off Cloudflare Fonts."""
 
     hotlink_protection: bool
     """Turn on or off the Hotlink Protection."""

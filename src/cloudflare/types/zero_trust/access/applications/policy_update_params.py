@@ -56,7 +56,10 @@ class PolicyUpdateParams(TypedDict, total=False):
     """
 
     precedence: int
-    """The order of execution for this policy. Must be unique for each policy."""
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
 
     purpose_justification_prompt: str
     """A custom message that will appear on the purpose justification screen."""

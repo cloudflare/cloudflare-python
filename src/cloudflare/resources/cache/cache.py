@@ -372,7 +372,7 @@ class CacheResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["zone_id"], ["zone_id"], ["zone_id"], ["zone_id"], ["zone_id"])
+    @required_args(["zone_id"])
     def purge(
         self,
         *,
@@ -724,7 +724,7 @@ class AsyncCacheResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["zone_id"], ["zone_id"], ["zone_id"], ["zone_id"], ["zone_id"])
+    @required_args(["zone_id"])
     async def purge(
         self,
         *,

@@ -722,22 +722,7 @@ class IdentityProvidersResource(SyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-    )
+    @required_args(["config", "name", "type"])
     def create(
         self,
         *,
@@ -1516,22 +1501,7 @@ class IdentityProvidersResource(SyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-    )
+    @required_args(["config", "name", "type"])
     def update(
         self,
         uuid: str,
@@ -2451,22 +2421,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-    )
+    @required_args(["config", "name", "type"])
     async def create(
         self,
         *,
@@ -3245,22 +3200,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-    )
+    @required_args(["config", "name", "type"])
     async def update(
         self,
         uuid: str,

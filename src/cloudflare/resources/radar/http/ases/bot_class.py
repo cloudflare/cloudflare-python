@@ -45,6 +45,7 @@ class BotClassResource(SyncAPIResource):
         bot_class: Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
@@ -99,6 +100,8 @@ class BotClassResource(SyncAPIResource):
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
+
+          browser_family: Filter for browser family.
 
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start
               with `-` to exclude from results. For example, `-EU,NA` excludes results from
@@ -154,6 +157,7 @@ class BotClassResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "asn": asn,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -191,6 +195,7 @@ class AsyncBotClassResource(AsyncAPIResource):
         bot_class: Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
@@ -246,6 +251,8 @@ class AsyncBotClassResource(AsyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
+          browser_family: Filter for browser family.
+
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start
               with `-` to exclude from results. For example, `-EU,NA` excludes results from
               Europe, but includes results from North America.
@@ -300,6 +307,7 @@ class AsyncBotClassResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "asn": asn,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,

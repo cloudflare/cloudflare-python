@@ -27,6 +27,7 @@ from .._base_client import (
     make_request_options,
 )
 from ..types.calls.calls_app import CallsApp
+from ..types.calls.call_list_response import CallListResponse
 from ..types.calls.calls_app_with_secret import CallsAppWithSecret
 
 __all__ = ["CallsResource", "AsyncCallsResource"]
@@ -144,7 +145,7 @@ class CallsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[CallsApp]:
+    ) -> SyncSinglePage[CallListResponse]:
         """
         Lists all apps in the Cloudflare account
 
@@ -163,11 +164,11 @@ class CallsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/calls/apps",
-            page=SyncSinglePage[CallsApp],
+            page=SyncSinglePage[CallListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=CallsApp,
+            model=str,
         )
 
     def delete(
@@ -371,7 +372,7 @@ class AsyncCallsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[CallsApp, AsyncSinglePage[CallsApp]]:
+    ) -> AsyncPaginator[CallListResponse, AsyncSinglePage[CallListResponse]]:
         """
         Lists all apps in the Cloudflare account
 
@@ -390,11 +391,11 @@ class AsyncCallsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/calls/apps",
-            page=AsyncSinglePage[CallsApp],
+            page=AsyncSinglePage[CallListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=CallsApp,
+            model=str,
         )
 
     async def delete(

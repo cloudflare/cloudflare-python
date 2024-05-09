@@ -31,14 +31,20 @@ class ActionParameters(BaseModel):
     bic: Optional[bool] = None
     """Turn on or off Browser Integrity Check."""
 
-    disable_apps: Optional[bool] = None
+    disable_apps: Optional[Literal[True]] = None
     """Turn off all active Cloudflare Apps."""
 
-    disable_zaraz: Optional[bool] = None
+    disable_rum: Optional[Literal[True]] = None
+    """Turn off Real User Monitoring (RUM)."""
+
+    disable_zaraz: Optional[Literal[True]] = None
     """Turn off Zaraz."""
 
     email_obfuscation: Optional[bool] = None
     """Turn on or off Email Obfuscation."""
+
+    fonts: Optional[bool] = None
+    """Turn on or off Cloudflare Fonts."""
 
     hotlink_protection: Optional[bool] = None
     """Turn on or off the Hotlink Protection."""
