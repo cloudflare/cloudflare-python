@@ -13,39 +13,39 @@ from .keys import (
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 
-__all__ = ["TurnResource", "AsyncTurnResource"]
+__all__ = ["TURNResource", "AsyncTURNResource"]
 
 
-class TurnResource(SyncAPIResource):
+class TURNResource(SyncAPIResource):
     @cached_property
     def keys(self) -> KeysResource:
         return KeysResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> TurnResourceWithRawResponse:
-        return TurnResourceWithRawResponse(self)
+    def with_raw_response(self) -> TURNResourceWithRawResponse:
+        return TURNResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> TurnResourceWithStreamingResponse:
-        return TurnResourceWithStreamingResponse(self)
+    def with_streaming_response(self) -> TURNResourceWithStreamingResponse:
+        return TURNResourceWithStreamingResponse(self)
 
 
-class AsyncTurnResource(AsyncAPIResource):
+class AsyncTURNResource(AsyncAPIResource):
     @cached_property
     def keys(self) -> AsyncKeysResource:
         return AsyncKeysResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncTurnResourceWithRawResponse:
-        return AsyncTurnResourceWithRawResponse(self)
+    def with_raw_response(self) -> AsyncTURNResourceWithRawResponse:
+        return AsyncTURNResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncTurnResourceWithStreamingResponse:
-        return AsyncTurnResourceWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncTURNResourceWithStreamingResponse:
+        return AsyncTURNResourceWithStreamingResponse(self)
 
 
-class TurnResourceWithRawResponse:
-    def __init__(self, turn: TurnResource) -> None:
+class TURNResourceWithRawResponse:
+    def __init__(self, turn: TURNResource) -> None:
         self._turn = turn
 
     @cached_property
@@ -53,8 +53,8 @@ class TurnResourceWithRawResponse:
         return KeysResourceWithRawResponse(self._turn.keys)
 
 
-class AsyncTurnResourceWithRawResponse:
-    def __init__(self, turn: AsyncTurnResource) -> None:
+class AsyncTURNResourceWithRawResponse:
+    def __init__(self, turn: AsyncTURNResource) -> None:
         self._turn = turn
 
     @cached_property
@@ -62,8 +62,8 @@ class AsyncTurnResourceWithRawResponse:
         return AsyncKeysResourceWithRawResponse(self._turn.keys)
 
 
-class TurnResourceWithStreamingResponse:
-    def __init__(self, turn: TurnResource) -> None:
+class TURNResourceWithStreamingResponse:
+    def __init__(self, turn: TURNResource) -> None:
         self._turn = turn
 
     @cached_property
@@ -71,8 +71,8 @@ class TurnResourceWithStreamingResponse:
         return KeysResourceWithStreamingResponse(self._turn.keys)
 
 
-class AsyncTurnResourceWithStreamingResponse:
-    def __init__(self, turn: AsyncTurnResource) -> None:
+class AsyncTURNResourceWithStreamingResponse:
+    def __init__(self, turn: AsyncTURNResource) -> None:
         self._turn = turn
 
     @cached_property
