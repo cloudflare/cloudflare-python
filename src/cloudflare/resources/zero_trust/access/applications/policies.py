@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import Type, Iterable, Optional, cast
-from typing_extensions import Literal
 
 import httpx
 
@@ -26,6 +25,8 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from .....types.zero_trust.access import Decision
+from .....types.zero_trust.access.decision import Decision
 from .....types.zero_trust.access_rule_param import AccessRuleParam
 from .....types.zero_trust.access.applications import policy_create_params, policy_update_params
 from .....types.zero_trust.access.applications.policy_get_response import PolicyGetResponse
@@ -51,7 +52,7 @@ class PoliciesResource(SyncAPIResource):
         self,
         uuid: str,
         *,
-        decision: Literal["allow", "deny", "non_identity", "bypass"],
+        decision: Decision,
         include: Iterable[AccessRuleParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -174,7 +175,7 @@ class PoliciesResource(SyncAPIResource):
         uuid: str,
         *,
         uuid1: str,
-        decision: Literal["allow", "deny", "non_identity", "bypass"],
+        decision: Decision,
         include: Iterable[AccessRuleParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -493,7 +494,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         self,
         uuid: str,
         *,
-        decision: Literal["allow", "deny", "non_identity", "bypass"],
+        decision: Decision,
         include: Iterable[AccessRuleParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -616,7 +617,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         uuid: str,
         *,
         uuid1: str,
-        decision: Literal["allow", "deny", "non_identity", "bypass"],
+        decision: Decision,
         include: Iterable[AccessRuleParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,

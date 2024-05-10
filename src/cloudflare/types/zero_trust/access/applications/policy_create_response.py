@@ -2,8 +2,8 @@
 
 from typing import List, Optional
 from datetime import datetime
-from typing_extensions import Literal
 
+from ..decision import Decision
 from ....._models import BaseModel
 from ...access_rule import AccessRule
 from .approval_group import ApprovalGroup
@@ -26,7 +26,7 @@ class PolicyCreateResponse(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    decision: Optional[Literal["allow", "deny", "non_identity", "bypass"]] = None
+    decision: Optional[Decision] = None
     """The action Access will take if a user matches this policy."""
 
     exclude: Optional[List[AccessRule]] = None

@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Dict, List, Union, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
+from .decision import Decision
 from .allowed_idps import AllowedIdPs
 from .application_type import ApplicationType
 from ..access_rule_param import AccessRuleParam
@@ -254,7 +255,7 @@ class SelfHostedApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
 
 class SelfHostedApplicationPolicyUnionMember2(TypedDict, total=False):
-    decision: Required[Literal["allow", "deny", "non_identity", "bypass"]]
+    decision: Required[Decision]
     """The action Access will take if a user matches this policy."""
 
     include: Required[Iterable[AccessRuleParam]]
@@ -514,7 +515,7 @@ class SaaSApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
 
 class SaaSApplicationPolicyUnionMember2(TypedDict, total=False):
-    decision: Required[Literal["allow", "deny", "non_identity", "bypass"]]
+    decision: Required[Decision]
     """The action Access will take if a user matches this policy."""
 
     include: Required[Iterable[AccessRuleParam]]
@@ -929,7 +930,7 @@ class BrowserSSHApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
 
 class BrowserSSHApplicationPolicyUnionMember2(TypedDict, total=False):
-    decision: Required[Literal["allow", "deny", "non_identity", "bypass"]]
+    decision: Required[Decision]
     """The action Access will take if a user matches this policy."""
 
     include: Required[Iterable[AccessRuleParam]]
@@ -1268,7 +1269,7 @@ class BrowserVncApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
 
 class BrowserVncApplicationPolicyUnionMember2(TypedDict, total=False):
-    decision: Required[Literal["allow", "deny", "non_identity", "bypass"]]
+    decision: Required[Decision]
     """The action Access will take if a user matches this policy."""
 
     include: Required[Iterable[AccessRuleParam]]
@@ -1515,7 +1516,7 @@ class AppLauncherApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
 
 
 class AppLauncherApplicationPolicyUnionMember2(TypedDict, total=False):
-    decision: Required[Literal["allow", "deny", "non_identity", "bypass"]]
+    decision: Required[Decision]
     """The action Access will take if a user matches this policy."""
 
     include: Required[Iterable[AccessRuleParam]]
@@ -1762,7 +1763,7 @@ class DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
 
 
 class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2(TypedDict, total=False):
-    decision: Required[Literal["allow", "deny", "non_identity", "bypass"]]
+    decision: Required[Decision]
     """The action Access will take if a user matches this policy."""
 
     include: Required[Iterable[AccessRuleParam]]
@@ -2015,7 +2016,7 @@ class BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict,
 
 
 class BrowserIsolationPermissionsApplicationPolicyUnionMember2(TypedDict, total=False):
-    decision: Required[Literal["allow", "deny", "non_identity", "bypass"]]
+    decision: Required[Decision]
     """The action Access will take if a user matches this policy."""
 
     include: Required[Iterable[AccessRuleParam]]
