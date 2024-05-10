@@ -9,12 +9,12 @@ from .keys import (
     AsyncKeysResourceWithStreamingResponse,
 )
 from .turn import (
-    TurnResource,
-    AsyncTurnResource,
-    TurnResourceWithRawResponse,
-    AsyncTurnResourceWithRawResponse,
-    TurnResourceWithStreamingResponse,
-    AsyncTurnResourceWithStreamingResponse,
+    TURNResource,
+    AsyncTURNResource,
+    TURNResourceWithRawResponse,
+    AsyncTURNResourceWithRawResponse,
+    TURNResourceWithStreamingResponse,
+    AsyncTURNResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -24,10 +24,10 @@ __all__ = [
     "AsyncKeysResourceWithRawResponse",
     "KeysResourceWithStreamingResponse",
     "AsyncKeysResourceWithStreamingResponse",
-    "TurnResource",
-    "AsyncTurnResource",
-    "TurnResourceWithRawResponse",
-    "AsyncTurnResourceWithRawResponse",
-    "TurnResourceWithStreamingResponse",
-    "AsyncTurnResourceWithStreamingResponse",
+    "TURNResource",
+    "AsyncTURNResource",
+    "TURNResourceWithRawResponse",
+    "AsyncTURNResourceWithRawResponse",
+    "TURNResourceWithStreamingResponse",
+    "AsyncTURNResourceWithStreamingResponse",
 ]

@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .turn import (
-    TurnResource,
-    AsyncTurnResource,
-    TurnResourceWithRawResponse,
-    AsyncTurnResourceWithRawResponse,
-    TurnResourceWithStreamingResponse,
-    AsyncTurnResourceWithStreamingResponse,
+    TURNResource,
+    AsyncTURNResource,
+    TURNResourceWithRawResponse,
+    AsyncTURNResourceWithRawResponse,
+    TURNResourceWithStreamingResponse,
+    AsyncTURNResourceWithStreamingResponse,
 )
 from .calls import (
     CallsResource,
@@ -18,12 +18,12 @@ from .calls import (
 )
 
 __all__ = [
-    "TurnResource",
-    "AsyncTurnResource",
-    "TurnResourceWithRawResponse",
-    "AsyncTurnResourceWithRawResponse",
-    "TurnResourceWithStreamingResponse",
-    "AsyncTurnResourceWithStreamingResponse",
+    "TURNResource",
+    "AsyncTURNResource",
+    "TURNResourceWithRawResponse",
+    "AsyncTURNResourceWithRawResponse",
+    "TURNResourceWithStreamingResponse",
+    "AsyncTURNResourceWithStreamingResponse",
     "CallsResource",
     "AsyncCallsResource",
     "CallsResourceWithRawResponse",

@@ -7,12 +7,12 @@ from typing import Type, Optional, cast
 import httpx
 
 from .turn import (
-    TurnResource,
-    AsyncTurnResource,
-    TurnResourceWithRawResponse,
-    AsyncTurnResourceWithRawResponse,
-    TurnResourceWithStreamingResponse,
-    AsyncTurnResourceWithStreamingResponse,
+    TURNResource,
+    AsyncTURNResource,
+    TURNResourceWithRawResponse,
+    AsyncTURNResourceWithRawResponse,
+    TURNResourceWithStreamingResponse,
+    AsyncTURNResourceWithStreamingResponse,
 )
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
@@ -20,7 +20,7 @@ from ..._utils import (
     async_maybe_transform,
 )
 from ..._compat import cached_property
-from .turn.turn import TurnResource, AsyncTurnResource
+from .turn.turn import TURNResource, AsyncTURNResource
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -44,8 +44,8 @@ __all__ = ["CallsResource", "AsyncCallsResource"]
 
 class CallsResource(SyncAPIResource):
     @cached_property
-    def turn(self) -> TurnResource:
-        return TurnResource(self._client)
+    def turn(self) -> TURNResource:
+        return TURNResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> CallsResourceWithRawResponse:
@@ -275,8 +275,8 @@ class CallsResource(SyncAPIResource):
 
 class AsyncCallsResource(AsyncAPIResource):
     @cached_property
-    def turn(self) -> AsyncTurnResource:
-        return AsyncTurnResource(self._client)
+    def turn(self) -> AsyncTURNResource:
+        return AsyncTURNResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncCallsResourceWithRawResponse:
@@ -525,8 +525,8 @@ class CallsResourceWithRawResponse:
         )
 
     @cached_property
-    def turn(self) -> TurnResourceWithRawResponse:
-        return TurnResourceWithRawResponse(self._calls.turn)
+    def turn(self) -> TURNResourceWithRawResponse:
+        return TURNResourceWithRawResponse(self._calls.turn)
 
 
 class AsyncCallsResourceWithRawResponse:
@@ -550,8 +550,8 @@ class AsyncCallsResourceWithRawResponse:
         )
 
     @cached_property
-    def turn(self) -> AsyncTurnResourceWithRawResponse:
-        return AsyncTurnResourceWithRawResponse(self._calls.turn)
+    def turn(self) -> AsyncTURNResourceWithRawResponse:
+        return AsyncTURNResourceWithRawResponse(self._calls.turn)
 
 
 class CallsResourceWithStreamingResponse:
@@ -575,8 +575,8 @@ class CallsResourceWithStreamingResponse:
         )
 
     @cached_property
-    def turn(self) -> TurnResourceWithStreamingResponse:
-        return TurnResourceWithStreamingResponse(self._calls.turn)
+    def turn(self) -> TURNResourceWithStreamingResponse:
+        return TURNResourceWithStreamingResponse(self._calls.turn)
 
 
 class AsyncCallsResourceWithStreamingResponse:
@@ -600,5 +600,5 @@ class AsyncCallsResourceWithStreamingResponse:
         )
 
     @cached_property
-    def turn(self) -> AsyncTurnResourceWithStreamingResponse:
-        return AsyncTurnResourceWithStreamingResponse(self._calls.turn)
+    def turn(self) -> AsyncTURNResourceWithStreamingResponse:
+        return AsyncTURNResourceWithStreamingResponse(self._calls.turn)
