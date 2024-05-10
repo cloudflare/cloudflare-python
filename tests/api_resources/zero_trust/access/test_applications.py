@@ -73,21 +73,54 @@ class TestApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
             same_site_cookie_attribute="strict",
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
@@ -170,20 +203,7 @@ class TestApplications:
             ],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -208,6 +228,52 @@ class TestApplications:
                 "saml_attribute_transform_jsonata": "$ ~>| groups | {'group_name': name} |",
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
+            },
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
             },
             tags=["engineers", "engineers", "engineers"],
             type="saas",
@@ -302,21 +368,54 @@ class TestApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
             same_site_cookie_attribute="strict",
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
@@ -421,21 +520,54 @@ class TestApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
             same_site_cookie_attribute="strict",
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
@@ -512,20 +644,53 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
                 },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -594,20 +759,53 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
                 },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -676,20 +874,53 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
                 },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -754,6 +985,52 @@ class TestApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
         )
@@ -849,21 +1126,54 @@ class TestApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
             same_site_cookie_attribute="strict",
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
@@ -952,20 +1262,7 @@ class TestApplications:
             ],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -990,6 +1287,52 @@ class TestApplications:
                 "saml_attribute_transform_jsonata": "$ ~>| groups | {'group_name': name} |",
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
+            },
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
             },
             tags=["engineers", "engineers", "engineers"],
             type="saas",
@@ -1090,21 +1433,54 @@ class TestApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
             same_site_cookie_attribute="strict",
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
@@ -1215,21 +1591,54 @@ class TestApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
             same_site_cookie_attribute="strict",
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
@@ -1312,20 +1721,53 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
                 },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -1400,20 +1842,53 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
                 },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -1488,20 +1963,53 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
                 },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -1572,6 +2080,52 @@ class TestApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
         )
@@ -1911,21 +2465,54 @@ class TestAsyncApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
             same_site_cookie_attribute="strict",
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
@@ -2008,20 +2595,7 @@ class TestAsyncApplications:
             ],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -2046,6 +2620,52 @@ class TestAsyncApplications:
                 "saml_attribute_transform_jsonata": "$ ~>| groups | {'group_name': name} |",
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
+            },
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
             },
             tags=["engineers", "engineers", "engineers"],
             type="saas",
@@ -2140,21 +2760,54 @@ class TestAsyncApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
             same_site_cookie_attribute="strict",
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
@@ -2259,21 +2912,54 @@ class TestAsyncApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
             same_site_cookie_attribute="strict",
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
@@ -2350,20 +3036,53 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
                 },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -2432,20 +3151,53 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
                 },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -2514,20 +3266,53 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
                 },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
@@ -2592,6 +3377,52 @@ class TestAsyncApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
         )
@@ -2687,21 +3518,54 @@ class TestAsyncApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
             same_site_cookie_attribute="strict",
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
@@ -2790,20 +3654,7 @@ class TestAsyncApplications:
             ],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -2828,6 +3679,52 @@ class TestAsyncApplications:
                 "saml_attribute_transform_jsonata": "$ ~>| groups | {'group_name': name} |",
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
+            },
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
             },
             tags=["engineers", "engineers", "engineers"],
             type="saas",
@@ -2928,21 +3825,54 @@ class TestAsyncApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
             same_site_cookie_attribute="strict",
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
@@ -3053,21 +3983,54 @@ class TestAsyncApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
             same_site_cookie_attribute="strict",
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
             session_duration="24h",
@@ -3150,20 +4113,53 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
                 },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -3238,20 +4234,53 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
                 },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -3326,20 +4355,53 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
+            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
                 },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-                {
-                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                    "precedence": 0,
-                },
-            ],
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             session_duration="24h",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
@@ -3410,6 +4472,52 @@ class TestAsyncApplications:
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
+            scim_config={
+                "authentication": {
+                    "password": "string",
+                    "scheme": "httpbasic",
+                    "user": "string",
+                },
+                "deactivate_on_delete": True,
+                "enabled": True,
+                "idp_uid": "string",
+                "mappings": [
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                    {
+                        "enabled": True,
+                        "filter": 'title pr or userType eq "Intern"',
+                        "operations": {
+                            "create": True,
+                            "delete": True,
+                            "update": True,
+                        },
+                        "schema": "urn:ietf:params:scim:schemas:core:2.0:User",
+                        "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
+                    },
+                ],
+                "remote_uri": "string",
+            },
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
         )
