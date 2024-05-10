@@ -2,11 +2,12 @@
 
 from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, Annotated
 
 from .kind import Kind
 from .phase import Phase
 from .logging import Logging
+from ..._utils import PropertyInfo
 from .log_rule import LogRule
 from ..._models import BaseModel
 from .skip_rule import SkipRule
@@ -96,23 +97,26 @@ class RuleRulesetsLogCustomFieldRule(BaseModel):
     """The reference of the rule (the rule ID by default)."""
 
 
-Rule = Union[
-    BlockRule,
-    ChallengeRule,
-    CompressResponseRule,
-    ExecuteRule,
-    JSChallengeRule,
-    LogRule,
-    ManagedChallengeRule,
-    RedirectRule,
-    RewriteRule,
-    RouteRule,
-    ScoreRule,
-    ServeErrorRule,
-    SetConfigRule,
-    SkipRule,
-    SetCacheSettingsRule,
-    RuleRulesetsLogCustomFieldRule,
+Rule = Annotated[
+    Union[
+        BlockRule,
+        ChallengeRule,
+        CompressResponseRule,
+        ExecuteRule,
+        JSChallengeRule,
+        LogRule,
+        ManagedChallengeRule,
+        RedirectRule,
+        RewriteRule,
+        RouteRule,
+        ScoreRule,
+        ServeErrorRule,
+        SetConfigRule,
+        SkipRule,
+        SetCacheSettingsRule,
+        RuleRulesetsLogCustomFieldRule,
+    ],
+    PropertyInfo(discriminator="action"),
 ]
 
 
