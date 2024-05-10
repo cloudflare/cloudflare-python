@@ -6,41 +6,43 @@ from typing import Type, Optional, cast
 
 import httpx
 
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import (
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._wrappers import ResultWrapper
-from ..pagination import SyncSinglePage, AsyncSinglePage
-from ..types.calls import call_create_params, call_update_params
-from .._base_client import (
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ..types.calls.calls_app import CallsApp
-from ..types.calls.call_list_response import CallListResponse
-from ..types.calls.calls_app_with_secret import CallsAppWithSecret
+from ....types.calls.turn import key_create_params, key_update_params
+from ....types.calls.turn.key_get_response import KeyGetResponse
+from ....types.calls.turn.key_list_response import KeyListResponse
+from ....types.calls.turn.key_create_response import KeyCreateResponse
+from ....types.calls.turn.key_delete_response import KeyDeleteResponse
+from ....types.calls.turn.key_update_response import KeyUpdateResponse
 
-__all__ = ["CallsResource", "AsyncCallsResource"]
+__all__ = ["KeysResource", "AsyncKeysResource"]
 
 
-class CallsResource(SyncAPIResource):
+class KeysResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> CallsResourceWithRawResponse:
-        return CallsResourceWithRawResponse(self)
+    def with_raw_response(self) -> KeysResourceWithRawResponse:
+        return KeysResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> CallsResourceWithStreamingResponse:
-        return CallsResourceWithStreamingResponse(self)
+    def with_streaming_response(self) -> KeysResourceWithStreamingResponse:
+        return KeysResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -53,16 +55,14 @@ class CallsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CallsAppWithSecret]:
-        """Creates a new Cloudflare calls app.
-
-        An app is an unique enviroment where each
-        Session can access all Tracks within the app.
+    ) -> KeyCreateResponse:
+        """
+        Creates a new Cloudflare Calls TURN key.
 
         Args:
           account_id: The account identifier tag.
 
-          name: A short description of Calls app, not shown to end users.
+          name: A short description of a TURN key, not shown to end users.
 
           extra_headers: Send extra headers
 
@@ -75,21 +75,17 @@ class CallsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/calls/apps",
-            body=maybe_transform({"name": name}, call_create_params.CallCreateParams),
+            f"/accounts/{account_id}/calls/turn_keys",
+            body=maybe_transform({"name": name}, key_create_params.KeyCreateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CallsAppWithSecret]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CallsAppWithSecret]], ResultWrapper[CallsAppWithSecret]),
+            cast_to=KeyCreateResponse,
         )
 
     def update(
         self,
-        app_id: str,
+        key_id: str,
         *,
         account_id: str,
         name: str | NotGiven = NOT_GIVEN,
@@ -99,16 +95,16 @@ class CallsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CallsApp]:
+    ) -> str:
         """
-        Edit details for a single app.
+        Edit details for a single TURN key.
 
         Args:
           account_id: The account identifier tag.
 
-          app_id: A Cloudflare-generated unique identifier for a item.
+          key_id: A Cloudflare-generated unique identifier for a item.
 
-          name: A short description of Calls app, not shown to end users.
+          name: A short description of a TURN key, not shown to end users.
 
           extra_headers: Send extra headers
 
@@ -120,19 +116,19 @@ class CallsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not app_id:
-            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if not key_id:
+            raise ValueError(f"Expected a non-empty value for `key_id` but received {key_id!r}")
         return self._put(
-            f"/accounts/{account_id}/calls/apps/{app_id}",
-            body=maybe_transform({"name": name}, call_update_params.CallUpdateParams),
+            f"/accounts/{account_id}/calls/turn_keys/{key_id}",
+            body=maybe_transform({"name": name}, key_update_params.KeyUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[CallsApp]]._unwrapper,
+                post_parser=ResultWrapper[Optional[KeyUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[CallsApp]], ResultWrapper[CallsApp]),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
     def list(
@@ -145,9 +141,9 @@ class CallsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[CallListResponse]:
+    ) -> SyncSinglePage[KeyListResponse]:
         """
-        Lists all apps in the Cloudflare account
+        Lists all TURN keys in the Cloudflare account
 
         Args:
           account_id: The account identifier tag.
@@ -163,8 +159,8 @@ class CallsResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/calls/apps",
-            page=SyncSinglePage[CallListResponse],
+            f"/accounts/{account_id}/calls/turn_keys",
+            page=SyncSinglePage[KeyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -173,7 +169,7 @@ class CallsResource(SyncAPIResource):
 
     def delete(
         self,
-        app_id: str,
+        key_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -182,14 +178,14 @@ class CallsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CallsApp]:
+    ) -> str:
         """
-        Deletes an app from Cloudflare Calls
+        Deletes a TURN key from Cloudflare Calls
 
         Args:
           account_id: The account identifier tag.
 
-          app_id: A Cloudflare-generated unique identifier for a item.
+          key_id: A Cloudflare-generated unique identifier for a item.
 
           extra_headers: Send extra headers
 
@@ -201,23 +197,23 @@ class CallsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not app_id:
-            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if not key_id:
+            raise ValueError(f"Expected a non-empty value for `key_id` but received {key_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/calls/apps/{app_id}",
+            f"/accounts/{account_id}/calls/turn_keys/{key_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[CallsApp]]._unwrapper,
+                post_parser=ResultWrapper[Optional[KeyDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[CallsApp]], ResultWrapper[CallsApp]),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
     def get(
         self,
-        app_id: str,
+        key_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -226,14 +222,14 @@ class CallsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CallsApp]:
+    ) -> str:
         """
-        Fetches details for a single Calls app.
+        Fetches details for a single TURN key.
 
         Args:
           account_id: The account identifier tag.
 
-          app_id: A Cloudflare-generated unique identifier for a item.
+          key_id: A Cloudflare-generated unique identifier for a item.
 
           extra_headers: Send extra headers
 
@@ -245,29 +241,29 @@ class CallsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not app_id:
-            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if not key_id:
+            raise ValueError(f"Expected a non-empty value for `key_id` but received {key_id!r}")
         return self._get(
-            f"/accounts/{account_id}/calls/apps/{app_id}",
+            f"/accounts/{account_id}/calls/turn_keys/{key_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[CallsApp]]._unwrapper,
+                post_parser=ResultWrapper[Optional[KeyGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[CallsApp]], ResultWrapper[CallsApp]),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
 
-class AsyncCallsResource(AsyncAPIResource):
+class AsyncKeysResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncCallsResourceWithRawResponse:
-        return AsyncCallsResourceWithRawResponse(self)
+    def with_raw_response(self) -> AsyncKeysResourceWithRawResponse:
+        return AsyncKeysResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncCallsResourceWithStreamingResponse:
-        return AsyncCallsResourceWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncKeysResourceWithStreamingResponse:
+        return AsyncKeysResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -280,16 +276,14 @@ class AsyncCallsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CallsAppWithSecret]:
-        """Creates a new Cloudflare calls app.
-
-        An app is an unique enviroment where each
-        Session can access all Tracks within the app.
+    ) -> KeyCreateResponse:
+        """
+        Creates a new Cloudflare Calls TURN key.
 
         Args:
           account_id: The account identifier tag.
 
-          name: A short description of Calls app, not shown to end users.
+          name: A short description of a TURN key, not shown to end users.
 
           extra_headers: Send extra headers
 
@@ -302,21 +296,17 @@ class AsyncCallsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/calls/apps",
-            body=await async_maybe_transform({"name": name}, call_create_params.CallCreateParams),
+            f"/accounts/{account_id}/calls/turn_keys",
+            body=await async_maybe_transform({"name": name}, key_create_params.KeyCreateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CallsAppWithSecret]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[CallsAppWithSecret]], ResultWrapper[CallsAppWithSecret]),
+            cast_to=KeyCreateResponse,
         )
 
     async def update(
         self,
-        app_id: str,
+        key_id: str,
         *,
         account_id: str,
         name: str | NotGiven = NOT_GIVEN,
@@ -326,16 +316,16 @@ class AsyncCallsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CallsApp]:
+    ) -> str:
         """
-        Edit details for a single app.
+        Edit details for a single TURN key.
 
         Args:
           account_id: The account identifier tag.
 
-          app_id: A Cloudflare-generated unique identifier for a item.
+          key_id: A Cloudflare-generated unique identifier for a item.
 
-          name: A short description of Calls app, not shown to end users.
+          name: A short description of a TURN key, not shown to end users.
 
           extra_headers: Send extra headers
 
@@ -347,19 +337,19 @@ class AsyncCallsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not app_id:
-            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if not key_id:
+            raise ValueError(f"Expected a non-empty value for `key_id` but received {key_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/calls/apps/{app_id}",
-            body=await async_maybe_transform({"name": name}, call_update_params.CallUpdateParams),
+            f"/accounts/{account_id}/calls/turn_keys/{key_id}",
+            body=await async_maybe_transform({"name": name}, key_update_params.KeyUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[CallsApp]]._unwrapper,
+                post_parser=ResultWrapper[Optional[KeyUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[CallsApp]], ResultWrapper[CallsApp]),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
     def list(
@@ -372,9 +362,9 @@ class AsyncCallsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[CallListResponse, AsyncSinglePage[CallListResponse]]:
+    ) -> AsyncPaginator[KeyListResponse, AsyncSinglePage[KeyListResponse]]:
         """
-        Lists all apps in the Cloudflare account
+        Lists all TURN keys in the Cloudflare account
 
         Args:
           account_id: The account identifier tag.
@@ -390,8 +380,8 @@ class AsyncCallsResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/calls/apps",
-            page=AsyncSinglePage[CallListResponse],
+            f"/accounts/{account_id}/calls/turn_keys",
+            page=AsyncSinglePage[KeyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -400,7 +390,7 @@ class AsyncCallsResource(AsyncAPIResource):
 
     async def delete(
         self,
-        app_id: str,
+        key_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -409,14 +399,14 @@ class AsyncCallsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CallsApp]:
+    ) -> str:
         """
-        Deletes an app from Cloudflare Calls
+        Deletes a TURN key from Cloudflare Calls
 
         Args:
           account_id: The account identifier tag.
 
-          app_id: A Cloudflare-generated unique identifier for a item.
+          key_id: A Cloudflare-generated unique identifier for a item.
 
           extra_headers: Send extra headers
 
@@ -428,23 +418,23 @@ class AsyncCallsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not app_id:
-            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if not key_id:
+            raise ValueError(f"Expected a non-empty value for `key_id` but received {key_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/calls/apps/{app_id}",
+            f"/accounts/{account_id}/calls/turn_keys/{key_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[CallsApp]]._unwrapper,
+                post_parser=ResultWrapper[Optional[KeyDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[CallsApp]], ResultWrapper[CallsApp]),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
     async def get(
         self,
-        app_id: str,
+        key_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -453,14 +443,14 @@ class AsyncCallsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CallsApp]:
+    ) -> str:
         """
-        Fetches details for a single Calls app.
+        Fetches details for a single TURN key.
 
         Args:
           account_id: The account identifier tag.
 
-          app_id: A Cloudflare-generated unique identifier for a item.
+          key_id: A Cloudflare-generated unique identifier for a item.
 
           extra_headers: Send extra headers
 
@@ -472,100 +462,100 @@ class AsyncCallsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not app_id:
-            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if not key_id:
+            raise ValueError(f"Expected a non-empty value for `key_id` but received {key_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/calls/apps/{app_id}",
+            f"/accounts/{account_id}/calls/turn_keys/{key_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[CallsApp]]._unwrapper,
+                post_parser=ResultWrapper[Optional[KeyGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[CallsApp]], ResultWrapper[CallsApp]),
+            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
 
-class CallsResourceWithRawResponse:
-    def __init__(self, calls: CallsResource) -> None:
-        self._calls = calls
+class KeysResourceWithRawResponse:
+    def __init__(self, keys: KeysResource) -> None:
+        self._keys = keys
 
         self.create = to_raw_response_wrapper(
-            calls.create,
+            keys.create,
         )
         self.update = to_raw_response_wrapper(
-            calls.update,
+            keys.update,
         )
         self.list = to_raw_response_wrapper(
-            calls.list,
+            keys.list,
         )
         self.delete = to_raw_response_wrapper(
-            calls.delete,
+            keys.delete,
         )
         self.get = to_raw_response_wrapper(
-            calls.get,
+            keys.get,
         )
 
 
-class AsyncCallsResourceWithRawResponse:
-    def __init__(self, calls: AsyncCallsResource) -> None:
-        self._calls = calls
+class AsyncKeysResourceWithRawResponse:
+    def __init__(self, keys: AsyncKeysResource) -> None:
+        self._keys = keys
 
         self.create = async_to_raw_response_wrapper(
-            calls.create,
+            keys.create,
         )
         self.update = async_to_raw_response_wrapper(
-            calls.update,
+            keys.update,
         )
         self.list = async_to_raw_response_wrapper(
-            calls.list,
+            keys.list,
         )
         self.delete = async_to_raw_response_wrapper(
-            calls.delete,
+            keys.delete,
         )
         self.get = async_to_raw_response_wrapper(
-            calls.get,
+            keys.get,
         )
 
 
-class CallsResourceWithStreamingResponse:
-    def __init__(self, calls: CallsResource) -> None:
-        self._calls = calls
+class KeysResourceWithStreamingResponse:
+    def __init__(self, keys: KeysResource) -> None:
+        self._keys = keys
 
         self.create = to_streamed_response_wrapper(
-            calls.create,
+            keys.create,
         )
         self.update = to_streamed_response_wrapper(
-            calls.update,
+            keys.update,
         )
         self.list = to_streamed_response_wrapper(
-            calls.list,
+            keys.list,
         )
         self.delete = to_streamed_response_wrapper(
-            calls.delete,
+            keys.delete,
         )
         self.get = to_streamed_response_wrapper(
-            calls.get,
+            keys.get,
         )
 
 
-class AsyncCallsResourceWithStreamingResponse:
-    def __init__(self, calls: AsyncCallsResource) -> None:
-        self._calls = calls
+class AsyncKeysResourceWithStreamingResponse:
+    def __init__(self, keys: AsyncKeysResource) -> None:
+        self._keys = keys
 
         self.create = async_to_streamed_response_wrapper(
-            calls.create,
+            keys.create,
         )
         self.update = async_to_streamed_response_wrapper(
-            calls.update,
+            keys.update,
         )
         self.list = async_to_streamed_response_wrapper(
-            calls.list,
+            keys.list,
         )
         self.delete = async_to_streamed_response_wrapper(
-            calls.delete,
+            keys.delete,
         )
         self.get = async_to_streamed_response_wrapper(
-            calls.get,
+            keys.get,
         )

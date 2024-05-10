@@ -64,6 +64,14 @@ from .http_protocol import (
     HTTPProtocolResourceWithStreamingResponse,
     AsyncHTTPProtocolResourceWithStreamingResponse,
 )
+from .browser_family import (
+    BrowserFamilyResource,
+    AsyncBrowserFamilyResource,
+    BrowserFamilyResourceWithRawResponse,
+    AsyncBrowserFamilyResourceWithRawResponse,
+    BrowserFamilyResourceWithStreamingResponse,
+    AsyncBrowserFamilyResourceWithStreamingResponse,
+)
 
 __all__ = [
     "BotClassResource",
@@ -108,6 +116,12 @@ __all__ = [
     "AsyncTLSVersionResourceWithRawResponse",
     "TLSVersionResourceWithStreamingResponse",
     "AsyncTLSVersionResourceWithStreamingResponse",
+    "BrowserFamilyResource",
+    "AsyncBrowserFamilyResource",
+    "BrowserFamilyResourceWithRawResponse",
+    "AsyncBrowserFamilyResourceWithRawResponse",
+    "BrowserFamilyResourceWithStreamingResponse",
+    "AsyncBrowserFamilyResourceWithStreamingResponse",
     "LocationsResource",
     "AsyncLocationsResource",
     "LocationsResourceWithRawResponse",
