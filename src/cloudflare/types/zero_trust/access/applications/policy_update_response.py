@@ -13,7 +13,7 @@ __all__ = ["PolicyUpdateResponse"]
 
 class PolicyUpdateResponse(BaseModel):
     id: Optional[str] = None
-    """The ID of the Access policy."""
+    """UUID"""
 
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""

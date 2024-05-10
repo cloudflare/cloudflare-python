@@ -114,6 +114,7 @@ class ApplicationsResource(SyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SelfHostedApplicationScimConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -186,6 +187,9 @@ class ApplicationsResource(SyncAPIResource):
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
+
           self_hosted_domains: List of domains that Access will secure.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
@@ -223,6 +227,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
         saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SaaSApplicationScimConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -257,6 +262,9 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -298,6 +306,7 @@ class ApplicationsResource(SyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserSSHApplicationScimConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -369,6 +378,9 @@ class ApplicationsResource(SyncAPIResource):
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           self_hosted_domains: List of domains that Access will secure.
 
@@ -418,6 +430,7 @@ class ApplicationsResource(SyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserVncApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserVncApplicationScimConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -490,6 +503,9 @@ class ApplicationsResource(SyncAPIResource):
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
+
           self_hosted_domains: List of domains that Access will secure.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
@@ -523,6 +539,7 @@ class ApplicationsResource(SyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.AppLauncherApplicationScimConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -550,6 +567,9 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -575,6 +595,7 @@ class ApplicationsResource(SyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationScimConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -602,6 +623,9 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -627,6 +651,7 @@ class ApplicationsResource(SyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserIsolationPermissionsApplicationScimConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -655,6 +680,9 @@ class ApplicationsResource(SyncAPIResource):
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
+
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
@@ -679,6 +707,7 @@ class ApplicationsResource(SyncAPIResource):
         domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BookmarkApplicationScimConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -703,6 +732,9 @@ class ApplicationsResource(SyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -743,6 +775,7 @@ class ApplicationsResource(SyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SelfHostedApplicationScimConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -793,6 +826,7 @@ class ApplicationsResource(SyncAPIResource):
                         "path_cookie_attribute": path_cookie_attribute,
                         "policies": policies,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
+                        "scim_config": scim_config,
                         "self_hosted_domains": self_hosted_domains,
                         "service_auth_401_redirect": service_auth_401_redirect,
                         "session_duration": session_duration,
@@ -841,6 +875,7 @@ class ApplicationsResource(SyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SelfHostedApplicationScimConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -915,6 +950,9 @@ class ApplicationsResource(SyncAPIResource):
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
+
           self_hosted_domains: List of domains that Access will secure.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
@@ -953,6 +991,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
         saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SaaSApplicationScimConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -989,6 +1028,9 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -1031,6 +1073,7 @@ class ApplicationsResource(SyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserSSHApplicationScimConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -1104,6 +1147,9 @@ class ApplicationsResource(SyncAPIResource):
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           self_hosted_domains: List of domains that Access will secure.
 
@@ -1154,6 +1200,7 @@ class ApplicationsResource(SyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserVncApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserVncApplicationScimConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -1228,6 +1275,9 @@ class ApplicationsResource(SyncAPIResource):
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
+
           self_hosted_domains: List of domains that Access will secure.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
@@ -1262,6 +1312,7 @@ class ApplicationsResource(SyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.AppLauncherApplicationScimConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1291,6 +1342,9 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -1317,6 +1371,7 @@ class ApplicationsResource(SyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationScimConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1346,6 +1401,9 @@ class ApplicationsResource(SyncAPIResource):
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -1372,6 +1430,7 @@ class ApplicationsResource(SyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserIsolationPermissionsApplicationScimConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1402,6 +1461,9 @@ class ApplicationsResource(SyncAPIResource):
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
+
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
@@ -1427,6 +1489,7 @@ class ApplicationsResource(SyncAPIResource):
         domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BookmarkApplicationScimConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1453,6 +1516,9 @@ class ApplicationsResource(SyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -1494,6 +1560,7 @@ class ApplicationsResource(SyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SelfHostedApplicationScimConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -1544,6 +1611,7 @@ class ApplicationsResource(SyncAPIResource):
                         "path_cookie_attribute": path_cookie_attribute,
                         "policies": policies,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
+                        "scim_config": scim_config,
                         "self_hosted_domains": self_hosted_domains,
                         "service_auth_401_redirect": service_auth_401_redirect,
                         "session_duration": session_duration,
@@ -1832,6 +1900,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SelfHostedApplicationScimConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -1904,6 +1973,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
+
           self_hosted_domains: List of domains that Access will secure.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
@@ -1941,6 +2013,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
         saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SaaSApplicationScimConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1975,6 +2048,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -2016,6 +2092,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserSSHApplicationScimConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -2087,6 +2164,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           self_hosted_domains: List of domains that Access will secure.
 
@@ -2136,6 +2216,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserVncApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserVncApplicationScimConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -2208,6 +2289,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
+
           self_hosted_domains: List of domains that Access will secure.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
@@ -2241,6 +2325,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.AppLauncherApplicationScimConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2268,6 +2353,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -2293,6 +2381,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationScimConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2320,6 +2409,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -2345,6 +2437,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserIsolationPermissionsApplicationScimConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2373,6 +2466,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
+
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
@@ -2397,6 +2493,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BookmarkApplicationScimConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2421,6 +2518,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -2461,6 +2561,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SelfHostedApplicationScimConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -2511,6 +2612,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "path_cookie_attribute": path_cookie_attribute,
                         "policies": policies,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
+                        "scim_config": scim_config,
                         "self_hosted_domains": self_hosted_domains,
                         "service_auth_401_redirect": service_auth_401_redirect,
                         "session_duration": session_duration,
@@ -2559,6 +2661,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SelfHostedApplicationScimConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -2633,6 +2736,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
+
           self_hosted_domains: List of domains that Access will secure.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
@@ -2671,6 +2777,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
         saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SaaSApplicationScimConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2707,6 +2814,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -2749,6 +2859,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserSSHApplicationScimConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -2822,6 +2933,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           self_hosted_domains: List of domains that Access will secure.
 
@@ -2872,6 +2986,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserVncApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserVncApplicationScimConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -2946,6 +3061,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           same_site_cookie_attribute: Sets the SameSite cookie setting, which provides increased security against CSRF
               attacks.
 
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
+
           self_hosted_domains: List of domains that Access will secure.
 
           service_auth_401_redirect: Returns a 401 status code when the request is blocked by a Service Auth policy.
@@ -2980,6 +3098,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.AppLauncherApplicationScimConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3009,6 +3128,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -3035,6 +3157,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationScimConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3064,6 +3187,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
@@ -3090,6 +3216,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserIsolationPermissionsApplicationScimConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3120,6 +3247,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
               precedence. Items can reference existing policies or create new policies
               exclusive to the application.
 
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
+
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
@@ -3145,6 +3275,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BookmarkApplicationScimConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3171,6 +3302,9 @@ class AsyncApplicationsResource(AsyncAPIResource):
           logo_url: The image URL for the logo shown in the App Launcher dashboard.
 
           name: The name of the application.
+
+          scim_config: Configuration for provisioning to this application via SCIM. This is currently
+              in closed beta.
 
           tags: The tags you want assigned to an application. Tags are used to filter
               applications in the App Launcher dashboard.
@@ -3212,6 +3346,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SelfHostedApplicationScimConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -3262,6 +3397,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "path_cookie_attribute": path_cookie_attribute,
                         "policies": policies,
                         "same_site_cookie_attribute": same_site_cookie_attribute,
+                        "scim_config": scim_config,
                         "self_hosted_domains": self_hosted_domains,
                         "service_auth_401_redirect": service_auth_401_redirect,
                         "session_duration": session_duration,

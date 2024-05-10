@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Union, cast
+from typing import Type, Union, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -54,7 +54,7 @@ class MessageResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Message:
+    ) -> Optional[Message]:
         """
         Creating a request adds the request into the Cloudforce One queue for analysis.
         In addition to the content, a short title, type, priority, and releasability
@@ -87,9 +87,9 @@ class MessageResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Message]._unwrapper,
+                post_parser=ResultWrapper[Optional[Message]]._unwrapper,
             ),
-            cast_to=cast(Type[Message], ResultWrapper[Message]),
+            cast_to=cast(Type[Optional[Message]], ResultWrapper[Message]),
         )
 
     def update(
@@ -109,7 +109,7 @@ class MessageResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Message:
+    ) -> Optional[Message]:
         """
         Update a Request Message
 
@@ -157,9 +157,9 @@ class MessageResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Message]._unwrapper,
+                post_parser=ResultWrapper[Optional[Message]]._unwrapper,
             ),
-            cast_to=cast(Type[Message], ResultWrapper[Message]),
+            cast_to=cast(Type[Optional[Message]], ResultWrapper[Message]),
         )
 
     def delete(
@@ -195,21 +195,12 @@ class MessageResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
         if not request_identifier:
             raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
-        return cast(
-            MessageDeleteResponse,
-            self._delete(
-                f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/{message_identifer}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[MessageDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[MessageDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/{message_identifer}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=MessageDeleteResponse,
         )
 
     def get(
@@ -229,7 +220,7 @@ class MessageResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageGetResponse:
+    ) -> Optional[MessageGetResponse]:
         """
         List Request Messages
 
@@ -280,9 +271,9 @@ class MessageResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[MessageGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[MessageGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[MessageGetResponse], ResultWrapper[MessageGetResponse]),
+            cast_to=cast(Type[Optional[MessageGetResponse]], ResultWrapper[MessageGetResponse]),
         )
 
 
@@ -307,7 +298,7 @@ class AsyncMessageResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Message:
+    ) -> Optional[Message]:
         """
         Creating a request adds the request into the Cloudforce One queue for analysis.
         In addition to the content, a short title, type, priority, and releasability
@@ -340,9 +331,9 @@ class AsyncMessageResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Message]._unwrapper,
+                post_parser=ResultWrapper[Optional[Message]]._unwrapper,
             ),
-            cast_to=cast(Type[Message], ResultWrapper[Message]),
+            cast_to=cast(Type[Optional[Message]], ResultWrapper[Message]),
         )
 
     async def update(
@@ -362,7 +353,7 @@ class AsyncMessageResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Message:
+    ) -> Optional[Message]:
         """
         Update a Request Message
 
@@ -410,9 +401,9 @@ class AsyncMessageResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Message]._unwrapper,
+                post_parser=ResultWrapper[Optional[Message]]._unwrapper,
             ),
-            cast_to=cast(Type[Message], ResultWrapper[Message]),
+            cast_to=cast(Type[Optional[Message]], ResultWrapper[Message]),
         )
 
     async def delete(
@@ -448,21 +439,12 @@ class AsyncMessageResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
         if not request_identifier:
             raise ValueError(f"Expected a non-empty value for `request_identifier` but received {request_identifier!r}")
-        return cast(
-            MessageDeleteResponse,
-            await self._delete(
-                f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/{message_identifer}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[MessageDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[MessageDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/{message_identifer}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=MessageDeleteResponse,
         )
 
     async def get(
@@ -482,7 +464,7 @@ class AsyncMessageResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MessageGetResponse:
+    ) -> Optional[MessageGetResponse]:
         """
         List Request Messages
 
@@ -533,9 +515,9 @@ class AsyncMessageResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[MessageGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[MessageGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[MessageGetResponse], ResultWrapper[MessageGetResponse]),
+            cast_to=cast(Type[Optional[MessageGetResponse]], ResultWrapper[MessageGetResponse]),
         )
 
 
