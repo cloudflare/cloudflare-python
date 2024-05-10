@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from .tag import Tag as Tag
 from .bookmark import Bookmark as Bookmark
+from .decision import Decision as Decision
 from .access_user import AccessUser as AccessUser
 from .certificate import Certificate as Certificate
 from .custom_page import CustomPage as CustomPage
