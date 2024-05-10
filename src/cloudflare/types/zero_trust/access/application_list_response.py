@@ -98,7 +98,7 @@ __all__ = [
 
 class SelfHostedApplicationPolicy(BaseModel):
     id: Optional[str] = None
-    """The ID of the Access policy."""
+    """UUID"""
 
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
@@ -422,7 +422,7 @@ class SelfHostedApplication(BaseModel):
 
 class SaaSApplicationPolicy(BaseModel):
     id: Optional[str] = None
-    """The ID of the Access policy."""
+    """UUID"""
 
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
@@ -486,13 +486,13 @@ class SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource(BaseModel):
     name: Optional[str] = None
     """The name of the IdP claim."""
 
+    name_by_idp: Optional[Dict[str, str]] = None
+    """A mapping from IdP ID to claim name."""
+
 
 class SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims(BaseModel):
     name: Optional[str] = None
     """The name of the claim."""
-
-    name_by_idp: Optional[Dict[str, str]] = None
-    """A mapping from IdP ID to claim name."""
 
     required: Optional[bool] = None
     """If the claim is required when building an OIDC token."""
@@ -751,7 +751,7 @@ class SaaSApplication(BaseModel):
 
 class BrowserSSHApplicationPolicy(BaseModel):
     id: Optional[str] = None
-    """The ID of the Access policy."""
+    """UUID"""
 
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
@@ -1075,7 +1075,7 @@ class BrowserSSHApplication(BaseModel):
 
 class BrowserVncApplicationPolicy(BaseModel):
     id: Optional[str] = None
-    """The ID of the Access policy."""
+    """UUID"""
 
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
@@ -1399,7 +1399,7 @@ class BrowserVncApplication(BaseModel):
 
 class AppLauncherApplicationPolicy(BaseModel):
     id: Optional[str] = None
-    """The ID of the Access policy."""
+    """UUID"""
 
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
@@ -1641,7 +1641,7 @@ class AppLauncherApplication(BaseModel):
 
 class DeviceEnrollmentPermissionsApplicationPolicy(BaseModel):
     id: Optional[str] = None
-    """The ID of the Access policy."""
+    """UUID"""
 
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
@@ -1885,7 +1885,7 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
 
 class BrowserIsolationPermissionsApplicationPolicy(BaseModel):
     id: Optional[str] = None
-    """The ID of the Access policy."""
+    """UUID"""
 
     approval_groups: Optional[List[ApprovalGroup]] = None
     """Administrators who can approve a temporary authentication request."""
