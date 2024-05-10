@@ -6934,6 +6934,18 @@ Methods:
 
 - <code title="get /radar/http/top/locations/tls_version/{tls_version}">client.radar.http.locations.tls_version.<a href="./src/cloudflare/resources/radar/http/locations/tls_version.py">get</a>(tls_version, \*\*<a href="src/cloudflare/types/radar/http/locations/tls_version_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/http/locations/tls_version_get_response.py">TLSVersionGetResponse</a></code>
 
+#### BrowserFamily
+
+Types:
+
+```python
+from cloudflare.types.radar.http.locations import BrowserFamilyGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/http/top/locations/browser_family/{browser_family}">client.radar.http.locations.browser_family.<a href="./src/cloudflare/resources/radar/http/locations/browser_family.py">get</a>(browser_family, \*\*<a href="src/cloudflare/types/radar/http/locations/browser_family_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/http/locations/browser_family_get_response.py">BrowserFamilyGetResponse</a></code>
+
 ### Ases
 
 Types:
@@ -7029,6 +7041,18 @@ from cloudflare.types.radar.http.ases import TLSVersionGetResponse
 Methods:
 
 - <code title="get /radar/http/top/ases/tls_version/{tls_version}">client.radar.http.ases.tls_version.<a href="./src/cloudflare/resources/radar/http/ases/tls_version.py">get</a>(tls_version, \*\*<a href="src/cloudflare/types/radar/http/ases/tls_version_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/http/ases/tls_version_get_response.py">TLSVersionGetResponse</a></code>
+
+#### BrowserFamily
+
+Types:
+
+```python
+from cloudflare.types.radar.http.ases import BrowserFamilyGetResponse
+```
+
+Methods:
+
+- <code title="get /radar/http/top/ases/browser_family/{browser_family}">client.radar.http.ases.browser_family.<a href="./src/cloudflare/resources/radar/http/ases/browser_family.py">get</a>(browser_family, \*\*<a href="src/cloudflare/types/radar/http/ases/browser_family_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/http/ases/browser_family_get_response.py">BrowserFamilyGetResponse</a></code>
 
 ### Summary
 
@@ -7359,11 +7383,35 @@ from cloudflare.types.calls import CallsApp, CallsAppWithSecret, CallListRespons
 
 Methods:
 
-- <code title="post /accounts/{account_id}/calls/apps">client.calls.<a href="./src/cloudflare/resources/calls.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/calls/call_create_params.py">params</a>) -> <a href="./src/cloudflare/types/calls/calls_app_with_secret.py">Optional</a></code>
-- <code title="put /accounts/{account_id}/calls/apps/{app_id}">client.calls.<a href="./src/cloudflare/resources/calls.py">update</a>(app_id, \*, account_id, \*\*<a href="src/cloudflare/types/calls/call_update_params.py">params</a>) -> <a href="./src/cloudflare/types/calls/calls_app.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/calls/apps">client.calls.<a href="./src/cloudflare/resources/calls.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/calls/call_list_response.py">SyncSinglePage[CallListResponse]</a></code>
-- <code title="delete /accounts/{account_id}/calls/apps/{app_id}">client.calls.<a href="./src/cloudflare/resources/calls.py">delete</a>(app_id, \*, account_id) -> <a href="./src/cloudflare/types/calls/calls_app.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/calls/apps/{app_id}">client.calls.<a href="./src/cloudflare/resources/calls.py">get</a>(app_id, \*, account_id) -> <a href="./src/cloudflare/types/calls/calls_app.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/calls/apps">client.calls.<a href="./src/cloudflare/resources/calls/calls.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/calls/call_create_params.py">params</a>) -> <a href="./src/cloudflare/types/calls/calls_app_with_secret.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/calls/apps/{app_id}">client.calls.<a href="./src/cloudflare/resources/calls/calls.py">update</a>(app_id, \*, account_id, \*\*<a href="src/cloudflare/types/calls/call_update_params.py">params</a>) -> <a href="./src/cloudflare/types/calls/calls_app.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/calls/apps">client.calls.<a href="./src/cloudflare/resources/calls/calls.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/calls/call_list_response.py">SyncSinglePage[CallListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/calls/apps/{app_id}">client.calls.<a href="./src/cloudflare/resources/calls/calls.py">delete</a>(app_id, \*, account_id) -> <a href="./src/cloudflare/types/calls/calls_app.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/calls/apps/{app_id}">client.calls.<a href="./src/cloudflare/resources/calls/calls.py">get</a>(app_id, \*, account_id) -> <a href="./src/cloudflare/types/calls/calls_app.py">Optional</a></code>
+
+## Turn
+
+### Keys
+
+Types:
+
+```python
+from cloudflare.types.calls.turn import (
+    KeyCreateResponse,
+    KeyUpdateResponse,
+    KeyListResponse,
+    KeyDeleteResponse,
+    KeyGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/calls/turn_keys">client.calls.turn.keys.<a href="./src/cloudflare/resources/calls/turn/keys.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/calls/turn/key_create_params.py">params</a>) -> <a href="./src/cloudflare/types/calls/turn/key_create_response.py">KeyCreateResponse</a></code>
+- <code title="put /accounts/{account_id}/calls/turn_keys/{key_id}">client.calls.turn.keys.<a href="./src/cloudflare/resources/calls/turn/keys.py">update</a>(key_id, \*, account_id, \*\*<a href="src/cloudflare/types/calls/turn/key_update_params.py">params</a>) -> <a href="./src/cloudflare/types/calls/turn/key_update_response.py">str</a></code>
+- <code title="get /accounts/{account_id}/calls/turn_keys">client.calls.turn.keys.<a href="./src/cloudflare/resources/calls/turn/keys.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/calls/turn/key_list_response.py">SyncSinglePage[KeyListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/calls/turn_keys/{key_id}">client.calls.turn.keys.<a href="./src/cloudflare/resources/calls/turn/keys.py">delete</a>(key_id, \*, account_id) -> <a href="./src/cloudflare/types/calls/turn/key_delete_response.py">str</a></code>
+- <code title="get /accounts/{account_id}/calls/turn_keys/{key_id}">client.calls.turn.keys.<a href="./src/cloudflare/resources/calls/turn/keys.py">get</a>(key_id, \*, account_id) -> <a href="./src/cloudflare/types/calls/turn/key_get_response.py">str</a></code>
 
 # CloudforceOne
 

@@ -78,6 +78,14 @@ from .http_protocol import (
     HTTPProtocolResourceWithStreamingResponse,
     AsyncHTTPProtocolResourceWithStreamingResponse,
 )
+from .browser_family import (
+    BrowserFamilyResource,
+    AsyncBrowserFamilyResource,
+    BrowserFamilyResourceWithRawResponse,
+    AsyncBrowserFamilyResourceWithRawResponse,
+    BrowserFamilyResourceWithStreamingResponse,
+    AsyncBrowserFamilyResourceWithStreamingResponse,
+)
 from ....._base_client import (
     make_request_options,
 )
@@ -115,6 +123,10 @@ class LocationsResource(SyncAPIResource):
     @cached_property
     def tls_version(self) -> TLSVersionResource:
         return TLSVersionResource(self._client)
+
+    @cached_property
+    def browser_family(self) -> BrowserFamilyResource:
+        return BrowserFamilyResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> LocationsResourceWithRawResponse:
@@ -291,6 +303,10 @@ class AsyncLocationsResource(AsyncAPIResource):
     @cached_property
     def tls_version(self) -> AsyncTLSVersionResource:
         return AsyncTLSVersionResource(self._client)
+
+    @cached_property
+    def browser_family(self) -> AsyncBrowserFamilyResource:
+        return AsyncBrowserFamilyResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncLocationsResourceWithRawResponse:
@@ -475,6 +491,10 @@ class LocationsResourceWithRawResponse:
     def tls_version(self) -> TLSVersionResourceWithRawResponse:
         return TLSVersionResourceWithRawResponse(self._locations.tls_version)
 
+    @cached_property
+    def browser_family(self) -> BrowserFamilyResourceWithRawResponse:
+        return BrowserFamilyResourceWithRawResponse(self._locations.browser_family)
+
 
 class AsyncLocationsResourceWithRawResponse:
     def __init__(self, locations: AsyncLocationsResource) -> None:
@@ -511,6 +531,10 @@ class AsyncLocationsResourceWithRawResponse:
     @cached_property
     def tls_version(self) -> AsyncTLSVersionResourceWithRawResponse:
         return AsyncTLSVersionResourceWithRawResponse(self._locations.tls_version)
+
+    @cached_property
+    def browser_family(self) -> AsyncBrowserFamilyResourceWithRawResponse:
+        return AsyncBrowserFamilyResourceWithRawResponse(self._locations.browser_family)
 
 
 class LocationsResourceWithStreamingResponse:
@@ -549,6 +573,10 @@ class LocationsResourceWithStreamingResponse:
     def tls_version(self) -> TLSVersionResourceWithStreamingResponse:
         return TLSVersionResourceWithStreamingResponse(self._locations.tls_version)
 
+    @cached_property
+    def browser_family(self) -> BrowserFamilyResourceWithStreamingResponse:
+        return BrowserFamilyResourceWithStreamingResponse(self._locations.browser_family)
+
 
 class AsyncLocationsResourceWithStreamingResponse:
     def __init__(self, locations: AsyncLocationsResource) -> None:
@@ -585,3 +613,7 @@ class AsyncLocationsResourceWithStreamingResponse:
     @cached_property
     def tls_version(self) -> AsyncTLSVersionResourceWithStreamingResponse:
         return AsyncTLSVersionResourceWithStreamingResponse(self._locations.tls_version)
+
+    @cached_property
+    def browser_family(self) -> AsyncBrowserFamilyResourceWithStreamingResponse:
+        return AsyncBrowserFamilyResourceWithStreamingResponse(self._locations.browser_family)
