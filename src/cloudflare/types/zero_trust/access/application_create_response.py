@@ -6,6 +6,7 @@ from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
 
+from .decision import Decision
 from ...._models import BaseModel
 from ..access_rule import AccessRule
 from .allowed_idps import AllowedIdPs
@@ -111,7 +112,7 @@ class SelfHostedApplicationPolicy(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    decision: Optional[Literal["allow", "deny", "non_identity", "bypass"]] = None
+    decision: Optional[Decision] = None
     """The action Access will take if a user matches this policy."""
 
     exclude: Optional[List[AccessRule]] = None
@@ -435,7 +436,7 @@ class SaaSApplicationPolicy(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    decision: Optional[Literal["allow", "deny", "non_identity", "bypass"]] = None
+    decision: Optional[Decision] = None
     """The action Access will take if a user matches this policy."""
 
     exclude: Optional[List[AccessRule]] = None
@@ -764,7 +765,7 @@ class BrowserSSHApplicationPolicy(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    decision: Optional[Literal["allow", "deny", "non_identity", "bypass"]] = None
+    decision: Optional[Decision] = None
     """The action Access will take if a user matches this policy."""
 
     exclude: Optional[List[AccessRule]] = None
@@ -1088,7 +1089,7 @@ class BrowserVncApplicationPolicy(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    decision: Optional[Literal["allow", "deny", "non_identity", "bypass"]] = None
+    decision: Optional[Decision] = None
     """The action Access will take if a user matches this policy."""
 
     exclude: Optional[List[AccessRule]] = None
@@ -1412,7 +1413,7 @@ class AppLauncherApplicationPolicy(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    decision: Optional[Literal["allow", "deny", "non_identity", "bypass"]] = None
+    decision: Optional[Decision] = None
     """The action Access will take if a user matches this policy."""
 
     exclude: Optional[List[AccessRule]] = None
@@ -1654,7 +1655,7 @@ class DeviceEnrollmentPermissionsApplicationPolicy(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    decision: Optional[Literal["allow", "deny", "non_identity", "bypass"]] = None
+    decision: Optional[Decision] = None
     """The action Access will take if a user matches this policy."""
 
     exclude: Optional[List[AccessRule]] = None
@@ -1898,7 +1899,7 @@ class BrowserIsolationPermissionsApplicationPolicy(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    decision: Optional[Literal["allow", "deny", "non_identity", "bypass"]] = None
+    decision: Optional[Decision] = None
     """The action Access will take if a user matches this policy."""
 
     exclude: Optional[List[AccessRule]] = None

@@ -5090,6 +5090,7 @@ from cloudflare.types.zero_trust.access import (
     Application,
     ApplicationType,
     CORSHeaders,
+    Decision,
     SaaSAppNameFormat,
     SaaSAppNameIDFormat,
     SaaSAppSource,
