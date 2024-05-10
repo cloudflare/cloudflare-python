@@ -15,4 +15,6 @@ from .device_type_get_response import DeviceTypeGetResponse as DeviceTypeGetResp
 from .http_method_get_response import HTTPMethodGetResponse as HTTPMethodGetResponse
 from .http_protocol_get_params import HTTPProtocolGetParams as HTTPProtocolGetParams
 from .tls_version_get_response import TLSVersionGetResponse as TLSVersionGetResponse
+from .browser_family_get_params import BrowserFamilyGetParams as BrowserFamilyGetParams
 from .http_protocol_get_response import HTTPProtocolGetResponse as HTTPProtocolGetResponse
+from .browser_family_get_response import BrowserFamilyGetResponse as BrowserFamilyGetResponse
