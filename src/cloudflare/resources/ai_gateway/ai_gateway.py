@@ -60,11 +60,10 @@ class AIGatewayResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        id: str,
         cache_invalidate_on_update: bool,
         cache_ttl: int,
         collect_logs: bool,
-        name: str,
-        slug: str,
         rate_limiting_interval: int | NotGiven = NOT_GIVEN,
         rate_limiting_limit: int | NotGiven = NOT_GIVEN,
         rate_limiting_technique: str | NotGiven = NOT_GIVEN,
@@ -79,6 +78,8 @@ class AIGatewayResource(SyncAPIResource):
         Create a new Gateway
 
         Args:
+          id: gateway slug
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -93,11 +94,10 @@ class AIGatewayResource(SyncAPIResource):
             f"/accounts/{account_id}/ai-gateway/gateways",
             body=maybe_transform(
                 {
+                    "id": id,
                     "cache_invalidate_on_update": cache_invalidate_on_update,
                     "cache_ttl": cache_ttl,
                     "collect_logs": collect_logs,
-                    "name": name,
-                    "slug": slug,
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
@@ -122,8 +122,6 @@ class AIGatewayResource(SyncAPIResource):
         cache_invalidate_on_update: bool,
         cache_ttl: int,
         collect_logs: bool,
-        name: str,
-        slug: str,
         rate_limiting_interval: int | NotGiven = NOT_GIVEN,
         rate_limiting_limit: int | NotGiven = NOT_GIVEN,
         rate_limiting_technique: str | NotGiven = NOT_GIVEN,
@@ -138,6 +136,8 @@ class AIGatewayResource(SyncAPIResource):
         Update a Gateway
 
         Args:
+          id: gateway slug
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -157,8 +157,6 @@ class AIGatewayResource(SyncAPIResource):
                     "cache_invalidate_on_update": cache_invalidate_on_update,
                     "cache_ttl": cache_ttl,
                     "collect_logs": collect_logs,
-                    "name": name,
-                    "slug": slug,
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
@@ -194,6 +192,8 @@ class AIGatewayResource(SyncAPIResource):
         List Gateway's
 
         Args:
+          id: gateway slug
+
           order_by: Order By Column Name
 
           extra_headers: Send extra headers
@@ -243,6 +243,8 @@ class AIGatewayResource(SyncAPIResource):
         Delete a Gateway
 
         Args:
+          id: gateway slug
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -283,6 +285,8 @@ class AIGatewayResource(SyncAPIResource):
         Fetch a Gateway
 
         Args:
+          id: gateway slug
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -325,11 +329,10 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        id: str,
         cache_invalidate_on_update: bool,
         cache_ttl: int,
         collect_logs: bool,
-        name: str,
-        slug: str,
         rate_limiting_interval: int | NotGiven = NOT_GIVEN,
         rate_limiting_limit: int | NotGiven = NOT_GIVEN,
         rate_limiting_technique: str | NotGiven = NOT_GIVEN,
@@ -344,6 +347,8 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         Create a new Gateway
 
         Args:
+          id: gateway slug
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -358,11 +363,10 @@ class AsyncAIGatewayResource(AsyncAPIResource):
             f"/accounts/{account_id}/ai-gateway/gateways",
             body=await async_maybe_transform(
                 {
+                    "id": id,
                     "cache_invalidate_on_update": cache_invalidate_on_update,
                     "cache_ttl": cache_ttl,
                     "collect_logs": collect_logs,
-                    "name": name,
-                    "slug": slug,
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
@@ -387,8 +391,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         cache_invalidate_on_update: bool,
         cache_ttl: int,
         collect_logs: bool,
-        name: str,
-        slug: str,
         rate_limiting_interval: int | NotGiven = NOT_GIVEN,
         rate_limiting_limit: int | NotGiven = NOT_GIVEN,
         rate_limiting_technique: str | NotGiven = NOT_GIVEN,
@@ -403,6 +405,8 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         Update a Gateway
 
         Args:
+          id: gateway slug
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -422,8 +426,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "cache_invalidate_on_update": cache_invalidate_on_update,
                     "cache_ttl": cache_ttl,
                     "collect_logs": collect_logs,
-                    "name": name,
-                    "slug": slug,
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
@@ -459,6 +461,8 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         List Gateway's
 
         Args:
+          id: gateway slug
+
           order_by: Order By Column Name
 
           extra_headers: Send extra headers
@@ -508,6 +512,8 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         Delete a Gateway
 
         Args:
+          id: gateway slug
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -548,6 +554,8 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         Fetch a Gateway
 
         Args:
+          id: gateway slug
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

@@ -16,10 +16,6 @@ class AIGatewayUpdateParams(TypedDict, total=False):
 
     collect_logs: Required[bool]
 
-    name: Required[str]
-
-    slug: Required[str]
-
     rate_limiting_interval: int
 
     rate_limiting_limit: int
