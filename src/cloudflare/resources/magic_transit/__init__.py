@@ -16,6 +16,14 @@ from .routes import (
     RoutesResourceWithStreamingResponse,
     AsyncRoutesResourceWithStreamingResponse,
 )
+from .connectors import (
+    ConnectorsResource,
+    AsyncConnectorsResource,
+    ConnectorsResourceWithRawResponse,
+    AsyncConnectorsResourceWithRawResponse,
+    ConnectorsResourceWithStreamingResponse,
+    AsyncConnectorsResourceWithStreamingResponse,
+)
 from .gre_tunnels import (
     GRETunnelsResource,
     AsyncGRETunnelsResource,
@@ -80,6 +88,12 @@ __all__ = [
     "AsyncSitesResourceWithRawResponse",
     "SitesResourceWithStreamingResponse",
     "AsyncSitesResourceWithStreamingResponse",
+    "ConnectorsResource",
+    "AsyncConnectorsResource",
+    "ConnectorsResourceWithRawResponse",
+    "AsyncConnectorsResourceWithRawResponse",
+    "ConnectorsResourceWithStreamingResponse",
+    "AsyncConnectorsResourceWithStreamingResponse",
     "MagicTransitResource",
     "AsyncMagicTransitResource",
     "MagicTransitResourceWithRawResponse",
