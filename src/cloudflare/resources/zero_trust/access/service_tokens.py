@@ -290,6 +290,63 @@ class ServiceTokensResource(SyncAPIResource):
             cast_to=cast(Type[Optional[ServiceToken]], ResultWrapper[ServiceToken]),
         )
 
+    def get(
+        self,
+        uuid: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ServiceToken]:
+        """
+        Fetches a single service token.
+
+        Args:
+          uuid: UUID
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return self._get(
+            f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{uuid}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[ServiceToken]], ResultWrapper[ServiceToken]),
+        )
+
     def refresh(
         self,
         uuid: str,
@@ -636,6 +693,63 @@ class AsyncServiceTokensResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[ServiceToken]], ResultWrapper[ServiceToken]),
         )
 
+    async def get(
+        self,
+        uuid: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ServiceToken]:
+        """
+        Fetches a single service token.
+
+        Args:
+          uuid: UUID
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not uuid:
+            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return await self._get(
+            f"/{account_or_zone}/{account_or_zone_id}/access/service_tokens/{uuid}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ServiceToken]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[ServiceToken]], ResultWrapper[ServiceToken]),
+        )
+
     async def refresh(
         self,
         uuid: str,
@@ -741,6 +855,9 @@ class ServiceTokensResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             service_tokens.delete,
         )
+        self.get = to_raw_response_wrapper(
+            service_tokens.get,
+        )
         self.refresh = to_raw_response_wrapper(
             service_tokens.refresh,
         )
@@ -764,6 +881,9 @@ class AsyncServiceTokensResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             service_tokens.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            service_tokens.get,
         )
         self.refresh = async_to_raw_response_wrapper(
             service_tokens.refresh,
@@ -789,6 +909,9 @@ class ServiceTokensResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             service_tokens.delete,
         )
+        self.get = to_streamed_response_wrapper(
+            service_tokens.get,
+        )
         self.refresh = to_streamed_response_wrapper(
             service_tokens.refresh,
         )
@@ -812,6 +935,9 @@ class AsyncServiceTokensResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             service_tokens.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            service_tokens.get,
         )
         self.refresh = async_to_streamed_response_wrapper(
             service_tokens.refresh,
