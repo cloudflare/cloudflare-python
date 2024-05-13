@@ -9,7 +9,7 @@ __all__ = ["ServiceToken"]
 
 
 class ServiceToken(BaseModel):
-    id: Optional[object] = None
+    id: Optional[str] = None
     """The ID of the service token."""
 
     client_id: Optional[str] = None
