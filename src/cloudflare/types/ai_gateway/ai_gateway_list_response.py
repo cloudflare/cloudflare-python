@@ -10,6 +10,7 @@ __all__ = ["AIGatewayListResponse"]
 
 class AIGatewayListResponse(BaseModel):
     id: str
+    """gateway slug"""
 
     cache_invalidate_on_update: bool
 
@@ -20,10 +21,6 @@ class AIGatewayListResponse(BaseModel):
     created_at: datetime
 
     modified_at: datetime
-
-    name: str
-
-    slug: str
 
     rate_limiting_interval: Optional[int] = None
 
