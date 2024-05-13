@@ -10,15 +10,14 @@ __all__ = ["AIGatewayCreateParams"]
 class AIGatewayCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
+    id: Required[str]
+    """gateway slug"""
+
     cache_invalidate_on_update: Required[bool]
 
     cache_ttl: Required[int]
 
     collect_logs: Required[bool]
-
-    name: Required[str]
-
-    slug: Required[str]
 
     rate_limiting_interval: int
 

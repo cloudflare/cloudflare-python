@@ -11,6 +11,7 @@ class AIGatewayListParams(TypedDict, total=False):
     account_id: Required[str]
 
     id: str
+    """gateway slug"""
 
     order_by: str
     """Order By Column Name"""
