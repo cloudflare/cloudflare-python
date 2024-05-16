@@ -34,7 +34,7 @@ class TestRoutes:
             format="JSON",
             invalid_only=True,
             origin=0,
-            prefix="string",
+            prefix="1.1.1.0/24",
         )
         assert_matches_type(RouteMoasResponse, route, path=["response"])
 
@@ -181,7 +181,7 @@ class TestAsyncRoutes:
             format="JSON",
             invalid_only=True,
             origin=0,
-            prefix="string",
+            prefix="1.1.1.0/24",
         )
         assert_matches_type(RouteMoasResponse, route, path=["response"])
 

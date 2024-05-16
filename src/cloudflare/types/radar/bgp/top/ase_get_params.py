@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import List, Union, Iterable
 from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
 
-__all__ = ["AseGetParams"]
+__all__ = ["AseGetParams", "Prefix"]
 
 
 class AseGetParams(TypedDict, total=False):
@@ -62,8 +62,17 @@ class AseGetParams(TypedDict, total=False):
     name: List[str]
     """Array of names that will be used to name the series in responses."""
 
-    prefix: List[str]
+    prefix: Iterable[Prefix]
     """Array of BGP network prefixes."""
 
     update_type: Annotated[List[Literal["ANNOUNCEMENT", "WITHDRAWAL"]], PropertyInfo(alias="updateType")]
     """Array of BGP update types."""
+
+
+class Prefix(TypedDict, total=False):
+    location: Required[str]
+
+    name: Required[str]
+
+    type: str
+    """Network prefix, IPv4 or IPv6."""

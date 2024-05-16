@@ -71,7 +71,7 @@ class EventListParams(TypedDict, total=False):
     """Number of entries per page"""
 
     prefix: str
-    """The prefix hijacked during a BGP hijack event"""
+    """Network prefix, IPv4 or IPv6."""
 
     sort_by: Annotated[Literal["ID", "TIME", "CONFIDENCE"], PropertyInfo(alias="sortBy")]
     """Sort events by field"""
