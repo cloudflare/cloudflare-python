@@ -41,7 +41,23 @@ class TestAses:
             format="JSON",
             limit=5,
             name=["string", "string", "string"],
-            prefix=["string", "string", "string"],
+            prefix=[
+                {
+                    "location": "query",
+                    "name": "prefix",
+                    "type": "1.1.1.0/24",
+                },
+                {
+                    "location": "query",
+                    "name": "prefix",
+                    "type": "1.1.1.0/24",
+                },
+                {
+                    "location": "query",
+                    "name": "prefix",
+                    "type": "1.1.1.0/24",
+                },
+            ],
             update_type=["ANNOUNCEMENT", "WITHDRAWAL"],
         )
         assert_matches_type(AseGetResponse, ase, path=["response"])
@@ -127,7 +143,23 @@ class TestAsyncAses:
             format="JSON",
             limit=5,
             name=["string", "string", "string"],
-            prefix=["string", "string", "string"],
+            prefix=[
+                {
+                    "location": "query",
+                    "name": "prefix",
+                    "type": "1.1.1.0/24",
+                },
+                {
+                    "location": "query",
+                    "name": "prefix",
+                    "type": "1.1.1.0/24",
+                },
+                {
+                    "location": "query",
+                    "name": "prefix",
+                    "type": "1.1.1.0/24",
+                },
+            ],
             update_type=["ANNOUNCEMENT", "WITHDRAWAL"],
         )
         assert_matches_type(AseGetResponse, ase, path=["response"])

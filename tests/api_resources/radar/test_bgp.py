@@ -41,7 +41,23 @@ class TestBGP:
             ],
             format="JSON",
             name=["string", "string", "string"],
-            prefix=["string", "string", "string"],
+            prefix=[
+                {
+                    "location": "query",
+                    "name": "prefix",
+                    "type": "1.1.1.0/24",
+                },
+                {
+                    "location": "query",
+                    "name": "prefix",
+                    "type": "1.1.1.0/24",
+                },
+                {
+                    "location": "query",
+                    "name": "prefix",
+                    "type": "1.1.1.0/24",
+                },
+            ],
             update_type=["ANNOUNCEMENT", "WITHDRAWAL"],
         )
         assert_matches_type(BGPTimeseriesResponse, bgp, path=["response"])
@@ -93,7 +109,23 @@ class TestAsyncBGP:
             ],
             format="JSON",
             name=["string", "string", "string"],
-            prefix=["string", "string", "string"],
+            prefix=[
+                {
+                    "location": "query",
+                    "name": "prefix",
+                    "type": "1.1.1.0/24",
+                },
+                {
+                    "location": "query",
+                    "name": "prefix",
+                    "type": "1.1.1.0/24",
+                },
+                {
+                    "location": "query",
+                    "name": "prefix",
+                    "type": "1.1.1.0/24",
+                },
+            ],
             update_type=["ANNOUNCEMENT", "WITHDRAWAL"],
         )
         assert_matches_type(BGPTimeseriesResponse, bgp, path=["response"])

@@ -111,7 +111,7 @@ class EventsResource(SyncAPIResource):
 
           per_page: Number of entries per page
 
-          prefix: The prefix hijacked during a BGP hijack event
+          prefix: Network prefix, IPv4 or IPv6.
 
           sort_by: Sort events by field
 
@@ -243,7 +243,7 @@ class AsyncEventsResource(AsyncAPIResource):
 
           per_page: Number of entries per page
 
-          prefix: The prefix hijacked during a BGP hijack event
+          prefix: Network prefix, IPv4 or IPv6.
 
           sort_by: Sort events by field
 
