@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 from datetime import datetime
 
 from ..._models import BaseModel
@@ -32,6 +32,8 @@ class LogGetResponseItem(BaseModel):
     tokens_in: int
 
     tokens_out: int
+
+    status_code: Optional[int] = None
 
 
 LogGetResponse = List[LogGetResponseItem]
