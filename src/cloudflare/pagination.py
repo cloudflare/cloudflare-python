@@ -52,16 +52,9 @@ class SyncV4PagePagination(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
-        current_page = cast("int | None", self._options.params.get("page"))
-        if current_page is None:
-            current_page = 1
+        last_page = cast("int | None", self._options.params.get("page")) or 1
 
-        last_page = cast("int | None", self._options.params.get("page"))
-        if last_page is not None and current_page <= last_page:
-            # The API didn't return a new page in the last request
-            return None
-
-        return PageInfo(params={"page": current_page + 1})
+        return PageInfo(params={"page": last_page + 1})
 
 
 class AsyncV4PagePagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
@@ -79,16 +72,9 @@ class AsyncV4PagePagination(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
-        current_page = cast("int | None", self._options.params.get("page"))
-        if current_page is None:
-            current_page = 1
+        last_page = cast("int | None", self._options.params.get("page")) or 1
 
-        last_page = cast("int | None", self._options.params.get("page"))
-        if last_page is not None and current_page <= last_page:
-            # The API didn't return a new page in the last request
-            return None
-
-        return PageInfo(params={"page": current_page + 1})
+        return PageInfo(params={"page": last_page + 1})
 
 
 class V4PagePaginationArrayResultInfo(BaseModel):
@@ -110,16 +96,9 @@ class SyncV4PagePaginationArray(BaseSyncPage[_T], BasePage[_T], Generic[_T]):
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
-        current_page = cast("int | None", self._options.params.get("page"))
-        if current_page is None:
-            current_page = 1
+        last_page = cast("int | None", self._options.params.get("page")) or 1
 
-        last_page = cast("int | None", self._options.params.get("page"))
-        if last_page is not None and current_page <= last_page:
-            # The API didn't return a new page in the last request
-            return None
-
-        return PageInfo(params={"page": current_page + 1})
+        return PageInfo(params={"page": last_page + 1})
 
 
 class AsyncV4PagePaginationArray(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
@@ -135,16 +114,9 @@ class AsyncV4PagePaginationArray(BaseAsyncPage[_T], BasePage[_T], Generic[_T]):
 
     @override
     def next_page_info(self) -> Optional[PageInfo]:
-        current_page = cast("int | None", self._options.params.get("page"))
-        if current_page is None:
-            current_page = 1
+        last_page = cast("int | None", self._options.params.get("page")) or 1
 
-        last_page = cast("int | None", self._options.params.get("page"))
-        if last_page is not None and current_page <= last_page:
-            # The API didn't return a new page in the last request
-            return None
-
-        return PageInfo(params={"page": current_page + 1})
+        return PageInfo(params={"page": last_page + 1})
 
 
 class CursorPaginationResultInfo(BaseModel):
