@@ -18,4 +18,4 @@ class RouteMoasParams(TypedDict, total=False):
     """Lookup MOASes originated by the given ASN"""
 
     prefix: str
-    """Lookup MOASes by prefix"""
+    """Network prefix, IPv4 or IPv6."""
