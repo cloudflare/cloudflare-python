@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Any, List, Type, cast
 
 import httpx
 
@@ -12,7 +12,7 @@ from ..._utils import (
     async_maybe_transform,
 )
 from ..._compat import cached_property
-from ...types.d1 import database_list_params, database_create_params
+from ...types.d1 import database_list_params, database_query_params, database_create_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -22,12 +22,15 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ...types.d1.d1 import D1
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
 from ...types.d1.database_list_response import DatabaseListResponse
+from ...types.d1.database_query_response import DatabaseQueryResponse
 from ...types.d1.database_create_response import DatabaseCreateResponse
+from ...types.d1.database_delete_response import DatabaseDeleteResponse
 
 __all__ = ["DatabaseResource", "AsyncDatabaseResource"]
 
@@ -138,6 +141,146 @@ class DatabaseResource(SyncAPIResource):
             model=DatabaseListResponse,
         )
 
+    def delete(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseDeleteResponse:
+        """
+        Deletes the specified D1 database.
+
+        Args:
+          account_id: Account identifier tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
+        return cast(
+            DatabaseDeleteResponse,
+            self._delete(
+                f"/accounts/{account_id}/d1/database/{database_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[DatabaseDeleteResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[DatabaseDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
+    def get(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> D1:
+        """
+        Returns the specified D1 database.
+
+        Args:
+          account_id: Account identifier tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/d1/database/{database_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[D1]._unwrapper,
+            ),
+            cast_to=cast(Type[D1], ResultWrapper[D1]),
+        )
+
+    def query(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        sql: str,
+        params: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseQueryResponse:
+        """
+        Returns the query result.
+
+        Args:
+          account_id: Account identifier tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
+        return self._post(
+            f"/accounts/{account_id}/d1/database/{database_id}/query",
+            body=maybe_transform(
+                {
+                    "sql": sql,
+                    "params": params,
+                },
+                database_query_params.DatabaseQueryParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DatabaseQueryResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[DatabaseQueryResponse], ResultWrapper[DatabaseQueryResponse]),
+        )
+
 
 class AsyncDatabaseResource(AsyncAPIResource):
     @cached_property
@@ -245,6 +388,146 @@ class AsyncDatabaseResource(AsyncAPIResource):
             model=DatabaseListResponse,
         )
 
+    async def delete(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseDeleteResponse:
+        """
+        Deletes the specified D1 database.
+
+        Args:
+          account_id: Account identifier tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
+        return cast(
+            DatabaseDeleteResponse,
+            await self._delete(
+                f"/accounts/{account_id}/d1/database/{database_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[DatabaseDeleteResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[DatabaseDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
+    async def get(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> D1:
+        """
+        Returns the specified D1 database.
+
+        Args:
+          account_id: Account identifier tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/d1/database/{database_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[D1]._unwrapper,
+            ),
+            cast_to=cast(Type[D1], ResultWrapper[D1]),
+        )
+
+    async def query(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        sql: str,
+        params: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseQueryResponse:
+        """
+        Returns the query result.
+
+        Args:
+          account_id: Account identifier tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
+        return await self._post(
+            f"/accounts/{account_id}/d1/database/{database_id}/query",
+            body=await async_maybe_transform(
+                {
+                    "sql": sql,
+                    "params": params,
+                },
+                database_query_params.DatabaseQueryParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DatabaseQueryResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[DatabaseQueryResponse], ResultWrapper[DatabaseQueryResponse]),
+        )
+
 
 class DatabaseResourceWithRawResponse:
     def __init__(self, database: DatabaseResource) -> None:
@@ -255,6 +538,15 @@ class DatabaseResourceWithRawResponse:
         )
         self.list = to_raw_response_wrapper(
             database.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            database.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            database.get,
+        )
+        self.query = to_raw_response_wrapper(
+            database.query,
         )
 
 
@@ -268,6 +560,15 @@ class AsyncDatabaseResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             database.list,
         )
+        self.delete = async_to_raw_response_wrapper(
+            database.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            database.get,
+        )
+        self.query = async_to_raw_response_wrapper(
+            database.query,
+        )
 
 
 class DatabaseResourceWithStreamingResponse:
@@ -280,6 +581,15 @@ class DatabaseResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             database.list,
         )
+        self.delete = to_streamed_response_wrapper(
+            database.delete,
+        )
+        self.get = to_streamed_response_wrapper(
+            database.get,
+        )
+        self.query = to_streamed_response_wrapper(
+            database.query,
+        )
 
 
 class AsyncDatabaseResourceWithStreamingResponse:
@@ -291,4 +601,13 @@ class AsyncDatabaseResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             database.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            database.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            database.get,
+        )
+        self.query = async_to_streamed_response_wrapper(
+            database.query,
         )

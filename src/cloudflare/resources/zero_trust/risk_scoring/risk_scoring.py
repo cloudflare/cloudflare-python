@@ -37,10 +37,19 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from .integrations import (
+    IntegrationsResource,
+    AsyncIntegrationsResource,
+    IntegrationsResourceWithRawResponse,
+    AsyncIntegrationsResourceWithRawResponse,
+    IntegrationsResourceWithStreamingResponse,
+    AsyncIntegrationsResourceWithStreamingResponse,
+)
 from ...._base_client import (
     make_request_options,
 )
 from ....types.zero_trust import risk_scoring_get_params
+from .integrations.integrations import IntegrationsResource, AsyncIntegrationsResource
 from ....types.zero_trust.risk_scoring_get_response import RiskScoringGetResponse
 from ....types.zero_trust.risk_scoring_reset_response import RiskScoringResetResponse
 
@@ -55,6 +64,10 @@ class RiskScoringResource(SyncAPIResource):
     @cached_property
     def summary(self) -> SummaryResource:
         return SummaryResource(self._client)
+
+    @cached_property
+    def integrations(self) -> IntegrationsResource:
+        return IntegrationsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> RiskScoringResourceWithRawResponse:
@@ -179,6 +192,10 @@ class AsyncRiskScoringResource(AsyncAPIResource):
     @cached_property
     def summary(self) -> AsyncSummaryResource:
         return AsyncSummaryResource(self._client)
+
+    @cached_property
+    def integrations(self) -> AsyncIntegrationsResource:
+        return AsyncIntegrationsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncRiskScoringResourceWithRawResponse:
@@ -314,6 +331,10 @@ class RiskScoringResourceWithRawResponse:
     def summary(self) -> SummaryResourceWithRawResponse:
         return SummaryResourceWithRawResponse(self._risk_scoring.summary)
 
+    @cached_property
+    def integrations(self) -> IntegrationsResourceWithRawResponse:
+        return IntegrationsResourceWithRawResponse(self._risk_scoring.integrations)
+
 
 class AsyncRiskScoringResourceWithRawResponse:
     def __init__(self, risk_scoring: AsyncRiskScoringResource) -> None:
@@ -333,6 +354,10 @@ class AsyncRiskScoringResourceWithRawResponse:
     @cached_property
     def summary(self) -> AsyncSummaryResourceWithRawResponse:
         return AsyncSummaryResourceWithRawResponse(self._risk_scoring.summary)
+
+    @cached_property
+    def integrations(self) -> AsyncIntegrationsResourceWithRawResponse:
+        return AsyncIntegrationsResourceWithRawResponse(self._risk_scoring.integrations)
 
 
 class RiskScoringResourceWithStreamingResponse:
@@ -354,6 +379,10 @@ class RiskScoringResourceWithStreamingResponse:
     def summary(self) -> SummaryResourceWithStreamingResponse:
         return SummaryResourceWithStreamingResponse(self._risk_scoring.summary)
 
+    @cached_property
+    def integrations(self) -> IntegrationsResourceWithStreamingResponse:
+        return IntegrationsResourceWithStreamingResponse(self._risk_scoring.integrations)
+
 
 class AsyncRiskScoringResourceWithStreamingResponse:
     def __init__(self, risk_scoring: AsyncRiskScoringResource) -> None:
@@ -373,3 +402,7 @@ class AsyncRiskScoringResourceWithStreamingResponse:
     @cached_property
     def summary(self) -> AsyncSummaryResourceWithStreamingResponse:
         return AsyncSummaryResourceWithStreamingResponse(self._risk_scoring.summary)
+
+    @cached_property
+    def integrations(self) -> AsyncIntegrationsResourceWithStreamingResponse:
+        return AsyncIntegrationsResourceWithStreamingResponse(self._risk_scoring.integrations)
