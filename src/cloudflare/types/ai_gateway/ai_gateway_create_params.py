@@ -11,7 +11,7 @@ class AIGatewayCreateParams(TypedDict, total=False):
     account_id: Required[str]
 
     id: Required[str]
-    """gateway slug"""
+    """gateway id"""
 
     cache_invalidate_on_update: Required[bool]
 
