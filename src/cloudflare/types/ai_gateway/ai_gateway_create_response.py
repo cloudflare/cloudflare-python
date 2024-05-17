@@ -10,7 +10,7 @@ __all__ = ["AIGatewayCreateResponse", "Task"]
 
 class Task(BaseModel):
     id: str
-    """gateway id"""
+    """gateway slug"""
 
     cache_invalidate_on_update: bool
 
