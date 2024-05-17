@@ -10,7 +10,7 @@ __all__ = ["AIGatewayListResponse"]
 
 class AIGatewayListResponse(BaseModel):
     id: str
-    """gateway slug"""
+    """gateway id"""
 
     cache_invalidate_on_update: bool
 
