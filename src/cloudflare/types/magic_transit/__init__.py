@@ -8,6 +8,7 @@ from .scope_param import ScopeParam as ScopeParam
 from .health_check import HealthCheck as HealthCheck
 from .psk_metadata import PSKMetadata as PSKMetadata
 from .site_location import SiteLocation as SiteLocation
+from .site_edit_params import SiteEditParams as SiteEditParams
 from .site_list_params import SiteListParams as SiteListParams
 from .health_check_rate import HealthCheckRate as HealthCheckRate
 from .health_check_type import HealthCheckType as HealthCheckType
