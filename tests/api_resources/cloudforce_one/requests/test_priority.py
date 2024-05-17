@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -30,7 +30,7 @@ class TestPriority:
             requirement="DoS attacks carried out by CVEs",
             tlp="clear",
         )
-        assert_matches_type(Priority, priority, path=["response"])
+        assert_matches_type(Optional[Priority], priority, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -45,7 +45,7 @@ class TestPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = response.parse()
-        assert_matches_type(Priority, priority, path=["response"])
+        assert_matches_type(Optional[Priority], priority, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -60,7 +60,7 @@ class TestPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = response.parse()
-            assert_matches_type(Priority, priority, path=["response"])
+            assert_matches_type(Optional[Priority], priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -85,7 +85,7 @@ class TestPriority:
             requirement="DoS attacks carried out by CVEs",
             tlp="clear",
         )
-        assert_matches_type(Item, priority, path=["response"])
+        assert_matches_type(Optional[Item], priority, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -101,7 +101,7 @@ class TestPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = response.parse()
-        assert_matches_type(Item, priority, path=["response"])
+        assert_matches_type(Optional[Item], priority, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -117,7 +117,7 @@ class TestPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = response.parse()
-            assert_matches_type(Item, priority, path=["response"])
+            assert_matches_type(Optional[Item], priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -197,7 +197,7 @@ class TestPriority:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Item, priority, path=["response"])
+        assert_matches_type(Optional[Item], priority, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -209,7 +209,7 @@ class TestPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = response.parse()
-        assert_matches_type(Item, priority, path=["response"])
+        assert_matches_type(Optional[Item], priority, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -221,7 +221,7 @@ class TestPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = response.parse()
-            assert_matches_type(Item, priority, path=["response"])
+            assert_matches_type(Optional[Item], priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -244,7 +244,7 @@ class TestPriority:
         priority = client.cloudforce_one.requests.priority.quota(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Quota, priority, path=["response"])
+        assert_matches_type(Optional[Quota], priority, path=["response"])
 
     @parametrize
     def test_raw_response_quota(self, client: Cloudflare) -> None:
@@ -255,7 +255,7 @@ class TestPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = response.parse()
-        assert_matches_type(Quota, priority, path=["response"])
+        assert_matches_type(Optional[Quota], priority, path=["response"])
 
     @parametrize
     def test_streaming_response_quota(self, client: Cloudflare) -> None:
@@ -266,7 +266,7 @@ class TestPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = response.parse()
-            assert_matches_type(Quota, priority, path=["response"])
+            assert_matches_type(Optional[Quota], priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -290,7 +290,7 @@ class TestAsyncPriority:
             requirement="DoS attacks carried out by CVEs",
             tlp="clear",
         )
-        assert_matches_type(Priority, priority, path=["response"])
+        assert_matches_type(Optional[Priority], priority, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -305,7 +305,7 @@ class TestAsyncPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = await response.parse()
-        assert_matches_type(Priority, priority, path=["response"])
+        assert_matches_type(Optional[Priority], priority, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -320,7 +320,7 @@ class TestAsyncPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = await response.parse()
-            assert_matches_type(Priority, priority, path=["response"])
+            assert_matches_type(Optional[Priority], priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -345,7 +345,7 @@ class TestAsyncPriority:
             requirement="DoS attacks carried out by CVEs",
             tlp="clear",
         )
-        assert_matches_type(Item, priority, path=["response"])
+        assert_matches_type(Optional[Item], priority, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -361,7 +361,7 @@ class TestAsyncPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = await response.parse()
-        assert_matches_type(Item, priority, path=["response"])
+        assert_matches_type(Optional[Item], priority, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -377,7 +377,7 @@ class TestAsyncPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = await response.parse()
-            assert_matches_type(Item, priority, path=["response"])
+            assert_matches_type(Optional[Item], priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -457,7 +457,7 @@ class TestAsyncPriority:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Item, priority, path=["response"])
+        assert_matches_type(Optional[Item], priority, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -469,7 +469,7 @@ class TestAsyncPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = await response.parse()
-        assert_matches_type(Item, priority, path=["response"])
+        assert_matches_type(Optional[Item], priority, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -481,7 +481,7 @@ class TestAsyncPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = await response.parse()
-            assert_matches_type(Item, priority, path=["response"])
+            assert_matches_type(Optional[Item], priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -504,7 +504,7 @@ class TestAsyncPriority:
         priority = await async_client.cloudforce_one.requests.priority.quota(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Quota, priority, path=["response"])
+        assert_matches_type(Optional[Quota], priority, path=["response"])
 
     @parametrize
     async def test_raw_response_quota(self, async_client: AsyncCloudflare) -> None:
@@ -515,7 +515,7 @@ class TestAsyncPriority:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         priority = await response.parse()
-        assert_matches_type(Quota, priority, path=["response"])
+        assert_matches_type(Optional[Quota], priority, path=["response"])
 
     @parametrize
     async def test_streaming_response_quota(self, async_client: AsyncCloudflare) -> None:
@@ -526,7 +526,7 @@ class TestAsyncPriority:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             priority = await response.parse()
-            assert_matches_type(Quota, priority, path=["response"])
+            assert_matches_type(Optional[Quota], priority, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
