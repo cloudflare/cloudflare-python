@@ -78,7 +78,7 @@ class AIGatewayResource(SyncAPIResource):
         Create a new Gateway
 
         Args:
-          id: gateway slug
+          id: gateway id
 
           extra_headers: Send extra headers
 
@@ -136,7 +136,7 @@ class AIGatewayResource(SyncAPIResource):
         Update a Gateway
 
         Args:
-          id: gateway slug
+          id: gateway id
 
           extra_headers: Send extra headers
 
@@ -192,7 +192,7 @@ class AIGatewayResource(SyncAPIResource):
         List Gateway's
 
         Args:
-          id: gateway slug
+          id: gateway id
 
           order_by: Order By Column Name
 
@@ -243,7 +243,7 @@ class AIGatewayResource(SyncAPIResource):
         Delete a Gateway
 
         Args:
-          id: gateway slug
+          id: gateway id
 
           extra_headers: Send extra headers
 
@@ -285,7 +285,7 @@ class AIGatewayResource(SyncAPIResource):
         Fetch a Gateway
 
         Args:
-          id: gateway slug
+          id: gateway id
 
           extra_headers: Send extra headers
 
@@ -347,7 +347,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         Create a new Gateway
 
         Args:
-          id: gateway slug
+          id: gateway id
 
           extra_headers: Send extra headers
 
@@ -405,7 +405,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         Update a Gateway
 
         Args:
-          id: gateway slug
+          id: gateway id
 
           extra_headers: Send extra headers
 
@@ -461,7 +461,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         List Gateway's
 
         Args:
-          id: gateway slug
+          id: gateway id
 
           order_by: Order By Column Name
 
@@ -512,7 +512,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         Delete a Gateway
 
         Args:
-          id: gateway slug
+          id: gateway id
 
           extra_headers: Send extra headers
 
@@ -554,7 +554,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         Fetch a Gateway
 
         Args:
-          id: gateway slug
+          id: gateway id
 
           extra_headers: Send extra headers
 

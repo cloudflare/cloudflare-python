@@ -65,7 +65,7 @@ class LogsResource(SyncAPIResource):
         List Gateway Logs
 
         Args:
-          id: gateway slug
+          id: gateway id
 
           extra_headers: Send extra headers
 
@@ -140,7 +140,7 @@ class AsyncLogsResource(AsyncAPIResource):
         List Gateway Logs
 
         Args:
-          id: gateway slug
+          id: gateway id
 
           extra_headers: Send extra headers
 

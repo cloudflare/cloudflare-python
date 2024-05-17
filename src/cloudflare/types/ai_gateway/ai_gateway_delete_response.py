@@ -10,7 +10,7 @@ __all__ = ["AIGatewayDeleteResponse"]
 
 class AIGatewayDeleteResponse(BaseModel):
     id: str
-    """gateway slug"""
+    """gateway id"""
 
     cache_invalidate_on_update: bool
 
