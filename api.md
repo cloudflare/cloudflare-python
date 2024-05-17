@@ -3873,6 +3873,7 @@ Methods:
 - <code title="put /accounts/{account_id}/magic/sites/{site_id}">client.magic_transit.sites.<a href="./src/cloudflare/resources/magic_transit/sites/sites.py">update</a>(site_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/site_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/site.py">Site</a></code>
 - <code title="get /accounts/{account_id}/magic/sites">client.magic_transit.sites.<a href="./src/cloudflare/resources/magic_transit/sites/sites.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/site_list_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/site.py">SyncSinglePage[Site]</a></code>
 - <code title="delete /accounts/{account_id}/magic/sites/{site_id}">client.magic_transit.sites.<a href="./src/cloudflare/resources/magic_transit/sites/sites.py">delete</a>(site_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/site.py">Site</a></code>
+- <code title="patch /accounts/{account_id}/magic/sites/{site_id}">client.magic_transit.sites.<a href="./src/cloudflare/resources/magic_transit/sites/sites.py">edit</a>(site_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/site_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/site.py">Site</a></code>
 - <code title="get /accounts/{account_id}/magic/sites/{site_id}">client.magic_transit.sites.<a href="./src/cloudflare/resources/magic_transit/sites/sites.py">get</a>(site_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/site.py">Site</a></code>
 
 ### ACLs
@@ -3889,6 +3890,7 @@ Methods:
 - <code title="put /accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}">client.magic_transit.sites.acls.<a href="./src/cloudflare/resources/magic_transit/sites/acls.py">update</a>(acl_identifier, \*, account_id, site_id, \*\*<a href="src/cloudflare/types/magic_transit/sites/acl_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/sites/acl.py">ACL</a></code>
 - <code title="get /accounts/{account_id}/magic/sites/{site_id}/acls">client.magic_transit.sites.acls.<a href="./src/cloudflare/resources/magic_transit/sites/acls.py">list</a>(site_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/sites/acl.py">SyncSinglePage[ACL]</a></code>
 - <code title="delete /accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}">client.magic_transit.sites.acls.<a href="./src/cloudflare/resources/magic_transit/sites/acls.py">delete</a>(acl_identifier, \*, account_id, site_id) -> <a href="./src/cloudflare/types/magic_transit/sites/acl.py">ACL</a></code>
+- <code title="patch /accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}">client.magic_transit.sites.acls.<a href="./src/cloudflare/resources/magic_transit/sites/acls.py">edit</a>(acl_identifier, \*, account_id, site_id, \*\*<a href="src/cloudflare/types/magic_transit/sites/acl_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/sites/acl.py">ACL</a></code>
 - <code title="get /accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}">client.magic_transit.sites.acls.<a href="./src/cloudflare/resources/magic_transit/sites/acls.py">get</a>(acl_identifier, \*, account_id, site_id) -> <a href="./src/cloudflare/types/magic_transit/sites/acl.py">ACL</a></code>
 
 ### LANs
@@ -3913,6 +3915,7 @@ Methods:
 - <code title="put /accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}">client.magic_transit.sites.lans.<a href="./src/cloudflare/resources/magic_transit/sites/lans.py">update</a>(lan_id, \*, account_id, site_id, \*\*<a href="src/cloudflare/types/magic_transit/sites/lan_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/sites/lan.py">LAN</a></code>
 - <code title="get /accounts/{account_id}/magic/sites/{site_id}/lans">client.magic_transit.sites.lans.<a href="./src/cloudflare/resources/magic_transit/sites/lans.py">list</a>(site_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/sites/lan.py">SyncSinglePage[LAN]</a></code>
 - <code title="delete /accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}">client.magic_transit.sites.lans.<a href="./src/cloudflare/resources/magic_transit/sites/lans.py">delete</a>(lan_id, \*, account_id, site_id) -> <a href="./src/cloudflare/types/magic_transit/sites/lan.py">LAN</a></code>
+- <code title="patch /accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}">client.magic_transit.sites.lans.<a href="./src/cloudflare/resources/magic_transit/sites/lans.py">edit</a>(lan_id, \*, account_id, site_id, \*\*<a href="src/cloudflare/types/magic_transit/sites/lan_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/sites/lan.py">LAN</a></code>
 - <code title="get /accounts/{account_id}/magic/sites/{site_id}/lans/{lan_id}">client.magic_transit.sites.lans.<a href="./src/cloudflare/resources/magic_transit/sites/lans.py">get</a>(lan_id, \*, account_id, site_id) -> <a href="./src/cloudflare/types/magic_transit/sites/lan.py">LAN</a></code>
 
 ### WANs
@@ -3929,6 +3932,7 @@ Methods:
 - <code title="put /accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}">client.magic_transit.sites.wans.<a href="./src/cloudflare/resources/magic_transit/sites/wans.py">update</a>(wan_id, \*, account_id, site_id, \*\*<a href="src/cloudflare/types/magic_transit/sites/wan_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/sites/wan.py">WAN</a></code>
 - <code title="get /accounts/{account_id}/magic/sites/{site_id}/wans">client.magic_transit.sites.wans.<a href="./src/cloudflare/resources/magic_transit/sites/wans.py">list</a>(site_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/sites/wan.py">SyncSinglePage[WAN]</a></code>
 - <code title="delete /accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}">client.magic_transit.sites.wans.<a href="./src/cloudflare/resources/magic_transit/sites/wans.py">delete</a>(wan_id, \*, account_id, site_id) -> <a href="./src/cloudflare/types/magic_transit/sites/wan.py">WAN</a></code>
+- <code title="patch /accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}">client.magic_transit.sites.wans.<a href="./src/cloudflare/resources/magic_transit/sites/wans.py">edit</a>(wan_id, \*, account_id, site_id, \*\*<a href="src/cloudflare/types/magic_transit/sites/wan_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/sites/wan.py">WAN</a></code>
 - <code title="get /accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}">client.magic_transit.sites.wans.<a href="./src/cloudflare/resources/magic_transit/sites/wans.py">get</a>(wan_id, \*, account_id, site_id) -> <a href="./src/cloudflare/types/magic_transit/sites/wan.py">WAN</a></code>
 
 ## Connectors
@@ -4601,13 +4605,22 @@ from cloudflare.types.d1 import D1
 Types:
 
 ```python
-from cloudflare.types.d1 import QueryResult, DatabaseCreateResponse, DatabaseListResponse
+from cloudflare.types.d1 import (
+    QueryResult,
+    DatabaseCreateResponse,
+    DatabaseListResponse,
+    DatabaseDeleteResponse,
+    DatabaseQueryResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /accounts/{account_id}/d1/database">client.d1.database.<a href="./src/cloudflare/resources/d1/database.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/d1/database_create_params.py">params</a>) -> <a href="./src/cloudflare/types/d1/database_create_response.py">DatabaseCreateResponse</a></code>
 - <code title="get /accounts/{account_id}/d1/database">client.d1.database.<a href="./src/cloudflare/resources/d1/database.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/d1/database_list_params.py">params</a>) -> <a href="./src/cloudflare/types/d1/database_list_response.py">SyncV4PagePaginationArray[DatabaseListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/d1/database/{database_id}">client.d1.database.<a href="./src/cloudflare/resources/d1/database.py">delete</a>(database_id, \*, account_id) -> <a href="./src/cloudflare/types/d1/database_delete_response.py">DatabaseDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/d1/database/{database_id}">client.d1.database.<a href="./src/cloudflare/resources/d1/database.py">get</a>(database_id, \*, account_id) -> <a href="./src/cloudflare/types/d1/d1.py">D1</a></code>
+- <code title="post /accounts/{account_id}/d1/database/{database_id}/query">client.d1.database.<a href="./src/cloudflare/resources/d1/database.py">query</a>(database_id, \*, account_id, \*\*<a href="src/cloudflare/types/d1/database_query_params.py">params</a>) -> <a href="./src/cloudflare/types/d1/database_query_response.py">DatabaseQueryResponse</a></code>
 
 # R2
 
@@ -5995,6 +6008,40 @@ from cloudflare.types.zero_trust.risk_scoring import SummaryGetResponse
 Methods:
 
 - <code title="get /accounts/{account_identifier}/zt_risk_scoring/summary">client.zero_trust.risk_scoring.summary.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/summary.py">get</a>(account_identifier, \*\*<a href="src/cloudflare/types/zero_trust/risk_scoring/summary_get_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring/summary_get_response.py">SummaryGetResponse</a></code>
+
+### Integrations
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.risk_scoring import (
+    IntegrationCreateResponse,
+    IntegrationUpdateResponse,
+    IntegrationListResponse,
+    IntegrationDeleteResponse,
+    IntegrationGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/zt_risk_scoring/integrations">client.zero_trust.risk_scoring.integrations.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/integrations/integrations.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/risk_scoring/integration_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring/integration_create_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/zt_risk_scoring/integrations/{integration_id}">client.zero_trust.risk_scoring.integrations.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/integrations/integrations.py">update</a>(integration_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/risk_scoring/integration_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring/integration_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/zt_risk_scoring/integrations">client.zero_trust.risk_scoring.integrations.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/integrations/integrations.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring/integration_list_response.py">SyncSinglePage[IntegrationListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/zt_risk_scoring/integrations/{integration_id}">client.zero_trust.risk_scoring.integrations.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/integrations/integrations.py">delete</a>(integration_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring/integration_delete_response.py">object</a></code>
+- <code title="get /accounts/{account_id}/zt_risk_scoring/integrations/{integration_id}">client.zero_trust.risk_scoring.integrations.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/integrations/integrations.py">get</a>(integration_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring/integration_get_response.py">Optional</a></code>
+
+#### References
+
+Types:
+
+```python
+from cloudflare.types.zero_trust.risk_scoring.integrations import ReferenceGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/zt_risk_scoring/integrations/reference_id/{reference_id}">client.zero_trust.risk_scoring.integrations.references.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/integrations/references.py">get</a>(reference_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring/integrations/reference_get_response.py">Optional</a></code>
 
 # Challenges
 

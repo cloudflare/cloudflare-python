@@ -16,6 +16,14 @@ from .behaviours import (
     BehavioursResourceWithStreamingResponse,
     AsyncBehavioursResourceWithStreamingResponse,
 )
+from .integrations import (
+    IntegrationsResource,
+    AsyncIntegrationsResource,
+    IntegrationsResourceWithRawResponse,
+    AsyncIntegrationsResourceWithRawResponse,
+    IntegrationsResourceWithStreamingResponse,
+    AsyncIntegrationsResourceWithStreamingResponse,
+)
 from .risk_scoring import (
     RiskScoringResource,
     AsyncRiskScoringResource,
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncSummaryResourceWithRawResponse",
     "SummaryResourceWithStreamingResponse",
     "AsyncSummaryResourceWithStreamingResponse",
+    "IntegrationsResource",
+    "AsyncIntegrationsResource",
+    "IntegrationsResourceWithRawResponse",
+    "AsyncIntegrationsResourceWithRawResponse",
+    "IntegrationsResourceWithStreamingResponse",
+    "AsyncIntegrationsResourceWithStreamingResponse",
     "RiskScoringResource",
     "AsyncRiskScoringResource",
     "RiskScoringResourceWithRawResponse",
