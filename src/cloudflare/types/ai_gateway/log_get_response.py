@@ -33,6 +33,8 @@ class LogGetResponseItem(BaseModel):
 
     tokens_out: int
 
+    metadata: Optional[str] = None
+
     status_code: Optional[int] = None
 
 
