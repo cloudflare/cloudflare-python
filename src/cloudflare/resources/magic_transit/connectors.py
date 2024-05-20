@@ -47,7 +47,7 @@ class ConnectorsResource(SyncAPIResource):
         self,
         connector_id: str,
         *,
-        account_id: float,
+        account_id: str,
         activated: bool | NotGiven = NOT_GIVEN,
         interrupt_window_duration_hours: float | NotGiven = NOT_GIVEN,
         interrupt_window_hour_of_day: float | NotGiven = NOT_GIVEN,
@@ -64,6 +64,8 @@ class ConnectorsResource(SyncAPIResource):
         Replace Connector
 
         Args:
+          account_id: Account identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -72,6 +74,8 @@ class ConnectorsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return self._put(
@@ -99,7 +103,7 @@ class ConnectorsResource(SyncAPIResource):
     def list(
         self,
         *,
-        account_id: float,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -111,6 +115,8 @@ class ConnectorsResource(SyncAPIResource):
         List Connectors
 
         Args:
+          account_id: Account identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -119,6 +125,8 @@ class ConnectorsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/magic/connectors",
             page=SyncSinglePage[ConnectorListResponse],
@@ -132,7 +140,7 @@ class ConnectorsResource(SyncAPIResource):
         self,
         connector_id: str,
         *,
-        account_id: float,
+        account_id: str,
         activated: bool | NotGiven = NOT_GIVEN,
         interrupt_window_duration_hours: float | NotGiven = NOT_GIVEN,
         interrupt_window_hour_of_day: float | NotGiven = NOT_GIVEN,
@@ -149,6 +157,8 @@ class ConnectorsResource(SyncAPIResource):
         Update Connector
 
         Args:
+          account_id: Account identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -157,6 +167,8 @@ class ConnectorsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return self._patch(
@@ -185,7 +197,7 @@ class ConnectorsResource(SyncAPIResource):
         self,
         connector_id: str,
         *,
-        account_id: float,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -197,6 +209,8 @@ class ConnectorsResource(SyncAPIResource):
         Fetch Connector
 
         Args:
+          account_id: Account identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -205,6 +219,8 @@ class ConnectorsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return self._get(
@@ -233,7 +249,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
         self,
         connector_id: str,
         *,
-        account_id: float,
+        account_id: str,
         activated: bool | NotGiven = NOT_GIVEN,
         interrupt_window_duration_hours: float | NotGiven = NOT_GIVEN,
         interrupt_window_hour_of_day: float | NotGiven = NOT_GIVEN,
@@ -250,6 +266,8 @@ class AsyncConnectorsResource(AsyncAPIResource):
         Replace Connector
 
         Args:
+          account_id: Account identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -258,6 +276,8 @@ class AsyncConnectorsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return await self._put(
@@ -285,7 +305,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        account_id: float,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -297,6 +317,8 @@ class AsyncConnectorsResource(AsyncAPIResource):
         List Connectors
 
         Args:
+          account_id: Account identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -305,6 +327,8 @@ class AsyncConnectorsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/magic/connectors",
             page=AsyncSinglePage[ConnectorListResponse],
@@ -318,7 +342,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
         self,
         connector_id: str,
         *,
-        account_id: float,
+        account_id: str,
         activated: bool | NotGiven = NOT_GIVEN,
         interrupt_window_duration_hours: float | NotGiven = NOT_GIVEN,
         interrupt_window_hour_of_day: float | NotGiven = NOT_GIVEN,
@@ -335,6 +359,8 @@ class AsyncConnectorsResource(AsyncAPIResource):
         Update Connector
 
         Args:
+          account_id: Account identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -343,6 +369,8 @@ class AsyncConnectorsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return await self._patch(
@@ -371,7 +399,7 @@ class AsyncConnectorsResource(AsyncAPIResource):
         self,
         connector_id: str,
         *,
-        account_id: float,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -383,6 +411,8 @@ class AsyncConnectorsResource(AsyncAPIResource):
         Fetch Connector
 
         Args:
+          account_id: Account identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -391,6 +421,8 @@ class AsyncConnectorsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not connector_id:
             raise ValueError(f"Expected a non-empty value for `connector_id` but received {connector_id!r}")
         return await self._get(
