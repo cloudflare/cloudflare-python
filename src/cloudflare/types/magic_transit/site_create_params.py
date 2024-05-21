@@ -17,7 +17,7 @@ class SiteCreateParams(TypedDict, total=False):
     """The name of the site."""
 
     connector_id: str
-    """Magic WAN Connector identifier tag."""
+    """Magic Connector identifier tag."""
 
     description: str
 
@@ -32,4 +32,4 @@ class SiteCreateParams(TypedDict, total=False):
     """Location of site in latitude and longitude."""
 
     secondary_connector_id: str
-    """Magic WAN Connector identifier tag. Used when high availability mode is on."""
+    """Magic Connector identifier tag. Used when high availability mode is on."""

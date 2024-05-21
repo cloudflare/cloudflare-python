@@ -107,14 +107,14 @@ class SitesResource(SyncAPIResource):
 
           name: The name of the site.
 
-          connector_id: Magic WAN Connector identifier tag.
+          connector_id: Magic Connector identifier tag.
 
           ha_mode: Site high availability mode. If set to true, the site can have two connectors
               and runs in high availability mode.
 
           location: Location of site in latitude and longitude.
 
-          secondary_connector_id: Magic WAN Connector identifier tag. Used when high availability mode is on.
+          secondary_connector_id: Magic Connector identifier tag. Used when high availability mode is on.
 
           extra_headers: Send extra headers
 
@@ -174,13 +174,13 @@ class SitesResource(SyncAPIResource):
 
           site_id: Identifier
 
-          connector_id: Magic WAN Connector identifier tag.
+          connector_id: Magic Connector identifier tag.
 
           location: Location of site in latitude and longitude.
 
           name: The name of the site.
 
-          secondary_connector_id: Magic WAN Connector identifier tag. Used when high availability mode is on.
+          secondary_connector_id: Magic Connector identifier tag. Used when high availability mode is on.
 
           extra_headers: Send extra headers
 
@@ -331,13 +331,13 @@ class SitesResource(SyncAPIResource):
 
           site_id: Identifier
 
-          connector_id: Magic WAN Connector identifier tag.
+          connector_id: Magic Connector identifier tag.
 
           location: Location of site in latitude and longitude.
 
           name: The name of the site.
 
-          secondary_connector_id: Magic WAN Connector identifier tag. Used when high availability mode is on.
+          secondary_connector_id: Magic Connector identifier tag. Used when high availability mode is on.
 
           extra_headers: Send extra headers
 
@@ -464,14 +464,14 @@ class AsyncSitesResource(AsyncAPIResource):
 
           name: The name of the site.
 
-          connector_id: Magic WAN Connector identifier tag.
+          connector_id: Magic Connector identifier tag.
 
           ha_mode: Site high availability mode. If set to true, the site can have two connectors
               and runs in high availability mode.
 
           location: Location of site in latitude and longitude.
 
-          secondary_connector_id: Magic WAN Connector identifier tag. Used when high availability mode is on.
+          secondary_connector_id: Magic Connector identifier tag. Used when high availability mode is on.
 
           extra_headers: Send extra headers
 
@@ -531,13 +531,13 @@ class AsyncSitesResource(AsyncAPIResource):
 
           site_id: Identifier
 
-          connector_id: Magic WAN Connector identifier tag.
+          connector_id: Magic Connector identifier tag.
 
           location: Location of site in latitude and longitude.
 
           name: The name of the site.
 
-          secondary_connector_id: Magic WAN Connector identifier tag. Used when high availability mode is on.
+          secondary_connector_id: Magic Connector identifier tag. Used when high availability mode is on.
 
           extra_headers: Send extra headers
 
@@ -688,13 +688,13 @@ class AsyncSitesResource(AsyncAPIResource):
 
           site_id: Identifier
 
-          connector_id: Magic WAN Connector identifier tag.
+          connector_id: Magic Connector identifier tag.
 
           location: Location of site in latitude and longitude.
 
           name: The name of the site.
 
-          secondary_connector_id: Magic WAN Connector identifier tag. Used when high availability mode is on.
+          secondary_connector_id: Magic Connector identifier tag. Used when high availability mode is on.
 
           extra_headers: Send extra headers
 
