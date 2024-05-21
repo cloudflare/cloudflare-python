@@ -60,7 +60,7 @@ class WANsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> WANCreateResponse:
         """
-        Creates a new WAN.
+        Creates a new Site WAN.
 
         Args:
           account_id: Identifier
@@ -125,7 +125,7 @@ class WANsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> WAN:
         """
-        Update a specific WAN.
+        Update a specific Site WAN.
 
         Args:
           account_id: Identifier
@@ -188,7 +188,7 @@ class WANsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[WAN]:
         """
-        Lists WANs associated with an account and site.
+        Lists Site WANs associated with an account.
 
         Args:
           account_id: Identifier
@@ -230,7 +230,7 @@ class WANsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> WAN:
         """
-        Remove a specific WAN.
+        Remove a specific Site WAN.
 
         Args:
           account_id: Identifier
@@ -284,7 +284,7 @@ class WANsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> WAN:
         """
-        Patch a specific WAN.
+        Patch a specific Site WAN.
 
         Args:
           account_id: Identifier
@@ -348,7 +348,7 @@ class WANsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> WAN:
         """
-        Get a specific WAN.
+        Get a specific Site WAN.
 
         Args:
           account_id: Identifier
@@ -411,7 +411,7 @@ class AsyncWANsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> WANCreateResponse:
         """
-        Creates a new WAN.
+        Creates a new Site WAN.
 
         Args:
           account_id: Identifier
@@ -476,7 +476,7 @@ class AsyncWANsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> WAN:
         """
-        Update a specific WAN.
+        Update a specific Site WAN.
 
         Args:
           account_id: Identifier
@@ -539,7 +539,7 @@ class AsyncWANsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[WAN, AsyncSinglePage[WAN]]:
         """
-        Lists WANs associated with an account and site.
+        Lists Site WANs associated with an account.
 
         Args:
           account_id: Identifier
@@ -581,7 +581,7 @@ class AsyncWANsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> WAN:
         """
-        Remove a specific WAN.
+        Remove a specific Site WAN.
 
         Args:
           account_id: Identifier
@@ -635,7 +635,7 @@ class AsyncWANsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> WAN:
         """
-        Patch a specific WAN.
+        Patch a specific Site WAN.
 
         Args:
           account_id: Identifier
@@ -699,7 +699,7 @@ class AsyncWANsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> WAN:
         """
-        Get a specific WAN.
+        Get a specific Site WAN.
 
         Args:
           account_id: Identifier

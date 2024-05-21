@@ -67,10 +67,10 @@ class LANsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LANCreateResponse:
-        """Creates a new LAN.
+        """Creates a new Site LAN.
 
-        If the site is in high availability mode, static_addressing
-        is required along with secondary and virtual address.
+        If the site is in high availability mode,
+        static_addressing is required along with secondary and virtual address.
 
         Args:
           account_id: Identifier
@@ -142,7 +142,7 @@ class LANsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LAN:
         """
-        Update a specific LAN.
+        Update a specific Site LAN.
 
         Args:
           account_id: Identifier
@@ -207,7 +207,7 @@ class LANsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[LAN]:
         """
-        Lists LANs associated with an account and site.
+        Lists Site LANs associated with an account.
 
         Args:
           account_id: Identifier
@@ -249,7 +249,7 @@ class LANsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LAN:
         """
-        Remove a specific LAN.
+        Remove a specific Site LAN.
 
         Args:
           account_id: Identifier
@@ -304,7 +304,7 @@ class LANsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LAN:
         """
-        Patch a specific LAN.
+        Patch a specific Site LAN.
 
         Args:
           account_id: Identifier
@@ -370,7 +370,7 @@ class LANsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LAN:
         """
-        Get a specific LAN.
+        Get a specific Site LAN.
 
         Args:
           account_id: Identifier
@@ -434,10 +434,10 @@ class AsyncLANsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LANCreateResponse:
-        """Creates a new LAN.
+        """Creates a new Site LAN.
 
-        If the site is in high availability mode, static_addressing
-        is required along with secondary and virtual address.
+        If the site is in high availability mode,
+        static_addressing is required along with secondary and virtual address.
 
         Args:
           account_id: Identifier
@@ -509,7 +509,7 @@ class AsyncLANsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LAN:
         """
-        Update a specific LAN.
+        Update a specific Site LAN.
 
         Args:
           account_id: Identifier
@@ -574,7 +574,7 @@ class AsyncLANsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[LAN, AsyncSinglePage[LAN]]:
         """
-        Lists LANs associated with an account and site.
+        Lists Site LANs associated with an account.
 
         Args:
           account_id: Identifier
@@ -616,7 +616,7 @@ class AsyncLANsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LAN:
         """
-        Remove a specific LAN.
+        Remove a specific Site LAN.
 
         Args:
           account_id: Identifier
@@ -671,7 +671,7 @@ class AsyncLANsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LAN:
         """
-        Patch a specific LAN.
+        Patch a specific Site LAN.
 
         Args:
           account_id: Identifier
@@ -737,7 +737,7 @@ class AsyncLANsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> LAN:
         """
-        Get a specific LAN.
+        Get a specific Site LAN.
 
         Args:
           account_id: Identifier

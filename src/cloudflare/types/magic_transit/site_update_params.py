@@ -14,7 +14,7 @@ class SiteUpdateParams(TypedDict, total=False):
     """Identifier"""
 
     connector_id: str
-    """Magic WAN Connector identifier tag."""
+    """Magic Connector identifier tag."""
 
     description: str
 
@@ -25,4 +25,4 @@ class SiteUpdateParams(TypedDict, total=False):
     """The name of the site."""
 
     secondary_connector_id: str
-    """Magic WAN Connector identifier tag. Used when high availability mode is on."""
+    """Magic Connector identifier tag. Used when high availability mode is on."""
