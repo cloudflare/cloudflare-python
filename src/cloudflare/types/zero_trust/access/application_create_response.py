@@ -33,6 +33,7 @@ __all__ = [
     "SaaSApplicationSaaSAppAccessOIDCSaaSApp",
     "SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims",
     "SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource",
+    "SaaSApplicationSaaSAppAccessOIDCSaaSAppHybridAndImplicitOptions",
     "SaaSApplicationSaaSAppAccessOIDCSaaSAppRefreshTokenOptions",
     "SaaSApplicationScimConfig",
     "SaaSApplicationScimConfigAuthentication",
@@ -504,6 +505,14 @@ class SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims(BaseModel):
     source: Optional[SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource] = None
 
 
+class SaaSApplicationSaaSAppAccessOIDCSaaSAppHybridAndImplicitOptions(BaseModel):
+    return_access_token_from_authorization_endpoint: Optional[bool] = None
+    """If an Access Token should be returned from the OIDC Authorization endpoint"""
+
+    return_id_token_from_authorization_endpoint: Optional[bool] = None
+    """If an ID Token should be returned from the OIDC Authorization endpoint"""
+
+
 class SaaSApplicationSaaSAppAccessOIDCSaaSAppRefreshTokenOptions(BaseModel):
     lifetime: Optional[str] = None
     """How long a refresh token will be valid for after creation.
@@ -538,11 +547,15 @@ class SaaSApplicationSaaSAppAccessOIDCSaaSApp(BaseModel):
 
     custom_claims: Optional[SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims] = None
 
-    grant_types: Optional[List[Literal["authorization_code", "authorization_code_with_pkce", "refresh_tokens"]]] = None
+    grant_types: Optional[
+        List[Literal["authorization_code", "authorization_code_with_pkce", "refresh_tokens", "hybrid", "implicit"]]
+    ] = None
     """The OIDC flows supported by this application"""
 
     group_filter_regex: Optional[str] = None
     """A regex to filter Cloudflare groups returned in ID token and userinfo endpoint"""
+
+    hybrid_and_implicit_options: Optional[SaaSApplicationSaaSAppAccessOIDCSaaSAppHybridAndImplicitOptions] = None
 
     public_key: Optional[str] = None
     """The Access public certificate that will be used to verify your identity."""

@@ -35,6 +35,7 @@ __all__ = [
     "SaaSApplicationSaaSAppAccessOIDCSaaSApp",
     "SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims",
     "SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource",
+    "SaaSApplicationSaaSAppAccessOIDCSaaSAppHybridAndImplicitOptions",
     "SaaSApplicationSaaSAppAccessOIDCSaaSAppRefreshTokenOptions",
     "SaaSApplicationScimConfig",
     "SaaSApplicationScimConfigAuthentication",
@@ -599,6 +600,14 @@ class SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims(TypedDict, total=False
     source: SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource
 
 
+class SaaSApplicationSaaSAppAccessOIDCSaaSAppHybridAndImplicitOptions(TypedDict, total=False):
+    return_access_token_from_authorization_endpoint: bool
+    """If an Access Token should be returned from the OIDC Authorization endpoint"""
+
+    return_id_token_from_authorization_endpoint: bool
+    """If an ID Token should be returned from the OIDC Authorization endpoint"""
+
+
 class SaaSApplicationSaaSAppAccessOIDCSaaSAppRefreshTokenOptions(TypedDict, total=False):
     lifetime: str
     """How long a refresh token will be valid for after creation.
@@ -631,11 +640,15 @@ class SaaSApplicationSaaSAppAccessOIDCSaaSApp(TypedDict, total=False):
 
     custom_claims: SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims
 
-    grant_types: List[Literal["authorization_code", "authorization_code_with_pkce", "refresh_tokens"]]
+    grant_types: List[
+        Literal["authorization_code", "authorization_code_with_pkce", "refresh_tokens", "hybrid", "implicit"]
+    ]
     """The OIDC flows supported by this application"""
 
     group_filter_regex: str
     """A regex to filter Cloudflare groups returned in ID token and userinfo endpoint"""
+
+    hybrid_and_implicit_options: SaaSApplicationSaaSAppAccessOIDCSaaSAppHybridAndImplicitOptions
 
     public_key: str
     """The Access public certificate that will be used to verify your identity."""
