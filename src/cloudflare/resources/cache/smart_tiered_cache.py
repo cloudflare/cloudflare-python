@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -68,21 +68,16 @@ class SmartTieredCacheResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            SmartTieredCacheDeleteResponse,
-            self._delete(
-                f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[SmartTieredCacheDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[SmartTieredCacheDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SmartTieredCacheDeleteResponse]._unwrapper,
             ),
+            cast_to=cast(Type[SmartTieredCacheDeleteResponse], ResultWrapper[SmartTieredCacheDeleteResponse]),
         )
 
     def edit(
@@ -103,7 +98,7 @@ class SmartTieredCacheResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
-          value: Enables Tiered Cache.
+          value: Enable or disable the Smart Tiered Cache
 
           extra_headers: Send extra headers
 
@@ -115,22 +110,17 @@ class SmartTieredCacheResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            SmartTieredCacheEditResponse,
-            self._patch(
-                f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-                body=maybe_transform({"value": value}, smart_tiered_cache_edit_params.SmartTieredCacheEditParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[SmartTieredCacheEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[SmartTieredCacheEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._patch(
+            f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
+            body=maybe_transform({"value": value}, smart_tiered_cache_edit_params.SmartTieredCacheEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SmartTieredCacheEditResponse]._unwrapper,
             ),
+            cast_to=cast(Type[SmartTieredCacheEditResponse], ResultWrapper[SmartTieredCacheEditResponse]),
         )
 
     def get(
@@ -160,21 +150,16 @@ class SmartTieredCacheResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            SmartTieredCacheGetResponse,
-            self._get(
-                f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[SmartTieredCacheGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[SmartTieredCacheGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SmartTieredCacheGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[SmartTieredCacheGetResponse], ResultWrapper[SmartTieredCacheGetResponse]),
         )
 
 
@@ -214,21 +199,16 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            SmartTieredCacheDeleteResponse,
-            await self._delete(
-                f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[SmartTieredCacheDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[SmartTieredCacheDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SmartTieredCacheDeleteResponse]._unwrapper,
             ),
+            cast_to=cast(Type[SmartTieredCacheDeleteResponse], ResultWrapper[SmartTieredCacheDeleteResponse]),
         )
 
     async def edit(
@@ -249,7 +229,7 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
-          value: Enables Tiered Cache.
+          value: Enable or disable the Smart Tiered Cache
 
           extra_headers: Send extra headers
 
@@ -261,24 +241,19 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            SmartTieredCacheEditResponse,
-            await self._patch(
-                f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-                body=await async_maybe_transform(
-                    {"value": value}, smart_tiered_cache_edit_params.SmartTieredCacheEditParams
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[SmartTieredCacheEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[SmartTieredCacheEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._patch(
+            f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
+            body=await async_maybe_transform(
+                {"value": value}, smart_tiered_cache_edit_params.SmartTieredCacheEditParams
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SmartTieredCacheEditResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[SmartTieredCacheEditResponse], ResultWrapper[SmartTieredCacheEditResponse]),
         )
 
     async def get(
@@ -308,21 +283,16 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            SmartTieredCacheGetResponse,
-            await self._get(
-                f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[SmartTieredCacheGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[SmartTieredCacheGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SmartTieredCacheGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[SmartTieredCacheGetResponse], ResultWrapper[SmartTieredCacheGetResponse]),
         )
 
 
