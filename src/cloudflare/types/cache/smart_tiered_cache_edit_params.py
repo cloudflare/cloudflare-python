@@ -12,4 +12,4 @@ class SmartTieredCacheEditParams(TypedDict, total=False):
     """Identifier"""
 
     value: Required[Literal["on", "off"]]
-    """Enables Tiered Cache."""
+    """Enable or disable the Smart Tiered Cache"""
