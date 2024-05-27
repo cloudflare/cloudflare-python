@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Any, Type, cast
 
 import httpx
@@ -44,6 +45,9 @@ class RateLimitsResource(SyncAPIResource):
     def with_streaming_response(self) -> RateLimitsResourceWithStreamingResponse:
         return RateLimitsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Rate limiting API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#rate-limiting-api-previous-version for full details."
+    )
     def create(
         self,
         zone_identifier: str,
@@ -92,6 +96,9 @@ class RateLimitsResource(SyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated(
+        "Rate limiting API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#rate-limiting-api-previous-version for full details."
+    )
     def list(
         self,
         zone_identifier: str,
@@ -145,6 +152,9 @@ class RateLimitsResource(SyncAPIResource):
             model=RateLimit,
         )
 
+    @typing_extensions.deprecated(
+        "Rate limiting API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#rate-limiting-api-previous-version for full details."
+    )
     def delete(
         self,
         id: str,
@@ -189,6 +199,9 @@ class RateLimitsResource(SyncAPIResource):
             cast_to=cast(Type[RateLimitDeleteResponse], ResultWrapper[RateLimitDeleteResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Rate limiting API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#rate-limiting-api-previous-version for full details."
+    )
     def edit(
         self,
         id: str,
@@ -240,6 +253,9 @@ class RateLimitsResource(SyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated(
+        "Rate limiting API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#rate-limiting-api-previous-version for full details."
+    )
     def get(
         self,
         id: str,
@@ -299,6 +315,9 @@ class AsyncRateLimitsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncRateLimitsResourceWithStreamingResponse:
         return AsyncRateLimitsResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "Rate limiting API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#rate-limiting-api-previous-version for full details."
+    )
     async def create(
         self,
         zone_identifier: str,
@@ -347,6 +366,9 @@ class AsyncRateLimitsResource(AsyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated(
+        "Rate limiting API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#rate-limiting-api-previous-version for full details."
+    )
     def list(
         self,
         zone_identifier: str,
@@ -400,6 +422,9 @@ class AsyncRateLimitsResource(AsyncAPIResource):
             model=RateLimit,
         )
 
+    @typing_extensions.deprecated(
+        "Rate limiting API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#rate-limiting-api-previous-version for full details."
+    )
     async def delete(
         self,
         id: str,
@@ -444,6 +469,9 @@ class AsyncRateLimitsResource(AsyncAPIResource):
             cast_to=cast(Type[RateLimitDeleteResponse], ResultWrapper[RateLimitDeleteResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "Rate limiting API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#rate-limiting-api-previous-version for full details."
+    )
     async def edit(
         self,
         id: str,
@@ -495,6 +523,9 @@ class AsyncRateLimitsResource(AsyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated(
+        "Rate limiting API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#rate-limiting-api-previous-version for full details."
+    )
     async def get(
         self,
         id: str,
@@ -549,20 +580,30 @@ class RateLimitsResourceWithRawResponse:
     def __init__(self, rate_limits: RateLimitsResource) -> None:
         self._rate_limits = rate_limits
 
-        self.create = to_raw_response_wrapper(
-            rate_limits.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rate_limits.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_raw_response_wrapper(
-            rate_limits.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rate_limits.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_raw_response_wrapper(
-            rate_limits.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rate_limits.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_raw_response_wrapper(
-            rate_limits.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rate_limits.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            rate_limits.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rate_limits.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -570,20 +611,30 @@ class AsyncRateLimitsResourceWithRawResponse:
     def __init__(self, rate_limits: AsyncRateLimitsResource) -> None:
         self._rate_limits = rate_limits
 
-        self.create = async_to_raw_response_wrapper(
-            rate_limits.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rate_limits.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_raw_response_wrapper(
-            rate_limits.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rate_limits.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_raw_response_wrapper(
-            rate_limits.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rate_limits.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_raw_response_wrapper(
-            rate_limits.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rate_limits.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            rate_limits.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rate_limits.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -591,20 +642,30 @@ class RateLimitsResourceWithStreamingResponse:
     def __init__(self, rate_limits: RateLimitsResource) -> None:
         self._rate_limits = rate_limits
 
-        self.create = to_streamed_response_wrapper(
-            rate_limits.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rate_limits.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_streamed_response_wrapper(
-            rate_limits.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rate_limits.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_streamed_response_wrapper(
-            rate_limits.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rate_limits.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_streamed_response_wrapper(
-            rate_limits.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rate_limits.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            rate_limits.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rate_limits.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -612,18 +673,28 @@ class AsyncRateLimitsResourceWithStreamingResponse:
     def __init__(self, rate_limits: AsyncRateLimitsResource) -> None:
         self._rate_limits = rate_limits
 
-        self.create = async_to_streamed_response_wrapper(
-            rate_limits.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rate_limits.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_streamed_response_wrapper(
-            rate_limits.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rate_limits.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_streamed_response_wrapper(
-            rate_limits.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rate_limits.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_streamed_response_wrapper(
-            rate_limits.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rate_limits.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            rate_limits.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rate_limits.get  # pyright: ignore[reportDeprecated],
+            )
         )
