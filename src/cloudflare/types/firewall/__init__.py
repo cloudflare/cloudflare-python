@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
+from .product import Product as Product
 from .lockdown import Lockdown as Lockdown
-from .products import Products as Products
 from .lockdown_url import LockdownURL as LockdownURL
 from .configuration import Configuration as Configuration
 from .firewall_rule import FirewallRule as FirewallRule

@@ -2,6 +2,6 @@
 
 from typing_extensions import Literal
 
-__all__ = ["Products"]
+__all__ = ["Product"]
 
-Products = Literal["zoneLockdown", "uaBlock", "bic", "hot", "securityLevel", "rateLimit", "waf"]
+Product = Literal["zoneLockdown", "uaBlock", "bic", "hot", "securityLevel", "rateLimit", "waf"]
