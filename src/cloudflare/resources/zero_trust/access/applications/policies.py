@@ -20,9 +20,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
-from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import (
-    AsyncPaginator,
     make_request_options,
 )
 from .....types.zero_trust.access import Decision
@@ -31,7 +29,6 @@ from .....types.zero_trust.access_rule_param import AccessRuleParam
 from .....types.zero_trust.access.applications import policy_create_params, policy_update_params
 from .....types.zero_trust.access.applications.policy_get_response import PolicyGetResponse
 from .....types.zero_trust.access.applications.approval_group_param import ApprovalGroupParam
-from .....types.zero_trust.access.applications.policy_list_response import PolicyListResponse
 from .....types.zero_trust.access.applications.policy_create_response import PolicyCreateResponse
 from .....types.zero_trust.access.applications.policy_delete_response import PolicyDeleteResponse
 from .....types.zero_trust.access.applications.policy_update_response import PolicyUpdateResponse
@@ -294,62 +291,6 @@ class PoliciesResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[PolicyUpdateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[PolicyUpdateResponse]], ResultWrapper[PolicyUpdateResponse]),
-        )
-
-    def list(
-        self,
-        uuid: str,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[PolicyListResponse]:
-        """Lists Access policies configured for an application.
-
-        Returns both exclusively
-        scoped and reusable policies used by the application.
-
-        Args:
-          uuid: UUID
-
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
-        if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
-
-        if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
-        else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
-
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
-        return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/policies",
-            page=SyncSinglePage[PolicyListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            model=PolicyListResponse,
         )
 
     def delete(
@@ -738,62 +679,6 @@ class AsyncPoliciesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[PolicyUpdateResponse]], ResultWrapper[PolicyUpdateResponse]),
         )
 
-    def list(
-        self,
-        uuid: str,
-        *,
-        account_id: str | NotGiven = NOT_GIVEN,
-        zone_id: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[PolicyListResponse, AsyncSinglePage[PolicyListResponse]]:
-        """Lists Access policies configured for an application.
-
-        Returns both exclusively
-        scoped and reusable policies used by the application.
-
-        Args:
-          uuid: UUID
-
-          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
-
-          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
-        if account_id and zone_id:
-            raise ValueError("You cannot provide both account_id and zone_id")
-
-        if account_id:
-            account_or_zone = "accounts"
-            account_or_zone_id = account_id
-        else:
-            if not zone_id:
-                raise ValueError("You must provide either account_id or zone_id")
-
-            account_or_zone = "zones"
-            account_or_zone_id = zone_id
-        return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/policies",
-            page=AsyncSinglePage[PolicyListResponse],
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            model=PolicyListResponse,
-        )
-
     async def delete(
         self,
         uuid: str,
@@ -933,9 +818,6 @@ class PoliciesResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             policies.update,
         )
-        self.list = to_raw_response_wrapper(
-            policies.list,
-        )
         self.delete = to_raw_response_wrapper(
             policies.delete,
         )
@@ -953,9 +835,6 @@ class AsyncPoliciesResourceWithRawResponse:
         )
         self.update = async_to_raw_response_wrapper(
             policies.update,
-        )
-        self.list = async_to_raw_response_wrapper(
-            policies.list,
         )
         self.delete = async_to_raw_response_wrapper(
             policies.delete,
@@ -975,9 +854,6 @@ class PoliciesResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             policies.update,
         )
-        self.list = to_streamed_response_wrapper(
-            policies.list,
-        )
         self.delete = to_streamed_response_wrapper(
             policies.delete,
         )
@@ -995,9 +871,6 @@ class AsyncPoliciesResourceWithStreamingResponse:
         )
         self.update = async_to_streamed_response_wrapper(
             policies.update,
-        )
-        self.list = async_to_streamed_response_wrapper(
-            policies.list,
         )
         self.delete = async_to_streamed_response_wrapper(
             policies.delete,

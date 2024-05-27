@@ -63,7 +63,12 @@ class TestProjects:
                     "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
                     "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
-                    "r2_buckets": {"r2_binding": {"name": "some-bucket"}},
+                    "r2_buckets": {
+                        "r2_binding": {
+                            "jurisdiction": "eu",
+                            "name": "some-bucket",
+                        }
+                    },
                     "services": {
                         "service_binding": {
                             "entrypoint": "MyHandler",
@@ -92,7 +97,12 @@ class TestProjects:
                     "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
                     "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
-                    "r2_buckets": {"r2_binding": {"name": "some-bucket"}},
+                    "r2_buckets": {
+                        "r2_binding": {
+                            "jurisdiction": "eu",
+                            "name": "some-bucket",
+                        }
+                    },
                     "services": {
                         "service_binding": {
                             "entrypoint": "MyHandler",
@@ -494,7 +504,12 @@ class TestAsyncProjects:
                     "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
                     "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
-                    "r2_buckets": {"r2_binding": {"name": "some-bucket"}},
+                    "r2_buckets": {
+                        "r2_binding": {
+                            "jurisdiction": "eu",
+                            "name": "some-bucket",
+                        }
+                    },
                     "services": {
                         "service_binding": {
                             "entrypoint": "MyHandler",
@@ -523,7 +538,12 @@ class TestAsyncProjects:
                     "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
                     "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
-                    "r2_buckets": {"r2_binding": {"name": "some-bucket"}},
+                    "r2_buckets": {
+                        "r2_binding": {
+                            "jurisdiction": "eu",
+                            "name": "some-bucket",
+                        }
+                    },
                     "services": {
                         "service_binding": {
                             "entrypoint": "MyHandler",
