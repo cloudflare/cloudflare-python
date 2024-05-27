@@ -1859,7 +1859,7 @@ Types:
 ```python
 from cloudflare.types.firewall import (
     FirewallRule,
-    Products,
+    Product,
     DeletedFilter,
     RuleCreateResponse,
     RuleEditResponse,
