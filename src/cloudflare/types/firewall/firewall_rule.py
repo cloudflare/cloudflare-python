@@ -2,7 +2,7 @@
 
 from typing import List, Union, Optional
 
-from .products import Products
+from .product import Product
 from ..._models import BaseModel
 from .deleted_filter import DeletedFilter
 from ..rate_limits.action import Action
@@ -39,7 +39,7 @@ class FirewallRule(BaseModel):
     processed before rules without a priority.
     """
 
-    products: Optional[List[Products]] = None
+    products: Optional[List[Product]] = None
 
     ref: Optional[str] = None
     """A short reference tag. Allows you to select related firewall rules."""
