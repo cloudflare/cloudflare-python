@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -56,7 +56,7 @@ class WebhooksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookCreateResponse:
+    ) -> Optional[WebhookCreateResponse]:
         """
         Creates a new webhook destination.
 
@@ -97,9 +97,9 @@ class WebhooksResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[WebhookCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[WebhookCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[WebhookCreateResponse], ResultWrapper[WebhookCreateResponse]),
+            cast_to=cast(Type[Optional[WebhookCreateResponse]], ResultWrapper[WebhookCreateResponse]),
         )
 
     def update(
@@ -116,7 +116,7 @@ class WebhooksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookUpdateResponse:
+    ) -> Optional[WebhookUpdateResponse]:
         """
         Update a webhook destination.
 
@@ -161,9 +161,9 @@ class WebhooksResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[WebhookUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[WebhookUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[WebhookUpdateResponse], ResultWrapper[WebhookUpdateResponse]),
+            cast_to=cast(Type[Optional[WebhookUpdateResponse]], ResultWrapper[WebhookUpdateResponse]),
         )
 
     def list(
@@ -213,7 +213,7 @@ class WebhooksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WebhookDeleteResponse]:
+    ) -> WebhookDeleteResponse:
         """
         Delete a configured webhook destination.
 
@@ -234,21 +234,12 @@ class WebhooksResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not webhook_id:
             raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
-        return cast(
-            Optional[WebhookDeleteResponse],
-            self._delete(
-                f"/accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[WebhookDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[WebhookDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=WebhookDeleteResponse,
         )
 
     def get(
@@ -262,7 +253,7 @@ class WebhooksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Webhooks:
+    ) -> Optional[Webhooks]:
         """
         Get details for a single webhooks destination.
 
@@ -290,9 +281,9 @@ class WebhooksResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Webhooks]._unwrapper,
+                post_parser=ResultWrapper[Optional[Webhooks]]._unwrapper,
             ),
-            cast_to=cast(Type[Webhooks], ResultWrapper[Webhooks]),
+            cast_to=cast(Type[Optional[Webhooks]], ResultWrapper[Webhooks]),
         )
 
 
@@ -318,7 +309,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookCreateResponse:
+    ) -> Optional[WebhookCreateResponse]:
         """
         Creates a new webhook destination.
 
@@ -359,9 +350,9 @@ class AsyncWebhooksResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[WebhookCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[WebhookCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[WebhookCreateResponse], ResultWrapper[WebhookCreateResponse]),
+            cast_to=cast(Type[Optional[WebhookCreateResponse]], ResultWrapper[WebhookCreateResponse]),
         )
 
     async def update(
@@ -378,7 +369,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> WebhookUpdateResponse:
+    ) -> Optional[WebhookUpdateResponse]:
         """
         Update a webhook destination.
 
@@ -423,9 +414,9 @@ class AsyncWebhooksResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[WebhookUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[WebhookUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[WebhookUpdateResponse], ResultWrapper[WebhookUpdateResponse]),
+            cast_to=cast(Type[Optional[WebhookUpdateResponse]], ResultWrapper[WebhookUpdateResponse]),
         )
 
     def list(
@@ -475,7 +466,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WebhookDeleteResponse]:
+    ) -> WebhookDeleteResponse:
         """
         Delete a configured webhook destination.
 
@@ -496,21 +487,12 @@ class AsyncWebhooksResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not webhook_id:
             raise ValueError(f"Expected a non-empty value for `webhook_id` but received {webhook_id!r}")
-        return cast(
-            Optional[WebhookDeleteResponse],
-            await self._delete(
-                f"/accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[WebhookDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[WebhookDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=WebhookDeleteResponse,
         )
 
     async def get(
@@ -524,7 +506,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Webhooks:
+    ) -> Optional[Webhooks]:
         """
         Get details for a single webhooks destination.
 
@@ -552,9 +534,9 @@ class AsyncWebhooksResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Webhooks]._unwrapper,
+                post_parser=ResultWrapper[Optional[Webhooks]]._unwrapper,
             ),
-            cast_to=cast(Type[Webhooks], ResultWrapper[Webhooks]),
+            cast_to=cast(Type[Optional[Webhooks]], ResultWrapper[Webhooks]),
         )
 
 

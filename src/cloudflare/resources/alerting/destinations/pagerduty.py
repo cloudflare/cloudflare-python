@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -46,7 +46,7 @@ class PagerdutyResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PagerdutyCreateResponse:
+    ) -> Optional[PagerdutyCreateResponse]:
         """
         Creates a new token for integrating with PagerDuty.
 
@@ -70,9 +70,9 @@ class PagerdutyResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PagerdutyCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PagerdutyCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PagerdutyCreateResponse], ResultWrapper[PagerdutyCreateResponse]),
+            cast_to=cast(Type[Optional[PagerdutyCreateResponse]], ResultWrapper[PagerdutyCreateResponse]),
         )
 
     def delete(
@@ -85,7 +85,7 @@ class PagerdutyResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PagerdutyDeleteResponse]:
+    ) -> PagerdutyDeleteResponse:
         """
         Deletes all the PagerDuty Services connected to the account.
 
@@ -102,21 +102,12 @@ class PagerdutyResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            Optional[PagerdutyDeleteResponse],
-            self._delete(
-                f"/accounts/{account_id}/alerting/v3/destinations/pagerduty",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[PagerdutyDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PagerdutyDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/alerting/v3/destinations/pagerduty",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=PagerdutyDeleteResponse,
         )
 
     def get(
@@ -169,7 +160,7 @@ class PagerdutyResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PagerdutyLinkResponse:
+    ) -> Optional[PagerdutyLinkResponse]:
         """
         Links PagerDuty with the account using the integration token.
 
@@ -197,9 +188,9 @@ class PagerdutyResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PagerdutyLinkResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PagerdutyLinkResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PagerdutyLinkResponse], ResultWrapper[PagerdutyLinkResponse]),
+            cast_to=cast(Type[Optional[PagerdutyLinkResponse]], ResultWrapper[PagerdutyLinkResponse]),
         )
 
 
@@ -222,7 +213,7 @@ class AsyncPagerdutyResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PagerdutyCreateResponse:
+    ) -> Optional[PagerdutyCreateResponse]:
         """
         Creates a new token for integrating with PagerDuty.
 
@@ -246,9 +237,9 @@ class AsyncPagerdutyResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PagerdutyCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PagerdutyCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PagerdutyCreateResponse], ResultWrapper[PagerdutyCreateResponse]),
+            cast_to=cast(Type[Optional[PagerdutyCreateResponse]], ResultWrapper[PagerdutyCreateResponse]),
         )
 
     async def delete(
@@ -261,7 +252,7 @@ class AsyncPagerdutyResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PagerdutyDeleteResponse]:
+    ) -> PagerdutyDeleteResponse:
         """
         Deletes all the PagerDuty Services connected to the account.
 
@@ -278,21 +269,12 @@ class AsyncPagerdutyResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            Optional[PagerdutyDeleteResponse],
-            await self._delete(
-                f"/accounts/{account_id}/alerting/v3/destinations/pagerduty",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[PagerdutyDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PagerdutyDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/alerting/v3/destinations/pagerduty",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=PagerdutyDeleteResponse,
         )
 
     async def get(
@@ -345,7 +327,7 @@ class AsyncPagerdutyResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PagerdutyLinkResponse:
+    ) -> Optional[PagerdutyLinkResponse]:
         """
         Links PagerDuty with the account using the integration token.
 
@@ -373,9 +355,9 @@ class AsyncPagerdutyResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PagerdutyLinkResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PagerdutyLinkResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PagerdutyLinkResponse], ResultWrapper[PagerdutyLinkResponse]),
+            cast_to=cast(Type[Optional[PagerdutyLinkResponse]], ResultWrapper[PagerdutyLinkResponse]),
         )
 
 
