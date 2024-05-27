@@ -2142,18 +2142,16 @@ Methods:
 
 ### Retention
 
-#### Flag
-
 Types:
 
 ```python
-from cloudflare.types.logs.control.retention import FlagCreateResponse, FlagGetResponse
+from cloudflare.types.logs.control import RetentionCreateResponse, RetentionGetResponse
 ```
 
 Methods:
 
-- <code title="post /zones/{zone_identifier}/logs/control/retention/flag">client.logs.control.retention.flag.<a href="./src/cloudflare/resources/logs/control/retention/flag.py">create</a>(zone_identifier, \*\*<a href="src/cloudflare/types/logs/control/retention/flag_create_params.py">params</a>) -> <a href="./src/cloudflare/types/logs/control/retention/flag_create_response.py">FlagCreateResponse</a></code>
-- <code title="get /zones/{zone_identifier}/logs/control/retention/flag">client.logs.control.retention.flag.<a href="./src/cloudflare/resources/logs/control/retention/flag.py">get</a>(zone_identifier) -> <a href="./src/cloudflare/types/logs/control/retention/flag_get_response.py">FlagGetResponse</a></code>
+- <code title="post /zones/{zone_identifier}/logs/control/retention/flag">client.logs.control.retention.<a href="./src/cloudflare/resources/logs/control/retention.py">create</a>(zone_identifier, \*\*<a href="src/cloudflare/types/logs/control/retention_create_params.py">params</a>) -> <a href="./src/cloudflare/types/logs/control/retention_create_response.py">RetentionCreateResponse</a></code>
+- <code title="get /zones/{zone_identifier}/logs/control/retention/flag">client.logs.control.retention.<a href="./src/cloudflare/resources/logs/control/retention.py">get</a>(zone_identifier) -> <a href="./src/cloudflare/types/logs/control/retention_get_response.py">RetentionGetResponse</a></code>
 
 ### Cmb
 

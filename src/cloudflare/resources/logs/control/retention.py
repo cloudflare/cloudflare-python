@@ -6,38 +6,38 @@ from typing import Type, cast
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._wrappers import ResultWrapper
-from ....._base_client import (
+from ...._wrappers import ResultWrapper
+from ...._base_client import (
     make_request_options,
 )
-from .....types.logs.control.retention import flag_create_params
-from .....types.logs.control.retention.flag_get_response import FlagGetResponse
-from .....types.logs.control.retention.flag_create_response import FlagCreateResponse
+from ....types.logs.control import retention_create_params
+from ....types.logs.control.retention_get_response import RetentionGetResponse
+from ....types.logs.control.retention_create_response import RetentionCreateResponse
 
-__all__ = ["FlagResource", "AsyncFlagResource"]
+__all__ = ["RetentionResource", "AsyncRetentionResource"]
 
 
-class FlagResource(SyncAPIResource):
+class RetentionResource(SyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> FlagResourceWithRawResponse:
-        return FlagResourceWithRawResponse(self)
+    def with_raw_response(self) -> RetentionResourceWithRawResponse:
+        return RetentionResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> FlagResourceWithStreamingResponse:
-        return FlagResourceWithStreamingResponse(self)
+    def with_streaming_response(self) -> RetentionResourceWithStreamingResponse:
+        return RetentionResourceWithStreamingResponse(self)
 
     def create(
         self,
@@ -50,7 +50,7 @@ class FlagResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FlagCreateResponse:
+    ) -> RetentionCreateResponse:
         """
         Updates log retention flag for Logpull API.
 
@@ -71,15 +71,15 @@ class FlagResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._post(
             f"/zones/{zone_identifier}/logs/control/retention/flag",
-            body=maybe_transform({"flag": flag}, flag_create_params.FlagCreateParams),
+            body=maybe_transform({"flag": flag}, retention_create_params.RetentionCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[FlagCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[RetentionCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[FlagCreateResponse], ResultWrapper[FlagCreateResponse]),
+            cast_to=cast(Type[RetentionCreateResponse], ResultWrapper[RetentionCreateResponse]),
         )
 
     def get(
@@ -92,7 +92,7 @@ class FlagResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FlagGetResponse:
+    ) -> RetentionGetResponse:
         """
         Gets log retention flag for Logpull API.
 
@@ -116,20 +116,20 @@ class FlagResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[FlagGetResponse]._unwrapper,
+                post_parser=ResultWrapper[RetentionGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[FlagGetResponse], ResultWrapper[FlagGetResponse]),
+            cast_to=cast(Type[RetentionGetResponse], ResultWrapper[RetentionGetResponse]),
         )
 
 
-class AsyncFlagResource(AsyncAPIResource):
+class AsyncRetentionResource(AsyncAPIResource):
     @cached_property
-    def with_raw_response(self) -> AsyncFlagResourceWithRawResponse:
-        return AsyncFlagResourceWithRawResponse(self)
+    def with_raw_response(self) -> AsyncRetentionResourceWithRawResponse:
+        return AsyncRetentionResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncFlagResourceWithStreamingResponse:
-        return AsyncFlagResourceWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncRetentionResourceWithStreamingResponse:
+        return AsyncRetentionResourceWithStreamingResponse(self)
 
     async def create(
         self,
@@ -142,7 +142,7 @@ class AsyncFlagResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FlagCreateResponse:
+    ) -> RetentionCreateResponse:
         """
         Updates log retention flag for Logpull API.
 
@@ -163,15 +163,15 @@ class AsyncFlagResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._post(
             f"/zones/{zone_identifier}/logs/control/retention/flag",
-            body=await async_maybe_transform({"flag": flag}, flag_create_params.FlagCreateParams),
+            body=await async_maybe_transform({"flag": flag}, retention_create_params.RetentionCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[FlagCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[RetentionCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[FlagCreateResponse], ResultWrapper[FlagCreateResponse]),
+            cast_to=cast(Type[RetentionCreateResponse], ResultWrapper[RetentionCreateResponse]),
         )
 
     async def get(
@@ -184,7 +184,7 @@ class AsyncFlagResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FlagGetResponse:
+    ) -> RetentionGetResponse:
         """
         Gets log retention flag for Logpull API.
 
@@ -208,55 +208,55 @@ class AsyncFlagResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[FlagGetResponse]._unwrapper,
+                post_parser=ResultWrapper[RetentionGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[FlagGetResponse], ResultWrapper[FlagGetResponse]),
+            cast_to=cast(Type[RetentionGetResponse], ResultWrapper[RetentionGetResponse]),
         )
 
 
-class FlagResourceWithRawResponse:
-    def __init__(self, flag: FlagResource) -> None:
-        self._flag = flag
+class RetentionResourceWithRawResponse:
+    def __init__(self, retention: RetentionResource) -> None:
+        self._retention = retention
 
         self.create = to_raw_response_wrapper(
-            flag.create,
+            retention.create,
         )
         self.get = to_raw_response_wrapper(
-            flag.get,
+            retention.get,
         )
 
 
-class AsyncFlagResourceWithRawResponse:
-    def __init__(self, flag: AsyncFlagResource) -> None:
-        self._flag = flag
+class AsyncRetentionResourceWithRawResponse:
+    def __init__(self, retention: AsyncRetentionResource) -> None:
+        self._retention = retention
 
         self.create = async_to_raw_response_wrapper(
-            flag.create,
+            retention.create,
         )
         self.get = async_to_raw_response_wrapper(
-            flag.get,
+            retention.get,
         )
 
 
-class FlagResourceWithStreamingResponse:
-    def __init__(self, flag: FlagResource) -> None:
-        self._flag = flag
+class RetentionResourceWithStreamingResponse:
+    def __init__(self, retention: RetentionResource) -> None:
+        self._retention = retention
 
         self.create = to_streamed_response_wrapper(
-            flag.create,
+            retention.create,
         )
         self.get = to_streamed_response_wrapper(
-            flag.get,
+            retention.get,
         )
 
 
-class AsyncFlagResourceWithStreamingResponse:
-    def __init__(self, flag: AsyncFlagResource) -> None:
-        self._flag = flag
+class AsyncRetentionResourceWithStreamingResponse:
+    def __init__(self, retention: AsyncRetentionResource) -> None:
+        self._retention = retention
 
         self.create = async_to_streamed_response_wrapper(
-            flag.create,
+            retention.create,
         )
         self.get = async_to_streamed_response_wrapper(
-            flag.get,
+            retention.get,
         )

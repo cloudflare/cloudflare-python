@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["FlagCreateParams"]
+__all__ = ["RetentionCreateParams"]
 
 
-class FlagCreateParams(TypedDict, total=False):
+class RetentionCreateParams(TypedDict, total=False):
     flag: Required[bool]
     """The log retention flag for Logpull API."""
