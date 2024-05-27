@@ -2,10 +2,10 @@
 
 from typing import Optional
 
-from ....._models import BaseModel
+from ...._models import BaseModel
 
-__all__ = ["FlagCreateResponse"]
+__all__ = ["RetentionGetResponse"]
 
 
-class FlagCreateResponse(BaseModel):
+class RetentionGetResponse(BaseModel):
     flag: Optional[bool] = None

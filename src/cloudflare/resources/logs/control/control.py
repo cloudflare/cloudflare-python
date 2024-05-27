@@ -21,7 +21,6 @@ from .retention import (
 )
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
-from .retention.retention import RetentionResource, AsyncRetentionResource
 
 __all__ = ["ControlResource", "AsyncControlResource"]
 
