@@ -4483,12 +4483,6 @@ Methods:
 
 # Alerting
 
-Types:
-
-```python
-from cloudflare.types.alerting import Alert
-```
-
 ## AvailableAlerts
 
 Types:
@@ -4531,10 +4525,10 @@ from cloudflare.types.alerting.destinations import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/alerting/v3/destinations/pagerduty/connect">client.alerting.destinations.pagerduty.<a href="./src/cloudflare/resources/alerting/destinations/pagerduty.py">create</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/pagerduty_create_response.py">PagerdutyCreateResponse</a></code>
-- <code title="delete /accounts/{account_id}/alerting/v3/destinations/pagerduty">client.alerting.destinations.pagerduty.<a href="./src/cloudflare/resources/alerting/destinations/pagerduty.py">delete</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/pagerduty_delete_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/alerting/v3/destinations/pagerduty/connect">client.alerting.destinations.pagerduty.<a href="./src/cloudflare/resources/alerting/destinations/pagerduty.py">create</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/pagerduty_create_response.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/alerting/v3/destinations/pagerduty">client.alerting.destinations.pagerduty.<a href="./src/cloudflare/resources/alerting/destinations/pagerduty.py">delete</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/pagerduty_delete_response.py">PagerdutyDeleteResponse</a></code>
 - <code title="get /accounts/{account_id}/alerting/v3/destinations/pagerduty">client.alerting.destinations.pagerduty.<a href="./src/cloudflare/resources/alerting/destinations/pagerduty.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/pagerduty_get_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/alerting/v3/destinations/pagerduty/connect/{token_id}">client.alerting.destinations.pagerduty.<a href="./src/cloudflare/resources/alerting/destinations/pagerduty.py">link</a>(token_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/pagerduty_link_response.py">PagerdutyLinkResponse</a></code>
+- <code title="get /accounts/{account_id}/alerting/v3/destinations/pagerduty/connect/{token_id}">client.alerting.destinations.pagerduty.<a href="./src/cloudflare/resources/alerting/destinations/pagerduty.py">link</a>(token_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/pagerduty_link_response.py">Optional</a></code>
 
 ### Webhooks
 
@@ -4551,11 +4545,11 @@ from cloudflare.types.alerting.destinations import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/alerting/v3/destinations/webhooks">client.alerting.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/destinations/webhooks.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/alerting/destinations/webhook_create_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/destinations/webhook_create_response.py">WebhookCreateResponse</a></code>
-- <code title="put /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/destinations/webhooks.py">update</a>(webhook_id, \*, account_id, \*\*<a href="src/cloudflare/types/alerting/destinations/webhook_update_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/destinations/webhook_update_response.py">WebhookUpdateResponse</a></code>
+- <code title="post /accounts/{account_id}/alerting/v3/destinations/webhooks">client.alerting.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/destinations/webhooks.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/alerting/destinations/webhook_create_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/destinations/webhook_create_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/destinations/webhooks.py">update</a>(webhook_id, \*, account_id, \*\*<a href="src/cloudflare/types/alerting/destinations/webhook_update_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/destinations/webhook_update_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/alerting/v3/destinations/webhooks">client.alerting.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/destinations/webhooks.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/webhooks.py">SyncSinglePage[Webhooks]</a></code>
-- <code title="delete /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/destinations/webhooks.py">delete</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/webhook_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/destinations/webhooks.py">get</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/webhooks.py">Webhooks</a></code>
+- <code title="delete /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/destinations/webhooks.py">delete</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/webhook_delete_response.py">WebhookDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}">client.alerting.destinations.webhooks.<a href="./src/cloudflare/resources/alerting/destinations/webhooks.py">get</a>(webhook_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/destinations/webhooks.py">Optional</a></code>
 
 ## History
 
@@ -4586,11 +4580,11 @@ from cloudflare.types.alerting import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/alerting/v3/policies">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/alerting/policy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/policy_create_response.py">PolicyCreateResponse</a></code>
-- <code title="put /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">update</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/alerting/policy_update_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/policy_update_response.py">PolicyUpdateResponse</a></code>
+- <code title="post /accounts/{account_id}/alerting/v3/policies">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/alerting/policy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/policy_create_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">update</a>(policy_id, \*, account_id, \*\*<a href="src/cloudflare/types/alerting/policy_update_params.py">params</a>) -> <a href="./src/cloudflare/types/alerting/policy_update_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/alerting/v3/policies">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/alerting/policy.py">SyncSinglePage[Policy]</a></code>
-- <code title="delete /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">delete</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/policy_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/policy.py">Policy</a></code>
+- <code title="delete /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">delete</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/policy_delete_response.py">PolicyDeleteResponse</a></code>
+- <code title="get /accounts/{account_id}/alerting/v3/policies/{policy_id}">client.alerting.policies.<a href="./src/cloudflare/resources/alerting/policies.py">get</a>(policy_id, \*, account_id) -> <a href="./src/cloudflare/types/alerting/policy.py">Optional</a></code>
 
 # D1
 
@@ -5183,7 +5177,6 @@ from cloudflare.types.zero_trust.access.applications import (
     Policy,
     PolicyCreateResponse,
     PolicyUpdateResponse,
-    PolicyListResponse,
     PolicyDeleteResponse,
     PolicyGetResponse,
 )
@@ -5193,7 +5186,6 @@ Methods:
 
 - <code title="post /{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/policies">client.zero_trust.access.applications.policies.<a href="./src/cloudflare/resources/zero_trust/access/applications/policies.py">create</a>(uuid, \*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/applications/policy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_create_response.py">Optional</a></code>
 - <code title="put /{account_or_zone}/{account_or_zone_id}/access/apps/{uuid1}/policies/{uuid}">client.zero_trust.access.applications.policies.<a href="./src/cloudflare/resources/zero_trust/access/applications/policies.py">update</a>(uuid, \*, uuid1, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/applications/policy_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_update_response.py">Optional</a></code>
-- <code title="get /{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/policies">client.zero_trust.access.applications.policies.<a href="./src/cloudflare/resources/zero_trust/access/applications/policies.py">list</a>(uuid, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_list_response.py">SyncSinglePage[PolicyListResponse]</a></code>
 - <code title="delete /{account_or_zone}/{account_or_zone_id}/access/apps/{uuid1}/policies/{uuid}">client.zero_trust.access.applications.policies.<a href="./src/cloudflare/resources/zero_trust/access/applications/policies.py">delete</a>(uuid, \*, uuid1, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_delete_response.py">Optional</a></code>
 - <code title="get /{account_or_zone}/{account_or_zone_id}/access/apps/{uuid1}/policies/{uuid}">client.zero_trust.access.applications.policies.<a href="./src/cloudflare/resources/zero_trust/access/applications/policies.py">get</a>(uuid, \*, uuid1, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_get_response.py">Optional</a></code>
 
@@ -5382,7 +5374,6 @@ from cloudflare.types.zero_trust.access import (
 
 Methods:
 
-- <code title="post /accounts/{identifier}/access/custom_pages">client.zero_trust.access.custom_pages.<a href="./src/cloudflare/resources/zero_trust/access/custom_pages.py">create</a>(identifier, \*\*<a href="src/cloudflare/types/zero_trust/access/custom_page_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/custom_page_without_html.py">Optional</a></code>
 - <code title="put /accounts/{identifier}/access/custom_pages/{uuid}">client.zero_trust.access.custom_pages.<a href="./src/cloudflare/resources/zero_trust/access/custom_pages.py">update</a>(uuid, \*, identifier, \*\*<a href="src/cloudflare/types/zero_trust/access/custom_page_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/custom_page_without_html.py">Optional</a></code>
 - <code title="get /accounts/{identifier}/access/custom_pages">client.zero_trust.access.custom_pages.<a href="./src/cloudflare/resources/zero_trust/access/custom_pages.py">list</a>(identifier) -> <a href="./src/cloudflare/types/zero_trust/access/custom_page_without_html.py">SyncSinglePage[CustomPageWithoutHTML]</a></code>
 - <code title="delete /accounts/{identifier}/access/custom_pages/{uuid}">client.zero_trust.access.custom_pages.<a href="./src/cloudflare/resources/zero_trust/access/custom_pages.py">delete</a>(uuid, \*, identifier) -> <a href="./src/cloudflare/types/zero_trust/access/custom_page_delete_response.py">Optional</a></code>

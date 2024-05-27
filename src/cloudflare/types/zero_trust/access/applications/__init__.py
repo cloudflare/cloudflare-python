@@ -10,7 +10,6 @@ from .ca_delete_response import CADeleteResponse as CADeleteResponse
 from .policy_get_response import PolicyGetResponse as PolicyGetResponse
 from .approval_group_param import ApprovalGroupParam as ApprovalGroupParam
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams
-from .policy_list_response import PolicyListResponse as PolicyListResponse
 from .policy_update_params import PolicyUpdateParams as PolicyUpdateParams
 from .user_policy_check_geo import UserPolicyCheckGeo as UserPolicyCheckGeo
 from .policy_create_response import PolicyCreateResponse as PolicyCreateResponse

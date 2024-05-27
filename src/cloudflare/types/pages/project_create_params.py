@@ -218,6 +218,9 @@ class DeploymentConfigsPreviewQueueProducers(TypedDict, total=False):
 
 
 class DeploymentConfigsPreviewR2BucketsR2Binding(TypedDict, total=False):
+    jurisdiction: Optional[str]
+    """Jurisdiction of the R2 bucket."""
+
     name: str
     """Name of the R2 bucket."""
 
@@ -410,6 +413,9 @@ class DeploymentConfigsProductionQueueProducers(TypedDict, total=False):
 
 
 class DeploymentConfigsProductionR2BucketsR2Binding(TypedDict, total=False):
+    jurisdiction: Optional[str]
+    """Jurisdiction of the R2 bucket."""
+
     name: str
     """Name of the R2 bucket."""
 

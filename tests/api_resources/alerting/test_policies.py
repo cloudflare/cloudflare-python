@@ -36,7 +36,7 @@ class TestPolicies:
             },
             name="SSL Notification Event Policy",
         )
-        assert_matches_type(PolicyCreateResponse, policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -94,7 +94,7 @@ class TestPolicies:
                 "zones": ["string", "string", "string"],
             },
         )
-        assert_matches_type(PolicyCreateResponse, policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -113,7 +113,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(PolicyCreateResponse, policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -132,7 +132,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(PolicyCreateResponse, policy, path=["response"])
+            assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -157,7 +157,7 @@ class TestPolicies:
             "0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
@@ -216,7 +216,7 @@ class TestPolicies:
             },
             name="SSL Notification Event Policy",
         )
-        assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -228,7 +228,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -240,7 +240,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
+            assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -302,7 +302,7 @@ class TestPolicies:
             "0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PolicyDeleteResponse], policy, path=["response"])
+        assert_matches_type(PolicyDeleteResponse, policy, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -314,7 +314,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(Optional[PolicyDeleteResponse], policy, path=["response"])
+        assert_matches_type(PolicyDeleteResponse, policy, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -326,7 +326,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(Optional[PolicyDeleteResponse], policy, path=["response"])
+            assert_matches_type(PolicyDeleteResponse, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -350,7 +350,7 @@ class TestPolicies:
             "0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Policy, policy, path=["response"])
+        assert_matches_type(Optional[Policy], policy, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -362,7 +362,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(Policy, policy, path=["response"])
+        assert_matches_type(Optional[Policy], policy, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -374,7 +374,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(Policy, policy, path=["response"])
+            assert_matches_type(Optional[Policy], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -409,7 +409,7 @@ class TestAsyncPolicies:
             },
             name="SSL Notification Event Policy",
         )
-        assert_matches_type(PolicyCreateResponse, policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -467,7 +467,7 @@ class TestAsyncPolicies:
                 "zones": ["string", "string", "string"],
             },
         )
-        assert_matches_type(PolicyCreateResponse, policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -486,7 +486,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(PolicyCreateResponse, policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -505,7 +505,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(PolicyCreateResponse, policy, path=["response"])
+            assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -530,7 +530,7 @@ class TestAsyncPolicies:
             "0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -589,7 +589,7 @@ class TestAsyncPolicies:
             },
             name="SSL Notification Event Policy",
         )
-        assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -601,7 +601,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -613,7 +613,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(PolicyUpdateResponse, policy, path=["response"])
+            assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -675,7 +675,7 @@ class TestAsyncPolicies:
             "0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PolicyDeleteResponse], policy, path=["response"])
+        assert_matches_type(PolicyDeleteResponse, policy, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -687,7 +687,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(Optional[PolicyDeleteResponse], policy, path=["response"])
+        assert_matches_type(PolicyDeleteResponse, policy, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -699,7 +699,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(Optional[PolicyDeleteResponse], policy, path=["response"])
+            assert_matches_type(PolicyDeleteResponse, policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -723,7 +723,7 @@ class TestAsyncPolicies:
             "0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Policy, policy, path=["response"])
+        assert_matches_type(Optional[Policy], policy, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -735,7 +735,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(Policy, policy, path=["response"])
+        assert_matches_type(Optional[Policy], policy, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -747,7 +747,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(Policy, policy, path=["response"])
+            assert_matches_type(Optional[Policy], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
