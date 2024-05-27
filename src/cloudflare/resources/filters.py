@@ -43,7 +43,7 @@ class FiltersResource(SyncAPIResource):
         return FiltersResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(
-        "Filters are being deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+        "The Filters API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
     def create(
         self,
@@ -87,7 +87,7 @@ class FiltersResource(SyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "Filters are being deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+        "The Filters API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
     def update(
         self,
@@ -136,7 +136,7 @@ class FiltersResource(SyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "Filters are being deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+        "The Filters API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
     def list(
         self,
@@ -213,7 +213,7 @@ class FiltersResource(SyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "Filters are being deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+        "The Filters API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
     def delete(
         self,
@@ -260,7 +260,7 @@ class FiltersResource(SyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "Filters are being deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+        "The Filters API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
     def get(
         self,
@@ -317,7 +317,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         return AsyncFiltersResourceWithStreamingResponse(self)
 
     @typing_extensions.deprecated(
-        "Filters are being deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+        "The Filters API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
     async def create(
         self,
@@ -361,7 +361,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "Filters are being deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+        "The Filters API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
     async def update(
         self,
@@ -410,7 +410,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "Filters are being deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+        "The Filters API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
     def list(
         self,
@@ -487,7 +487,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "Filters are being deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+        "The Filters API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
     async def delete(
         self,
@@ -534,7 +534,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         )
 
     @typing_extensions.deprecated(
-        "Filters are being deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+        "The Filters API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
     )
     async def get(
         self,

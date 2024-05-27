@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Type, Optional, cast
 
 import httpx
@@ -48,6 +49,9 @@ class RulesResource(SyncAPIResource):
     def with_streaming_response(self) -> RulesResourceWithStreamingResponse:
         return RulesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
     def create(
         self,
         zone_identifier: str,
@@ -89,6 +93,9 @@ class RulesResource(SyncAPIResource):
             cast_to=cast(Type[Optional[RuleCreateResponse]], ResultWrapper[RuleCreateResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
     def update(
         self,
         id: str,
@@ -135,6 +142,9 @@ class RulesResource(SyncAPIResource):
             cast_to=cast(Type[FirewallRule], ResultWrapper[FirewallRule]),
         )
 
+    @typing_extensions.deprecated(
+        "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
     def list(
         self,
         zone_identifier: str,
@@ -205,6 +215,9 @@ class RulesResource(SyncAPIResource):
             model=FirewallRule,
         )
 
+    @typing_extensions.deprecated(
+        "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
     def delete(
         self,
         id: str,
@@ -249,6 +262,9 @@ class RulesResource(SyncAPIResource):
             cast_to=cast(Type[FirewallRule], ResultWrapper[FirewallRule]),
         )
 
+    @typing_extensions.deprecated(
+        "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
     def edit(
         self,
         id: str,
@@ -295,6 +311,9 @@ class RulesResource(SyncAPIResource):
             cast_to=cast(Type[Optional[RuleEditResponse]], ResultWrapper[RuleEditResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
     def get(
         self,
         zone_identifier: str,
@@ -353,6 +372,9 @@ class AsyncRulesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncRulesResourceWithStreamingResponse:
         return AsyncRulesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
     async def create(
         self,
         zone_identifier: str,
@@ -394,6 +416,9 @@ class AsyncRulesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[RuleCreateResponse]], ResultWrapper[RuleCreateResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
     async def update(
         self,
         id: str,
@@ -440,6 +465,9 @@ class AsyncRulesResource(AsyncAPIResource):
             cast_to=cast(Type[FirewallRule], ResultWrapper[FirewallRule]),
         )
 
+    @typing_extensions.deprecated(
+        "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
     def list(
         self,
         zone_identifier: str,
@@ -510,6 +538,9 @@ class AsyncRulesResource(AsyncAPIResource):
             model=FirewallRule,
         )
 
+    @typing_extensions.deprecated(
+        "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
     async def delete(
         self,
         id: str,
@@ -554,6 +585,9 @@ class AsyncRulesResource(AsyncAPIResource):
             cast_to=cast(Type[FirewallRule], ResultWrapper[FirewallRule]),
         )
 
+    @typing_extensions.deprecated(
+        "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
     async def edit(
         self,
         id: str,
@@ -600,6 +634,9 @@ class AsyncRulesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[RuleEditResponse]], ResultWrapper[RuleEditResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "The Firewall Rules API is deprecated in favour of using the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#firewall-rules-api-and-filters-api for full details."
+    )
     async def get(
         self,
         zone_identifier: str,
@@ -653,23 +690,35 @@ class RulesResourceWithRawResponse:
     def __init__(self, rules: RulesResource) -> None:
         self._rules = rules
 
-        self.create = to_raw_response_wrapper(
-            rules.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rules.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = to_raw_response_wrapper(
-            rules.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rules.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_raw_response_wrapper(
-            rules.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rules.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_raw_response_wrapper(
-            rules.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rules.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_raw_response_wrapper(
-            rules.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rules.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            rules.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                rules.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -677,23 +726,35 @@ class AsyncRulesResourceWithRawResponse:
     def __init__(self, rules: AsyncRulesResource) -> None:
         self._rules = rules
 
-        self.create = async_to_raw_response_wrapper(
-            rules.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rules.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = async_to_raw_response_wrapper(
-            rules.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rules.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_raw_response_wrapper(
-            rules.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rules.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_raw_response_wrapper(
-            rules.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rules.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_raw_response_wrapper(
-            rules.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rules.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            rules.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                rules.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -701,23 +762,35 @@ class RulesResourceWithStreamingResponse:
     def __init__(self, rules: RulesResource) -> None:
         self._rules = rules
 
-        self.create = to_streamed_response_wrapper(
-            rules.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rules.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = to_streamed_response_wrapper(
-            rules.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rules.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_streamed_response_wrapper(
-            rules.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rules.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_streamed_response_wrapper(
-            rules.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rules.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_streamed_response_wrapper(
-            rules.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rules.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            rules.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                rules.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
 
@@ -725,21 +798,33 @@ class AsyncRulesResourceWithStreamingResponse:
     def __init__(self, rules: AsyncRulesResource) -> None:
         self._rules = rules
 
-        self.create = async_to_streamed_response_wrapper(
-            rules.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rules.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = async_to_streamed_response_wrapper(
-            rules.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rules.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_streamed_response_wrapper(
-            rules.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rules.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_streamed_response_wrapper(
-            rules.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rules.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_streamed_response_wrapper(
-            rules.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rules.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            rules.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                rules.get  # pyright: ignore[reportDeprecated],
+            )
         )
