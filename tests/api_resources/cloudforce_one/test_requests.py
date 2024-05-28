@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -31,7 +31,7 @@ class TestRequests:
         request = client.cloudforce_one.requests.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Item], request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -43,7 +43,7 @@ class TestRequests:
             summary="DoS attack",
             tlp="clear",
         )
-        assert_matches_type(Optional[Item], request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -54,7 +54,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(Optional[Item], request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -65,7 +65,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(Optional[Item], request, path=["response"])
+            assert_matches_type(Item, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -82,7 +82,7 @@ class TestRequests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Item], request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
@@ -95,7 +95,7 @@ class TestRequests:
             summary="DoS attack",
             tlp="clear",
         )
-        assert_matches_type(Optional[Item], request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -107,7 +107,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(Optional[Item], request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -119,7 +119,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(Optional[Item], request, path=["response"])
+            assert_matches_type(Item, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -253,7 +253,7 @@ class TestRequests:
         request = client.cloudforce_one.requests.constants(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RequestConstants], request, path=["response"])
+        assert_matches_type(RequestConstants, request, path=["response"])
 
     @parametrize
     def test_raw_response_constants(self, client: Cloudflare) -> None:
@@ -264,7 +264,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(Optional[RequestConstants], request, path=["response"])
+        assert_matches_type(RequestConstants, request, path=["response"])
 
     @parametrize
     def test_streaming_response_constants(self, client: Cloudflare) -> None:
@@ -275,7 +275,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(Optional[RequestConstants], request, path=["response"])
+            assert_matches_type(RequestConstants, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -292,7 +292,7 @@ class TestRequests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Item], request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -304,7 +304,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(Optional[Item], request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -316,7 +316,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(Optional[Item], request, path=["response"])
+            assert_matches_type(Item, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -339,7 +339,7 @@ class TestRequests:
         request = client.cloudforce_one.requests.quota(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Quota], request, path=["response"])
+        assert_matches_type(Quota, request, path=["response"])
 
     @parametrize
     def test_raw_response_quota(self, client: Cloudflare) -> None:
@@ -350,7 +350,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(Optional[Quota], request, path=["response"])
+        assert_matches_type(Quota, request, path=["response"])
 
     @parametrize
     def test_streaming_response_quota(self, client: Cloudflare) -> None:
@@ -361,7 +361,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(Optional[Quota], request, path=["response"])
+            assert_matches_type(Quota, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -377,7 +377,7 @@ class TestRequests:
         request = client.cloudforce_one.requests.types(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RequestTypes], request, path=["response"])
+        assert_matches_type(RequestTypes, request, path=["response"])
 
     @parametrize
     def test_raw_response_types(self, client: Cloudflare) -> None:
@@ -388,7 +388,7 @@ class TestRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = response.parse()
-        assert_matches_type(Optional[RequestTypes], request, path=["response"])
+        assert_matches_type(RequestTypes, request, path=["response"])
 
     @parametrize
     def test_streaming_response_types(self, client: Cloudflare) -> None:
@@ -399,7 +399,7 @@ class TestRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = response.parse()
-            assert_matches_type(Optional[RequestTypes], request, path=["response"])
+            assert_matches_type(RequestTypes, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -419,7 +419,7 @@ class TestAsyncRequests:
         request = await async_client.cloudforce_one.requests.create(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Item], request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -431,7 +431,7 @@ class TestAsyncRequests:
             summary="DoS attack",
             tlp="clear",
         )
-        assert_matches_type(Optional[Item], request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -442,7 +442,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(Optional[Item], request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -453,7 +453,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(Optional[Item], request, path=["response"])
+            assert_matches_type(Item, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -470,7 +470,7 @@ class TestAsyncRequests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Item], request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -483,7 +483,7 @@ class TestAsyncRequests:
             summary="DoS attack",
             tlp="clear",
         )
-        assert_matches_type(Optional[Item], request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -495,7 +495,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(Optional[Item], request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -507,7 +507,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(Optional[Item], request, path=["response"])
+            assert_matches_type(Item, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -641,7 +641,7 @@ class TestAsyncRequests:
         request = await async_client.cloudforce_one.requests.constants(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RequestConstants], request, path=["response"])
+        assert_matches_type(RequestConstants, request, path=["response"])
 
     @parametrize
     async def test_raw_response_constants(self, async_client: AsyncCloudflare) -> None:
@@ -652,7 +652,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(Optional[RequestConstants], request, path=["response"])
+        assert_matches_type(RequestConstants, request, path=["response"])
 
     @parametrize
     async def test_streaming_response_constants(self, async_client: AsyncCloudflare) -> None:
@@ -663,7 +663,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(Optional[RequestConstants], request, path=["response"])
+            assert_matches_type(RequestConstants, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -680,7 +680,7 @@ class TestAsyncRequests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Item], request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -692,7 +692,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(Optional[Item], request, path=["response"])
+        assert_matches_type(Item, request, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -704,7 +704,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(Optional[Item], request, path=["response"])
+            assert_matches_type(Item, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -727,7 +727,7 @@ class TestAsyncRequests:
         request = await async_client.cloudforce_one.requests.quota(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[Quota], request, path=["response"])
+        assert_matches_type(Quota, request, path=["response"])
 
     @parametrize
     async def test_raw_response_quota(self, async_client: AsyncCloudflare) -> None:
@@ -738,7 +738,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(Optional[Quota], request, path=["response"])
+        assert_matches_type(Quota, request, path=["response"])
 
     @parametrize
     async def test_streaming_response_quota(self, async_client: AsyncCloudflare) -> None:
@@ -749,7 +749,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(Optional[Quota], request, path=["response"])
+            assert_matches_type(Quota, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -765,7 +765,7 @@ class TestAsyncRequests:
         request = await async_client.cloudforce_one.requests.types(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[RequestTypes], request, path=["response"])
+        assert_matches_type(RequestTypes, request, path=["response"])
 
     @parametrize
     async def test_raw_response_types(self, async_client: AsyncCloudflare) -> None:
@@ -776,7 +776,7 @@ class TestAsyncRequests:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         request = await response.parse()
-        assert_matches_type(Optional[RequestTypes], request, path=["response"])
+        assert_matches_type(RequestTypes, request, path=["response"])
 
     @parametrize
     async def test_streaming_response_types(self, async_client: AsyncCloudflare) -> None:
@@ -787,7 +787,7 @@ class TestAsyncRequests:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             request = await response.parse()
-            assert_matches_type(Optional[RequestTypes], request, path=["response"])
+            assert_matches_type(RequestTypes, request, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
