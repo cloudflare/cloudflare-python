@@ -10,5 +10,3 @@ from .top_prefixes_params import TopPrefixesParams as TopPrefixesParams
 from .route_stats_response import RouteStatsResponse as RouteStatsResponse
 from .route_pfx2as_response import RoutePfx2asResponse as RoutePfx2asResponse
 from .top_prefixes_response import TopPrefixesResponse as TopPrefixesResponse
-from .route_timeseries_params import RouteTimeseriesParams as RouteTimeseriesParams
-from .route_timeseries_response import RouteTimeseriesResponse as RouteTimeseriesResponse
