@@ -6416,7 +6416,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.bgp import RouteMoasResponse, RoutePfx2asResponse, RouteStatsResponse
+from cloudflare.types.radar.bgp import (
+    RouteMoasResponse,
+    RoutePfx2asResponse,
+    RouteStatsResponse,
+    RouteTimeseriesResponse,
+)
 ```
 
 Methods:
@@ -6424,6 +6429,7 @@ Methods:
 - <code title="get /radar/bgp/routes/moas">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">moas</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_moas_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_moas_response.py">RouteMoasResponse</a></code>
 - <code title="get /radar/bgp/routes/pfx2as">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">pfx2as</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_pfx2as_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_pfx2as_response.py">RoutePfx2asResponse</a></code>
 - <code title="get /radar/bgp/routes/stats">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">stats</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_stats_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_stats_response.py">RouteStatsResponse</a></code>
+- <code title="get /radar/bgp/routes/timeseries">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_timeseries_response.py">RouteTimeseriesResponse</a></code>
 
 ## Datasets
 
