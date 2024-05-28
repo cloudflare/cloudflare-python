@@ -2942,6 +2942,146 @@ Methods:
 - <code title="post /accounts/{account_id}/queues/{queue_id}/messages/ack">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">ack</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_ack_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_ack_response.py">Optional</a></code>
 - <code title="post /accounts/{account_id}/queues/{queue_id}/messages/pull">client.queues.messages.<a href="./src/cloudflare/resources/queues/messages.py">pull</a>(queue_id, \*, account_id, \*\*<a href="src/cloudflare/types/queues/message_pull_params.py">params</a>) -> <a href="./src/cloudflare/types/queues/message_pull_response.py">Optional</a></code>
 
+# APIGateway
+
+## Configurations
+
+Types:
+
+```python
+from cloudflare.types.api_gateway import Configuration, ConfigurationUpdateResponse
+```
+
+Methods:
+
+- <code title="put /zones/{zone_id}/api_gateway/configuration">client.api_gateway.configurations.<a href="./src/cloudflare/resources/api_gateway/configurations.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/configuration_update_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/configuration_update_response.py">ConfigurationUpdateResponse</a></code>
+- <code title="get /zones/{zone_id}/api_gateway/configuration">client.api_gateway.configurations.<a href="./src/cloudflare/resources/api_gateway/configurations.py">get</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/configuration_get_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/configuration.py">Configuration</a></code>
+
+## Discovery
+
+Types:
+
+```python
+from cloudflare.types.api_gateway import DiscoveryOperation, DiscoveryGetResponse
+```
+
+Methods:
+
+- <code title="get /zones/{zone_id}/api_gateway/discovery">client.api_gateway.discovery.<a href="./src/cloudflare/resources/api_gateway/discovery/discovery.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/api_gateway/discovery_get_response.py">DiscoveryGetResponse</a></code>
+
+### Operations
+
+Types:
+
+```python
+from cloudflare.types.api_gateway.discovery import OperationEditResponse
+```
+
+Methods:
+
+- <code title="get /zones/{zone_id}/api_gateway/discovery/operations">client.api_gateway.discovery.operations.<a href="./src/cloudflare/resources/api_gateway/discovery/operations.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/discovery/operation_list_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/discovery_operation.py">SyncSinglePage[DiscoveryOperation]</a></code>
+- <code title="patch /zones/{zone_id}/api_gateway/discovery/operations/{operation_id}">client.api_gateway.discovery.operations.<a href="./src/cloudflare/resources/api_gateway/discovery/operations.py">edit</a>(operation_id, \*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/discovery/operation_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/discovery/operation_edit_response.py">OperationEditResponse</a></code>
+
+## Operations
+
+Types:
+
+```python
+from cloudflare.types.api_gateway import APIShield, OperationCreateResponse, OperationDeleteResponse
+```
+
+Methods:
+
+- <code title="post /zones/{zone_id}/api_gateway/operations">client.api_gateway.operations.<a href="./src/cloudflare/resources/api_gateway/operations/operations.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/operation_create_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/operation_create_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/api_gateway/operations">client.api_gateway.operations.<a href="./src/cloudflare/resources/api_gateway/operations/operations.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/operation_list_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/api_shield.py">SyncSinglePage[APIShield]</a></code>
+- <code title="delete /zones/{zone_id}/api_gateway/operations/{operation_id}">client.api_gateway.operations.<a href="./src/cloudflare/resources/api_gateway/operations/operations.py">delete</a>(operation_id, \*, zone_id) -> <a href="./src/cloudflare/types/api_gateway/operation_delete_response.py">OperationDeleteResponse</a></code>
+- <code title="get /zones/{zone_id}/api_gateway/operations/{operation_id}">client.api_gateway.operations.<a href="./src/cloudflare/resources/api_gateway/operations/operations.py">get</a>(operation_id, \*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/operation_get_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/api_shield.py">APIShield</a></code>
+
+### SchemaValidation
+
+Types:
+
+```python
+from cloudflare.types.api_gateway.operations import (
+    SettingsMultipleRequest,
+    SchemaValidationUpdateResponse,
+    SchemaValidationGetResponse,
+)
+```
+
+Methods:
+
+- <code title="put /zones/{zone_id}/api_gateway/operations/{operation_id}/schema_validation">client.api_gateway.operations.schema_validation.<a href="./src/cloudflare/resources/api_gateway/operations/schema_validation.py">update</a>(operation_id, \*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/operations/schema_validation_update_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/operations/schema_validation_update_response.py">SchemaValidationUpdateResponse</a></code>
+- <code title="patch /zones/{zone_id}/api_gateway/operations/schema_validation">client.api_gateway.operations.schema_validation.<a href="./src/cloudflare/resources/api_gateway/operations/schema_validation.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/operations/schema_validation_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/operations/settings_multiple_request.py">SettingsMultipleRequest</a></code>
+- <code title="get /zones/{zone_id}/api_gateway/operations/{operation_id}/schema_validation">client.api_gateway.operations.schema_validation.<a href="./src/cloudflare/resources/api_gateway/operations/schema_validation.py">get</a>(operation_id, \*, zone_id) -> <a href="./src/cloudflare/types/api_gateway/operations/schema_validation_get_response.py">SchemaValidationGetResponse</a></code>
+
+## Schemas
+
+Types:
+
+```python
+from cloudflare.types.api_gateway import SchemaListResponse
+```
+
+Methods:
+
+- <code title="get /zones/{zone_id}/api_gateway/schemas">client.api_gateway.schemas.<a href="./src/cloudflare/resources/api_gateway/schemas.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/schema_list_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/schema_list_response.py">SchemaListResponse</a></code>
+
+## Settings
+
+### SchemaValidation
+
+Types:
+
+```python
+from cloudflare.types.api_gateway.settings import Settings
+```
+
+Methods:
+
+- <code title="put /zones/{zone_id}/api_gateway/settings/schema_validation">client.api_gateway.settings.schema_validation.<a href="./src/cloudflare/resources/api_gateway/settings/schema_validation.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/settings/schema_validation_update_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/settings/settings.py">Settings</a></code>
+- <code title="get /zones/{zone_id}/api_gateway/settings/schema_validation">client.api_gateway.settings.schema_validation.<a href="./src/cloudflare/resources/api_gateway/settings/schema_validation.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/api_gateway/settings/settings.py">Settings</a></code>
+
+## UserSchemas
+
+Types:
+
+```python
+from cloudflare.types.api_gateway import (
+    Message,
+    PublicSchema,
+    Schema,
+    SchemaUpload,
+    UserSchemaDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /zones/{zone_id}/api_gateway/user_schemas">client.api_gateway.user_schemas.<a href="./src/cloudflare/resources/api_gateway/user_schemas/user_schemas.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/user_schema_create_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/schema_upload.py">SchemaUpload</a></code>
+- <code title="get /zones/{zone_id}/api_gateway/user_schemas">client.api_gateway.user_schemas.<a href="./src/cloudflare/resources/api_gateway/user_schemas/user_schemas.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/user_schema_list_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/public_schema.py">SyncSinglePage[PublicSchema]</a></code>
+- <code title="delete /zones/{zone_id}/api_gateway/user_schemas/{schema_id}">client.api_gateway.user_schemas.<a href="./src/cloudflare/resources/api_gateway/user_schemas/user_schemas.py">delete</a>(schema_id, \*, zone_id) -> <a href="./src/cloudflare/types/api_gateway/user_schema_delete_response.py">UserSchemaDeleteResponse</a></code>
+- <code title="patch /zones/{zone_id}/api_gateway/user_schemas/{schema_id}">client.api_gateway.user_schemas.<a href="./src/cloudflare/resources/api_gateway/user_schemas/user_schemas.py">edit</a>(schema_id, \*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/user_schema_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/public_schema.py">PublicSchema</a></code>
+- <code title="get /zones/{zone_id}/api_gateway/user_schemas/{schema_id}">client.api_gateway.user_schemas.<a href="./src/cloudflare/resources/api_gateway/user_schemas/user_schemas.py">get</a>(schema_id, \*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/user_schema_get_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/public_schema.py">PublicSchema</a></code>
+
+### Operations
+
+Types:
+
+```python
+from cloudflare.types.api_gateway.user_schemas import OperationListResponse
+```
+
+Methods:
+
+- <code title="get /zones/{zone_id}/api_gateway/user_schemas/{schema_id}/operations">client.api_gateway.user_schemas.operations.<a href="./src/cloudflare/resources/api_gateway/user_schemas/operations.py">list</a>(schema_id, \*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/user_schemas/operation_list_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/user_schemas/operation_list_response.py">SyncSinglePage[OperationListResponse]</a></code>
+
+## SchemaValidation
+
+Methods:
+
+- <code title="patch /zones/{zone_id}/api_gateway/settings/schema_validation">client.api_gateway.schema_validation.<a href="./src/cloudflare/resources/api_gateway/schema_validation.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/schema_validation_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/settings/settings.py">Settings</a></code>
+
 # ManagedHeaders
 
 Types:
