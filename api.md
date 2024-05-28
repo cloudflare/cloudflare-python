@@ -7368,8 +7368,6 @@ Methods:
 
 # DCVDelegation
 
-## UUID
-
 Types:
 
 ```python
@@ -7378,7 +7376,7 @@ from cloudflare.types.dcv_delegation import DCVDelegationUUID
 
 Methods:
 
-- <code title="get /zones/{zone_id}/dcv_delegation/uuid">client.dcv_delegation.uuid.<a href="./src/cloudflare/resources/dcv_delegation/uuid.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dcv_delegation/dcv_delegation_uuid.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/dcv_delegation/uuid">client.dcv_delegation.<a href="./src/cloudflare/resources/dcv_delegation.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dcv_delegation/dcv_delegation_uuid.py">Optional</a></code>
 
 # Hostnames
 
