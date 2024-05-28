@@ -384,6 +384,14 @@ from .zero_trust import (
     ZeroTrustResourceWithStreamingResponse,
     AsyncZeroTrustResourceWithStreamingResponse,
 )
+from .api_gateway import (
+    APIGatewayResource,
+    AsyncAPIGatewayResource,
+    APIGatewayResourceWithRawResponse,
+    AsyncAPIGatewayResourceWithRawResponse,
+    APIGatewayResourceWithStreamingResponse,
+    AsyncAPIGatewayResourceWithStreamingResponse,
+)
 from .diagnostics import (
     DiagnosticsResource,
     AsyncDiagnosticsResource,
@@ -886,6 +894,12 @@ __all__ = [
     "AsyncQueuesResourceWithRawResponse",
     "QueuesResourceWithStreamingResponse",
     "AsyncQueuesResourceWithStreamingResponse",
+    "APIGatewayResource",
+    "AsyncAPIGatewayResource",
+    "APIGatewayResourceWithRawResponse",
+    "AsyncAPIGatewayResourceWithRawResponse",
+    "APIGatewayResourceWithStreamingResponse",
+    "AsyncAPIGatewayResourceWithStreamingResponse",
     "ManagedHeadersResource",
     "AsyncManagedHeadersResource",
     "ManagedHeadersResourceWithRawResponse",
