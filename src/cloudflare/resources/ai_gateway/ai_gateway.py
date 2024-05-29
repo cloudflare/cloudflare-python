@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -62,11 +63,11 @@ class AIGatewayResource(SyncAPIResource):
         account_id: str,
         id: str,
         cache_invalidate_on_update: bool,
-        cache_ttl: int,
+        cache_ttl: Optional[int],
         collect_logs: bool,
-        rate_limiting_interval: int | NotGiven = NOT_GIVEN,
-        rate_limiting_limit: int | NotGiven = NOT_GIVEN,
-        rate_limiting_technique: str | NotGiven = NOT_GIVEN,
+        rate_limiting_interval: Optional[int],
+        rate_limiting_limit: Optional[int],
+        rate_limiting_technique: Literal["fixed", "sliding"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -120,11 +121,11 @@ class AIGatewayResource(SyncAPIResource):
         *,
         account_id: str,
         cache_invalidate_on_update: bool,
-        cache_ttl: int,
+        cache_ttl: Optional[int],
         collect_logs: bool,
-        rate_limiting_interval: int | NotGiven = NOT_GIVEN,
-        rate_limiting_limit: int | NotGiven = NOT_GIVEN,
-        rate_limiting_technique: str | NotGiven = NOT_GIVEN,
+        rate_limiting_interval: Optional[int],
+        rate_limiting_limit: Optional[int],
+        rate_limiting_technique: Literal["fixed", "sliding"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -243,8 +244,6 @@ class AIGatewayResource(SyncAPIResource):
         Delete a Gateway
 
         Args:
-          id: gateway id
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -331,11 +330,11 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         account_id: str,
         id: str,
         cache_invalidate_on_update: bool,
-        cache_ttl: int,
+        cache_ttl: Optional[int],
         collect_logs: bool,
-        rate_limiting_interval: int | NotGiven = NOT_GIVEN,
-        rate_limiting_limit: int | NotGiven = NOT_GIVEN,
-        rate_limiting_technique: str | NotGiven = NOT_GIVEN,
+        rate_limiting_interval: Optional[int],
+        rate_limiting_limit: Optional[int],
+        rate_limiting_technique: Literal["fixed", "sliding"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -389,11 +388,11 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         *,
         account_id: str,
         cache_invalidate_on_update: bool,
-        cache_ttl: int,
+        cache_ttl: Optional[int],
         collect_logs: bool,
-        rate_limiting_interval: int | NotGiven = NOT_GIVEN,
-        rate_limiting_limit: int | NotGiven = NOT_GIVEN,
-        rate_limiting_technique: str | NotGiven = NOT_GIVEN,
+        rate_limiting_interval: Optional[int],
+        rate_limiting_limit: Optional[int],
+        rate_limiting_technique: Literal["fixed", "sliding"],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -512,8 +511,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         Delete a Gateway
 
         Args:
-          id: gateway id
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
