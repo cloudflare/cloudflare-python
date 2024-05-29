@@ -32,6 +32,7 @@ class TestBuckets:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example-bucket",
             location_hint="apac",
+            storage_class="Standard",
         )
         assert_matches_type(Bucket, bucket, path=["response"])
 
@@ -234,6 +235,7 @@ class TestAsyncBuckets:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example-bucket",
             location_hint="apac",
+            storage_class="Standard",
         )
         assert_matches_type(Bucket, bucket, path=["response"])
 
