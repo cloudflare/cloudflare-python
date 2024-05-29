@@ -245,7 +245,7 @@ class DatabaseResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DatabaseQueryResponse:
         """
-        Returns the query result.
+        Returns the query result as an object.
 
         Args:
           account_id: Account identifier tag.
@@ -492,7 +492,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DatabaseQueryResponse:
         """
-        Returns the query result.
+        Returns the query result as an object.
 
         Args:
           account_id: Account identifier tag.
