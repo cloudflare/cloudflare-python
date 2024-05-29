@@ -17,3 +17,6 @@ class Bucket(BaseModel):
 
     name: Optional[str] = None
     """Name of the bucket"""
+
+    storage_class: Optional[Literal["Standard", "InfrequentAccess"]] = None
+    """Storage class for newly uploaded objects, unless specified otherwise."""
