@@ -8,6 +8,14 @@ from .bgp import (
     BGPResourceWithStreamingResponse,
     AsyncBGPResourceWithStreamingResponse,
 )
+from .ips import (
+    IPsResource,
+    AsyncIPsResource,
+    IPsResourceWithRawResponse,
+    AsyncIPsResourceWithRawResponse,
+    IPsResourceWithStreamingResponse,
+    AsyncIPsResourceWithStreamingResponse,
+)
 from .top import (
     TopResource,
     AsyncTopResource,
@@ -66,6 +74,12 @@ __all__ = [
     "AsyncRoutesResourceWithRawResponse",
     "RoutesResourceWithStreamingResponse",
     "AsyncRoutesResourceWithStreamingResponse",
+    "IPsResource",
+    "AsyncIPsResource",
+    "IPsResourceWithRawResponse",
+    "AsyncIPsResourceWithRawResponse",
+    "IPsResourceWithStreamingResponse",
+    "AsyncIPsResourceWithStreamingResponse",
     "BGPResource",
     "AsyncBGPResource",
     "BGPResourceWithRawResponse",
