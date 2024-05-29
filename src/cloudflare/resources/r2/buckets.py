@@ -47,6 +47,7 @@ class BucketsResource(SyncAPIResource):
         account_id: str,
         name: str,
         location_hint: Literal["apac", "eeur", "enam", "weur", "wnam"] | NotGiven = NOT_GIVEN,
+        storage_class: Literal["Standard", "InfrequentAccess"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -64,6 +65,8 @@ class BucketsResource(SyncAPIResource):
 
           location_hint: Location of the bucket
 
+          storage_class: Storage class for newly uploaded objects, unless specified otherwise.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -80,6 +83,7 @@ class BucketsResource(SyncAPIResource):
                 {
                     "name": name,
                     "location_hint": location_hint,
+                    "storage_class": storage_class,
                 },
                 bucket_create_params.BucketCreateParams,
             ),
@@ -267,6 +271,7 @@ class AsyncBucketsResource(AsyncAPIResource):
         account_id: str,
         name: str,
         location_hint: Literal["apac", "eeur", "enam", "weur", "wnam"] | NotGiven = NOT_GIVEN,
+        storage_class: Literal["Standard", "InfrequentAccess"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -284,6 +289,8 @@ class AsyncBucketsResource(AsyncAPIResource):
 
           location_hint: Location of the bucket
 
+          storage_class: Storage class for newly uploaded objects, unless specified otherwise.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -300,6 +307,7 @@ class AsyncBucketsResource(AsyncAPIResource):
                 {
                     "name": name,
                     "location_hint": location_hint,
+                    "storage_class": storage_class,
                 },
                 bucket_create_params.BucketCreateParams,
             ),
