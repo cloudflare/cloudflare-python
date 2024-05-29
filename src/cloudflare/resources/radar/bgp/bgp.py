@@ -8,6 +8,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .ips import (
+    IPsResource,
+    AsyncIPsResource,
+    IPsResourceWithRawResponse,
+    AsyncIPsResourceWithRawResponse,
+    IPsResourceWithStreamingResponse,
+    AsyncIPsResourceWithStreamingResponse,
+)
 from .top import (
     TopResource,
     AsyncTopResource,
@@ -82,6 +90,10 @@ class BGPResource(SyncAPIResource):
     @cached_property
     def routes(self) -> RoutesResource:
         return RoutesResource(self._client)
+
+    @cached_property
+    def ips(self) -> IPsResource:
+        return IPsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> BGPResourceWithRawResponse:
@@ -211,6 +223,10 @@ class AsyncBGPResource(AsyncAPIResource):
     @cached_property
     def routes(self) -> AsyncRoutesResource:
         return AsyncRoutesResource(self._client)
+
+    @cached_property
+    def ips(self) -> AsyncIPsResource:
+        return AsyncIPsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncBGPResourceWithRawResponse:
@@ -348,6 +364,10 @@ class BGPResourceWithRawResponse:
     def routes(self) -> RoutesResourceWithRawResponse:
         return RoutesResourceWithRawResponse(self._bgp.routes)
 
+    @cached_property
+    def ips(self) -> IPsResourceWithRawResponse:
+        return IPsResourceWithRawResponse(self._bgp.ips)
+
 
 class AsyncBGPResourceWithRawResponse:
     def __init__(self, bgp: AsyncBGPResource) -> None:
@@ -372,6 +392,10 @@ class AsyncBGPResourceWithRawResponse:
     @cached_property
     def routes(self) -> AsyncRoutesResourceWithRawResponse:
         return AsyncRoutesResourceWithRawResponse(self._bgp.routes)
+
+    @cached_property
+    def ips(self) -> AsyncIPsResourceWithRawResponse:
+        return AsyncIPsResourceWithRawResponse(self._bgp.ips)
 
 
 class BGPResourceWithStreamingResponse:
@@ -398,6 +422,10 @@ class BGPResourceWithStreamingResponse:
     def routes(self) -> RoutesResourceWithStreamingResponse:
         return RoutesResourceWithStreamingResponse(self._bgp.routes)
 
+    @cached_property
+    def ips(self) -> IPsResourceWithStreamingResponse:
+        return IPsResourceWithStreamingResponse(self._bgp.ips)
+
 
 class AsyncBGPResourceWithStreamingResponse:
     def __init__(self, bgp: AsyncBGPResource) -> None:
@@ -422,3 +450,7 @@ class AsyncBGPResourceWithStreamingResponse:
     @cached_property
     def routes(self) -> AsyncRoutesResourceWithStreamingResponse:
         return AsyncRoutesResourceWithStreamingResponse(self._bgp.routes)
+
+    @cached_property
+    def ips(self) -> AsyncIPsResourceWithStreamingResponse:
+        return AsyncIPsResourceWithStreamingResponse(self._bgp.ips)
