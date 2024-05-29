@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing import Optional
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["AIGatewayCreateParams"]
 
@@ -15,12 +16,12 @@ class AIGatewayCreateParams(TypedDict, total=False):
 
     cache_invalidate_on_update: Required[bool]
 
-    cache_ttl: Required[int]
+    cache_ttl: Required[Optional[int]]
 
     collect_logs: Required[bool]
 
-    rate_limiting_interval: int
+    rate_limiting_interval: Required[Optional[int]]
 
-    rate_limiting_limit: int
+    rate_limiting_limit: Required[Optional[int]]
 
-    rate_limiting_technique: str
+    rate_limiting_technique: Required[Literal["fixed", "sliding"]]
