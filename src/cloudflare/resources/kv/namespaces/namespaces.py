@@ -299,6 +299,50 @@ class NamespacesResource(SyncAPIResource):
             ),
         )
 
+    def get(
+        self,
+        namespace_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Namespace:
+        """
+        Get the namespace corresponding to the given ID.
+
+        Args:
+          account_id: Identifier
+
+          namespace_id: Namespace identifier tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not namespace_id:
+            raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Namespace]._unwrapper,
+            ),
+            cast_to=cast(Type[Namespace], ResultWrapper[Namespace]),
+        )
+
 
 class AsyncNamespacesResource(AsyncAPIResource):
     @cached_property
@@ -533,6 +577,50 @@ class AsyncNamespacesResource(AsyncAPIResource):
             ),
         )
 
+    async def get(
+        self,
+        namespace_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Namespace:
+        """
+        Get the namespace corresponding to the given ID.
+
+        Args:
+          account_id: Identifier
+
+          namespace_id: Namespace identifier tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not namespace_id:
+            raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Namespace]._unwrapper,
+            ),
+            cast_to=cast(Type[Namespace], ResultWrapper[Namespace]),
+        )
+
 
 class NamespacesResourceWithRawResponse:
     def __init__(self, namespaces: NamespacesResource) -> None:
@@ -549,6 +637,9 @@ class NamespacesResourceWithRawResponse:
         )
         self.delete = to_raw_response_wrapper(
             namespaces.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            namespaces.get,
         )
 
     @cached_property
@@ -584,6 +675,9 @@ class AsyncNamespacesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             namespaces.delete,
         )
+        self.get = async_to_raw_response_wrapper(
+            namespaces.get,
+        )
 
     @cached_property
     def bulk(self) -> AsyncBulkResourceWithRawResponse:
@@ -618,6 +712,9 @@ class NamespacesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             namespaces.delete,
         )
+        self.get = to_streamed_response_wrapper(
+            namespaces.get,
+        )
 
     @cached_property
     def bulk(self) -> BulkResourceWithStreamingResponse:
@@ -651,6 +748,9 @@ class AsyncNamespacesResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             namespaces.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            namespaces.get,
         )
 
     @cached_property
