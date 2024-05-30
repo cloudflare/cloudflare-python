@@ -32,6 +32,8 @@ __all__ = [
     "RuleRulesetsLogCustomFieldRuleActionParametersCookieField",
     "RuleRulesetsLogCustomFieldRuleActionParametersRequestField",
     "RuleRulesetsLogCustomFieldRuleActionParametersResponseField",
+    "RuleRulesetsDDoSDynamicRule",
+    "RuleRulesetsForceConnectionCloseRule",
 ]
 
 
@@ -110,6 +112,58 @@ class RuleRulesetsLogCustomFieldRule(TypedDict, total=False):
     """The reference of the rule (the rule ID by default)."""
 
 
+class RuleRulesetsDDoSDynamicRule(TypedDict, total=False):
+    id: str
+    """The unique ID of the rule."""
+
+    action: Literal["ddos_dynamic"]
+    """The action to perform when the rule matches."""
+
+    action_parameters: object
+    """The parameters configuring the rule's action."""
+
+    description: str
+    """An informative description of the rule."""
+
+    enabled: bool
+    """Whether the rule should be executed."""
+
+    expression: str
+    """The expression defining which traffic will match the rule."""
+
+    logging: LoggingParam
+    """An object configuring the rule's logging behavior."""
+
+    ref: str
+    """The reference of the rule (the rule ID by default)."""
+
+
+class RuleRulesetsForceConnectionCloseRule(TypedDict, total=False):
+    id: str
+    """The unique ID of the rule."""
+
+    action: Literal["force_connection_close"]
+    """The action to perform when the rule matches."""
+
+    action_parameters: object
+    """The parameters configuring the rule's action."""
+
+    description: str
+    """An informative description of the rule."""
+
+    enabled: bool
+    """Whether the rule should be executed."""
+
+    expression: str
+    """The expression defining which traffic will match the rule."""
+
+    logging: LoggingParam
+    """An object configuring the rule's logging behavior."""
+
+    ref: str
+    """The reference of the rule (the rule ID by default)."""
+
+
 Rule = Union[
     BlockRuleParam,
     ChallengeRuleParam,
@@ -127,4 +181,6 @@ Rule = Union[
     SkipRuleParam,
     SetCacheSettingsRuleParam,
     RuleRulesetsLogCustomFieldRule,
+    RuleRulesetsDDoSDynamicRule,
+    RuleRulesetsForceConnectionCloseRule,
 ]
