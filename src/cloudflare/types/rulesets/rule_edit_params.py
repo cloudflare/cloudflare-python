@@ -76,8 +76,6 @@ __all__ = [
     "RulesetsLogCustomFieldRuleActionParametersCookieField",
     "RulesetsLogCustomFieldRuleActionParametersRequestField",
     "RulesetsLogCustomFieldRuleActionParametersResponseField",
-    "RulesetsDDoSDynamicRule",
-    "RulesetsForceConnectionCloseRule",
 ]
 
 
@@ -1255,76 +1253,6 @@ class RulesetsLogCustomFieldRuleActionParameters(TypedDict, total=False):
     """The response fields to log."""
 
 
-class RulesetsDDoSDynamicRule(TypedDict, total=False):
-    ruleset_id: Required[str]
-    """The unique ID of the ruleset."""
-
-    account_id: str
-    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
-
-    zone_id: str
-    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
-
-    id: str
-    """The unique ID of the rule."""
-
-    action: Literal["ddos_dynamic"]
-    """The action to perform when the rule matches."""
-
-    action_parameters: object
-    """The parameters configuring the rule's action."""
-
-    description: str
-    """An informative description of the rule."""
-
-    enabled: bool
-    """Whether the rule should be executed."""
-
-    expression: str
-    """The expression defining which traffic will match the rule."""
-
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
-
-    ref: str
-    """The reference of the rule (the rule ID by default)."""
-
-
-class RulesetsForceConnectionCloseRule(TypedDict, total=False):
-    ruleset_id: Required[str]
-    """The unique ID of the ruleset."""
-
-    account_id: str
-    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
-
-    zone_id: str
-    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
-
-    id: str
-    """The unique ID of the rule."""
-
-    action: Literal["force_connection_close"]
-    """The action to perform when the rule matches."""
-
-    action_parameters: object
-    """The parameters configuring the rule's action."""
-
-    description: str
-    """An informative description of the rule."""
-
-    enabled: bool
-    """Whether the rule should be executed."""
-
-    expression: str
-    """The expression defining which traffic will match the rule."""
-
-    logging: LoggingParam
-    """An object configuring the rule's logging behavior."""
-
-    ref: str
-    """The reference of the rule (the rule ID by default)."""
-
-
 RuleEditParams = Union[
     BlockRule,
     ChallengeRule,
@@ -1342,6 +1270,4 @@ RuleEditParams = Union[
     SkipRule,
     SetCacheSettingsRule,
     RulesetsLogCustomFieldRule,
-    RulesetsDDoSDynamicRule,
-    RulesetsForceConnectionCloseRule,
 ]
