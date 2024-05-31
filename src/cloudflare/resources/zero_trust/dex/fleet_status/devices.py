@@ -40,10 +40,11 @@ class DevicesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        from_: str,
         page: float,
         per_page: float,
-        time_end: str,
-        time_start: str,
+        source: Literal["last_seen", "hourly", "raw"],
+        to: str,
         colo: str | NotGiven = NOT_GIVEN,
         device_id: str | NotGiven = NOT_GIVEN,
         mode: str | NotGiven = NOT_GIVEN,
@@ -63,13 +64,20 @@ class DevicesResource(SyncAPIResource):
         List details for devices using WARP
 
         Args:
+          from_: Timestamp in ISO format
+
           page: Page number of paginated results
 
           per_page: Number of items per page
 
-          time_end: Timestamp in ISO format
+          source:
+              Source:
 
-          time_start: Timestamp in ISO format
+              - `hourly` - device details aggregated hourly, up to 7 days prior
+              - `last_seen` - device details, up to 24 hours prior
+              - `raw` - device details, up to 7 days prior
+
+          to: Timestamp in ISO format
 
           colo: Cloudflare colo
 
@@ -105,10 +113,11 @@ class DevicesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "from_": from_,
                         "page": page,
                         "per_page": per_page,
-                        "time_end": time_end,
-                        "time_start": time_start,
+                        "source": source,
+                        "to": to,
                         "colo": colo,
                         "device_id": device_id,
                         "mode": mode,
@@ -137,10 +146,11 @@ class AsyncDevicesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        from_: str,
         page: float,
         per_page: float,
-        time_end: str,
-        time_start: str,
+        source: Literal["last_seen", "hourly", "raw"],
+        to: str,
         colo: str | NotGiven = NOT_GIVEN,
         device_id: str | NotGiven = NOT_GIVEN,
         mode: str | NotGiven = NOT_GIVEN,
@@ -160,13 +170,20 @@ class AsyncDevicesResource(AsyncAPIResource):
         List details for devices using WARP
 
         Args:
+          from_: Timestamp in ISO format
+
           page: Page number of paginated results
 
           per_page: Number of items per page
 
-          time_end: Timestamp in ISO format
+          source:
+              Source:
 
-          time_start: Timestamp in ISO format
+              - `hourly` - device details aggregated hourly, up to 7 days prior
+              - `last_seen` - device details, up to 24 hours prior
+              - `raw` - device details, up to 7 days prior
+
+          to: Timestamp in ISO format
 
           colo: Cloudflare colo
 
@@ -202,10 +219,11 @@ class AsyncDevicesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "from_": from_,
                         "page": page,
                         "per_page": per_page,
-                        "time_end": time_end,
-                        "time_start": time_start,
+                        "source": source,
+                        "to": to,
                         "colo": colo,
                         "device_id": device_id,
                         "mode": mode,

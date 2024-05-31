@@ -26,9 +26,9 @@ class TestTracerouteTests:
         traceroute_test = client.zero_trust.dex.traceroute_tests.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
+            from_="1689520412000",
             interval="minute",
-            time_end="1689606812000",
-            time_start="1689520412000",
+            to="1689606812000",
         )
         assert_matches_type(Optional[Traceroute], traceroute_test, path=["response"])
 
@@ -37,9 +37,9 @@ class TestTracerouteTests:
         traceroute_test = client.zero_trust.dex.traceroute_tests.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
+            from_="1689520412000",
             interval="minute",
-            time_end="1689606812000",
-            time_start="1689520412000",
+            to="1689606812000",
             colo="string",
             device_id=["string", "string", "string"],
         )
@@ -50,9 +50,9 @@ class TestTracerouteTests:
         response = client.zero_trust.dex.traceroute_tests.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
+            from_="1689520412000",
             interval="minute",
-            time_end="1689606812000",
-            time_start="1689520412000",
+            to="1689606812000",
         )
 
         assert response.is_closed is True
@@ -65,9 +65,9 @@ class TestTracerouteTests:
         with client.zero_trust.dex.traceroute_tests.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
+            from_="1689520412000",
             interval="minute",
-            time_end="1689606812000",
-            time_start="1689520412000",
+            to="1689606812000",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -83,18 +83,18 @@ class TestTracerouteTests:
             client.zero_trust.dex.traceroute_tests.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
+                from_="1689520412000",
                 interval="minute",
-                time_end="1689606812000",
-                time_start="1689520412000",
+                to="1689606812000",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
             client.zero_trust.dex.traceroute_tests.with_raw_response.get(
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
+                from_="1689520412000",
                 interval="minute",
-                time_end="1689606812000",
-                time_start="1689520412000",
+                to="1689606812000",
             )
 
     @parametrize
@@ -103,9 +103,9 @@ class TestTracerouteTests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             device_id="string",
+            from_="1689520412000",
             interval="minute",
-            time_end="1689606812000",
-            time_start="1689520412000",
+            to="1689606812000",
         )
         assert_matches_type(Optional[NetworkPathResponse], traceroute_test, path=["response"])
 
@@ -115,9 +115,9 @@ class TestTracerouteTests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             device_id="string",
+            from_="1689520412000",
             interval="minute",
-            time_end="1689606812000",
-            time_start="1689520412000",
+            to="1689606812000",
         )
 
         assert response.is_closed is True
@@ -131,9 +131,9 @@ class TestTracerouteTests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             device_id="string",
+            from_="1689520412000",
             interval="minute",
-            time_end="1689606812000",
-            time_start="1689520412000",
+            to="1689606812000",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -150,9 +150,9 @@ class TestTracerouteTests:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 device_id="string",
+                from_="1689520412000",
                 interval="minute",
-                time_end="1689606812000",
-                time_start="1689520412000",
+                to="1689606812000",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
@@ -160,9 +160,9 @@ class TestTracerouteTests:
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 device_id="string",
+                from_="1689520412000",
                 interval="minute",
-                time_end="1689606812000",
-                time_start="1689520412000",
+                to="1689606812000",
             )
 
     @parametrize
@@ -170,8 +170,8 @@ class TestTracerouteTests:
         traceroute_test = client.zero_trust.dex.traceroute_tests.percentiles(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            time_end="2023-09-20T17:00:00Z",
-            time_start="2023-09-20T17:00:00Z",
+            from_="2023-09-20T17:00:00Z",
+            to="2023-09-20T17:00:00Z",
         )
         assert_matches_type(Optional[TracerouteTestPercentilesResponse], traceroute_test, path=["response"])
 
@@ -180,8 +180,8 @@ class TestTracerouteTests:
         traceroute_test = client.zero_trust.dex.traceroute_tests.percentiles(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            time_end="2023-09-20T17:00:00Z",
-            time_start="2023-09-20T17:00:00Z",
+            from_="2023-09-20T17:00:00Z",
+            to="2023-09-20T17:00:00Z",
             colo="string",
             device_id=["string", "string", "string"],
         )
@@ -192,8 +192,8 @@ class TestTracerouteTests:
         response = client.zero_trust.dex.traceroute_tests.with_raw_response.percentiles(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            time_end="2023-09-20T17:00:00Z",
-            time_start="2023-09-20T17:00:00Z",
+            from_="2023-09-20T17:00:00Z",
+            to="2023-09-20T17:00:00Z",
         )
 
         assert response.is_closed is True
@@ -206,8 +206,8 @@ class TestTracerouteTests:
         with client.zero_trust.dex.traceroute_tests.with_streaming_response.percentiles(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            time_end="2023-09-20T17:00:00Z",
-            time_start="2023-09-20T17:00:00Z",
+            from_="2023-09-20T17:00:00Z",
+            to="2023-09-20T17:00:00Z",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -223,16 +223,16 @@ class TestTracerouteTests:
             client.zero_trust.dex.traceroute_tests.with_raw_response.percentiles(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                time_end="2023-09-20T17:00:00Z",
-                time_start="2023-09-20T17:00:00Z",
+                from_="2023-09-20T17:00:00Z",
+                to="2023-09-20T17:00:00Z",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
             client.zero_trust.dex.traceroute_tests.with_raw_response.percentiles(
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
-                time_end="2023-09-20T17:00:00Z",
-                time_start="2023-09-20T17:00:00Z",
+                from_="2023-09-20T17:00:00Z",
+                to="2023-09-20T17:00:00Z",
             )
 
 
@@ -244,9 +244,9 @@ class TestAsyncTracerouteTests:
         traceroute_test = await async_client.zero_trust.dex.traceroute_tests.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
+            from_="1689520412000",
             interval="minute",
-            time_end="1689606812000",
-            time_start="1689520412000",
+            to="1689606812000",
         )
         assert_matches_type(Optional[Traceroute], traceroute_test, path=["response"])
 
@@ -255,9 +255,9 @@ class TestAsyncTracerouteTests:
         traceroute_test = await async_client.zero_trust.dex.traceroute_tests.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
+            from_="1689520412000",
             interval="minute",
-            time_end="1689606812000",
-            time_start="1689520412000",
+            to="1689606812000",
             colo="string",
             device_id=["string", "string", "string"],
         )
@@ -268,9 +268,9 @@ class TestAsyncTracerouteTests:
         response = await async_client.zero_trust.dex.traceroute_tests.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
+            from_="1689520412000",
             interval="minute",
-            time_end="1689606812000",
-            time_start="1689520412000",
+            to="1689606812000",
         )
 
         assert response.is_closed is True
@@ -283,9 +283,9 @@ class TestAsyncTracerouteTests:
         async with async_client.zero_trust.dex.traceroute_tests.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
+            from_="1689520412000",
             interval="minute",
-            time_end="1689606812000",
-            time_start="1689520412000",
+            to="1689606812000",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -301,18 +301,18 @@ class TestAsyncTracerouteTests:
             await async_client.zero_trust.dex.traceroute_tests.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
+                from_="1689520412000",
                 interval="minute",
-                time_end="1689606812000",
-                time_start="1689520412000",
+                to="1689606812000",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
             await async_client.zero_trust.dex.traceroute_tests.with_raw_response.get(
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
+                from_="1689520412000",
                 interval="minute",
-                time_end="1689606812000",
-                time_start="1689520412000",
+                to="1689606812000",
             )
 
     @parametrize
@@ -321,9 +321,9 @@ class TestAsyncTracerouteTests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             device_id="string",
+            from_="1689520412000",
             interval="minute",
-            time_end="1689606812000",
-            time_start="1689520412000",
+            to="1689606812000",
         )
         assert_matches_type(Optional[NetworkPathResponse], traceroute_test, path=["response"])
 
@@ -333,9 +333,9 @@ class TestAsyncTracerouteTests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             device_id="string",
+            from_="1689520412000",
             interval="minute",
-            time_end="1689606812000",
-            time_start="1689520412000",
+            to="1689606812000",
         )
 
         assert response.is_closed is True
@@ -349,9 +349,9 @@ class TestAsyncTracerouteTests:
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             device_id="string",
+            from_="1689520412000",
             interval="minute",
-            time_end="1689606812000",
-            time_start="1689520412000",
+            to="1689606812000",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -368,9 +368,9 @@ class TestAsyncTracerouteTests:
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 device_id="string",
+                from_="1689520412000",
                 interval="minute",
-                time_end="1689606812000",
-                time_start="1689520412000",
+                to="1689606812000",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
@@ -378,9 +378,9 @@ class TestAsyncTracerouteTests:
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 device_id="string",
+                from_="1689520412000",
                 interval="minute",
-                time_end="1689606812000",
-                time_start="1689520412000",
+                to="1689606812000",
             )
 
     @parametrize
@@ -388,8 +388,8 @@ class TestAsyncTracerouteTests:
         traceroute_test = await async_client.zero_trust.dex.traceroute_tests.percentiles(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            time_end="2023-09-20T17:00:00Z",
-            time_start="2023-09-20T17:00:00Z",
+            from_="2023-09-20T17:00:00Z",
+            to="2023-09-20T17:00:00Z",
         )
         assert_matches_type(Optional[TracerouteTestPercentilesResponse], traceroute_test, path=["response"])
 
@@ -398,8 +398,8 @@ class TestAsyncTracerouteTests:
         traceroute_test = await async_client.zero_trust.dex.traceroute_tests.percentiles(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            time_end="2023-09-20T17:00:00Z",
-            time_start="2023-09-20T17:00:00Z",
+            from_="2023-09-20T17:00:00Z",
+            to="2023-09-20T17:00:00Z",
             colo="string",
             device_id=["string", "string", "string"],
         )
@@ -410,8 +410,8 @@ class TestAsyncTracerouteTests:
         response = await async_client.zero_trust.dex.traceroute_tests.with_raw_response.percentiles(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            time_end="2023-09-20T17:00:00Z",
-            time_start="2023-09-20T17:00:00Z",
+            from_="2023-09-20T17:00:00Z",
+            to="2023-09-20T17:00:00Z",
         )
 
         assert response.is_closed is True
@@ -424,8 +424,8 @@ class TestAsyncTracerouteTests:
         async with async_client.zero_trust.dex.traceroute_tests.with_streaming_response.percentiles(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            time_end="2023-09-20T17:00:00Z",
-            time_start="2023-09-20T17:00:00Z",
+            from_="2023-09-20T17:00:00Z",
+            to="2023-09-20T17:00:00Z",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -441,14 +441,14 @@ class TestAsyncTracerouteTests:
             await async_client.zero_trust.dex.traceroute_tests.with_raw_response.percentiles(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                time_end="2023-09-20T17:00:00Z",
-                time_start="2023-09-20T17:00:00Z",
+                from_="2023-09-20T17:00:00Z",
+                to="2023-09-20T17:00:00Z",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
             await async_client.zero_trust.dex.traceroute_tests.with_raw_response.percentiles(
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
-                time_end="2023-09-20T17:00:00Z",
-                time_start="2023-09-20T17:00:00Z",
+                from_="2023-09-20T17:00:00Z",
+                to="2023-09-20T17:00:00Z",
             )

@@ -50,9 +50,9 @@ class TracerouteTestsResource(SyncAPIResource):
         test_id: str,
         *,
         account_id: str,
+        from_: str,
         interval: Literal["minute", "hour"],
-        time_end: str,
-        time_start: str,
+        to: str,
         colo: str | NotGiven = NOT_GIVEN,
         device_id: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -69,11 +69,11 @@ class TracerouteTestsResource(SyncAPIResource):
         Args:
           test_id: API Resource UUID tag.
 
+          from_: Start time for aggregate metrics in ISO ms
+
           interval: Time interval for aggregate time slots.
 
-          time_end: End time for aggregate metrics in ISO ms
-
-          time_start: Start time for aggregate metrics in ISO ms
+          to: End time for aggregate metrics in ISO ms
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.
@@ -102,9 +102,9 @@ class TracerouteTestsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "from_": from_,
                         "interval": interval,
-                        "time_end": time_end,
-                        "time_start": time_start,
+                        "to": to,
                         "colo": colo,
                         "device_id": device_id,
                     },
@@ -121,9 +121,9 @@ class TracerouteTestsResource(SyncAPIResource):
         *,
         account_id: str,
         device_id: str,
+        from_: str,
         interval: Literal["minute", "hour"],
-        time_end: str,
-        time_start: str,
+        to: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -139,11 +139,11 @@ class TracerouteTestsResource(SyncAPIResource):
 
           device_id: Device to filter tracroute result runs to
 
+          from_: Start time for aggregate metrics in ISO ms
+
           interval: Time interval for aggregate time slots.
 
-          time_end: End time for aggregate metrics in ISO ms
-
-          time_start: Start time for aggregate metrics in ISO ms
+          to: End time for aggregate metrics in ISO ms
 
           extra_headers: Send extra headers
 
@@ -167,9 +167,9 @@ class TracerouteTestsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "device_id": device_id,
+                        "from_": from_,
                         "interval": interval,
-                        "time_end": time_end,
-                        "time_start": time_start,
+                        "to": to,
                     },
                     traceroute_test_network_path_params.TracerouteTestNetworkPathParams,
                 ),
@@ -183,8 +183,8 @@ class TracerouteTestsResource(SyncAPIResource):
         test_id: str,
         *,
         account_id: str,
-        time_end: str,
-        time_start: str,
+        from_: str,
+        to: str,
         colo: str | NotGiven = NOT_GIVEN,
         device_id: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -201,9 +201,9 @@ class TracerouteTestsResource(SyncAPIResource):
         Args:
           test_id: API Resource UUID tag.
 
-          time_end: End time for aggregate metrics in ISO format
+          from_: Start time for aggregate metrics in ISO format
 
-          time_start: Start time for aggregate metrics in ISO format
+          to: End time for aggregate metrics in ISO format
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.
@@ -232,8 +232,8 @@ class TracerouteTestsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "time_end": time_end,
-                        "time_start": time_start,
+                        "from_": from_,
+                        "to": to,
                         "colo": colo,
                         "device_id": device_id,
                     },
@@ -261,9 +261,9 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
         test_id: str,
         *,
         account_id: str,
+        from_: str,
         interval: Literal["minute", "hour"],
-        time_end: str,
-        time_start: str,
+        to: str,
         colo: str | NotGiven = NOT_GIVEN,
         device_id: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -280,11 +280,11 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
         Args:
           test_id: API Resource UUID tag.
 
+          from_: Start time for aggregate metrics in ISO ms
+
           interval: Time interval for aggregate time slots.
 
-          time_end: End time for aggregate metrics in ISO ms
-
-          time_start: Start time for aggregate metrics in ISO ms
+          to: End time for aggregate metrics in ISO ms
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.
@@ -313,9 +313,9 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
+                        "from_": from_,
                         "interval": interval,
-                        "time_end": time_end,
-                        "time_start": time_start,
+                        "to": to,
                         "colo": colo,
                         "device_id": device_id,
                     },
@@ -332,9 +332,9 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
         *,
         account_id: str,
         device_id: str,
+        from_: str,
         interval: Literal["minute", "hour"],
-        time_end: str,
-        time_start: str,
+        to: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -350,11 +350,11 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
 
           device_id: Device to filter tracroute result runs to
 
+          from_: Start time for aggregate metrics in ISO ms
+
           interval: Time interval for aggregate time slots.
 
-          time_end: End time for aggregate metrics in ISO ms
-
-          time_start: Start time for aggregate metrics in ISO ms
+          to: End time for aggregate metrics in ISO ms
 
           extra_headers: Send extra headers
 
@@ -378,9 +378,9 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "device_id": device_id,
+                        "from_": from_,
                         "interval": interval,
-                        "time_end": time_end,
-                        "time_start": time_start,
+                        "to": to,
                     },
                     traceroute_test_network_path_params.TracerouteTestNetworkPathParams,
                 ),
@@ -394,8 +394,8 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
         test_id: str,
         *,
         account_id: str,
-        time_end: str,
-        time_start: str,
+        from_: str,
+        to: str,
         colo: str | NotGiven = NOT_GIVEN,
         device_id: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -412,9 +412,9 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
         Args:
           test_id: API Resource UUID tag.
 
-          time_end: End time for aggregate metrics in ISO format
+          from_: Start time for aggregate metrics in ISO format
 
-          time_start: Start time for aggregate metrics in ISO format
+          to: End time for aggregate metrics in ISO format
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.
@@ -443,8 +443,8 @@ class AsyncTracerouteTestsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "time_end": time_end,
-                        "time_start": time_start,
+                        "from_": from_,
+                        "to": to,
                         "colo": colo,
                         "device_id": device_id,
                     },
