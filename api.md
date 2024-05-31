@@ -3051,7 +3051,6 @@ Types:
 from cloudflare.types.api_gateway import (
     Message,
     PublicSchema,
-    Schema,
     SchemaUpload,
     UserSchemaDeleteResponse,
 )
@@ -3796,7 +3795,7 @@ from cloudflare.types.intel import Whois, WhoisGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/intel/whois">client.intel.whois.<a href="./src/cloudflare/resources/intel/whois.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/whois_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/whois_get_response.py">WhoisGetResponse</a></code>
+- <code title="get /accounts/{account_id}/intel/whois">client.intel.whois.<a href="./src/cloudflare/resources/intel/whois.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/intel/whois_get_params.py">params</a>) -> <a href="./src/cloudflare/types/intel/whois_get_response.py">Optional</a></code>
 
 ## IndicatorFeeds
 
@@ -5179,17 +5178,13 @@ from cloudflare.types.zero_trust import (
     IdentityProviderType,
     ScimConfig,
     IdentityProviderListResponse,
-    IdentityProviderDeleteResponse,
 )
 ```
 
 Methods:
 
 - <code title="post /{account_or_zone}/{account_or_zone_id}/access/identity_providers">client.zero_trust.identity_providers.<a href="./src/cloudflare/resources/zero_trust/identity_providers.py">create</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/identity_provider_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/identity_provider.py">Optional</a></code>
-- <code title="put /{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}">client.zero_trust.identity_providers.<a href="./src/cloudflare/resources/zero_trust/identity_providers.py">update</a>(uuid, \*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/identity_provider_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/identity_provider.py">Optional</a></code>
 - <code title="get /{account_or_zone}/{account_or_zone_id}/access/identity_providers">client.zero_trust.identity_providers.<a href="./src/cloudflare/resources/zero_trust/identity_providers.py">list</a>(\*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/identity_provider_list_response.py">SyncSinglePage[IdentityProviderListResponse]</a></code>
-- <code title="delete /{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}">client.zero_trust.identity_providers.<a href="./src/cloudflare/resources/zero_trust/identity_providers.py">delete</a>(uuid, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/identity_provider_delete_response.py">Optional</a></code>
-- <code title="get /{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}">client.zero_trust.identity_providers.<a href="./src/cloudflare/resources/zero_trust/identity_providers.py">get</a>(uuid, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/identity_provider.py">Optional</a></code>
 
 ## Organizations
 
@@ -5211,12 +5206,8 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust import Seat, SeatEditResponse
+from cloudflare.types.zero_trust import Seat
 ```
-
-Methods:
-
-- <code title="patch /accounts/{identifier}/access/seats">client.zero_trust.seats.<a href="./src/cloudflare/resources/zero_trust/seats.py">edit</a>(identifier, \*\*<a href="src/cloudflare/types/zero_trust/seat_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/seat_edit_response.py">Optional</a></code>
 
 ## Access
 
@@ -5290,20 +5281,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access.applications import (
-    CA,
-    CACreateResponse,
-    CADeleteResponse,
-    CAGetResponse,
-)
+from cloudflare.types.zero_trust.access.applications import CA
 ```
 
 Methods:
 
-- <code title="post /{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/ca">client.zero_trust.access.applications.cas.<a href="./src/cloudflare/resources/zero_trust/access/applications/cas.py">create</a>(uuid, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/applications/ca_create_response.py">Optional</a></code>
 - <code title="get /{account_or_zone}/{account_or_zone_id}/access/apps/ca">client.zero_trust.access.applications.cas.<a href="./src/cloudflare/resources/zero_trust/access/applications/cas.py">list</a>(\*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/applications/ca.py">SyncSinglePage[CA]</a></code>
-- <code title="delete /{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/ca">client.zero_trust.access.applications.cas.<a href="./src/cloudflare/resources/zero_trust/access/applications/cas.py">delete</a>(uuid, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/applications/ca_delete_response.py">Optional</a></code>
-- <code title="get /{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/ca">client.zero_trust.access.applications.cas.<a href="./src/cloudflare/resources/zero_trust/access/applications/cas.py">get</a>(uuid, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/applications/ca_get_response.py">Optional</a></code>
 
 #### UserPolicyChecks
 
@@ -5325,44 +5308,21 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access.applications import (
-    ApprovalGroup,
-    Policy,
-    PolicyCreateResponse,
-    PolicyUpdateResponse,
-    PolicyListResponse,
-    PolicyDeleteResponse,
-    PolicyGetResponse,
-)
+from cloudflare.types.zero_trust.access.applications import ApprovalGroup, Policy
 ```
-
-Methods:
-
-- <code title="post /{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/policies">client.zero_trust.access.applications.policies.<a href="./src/cloudflare/resources/zero_trust/access/applications/policies.py">create</a>(uuid, \*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/applications/policy_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_create_response.py">Optional</a></code>
-- <code title="put /{account_or_zone}/{account_or_zone_id}/access/apps/{uuid1}/policies/{uuid}">client.zero_trust.access.applications.policies.<a href="./src/cloudflare/resources/zero_trust/access/applications/policies.py">update</a>(uuid, \*, uuid1, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/applications/policy_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_update_response.py">Optional</a></code>
-- <code title="get /{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/policies">client.zero_trust.access.applications.policies.<a href="./src/cloudflare/resources/zero_trust/access/applications/policies.py">list</a>(uuid, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_list_response.py">SyncSinglePage[PolicyListResponse]</a></code>
-- <code title="delete /{account_or_zone}/{account_or_zone_id}/access/apps/{uuid1}/policies/{uuid}">client.zero_trust.access.applications.policies.<a href="./src/cloudflare/resources/zero_trust/access/applications/policies.py">delete</a>(uuid, \*, uuid1, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_delete_response.py">Optional</a></code>
-- <code title="get /{account_or_zone}/{account_or_zone_id}/access/apps/{uuid1}/policies/{uuid}">client.zero_trust.access.applications.policies.<a href="./src/cloudflare/resources/zero_trust/access/applications/policies.py">get</a>(uuid, \*, uuid1, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/applications/policy_get_response.py">Optional</a></code>
 
 ### Certificates
 
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access import (
-    AssociatedHostnames,
-    Certificate,
-    CertificateDeleteResponse,
-)
+from cloudflare.types.zero_trust.access import AssociatedHostnames, Certificate
 ```
 
 Methods:
 
 - <code title="post /{account_or_zone}/{account_or_zone_id}/access/certificates">client.zero_trust.access.certificates.<a href="./src/cloudflare/resources/zero_trust/access/certificates/certificates.py">create</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/certificate_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/certificate.py">Optional</a></code>
-- <code title="put /{account_or_zone}/{account_or_zone_id}/access/certificates/{uuid}">client.zero_trust.access.certificates.<a href="./src/cloudflare/resources/zero_trust/access/certificates/certificates.py">update</a>(uuid, \*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/certificate_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/certificate.py">Optional</a></code>
 - <code title="get /{account_or_zone}/{account_or_zone_id}/access/certificates">client.zero_trust.access.certificates.<a href="./src/cloudflare/resources/zero_trust/access/certificates/certificates.py">list</a>(\*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/certificate.py">SyncSinglePage[Certificate]</a></code>
-- <code title="delete /{account_or_zone}/{account_or_zone_id}/access/certificates/{uuid}">client.zero_trust.access.certificates.<a href="./src/cloudflare/resources/zero_trust/access/certificates/certificates.py">delete</a>(uuid, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/certificate_delete_response.py">Optional</a></code>
-- <code title="get /{account_or_zone}/{account_or_zone_id}/access/certificates/{uuid}">client.zero_trust.access.certificates.<a href="./src/cloudflare/resources/zero_trust/access/certificates/certificates.py">get</a>(uuid, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/certificate.py">Optional</a></code>
 
 #### Settings
 
@@ -5386,68 +5346,34 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access import ZeroTrustGroup, GroupDeleteResponse
+from cloudflare.types.zero_trust.access import ZeroTrustGroup
 ```
 
 Methods:
 
 - <code title="post /{account_or_zone}/{account_or_zone_id}/access/groups">client.zero_trust.access.groups.<a href="./src/cloudflare/resources/zero_trust/access/groups.py">create</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/group_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/zero_trust_group.py">Optional</a></code>
-- <code title="put /{account_or_zone}/{account_or_zone_id}/access/groups/{uuid}">client.zero_trust.access.groups.<a href="./src/cloudflare/resources/zero_trust/access/groups.py">update</a>(uuid, \*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/group_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/zero_trust_group.py">Optional</a></code>
 - <code title="get /{account_or_zone}/{account_or_zone_id}/access/groups">client.zero_trust.access.groups.<a href="./src/cloudflare/resources/zero_trust/access/groups.py">list</a>(\*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/zero_trust_group.py">SyncSinglePage[ZeroTrustGroup]</a></code>
-- <code title="delete /{account_or_zone}/{account_or_zone_id}/access/groups/{uuid}">client.zero_trust.access.groups.<a href="./src/cloudflare/resources/zero_trust/access/groups.py">delete</a>(uuid, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/group_delete_response.py">Optional</a></code>
-- <code title="get /{account_or_zone}/{account_or_zone_id}/access/groups/{uuid}">client.zero_trust.access.groups.<a href="./src/cloudflare/resources/zero_trust/access/groups.py">get</a>(uuid, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/zero_trust_group.py">Optional</a></code>
 
 ### ServiceTokens
 
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access import (
-    ServiceToken,
-    ServiceTokenCreateResponse,
-    ServiceTokenRotateResponse,
-)
+from cloudflare.types.zero_trust.access import ServiceToken, ServiceTokenCreateResponse
 ```
 
 Methods:
 
 - <code title="post /{account_or_zone}/{account_or_zone_id}/access/service_tokens">client.zero_trust.access.service_tokens.<a href="./src/cloudflare/resources/zero_trust/access/service_tokens.py">create</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/service_token_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/service_token_create_response.py">Optional</a></code>
-- <code title="put /{account_or_zone}/{account_or_zone_id}/access/service_tokens/{uuid}">client.zero_trust.access.service_tokens.<a href="./src/cloudflare/resources/zero_trust/access/service_tokens.py">update</a>(uuid, \*, account_id, zone_id, \*\*<a href="src/cloudflare/types/zero_trust/access/service_token_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/service_token.py">Optional</a></code>
 - <code title="get /{account_or_zone}/{account_or_zone_id}/access/service_tokens">client.zero_trust.access.service_tokens.<a href="./src/cloudflare/resources/zero_trust/access/service_tokens.py">list</a>(\*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/service_token.py">SyncSinglePage[ServiceToken]</a></code>
-- <code title="delete /{account_or_zone}/{account_or_zone_id}/access/service_tokens/{uuid}">client.zero_trust.access.service_tokens.<a href="./src/cloudflare/resources/zero_trust/access/service_tokens.py">delete</a>(uuid, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/service_token.py">Optional</a></code>
-- <code title="get /{account_or_zone}/{account_or_zone_id}/access/service_tokens/{uuid}">client.zero_trust.access.service_tokens.<a href="./src/cloudflare/resources/zero_trust/access/service_tokens.py">get</a>(uuid, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/zero_trust/access/service_token.py">Optional</a></code>
-- <code title="post /accounts/{identifier}/access/service_tokens/{uuid}/refresh">client.zero_trust.access.service_tokens.<a href="./src/cloudflare/resources/zero_trust/access/service_tokens.py">refresh</a>(uuid, \*, identifier) -> <a href="./src/cloudflare/types/zero_trust/access/service_token.py">Optional</a></code>
-- <code title="post /accounts/{identifier}/access/service_tokens/{uuid}/rotate">client.zero_trust.access.service_tokens.<a href="./src/cloudflare/resources/zero_trust/access/service_tokens.py">rotate</a>(uuid, \*, identifier) -> <a href="./src/cloudflare/types/zero_trust/access/service_token_rotate_response.py">Optional</a></code>
 
 ### Bookmarks
 
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access import Bookmark, BookmarkDeleteResponse
+from cloudflare.types.zero_trust.access import Bookmark
 ```
-
-Methods:
-
-- <code title="post /accounts/{identifier}/access/bookmarks/{uuid}">client.zero_trust.access.bookmarks.<a href="./src/cloudflare/resources/zero_trust/access/bookmarks.py">create</a>(uuid, \*, identifier, \*\*<a href="src/cloudflare/types/zero_trust/access/bookmark_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/bookmark.py">Optional</a></code>
-- <code title="put /accounts/{identifier}/access/bookmarks/{uuid}">client.zero_trust.access.bookmarks.<a href="./src/cloudflare/resources/zero_trust/access/bookmarks.py">update</a>(uuid, \*, identifier, \*\*<a href="src/cloudflare/types/zero_trust/access/bookmark_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/bookmark.py">Optional</a></code>
-- <code title="get /accounts/{identifier}/access/bookmarks">client.zero_trust.access.bookmarks.<a href="./src/cloudflare/resources/zero_trust/access/bookmarks.py">list</a>(identifier) -> <a href="./src/cloudflare/types/zero_trust/access/bookmark.py">SyncSinglePage[Bookmark]</a></code>
-- <code title="delete /accounts/{identifier}/access/bookmarks/{uuid}">client.zero_trust.access.bookmarks.<a href="./src/cloudflare/resources/zero_trust/access/bookmarks.py">delete</a>(uuid, \*, identifier) -> <a href="./src/cloudflare/types/zero_trust/access/bookmark_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{identifier}/access/bookmarks/{uuid}">client.zero_trust.access.bookmarks.<a href="./src/cloudflare/resources/zero_trust/access/bookmarks.py">get</a>(uuid, \*, identifier) -> <a href="./src/cloudflare/types/zero_trust/access/bookmark.py">Optional</a></code>
-
-### Keys
-
-Types:
-
-```python
-from cloudflare.types.zero_trust.access import KeyUpdateResponse, KeyGetResponse, KeyRotateResponse
-```
-
-Methods:
-
-- <code title="put /accounts/{identifier}/access/keys">client.zero_trust.access.keys.<a href="./src/cloudflare/resources/zero_trust/access/keys.py">update</a>(identifier, \*\*<a href="src/cloudflare/types/zero_trust/access/key_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/key_update_response.py">Optional</a></code>
-- <code title="get /accounts/{identifier}/access/keys">client.zero_trust.access.keys.<a href="./src/cloudflare/resources/zero_trust/access/keys.py">get</a>(identifier) -> <a href="./src/cloudflare/types/zero_trust/access/key_get_response.py">Optional</a></code>
-- <code title="post /accounts/{identifier}/access/keys/rotate">client.zero_trust.access.keys.<a href="./src/cloudflare/resources/zero_trust/access/keys.py">rotate</a>(identifier) -> <a href="./src/cloudflare/types/zero_trust/access/key_rotate_response.py">Optional</a></code>
 
 ### Logs
 
@@ -5456,12 +5382,8 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access.logs import AccessRequests, AccessRequestListResponse
+from cloudflare.types.zero_trust.access.logs import AccessRequests
 ```
-
-Methods:
-
-- <code title="get /accounts/{identifier}/access/logs/access_requests">client.zero_trust.access.logs.access_requests.<a href="./src/cloudflare/resources/zero_trust/access/logs/access_requests.py">list</a>(identifier) -> <a href="./src/cloudflare/types/zero_trust/access/logs/access_request_list_response.py">Optional</a></code>
 
 ### Users
 
@@ -5471,26 +5393,6 @@ Types:
 from cloudflare.types.zero_trust.access import AccessUser
 ```
 
-Methods:
-
-- <code title="get /accounts/{identifier}/access/users">client.zero_trust.access.users.<a href="./src/cloudflare/resources/zero_trust/access/users/users.py">list</a>(identifier) -> <a href="./src/cloudflare/types/zero_trust/access/access_user.py">SyncSinglePage[AccessUser]</a></code>
-
-#### ActiveSessions
-
-Types:
-
-```python
-from cloudflare.types.zero_trust.access.users import (
-    ActiveSessionListResponse,
-    ActiveSessionGetResponse,
-)
-```
-
-Methods:
-
-- <code title="get /accounts/{identifier}/access/users/{id}/active_sessions">client.zero_trust.access.users.active_sessions.<a href="./src/cloudflare/resources/zero_trust/access/users/active_sessions.py">list</a>(id, \*, identifier) -> <a href="./src/cloudflare/types/zero_trust/access/users/active_session_list_response.py">SyncSinglePage[ActiveSessionListResponse]</a></code>
-- <code title="get /accounts/{identifier}/access/users/{id}/active_sessions/{nonce}">client.zero_trust.access.users.active_sessions.<a href="./src/cloudflare/resources/zero_trust/access/users/active_sessions.py">get</a>(nonce, \*, identifier, id) -> <a href="./src/cloudflare/types/zero_trust/access/users/active_session_get_response.py">Optional</a></code>
-
 #### LastSeenIdentity
 
 Types:
@@ -5499,57 +5401,21 @@ Types:
 from cloudflare.types.zero_trust.access.users import Identity
 ```
 
-Methods:
-
-- <code title="get /accounts/{identifier}/access/users/{id}/last_seen_identity">client.zero_trust.access.users.last_seen_identity.<a href="./src/cloudflare/resources/zero_trust/access/users/last_seen_identity.py">get</a>(id, \*, identifier) -> <a href="./src/cloudflare/types/zero_trust/access/users/identity.py">Optional</a></code>
-
-#### FailedLogins
-
-Types:
-
-```python
-from cloudflare.types.zero_trust.access.users import FailedLoginListResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{identifier}/access/users/{id}/failed_logins">client.zero_trust.access.users.failed_logins.<a href="./src/cloudflare/resources/zero_trust/access/users/failed_logins.py">list</a>(id, \*, identifier) -> <a href="./src/cloudflare/types/zero_trust/access/users/failed_login_list_response.py">SyncSinglePage[FailedLoginListResponse]</a></code>
-
 ### CustomPages
 
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access import (
-    CustomPage,
-    CustomPageWithoutHTML,
-    CustomPageDeleteResponse,
-)
+from cloudflare.types.zero_trust.access import CustomPage, CustomPageWithoutHTML
 ```
-
-Methods:
-
-- <code title="post /accounts/{identifier}/access/custom_pages">client.zero_trust.access.custom_pages.<a href="./src/cloudflare/resources/zero_trust/access/custom_pages.py">create</a>(identifier, \*\*<a href="src/cloudflare/types/zero_trust/access/custom_page_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/custom_page_without_html.py">Optional</a></code>
-- <code title="put /accounts/{identifier}/access/custom_pages/{uuid}">client.zero_trust.access.custom_pages.<a href="./src/cloudflare/resources/zero_trust/access/custom_pages.py">update</a>(uuid, \*, identifier, \*\*<a href="src/cloudflare/types/zero_trust/access/custom_page_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/custom_page_without_html.py">Optional</a></code>
-- <code title="get /accounts/{identifier}/access/custom_pages">client.zero_trust.access.custom_pages.<a href="./src/cloudflare/resources/zero_trust/access/custom_pages.py">list</a>(identifier) -> <a href="./src/cloudflare/types/zero_trust/access/custom_page_without_html.py">SyncSinglePage[CustomPageWithoutHTML]</a></code>
-- <code title="delete /accounts/{identifier}/access/custom_pages/{uuid}">client.zero_trust.access.custom_pages.<a href="./src/cloudflare/resources/zero_trust/access/custom_pages.py">delete</a>(uuid, \*, identifier) -> <a href="./src/cloudflare/types/zero_trust/access/custom_page_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{identifier}/access/custom_pages/{uuid}">client.zero_trust.access.custom_pages.<a href="./src/cloudflare/resources/zero_trust/access/custom_pages.py">get</a>(uuid, \*, identifier) -> <a href="./src/cloudflare/types/zero_trust/access/custom_page.py">Optional</a></code>
 
 ### Tags
 
 Types:
 
 ```python
-from cloudflare.types.zero_trust.access import Tag, TagDeleteResponse
+from cloudflare.types.zero_trust.access import Tag
 ```
-
-Methods:
-
-- <code title="post /accounts/{identifier}/access/tags">client.zero_trust.access.tags.<a href="./src/cloudflare/resources/zero_trust/access/tags.py">create</a>(identifier, \*\*<a href="src/cloudflare/types/zero_trust/access/tag_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/tag.py">Optional</a></code>
-- <code title="put /accounts/{identifier}/access/tags/{name}">client.zero_trust.access.tags.<a href="./src/cloudflare/resources/zero_trust/access/tags.py">update</a>(tag_name, \*, identifier, \*\*<a href="src/cloudflare/types/zero_trust/access/tag_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/tag.py">Optional</a></code>
-- <code title="get /accounts/{identifier}/access/tags">client.zero_trust.access.tags.<a href="./src/cloudflare/resources/zero_trust/access/tags.py">list</a>(identifier) -> <a href="./src/cloudflare/types/zero_trust/access/tag.py">SyncSinglePage[Tag]</a></code>
-- <code title="delete /accounts/{identifier}/access/tags/{name}">client.zero_trust.access.tags.<a href="./src/cloudflare/resources/zero_trust/access/tags.py">delete</a>(name, \*, identifier) -> <a href="./src/cloudflare/types/zero_trust/access/tag_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{identifier}/access/tags/{name}">client.zero_trust.access.tags.<a href="./src/cloudflare/resources/zero_trust/access/tags.py">get</a>(name, \*, identifier) -> <a href="./src/cloudflare/types/zero_trust/access/tag.py">Optional</a></code>
 
 ## DEX
 
@@ -7643,14 +7509,14 @@ from cloudflare.types.cloudforce_one import (
 
 Methods:
 
-- <code title="post /accounts/{account_identifier}/cloudforce-one/requests/new">client.cloudforce_one.requests.<a href="./src/cloudflare/resources/cloudforce_one/requests/requests.py">create</a>(account_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/request_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/item.py">Item</a></code>
-- <code title="put /accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}">client.cloudforce_one.requests.<a href="./src/cloudflare/resources/cloudforce_one/requests/requests.py">update</a>(request_identifier, \*, account_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/request_update_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/item.py">Item</a></code>
+- <code title="post /accounts/{account_identifier}/cloudforce-one/requests/new">client.cloudforce_one.requests.<a href="./src/cloudflare/resources/cloudforce_one/requests/requests.py">create</a>(account_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/request_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/item.py">Optional</a></code>
+- <code title="put /accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}">client.cloudforce_one.requests.<a href="./src/cloudflare/resources/cloudforce_one/requests/requests.py">update</a>(request_identifier, \*, account_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/request_update_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/item.py">Optional</a></code>
 - <code title="post /accounts/{account_identifier}/cloudforce-one/requests">client.cloudforce_one.requests.<a href="./src/cloudflare/resources/cloudforce_one/requests/requests.py">list</a>(account_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/request_list_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/list_item.py">SyncV4PagePaginationArray[ListItem]</a></code>
 - <code title="delete /accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}">client.cloudforce_one.requests.<a href="./src/cloudflare/resources/cloudforce_one/requests/requests.py">delete</a>(request_identifier, \*, account_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/request_delete_response.py">RequestDeleteResponse</a></code>
-- <code title="get /accounts/{account_identifier}/cloudforce-one/requests/constants">client.cloudforce_one.requests.<a href="./src/cloudflare/resources/cloudforce_one/requests/requests.py">constants</a>(account_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/request_constants.py">RequestConstants</a></code>
-- <code title="get /accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}">client.cloudforce_one.requests.<a href="./src/cloudflare/resources/cloudforce_one/requests/requests.py">get</a>(request_identifier, \*, account_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/item.py">Item</a></code>
-- <code title="get /accounts/{account_identifier}/cloudforce-one/requests/quota">client.cloudforce_one.requests.<a href="./src/cloudflare/resources/cloudforce_one/requests/requests.py">quota</a>(account_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/quota.py">Quota</a></code>
-- <code title="get /accounts/{account_identifier}/cloudforce-one/requests/types">client.cloudforce_one.requests.<a href="./src/cloudflare/resources/cloudforce_one/requests/requests.py">types</a>(account_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/request_types.py">RequestTypes</a></code>
+- <code title="get /accounts/{account_identifier}/cloudforce-one/requests/constants">client.cloudforce_one.requests.<a href="./src/cloudflare/resources/cloudforce_one/requests/requests.py">constants</a>(account_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/request_constants.py">Optional</a></code>
+- <code title="get /accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}">client.cloudforce_one.requests.<a href="./src/cloudflare/resources/cloudforce_one/requests/requests.py">get</a>(request_identifier, \*, account_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/item.py">Optional</a></code>
+- <code title="get /accounts/{account_identifier}/cloudforce-one/requests/quota">client.cloudforce_one.requests.<a href="./src/cloudflare/resources/cloudforce_one/requests/requests.py">quota</a>(account_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/quota.py">Optional</a></code>
+- <code title="get /accounts/{account_identifier}/cloudforce-one/requests/types">client.cloudforce_one.requests.<a href="./src/cloudflare/resources/cloudforce_one/requests/requests.py">types</a>(account_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/request_types.py">Optional</a></code>
 
 ### Message
 
@@ -7666,10 +7532,10 @@ from cloudflare.types.cloudforce_one.requests import (
 
 Methods:
 
-- <code title="post /accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/new">client.cloudforce_one.requests.message.<a href="./src/cloudflare/resources/cloudforce_one/requests/message.py">create</a>(request_identifier, \*, account_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/requests/message_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/requests/message.py">Message</a></code>
-- <code title="put /accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/{message_identifer}">client.cloudforce_one.requests.message.<a href="./src/cloudflare/resources/cloudforce_one/requests/message.py">update</a>(message_identifer, \*, account_identifier, request_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/requests/message_update_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/requests/message.py">Message</a></code>
+- <code title="post /accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/new">client.cloudforce_one.requests.message.<a href="./src/cloudflare/resources/cloudforce_one/requests/message.py">create</a>(request_identifier, \*, account_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/requests/message_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/requests/message.py">Optional</a></code>
+- <code title="put /accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/{message_identifer}">client.cloudforce_one.requests.message.<a href="./src/cloudflare/resources/cloudforce_one/requests/message.py">update</a>(message_identifer, \*, account_identifier, request_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/requests/message_update_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/requests/message.py">Optional</a></code>
 - <code title="delete /accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message/{message_identifer}">client.cloudforce_one.requests.message.<a href="./src/cloudflare/resources/cloudforce_one/requests/message.py">delete</a>(message_identifer, \*, account_identifier, request_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/requests/message_delete_response.py">MessageDeleteResponse</a></code>
-- <code title="post /accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message">client.cloudforce_one.requests.message.<a href="./src/cloudflare/resources/cloudforce_one/requests/message.py">get</a>(request_identifier, \*, account_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/requests/message_get_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/requests/message_get_response.py">MessageGetResponse</a></code>
+- <code title="post /accounts/{account_identifier}/cloudforce-one/requests/{request_identifier}/message">client.cloudforce_one.requests.message.<a href="./src/cloudflare/resources/cloudforce_one/requests/message.py">get</a>(request_identifier, \*, account_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/requests/message_get_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/requests/message_get_response.py">Optional</a></code>
 
 ### Priority
 
@@ -7686,11 +7552,11 @@ from cloudflare.types.cloudforce_one.requests import (
 
 Methods:
 
-- <code title="post /accounts/{account_identifier}/cloudforce-one/requests/priority/new">client.cloudforce_one.requests.priority.<a href="./src/cloudflare/resources/cloudforce_one/requests/priority.py">create</a>(account_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/requests/priority_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/requests/priority.py">Priority</a></code>
-- <code title="put /accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}">client.cloudforce_one.requests.priority.<a href="./src/cloudflare/resources/cloudforce_one/requests/priority.py">update</a>(priority_identifer, \*, account_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/requests/priority_update_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/item.py">Item</a></code>
+- <code title="post /accounts/{account_identifier}/cloudforce-one/requests/priority/new">client.cloudforce_one.requests.priority.<a href="./src/cloudflare/resources/cloudforce_one/requests/priority.py">create</a>(account_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/requests/priority_create_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/requests/priority.py">Optional</a></code>
+- <code title="put /accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}">client.cloudforce_one.requests.priority.<a href="./src/cloudflare/resources/cloudforce_one/requests/priority.py">update</a>(priority_identifer, \*, account_identifier, \*\*<a href="src/cloudflare/types/cloudforce_one/requests/priority_update_params.py">params</a>) -> <a href="./src/cloudflare/types/cloudforce_one/item.py">Optional</a></code>
 - <code title="delete /accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}">client.cloudforce_one.requests.priority.<a href="./src/cloudflare/resources/cloudforce_one/requests/priority.py">delete</a>(priority_identifer, \*, account_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/requests/priority_delete_response.py">PriorityDeleteResponse</a></code>
-- <code title="get /accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}">client.cloudforce_one.requests.priority.<a href="./src/cloudflare/resources/cloudforce_one/requests/priority.py">get</a>(priority_identifer, \*, account_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/item.py">Item</a></code>
-- <code title="get /accounts/{account_identifier}/cloudforce-one/requests/priority/quota">client.cloudforce_one.requests.priority.<a href="./src/cloudflare/resources/cloudforce_one/requests/priority.py">quota</a>(account_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/quota.py">Quota</a></code>
+- <code title="get /accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}">client.cloudforce_one.requests.priority.<a href="./src/cloudflare/resources/cloudforce_one/requests/priority.py">get</a>(priority_identifer, \*, account_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/item.py">Optional</a></code>
+- <code title="get /accounts/{account_identifier}/cloudforce-one/requests/priority/quota">client.cloudforce_one.requests.priority.<a href="./src/cloudflare/resources/cloudforce_one/requests/priority.py">quota</a>(account_identifier) -> <a href="./src/cloudflare/types/cloudforce_one/quota.py">Optional</a></code>
 
 # EventNotifications
 
