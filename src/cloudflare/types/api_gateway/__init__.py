@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .schema import Schema as Schema
 from .message import Message as Message
 from .api_shield import APIShield as APIShield
 from .configuration import Configuration as Configuration
