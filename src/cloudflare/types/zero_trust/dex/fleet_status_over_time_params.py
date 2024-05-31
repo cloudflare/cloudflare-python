@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, Annotated, TypedDict
-
-from ...._utils import PropertyInfo
+from typing_extensions import Required, TypedDict
 
 __all__ = ["FleetStatusOverTimeParams"]
 
@@ -12,10 +10,10 @@ __all__ = ["FleetStatusOverTimeParams"]
 class FleetStatusOverTimeParams(TypedDict, total=False):
     account_id: Required[str]
 
-    from_: Required[Annotated[str, PropertyInfo(alias="from")]]
+    time_end: Required[str]
     """Timestamp in ISO format"""
 
-    to: Required[str]
+    time_start: Required[str]
     """Timestamp in ISO format"""
 
     colo: str
