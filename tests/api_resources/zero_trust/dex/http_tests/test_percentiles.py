@@ -22,8 +22,8 @@ class TestPercentiles:
         percentile = client.zero_trust.dex.http_tests.percentiles.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            time_end="2023-09-20T17:00:00Z",
-            time_start="2023-09-20T17:00:00Z",
+            from_="2023-09-20T17:00:00Z",
+            to="2023-09-20T17:00:00Z",
         )
         assert_matches_type(Optional[HTTPDetailsPercentiles], percentile, path=["response"])
 
@@ -32,8 +32,8 @@ class TestPercentiles:
         percentile = client.zero_trust.dex.http_tests.percentiles.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            time_end="2023-09-20T17:00:00Z",
-            time_start="2023-09-20T17:00:00Z",
+            from_="2023-09-20T17:00:00Z",
+            to="2023-09-20T17:00:00Z",
             colo="string",
             device_id=["string", "string", "string"],
         )
@@ -44,8 +44,8 @@ class TestPercentiles:
         response = client.zero_trust.dex.http_tests.percentiles.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            time_end="2023-09-20T17:00:00Z",
-            time_start="2023-09-20T17:00:00Z",
+            from_="2023-09-20T17:00:00Z",
+            to="2023-09-20T17:00:00Z",
         )
 
         assert response.is_closed is True
@@ -58,8 +58,8 @@ class TestPercentiles:
         with client.zero_trust.dex.http_tests.percentiles.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            time_end="2023-09-20T17:00:00Z",
-            time_start="2023-09-20T17:00:00Z",
+            from_="2023-09-20T17:00:00Z",
+            to="2023-09-20T17:00:00Z",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -75,16 +75,16 @@ class TestPercentiles:
             client.zero_trust.dex.http_tests.percentiles.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                time_end="2023-09-20T17:00:00Z",
-                time_start="2023-09-20T17:00:00Z",
+                from_="2023-09-20T17:00:00Z",
+                to="2023-09-20T17:00:00Z",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
             client.zero_trust.dex.http_tests.percentiles.with_raw_response.get(
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
-                time_end="2023-09-20T17:00:00Z",
-                time_start="2023-09-20T17:00:00Z",
+                from_="2023-09-20T17:00:00Z",
+                to="2023-09-20T17:00:00Z",
             )
 
 
@@ -96,8 +96,8 @@ class TestAsyncPercentiles:
         percentile = await async_client.zero_trust.dex.http_tests.percentiles.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            time_end="2023-09-20T17:00:00Z",
-            time_start="2023-09-20T17:00:00Z",
+            from_="2023-09-20T17:00:00Z",
+            to="2023-09-20T17:00:00Z",
         )
         assert_matches_type(Optional[HTTPDetailsPercentiles], percentile, path=["response"])
 
@@ -106,8 +106,8 @@ class TestAsyncPercentiles:
         percentile = await async_client.zero_trust.dex.http_tests.percentiles.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            time_end="2023-09-20T17:00:00Z",
-            time_start="2023-09-20T17:00:00Z",
+            from_="2023-09-20T17:00:00Z",
+            to="2023-09-20T17:00:00Z",
             colo="string",
             device_id=["string", "string", "string"],
         )
@@ -118,8 +118,8 @@ class TestAsyncPercentiles:
         response = await async_client.zero_trust.dex.http_tests.percentiles.with_raw_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            time_end="2023-09-20T17:00:00Z",
-            time_start="2023-09-20T17:00:00Z",
+            from_="2023-09-20T17:00:00Z",
+            to="2023-09-20T17:00:00Z",
         )
 
         assert response.is_closed is True
@@ -132,8 +132,8 @@ class TestAsyncPercentiles:
         async with async_client.zero_trust.dex.http_tests.percentiles.with_streaming_response.get(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            time_end="2023-09-20T17:00:00Z",
-            time_start="2023-09-20T17:00:00Z",
+            from_="2023-09-20T17:00:00Z",
+            to="2023-09-20T17:00:00Z",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -149,14 +149,14 @@ class TestAsyncPercentiles:
             await async_client.zero_trust.dex.http_tests.percentiles.with_raw_response.get(
                 "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                time_end="2023-09-20T17:00:00Z",
-                time_start="2023-09-20T17:00:00Z",
+                from_="2023-09-20T17:00:00Z",
+                to="2023-09-20T17:00:00Z",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
             await async_client.zero_trust.dex.http_tests.percentiles.with_raw_response.get(
                 "",
                 account_id="01a7362d577a6c3019a474fd6f485823",
-                time_end="2023-09-20T17:00:00Z",
-                time_start="2023-09-20T17:00:00Z",
+                from_="2023-09-20T17:00:00Z",
+                to="2023-09-20T17:00:00Z",
             )

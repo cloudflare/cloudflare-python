@@ -13,11 +13,11 @@ __all__ = ["TracerouteTestPercentilesParams"]
 class TracerouteTestPercentilesParams(TypedDict, total=False):
     account_id: Required[str]
 
-    time_end: Required[Annotated[str, PropertyInfo(alias="timeEnd")]]
-    """End time for aggregate metrics in ISO format"""
-
-    time_start: Required[Annotated[str, PropertyInfo(alias="timeStart")]]
+    from_: Required[Annotated[str, PropertyInfo(alias="from")]]
     """Start time for aggregate metrics in ISO format"""
+
+    to: Required[str]
+    """End time for aggregate metrics in ISO format"""
 
     colo: str
     """Optionally filter result stats to a Cloudflare colo.
