@@ -23,11 +23,10 @@ class TestDevices:
     def test_method_list(self, client: Cloudflare) -> None:
         device = client.zero_trust.dex.fleet_status.devices.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            from_="2023-10-11T00:00:00Z",
             page=1,
             per_page=10,
-            source="last_seen",
-            to="2023-10-11T00:00:00Z",
+            time_end="2023-10-11T00:00:00Z",
+            time_start="2023-10-11T00:00:00Z",
         )
         assert_matches_type(SyncV4PagePaginationArray[DeviceListResponse], device, path=["response"])
 
@@ -36,11 +35,10 @@ class TestDevices:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         device = client.zero_trust.dex.fleet_status.devices.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            from_="2023-10-11T00:00:00Z",
             page=1,
             per_page=10,
-            source="last_seen",
-            to="2023-10-11T00:00:00Z",
+            time_end="2023-10-11T00:00:00Z",
+            time_start="2023-10-11T00:00:00Z",
             colo="SJC",
             device_id="cb49c27f-7f97-49c5-b6f3-f7c01ead0fd7",
             mode="proxy",
@@ -56,11 +54,10 @@ class TestDevices:
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.dex.fleet_status.devices.with_raw_response.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            from_="2023-10-11T00:00:00Z",
             page=1,
             per_page=10,
-            source="last_seen",
-            to="2023-10-11T00:00:00Z",
+            time_end="2023-10-11T00:00:00Z",
+            time_start="2023-10-11T00:00:00Z",
         )
 
         assert response.is_closed is True
@@ -73,11 +70,10 @@ class TestDevices:
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.dex.fleet_status.devices.with_streaming_response.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            from_="2023-10-11T00:00:00Z",
             page=1,
             per_page=10,
-            source="last_seen",
-            to="2023-10-11T00:00:00Z",
+            time_end="2023-10-11T00:00:00Z",
+            time_start="2023-10-11T00:00:00Z",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -93,11 +89,10 @@ class TestDevices:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.dex.fleet_status.devices.with_raw_response.list(
                 account_id="",
-                from_="2023-10-11T00:00:00Z",
                 page=1,
                 per_page=10,
-                source="last_seen",
-                to="2023-10-11T00:00:00Z",
+                time_end="2023-10-11T00:00:00Z",
+                time_start="2023-10-11T00:00:00Z",
             )
 
 
@@ -109,11 +104,10 @@ class TestAsyncDevices:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         device = await async_client.zero_trust.dex.fleet_status.devices.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            from_="2023-10-11T00:00:00Z",
             page=1,
             per_page=10,
-            source="last_seen",
-            to="2023-10-11T00:00:00Z",
+            time_end="2023-10-11T00:00:00Z",
+            time_start="2023-10-11T00:00:00Z",
         )
         assert_matches_type(AsyncV4PagePaginationArray[DeviceListResponse], device, path=["response"])
 
@@ -122,11 +116,10 @@ class TestAsyncDevices:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         device = await async_client.zero_trust.dex.fleet_status.devices.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            from_="2023-10-11T00:00:00Z",
             page=1,
             per_page=10,
-            source="last_seen",
-            to="2023-10-11T00:00:00Z",
+            time_end="2023-10-11T00:00:00Z",
+            time_start="2023-10-11T00:00:00Z",
             colo="SJC",
             device_id="cb49c27f-7f97-49c5-b6f3-f7c01ead0fd7",
             mode="proxy",
@@ -142,11 +135,10 @@ class TestAsyncDevices:
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dex.fleet_status.devices.with_raw_response.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            from_="2023-10-11T00:00:00Z",
             page=1,
             per_page=10,
-            source="last_seen",
-            to="2023-10-11T00:00:00Z",
+            time_end="2023-10-11T00:00:00Z",
+            time_start="2023-10-11T00:00:00Z",
         )
 
         assert response.is_closed is True
@@ -159,11 +151,10 @@ class TestAsyncDevices:
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dex.fleet_status.devices.with_streaming_response.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            from_="2023-10-11T00:00:00Z",
             page=1,
             per_page=10,
-            source="last_seen",
-            to="2023-10-11T00:00:00Z",
+            time_end="2023-10-11T00:00:00Z",
+            time_start="2023-10-11T00:00:00Z",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -179,9 +170,8 @@ class TestAsyncDevices:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.dex.fleet_status.devices.with_raw_response.list(
                 account_id="",
-                from_="2023-10-11T00:00:00Z",
                 page=1,
                 per_page=10,
-                source="last_seen",
-                to="2023-10-11T00:00:00Z",
+                time_end="2023-10-11T00:00:00Z",
+                time_start="2023-10-11T00:00:00Z",
             )
