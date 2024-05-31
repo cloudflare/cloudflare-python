@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import Any, List, Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -57,7 +57,7 @@ class PriorityResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Priority]:
+    ) -> Priority:
         """
         Create a New Priority Requirement
 
@@ -98,9 +98,9 @@ class PriorityResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Priority]]._unwrapper,
+                post_parser=ResultWrapper[Priority]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Priority]], ResultWrapper[Priority]),
+            cast_to=cast(Type[Priority], ResultWrapper[Priority]),
         )
 
     def update(
@@ -118,7 +118,7 @@ class PriorityResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Item]:
+    ) -> Item:
         """
         Update a Priority Intelligence Requirement
 
@@ -163,9 +163,9 @@ class PriorityResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Item]]._unwrapper,
+                post_parser=ResultWrapper[Item]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Item]], ResultWrapper[Item]),
+            cast_to=cast(Type[Item], ResultWrapper[Item]),
         )
 
     def delete(
@@ -200,12 +200,21 @@ class PriorityResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
         if not priority_identifer:
             raise ValueError(f"Expected a non-empty value for `priority_identifer` but received {priority_identifer!r}")
-        return self._delete(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        return cast(
+            PriorityDeleteResponse,
+            self._delete(
+                f"/accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[PriorityDeleteResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[PriorityDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=PriorityDeleteResponse,
         )
 
     def get(
@@ -219,7 +228,7 @@ class PriorityResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Item]:
+    ) -> Item:
         """
         Get a Priority Intelligence Requirement
 
@@ -247,9 +256,9 @@ class PriorityResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Item]]._unwrapper,
+                post_parser=ResultWrapper[Item]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Item]], ResultWrapper[Item]),
+            cast_to=cast(Type[Item], ResultWrapper[Item]),
         )
 
     def quota(
@@ -262,7 +271,7 @@ class PriorityResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Quota]:
+    ) -> Quota:
         """
         Get Priority Intelligence Requirement Quota
 
@@ -286,9 +295,9 @@ class PriorityResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Quota]]._unwrapper,
+                post_parser=ResultWrapper[Quota]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Quota]], ResultWrapper[Quota]),
+            cast_to=cast(Type[Quota], ResultWrapper[Quota]),
         )
 
 
@@ -315,7 +324,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Priority]:
+    ) -> Priority:
         """
         Create a New Priority Requirement
 
@@ -356,9 +365,9 @@ class AsyncPriorityResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Priority]]._unwrapper,
+                post_parser=ResultWrapper[Priority]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Priority]], ResultWrapper[Priority]),
+            cast_to=cast(Type[Priority], ResultWrapper[Priority]),
         )
 
     async def update(
@@ -376,7 +385,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Item]:
+    ) -> Item:
         """
         Update a Priority Intelligence Requirement
 
@@ -421,9 +430,9 @@ class AsyncPriorityResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Item]]._unwrapper,
+                post_parser=ResultWrapper[Item]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Item]], ResultWrapper[Item]),
+            cast_to=cast(Type[Item], ResultWrapper[Item]),
         )
 
     async def delete(
@@ -458,12 +467,21 @@ class AsyncPriorityResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
         if not priority_identifer:
             raise ValueError(f"Expected a non-empty value for `priority_identifer` but received {priority_identifer!r}")
-        return await self._delete(
-            f"/accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}",
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+        return cast(
+            PriorityDeleteResponse,
+            await self._delete(
+                f"/accounts/{account_identifier}/cloudforce-one/requests/priority/{priority_identifer}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[PriorityDeleteResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[PriorityDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=PriorityDeleteResponse,
         )
 
     async def get(
@@ -477,7 +495,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Item]:
+    ) -> Item:
         """
         Get a Priority Intelligence Requirement
 
@@ -505,9 +523,9 @@ class AsyncPriorityResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Item]]._unwrapper,
+                post_parser=ResultWrapper[Item]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Item]], ResultWrapper[Item]),
+            cast_to=cast(Type[Item], ResultWrapper[Item]),
         )
 
     async def quota(
@@ -520,7 +538,7 @@ class AsyncPriorityResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Quota]:
+    ) -> Quota:
         """
         Get Priority Intelligence Requirement Quota
 
@@ -544,9 +562,9 @@ class AsyncPriorityResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Quota]]._unwrapper,
+                post_parser=ResultWrapper[Quota]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Quota]], ResultWrapper[Quota]),
+            cast_to=cast(Type[Quota], ResultWrapper[Quota]),
         )
 
 
