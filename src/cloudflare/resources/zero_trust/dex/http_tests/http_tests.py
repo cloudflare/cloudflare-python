@@ -56,9 +56,9 @@ class HTTPTestsResource(SyncAPIResource):
         test_id: str,
         *,
         account_id: str,
+        from_: str,
         interval: Literal["minute", "hour"],
-        time_end: str,
-        time_start: str,
+        to: str,
         colo: str | NotGiven = NOT_GIVEN,
         device_id: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -75,11 +75,11 @@ class HTTPTestsResource(SyncAPIResource):
         Args:
           test_id: API Resource UUID tag.
 
+          from_: Start time for aggregate metrics in ISO ms
+
           interval: Time interval for aggregate time slots.
 
-          time_end: End time for aggregate metrics in ISO ms
-
-          time_start: Start time for aggregate metrics in ISO ms
+          to: End time for aggregate metrics in ISO ms
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.
@@ -108,9 +108,9 @@ class HTTPTestsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "from_": from_,
                         "interval": interval,
-                        "time_end": time_end,
-                        "time_start": time_start,
+                        "to": to,
                         "colo": colo,
                         "device_id": device_id,
                     },
@@ -140,9 +140,9 @@ class AsyncHTTPTestsResource(AsyncAPIResource):
         test_id: str,
         *,
         account_id: str,
+        from_: str,
         interval: Literal["minute", "hour"],
-        time_end: str,
-        time_start: str,
+        to: str,
         colo: str | NotGiven = NOT_GIVEN,
         device_id: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -159,11 +159,11 @@ class AsyncHTTPTestsResource(AsyncAPIResource):
         Args:
           test_id: API Resource UUID tag.
 
+          from_: Start time for aggregate metrics in ISO ms
+
           interval: Time interval for aggregate time slots.
 
-          time_end: End time for aggregate metrics in ISO ms
-
-          time_start: Start time for aggregate metrics in ISO ms
+          to: End time for aggregate metrics in ISO ms
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.
@@ -192,9 +192,9 @@ class AsyncHTTPTestsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
+                        "from_": from_,
                         "interval": interval,
-                        "time_end": time_end,
-                        "time_start": time_start,
+                        "to": to,
                         "colo": colo,
                         "device_id": device_id,
                     },

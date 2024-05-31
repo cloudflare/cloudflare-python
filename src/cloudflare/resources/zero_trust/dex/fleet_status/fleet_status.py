@@ -95,8 +95,8 @@ class FleetStatusResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        time_end: str,
-        time_start: str,
+        from_: str,
+        to: str,
         colo: str | NotGiven = NOT_GIVEN,
         device_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -110,9 +110,9 @@ class FleetStatusResource(SyncAPIResource):
         List details for devices using WARP, up to 7 days
 
         Args:
-          time_end: Timestamp in ISO format
+          from_: Timestamp in ISO format
 
-          time_start: Timestamp in ISO format
+          to: Timestamp in ISO format
 
           colo: Cloudflare colo
 
@@ -138,8 +138,8 @@ class FleetStatusResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "time_end": time_end,
-                        "time_start": time_start,
+                        "from_": from_,
+                        "to": to,
                         "colo": colo,
                         "device_id": device_id,
                     },
@@ -210,8 +210,8 @@ class AsyncFleetStatusResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        time_end: str,
-        time_start: str,
+        from_: str,
+        to: str,
         colo: str | NotGiven = NOT_GIVEN,
         device_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -225,9 +225,9 @@ class AsyncFleetStatusResource(AsyncAPIResource):
         List details for devices using WARP, up to 7 days
 
         Args:
-          time_end: Timestamp in ISO format
+          from_: Timestamp in ISO format
 
-          time_start: Timestamp in ISO format
+          to: Timestamp in ISO format
 
           colo: Cloudflare colo
 
@@ -253,8 +253,8 @@ class AsyncFleetStatusResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "time_end": time_end,
-                        "time_start": time_start,
+                        "from_": from_,
+                        "to": to,
                         "colo": colo,
                         "device_id": device_id,
                     },
