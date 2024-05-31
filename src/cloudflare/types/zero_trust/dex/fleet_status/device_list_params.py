@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from ....._utils import PropertyInfo
 
 __all__ = ["DeviceListParams"]
 
@@ -10,16 +12,24 @@ __all__ = ["DeviceListParams"]
 class DeviceListParams(TypedDict, total=False):
     account_id: Required[str]
 
+    from_: Required[Annotated[str, PropertyInfo(alias="from")]]
+    """Timestamp in ISO format"""
+
     page: Required[float]
     """Page number of paginated results"""
 
     per_page: Required[float]
     """Number of items per page"""
 
-    time_end: Required[str]
-    """Timestamp in ISO format"""
+    source: Required[Literal["last_seen", "hourly", "raw"]]
+    """Source:
 
-    time_start: Required[str]
+    - `hourly` - device details aggregated hourly, up to 7 days prior
+    - `last_seen` - device details, up to 24 hours prior
+    - `raw` - device details, up to 7 days prior
+    """
+
+    to: Required[str]
     """Timestamp in ISO format"""
 
     colo: str

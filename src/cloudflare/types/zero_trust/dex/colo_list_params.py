@@ -12,11 +12,11 @@ __all__ = ["ColoListParams"]
 class ColoListParams(TypedDict, total=False):
     account_id: Required[str]
 
-    time_end: Required[Annotated[str, PropertyInfo(alias="timeEnd")]]
-    """End time for connection period in RFC3339 (ISO 8601) format."""
-
-    time_start: Required[Annotated[str, PropertyInfo(alias="timeStart")]]
+    from_: Required[Annotated[str, PropertyInfo(alias="from")]]
     """Start time for connection period in RFC3339 (ISO 8601) format."""
+
+    to: Required[str]
+    """End time for connection period in RFC3339 (ISO 8601) format."""
 
     sort_by: Annotated[Literal["fleet-status-usage", "application-tests-usage"], PropertyInfo(alias="sortBy")]
     """Type of usage that colos should be sorted by.
