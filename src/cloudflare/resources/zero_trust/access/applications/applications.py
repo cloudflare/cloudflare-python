@@ -14,6 +14,14 @@ from .cas import (
     CAsResourceWithStreamingResponse,
     AsyncCAsResourceWithStreamingResponse,
 )
+from .policies import (
+    PoliciesResource,
+    AsyncPoliciesResource,
+    PoliciesResourceWithRawResponse,
+    AsyncPoliciesResourceWithRawResponse,
+    PoliciesResourceWithStreamingResponse,
+    AsyncPoliciesResourceWithStreamingResponse,
+)
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._utils import (
     maybe_transform,
@@ -68,6 +76,10 @@ class ApplicationsResource(SyncAPIResource):
     @cached_property
     def user_policy_checks(self) -> UserPolicyChecksResource:
         return UserPolicyChecksResource(self._client)
+
+    @cached_property
+    def policies(self) -> PoliciesResource:
+        return PoliciesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> ApplicationsResourceWithRawResponse:
@@ -1850,6 +1862,10 @@ class AsyncApplicationsResource(AsyncAPIResource):
     @cached_property
     def user_policy_checks(self) -> AsyncUserPolicyChecksResource:
         return AsyncUserPolicyChecksResource(self._client)
+
+    @cached_property
+    def policies(self) -> AsyncPoliciesResource:
+        return AsyncPoliciesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncApplicationsResourceWithRawResponse:
@@ -3655,6 +3671,10 @@ class ApplicationsResourceWithRawResponse:
     def user_policy_checks(self) -> UserPolicyChecksResourceWithRawResponse:
         return UserPolicyChecksResourceWithRawResponse(self._applications.user_policy_checks)
 
+    @cached_property
+    def policies(self) -> PoliciesResourceWithRawResponse:
+        return PoliciesResourceWithRawResponse(self._applications.policies)
+
 
 class AsyncApplicationsResourceWithRawResponse:
     def __init__(self, applications: AsyncApplicationsResource) -> None:
@@ -3686,6 +3706,10 @@ class AsyncApplicationsResourceWithRawResponse:
     @cached_property
     def user_policy_checks(self) -> AsyncUserPolicyChecksResourceWithRawResponse:
         return AsyncUserPolicyChecksResourceWithRawResponse(self._applications.user_policy_checks)
+
+    @cached_property
+    def policies(self) -> AsyncPoliciesResourceWithRawResponse:
+        return AsyncPoliciesResourceWithRawResponse(self._applications.policies)
 
 
 class ApplicationsResourceWithStreamingResponse:
@@ -3719,6 +3743,10 @@ class ApplicationsResourceWithStreamingResponse:
     def user_policy_checks(self) -> UserPolicyChecksResourceWithStreamingResponse:
         return UserPolicyChecksResourceWithStreamingResponse(self._applications.user_policy_checks)
 
+    @cached_property
+    def policies(self) -> PoliciesResourceWithStreamingResponse:
+        return PoliciesResourceWithStreamingResponse(self._applications.policies)
+
 
 class AsyncApplicationsResourceWithStreamingResponse:
     def __init__(self, applications: AsyncApplicationsResource) -> None:
@@ -3750,3 +3778,7 @@ class AsyncApplicationsResourceWithStreamingResponse:
     @cached_property
     def user_policy_checks(self) -> AsyncUserPolicyChecksResourceWithStreamingResponse:
         return AsyncUserPolicyChecksResourceWithStreamingResponse(self._applications.user_policy_checks)
+
+    @cached_property
+    def policies(self) -> AsyncPoliciesResourceWithStreamingResponse:
+        return AsyncPoliciesResourceWithStreamingResponse(self._applications.policies)

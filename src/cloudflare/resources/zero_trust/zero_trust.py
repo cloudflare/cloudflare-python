@@ -18,6 +18,14 @@ from .dlp import (
     DLPResourceWithStreamingResponse,
     AsyncDLPResourceWithStreamingResponse,
 )
+from .seats import (
+    SeatsResource,
+    AsyncSeatsResource,
+    SeatsResourceWithRawResponse,
+    AsyncSeatsResourceWithRawResponse,
+    SeatsResourceWithStreamingResponse,
+    AsyncSeatsResourceWithStreamingResponse,
+)
 from .access import (
     AccessResource,
     AsyncAccessResource,
@@ -118,6 +126,10 @@ class ZeroTrustResource(SyncAPIResource):
         return OrganizationsResource(self._client)
 
     @cached_property
+    def seats(self) -> SeatsResource:
+        return SeatsResource(self._client)
+
+    @cached_property
     def access(self) -> AccessResource:
         return AccessResource(self._client)
 
@@ -170,6 +182,10 @@ class AsyncZeroTrustResource(AsyncAPIResource):
     @cached_property
     def organizations(self) -> AsyncOrganizationsResource:
         return AsyncOrganizationsResource(self._client)
+
+    @cached_property
+    def seats(self) -> AsyncSeatsResource:
+        return AsyncSeatsResource(self._client)
 
     @cached_property
     def access(self) -> AsyncAccessResource:
@@ -229,6 +245,10 @@ class ZeroTrustResourceWithRawResponse:
         return OrganizationsResourceWithRawResponse(self._zero_trust.organizations)
 
     @cached_property
+    def seats(self) -> SeatsResourceWithRawResponse:
+        return SeatsResourceWithRawResponse(self._zero_trust.seats)
+
+    @cached_property
     def access(self) -> AccessResourceWithRawResponse:
         return AccessResourceWithRawResponse(self._zero_trust.access)
 
@@ -276,6 +296,10 @@ class AsyncZeroTrustResourceWithRawResponse:
     @cached_property
     def organizations(self) -> AsyncOrganizationsResourceWithRawResponse:
         return AsyncOrganizationsResourceWithRawResponse(self._zero_trust.organizations)
+
+    @cached_property
+    def seats(self) -> AsyncSeatsResourceWithRawResponse:
+        return AsyncSeatsResourceWithRawResponse(self._zero_trust.seats)
 
     @cached_property
     def access(self) -> AsyncAccessResourceWithRawResponse:
@@ -327,6 +351,10 @@ class ZeroTrustResourceWithStreamingResponse:
         return OrganizationsResourceWithStreamingResponse(self._zero_trust.organizations)
 
     @cached_property
+    def seats(self) -> SeatsResourceWithStreamingResponse:
+        return SeatsResourceWithStreamingResponse(self._zero_trust.seats)
+
+    @cached_property
     def access(self) -> AccessResourceWithStreamingResponse:
         return AccessResourceWithStreamingResponse(self._zero_trust.access)
 
@@ -374,6 +402,10 @@ class AsyncZeroTrustResourceWithStreamingResponse:
     @cached_property
     def organizations(self) -> AsyncOrganizationsResourceWithStreamingResponse:
         return AsyncOrganizationsResourceWithStreamingResponse(self._zero_trust.organizations)
+
+    @cached_property
+    def seats(self) -> AsyncSeatsResourceWithStreamingResponse:
+        return AsyncSeatsResourceWithStreamingResponse(self._zero_trust.seats)
 
     @cached_property
     def access(self) -> AsyncAccessResourceWithStreamingResponse:

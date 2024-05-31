@@ -8,6 +8,14 @@ from .cas import (
     CAsResourceWithStreamingResponse,
     AsyncCAsResourceWithStreamingResponse,
 )
+from .policies import (
+    PoliciesResource,
+    AsyncPoliciesResource,
+    PoliciesResourceWithRawResponse,
+    AsyncPoliciesResourceWithRawResponse,
+    PoliciesResourceWithStreamingResponse,
+    AsyncPoliciesResourceWithStreamingResponse,
+)
 from .applications import (
     ApplicationsResource,
     AsyncApplicationsResource,
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncUserPolicyChecksResourceWithRawResponse",
     "UserPolicyChecksResourceWithStreamingResponse",
     "AsyncUserPolicyChecksResourceWithStreamingResponse",
+    "PoliciesResource",
+    "AsyncPoliciesResource",
+    "PoliciesResourceWithRawResponse",
+    "AsyncPoliciesResourceWithRawResponse",
+    "PoliciesResourceWithStreamingResponse",
+    "AsyncPoliciesResourceWithStreamingResponse",
     "ApplicationsResource",
     "AsyncApplicationsResource",
     "ApplicationsResourceWithRawResponse",

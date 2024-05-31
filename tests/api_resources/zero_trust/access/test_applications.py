@@ -73,7 +73,20 @@ class TestApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
@@ -203,7 +216,20 @@ class TestApplications:
             ],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -368,7 +394,20 @@ class TestApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
@@ -520,7 +559,20 @@ class TestApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
@@ -644,7 +696,20 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "authentication": {
                     "password": "string",
@@ -759,7 +824,20 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "authentication": {
                     "password": "string",
@@ -874,7 +952,20 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "authentication": {
                     "password": "string",
@@ -1126,7 +1217,20 @@ class TestApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
@@ -1262,7 +1366,20 @@ class TestApplications:
             ],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -1433,7 +1550,20 @@ class TestApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
@@ -1591,7 +1721,20 @@ class TestApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
@@ -1721,7 +1864,20 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "authentication": {
                     "password": "string",
@@ -1842,7 +1998,20 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "authentication": {
                     "password": "string",
@@ -1963,7 +2132,20 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "authentication": {
                     "password": "string",
@@ -2465,7 +2647,20 @@ class TestAsyncApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
@@ -2595,7 +2790,20 @@ class TestAsyncApplications:
             ],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -2760,7 +2968,20 @@ class TestAsyncApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
@@ -2912,7 +3133,20 @@ class TestAsyncApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
@@ -3036,7 +3270,20 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "authentication": {
                     "password": "string",
@@ -3151,7 +3398,20 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "authentication": {
                     "password": "string",
@@ -3266,7 +3526,20 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "authentication": {
                     "password": "string",
@@ -3518,7 +3791,20 @@ class TestAsyncApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
@@ -3654,7 +3940,20 @@ class TestAsyncApplications:
             ],
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
@@ -3825,7 +4124,20 @@ class TestAsyncApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
@@ -3983,7 +4295,20 @@ class TestAsyncApplications:
             name="Admin Site",
             options_preflight_bypass=True,
             path_cookie_attribute=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
@@ -4113,7 +4438,20 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "authentication": {
                     "password": "string",
@@ -4234,7 +4572,20 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "authentication": {
                     "password": "string",
@@ -4355,7 +4706,20 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
             ],
             auto_redirect_to_identity=True,
-            policies=[{"precedence": 0}, {"precedence": 0}, {"precedence": 0}],
+            policies=[
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+                {
+                    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                    "precedence": 0,
+                },
+            ],
             scim_config={
                 "authentication": {
                     "password": "string",
