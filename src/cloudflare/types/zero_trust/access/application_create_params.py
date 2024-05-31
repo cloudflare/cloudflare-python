@@ -248,6 +248,9 @@ class SelfHostedApplication(TypedDict, total=False):
 
 
 class SelfHostedApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -267,6 +270,9 @@ class SelfHostedApplicationPolicyUnionMember2(TypedDict, total=False):
 
     name: Required[str]
     """The name of the Access policy."""
+
+    id: str
+    """The UUID of the policy"""
 
     approval_groups: Iterable[ApprovalGroupParam]
     """Administrators who can approve a temporary authentication request."""
@@ -508,6 +514,9 @@ class SaaSApplication(TypedDict, total=False):
 
 
 class SaaSApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -527,6 +536,9 @@ class SaaSApplicationPolicyUnionMember2(TypedDict, total=False):
 
     name: Required[str]
     """The name of the Access policy."""
+
+    id: str
+    """The UUID of the policy"""
 
     approval_groups: Iterable[ApprovalGroupParam]
     """Administrators who can approve a temporary authentication request."""
@@ -935,6 +947,9 @@ class BrowserSSHApplication(TypedDict, total=False):
 
 
 class BrowserSSHApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -954,6 +969,9 @@ class BrowserSSHApplicationPolicyUnionMember2(TypedDict, total=False):
 
     name: Required[str]
     """The name of the Access policy."""
+
+    id: str
+    """The UUID of the policy"""
 
     approval_groups: Iterable[ApprovalGroupParam]
     """Administrators who can approve a temporary authentication request."""
@@ -1274,6 +1292,9 @@ class BrowserVncApplication(TypedDict, total=False):
 
 
 class BrowserVncApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -1293,6 +1314,9 @@ class BrowserVncApplicationPolicyUnionMember2(TypedDict, total=False):
 
     name: Required[str]
     """The name of the Access policy."""
+
+    id: str
+    """The UUID of the policy"""
 
     approval_groups: Iterable[ApprovalGroupParam]
     """Administrators who can approve a temporary authentication request."""
@@ -1521,6 +1545,9 @@ class AppLauncherApplication(TypedDict, total=False):
 
 
 class AppLauncherApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -1540,6 +1567,9 @@ class AppLauncherApplicationPolicyUnionMember2(TypedDict, total=False):
 
     name: Required[str]
     """The name of the Access policy."""
+
+    id: str
+    """The UUID of the policy"""
 
     approval_groups: Iterable[ApprovalGroupParam]
     """Administrators who can approve a temporary authentication request."""
@@ -1768,6 +1798,9 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
 
 
 class DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -1787,6 +1820,9 @@ class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2(TypedDict, total=
 
     name: Required[str]
     """The name of the Access policy."""
+
+    id: str
+    """The UUID of the policy"""
 
     approval_groups: Iterable[ApprovalGroupParam]
     """Administrators who can approve a temporary authentication request."""
@@ -2021,6 +2057,9 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
 
 
 class BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+    id: str
+    """The UUID of the policy"""
+
     precedence: int
     """The order of execution for this policy.
 
@@ -2040,6 +2079,9 @@ class BrowserIsolationPermissionsApplicationPolicyUnionMember2(TypedDict, total=
 
     name: Required[str]
     """The name of the Access policy."""
+
+    id: str
+    """The UUID of the policy"""
 
     approval_groups: Iterable[ApprovalGroupParam]
     """Administrators who can approve a temporary authentication request."""
