@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .seat import Seat as Seat
 from .device import Device as Device
 from .ip_rule import IPRule as IPRule
 from .azure_ad import AzureAD as AzureAD
@@ -27,7 +26,6 @@ from .azure_group_rule import AzureGroupRule as AzureGroupRule
 from .certificate_rule import CertificateRule as CertificateRule
 from .email_rule_param import EmailRuleParam as EmailRuleParam
 from .group_rule_param import GroupRuleParam as GroupRuleParam
-from .seat_edit_params import SeatEditParams as SeatEditParams
 from .access_rule_param import AccessRuleParam as AccessRuleParam
 from .domain_rule_param import DomainRuleParam as DomainRuleParam
 from .gsuite_group_rule import GSuiteGroupRule as GSuiteGroupRule
@@ -36,7 +34,6 @@ from .scim_config_param import ScimConfigParam as ScimConfigParam
 from .country_rule_param import CountryRuleParam as CountryRuleParam
 from .ip_list_rule_param import IPListRuleParam as IPListRuleParam
 from .login_design_param import LoginDesignParam as LoginDesignParam
-from .seat_edit_response import SeatEditResponse as SeatEditResponse
 from .service_token_rule import ServiceTokenRule as ServiceTokenRule
 from .tunnel_edit_params import TunnelEditParams as TunnelEditParams
 from .tunnel_list_params import TunnelListParams as TunnelListParams
@@ -76,13 +73,11 @@ from .external_evaluation_rule_param import ExternalEvaluationRuleParam as Exter
 from .github_organization_rule_param import GitHubOrganizationRuleParam as GitHubOrganizationRuleParam
 from .identity_provider_create_params import IdentityProviderCreateParams as IdentityProviderCreateParams
 from .identity_provider_list_response import IdentityProviderListResponse as IdentityProviderListResponse
-from .identity_provider_update_params import IdentityProviderUpdateParams as IdentityProviderUpdateParams
 from .access_device_posture_rule_param import AccessDevicePostureRuleParam as AccessDevicePostureRuleParam
 from .authentication_method_rule_param import AuthenticationMethodRuleParam as AuthenticationMethodRuleParam
 from .connectivity_setting_edit_params import ConnectivitySettingEditParams as ConnectivitySettingEditParams
 from .organization_revoke_users_params import OrganizationRevokeUsersParams as OrganizationRevokeUsersParams
 from .connectivity_setting_get_response import ConnectivitySettingGetResponse as ConnectivitySettingGetResponse
-from .identity_provider_delete_response import IdentityProviderDeleteResponse as IdentityProviderDeleteResponse
 from .any_valid_service_token_rule_param import AnyValidServiceTokenRuleParam as AnyValidServiceTokenRuleParam
 from .connectivity_setting_edit_response import ConnectivitySettingEditResponse as ConnectivitySettingEditResponse
 from .organization_revoke_users_response import OrganizationRevokeUsersResponse as OrganizationRevokeUsersResponse
