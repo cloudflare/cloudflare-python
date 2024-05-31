@@ -39,8 +39,8 @@ class ColosResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        time_end: str,
-        time_start: str,
+        from_: str,
+        to: str,
         sort_by: Literal["fleet-status-usage", "application-tests-usage"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -55,9 +55,9 @@ class ColosResource(SyncAPIResource):
         are also returned and sorted alphabetically.
 
         Args:
-          time_end: End time for connection period in RFC3339 (ISO 8601) format.
+          from_: Start time for connection period in RFC3339 (ISO 8601) format.
 
-          time_start: Start time for connection period in RFC3339 (ISO 8601) format.
+          to: End time for connection period in RFC3339 (ISO 8601) format.
 
           sort_by: Type of usage that colos should be sorted by. If unspecified, returns all
               Cloudflare colos sorted alphabetically.
@@ -82,8 +82,8 @@ class ColosResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "time_end": time_end,
-                        "time_start": time_start,
+                        "from_": from_,
+                        "to": to,
                         "sort_by": sort_by,
                     },
                     colo_list_params.ColoListParams,
@@ -106,8 +106,8 @@ class AsyncColosResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        time_end: str,
-        time_start: str,
+        from_: str,
+        to: str,
         sort_by: Literal["fleet-status-usage", "application-tests-usage"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -122,9 +122,9 @@ class AsyncColosResource(AsyncAPIResource):
         are also returned and sorted alphabetically.
 
         Args:
-          time_end: End time for connection period in RFC3339 (ISO 8601) format.
+          from_: Start time for connection period in RFC3339 (ISO 8601) format.
 
-          time_start: Start time for connection period in RFC3339 (ISO 8601) format.
+          to: End time for connection period in RFC3339 (ISO 8601) format.
 
           sort_by: Type of usage that colos should be sorted by. If unspecified, returns all
               Cloudflare colos sorted alphabetically.
@@ -149,8 +149,8 @@ class AsyncColosResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "time_end": time_end,
-                        "time_start": time_start,
+                        "from_": from_,
+                        "to": to,
                         "sort_by": sort_by,
                     },
                     colo_list_params.ColoListParams,

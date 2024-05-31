@@ -13,14 +13,14 @@ __all__ = ["TracerouteTestGetParams"]
 class TracerouteTestGetParams(TypedDict, total=False):
     account_id: Required[str]
 
+    from_: Required[Annotated[str, PropertyInfo(alias="from")]]
+    """Start time for aggregate metrics in ISO ms"""
+
     interval: Required[Literal["minute", "hour"]]
     """Time interval for aggregate time slots."""
 
-    time_end: Required[Annotated[str, PropertyInfo(alias="timeEnd")]]
+    to: Required[str]
     """End time for aggregate metrics in ISO ms"""
-
-    time_start: Required[Annotated[str, PropertyInfo(alias="timeStart")]]
-    """Start time for aggregate metrics in ISO ms"""
 
     colo: str
     """Optionally filter result stats to a Cloudflare colo.

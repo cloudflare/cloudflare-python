@@ -43,8 +43,8 @@ class PercentilesResource(SyncAPIResource):
         test_id: str,
         *,
         account_id: str,
-        time_end: str,
-        time_start: str,
+        from_: str,
+        to: str,
         colo: str | NotGiven = NOT_GIVEN,
         device_id: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -61,9 +61,9 @@ class PercentilesResource(SyncAPIResource):
         Args:
           test_id: API Resource UUID tag.
 
-          time_end: End time for aggregate metrics in ISO format
+          from_: Start time for aggregate metrics in ISO format
 
-          time_start: Start time for aggregate metrics in ISO format
+          to: End time for aggregate metrics in ISO format
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.
@@ -92,8 +92,8 @@ class PercentilesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "time_end": time_end,
-                        "time_start": time_start,
+                        "from_": from_,
+                        "to": to,
                         "colo": colo,
                         "device_id": device_id,
                     },
@@ -119,8 +119,8 @@ class AsyncPercentilesResource(AsyncAPIResource):
         test_id: str,
         *,
         account_id: str,
-        time_end: str,
-        time_start: str,
+        from_: str,
+        to: str,
         colo: str | NotGiven = NOT_GIVEN,
         device_id: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -137,9 +137,9 @@ class AsyncPercentilesResource(AsyncAPIResource):
         Args:
           test_id: API Resource UUID tag.
 
-          time_end: End time for aggregate metrics in ISO format
+          from_: Start time for aggregate metrics in ISO format
 
-          time_start: Start time for aggregate metrics in ISO format
+          to: End time for aggregate metrics in ISO format
 
           colo: Optionally filter result stats to a Cloudflare colo. Cannot be used in
               combination with deviceId param.
@@ -168,8 +168,8 @@ class AsyncPercentilesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "time_end": time_end,
-                        "time_start": time_start,
+                        "from_": from_,
+                        "to": to,
                         "colo": colo,
                         "device_id": device_id,
                     },
