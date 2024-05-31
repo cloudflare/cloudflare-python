@@ -33,9 +33,10 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.access import certificate_create_params
+from .....types.zero_trust.access import certificate_create_params, certificate_update_params
 from .....types.zero_trust.access.certificate import Certificate
 from .....types.zero_trust.access.associated_hostnames import AssociatedHostnames
+from .....types.zero_trust.access.certificate_delete_response import CertificateDeleteResponse
 
 __all__ = ["CertificatesResource", "AsyncCertificatesResource"]
 
@@ -122,6 +123,76 @@ class CertificatesResource(SyncAPIResource):
             cast_to=cast(Type[Optional[Certificate]], ResultWrapper[Certificate]),
         )
 
+    def update(
+        self,
+        certificate_id: str,
+        *,
+        associated_hostnames: List[AssociatedHostnames],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Certificate]:
+        """
+        Updates a configured mTLS certificate.
+
+        Args:
+          certificate_id: UUID
+
+          associated_hostnames: The hostnames of the applications that will use this certificate.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          name: The name of the certificate.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return self._put(
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
+            body=maybe_transform(
+                {
+                    "associated_hostnames": associated_hostnames,
+                    "name": name,
+                },
+                certificate_update_params.CertificateUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Certificate]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Certificate]], ResultWrapper[Certificate]),
+        )
+
     def list(
         self,
         *,
@@ -169,6 +240,120 @@ class CertificatesResource(SyncAPIResource):
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             model=Certificate,
+        )
+
+    def delete(
+        self,
+        certificate_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificateDeleteResponse]:
+        """
+        Deletes an mTLS certificate.
+
+        Args:
+          certificate_id: UUID
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return self._delete(
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificateDeleteResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CertificateDeleteResponse]], ResultWrapper[CertificateDeleteResponse]),
+        )
+
+    def get(
+        self,
+        certificate_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Certificate]:
+        """
+        Fetches a single mTLS certificate.
+
+        Args:
+          certificate_id: UUID
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return self._get(
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Certificate]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Certificate]], ResultWrapper[Certificate]),
         )
 
 
@@ -254,6 +439,76 @@ class AsyncCertificatesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[Certificate]], ResultWrapper[Certificate]),
         )
 
+    async def update(
+        self,
+        certificate_id: str,
+        *,
+        associated_hostnames: List[AssociatedHostnames],
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Certificate]:
+        """
+        Updates a configured mTLS certificate.
+
+        Args:
+          certificate_id: UUID
+
+          associated_hostnames: The hostnames of the applications that will use this certificate.
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          name: The name of the certificate.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return await self._put(
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
+            body=await async_maybe_transform(
+                {
+                    "associated_hostnames": associated_hostnames,
+                    "name": name,
+                },
+                certificate_update_params.CertificateUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Certificate]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Certificate]], ResultWrapper[Certificate]),
+        )
+
     def list(
         self,
         *,
@@ -303,6 +558,120 @@ class AsyncCertificatesResource(AsyncAPIResource):
             model=Certificate,
         )
 
+    async def delete(
+        self,
+        certificate_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificateDeleteResponse]:
+        """
+        Deletes an mTLS certificate.
+
+        Args:
+          certificate_id: UUID
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return await self._delete(
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificateDeleteResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CertificateDeleteResponse]], ResultWrapper[CertificateDeleteResponse]),
+        )
+
+    async def get(
+        self,
+        certificate_id: str,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Certificate]:
+        """
+        Fetches a single mTLS certificate.
+
+        Args:
+          certificate_id: UUID
+
+          account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
+
+          zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
+        if account_id and zone_id:
+            raise ValueError("You cannot provide both account_id and zone_id")
+
+        if account_id:
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
+        else:
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
+
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return await self._get(
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Certificate]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Certificate]], ResultWrapper[Certificate]),
+        )
+
 
 class CertificatesResourceWithRawResponse:
     def __init__(self, certificates: CertificatesResource) -> None:
@@ -311,8 +680,17 @@ class CertificatesResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             certificates.create,
         )
+        self.update = to_raw_response_wrapper(
+            certificates.update,
+        )
         self.list = to_raw_response_wrapper(
             certificates.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            certificates.delete,
+        )
+        self.get = to_raw_response_wrapper(
+            certificates.get,
         )
 
     @cached_property
@@ -327,8 +705,17 @@ class AsyncCertificatesResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             certificates.create,
         )
+        self.update = async_to_raw_response_wrapper(
+            certificates.update,
+        )
         self.list = async_to_raw_response_wrapper(
             certificates.list,
+        )
+        self.delete = async_to_raw_response_wrapper(
+            certificates.delete,
+        )
+        self.get = async_to_raw_response_wrapper(
+            certificates.get,
         )
 
     @cached_property
@@ -343,8 +730,17 @@ class CertificatesResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             certificates.create,
         )
+        self.update = to_streamed_response_wrapper(
+            certificates.update,
+        )
         self.list = to_streamed_response_wrapper(
             certificates.list,
+        )
+        self.delete = to_streamed_response_wrapper(
+            certificates.delete,
+        )
+        self.get = to_streamed_response_wrapper(
+            certificates.get,
         )
 
     @cached_property
@@ -359,8 +755,17 @@ class AsyncCertificatesResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             certificates.create,
         )
+        self.update = async_to_streamed_response_wrapper(
+            certificates.update,
+        )
         self.list = async_to_streamed_response_wrapper(
             certificates.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            certificates.delete,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            certificates.get,
         )
 
     @cached_property
