@@ -20,14 +20,13 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import (
-    AsyncPaginator,
     make_request_options,
 )
 from ....types.zero_trust.gateway import proxy_endpoint_edit_params, proxy_endpoint_create_params
 from ....types.zero_trust.gateway.gateway_ips import GatewayIPs
 from ....types.zero_trust.gateway.proxy_endpoint import ProxyEndpoint
+from ....types.zero_trust.gateway.proxy_endpoint_get_response import ProxyEndpointGetResponse
 from ....types.zero_trust.gateway.proxy_endpoint_delete_response import ProxyEndpointDeleteResponse
 
 __all__ = ["ProxyEndpointsResource", "AsyncProxyEndpointsResource"]
@@ -102,9 +101,9 @@ class ProxyEndpointsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ProxyEndpoint]:
+    ) -> Optional[ProxyEndpoint]:
         """
-        Fetches a single Zero Trust Gateway proxy endpoint.
+        Fetches all Zero Trust Gateway proxy endpoints for an account.
 
         Args:
           extra_headers: Send extra headers
@@ -117,13 +116,16 @@ class ProxyEndpointsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
+        return self._get(
             f"/accounts/{account_id}/gateway/proxy_endpoints",
-            page=SyncSinglePage[ProxyEndpoint],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ProxyEndpoint]]._unwrapper,
             ),
-            model=ProxyEndpoint,
+            cast_to=cast(Type[Optional[ProxyEndpoint]], ResultWrapper[ProxyEndpoint]),
         )
 
     def delete(
@@ -235,9 +237,9 @@ class ProxyEndpointsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ProxyEndpoint]:
+    ) -> Optional[ProxyEndpointGetResponse]:
         """
-        Fetches all Zero Trust Gateway proxy endpoints for an account.
+        Fetches a single Zero Trust Gateway proxy endpoint.
 
         Args:
           extra_headers: Send extra headers
@@ -259,9 +261,9 @@ class ProxyEndpointsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ProxyEndpoint]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ProxyEndpointGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ProxyEndpoint]], ResultWrapper[ProxyEndpoint]),
+            cast_to=cast(Type[Optional[ProxyEndpointGetResponse]], ResultWrapper[ProxyEndpointGetResponse]),
         )
 
 
@@ -324,7 +326,7 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[ProxyEndpoint]], ResultWrapper[ProxyEndpoint]),
         )
 
-    def list(
+    async def list(
         self,
         *,
         account_id: str,
@@ -334,9 +336,9 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ProxyEndpoint, AsyncSinglePage[ProxyEndpoint]]:
+    ) -> Optional[ProxyEndpoint]:
         """
-        Fetches a single Zero Trust Gateway proxy endpoint.
+        Fetches all Zero Trust Gateway proxy endpoints for an account.
 
         Args:
           extra_headers: Send extra headers
@@ -349,13 +351,16 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get_api_list(
+        return await self._get(
             f"/accounts/{account_id}/gateway/proxy_endpoints",
-            page=AsyncSinglePage[ProxyEndpoint],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ProxyEndpoint]]._unwrapper,
             ),
-            model=ProxyEndpoint,
+            cast_to=cast(Type[Optional[ProxyEndpoint]], ResultWrapper[ProxyEndpoint]),
         )
 
     async def delete(
@@ -467,9 +472,9 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ProxyEndpoint]:
+    ) -> Optional[ProxyEndpointGetResponse]:
         """
-        Fetches all Zero Trust Gateway proxy endpoints for an account.
+        Fetches a single Zero Trust Gateway proxy endpoint.
 
         Args:
           extra_headers: Send extra headers
@@ -491,9 +496,9 @@ class AsyncProxyEndpointsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ProxyEndpoint]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ProxyEndpointGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ProxyEndpoint]], ResultWrapper[ProxyEndpoint]),
+            cast_to=cast(Type[Optional[ProxyEndpointGetResponse]], ResultWrapper[ProxyEndpointGetResponse]),
         )
 
 
