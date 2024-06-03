@@ -6,31 +6,31 @@ from typing import Type, Optional, cast, overload
 
 import httpx
 
-from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ....._utils import (
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
     required_args,
     maybe_transform,
     async_maybe_transform,
 )
-from ....._compat import cached_property
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from ....._response import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....._wrappers import ResultWrapper
-from .....pagination import SyncSinglePage, AsyncSinglePage
-from ....._base_client import (
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.magic_transit.sites.sites import app_configuration_create_params, app_configuration_update_params
-from .....types.magic_transit.sites.sites.app_configuration_list_response import AppConfigurationListResponse
-from .....types.magic_transit.sites.sites.app_configuration_create_response import AppConfigurationCreateResponse
-from .....types.magic_transit.sites.sites.app_configuration_delete_response import AppConfigurationDeleteResponse
-from .....types.magic_transit.sites.sites.app_configuration_update_response import AppConfigurationUpdateResponse
+from ....types.magic_transit.sites import app_configuration_create_params, app_configuration_update_params
+from ....types.magic_transit.sites.app_configuration_list_response import AppConfigurationListResponse
+from ....types.magic_transit.sites.app_configuration_create_response import AppConfigurationCreateResponse
+from ....types.magic_transit.sites.app_configuration_delete_response import AppConfigurationDeleteResponse
+from ....types.magic_transit.sites.app_configuration_update_response import AppConfigurationUpdateResponse
 
 __all__ = ["AppConfigurationResource", "AsyncAppConfigurationResource"]
 

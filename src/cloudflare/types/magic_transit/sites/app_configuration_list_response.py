@@ -2,12 +2,12 @@
 
 from typing import Optional
 
-from ....._models import BaseModel
+from ...._models import BaseModel
 
-__all__ = ["AppConfigurationUpdateResponse"]
+__all__ = ["AppConfigurationListResponse"]
 
 
-class AppConfigurationUpdateResponse(BaseModel):
+class AppConfigurationListResponse(BaseModel):
     id: str
     """Identifier"""
 
