@@ -2,12 +2,12 @@
 
 from typing import Optional
 
-from ....._models import BaseModel
+from ...._models import BaseModel
 
-__all__ = ["AppConfigurationListResponse"]
+__all__ = ["AppConfigurationDeleteResponse"]
 
 
-class AppConfigurationListResponse(BaseModel):
+class AppConfigurationDeleteResponse(BaseModel):
     id: str
     """Identifier"""
 
