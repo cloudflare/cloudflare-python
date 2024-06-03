@@ -40,8 +40,22 @@ from .loa_documents import (
     LOADocumentsResourceWithStreamingResponse,
     AsyncLOADocumentsResourceWithStreamingResponse,
 )
+from .regional_hostnames import (
+    RegionalHostnamesResource,
+    AsyncRegionalHostnamesResource,
+    RegionalHostnamesResourceWithRawResponse,
+    AsyncRegionalHostnamesResourceWithRawResponse,
+    RegionalHostnamesResourceWithStreamingResponse,
+    AsyncRegionalHostnamesResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "RegionalHostnamesResource",
+    "AsyncRegionalHostnamesResource",
+    "RegionalHostnamesResourceWithRawResponse",
+    "AsyncRegionalHostnamesResourceWithRawResponse",
+    "RegionalHostnamesResourceWithStreamingResponse",
+    "AsyncRegionalHostnamesResourceWithStreamingResponse",
     "ServicesResource",
     "AsyncServicesResource",
     "ServicesResourceWithRawResponse",
