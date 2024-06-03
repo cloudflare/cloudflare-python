@@ -30,6 +30,15 @@ from .wans import (
     WANsResourceWithStreamingResponse,
     AsyncWANsResourceWithStreamingResponse,
 )
+from .sites import (
+    SitesResource,
+    AsyncSitesResource,
+    SitesResourceWithRawResponse,
+    AsyncSitesResourceWithRawResponse,
+    SitesResourceWithStreamingResponse,
+    AsyncSitesResourceWithStreamingResponse,
+    sites,
+)
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._utils import (
     maybe_transform,
@@ -73,6 +82,10 @@ class SitesResource(SyncAPIResource):
     @cached_property
     def wans(self) -> WANsResource:
         return WANsResource(self._client)
+
+    @cached_property
+    def sites(self) -> sites.SitesResource:
+        return SitesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> SitesResourceWithRawResponse:
@@ -430,6 +443,10 @@ class AsyncSitesResource(AsyncAPIResource):
     @cached_property
     def wans(self) -> AsyncWANsResource:
         return AsyncWANsResource(self._client)
+
+    @cached_property
+    def sites(self) -> sites.AsyncSitesResource:
+        return AsyncSitesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncSitesResourceWithRawResponse:
@@ -810,6 +827,10 @@ class SitesResourceWithRawResponse:
     def wans(self) -> WANsResourceWithRawResponse:
         return WANsResourceWithRawResponse(self._sites.wans)
 
+    @cached_property
+    def sites(self) -> SitesResourceWithRawResponse:
+        return SitesResourceWithRawResponse(self._sites.sites)
+
 
 class AsyncSitesResourceWithRawResponse:
     def __init__(self, sites: AsyncSitesResource) -> None:
@@ -845,6 +866,10 @@ class AsyncSitesResourceWithRawResponse:
     @cached_property
     def wans(self) -> AsyncWANsResourceWithRawResponse:
         return AsyncWANsResourceWithRawResponse(self._sites.wans)
+
+    @cached_property
+    def sites(self) -> AsyncSitesResourceWithRawResponse:
+        return AsyncSitesResourceWithRawResponse(self._sites.sites)
 
 
 class SitesResourceWithStreamingResponse:
@@ -882,6 +907,10 @@ class SitesResourceWithStreamingResponse:
     def wans(self) -> WANsResourceWithStreamingResponse:
         return WANsResourceWithStreamingResponse(self._sites.wans)
 
+    @cached_property
+    def sites(self) -> SitesResourceWithStreamingResponse:
+        return SitesResourceWithStreamingResponse(self._sites.sites)
+
 
 class AsyncSitesResourceWithStreamingResponse:
     def __init__(self, sites: AsyncSitesResource) -> None:
@@ -917,3 +946,7 @@ class AsyncSitesResourceWithStreamingResponse:
     @cached_property
     def wans(self) -> AsyncWANsResourceWithStreamingResponse:
         return AsyncWANsResourceWithStreamingResponse(self._sites.wans)
+
+    @cached_property
+    def sites(self) -> AsyncSitesResourceWithStreamingResponse:
+        return AsyncSitesResourceWithStreamingResponse(self._sites.sites)

@@ -3361,6 +3361,40 @@ Methods:
 
 # Addressing
 
+## RegionalHostnames
+
+Types:
+
+```python
+from cloudflare.types.addressing import (
+    RegionalHostnameCreateResponse,
+    RegionalHostnameListResponse,
+    RegionalHostnameDeleteResponse,
+    RegionalHostnameEditResponse,
+    RegionalHostnameGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /zones/{zone_id}/addressing/regional_hostnames">client.addressing.regional_hostnames.<a href="./src/cloudflare/resources/addressing/regional_hostnames/regional_hostnames.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/addressing/regional_hostname_create_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/regional_hostname_create_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/addressing/regional_hostnames">client.addressing.regional_hostnames.<a href="./src/cloudflare/resources/addressing/regional_hostnames/regional_hostnames.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/addressing/regional_hostname_list_response.py">SyncSinglePage[RegionalHostnameListResponse]</a></code>
+- <code title="delete /zones/{zone_id}/addressing/regional_hostnames/{hostname}">client.addressing.regional_hostnames.<a href="./src/cloudflare/resources/addressing/regional_hostnames/regional_hostnames.py">delete</a>(hostname, \*, zone_id) -> <a href="./src/cloudflare/types/addressing/regional_hostname_delete_response.py">RegionalHostnameDeleteResponse</a></code>
+- <code title="patch /zones/{zone_id}/addressing/regional_hostnames/{hostname}">client.addressing.regional_hostnames.<a href="./src/cloudflare/resources/addressing/regional_hostnames/regional_hostnames.py">edit</a>(hostname, \*, zone_id, \*\*<a href="src/cloudflare/types/addressing/regional_hostname_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/addressing/regional_hostname_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/addressing/regional_hostnames/{hostname}">client.addressing.regional_hostnames.<a href="./src/cloudflare/resources/addressing/regional_hostnames/regional_hostnames.py">get</a>(hostname, \*, zone_id) -> <a href="./src/cloudflare/types/addressing/regional_hostname_get_response.py">Optional</a></code>
+
+### Regions
+
+Types:
+
+```python
+from cloudflare.types.addressing.regional_hostnames import RegionListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/addressing/regional_hostnames/regions">client.addressing.regional_hostnames.regions.<a href="./src/cloudflare/resources/addressing/regional_hostnames/regions.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/addressing/regional_hostnames/region_list_response.py">SyncSinglePage[RegionListResponse]</a></code>
+
 ## Services
 
 Types:
@@ -3907,6 +3941,26 @@ Types:
 from cloudflare.types.magic_transit import HealthCheck, HealthCheckRate, HealthCheckType
 ```
 
+## Apps
+
+Types:
+
+```python
+from cloudflare.types.magic_transit import (
+    AppCreateResponse,
+    AppUpdateResponse,
+    AppListResponse,
+    AppDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/magic/apps">client.magic_transit.apps.<a href="./src/cloudflare/resources/magic_transit/apps.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/app_create_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/app_create_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/magic/apps/{account_app_id}">client.magic_transit.apps.<a href="./src/cloudflare/resources/magic_transit/apps.py">update</a>(account_app_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/app_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/app_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/magic/apps">client.magic_transit.apps.<a href="./src/cloudflare/resources/magic_transit/apps.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/magic_transit/app_list_response.py">SyncSinglePage[AppListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/magic/apps/{account_app_id}">client.magic_transit.apps.<a href="./src/cloudflare/resources/magic_transit/apps.py">delete</a>(account_app_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/app_delete_response.py">Optional</a></code>
+
 ## CfInterconnects
 
 Types:
@@ -4072,6 +4126,28 @@ Methods:
 - <code title="delete /accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}">client.magic_transit.sites.wans.<a href="./src/cloudflare/resources/magic_transit/sites/wans.py">delete</a>(wan_id, \*, account_id, site_id) -> <a href="./src/cloudflare/types/magic_transit/sites/wan.py">WAN</a></code>
 - <code title="patch /accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}">client.magic_transit.sites.wans.<a href="./src/cloudflare/resources/magic_transit/sites/wans.py">edit</a>(wan_id, \*, account_id, site_id, \*\*<a href="src/cloudflare/types/magic_transit/sites/wan_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/sites/wan.py">WAN</a></code>
 - <code title="get /accounts/{account_id}/magic/sites/{site_id}/wans/{wan_id}">client.magic_transit.sites.wans.<a href="./src/cloudflare/resources/magic_transit/sites/wans.py">get</a>(wan_id, \*, account_id, site_id) -> <a href="./src/cloudflare/types/magic_transit/sites/wan.py">WAN</a></code>
+
+### Sites
+
+#### AppConfiguration
+
+Types:
+
+```python
+from cloudflare.types.magic_transit.sites.sites import (
+    AppConfigurationCreateResponse,
+    AppConfigurationUpdateResponse,
+    AppConfigurationListResponse,
+    AppConfigurationDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/magic/sites/{site_id}/app_configs">client.magic_transit.sites.sites.app_configuration.<a href="./src/cloudflare/resources/magic_transit/sites/sites/app_configuration.py">create</a>(site_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/sites/sites/app_configuration_create_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/sites/sites/app_configuration_create_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/magic/sites/{site_id}/app_configs/{app_config_id}">client.magic_transit.sites.sites.app_configuration.<a href="./src/cloudflare/resources/magic_transit/sites/sites/app_configuration.py">update</a>(app_config_id, \*, account_id, site_id, \*\*<a href="src/cloudflare/types/magic_transit/sites/sites/app_configuration_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/sites/sites/app_configuration_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/magic/sites/{site_id}/app_configs">client.magic_transit.sites.sites.app_configuration.<a href="./src/cloudflare/resources/magic_transit/sites/sites/app_configuration.py">list</a>(site_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/sites/sites/app_configuration_list_response.py">SyncSinglePage[AppConfigurationListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/magic/sites/{site_id}/app_configs/{app_config_id}">client.magic_transit.sites.sites.app_configuration.<a href="./src/cloudflare/resources/magic_transit/sites/sites/app_configuration.py">delete</a>(app_config_id, \*, account_id, site_id) -> <a href="./src/cloudflare/types/magic_transit/sites/sites/app_configuration_delete_response.py">Optional</a></code>
 
 ## Connectors
 

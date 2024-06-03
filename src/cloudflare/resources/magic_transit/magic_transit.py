@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .apps import (
+    AppsResource,
+    AsyncAppsResource,
+    AppsResourceWithRawResponse,
+    AsyncAppsResourceWithRawResponse,
+    AppsResourceWithStreamingResponse,
+    AsyncAppsResourceWithStreamingResponse,
+)
 from .sites import (
     SitesResource,
     AsyncSitesResource,
@@ -59,6 +67,10 @@ __all__ = ["MagicTransitResource", "AsyncMagicTransitResource"]
 
 class MagicTransitResource(SyncAPIResource):
     @cached_property
+    def apps(self) -> AppsResource:
+        return AppsResource(self._client)
+
+    @cached_property
     def cf_interconnects(self) -> CfInterconnectsResource:
         return CfInterconnectsResource(self._client)
 
@@ -92,6 +104,10 @@ class MagicTransitResource(SyncAPIResource):
 
 
 class AsyncMagicTransitResource(AsyncAPIResource):
+    @cached_property
+    def apps(self) -> AsyncAppsResource:
+        return AsyncAppsResource(self._client)
+
     @cached_property
     def cf_interconnects(self) -> AsyncCfInterconnectsResource:
         return AsyncCfInterconnectsResource(self._client)
@@ -130,6 +146,10 @@ class MagicTransitResourceWithRawResponse:
         self._magic_transit = magic_transit
 
     @cached_property
+    def apps(self) -> AppsResourceWithRawResponse:
+        return AppsResourceWithRawResponse(self._magic_transit.apps)
+
+    @cached_property
     def cf_interconnects(self) -> CfInterconnectsResourceWithRawResponse:
         return CfInterconnectsResourceWithRawResponse(self._magic_transit.cf_interconnects)
 
@@ -157,6 +177,10 @@ class MagicTransitResourceWithRawResponse:
 class AsyncMagicTransitResourceWithRawResponse:
     def __init__(self, magic_transit: AsyncMagicTransitResource) -> None:
         self._magic_transit = magic_transit
+
+    @cached_property
+    def apps(self) -> AsyncAppsResourceWithRawResponse:
+        return AsyncAppsResourceWithRawResponse(self._magic_transit.apps)
 
     @cached_property
     def cf_interconnects(self) -> AsyncCfInterconnectsResourceWithRawResponse:
@@ -188,6 +212,10 @@ class MagicTransitResourceWithStreamingResponse:
         self._magic_transit = magic_transit
 
     @cached_property
+    def apps(self) -> AppsResourceWithStreamingResponse:
+        return AppsResourceWithStreamingResponse(self._magic_transit.apps)
+
+    @cached_property
     def cf_interconnects(self) -> CfInterconnectsResourceWithStreamingResponse:
         return CfInterconnectsResourceWithStreamingResponse(self._magic_transit.cf_interconnects)
 
@@ -215,6 +243,10 @@ class MagicTransitResourceWithStreamingResponse:
 class AsyncMagicTransitResourceWithStreamingResponse:
     def __init__(self, magic_transit: AsyncMagicTransitResource) -> None:
         self._magic_transit = magic_transit
+
+    @cached_property
+    def apps(self) -> AsyncAppsResourceWithStreamingResponse:
+        return AsyncAppsResourceWithStreamingResponse(self._magic_transit.apps)
 
     @cached_property
     def cf_interconnects(self) -> AsyncCfInterconnectsResourceWithStreamingResponse:
