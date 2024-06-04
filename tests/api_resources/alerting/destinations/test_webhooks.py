@@ -23,6 +23,9 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestWebhooks:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         webhook = client.alerting.destinations.webhooks.create(
@@ -32,6 +35,9 @@ class TestWebhooks:
         )
         assert_matches_type(Optional[WebhookCreateResponse], webhook, path=["response"])
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         webhook = client.alerting.destinations.webhooks.create(
@@ -42,6 +48,9 @@ class TestWebhooks:
         )
         assert_matches_type(Optional[WebhookCreateResponse], webhook, path=["response"])
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.alerting.destinations.webhooks.with_raw_response.create(
@@ -55,6 +64,9 @@ class TestWebhooks:
         webhook = response.parse()
         assert_matches_type(Optional[WebhookCreateResponse], webhook, path=["response"])
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.alerting.destinations.webhooks.with_streaming_response.create(
@@ -70,6 +82,9 @@ class TestWebhooks:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -79,6 +94,9 @@ class TestWebhooks:
                 url="https://hooks.slack.com/services/Ds3fdBFbV/456464Gdd",
             )
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         webhook = client.alerting.destinations.webhooks.update(
@@ -89,6 +107,9 @@ class TestWebhooks:
         )
         assert_matches_type(Optional[WebhookUpdateResponse], webhook, path=["response"])
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         webhook = client.alerting.destinations.webhooks.update(
@@ -100,6 +121,9 @@ class TestWebhooks:
         )
         assert_matches_type(Optional[WebhookUpdateResponse], webhook, path=["response"])
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.alerting.destinations.webhooks.with_raw_response.update(
@@ -114,6 +138,9 @@ class TestWebhooks:
         webhook = response.parse()
         assert_matches_type(Optional[WebhookUpdateResponse], webhook, path=["response"])
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.alerting.destinations.webhooks.with_streaming_response.update(
@@ -130,6 +157,9 @@ class TestWebhooks:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -286,6 +316,9 @@ class TestWebhooks:
 class TestAsyncWebhooks:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.alerting.destinations.webhooks.create(
@@ -295,6 +328,9 @@ class TestAsyncWebhooks:
         )
         assert_matches_type(Optional[WebhookCreateResponse], webhook, path=["response"])
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.alerting.destinations.webhooks.create(
@@ -305,6 +341,9 @@ class TestAsyncWebhooks:
         )
         assert_matches_type(Optional[WebhookCreateResponse], webhook, path=["response"])
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.alerting.destinations.webhooks.with_raw_response.create(
@@ -318,6 +357,9 @@ class TestAsyncWebhooks:
         webhook = await response.parse()
         assert_matches_type(Optional[WebhookCreateResponse], webhook, path=["response"])
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.destinations.webhooks.with_streaming_response.create(
@@ -333,6 +375,9 @@ class TestAsyncWebhooks:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -342,6 +387,9 @@ class TestAsyncWebhooks:
                 url="https://hooks.slack.com/services/Ds3fdBFbV/456464Gdd",
             )
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.alerting.destinations.webhooks.update(
@@ -352,6 +400,9 @@ class TestAsyncWebhooks:
         )
         assert_matches_type(Optional[WebhookUpdateResponse], webhook, path=["response"])
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         webhook = await async_client.alerting.destinations.webhooks.update(
@@ -363,6 +414,9 @@ class TestAsyncWebhooks:
         )
         assert_matches_type(Optional[WebhookUpdateResponse], webhook, path=["response"])
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.alerting.destinations.webhooks.with_raw_response.update(
@@ -377,6 +431,9 @@ class TestAsyncWebhooks:
         webhook = await response.parse()
         assert_matches_type(Optional[WebhookUpdateResponse], webhook, path=["response"])
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.destinations.webhooks.with_streaming_response.update(
@@ -393,6 +450,9 @@ class TestAsyncWebhooks:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(
+        reason="prism errors - https://github.com/cloudflare/cloudflare-python/actions/runs/9327225061/job/25676826349?pr=482#step:5:4291"
+    )
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
