@@ -84,7 +84,6 @@ class TestPhases:
             ],
             account_id="string",
             description="My ruleset to execute managed rulesets",
-            kind="root",
             name="My ruleset",
             phase="http_request_firewall_custom",
         )
@@ -269,7 +268,6 @@ class TestAsyncPhases:
             ],
             account_id="string",
             description="My ruleset to execute managed rulesets",
-            kind="root",
             name="My ruleset",
             phase="http_request_firewall_custom",
         )

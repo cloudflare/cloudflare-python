@@ -29,8 +29,8 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.rulesets.ruleset import Ruleset
 from ....types.rulesets.version_get_response import VersionGetResponse
+from ....types.rulesets.version_list_response import VersionListResponse
 
 __all__ = ["VersionsResource", "AsyncVersionsResource"]
 
@@ -60,7 +60,7 @@ class VersionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Ruleset]:
+    ) -> SyncSinglePage[VersionListResponse]:
         """
         Fetches the versions of an account or zone ruleset.
 
@@ -95,11 +95,11 @@ class VersionsResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/versions",
-            page=SyncSinglePage[Ruleset],
+            page=SyncSinglePage[VersionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Ruleset,
+            model=VersionListResponse,
         )
 
     def delete(
@@ -249,7 +249,7 @@ class AsyncVersionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Ruleset, AsyncSinglePage[Ruleset]]:
+    ) -> AsyncPaginator[VersionListResponse, AsyncSinglePage[VersionListResponse]]:
         """
         Fetches the versions of an account or zone ruleset.
 
@@ -284,11 +284,11 @@ class AsyncVersionsResource(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/rulesets/{ruleset_id}/versions",
-            page=AsyncSinglePage[Ruleset],
+            page=AsyncSinglePage[VersionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Ruleset,
+            model=VersionListResponse,
         )
 
     async def delete(
