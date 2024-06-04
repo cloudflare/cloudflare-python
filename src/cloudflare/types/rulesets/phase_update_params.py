@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from .kind import Kind
 from .phase import Phase
 from .logging_param import LoggingParam
 from .log_rule_param import LogRuleParam
@@ -49,9 +48,6 @@ class PhaseUpdateParams(TypedDict, total=False):
 
     description: str
     """An informative description of the ruleset."""
-
-    kind: Kind
-    """The kind of the ruleset."""
 
     name: str
     """The human-readable name of the ruleset."""
