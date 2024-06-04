@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Literal, TypedDict
 
 __all__ = ["HTTPConfigurationParam"]
@@ -28,7 +28,7 @@ class HTTPConfigurationParam(TypedDict, total=False):
     follow_redirects: bool
     """Follow redirects if the origin returns a 3xx status code."""
 
-    header: Optional[object]
+    header: Optional[Dict[str, List[str]]]
     """The HTTP request headers to send in the health check.
 
     It is recommended you set a Host header by default. The User-Agent header cannot
