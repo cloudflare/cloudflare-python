@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -28,7 +28,7 @@ class HTTPConfiguration(BaseModel):
     follow_redirects: Optional[bool] = None
     """Follow redirects if the origin returns a 3xx status code."""
 
-    header: Optional[object] = None
+    header: Optional[Dict[str, List[str]]] = None
     """The HTTP request headers to send in the health check.
 
     It is recommended you set a Host header by default. The User-Agent header cannot
