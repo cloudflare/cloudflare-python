@@ -16,7 +16,7 @@ class User(BaseModel):
 
     last_event: datetime
 
-    max_risk_level: Optional[Literal["low", "medium", "high"]] = None
+    max_risk_level: Literal["low", "medium", "high"]
 
     name: str
 
