@@ -2655,7 +2655,21 @@ from cloudflare.types.workers import AIRunResponse
 
 Methods:
 
-- <code title="post /accounts/{account_id}/ai/run/{model_name}">client.workers.ai.<a href="./src/cloudflare/resources/workers/ai.py">run</a>(model_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/ai_run_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/ai_run_response.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/ai/run/{model_name}">client.workers.ai.<a href="./src/cloudflare/resources/workers/ai/ai.py">run</a>(model_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/ai_run_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/ai_run_response.py">Optional</a></code>
+
+### Models
+
+#### Schema
+
+Types:
+
+```python
+from cloudflare.types.workers.ai.models import SchemaGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/ai/models/schema">client.workers.ai.models.schema.<a href="./src/cloudflare/resources/workers/ai/models/schema.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/workers/ai/models/schema_get_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/ai/models/schema_get_response.py">object</a></code>
 
 ## Scripts
 
@@ -6494,11 +6508,17 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar.bgp import RouteMoasResponse, RoutePfx2asResponse, RouteStatsResponse
+from cloudflare.types.radar.bgp import (
+    RouteAsesResponse,
+    RouteMoasResponse,
+    RoutePfx2asResponse,
+    RouteStatsResponse,
+)
 ```
 
 Methods:
 
+- <code title="get /radar/bgp/routes/ases">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">ases</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_ases_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_ases_response.py">RouteAsesResponse</a></code>
 - <code title="get /radar/bgp/routes/moas">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">moas</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_moas_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_moas_response.py">RouteMoasResponse</a></code>
 - <code title="get /radar/bgp/routes/pfx2as">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">pfx2as</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_pfx2as_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_pfx2as_response.py">RoutePfx2asResponse</a></code>
 - <code title="get /radar/bgp/routes/stats">client.radar.bgp.routes.<a href="./src/cloudflare/resources/radar/bgp/routes.py">stats</a>(\*\*<a href="src/cloudflare/types/radar/bgp/route_stats_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/bgp/route_stats_response.py">RouteStatsResponse</a></code>
@@ -7112,6 +7132,16 @@ Methods:
 - <code title="get /radar/entities/locations/{location}">client.radar.entities.locations.<a href="./src/cloudflare/resources/radar/entities/locations.py">get</a>(location, \*\*<a href="src/cloudflare/types/radar/entities/location_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/entities/location_get_response.py">LocationGetResponse</a></code>
 
 ## HTTP
+
+Types:
+
+```python
+from cloudflare.types.radar import HTTPTimeseriesResponse
+```
+
+Methods:
+
+- <code title="get /radar/http/timeseries">client.radar.http.<a href="./src/cloudflare/resources/radar/http/http.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/http_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/http_timeseries_response.py">HTTPTimeseriesResponse</a></code>
 
 ### Top
 
