@@ -35,7 +35,11 @@ class LogGetResponseItem(BaseModel):
 
     metadata: Optional[str] = None
 
+    request_type: Optional[str] = None
+
     status_code: Optional[int] = None
+
+    step: Optional[int] = None
 
 
 LogGetResponse = List[LogGetResponseItem]
