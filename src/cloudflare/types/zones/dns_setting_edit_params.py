@@ -6,7 +6,7 @@ from typing_extensions import Literal, Required, TypedDict
 
 from .nameserver_param import NameserverParam
 
-__all__ = ["DNSSettingEditParams", "Soa"]
+__all__ = ["DNSSettingEditParams", "SOA"]
 
 
 class DNSSettingEditParams(TypedDict, total=False):
@@ -37,14 +37,14 @@ class DNSSettingEditParams(TypedDict, total=False):
     flattening at the zone apex.
     """
 
-    soa: Soa
+    soa: SOA
     """Components of the zone's SOA record."""
 
     zone_mode: Literal["standard", "cdn_only", "dns_only"]
     """Whether the zone mode is a regular or CDN/DNS only zone."""
 
 
-class Soa(TypedDict, total=False):
+class SOA(TypedDict, total=False):
     expire: Required[float]
     """
     Time in seconds of being unable to query the primary server after which
