@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Type, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -46,7 +47,10 @@ class DNSSettingsResource(SyncAPIResource):
         foundation_dns: bool | NotGiven = NOT_GIVEN,
         multi_provider: bool | NotGiven = NOT_GIVEN,
         nameservers: NameserverParam | NotGiven = NOT_GIVEN,
+        ns_ttl: float | NotGiven = NOT_GIVEN,
         secondary_overrides: bool | NotGiven = NOT_GIVEN,
+        soa: dns_setting_edit_params.Soa | NotGiven = NOT_GIVEN,
+        zone_mode: Literal["standard", "cdn_only", "dns_only"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -68,8 +72,14 @@ class DNSSettingsResource(SyncAPIResource):
 
           nameservers: Settings determining the nameservers through which the zone should be available.
 
+          ns_ttl: The time to live (TTL) of the zone's nameserver (NS) records.
+
           secondary_overrides: Allows a Secondary DNS zone to use (proxied) override records and CNAME
               flattening at the zone apex.
+
+          soa: Components of the zone's SOA record.
+
+          zone_mode: Whether the zone mode is a regular or CDN/DNS only zone.
 
           extra_headers: Send extra headers
 
@@ -88,7 +98,10 @@ class DNSSettingsResource(SyncAPIResource):
                     "foundation_dns": foundation_dns,
                     "multi_provider": multi_provider,
                     "nameservers": nameservers,
+                    "ns_ttl": ns_ttl,
                     "secondary_overrides": secondary_overrides,
+                    "soa": soa,
+                    "zone_mode": zone_mode,
                 },
                 dns_setting_edit_params.DNSSettingEditParams,
             ),
@@ -158,7 +171,10 @@ class AsyncDNSSettingsResource(AsyncAPIResource):
         foundation_dns: bool | NotGiven = NOT_GIVEN,
         multi_provider: bool | NotGiven = NOT_GIVEN,
         nameservers: NameserverParam | NotGiven = NOT_GIVEN,
+        ns_ttl: float | NotGiven = NOT_GIVEN,
         secondary_overrides: bool | NotGiven = NOT_GIVEN,
+        soa: dns_setting_edit_params.Soa | NotGiven = NOT_GIVEN,
+        zone_mode: Literal["standard", "cdn_only", "dns_only"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -180,8 +196,14 @@ class AsyncDNSSettingsResource(AsyncAPIResource):
 
           nameservers: Settings determining the nameservers through which the zone should be available.
 
+          ns_ttl: The time to live (TTL) of the zone's nameserver (NS) records.
+
           secondary_overrides: Allows a Secondary DNS zone to use (proxied) override records and CNAME
               flattening at the zone apex.
+
+          soa: Components of the zone's SOA record.
+
+          zone_mode: Whether the zone mode is a regular or CDN/DNS only zone.
 
           extra_headers: Send extra headers
 
@@ -200,7 +222,10 @@ class AsyncDNSSettingsResource(AsyncAPIResource):
                     "foundation_dns": foundation_dns,
                     "multi_provider": multi_provider,
                     "nameservers": nameservers,
+                    "ns_ttl": ns_ttl,
                     "secondary_overrides": secondary_overrides,
+                    "soa": soa,
+                    "zone_mode": zone_mode,
                 },
                 dns_setting_edit_params.DNSSettingEditParams,
             ),
