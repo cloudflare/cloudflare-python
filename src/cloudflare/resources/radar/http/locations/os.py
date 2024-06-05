@@ -91,7 +91,7 @@ class OSResource(SyncAPIResource):
         Values are a percentage out of the total traffic.
 
         Args:
-          os: IP version.
+          os: Operating system.
 
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
               For example, `-174, 3356` excludes results from AS174, but includes results from
@@ -238,7 +238,7 @@ class AsyncOSResource(AsyncAPIResource):
         Values are a percentage out of the total traffic.
 
         Args:
-          os: IP version.
+          os: Operating system.
 
           asn: Array of comma separated list of ASNs, start with `-` to exclude from results.
               For example, `-174, 3356` excludes results from AS174, but includes results from
