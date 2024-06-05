@@ -14,7 +14,7 @@ class Event(BaseModel):
 
     name: str
 
-    risk_level: Optional[Literal["low", "medium", "high"]] = None
+    risk_level: Literal["low", "medium", "high"]
 
     timestamp: datetime
 
