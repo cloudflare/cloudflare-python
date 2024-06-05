@@ -31,7 +31,18 @@ class TestDNSSettings:
             foundation_dns=False,
             multi_provider=False,
             nameservers={"type": "cloudflare.standard"},
+            ns_ttl=86400,
             secondary_overrides=False,
+            soa={
+                "expire": 604800,
+                "min_ttl": 1800,
+                "mname": "kristina.ns.cloudflare.com",
+                "refresh": 10000,
+                "retry": 2400,
+                "rname": "admin.example.com",
+                "ttl": 3600,
+            },
+            zone_mode="dns_only",
         )
         assert_matches_type(Optional[DNSSetting], dns_setting, path=["response"])
 
@@ -122,7 +133,18 @@ class TestAsyncDNSSettings:
             foundation_dns=False,
             multi_provider=False,
             nameservers={"type": "cloudflare.standard"},
+            ns_ttl=86400,
             secondary_overrides=False,
+            soa={
+                "expire": 604800,
+                "min_ttl": 1800,
+                "mname": "kristina.ns.cloudflare.com",
+                "refresh": 10000,
+                "retry": 2400,
+                "rname": "admin.example.com",
+                "ttl": 3600,
+            },
+            zone_mode="dns_only",
         )
         assert_matches_type(Optional[DNSSetting], dns_setting, path=["response"])
 
