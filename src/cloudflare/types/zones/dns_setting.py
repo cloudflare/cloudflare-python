@@ -6,10 +6,10 @@ from typing_extensions import Literal
 from ..._models import BaseModel
 from .nameserver import Nameserver
 
-__all__ = ["DNSSetting", "Soa"]
+__all__ = ["DNSSetting", "SOA"]
 
 
-class Soa(BaseModel):
+class SOA(BaseModel):
     expire: float
     """
     Time in seconds of being unable to query the primary server after which
@@ -69,7 +69,7 @@ class DNSSetting(BaseModel):
     flattening at the zone apex.
     """
 
-    soa: Optional[Soa] = None
+    soa: Optional[SOA] = None
     """Components of the zone's SOA record."""
 
     zone_mode: Optional[Literal["standard", "cdn_only", "dns_only"]] = None

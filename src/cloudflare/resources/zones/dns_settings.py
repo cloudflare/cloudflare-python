@@ -49,7 +49,7 @@ class DNSSettingsResource(SyncAPIResource):
         nameservers: NameserverParam | NotGiven = NOT_GIVEN,
         ns_ttl: float | NotGiven = NOT_GIVEN,
         secondary_overrides: bool | NotGiven = NOT_GIVEN,
-        soa: dns_setting_edit_params.Soa | NotGiven = NOT_GIVEN,
+        soa: dns_setting_edit_params.SOA | NotGiven = NOT_GIVEN,
         zone_mode: Literal["standard", "cdn_only", "dns_only"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -173,7 +173,7 @@ class AsyncDNSSettingsResource(AsyncAPIResource):
         nameservers: NameserverParam | NotGiven = NOT_GIVEN,
         ns_ttl: float | NotGiven = NOT_GIVEN,
         secondary_overrides: bool | NotGiven = NOT_GIVEN,
-        soa: dns_setting_edit_params.Soa | NotGiven = NOT_GIVEN,
+        soa: dns_setting_edit_params.SOA | NotGiven = NOT_GIVEN,
         zone_mode: Literal["standard", "cdn_only", "dns_only"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
