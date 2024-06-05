@@ -10,6 +10,7 @@ from .ai import (
     AIResourceWithStreamingResponse,
     AsyncAIResourceWithStreamingResponse,
 )
+from .ai.ai import AIResource, AsyncAIResource
 from .domains import (
     DomainsResource,
     AsyncDomainsResource,

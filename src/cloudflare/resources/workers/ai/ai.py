@@ -6,31 +6,44 @@ from typing import Any, List, Union, Iterable, Optional, cast, overload
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import (
+from .models import (
+    ModelsResource,
+    AsyncModelsResource,
+    ModelsResourceWithRawResponse,
+    AsyncModelsResourceWithRawResponse,
+    ModelsResourceWithStreamingResponse,
+    AsyncModelsResourceWithStreamingResponse,
+)
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
     required_args,
     maybe_transform,
     async_maybe_transform,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ..._base_client import (
+from ...._wrappers import ResultWrapper
+from .models.models import ModelsResource, AsyncModelsResource
+from ...._base_client import (
     make_request_options,
 )
-from ...types.workers import ai_run_params
-from ...types.workers.ai_run_response import AIRunResponse
+from ....types.workers import ai_run_params
+from ....types.workers.ai_run_response import AIRunResponse
 
 __all__ = ["AIResource", "AsyncAIResource"]
 
 
 class AIResource(SyncAPIResource):
+    @cached_property
+    def models(self) -> ModelsResource:
+        return ModelsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AIResourceWithRawResponse:
         return AIResourceWithRawResponse(self)
@@ -544,6 +557,10 @@ class AIResource(SyncAPIResource):
 
 
 class AsyncAIResource(AsyncAPIResource):
+    @cached_property
+    def models(self) -> AsyncModelsResource:
+        return AsyncModelsResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncAIResourceWithRawResponse:
         return AsyncAIResourceWithRawResponse(self)
@@ -1064,6 +1081,10 @@ class AIResourceWithRawResponse:
             ai.run,
         )
 
+    @cached_property
+    def models(self) -> ModelsResourceWithRawResponse:
+        return ModelsResourceWithRawResponse(self._ai.models)
+
 
 class AsyncAIResourceWithRawResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -1072,6 +1093,10 @@ class AsyncAIResourceWithRawResponse:
         self.run = async_to_raw_response_wrapper(
             ai.run,
         )
+
+    @cached_property
+    def models(self) -> AsyncModelsResourceWithRawResponse:
+        return AsyncModelsResourceWithRawResponse(self._ai.models)
 
 
 class AIResourceWithStreamingResponse:
@@ -1082,6 +1107,10 @@ class AIResourceWithStreamingResponse:
             ai.run,
         )
 
+    @cached_property
+    def models(self) -> ModelsResourceWithStreamingResponse:
+        return ModelsResourceWithStreamingResponse(self._ai.models)
+
 
 class AsyncAIResourceWithStreamingResponse:
     def __init__(self, ai: AsyncAIResource) -> None:
@@ -1090,3 +1119,7 @@ class AsyncAIResourceWithStreamingResponse:
         self.run = async_to_streamed_response_wrapper(
             ai.run,
         )
+
+    @cached_property
+    def models(self) -> AsyncModelsResourceWithStreamingResponse:
+        return AsyncModelsResourceWithStreamingResponse(self._ai.models)

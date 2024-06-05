@@ -24,7 +24,8 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.radar.bgp import route_moas_params, route_stats_params, route_pfx2as_params
+from ....types.radar.bgp import route_ases_params, route_moas_params, route_stats_params, route_pfx2as_params
+from ....types.radar.bgp.route_ases_response import RouteAsesResponse
 from ....types.radar.bgp.route_moas_response import RouteMoasResponse
 from ....types.radar.bgp.route_stats_response import RouteStatsResponse
 from ....types.radar.bgp.route_pfx2as_response import RoutePfx2asResponse
@@ -40,6 +41,66 @@ class RoutesResource(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> RoutesResourceWithStreamingResponse:
         return RoutesResourceWithStreamingResponse(self)
+
+    def ases(
+        self,
+        *,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: str | NotGiven = NOT_GIVEN,
+        sort_by: Literal["cone", "pfxs", "ipv4", "ipv6", "rpki_valid", "rpki_invalid", "rpki_unknown"]
+        | NotGiven = NOT_GIVEN,
+        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteAsesResponse:
+        """
+        List all ASes on current global routing tables with routing statistics
+
+        Args:
+          format: Format results are returned in.
+
+          limit: Limit the number of objects in the response.
+
+          location: Location Alpha2 code.
+
+          sort_by: Return order results by given type
+
+          sort_order: Sort by value ascending or descending
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/radar/bgp/routes/ases",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "format": format,
+                        "limit": limit,
+                        "location": location,
+                        "sort_by": sort_by,
+                        "sort_order": sort_order,
+                    },
+                    route_ases_params.RouteAsesParams,
+                ),
+                post_parser=ResultWrapper[RouteAsesResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[RouteAsesResponse], ResultWrapper[RouteAsesResponse]),
+        )
 
     def moas(
         self,
@@ -217,6 +278,66 @@ class AsyncRoutesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncRoutesResourceWithStreamingResponse:
         return AsyncRoutesResourceWithStreamingResponse(self)
 
+    async def ases(
+        self,
+        *,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: str | NotGiven = NOT_GIVEN,
+        sort_by: Literal["cone", "pfxs", "ipv4", "ipv6", "rpki_valid", "rpki_invalid", "rpki_unknown"]
+        | NotGiven = NOT_GIVEN,
+        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteAsesResponse:
+        """
+        List all ASes on current global routing tables with routing statistics
+
+        Args:
+          format: Format results are returned in.
+
+          limit: Limit the number of objects in the response.
+
+          location: Location Alpha2 code.
+
+          sort_by: Return order results by given type
+
+          sort_order: Sort by value ascending or descending
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/radar/bgp/routes/ases",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "format": format,
+                        "limit": limit,
+                        "location": location,
+                        "sort_by": sort_by,
+                        "sort_order": sort_order,
+                    },
+                    route_ases_params.RouteAsesParams,
+                ),
+                post_parser=ResultWrapper[RouteAsesResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[RouteAsesResponse], ResultWrapper[RouteAsesResponse]),
+        )
+
     async def moas(
         self,
         *,
@@ -388,6 +509,9 @@ class RoutesResourceWithRawResponse:
     def __init__(self, routes: RoutesResource) -> None:
         self._routes = routes
 
+        self.ases = to_raw_response_wrapper(
+            routes.ases,
+        )
         self.moas = to_raw_response_wrapper(
             routes.moas,
         )
@@ -403,6 +527,9 @@ class AsyncRoutesResourceWithRawResponse:
     def __init__(self, routes: AsyncRoutesResource) -> None:
         self._routes = routes
 
+        self.ases = async_to_raw_response_wrapper(
+            routes.ases,
+        )
         self.moas = async_to_raw_response_wrapper(
             routes.moas,
         )
@@ -418,6 +545,9 @@ class RoutesResourceWithStreamingResponse:
     def __init__(self, routes: RoutesResource) -> None:
         self._routes = routes
 
+        self.ases = to_streamed_response_wrapper(
+            routes.ases,
+        )
         self.moas = to_streamed_response_wrapper(
             routes.moas,
         )
@@ -433,6 +563,9 @@ class AsyncRoutesResourceWithStreamingResponse:
     def __init__(self, routes: AsyncRoutesResource) -> None:
         self._routes = routes
 
+        self.ases = async_to_streamed_response_wrapper(
+            routes.ases,
+        )
         self.moas = async_to_streamed_response_wrapper(
             routes.moas,
         )
