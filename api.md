@@ -310,11 +310,6 @@ Types:
 from cloudflare.types.zones import DNSSetting, Nameserver
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/dns_settings">client.zones.dns_settings.<a href="./src/cloudflare/resources/zones/dns_settings.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/dns_setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/dns_setting.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/dns_settings">client.zones.dns_settings.<a href="./src/cloudflare/resources/zones/dns_settings.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/dns_setting.py">Optional</a></code>
-
 ## Settings
 
 ### ZeroRTT
