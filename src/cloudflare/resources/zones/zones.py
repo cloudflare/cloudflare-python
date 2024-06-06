@@ -38,14 +38,6 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from .dns_settings import (
-    DNSSettingsResource,
-    AsyncDNSSettingsResource,
-    DNSSettingsResourceWithRawResponse,
-    AsyncDNSSettingsResourceWithRawResponse,
-    DNSSettingsResourceWithStreamingResponse,
-    AsyncDNSSettingsResourceWithStreamingResponse,
-)
 from ...types.zones import zone_edit_params, zone_list_params, zone_create_params
 from .subscriptions import (
     SubscriptionsResource,
@@ -87,10 +79,6 @@ class ZonesResource(SyncAPIResource):
     @cached_property
     def activation_check(self) -> ActivationCheckResource:
         return ActivationCheckResource(self._client)
-
-    @cached_property
-    def dns_settings(self) -> DNSSettingsResource:
-        return DNSSettingsResource(self._client)
 
     @cached_property
     def settings(self) -> SettingsResource:
@@ -391,10 +379,6 @@ class AsyncZonesResource(AsyncAPIResource):
     @cached_property
     def activation_check(self) -> AsyncActivationCheckResource:
         return AsyncActivationCheckResource(self._client)
-
-    @cached_property
-    def dns_settings(self) -> AsyncDNSSettingsResource:
-        return AsyncDNSSettingsResource(self._client)
 
     @cached_property
     def settings(self) -> AsyncSettingsResource:
@@ -716,10 +700,6 @@ class ZonesResourceWithRawResponse:
         return ActivationCheckResourceWithRawResponse(self._zones.activation_check)
 
     @cached_property
-    def dns_settings(self) -> DNSSettingsResourceWithRawResponse:
-        return DNSSettingsResourceWithRawResponse(self._zones.dns_settings)
-
-    @cached_property
     def settings(self) -> SettingsResourceWithRawResponse:
         return SettingsResourceWithRawResponse(self._zones.settings)
 
@@ -759,10 +739,6 @@ class AsyncZonesResourceWithRawResponse:
     @cached_property
     def activation_check(self) -> AsyncActivationCheckResourceWithRawResponse:
         return AsyncActivationCheckResourceWithRawResponse(self._zones.activation_check)
-
-    @cached_property
-    def dns_settings(self) -> AsyncDNSSettingsResourceWithRawResponse:
-        return AsyncDNSSettingsResourceWithRawResponse(self._zones.dns_settings)
 
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithRawResponse:
@@ -806,10 +782,6 @@ class ZonesResourceWithStreamingResponse:
         return ActivationCheckResourceWithStreamingResponse(self._zones.activation_check)
 
     @cached_property
-    def dns_settings(self) -> DNSSettingsResourceWithStreamingResponse:
-        return DNSSettingsResourceWithStreamingResponse(self._zones.dns_settings)
-
-    @cached_property
     def settings(self) -> SettingsResourceWithStreamingResponse:
         return SettingsResourceWithStreamingResponse(self._zones.settings)
 
@@ -849,10 +821,6 @@ class AsyncZonesResourceWithStreamingResponse:
     @cached_property
     def activation_check(self) -> AsyncActivationCheckResourceWithStreamingResponse:
         return AsyncActivationCheckResourceWithStreamingResponse(self._zones.activation_check)
-
-    @cached_property
-    def dns_settings(self) -> AsyncDNSSettingsResourceWithStreamingResponse:
-        return AsyncDNSSettingsResourceWithStreamingResponse(self._zones.dns_settings)
 
     @cached_property
     def settings(self) -> AsyncSettingsResourceWithStreamingResponse:

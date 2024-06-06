@@ -24,14 +24,6 @@ from .settings import (
     SettingsResourceWithStreamingResponse,
     AsyncSettingsResourceWithStreamingResponse,
 )
-from .dns_settings import (
-    DNSSettingsResource,
-    AsyncDNSSettingsResource,
-    DNSSettingsResourceWithRawResponse,
-    AsyncDNSSettingsResourceWithRawResponse,
-    DNSSettingsResourceWithStreamingResponse,
-    AsyncDNSSettingsResourceWithStreamingResponse,
-)
 from .subscriptions import (
     SubscriptionsResource,
     AsyncSubscriptionsResource,
@@ -64,12 +56,6 @@ __all__ = [
     "AsyncActivationCheckResourceWithRawResponse",
     "ActivationCheckResourceWithStreamingResponse",
     "AsyncActivationCheckResourceWithStreamingResponse",
-    "DNSSettingsResource",
-    "AsyncDNSSettingsResource",
-    "DNSSettingsResourceWithRawResponse",
-    "AsyncDNSSettingsResourceWithRawResponse",
-    "DNSSettingsResourceWithStreamingResponse",
-    "AsyncDNSSettingsResourceWithStreamingResponse",
     "SettingsResource",
     "AsyncSettingsResource",
     "SettingsResourceWithRawResponse",
