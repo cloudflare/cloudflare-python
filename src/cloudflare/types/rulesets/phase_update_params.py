@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import Union, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
-from .phase import Phase
 from .logging_param import LoggingParam
 from .log_rule_param import LogRuleParam
 from .skip_rule_param import SkipRuleParam
@@ -51,9 +50,6 @@ class PhaseUpdateParams(TypedDict, total=False):
 
     name: str
     """The human-readable name of the ruleset."""
-
-    phase: Phase
-    """The phase of the ruleset."""
 
 
 class RuleRulesetsLogCustomFieldRuleActionParametersCookieField(TypedDict, total=False):
