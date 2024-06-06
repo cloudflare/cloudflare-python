@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import Any, Type, Union, cast
 from datetime import datetime
+from typing_extensions import Literal
 
 import httpx
 
@@ -169,6 +170,7 @@ class TunnelsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        status: Literal["inactive", "degraded", "healthy", "down"] | NotGiven = NOT_GIVEN,
         tun_types: str | NotGiven = NOT_GIVEN,
         uuid: str | NotGiven = NOT_GIVEN,
         was_active_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -197,6 +199,11 @@ class TunnelsResource(SyncAPIResource):
           page: Page number of paginated results.
 
           per_page: Number of results to display.
+
+          status: The status of the tunnel. Valid values are `inactive` (tunnel has never been
+              run), `degraded` (tunnel is active and able to serve traffic but in an unhealthy
+              state), `healthy` (tunnel is active and able to serve traffic), or `down`
+              (tunnel can not serve traffic as it has no connections to the Cloudflare Edge).
 
           tun_types: The types of tunnels to filter separated by a comma.
 
@@ -229,6 +236,7 @@ class TunnelsResource(SyncAPIResource):
                         "name": name,
                         "page": page,
                         "per_page": per_page,
+                        "status": status,
                         "tun_types": tun_types,
                         "uuid": uuid,
                         "was_active_at": was_active_at,
@@ -485,6 +493,7 @@ class AsyncTunnelsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        status: Literal["inactive", "degraded", "healthy", "down"] | NotGiven = NOT_GIVEN,
         tun_types: str | NotGiven = NOT_GIVEN,
         uuid: str | NotGiven = NOT_GIVEN,
         was_active_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -513,6 +522,11 @@ class AsyncTunnelsResource(AsyncAPIResource):
           page: Page number of paginated results.
 
           per_page: Number of results to display.
+
+          status: The status of the tunnel. Valid values are `inactive` (tunnel has never been
+              run), `degraded` (tunnel is active and able to serve traffic but in an unhealthy
+              state), `healthy` (tunnel is active and able to serve traffic), or `down`
+              (tunnel can not serve traffic as it has no connections to the Cloudflare Edge).
 
           tun_types: The types of tunnels to filter separated by a comma.
 
@@ -545,6 +559,7 @@ class AsyncTunnelsResource(AsyncAPIResource):
                         "name": name,
                         "page": page,
                         "per_page": per_page,
+                        "status": status,
                         "tun_types": tun_types,
                         "uuid": uuid,
                         "was_active_at": was_active_at,

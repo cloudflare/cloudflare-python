@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import Any, Union, cast
 from datetime import datetime
+from typing_extensions import Literal
 
 import httpx
 
@@ -105,6 +106,7 @@ class WARPConnectorResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        status: Literal["inactive", "degraded", "healthy", "down"] | NotGiven = NOT_GIVEN,
         uuid: str | NotGiven = NOT_GIVEN,
         was_active_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         was_inactive_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -132,6 +134,11 @@ class WARPConnectorResource(SyncAPIResource):
           page: Page number of paginated results.
 
           per_page: Number of results to display.
+
+          status: The status of the tunnel. Valid values are `inactive` (tunnel has never been
+              run), `degraded` (tunnel is active and able to serve traffic but in an unhealthy
+              state), `healthy` (tunnel is active and able to serve traffic), or `down`
+              (tunnel can not serve traffic as it has no connections to the Cloudflare Edge).
 
           uuid: UUID of the tunnel.
 
@@ -162,6 +169,7 @@ class WARPConnectorResource(SyncAPIResource):
                         "name": name,
                         "page": page,
                         "per_page": per_page,
+                        "status": status,
                         "uuid": uuid,
                         "was_active_at": was_active_at,
                         "was_inactive_at": was_inactive_at,
@@ -456,6 +464,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
+        status: Literal["inactive", "degraded", "healthy", "down"] | NotGiven = NOT_GIVEN,
         uuid: str | NotGiven = NOT_GIVEN,
         was_active_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         was_inactive_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -483,6 +492,11 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
           page: Page number of paginated results.
 
           per_page: Number of results to display.
+
+          status: The status of the tunnel. Valid values are `inactive` (tunnel has never been
+              run), `degraded` (tunnel is active and able to serve traffic but in an unhealthy
+              state), `healthy` (tunnel is active and able to serve traffic), or `down`
+              (tunnel can not serve traffic as it has no connections to the Cloudflare Edge).
 
           uuid: UUID of the tunnel.
 
@@ -513,6 +527,7 @@ class AsyncWARPConnectorResource(AsyncAPIResource):
                         "name": name,
                         "page": page,
                         "per_page": per_page,
+                        "status": status,
                         "uuid": uuid,
                         "was_active_at": was_active_at,
                         "was_inactive_at": was_inactive_at,
