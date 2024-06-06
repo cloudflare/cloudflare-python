@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare._utils import parse_datetime
 from cloudflare.types.zero_trust.access.logs import AccessRequestListResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -21,6 +22,17 @@ class TestAccessRequests:
     def test_method_list(self, client: Cloudflare) -> None:
         access_request = client.zero_trust.access.logs.access_requests.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[AccessRequestListResponse], access_request, path=["response"])
+
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        access_request = client.zero_trust.access.logs.access_requests.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            direction="desc",
+            limit=0,
+            since=parse_datetime("2020-07-01T05:20:00Z"),
+            until=parse_datetime("2020-10-01T05:20:00Z"),
         )
         assert_matches_type(Optional[AccessRequestListResponse], access_request, path=["response"])
 
@@ -63,6 +75,17 @@ class TestAsyncAccessRequests:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         access_request = await async_client.zero_trust.access.logs.access_requests.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Optional[AccessRequestListResponse], access_request, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        access_request = await async_client.zero_trust.access.logs.access_requests.list(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            direction="desc",
+            limit=0,
+            since=parse_datetime("2020-07-01T05:20:00Z"),
+            until=parse_datetime("2020-10-01T05:20:00Z"),
         )
         assert_matches_type(Optional[AccessRequestListResponse], access_request, path=["response"])
 
