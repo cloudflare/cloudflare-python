@@ -85,7 +85,6 @@ class TestPhases:
             account_id="string",
             description="My ruleset to execute managed rulesets",
             name="My ruleset",
-            phase="http_request_firewall_custom",
         )
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
 
@@ -269,7 +268,6 @@ class TestAsyncPhases:
             account_id="string",
             description="My ruleset to execute managed rulesets",
             name="My ruleset",
-            phase="http_request_firewall_custom",
         )
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
 
