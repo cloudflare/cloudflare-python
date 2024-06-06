@@ -12,10 +12,8 @@ from tests.utils import assert_matches_type
 from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.user import (
-    TokenGetResponse,
     TokenCreateResponse,
     TokenDeleteResponse,
-    TokenUpdateResponse,
     TokenVerifyResponse,
 )
 
@@ -57,7 +55,7 @@ class TestTokens:
                 },
             ],
         )
-        assert_matches_type(TokenCreateResponse, token, path=["response"])
+        assert_matches_type(Optional[TokenCreateResponse], token, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -99,7 +97,7 @@ class TestTokens:
             expires_on=parse_datetime("2020-01-01T00:00:00Z"),
             not_before=parse_datetime("2018-07-01T05:20:00Z"),
         )
-        assert_matches_type(TokenCreateResponse, token, path=["response"])
+        assert_matches_type(Optional[TokenCreateResponse], token, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -137,7 +135,7 @@ class TestTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         token = response.parse()
-        assert_matches_type(TokenCreateResponse, token, path=["response"])
+        assert_matches_type(Optional[TokenCreateResponse], token, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -175,7 +173,7 @@ class TestTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             token = response.parse()
-            assert_matches_type(TokenCreateResponse, token, path=["response"])
+            assert_matches_type(Optional[TokenCreateResponse], token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -213,7 +211,7 @@ class TestTokens:
             ],
             status="active",
         )
-        assert_matches_type(TokenUpdateResponse, token, path=["response"])
+        assert_matches_type(object, token, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -257,7 +255,7 @@ class TestTokens:
             expires_on=parse_datetime("2020-01-01T00:00:00Z"),
             not_before=parse_datetime("2018-07-01T05:20:00Z"),
         )
-        assert_matches_type(TokenUpdateResponse, token, path=["response"])
+        assert_matches_type(object, token, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -297,7 +295,7 @@ class TestTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         token = response.parse()
-        assert_matches_type(TokenUpdateResponse, token, path=["response"])
+        assert_matches_type(object, token, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -337,7 +335,7 @@ class TestTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             token = response.parse()
-            assert_matches_type(TokenUpdateResponse, token, path=["response"])
+            assert_matches_type(object, token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -411,7 +409,7 @@ class TestTokens:
         token = client.user.tokens.get(
             {},
         )
-        assert_matches_type(TokenGetResponse, token, path=["response"])
+        assert_matches_type(object, token, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -422,7 +420,7 @@ class TestTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         token = response.parse()
-        assert_matches_type(TokenGetResponse, token, path=["response"])
+        assert_matches_type(object, token, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -433,14 +431,14 @@ class TestTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             token = response.parse()
-            assert_matches_type(TokenGetResponse, token, path=["response"])
+            assert_matches_type(object, token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_verify(self, client: Cloudflare) -> None:
         token = client.user.tokens.verify()
-        assert_matches_type(TokenVerifyResponse, token, path=["response"])
+        assert_matches_type(Optional[TokenVerifyResponse], token, path=["response"])
 
     @parametrize
     def test_raw_response_verify(self, client: Cloudflare) -> None:
@@ -449,7 +447,7 @@ class TestTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         token = response.parse()
-        assert_matches_type(TokenVerifyResponse, token, path=["response"])
+        assert_matches_type(Optional[TokenVerifyResponse], token, path=["response"])
 
     @parametrize
     def test_streaming_response_verify(self, client: Cloudflare) -> None:
@@ -458,7 +456,7 @@ class TestTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             token = response.parse()
-            assert_matches_type(TokenVerifyResponse, token, path=["response"])
+            assert_matches_type(Optional[TokenVerifyResponse], token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -498,7 +496,7 @@ class TestAsyncTokens:
                 },
             ],
         )
-        assert_matches_type(TokenCreateResponse, token, path=["response"])
+        assert_matches_type(Optional[TokenCreateResponse], token, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -540,7 +538,7 @@ class TestAsyncTokens:
             expires_on=parse_datetime("2020-01-01T00:00:00Z"),
             not_before=parse_datetime("2018-07-01T05:20:00Z"),
         )
-        assert_matches_type(TokenCreateResponse, token, path=["response"])
+        assert_matches_type(Optional[TokenCreateResponse], token, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -578,7 +576,7 @@ class TestAsyncTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         token = await response.parse()
-        assert_matches_type(TokenCreateResponse, token, path=["response"])
+        assert_matches_type(Optional[TokenCreateResponse], token, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -616,7 +614,7 @@ class TestAsyncTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             token = await response.parse()
-            assert_matches_type(TokenCreateResponse, token, path=["response"])
+            assert_matches_type(Optional[TokenCreateResponse], token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -654,7 +652,7 @@ class TestAsyncTokens:
             ],
             status="active",
         )
-        assert_matches_type(TokenUpdateResponse, token, path=["response"])
+        assert_matches_type(object, token, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -698,7 +696,7 @@ class TestAsyncTokens:
             expires_on=parse_datetime("2020-01-01T00:00:00Z"),
             not_before=parse_datetime("2018-07-01T05:20:00Z"),
         )
-        assert_matches_type(TokenUpdateResponse, token, path=["response"])
+        assert_matches_type(object, token, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -738,7 +736,7 @@ class TestAsyncTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         token = await response.parse()
-        assert_matches_type(TokenUpdateResponse, token, path=["response"])
+        assert_matches_type(object, token, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -778,7 +776,7 @@ class TestAsyncTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             token = await response.parse()
-            assert_matches_type(TokenUpdateResponse, token, path=["response"])
+            assert_matches_type(object, token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -852,7 +850,7 @@ class TestAsyncTokens:
         token = await async_client.user.tokens.get(
             {},
         )
-        assert_matches_type(TokenGetResponse, token, path=["response"])
+        assert_matches_type(object, token, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -863,7 +861,7 @@ class TestAsyncTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         token = await response.parse()
-        assert_matches_type(TokenGetResponse, token, path=["response"])
+        assert_matches_type(object, token, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -874,14 +872,14 @@ class TestAsyncTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             token = await response.parse()
-            assert_matches_type(TokenGetResponse, token, path=["response"])
+            assert_matches_type(object, token, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_verify(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.user.tokens.verify()
-        assert_matches_type(TokenVerifyResponse, token, path=["response"])
+        assert_matches_type(Optional[TokenVerifyResponse], token, path=["response"])
 
     @parametrize
     async def test_raw_response_verify(self, async_client: AsyncCloudflare) -> None:
@@ -890,7 +888,7 @@ class TestAsyncTokens:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         token = await response.parse()
-        assert_matches_type(TokenVerifyResponse, token, path=["response"])
+        assert_matches_type(Optional[TokenVerifyResponse], token, path=["response"])
 
     @parametrize
     async def test_streaming_response_verify(self, async_client: AsyncCloudflare) -> None:
@@ -899,6 +897,6 @@ class TestAsyncTokens:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             token = await response.parse()
-            assert_matches_type(TokenVerifyResponse, token, path=["response"])
+            assert_matches_type(Optional[TokenVerifyResponse], token, path=["response"])
 
         assert cast(Any, response.is_closed) is True

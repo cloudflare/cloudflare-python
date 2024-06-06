@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -25,7 +25,6 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.user.organization import Organization
-from ...types.user.organization_get_response import OrganizationGetResponse
 from ...types.user.organization_delete_response import OrganizationDeleteResponse
 
 __all__ = ["OrganizationsResource", "AsyncOrganizationsResource"]
@@ -152,7 +151,7 @@ class OrganizationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OrganizationGetResponse:
+    ) -> object:
         """
         Gets a specific organization the user is associated with.
 
@@ -169,21 +168,16 @@ class OrganizationsResource(SyncAPIResource):
         """
         if not organization_id:
             raise ValueError(f"Expected a non-empty value for `organization_id` but received {organization_id!r}")
-        return cast(
-            OrganizationGetResponse,
-            self._get(
-                f"/user/organizations/{organization_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[OrganizationGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[OrganizationGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/user/organizations/{organization_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
@@ -308,7 +302,7 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> OrganizationGetResponse:
+    ) -> object:
         """
         Gets a specific organization the user is associated with.
 
@@ -325,21 +319,16 @@ class AsyncOrganizationsResource(AsyncAPIResource):
         """
         if not organization_id:
             raise ValueError(f"Expected a non-empty value for `organization_id` but received {organization_id!r}")
-        return cast(
-            OrganizationGetResponse,
-            await self._get(
-                f"/user/organizations/{organization_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[OrganizationGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[OrganizationGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/user/organizations/{organization_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 

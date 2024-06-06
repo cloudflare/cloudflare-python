@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Iterable, Optional, cast
+from typing import Any, List, Type, Iterable, Optional, cast, overload
 from typing_extensions import Literal
 
 import httpx
 
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
+    required_args,
     maybe_transform,
     async_maybe_transform,
 )
@@ -28,9 +29,10 @@ from ..._base_client import (
 )
 from ...types.accounts import member_list_params, member_create_params, member_update_params
 from ...types.shared.member import Member
-from ...types.accounts.member_list_response import MemberListResponse
-from ...types.accounts.user_with_invite_code import UserWithInviteCode
+from ...types.accounts.member_get_response import MemberGetResponse
+from ...types.accounts.member_create_response import MemberCreateResponse
 from ...types.accounts.member_delete_response import MemberDeleteResponse
+from ...types.accounts.member_update_response import MemberUpdateResponse
 
 __all__ = ["MembersResource", "AsyncMembersResource"]
 
@@ -44,6 +46,7 @@ class MembersResource(SyncAPIResource):
     def with_streaming_response(self) -> MembersResourceWithStreamingResponse:
         return MembersResourceWithStreamingResponse(self)
 
+    @overload
     def create(
         self,
         *,
@@ -57,7 +60,7 @@ class MembersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserWithInviteCode:
+    ) -> MemberCreateResponse:
         """
         Add a user to the list of members for this account.
 
@@ -74,41 +77,95 @@ class MembersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._post(
-            f"/accounts/{account_id}/members",
-            body=maybe_transform(
-                {
-                    "email": email,
-                    "roles": roles,
-                    "status": status,
-                },
-                member_create_params.MemberCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[UserWithInviteCode]._unwrapper,
-            ),
-            cast_to=cast(Type[UserWithInviteCode], ResultWrapper[UserWithInviteCode]),
-        )
+        ...
 
-    def update(
+    @overload
+    def create(
         self,
-        member_id: str,
         *,
         account_id: str,
-        roles: Iterable[member_update_params.Role],
+        email: str,
+        policies: Iterable[member_create_params.IamCreateMemberWithPoliciesPolicy],
+        status: Literal["accepted", "pending"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Member:
+    ) -> MemberCreateResponse:
+        """
+        Add a user to the list of members for this account.
+
+        Args:
+          email: The contact email address of the user.
+
+          policies: Array of policies associated with this member.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id", "email", "roles"], ["account_id", "email", "policies"])
+    def create(
+        self,
+        *,
+        account_id: str,
+        email: str,
+        roles: List[str] | NotGiven = NOT_GIVEN,
+        status: Literal["accepted", "pending"] | NotGiven = NOT_GIVEN,
+        policies: Iterable[member_create_params.IamCreateMemberWithPoliciesPolicy] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> MemberCreateResponse:
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return cast(
+            MemberCreateResponse,
+            self._post(
+                f"/accounts/{account_id}/members",
+                body=maybe_transform(
+                    {
+                        "email": email,
+                        "roles": roles,
+                        "status": status,
+                        "policies": policies,
+                    },
+                    member_create_params.MemberCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(
+                    Any, MemberCreateResponse
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
+    @overload
+    def update(
+        self,
+        member_id: str,
+        *,
+        account_id: str,
+        roles: Iterable[member_update_params.MemberRole] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> MemberUpdateResponse:
         """
         Modify an account member.
 
@@ -125,21 +182,77 @@ class MembersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    def update(
+        self,
+        member_id: str,
+        *,
+        account_id: str,
+        policies: Iterable[member_update_params.IamUpdateMemberWithPoliciesPolicy],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> MemberUpdateResponse:
+        """
+        Modify an account member.
+
+        Args:
+          member_id: Membership identifier tag.
+
+          policies: Array of policies associated with this member.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id"], ["account_id", "policies"])
+    def update(
+        self,
+        member_id: str,
+        *,
+        account_id: str,
+        roles: Iterable[member_update_params.MemberRole] | NotGiven = NOT_GIVEN,
+        policies: Iterable[member_update_params.IamUpdateMemberWithPoliciesPolicy] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> MemberUpdateResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
-        return self._put(
-            f"/accounts/{account_id}/members/{member_id}",
-            body=maybe_transform({"roles": roles}, member_update_params.MemberUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Member]._unwrapper,
+        return cast(
+            MemberUpdateResponse,
+            self._put(
+                f"/accounts/{account_id}/members/{member_id}",
+                body=maybe_transform(
+                    {
+                        "roles": roles,
+                        "policies": policies,
+                    },
+                    member_update_params.MemberUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(
+                    Any, MemberUpdateResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[Member], ResultWrapper[Member]),
         )
 
     def list(
@@ -157,7 +270,7 @@ class MembersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[MemberListResponse]:
+    ) -> SyncV4PagePaginationArray[Member]:
         """
         List all members of an account.
 
@@ -184,7 +297,7 @@ class MembersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/members",
-            page=SyncV4PagePaginationArray[MemberListResponse],
+            page=SyncV4PagePaginationArray[Member],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -201,7 +314,7 @@ class MembersResource(SyncAPIResource):
                     member_list_params.MemberListParams,
                 ),
             ),
-            model=MemberListResponse,
+            model=Member,
         )
 
     def delete(
@@ -257,7 +370,7 @@ class MembersResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Member:
+    ) -> MemberGetResponse:
         """
         Get information about a specific member of an account.
 
@@ -276,16 +389,15 @@ class MembersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
-        return self._get(
-            f"/accounts/{account_id}/members/{member_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Member]._unwrapper,
+        return cast(
+            MemberGetResponse,
+            self._get(
+                f"/accounts/{account_id}/members/{member_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(Any, MemberGetResponse),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[Member], ResultWrapper[Member]),
         )
 
 
@@ -298,6 +410,7 @@ class AsyncMembersResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncMembersResourceWithStreamingResponse:
         return AsyncMembersResourceWithStreamingResponse(self)
 
+    @overload
     async def create(
         self,
         *,
@@ -311,7 +424,7 @@ class AsyncMembersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserWithInviteCode:
+    ) -> MemberCreateResponse:
         """
         Add a user to the list of members for this account.
 
@@ -328,41 +441,95 @@ class AsyncMembersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._post(
-            f"/accounts/{account_id}/members",
-            body=await async_maybe_transform(
-                {
-                    "email": email,
-                    "roles": roles,
-                    "status": status,
-                },
-                member_create_params.MemberCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[UserWithInviteCode]._unwrapper,
-            ),
-            cast_to=cast(Type[UserWithInviteCode], ResultWrapper[UserWithInviteCode]),
-        )
+        ...
 
-    async def update(
+    @overload
+    async def create(
         self,
-        member_id: str,
         *,
         account_id: str,
-        roles: Iterable[member_update_params.Role],
+        email: str,
+        policies: Iterable[member_create_params.IamCreateMemberWithPoliciesPolicy],
+        status: Literal["accepted", "pending"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Member:
+    ) -> MemberCreateResponse:
+        """
+        Add a user to the list of members for this account.
+
+        Args:
+          email: The contact email address of the user.
+
+          policies: Array of policies associated with this member.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id", "email", "roles"], ["account_id", "email", "policies"])
+    async def create(
+        self,
+        *,
+        account_id: str,
+        email: str,
+        roles: List[str] | NotGiven = NOT_GIVEN,
+        status: Literal["accepted", "pending"] | NotGiven = NOT_GIVEN,
+        policies: Iterable[member_create_params.IamCreateMemberWithPoliciesPolicy] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> MemberCreateResponse:
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return cast(
+            MemberCreateResponse,
+            await self._post(
+                f"/accounts/{account_id}/members",
+                body=await async_maybe_transform(
+                    {
+                        "email": email,
+                        "roles": roles,
+                        "status": status,
+                        "policies": policies,
+                    },
+                    member_create_params.MemberCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(
+                    Any, MemberCreateResponse
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
+    @overload
+    async def update(
+        self,
+        member_id: str,
+        *,
+        account_id: str,
+        roles: Iterable[member_update_params.MemberRole] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> MemberUpdateResponse:
         """
         Modify an account member.
 
@@ -379,21 +546,77 @@ class AsyncMembersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        ...
+
+    @overload
+    async def update(
+        self,
+        member_id: str,
+        *,
+        account_id: str,
+        policies: Iterable[member_update_params.IamUpdateMemberWithPoliciesPolicy],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> MemberUpdateResponse:
+        """
+        Modify an account member.
+
+        Args:
+          member_id: Membership identifier tag.
+
+          policies: Array of policies associated with this member.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["account_id"], ["account_id", "policies"])
+    async def update(
+        self,
+        member_id: str,
+        *,
+        account_id: str,
+        roles: Iterable[member_update_params.MemberRole] | NotGiven = NOT_GIVEN,
+        policies: Iterable[member_update_params.IamUpdateMemberWithPoliciesPolicy] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> MemberUpdateResponse:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
-        return await self._put(
-            f"/accounts/{account_id}/members/{member_id}",
-            body=await async_maybe_transform({"roles": roles}, member_update_params.MemberUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Member]._unwrapper,
+        return cast(
+            MemberUpdateResponse,
+            await self._put(
+                f"/accounts/{account_id}/members/{member_id}",
+                body=await async_maybe_transform(
+                    {
+                        "roles": roles,
+                        "policies": policies,
+                    },
+                    member_update_params.MemberUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(
+                    Any, MemberUpdateResponse
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[Member], ResultWrapper[Member]),
         )
 
     def list(
@@ -411,7 +634,7 @@ class AsyncMembersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[MemberListResponse, AsyncV4PagePaginationArray[MemberListResponse]]:
+    ) -> AsyncPaginator[Member, AsyncV4PagePaginationArray[Member]]:
         """
         List all members of an account.
 
@@ -438,7 +661,7 @@ class AsyncMembersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/members",
-            page=AsyncV4PagePaginationArray[MemberListResponse],
+            page=AsyncV4PagePaginationArray[Member],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -455,7 +678,7 @@ class AsyncMembersResource(AsyncAPIResource):
                     member_list_params.MemberListParams,
                 ),
             ),
-            model=MemberListResponse,
+            model=Member,
         )
 
     async def delete(
@@ -511,7 +734,7 @@ class AsyncMembersResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Member:
+    ) -> MemberGetResponse:
         """
         Get information about a specific member of an account.
 
@@ -530,16 +753,15 @@ class AsyncMembersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not member_id:
             raise ValueError(f"Expected a non-empty value for `member_id` but received {member_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/members/{member_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Member]._unwrapper,
+        return cast(
+            MemberGetResponse,
+            await self._get(
+                f"/accounts/{account_id}/members/{member_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(Any, MemberGetResponse),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[Member], ResultWrapper[Member]),
         )
 
 
