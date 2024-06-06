@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Union
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
@@ -39,6 +39,15 @@ class WARPConnectorListParams(TypedDict, total=False):
 
     per_page: float
     """Number of results to display."""
+
+    status: Literal["inactive", "degraded", "healthy", "down"]
+    """The status of the tunnel.
+
+    Valid values are `inactive` (tunnel has never been run), `degraded` (tunnel is
+    active and able to serve traffic but in an unhealthy state), `healthy` (tunnel
+    is active and able to serve traffic), or `down` (tunnel can not serve traffic as
+    it has no connections to the Cloudflare Edge).
+    """
 
     uuid: str
     """UUID of the tunnel."""
