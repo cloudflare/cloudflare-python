@@ -83,7 +83,7 @@ class CloudflareTunnel(BaseModel):
     If `false`, the tunnel must be configured locally on the origin machine.
     """
 
-    status: Optional[str] = None
+    status: Optional[Literal["inactive", "degraded", "healthy", "down"]] = None
     """The status of the tunnel.
 
     Valid values are `inactive` (tunnel has never been run), `degraded` (tunnel is

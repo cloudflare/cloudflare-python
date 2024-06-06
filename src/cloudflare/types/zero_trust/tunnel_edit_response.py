@@ -78,7 +78,7 @@ class TunnelWARPConnectorTunnel(BaseModel):
     name: Optional[str] = None
     """A user-friendly name for a tunnel."""
 
-    status: Optional[str] = None
+    status: Optional[Literal["inactive", "degraded", "healthy", "down"]] = None
     """The status of the tunnel.
 
     Valid values are `inactive` (tunnel has never been run), `degraded` (tunnel is
