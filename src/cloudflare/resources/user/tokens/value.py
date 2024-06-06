@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -70,7 +70,7 @@ class ValueResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Value]._unwrapper,
+                post_parser=ResultWrapper[Optional[Value]]._unwrapper,
             ),
             cast_to=cast(Type[str], ResultWrapper[str]),
         )
@@ -117,7 +117,7 @@ class AsyncValueResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Value]._unwrapper,
+                post_parser=ResultWrapper[Optional[Value]]._unwrapper,
             ),
             cast_to=cast(Type[str], ResultWrapper[str]),
         )

@@ -49,9 +49,6 @@ class Membership(BaseModel):
     given account.
     """
 
-    code: Optional[str] = None
-    """The unique activation code for the account membership."""
-
     permissions: Optional[Permissions] = None
     """All access permissions for the user at the account."""
 

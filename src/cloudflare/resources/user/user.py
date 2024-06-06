@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -74,8 +74,6 @@ from ..._base_client import (
     make_request_options,
 )
 from .billing.billing import BillingResource, AsyncBillingResource
-from ...types.user.user_get_response import UserGetResponse
-from ...types.user.user_edit_response import UserEditResponse
 
 __all__ = ["UserResource", "AsyncUserResource"]
 
@@ -127,7 +125,7 @@ class UserResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserEditResponse:
+    ) -> object:
         """
         Edit part of your user details.
 
@@ -150,31 +148,26 @@ class UserResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            UserEditResponse,
-            self._patch(
-                "/user",
-                body=maybe_transform(
-                    {
-                        "country": country,
-                        "first_name": first_name,
-                        "last_name": last_name,
-                        "telephone": telephone,
-                        "zipcode": zipcode,
-                    },
-                    user_edit_params.UserEditParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[UserEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[UserEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._patch(
+            "/user",
+            body=maybe_transform(
+                {
+                    "country": country,
+                    "first_name": first_name,
+                    "last_name": last_name,
+                    "telephone": telephone,
+                    "zipcode": zipcode,
+                },
+                user_edit_params.UserEditParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -186,23 +179,18 @@ class UserResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserGetResponse:
+    ) -> object:
         """User Details"""
-        return cast(
-            UserGetResponse,
-            self._get(
-                "/user",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[UserGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[UserGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            "/user",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
@@ -253,7 +241,7 @@ class AsyncUserResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserEditResponse:
+    ) -> object:
         """
         Edit part of your user details.
 
@@ -276,31 +264,26 @@ class AsyncUserResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            UserEditResponse,
-            await self._patch(
-                "/user",
-                body=await async_maybe_transform(
-                    {
-                        "country": country,
-                        "first_name": first_name,
-                        "last_name": last_name,
-                        "telephone": telephone,
-                        "zipcode": zipcode,
-                    },
-                    user_edit_params.UserEditParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[UserEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[UserEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._patch(
+            "/user",
+            body=await async_maybe_transform(
+                {
+                    "country": country,
+                    "first_name": first_name,
+                    "last_name": last_name,
+                    "telephone": telephone,
+                    "zipcode": zipcode,
+                },
+                user_edit_params.UserEditParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def get(
@@ -312,23 +295,18 @@ class AsyncUserResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserGetResponse:
+    ) -> object:
         """User Details"""
-        return cast(
-            UserGetResponse,
-            await self._get(
-                "/user",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[UserGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[UserGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            "/user",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 

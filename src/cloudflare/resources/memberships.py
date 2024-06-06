@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
+from typing import Any, Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -80,14 +80,10 @@ class MembershipsResource(SyncAPIResource):
                 f"/memberships/{membership_id}",
                 body=maybe_transform({"status": status}, membership_update_params.MembershipUpdateParams),
                 options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[MembershipUpdateResponse]._unwrapper,
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[MembershipUpdateResponse]
+                    Any, MembershipUpdateResponse
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -167,7 +163,7 @@ class MembershipsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MembershipDeleteResponse:
+    ) -> Optional[MembershipDeleteResponse]:
         """
         Remove the associated member from an account.
 
@@ -191,9 +187,9 @@ class MembershipsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[MembershipDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[MembershipDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[MembershipDeleteResponse], ResultWrapper[MembershipDeleteResponse]),
+            cast_to=cast(Type[Optional[MembershipDeleteResponse]], ResultWrapper[MembershipDeleteResponse]),
         )
 
     def get(
@@ -228,14 +224,10 @@ class MembershipsResource(SyncAPIResource):
             self._get(
                 f"/memberships/{membership_id}",
                 options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[MembershipGetResponse]._unwrapper,
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[MembershipGetResponse]
+                    Any, MembershipGetResponse
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -286,14 +278,10 @@ class AsyncMembershipsResource(AsyncAPIResource):
                 f"/memberships/{membership_id}",
                 body=await async_maybe_transform({"status": status}, membership_update_params.MembershipUpdateParams),
                 options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[MembershipUpdateResponse]._unwrapper,
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[MembershipUpdateResponse]
+                    Any, MembershipUpdateResponse
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -373,7 +361,7 @@ class AsyncMembershipsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MembershipDeleteResponse:
+    ) -> Optional[MembershipDeleteResponse]:
         """
         Remove the associated member from an account.
 
@@ -397,9 +385,9 @@ class AsyncMembershipsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[MembershipDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[MembershipDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[MembershipDeleteResponse], ResultWrapper[MembershipDeleteResponse]),
+            cast_to=cast(Type[Optional[MembershipDeleteResponse]], ResultWrapper[MembershipDeleteResponse]),
         )
 
     async def get(
@@ -434,14 +422,10 @@ class AsyncMembershipsResource(AsyncAPIResource):
             await self._get(
                 f"/memberships/{membership_id}",
                 options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[MembershipGetResponse]._unwrapper,
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[MembershipGetResponse]
+                    Any, MembershipGetResponse
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

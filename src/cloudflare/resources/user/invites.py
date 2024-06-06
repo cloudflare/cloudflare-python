@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -28,8 +28,6 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.user.invite import Invite
-from ...types.user.invite_get_response import InviteGetResponse
-from ...types.user.invite_edit_response import InviteEditResponse
 
 __all__ = ["InvitesResource", "AsyncInvitesResource"]
 
@@ -74,7 +72,7 @@ class InvitesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> InviteEditResponse:
+    ) -> object:
         """
         Responds to an invitation.
 
@@ -93,22 +91,17 @@ class InvitesResource(SyncAPIResource):
         """
         if not invite_id:
             raise ValueError(f"Expected a non-empty value for `invite_id` but received {invite_id!r}")
-        return cast(
-            InviteEditResponse,
-            self._patch(
-                f"/user/invites/{invite_id}",
-                body=maybe_transform({"status": status}, invite_edit_params.InviteEditParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[InviteEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[InviteEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._patch(
+            f"/user/invites/{invite_id}",
+            body=maybe_transform({"status": status}, invite_edit_params.InviteEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -121,7 +114,7 @@ class InvitesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> InviteGetResponse:
+    ) -> object:
         """
         Gets the details of an invitation.
 
@@ -138,21 +131,16 @@ class InvitesResource(SyncAPIResource):
         """
         if not invite_id:
             raise ValueError(f"Expected a non-empty value for `invite_id` but received {invite_id!r}")
-        return cast(
-            InviteGetResponse,
-            self._get(
-                f"/user/invites/{invite_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[InviteGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[InviteGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/user/invites/{invite_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
@@ -196,7 +184,7 @@ class AsyncInvitesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> InviteEditResponse:
+    ) -> object:
         """
         Responds to an invitation.
 
@@ -215,22 +203,17 @@ class AsyncInvitesResource(AsyncAPIResource):
         """
         if not invite_id:
             raise ValueError(f"Expected a non-empty value for `invite_id` but received {invite_id!r}")
-        return cast(
-            InviteEditResponse,
-            await self._patch(
-                f"/user/invites/{invite_id}",
-                body=await async_maybe_transform({"status": status}, invite_edit_params.InviteEditParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[InviteEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[InviteEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._patch(
+            f"/user/invites/{invite_id}",
+            body=await async_maybe_transform({"status": status}, invite_edit_params.InviteEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def get(
@@ -243,7 +226,7 @@ class AsyncInvitesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> InviteGetResponse:
+    ) -> object:
         """
         Gets the details of an invitation.
 
@@ -260,21 +243,16 @@ class AsyncInvitesResource(AsyncAPIResource):
         """
         if not invite_id:
             raise ValueError(f"Expected a non-empty value for `invite_id` but received {invite_id!r}")
-        return cast(
-            InviteGetResponse,
-            await self._get(
-                f"/user/invites/{invite_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[InviteGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[InviteGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/user/invites/{invite_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 

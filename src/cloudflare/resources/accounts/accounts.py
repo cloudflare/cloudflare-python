@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -43,8 +43,6 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.accounts import account_list_params, account_update_params
-from ...types.accounts.account_get_response import AccountGetResponse
-from ...types.accounts.account_update_response import AccountUpdateResponse
 
 __all__ = ["AccountsResource", "AsyncAccountsResource"]
 
@@ -78,7 +76,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountUpdateResponse:
+    ) -> object:
         """
         Update an existing account.
 
@@ -95,28 +93,23 @@ class AccountsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            AccountUpdateResponse,
-            self._put(
-                f"/accounts/{account_id}",
-                body=maybe_transform(
-                    {
-                        "name": name,
-                        "settings": settings,
-                    },
-                    account_update_params.AccountUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[AccountUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AccountUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/accounts/{account_id}",
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "settings": settings,
+                },
+                account_update_params.AccountUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def list(
@@ -184,7 +177,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountGetResponse:
+    ) -> object:
         """
         Get information about a specific account that you are a member of.
 
@@ -197,21 +190,16 @@ class AccountsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            AccountGetResponse,
-            self._get(
-                f"/accounts/{account_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[AccountGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AccountGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/accounts/{account_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
@@ -244,7 +232,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountUpdateResponse:
+    ) -> object:
         """
         Update an existing account.
 
@@ -261,28 +249,23 @@ class AsyncAccountsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            AccountUpdateResponse,
-            await self._put(
-                f"/accounts/{account_id}",
-                body=await async_maybe_transform(
-                    {
-                        "name": name,
-                        "settings": settings,
-                    },
-                    account_update_params.AccountUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[AccountUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AccountUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/accounts/{account_id}",
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "settings": settings,
+                },
+                account_update_params.AccountUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def list(
@@ -350,7 +333,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AccountGetResponse:
+    ) -> object:
         """
         Get information about a specific account that you are a member of.
 
@@ -363,21 +346,16 @@ class AsyncAccountsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            AccountGetResponse,
-            await self._get(
-                f"/accounts/{account_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[AccountGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AccountGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/accounts/{account_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
