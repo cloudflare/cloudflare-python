@@ -5545,7 +5545,7 @@ from cloudflare.types.zero_trust.access.logs import AccessRequests, AccessReques
 
 Methods:
 
-- <code title="get /accounts/{account_id}/access/logs/access_requests">client.zero_trust.access.logs.access_requests.<a href="./src/cloudflare/resources/zero_trust/access/logs/access_requests.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/access/logs/access_request_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/access/logs/access_requests">client.zero_trust.access.logs.access_requests.<a href="./src/cloudflare/resources/zero_trust/access/logs/access_requests.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/access/logs/access_request_list_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/access/logs/access_request_list_response.py">Optional</a></code>
 
 ### Users
 
