@@ -2,6 +2,14 @@
 
 from typing import Union, Optional
 
-__all__ = ["MembershipUpdateResponse"]
+from ..._models import BaseModel
+from .membership import Membership
 
-MembershipUpdateResponse = Union[Optional[str], Optional[object]]
+__all__ = ["MembershipUpdateResponse", "IamAPIResponseCommon"]
+
+
+class IamAPIResponseCommon(BaseModel):
+    result: Optional[Membership] = None
+
+
+MembershipUpdateResponse = Union[IamAPIResponseCommon, IamAPIResponseCommon]

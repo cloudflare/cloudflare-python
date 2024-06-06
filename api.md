@@ -36,9 +36,9 @@ from cloudflare.types.accounts import (
 
 Methods:
 
-- <code title="put /accounts/{account_id}">client.accounts.<a href="./src/cloudflare/resources/accounts/accounts.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/account_update_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/account_update_response.py">AccountUpdateResponse</a></code>
+- <code title="put /accounts/{account_id}">client.accounts.<a href="./src/cloudflare/resources/accounts/accounts.py">update</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/account_update_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/account_update_response.py">object</a></code>
 - <code title="get /accounts">client.accounts.<a href="./src/cloudflare/resources/accounts/accounts.py">list</a>(\*\*<a href="src/cloudflare/types/accounts/account_list_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/account_list_response.py">SyncV4PagePaginationArray[object]</a></code>
-- <code title="get /accounts/{account_id}">client.accounts.<a href="./src/cloudflare/resources/accounts/accounts.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/account_get_response.py">AccountGetResponse</a></code>
+- <code title="get /accounts/{account_id}">client.accounts.<a href="./src/cloudflare/resources/accounts/accounts.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/accounts/account_get_response.py">object</a></code>
 
 ## Members
 
@@ -48,18 +48,20 @@ Types:
 from cloudflare.types.accounts import (
     Status,
     UserWithInviteCode,
-    MemberListResponse,
+    MemberCreateResponse,
+    MemberUpdateResponse,
     MemberDeleteResponse,
+    MemberGetResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/members">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_create_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/user_with_invite_code.py">UserWithInviteCode</a></code>
-- <code title="put /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">update</a>(member_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_update_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/member.py">Member</a></code>
-- <code title="get /accounts/{account_id}/members">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_list_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_list_response.py">SyncV4PagePaginationArray[MemberListResponse]</a></code>
+- <code title="post /accounts/{account_id}/members">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_create_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_create_response.py">MemberCreateResponse</a></code>
+- <code title="put /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">update</a>(member_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_update_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_update_response.py">MemberUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/members">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_list_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/member.py">SyncV4PagePaginationArray[Member]</a></code>
 - <code title="delete /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">delete</a>(member_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/member_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">get</a>(member_id, \*, account_id) -> <a href="./src/cloudflare/types/shared/member.py">Member</a></code>
+- <code title="get /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">get</a>(member_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/member_get_response.py">MemberGetResponse</a></code>
 
 ## Roles
 
@@ -72,7 +74,7 @@ from cloudflare.types.accounts import RoleGetResponse
 Methods:
 
 - <code title="get /accounts/{account_id}/roles">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/shared/role.py">SyncSinglePage[Role]</a></code>
-- <code title="get /accounts/{account_id}/roles/{role_id}">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">get</a>(role_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/role_get_response.py">RoleGetResponse</a></code>
+- <code title="get /accounts/{account_id}/roles/{role_id}">client.accounts.roles.<a href="./src/cloudflare/resources/accounts/roles.py">get</a>(role_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/role_get_response.py">object</a></code>
 
 # OriginCACertificates
 
@@ -123,7 +125,7 @@ Methods:
 
 - <code title="put /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">update</a>(membership_id, \*\*<a href="src/cloudflare/types/memberships/membership_update_params.py">params</a>) -> <a href="./src/cloudflare/types/memberships/membership_update_response.py">MembershipUpdateResponse</a></code>
 - <code title="get /memberships">client.memberships.<a href="./src/cloudflare/resources/memberships.py">list</a>(\*\*<a href="src/cloudflare/types/memberships/membership_list_params.py">params</a>) -> <a href="./src/cloudflare/types/memberships/membership.py">SyncV4PagePaginationArray[Membership]</a></code>
-- <code title="delete /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">delete</a>(membership_id) -> <a href="./src/cloudflare/types/memberships/membership_delete_response.py">MembershipDeleteResponse</a></code>
+- <code title="delete /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">delete</a>(membership_id) -> <a href="./src/cloudflare/types/memberships/membership_delete_response.py">Optional</a></code>
 - <code title="get /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">get</a>(membership_id) -> <a href="./src/cloudflare/types/memberships/membership_get_response.py">MembershipGetResponse</a></code>
 
 # User
@@ -136,8 +138,8 @@ from cloudflare.types.user import UserEditResponse, UserGetResponse
 
 Methods:
 
-- <code title="patch /user">client.user.<a href="./src/cloudflare/resources/user/user.py">edit</a>(\*\*<a href="src/cloudflare/types/user/user_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/user_edit_response.py">UserEditResponse</a></code>
-- <code title="get /user">client.user.<a href="./src/cloudflare/resources/user/user.py">get</a>() -> <a href="./src/cloudflare/types/user/user_get_response.py">UserGetResponse</a></code>
+- <code title="patch /user">client.user.<a href="./src/cloudflare/resources/user/user.py">edit</a>(\*\*<a href="src/cloudflare/types/user/user_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/user_edit_response.py">object</a></code>
+- <code title="get /user">client.user.<a href="./src/cloudflare/resources/user/user.py">get</a>() -> <a href="./src/cloudflare/types/user/user_get_response.py">object</a></code>
 
 ## AuditLogs
 
@@ -182,8 +184,8 @@ from cloudflare.types.user import Invite, InviteEditResponse, InviteGetResponse
 Methods:
 
 - <code title="get /user/invites">client.user.invites.<a href="./src/cloudflare/resources/user/invites.py">list</a>() -> <a href="./src/cloudflare/types/user/invite.py">SyncSinglePage[Invite]</a></code>
-- <code title="patch /user/invites/{invite_id}">client.user.invites.<a href="./src/cloudflare/resources/user/invites.py">edit</a>(invite_id, \*\*<a href="src/cloudflare/types/user/invite_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/invite_edit_response.py">InviteEditResponse</a></code>
-- <code title="get /user/invites/{invite_id}">client.user.invites.<a href="./src/cloudflare/resources/user/invites.py">get</a>(invite_id) -> <a href="./src/cloudflare/types/user/invite_get_response.py">InviteGetResponse</a></code>
+- <code title="patch /user/invites/{invite_id}">client.user.invites.<a href="./src/cloudflare/resources/user/invites.py">edit</a>(invite_id, \*\*<a href="src/cloudflare/types/user/invite_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/user/invite_edit_response.py">object</a></code>
+- <code title="get /user/invites/{invite_id}">client.user.invites.<a href="./src/cloudflare/resources/user/invites.py">get</a>(invite_id) -> <a href="./src/cloudflare/types/user/invite_get_response.py">object</a></code>
 
 ## Organizations
 
@@ -197,7 +199,7 @@ Methods:
 
 - <code title="get /user/organizations">client.user.organizations.<a href="./src/cloudflare/resources/user/organizations.py">list</a>(\*\*<a href="src/cloudflare/types/user/organization_list_params.py">params</a>) -> <a href="./src/cloudflare/types/user/organization.py">SyncV4PagePaginationArray[Organization]</a></code>
 - <code title="delete /user/organizations/{organization_id}">client.user.organizations.<a href="./src/cloudflare/resources/user/organizations.py">delete</a>(organization_id) -> <a href="./src/cloudflare/types/user/organization_delete_response.py">OrganizationDeleteResponse</a></code>
-- <code title="get /user/organizations/{organization_id}">client.user.organizations.<a href="./src/cloudflare/resources/user/organizations.py">get</a>(organization_id) -> <a href="./src/cloudflare/types/user/organization_get_response.py">OrganizationGetResponse</a></code>
+- <code title="get /user/organizations/{organization_id}">client.user.organizations.<a href="./src/cloudflare/resources/user/organizations.py">get</a>(organization_id) -> <a href="./src/cloudflare/types/user/organization_get_response.py">object</a></code>
 
 ## Subscriptions
 
@@ -230,7 +232,6 @@ Types:
 ```python
 from cloudflare.types.user import (
     CIDRList,
-    Policy,
     Token,
     TokenCreateResponse,
     TokenUpdateResponse,
@@ -243,12 +244,12 @@ from cloudflare.types.user import (
 
 Methods:
 
-- <code title="post /user/tokens">client.user.tokens.<a href="./src/cloudflare/resources/user/tokens/tokens.py">create</a>(\*\*<a href="src/cloudflare/types/user/token_create_params.py">params</a>) -> <a href="./src/cloudflare/types/user/token_create_response.py">TokenCreateResponse</a></code>
-- <code title="put /user/tokens/{token_id}">client.user.tokens.<a href="./src/cloudflare/resources/user/tokens/tokens.py">update</a>(token_id, \*\*<a href="src/cloudflare/types/user/token_update_params.py">params</a>) -> <a href="./src/cloudflare/types/user/token_update_response.py">TokenUpdateResponse</a></code>
+- <code title="post /user/tokens">client.user.tokens.<a href="./src/cloudflare/resources/user/tokens/tokens.py">create</a>(\*\*<a href="src/cloudflare/types/user/token_create_params.py">params</a>) -> <a href="./src/cloudflare/types/user/token_create_response.py">Optional</a></code>
+- <code title="put /user/tokens/{token_id}">client.user.tokens.<a href="./src/cloudflare/resources/user/tokens/tokens.py">update</a>(token_id, \*\*<a href="src/cloudflare/types/user/token_update_params.py">params</a>) -> <a href="./src/cloudflare/types/user/token_update_response.py">object</a></code>
 - <code title="get /user/tokens">client.user.tokens.<a href="./src/cloudflare/resources/user/tokens/tokens.py">list</a>(\*\*<a href="src/cloudflare/types/user/token_list_params.py">params</a>) -> <a href="./src/cloudflare/types/user/token_list_response.py">SyncV4PagePaginationArray[object]</a></code>
 - <code title="delete /user/tokens/{token_id}">client.user.tokens.<a href="./src/cloudflare/resources/user/tokens/tokens.py">delete</a>(token_id) -> <a href="./src/cloudflare/types/user/token_delete_response.py">Optional</a></code>
-- <code title="get /user/tokens/{token_id}">client.user.tokens.<a href="./src/cloudflare/resources/user/tokens/tokens.py">get</a>(token_id) -> <a href="./src/cloudflare/types/user/token_get_response.py">TokenGetResponse</a></code>
-- <code title="get /user/tokens/verify">client.user.tokens.<a href="./src/cloudflare/resources/user/tokens/tokens.py">verify</a>() -> <a href="./src/cloudflare/types/user/token_verify_response.py">TokenVerifyResponse</a></code>
+- <code title="get /user/tokens/{token_id}">client.user.tokens.<a href="./src/cloudflare/resources/user/tokens/tokens.py">get</a>(token_id) -> <a href="./src/cloudflare/types/user/token_get_response.py">object</a></code>
+- <code title="get /user/tokens/verify">client.user.tokens.<a href="./src/cloudflare/resources/user/tokens/tokens.py">verify</a>() -> <a href="./src/cloudflare/types/user/token_verify_response.py">Optional</a></code>
 
 ### PermissionGroups
 
