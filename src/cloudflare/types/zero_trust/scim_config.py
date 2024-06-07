@@ -4,10 +4,10 @@ from typing import Optional
 
 from ..._models import BaseModel
 
-__all__ = ["ScimConfig"]
+__all__ = ["SCIMConfig"]
 
 
-class ScimConfig(BaseModel):
+class SCIMConfig(BaseModel):
     enabled: Optional[bool] = None
     """A flag to enable or disable SCIM for the identity provider."""
 
