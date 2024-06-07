@@ -20,13 +20,13 @@ __all__ = [
     "SelfHostedApplicationPolicy",
     "SelfHostedApplicationPolicyAccessAppPolicyLink",
     "SelfHostedApplicationPolicyUnionMember2",
-    "SelfHostedApplicationScimConfig",
-    "SelfHostedApplicationScimConfigAuthentication",
-    "SelfHostedApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic",
-    "SelfHostedApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken",
-    "SelfHostedApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2",
-    "SelfHostedApplicationScimConfigMapping",
-    "SelfHostedApplicationScimConfigMappingOperations",
+    "SelfHostedApplicationSCIMConfig",
+    "SelfHostedApplicationSCIMConfigAuthentication",
+    "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
+    "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
+    "SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
+    "SelfHostedApplicationSCIMConfigMapping",
+    "SelfHostedApplicationSCIMConfigMappingOperations",
     "SaaSApplication",
     "SaaSApplicationPolicy",
     "SaaSApplicationPolicyAccessAppPolicyLink",
@@ -37,76 +37,76 @@ __all__ = [
     "SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaimsSource",
     "SaaSApplicationSaaSAppAccessOIDCSaaSAppHybridAndImplicitOptions",
     "SaaSApplicationSaaSAppAccessOIDCSaaSAppRefreshTokenOptions",
-    "SaaSApplicationScimConfig",
-    "SaaSApplicationScimConfigAuthentication",
-    "SaaSApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic",
-    "SaaSApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken",
-    "SaaSApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2",
-    "SaaSApplicationScimConfigMapping",
-    "SaaSApplicationScimConfigMappingOperations",
+    "SaaSApplicationSCIMConfig",
+    "SaaSApplicationSCIMConfigAuthentication",
+    "SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
+    "SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
+    "SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
+    "SaaSApplicationSCIMConfigMapping",
+    "SaaSApplicationSCIMConfigMappingOperations",
     "BrowserSSHApplication",
     "BrowserSSHApplicationPolicy",
     "BrowserSSHApplicationPolicyAccessAppPolicyLink",
     "BrowserSSHApplicationPolicyUnionMember2",
-    "BrowserSSHApplicationScimConfig",
-    "BrowserSSHApplicationScimConfigAuthentication",
-    "BrowserSSHApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic",
-    "BrowserSSHApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken",
-    "BrowserSSHApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2",
-    "BrowserSSHApplicationScimConfigMapping",
-    "BrowserSSHApplicationScimConfigMappingOperations",
+    "BrowserSSHApplicationSCIMConfig",
+    "BrowserSSHApplicationSCIMConfigAuthentication",
+    "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
+    "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
+    "BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
+    "BrowserSSHApplicationSCIMConfigMapping",
+    "BrowserSSHApplicationSCIMConfigMappingOperations",
     "BrowserVncApplication",
     "BrowserVncApplicationPolicy",
     "BrowserVncApplicationPolicyAccessAppPolicyLink",
     "BrowserVncApplicationPolicyUnionMember2",
-    "BrowserVncApplicationScimConfig",
-    "BrowserVncApplicationScimConfigAuthentication",
-    "BrowserVncApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic",
-    "BrowserVncApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken",
-    "BrowserVncApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2",
-    "BrowserVncApplicationScimConfigMapping",
-    "BrowserVncApplicationScimConfigMappingOperations",
+    "BrowserVncApplicationSCIMConfig",
+    "BrowserVncApplicationSCIMConfigAuthentication",
+    "BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
+    "BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
+    "BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
+    "BrowserVncApplicationSCIMConfigMapping",
+    "BrowserVncApplicationSCIMConfigMappingOperations",
     "AppLauncherApplication",
     "AppLauncherApplicationPolicy",
     "AppLauncherApplicationPolicyAccessAppPolicyLink",
     "AppLauncherApplicationPolicyUnionMember2",
-    "AppLauncherApplicationScimConfig",
-    "AppLauncherApplicationScimConfigAuthentication",
-    "AppLauncherApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic",
-    "AppLauncherApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken",
-    "AppLauncherApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2",
-    "AppLauncherApplicationScimConfigMapping",
-    "AppLauncherApplicationScimConfigMappingOperations",
+    "AppLauncherApplicationSCIMConfig",
+    "AppLauncherApplicationSCIMConfigAuthentication",
+    "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
+    "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
+    "AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
+    "AppLauncherApplicationSCIMConfigMapping",
+    "AppLauncherApplicationSCIMConfigMappingOperations",
     "DeviceEnrollmentPermissionsApplication",
     "DeviceEnrollmentPermissionsApplicationPolicy",
     "DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink",
     "DeviceEnrollmentPermissionsApplicationPolicyUnionMember2",
-    "DeviceEnrollmentPermissionsApplicationScimConfig",
-    "DeviceEnrollmentPermissionsApplicationScimConfigAuthentication",
-    "DeviceEnrollmentPermissionsApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic",
-    "DeviceEnrollmentPermissionsApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken",
-    "DeviceEnrollmentPermissionsApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2",
-    "DeviceEnrollmentPermissionsApplicationScimConfigMapping",
-    "DeviceEnrollmentPermissionsApplicationScimConfigMappingOperations",
+    "DeviceEnrollmentPermissionsApplicationSCIMConfig",
+    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication",
+    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
+    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
+    "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
+    "DeviceEnrollmentPermissionsApplicationSCIMConfigMapping",
+    "DeviceEnrollmentPermissionsApplicationSCIMConfigMappingOperations",
     "BrowserIsolationPermissionsApplication",
     "BrowserIsolationPermissionsApplicationPolicy",
     "BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink",
     "BrowserIsolationPermissionsApplicationPolicyUnionMember2",
-    "BrowserIsolationPermissionsApplicationScimConfig",
-    "BrowserIsolationPermissionsApplicationScimConfigAuthentication",
-    "BrowserIsolationPermissionsApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic",
-    "BrowserIsolationPermissionsApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken",
-    "BrowserIsolationPermissionsApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2",
-    "BrowserIsolationPermissionsApplicationScimConfigMapping",
-    "BrowserIsolationPermissionsApplicationScimConfigMappingOperations",
+    "BrowserIsolationPermissionsApplicationSCIMConfig",
+    "BrowserIsolationPermissionsApplicationSCIMConfigAuthentication",
+    "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
+    "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
+    "BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
+    "BrowserIsolationPermissionsApplicationSCIMConfigMapping",
+    "BrowserIsolationPermissionsApplicationSCIMConfigMappingOperations",
     "BookmarkApplication",
-    "BookmarkApplicationScimConfig",
-    "BookmarkApplicationScimConfigAuthentication",
-    "BookmarkApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic",
-    "BookmarkApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken",
-    "BookmarkApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2",
-    "BookmarkApplicationScimConfigMapping",
-    "BookmarkApplicationScimConfigMappingOperations",
+    "BookmarkApplicationSCIMConfig",
+    "BookmarkApplicationSCIMConfigAuthentication",
+    "BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic",
+    "BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken",
+    "BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2",
+    "BookmarkApplicationSCIMConfigMapping",
+    "BookmarkApplicationSCIMConfigMappingOperations",
 ]
 
 
@@ -218,7 +218,7 @@ class SelfHostedApplication(TypedDict, total=False):
     attacks.
     """
 
-    scim_config: SelfHostedApplicationScimConfig
+    scim_config: SelfHostedApplicationSCIMConfig
     """Configuration for provisioning to this application via SCIM.
 
     This is currently in closed beta.
@@ -327,7 +327,7 @@ SelfHostedApplicationPolicy = Union[
 ]
 
 
-class SelfHostedApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic(TypedDict, total=False):
+class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(TypedDict, total=False):
     password: Required[str]
     """Password used to authenticate with the remote SCIM service."""
 
@@ -338,7 +338,7 @@ class SelfHostedApplicationScimConfigAuthenticationAccessScimConfigAuthenticatio
     """User name used to authenticate with the remote SCIM service."""
 
 
-class SelfHostedApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken(
+class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(
     TypedDict, total=False
 ):
     token: Required[str]
@@ -348,7 +348,7 @@ class SelfHostedApplicationScimConfigAuthenticationAccessScimConfigAuthenticatio
     """The authentication scheme to use when making SCIM requests to this application."""
 
 
-class SelfHostedApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2(TypedDict, total=False):
+class SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(TypedDict, total=False):
     authorization_url: Required[str]
     """URL used to generate the auth code used during token generation."""
 
@@ -380,14 +380,14 @@ class SelfHostedApplicationScimConfigAuthenticationAccessScimConfigAuthenticatio
     """
 
 
-SelfHostedApplicationScimConfigAuthentication = Union[
-    SelfHostedApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic,
-    SelfHostedApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken,
-    SelfHostedApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2,
+SelfHostedApplicationSCIMConfigAuthentication = Union[
+    SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
+    SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
+    SelfHostedApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
 ]
 
 
-class SelfHostedApplicationScimConfigMappingOperations(TypedDict, total=False):
+class SelfHostedApplicationSCIMConfigMappingOperations(TypedDict, total=False):
     create: bool
     """Whether or not this mapping applies to create (POST) operations."""
 
@@ -398,7 +398,7 @@ class SelfHostedApplicationScimConfigMappingOperations(TypedDict, total=False):
     """Whether or not this mapping applies to update (PATCH/PUT) operations."""
 
 
-class SelfHostedApplicationScimConfigMapping(TypedDict, total=False):
+class SelfHostedApplicationSCIMConfigMapping(TypedDict, total=False):
     schema: Required[str]
     """Which SCIM resource type this mapping applies to."""
 
@@ -412,7 +412,7 @@ class SelfHostedApplicationScimConfigMapping(TypedDict, total=False):
     that matches resources that should be provisioned to this application.
     """
 
-    operations: SelfHostedApplicationScimConfigMappingOperations
+    operations: SelfHostedApplicationSCIMConfigMappingOperations
     """Whether or not this mapping applies to creates, updates, or deletes."""
 
     transform_jsonata: str
@@ -422,7 +422,7 @@ class SelfHostedApplicationScimConfigMapping(TypedDict, total=False):
     """
 
 
-class SelfHostedApplicationScimConfig(TypedDict, total=False):
+class SelfHostedApplicationSCIMConfig(TypedDict, total=False):
     idp_uid: Required[str]
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -432,7 +432,7 @@ class SelfHostedApplicationScimConfig(TypedDict, total=False):
     remote_uri: Required[str]
     """The base URI for the application's SCIM-compatible API."""
 
-    authentication: SelfHostedApplicationScimConfigAuthentication
+    authentication: SelfHostedApplicationSCIMConfigAuthentication
     """
     Attributes for configuring HTTP Basic authentication scheme for SCIM
     provisioning to an application.
@@ -448,7 +448,7 @@ class SelfHostedApplicationScimConfig(TypedDict, total=False):
     enabled: bool
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Iterable[SelfHostedApplicationScimConfigMapping]
+    mappings: Iterable[SelfHostedApplicationSCIMConfigMapping]
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -497,7 +497,7 @@ class SaaSApplication(TypedDict, total=False):
 
     saas_app: SaaSApplicationSaaSApp
 
-    scim_config: SaaSApplicationScimConfig
+    scim_config: SaaSApplicationSCIMConfig
     """Configuration for provisioning to this application via SCIM.
 
     This is currently in closed beta.
@@ -683,7 +683,7 @@ class SaaSApplicationSaaSAppAccessOIDCSaaSApp(TypedDict, total=False):
 SaaSApplicationSaaSApp = Union[SAMLSaaSAppParam, SaaSApplicationSaaSAppAccessOIDCSaaSApp]
 
 
-class SaaSApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic(TypedDict, total=False):
+class SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(TypedDict, total=False):
     password: Required[str]
     """Password used to authenticate with the remote SCIM service."""
 
@@ -694,7 +694,7 @@ class SaaSApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPB
     """User name used to authenticate with the remote SCIM service."""
 
 
-class SaaSApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken(TypedDict, total=False):
+class SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(TypedDict, total=False):
     token: Required[str]
     """Token used to authenticate with the remote SCIM service."""
 
@@ -702,7 +702,7 @@ class SaaSApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuth
     """The authentication scheme to use when making SCIM requests to this application."""
 
 
-class SaaSApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2(TypedDict, total=False):
+class SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(TypedDict, total=False):
     authorization_url: Required[str]
     """URL used to generate the auth code used during token generation."""
 
@@ -734,14 +734,14 @@ class SaaSApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth
     """
 
 
-SaaSApplicationScimConfigAuthentication = Union[
-    SaaSApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic,
-    SaaSApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken,
-    SaaSApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2,
+SaaSApplicationSCIMConfigAuthentication = Union[
+    SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
+    SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
+    SaaSApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
 ]
 
 
-class SaaSApplicationScimConfigMappingOperations(TypedDict, total=False):
+class SaaSApplicationSCIMConfigMappingOperations(TypedDict, total=False):
     create: bool
     """Whether or not this mapping applies to create (POST) operations."""
 
@@ -752,7 +752,7 @@ class SaaSApplicationScimConfigMappingOperations(TypedDict, total=False):
     """Whether or not this mapping applies to update (PATCH/PUT) operations."""
 
 
-class SaaSApplicationScimConfigMapping(TypedDict, total=False):
+class SaaSApplicationSCIMConfigMapping(TypedDict, total=False):
     schema: Required[str]
     """Which SCIM resource type this mapping applies to."""
 
@@ -766,7 +766,7 @@ class SaaSApplicationScimConfigMapping(TypedDict, total=False):
     that matches resources that should be provisioned to this application.
     """
 
-    operations: SaaSApplicationScimConfigMappingOperations
+    operations: SaaSApplicationSCIMConfigMappingOperations
     """Whether or not this mapping applies to creates, updates, or deletes."""
 
     transform_jsonata: str
@@ -776,7 +776,7 @@ class SaaSApplicationScimConfigMapping(TypedDict, total=False):
     """
 
 
-class SaaSApplicationScimConfig(TypedDict, total=False):
+class SaaSApplicationSCIMConfig(TypedDict, total=False):
     idp_uid: Required[str]
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -786,7 +786,7 @@ class SaaSApplicationScimConfig(TypedDict, total=False):
     remote_uri: Required[str]
     """The base URI for the application's SCIM-compatible API."""
 
-    authentication: SaaSApplicationScimConfigAuthentication
+    authentication: SaaSApplicationSCIMConfigAuthentication
     """
     Attributes for configuring HTTP Basic authentication scheme for SCIM
     provisioning to an application.
@@ -802,7 +802,7 @@ class SaaSApplicationScimConfig(TypedDict, total=False):
     enabled: bool
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Iterable[SaaSApplicationScimConfigMapping]
+    mappings: Iterable[SaaSApplicationSCIMConfigMapping]
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -917,7 +917,7 @@ class BrowserSSHApplication(TypedDict, total=False):
     attacks.
     """
 
-    scim_config: BrowserSSHApplicationScimConfig
+    scim_config: BrowserSSHApplicationSCIMConfig
     """Configuration for provisioning to this application via SCIM.
 
     This is currently in closed beta.
@@ -1026,7 +1026,7 @@ BrowserSSHApplicationPolicy = Union[
 ]
 
 
-class BrowserSSHApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic(TypedDict, total=False):
+class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(TypedDict, total=False):
     password: Required[str]
     """Password used to authenticate with the remote SCIM service."""
 
@@ -1037,7 +1037,7 @@ class BrowserSSHApplicationScimConfigAuthenticationAccessScimConfigAuthenticatio
     """User name used to authenticate with the remote SCIM service."""
 
 
-class BrowserSSHApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken(
+class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(
     TypedDict, total=False
 ):
     token: Required[str]
@@ -1047,7 +1047,7 @@ class BrowserSSHApplicationScimConfigAuthenticationAccessScimConfigAuthenticatio
     """The authentication scheme to use when making SCIM requests to this application."""
 
 
-class BrowserSSHApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2(TypedDict, total=False):
+class BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(TypedDict, total=False):
     authorization_url: Required[str]
     """URL used to generate the auth code used during token generation."""
 
@@ -1079,14 +1079,14 @@ class BrowserSSHApplicationScimConfigAuthenticationAccessScimConfigAuthenticatio
     """
 
 
-BrowserSSHApplicationScimConfigAuthentication = Union[
-    BrowserSSHApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic,
-    BrowserSSHApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken,
-    BrowserSSHApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2,
+BrowserSSHApplicationSCIMConfigAuthentication = Union[
+    BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
+    BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
+    BrowserSSHApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
 ]
 
 
-class BrowserSSHApplicationScimConfigMappingOperations(TypedDict, total=False):
+class BrowserSSHApplicationSCIMConfigMappingOperations(TypedDict, total=False):
     create: bool
     """Whether or not this mapping applies to create (POST) operations."""
 
@@ -1097,7 +1097,7 @@ class BrowserSSHApplicationScimConfigMappingOperations(TypedDict, total=False):
     """Whether or not this mapping applies to update (PATCH/PUT) operations."""
 
 
-class BrowserSSHApplicationScimConfigMapping(TypedDict, total=False):
+class BrowserSSHApplicationSCIMConfigMapping(TypedDict, total=False):
     schema: Required[str]
     """Which SCIM resource type this mapping applies to."""
 
@@ -1111,7 +1111,7 @@ class BrowserSSHApplicationScimConfigMapping(TypedDict, total=False):
     that matches resources that should be provisioned to this application.
     """
 
-    operations: BrowserSSHApplicationScimConfigMappingOperations
+    operations: BrowserSSHApplicationSCIMConfigMappingOperations
     """Whether or not this mapping applies to creates, updates, or deletes."""
 
     transform_jsonata: str
@@ -1121,7 +1121,7 @@ class BrowserSSHApplicationScimConfigMapping(TypedDict, total=False):
     """
 
 
-class BrowserSSHApplicationScimConfig(TypedDict, total=False):
+class BrowserSSHApplicationSCIMConfig(TypedDict, total=False):
     idp_uid: Required[str]
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -1131,7 +1131,7 @@ class BrowserSSHApplicationScimConfig(TypedDict, total=False):
     remote_uri: Required[str]
     """The base URI for the application's SCIM-compatible API."""
 
-    authentication: BrowserSSHApplicationScimConfigAuthentication
+    authentication: BrowserSSHApplicationSCIMConfigAuthentication
     """
     Attributes for configuring HTTP Basic authentication scheme for SCIM
     provisioning to an application.
@@ -1147,7 +1147,7 @@ class BrowserSSHApplicationScimConfig(TypedDict, total=False):
     enabled: bool
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Iterable[BrowserSSHApplicationScimConfigMapping]
+    mappings: Iterable[BrowserSSHApplicationSCIMConfigMapping]
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -1262,7 +1262,7 @@ class BrowserVncApplication(TypedDict, total=False):
     attacks.
     """
 
-    scim_config: BrowserVncApplicationScimConfig
+    scim_config: BrowserVncApplicationSCIMConfig
     """Configuration for provisioning to this application via SCIM.
 
     This is currently in closed beta.
@@ -1371,7 +1371,7 @@ BrowserVncApplicationPolicy = Union[
 ]
 
 
-class BrowserVncApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic(TypedDict, total=False):
+class BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(TypedDict, total=False):
     password: Required[str]
     """Password used to authenticate with the remote SCIM service."""
 
@@ -1382,7 +1382,7 @@ class BrowserVncApplicationScimConfigAuthenticationAccessScimConfigAuthenticatio
     """User name used to authenticate with the remote SCIM service."""
 
 
-class BrowserVncApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken(
+class BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(
     TypedDict, total=False
 ):
     token: Required[str]
@@ -1392,7 +1392,7 @@ class BrowserVncApplicationScimConfigAuthenticationAccessScimConfigAuthenticatio
     """The authentication scheme to use when making SCIM requests to this application."""
 
 
-class BrowserVncApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2(TypedDict, total=False):
+class BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(TypedDict, total=False):
     authorization_url: Required[str]
     """URL used to generate the auth code used during token generation."""
 
@@ -1424,14 +1424,14 @@ class BrowserVncApplicationScimConfigAuthenticationAccessScimConfigAuthenticatio
     """
 
 
-BrowserVncApplicationScimConfigAuthentication = Union[
-    BrowserVncApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic,
-    BrowserVncApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken,
-    BrowserVncApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2,
+BrowserVncApplicationSCIMConfigAuthentication = Union[
+    BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
+    BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
+    BrowserVncApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
 ]
 
 
-class BrowserVncApplicationScimConfigMappingOperations(TypedDict, total=False):
+class BrowserVncApplicationSCIMConfigMappingOperations(TypedDict, total=False):
     create: bool
     """Whether or not this mapping applies to create (POST) operations."""
 
@@ -1442,7 +1442,7 @@ class BrowserVncApplicationScimConfigMappingOperations(TypedDict, total=False):
     """Whether or not this mapping applies to update (PATCH/PUT) operations."""
 
 
-class BrowserVncApplicationScimConfigMapping(TypedDict, total=False):
+class BrowserVncApplicationSCIMConfigMapping(TypedDict, total=False):
     schema: Required[str]
     """Which SCIM resource type this mapping applies to."""
 
@@ -1456,7 +1456,7 @@ class BrowserVncApplicationScimConfigMapping(TypedDict, total=False):
     that matches resources that should be provisioned to this application.
     """
 
-    operations: BrowserVncApplicationScimConfigMappingOperations
+    operations: BrowserVncApplicationSCIMConfigMappingOperations
     """Whether or not this mapping applies to creates, updates, or deletes."""
 
     transform_jsonata: str
@@ -1466,7 +1466,7 @@ class BrowserVncApplicationScimConfigMapping(TypedDict, total=False):
     """
 
 
-class BrowserVncApplicationScimConfig(TypedDict, total=False):
+class BrowserVncApplicationSCIMConfig(TypedDict, total=False):
     idp_uid: Required[str]
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -1476,7 +1476,7 @@ class BrowserVncApplicationScimConfig(TypedDict, total=False):
     remote_uri: Required[str]
     """The base URI for the application's SCIM-compatible API."""
 
-    authentication: BrowserVncApplicationScimConfigAuthentication
+    authentication: BrowserVncApplicationSCIMConfigAuthentication
     """
     Attributes for configuring HTTP Basic authentication scheme for SCIM
     provisioning to an application.
@@ -1492,7 +1492,7 @@ class BrowserVncApplicationScimConfig(TypedDict, total=False):
     enabled: bool
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Iterable[BrowserVncApplicationScimConfigMapping]
+    mappings: Iterable[BrowserVncApplicationSCIMConfigMapping]
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -1530,7 +1530,7 @@ class AppLauncherApplication(TypedDict, total=False):
     exclusive to the application.
     """
 
-    scim_config: AppLauncherApplicationScimConfig
+    scim_config: AppLauncherApplicationSCIMConfig
     """Configuration for provisioning to this application via SCIM.
 
     This is currently in closed beta.
@@ -1624,7 +1624,7 @@ AppLauncherApplicationPolicy = Union[
 ]
 
 
-class AppLauncherApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic(TypedDict, total=False):
+class AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(TypedDict, total=False):
     password: Required[str]
     """Password used to authenticate with the remote SCIM service."""
 
@@ -1635,7 +1635,7 @@ class AppLauncherApplicationScimConfigAuthenticationAccessScimConfigAuthenticati
     """User name used to authenticate with the remote SCIM service."""
 
 
-class AppLauncherApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken(
+class AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(
     TypedDict, total=False
 ):
     token: Required[str]
@@ -1645,7 +1645,7 @@ class AppLauncherApplicationScimConfigAuthenticationAccessScimConfigAuthenticati
     """The authentication scheme to use when making SCIM requests to this application."""
 
 
-class AppLauncherApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2(TypedDict, total=False):
+class AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(TypedDict, total=False):
     authorization_url: Required[str]
     """URL used to generate the auth code used during token generation."""
 
@@ -1677,14 +1677,14 @@ class AppLauncherApplicationScimConfigAuthenticationAccessScimConfigAuthenticati
     """
 
 
-AppLauncherApplicationScimConfigAuthentication = Union[
-    AppLauncherApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic,
-    AppLauncherApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken,
-    AppLauncherApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2,
+AppLauncherApplicationSCIMConfigAuthentication = Union[
+    AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
+    AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
+    AppLauncherApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
 ]
 
 
-class AppLauncherApplicationScimConfigMappingOperations(TypedDict, total=False):
+class AppLauncherApplicationSCIMConfigMappingOperations(TypedDict, total=False):
     create: bool
     """Whether or not this mapping applies to create (POST) operations."""
 
@@ -1695,7 +1695,7 @@ class AppLauncherApplicationScimConfigMappingOperations(TypedDict, total=False):
     """Whether or not this mapping applies to update (PATCH/PUT) operations."""
 
 
-class AppLauncherApplicationScimConfigMapping(TypedDict, total=False):
+class AppLauncherApplicationSCIMConfigMapping(TypedDict, total=False):
     schema: Required[str]
     """Which SCIM resource type this mapping applies to."""
 
@@ -1709,7 +1709,7 @@ class AppLauncherApplicationScimConfigMapping(TypedDict, total=False):
     that matches resources that should be provisioned to this application.
     """
 
-    operations: AppLauncherApplicationScimConfigMappingOperations
+    operations: AppLauncherApplicationSCIMConfigMappingOperations
     """Whether or not this mapping applies to creates, updates, or deletes."""
 
     transform_jsonata: str
@@ -1719,7 +1719,7 @@ class AppLauncherApplicationScimConfigMapping(TypedDict, total=False):
     """
 
 
-class AppLauncherApplicationScimConfig(TypedDict, total=False):
+class AppLauncherApplicationSCIMConfig(TypedDict, total=False):
     idp_uid: Required[str]
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -1729,7 +1729,7 @@ class AppLauncherApplicationScimConfig(TypedDict, total=False):
     remote_uri: Required[str]
     """The base URI for the application's SCIM-compatible API."""
 
-    authentication: AppLauncherApplicationScimConfigAuthentication
+    authentication: AppLauncherApplicationSCIMConfigAuthentication
     """
     Attributes for configuring HTTP Basic authentication scheme for SCIM
     provisioning to an application.
@@ -1745,7 +1745,7 @@ class AppLauncherApplicationScimConfig(TypedDict, total=False):
     enabled: bool
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Iterable[AppLauncherApplicationScimConfigMapping]
+    mappings: Iterable[AppLauncherApplicationSCIMConfigMapping]
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -1783,7 +1783,7 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     exclusive to the application.
     """
 
-    scim_config: DeviceEnrollmentPermissionsApplicationScimConfig
+    scim_config: DeviceEnrollmentPermissionsApplicationSCIMConfig
     """Configuration for provisioning to this application via SCIM.
 
     This is currently in closed beta.
@@ -1879,7 +1879,7 @@ DeviceEnrollmentPermissionsApplicationPolicy = Union[
 ]
 
 
-class DeviceEnrollmentPermissionsApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic(
+class DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(
     TypedDict, total=False
 ):
     password: Required[str]
@@ -1892,7 +1892,7 @@ class DeviceEnrollmentPermissionsApplicationScimConfigAuthenticationAccessScimCo
     """User name used to authenticate with the remote SCIM service."""
 
 
-class DeviceEnrollmentPermissionsApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken(
+class DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(
     TypedDict, total=False
 ):
     token: Required[str]
@@ -1902,7 +1902,7 @@ class DeviceEnrollmentPermissionsApplicationScimConfigAuthenticationAccessScimCo
     """The authentication scheme to use when making SCIM requests to this application."""
 
 
-class DeviceEnrollmentPermissionsApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2(
+class DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(
     TypedDict, total=False
 ):
     authorization_url: Required[str]
@@ -1936,14 +1936,14 @@ class DeviceEnrollmentPermissionsApplicationScimConfigAuthenticationAccessScimCo
     """
 
 
-DeviceEnrollmentPermissionsApplicationScimConfigAuthentication = Union[
-    DeviceEnrollmentPermissionsApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic,
-    DeviceEnrollmentPermissionsApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken,
-    DeviceEnrollmentPermissionsApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2,
+DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication = Union[
+    DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
+    DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
+    DeviceEnrollmentPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
 ]
 
 
-class DeviceEnrollmentPermissionsApplicationScimConfigMappingOperations(TypedDict, total=False):
+class DeviceEnrollmentPermissionsApplicationSCIMConfigMappingOperations(TypedDict, total=False):
     create: bool
     """Whether or not this mapping applies to create (POST) operations."""
 
@@ -1954,7 +1954,7 @@ class DeviceEnrollmentPermissionsApplicationScimConfigMappingOperations(TypedDic
     """Whether or not this mapping applies to update (PATCH/PUT) operations."""
 
 
-class DeviceEnrollmentPermissionsApplicationScimConfigMapping(TypedDict, total=False):
+class DeviceEnrollmentPermissionsApplicationSCIMConfigMapping(TypedDict, total=False):
     schema: Required[str]
     """Which SCIM resource type this mapping applies to."""
 
@@ -1968,7 +1968,7 @@ class DeviceEnrollmentPermissionsApplicationScimConfigMapping(TypedDict, total=F
     that matches resources that should be provisioned to this application.
     """
 
-    operations: DeviceEnrollmentPermissionsApplicationScimConfigMappingOperations
+    operations: DeviceEnrollmentPermissionsApplicationSCIMConfigMappingOperations
     """Whether or not this mapping applies to creates, updates, or deletes."""
 
     transform_jsonata: str
@@ -1978,7 +1978,7 @@ class DeviceEnrollmentPermissionsApplicationScimConfigMapping(TypedDict, total=F
     """
 
 
-class DeviceEnrollmentPermissionsApplicationScimConfig(TypedDict, total=False):
+class DeviceEnrollmentPermissionsApplicationSCIMConfig(TypedDict, total=False):
     idp_uid: Required[str]
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -1988,7 +1988,7 @@ class DeviceEnrollmentPermissionsApplicationScimConfig(TypedDict, total=False):
     remote_uri: Required[str]
     """The base URI for the application's SCIM-compatible API."""
 
-    authentication: DeviceEnrollmentPermissionsApplicationScimConfigAuthentication
+    authentication: DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication
     """
     Attributes for configuring HTTP Basic authentication scheme for SCIM
     provisioning to an application.
@@ -2004,7 +2004,7 @@ class DeviceEnrollmentPermissionsApplicationScimConfig(TypedDict, total=False):
     enabled: bool
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Iterable[DeviceEnrollmentPermissionsApplicationScimConfigMapping]
+    mappings: Iterable[DeviceEnrollmentPermissionsApplicationSCIMConfigMapping]
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -2042,7 +2042,7 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     exclusive to the application.
     """
 
-    scim_config: BrowserIsolationPermissionsApplicationScimConfig
+    scim_config: BrowserIsolationPermissionsApplicationSCIMConfig
     """Configuration for provisioning to this application via SCIM.
 
     This is currently in closed beta.
@@ -2138,7 +2138,7 @@ BrowserIsolationPermissionsApplicationPolicy = Union[
 ]
 
 
-class BrowserIsolationPermissionsApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic(
+class BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(
     TypedDict, total=False
 ):
     password: Required[str]
@@ -2151,7 +2151,7 @@ class BrowserIsolationPermissionsApplicationScimConfigAuthenticationAccessScimCo
     """User name used to authenticate with the remote SCIM service."""
 
 
-class BrowserIsolationPermissionsApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken(
+class BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(
     TypedDict, total=False
 ):
     token: Required[str]
@@ -2161,7 +2161,7 @@ class BrowserIsolationPermissionsApplicationScimConfigAuthenticationAccessScimCo
     """The authentication scheme to use when making SCIM requests to this application."""
 
 
-class BrowserIsolationPermissionsApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2(
+class BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(
     TypedDict, total=False
 ):
     authorization_url: Required[str]
@@ -2195,14 +2195,14 @@ class BrowserIsolationPermissionsApplicationScimConfigAuthenticationAccessScimCo
     """
 
 
-BrowserIsolationPermissionsApplicationScimConfigAuthentication = Union[
-    BrowserIsolationPermissionsApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic,
-    BrowserIsolationPermissionsApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken,
-    BrowserIsolationPermissionsApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2,
+BrowserIsolationPermissionsApplicationSCIMConfigAuthentication = Union[
+    BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
+    BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
+    BrowserIsolationPermissionsApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
 ]
 
 
-class BrowserIsolationPermissionsApplicationScimConfigMappingOperations(TypedDict, total=False):
+class BrowserIsolationPermissionsApplicationSCIMConfigMappingOperations(TypedDict, total=False):
     create: bool
     """Whether or not this mapping applies to create (POST) operations."""
 
@@ -2213,7 +2213,7 @@ class BrowserIsolationPermissionsApplicationScimConfigMappingOperations(TypedDic
     """Whether or not this mapping applies to update (PATCH/PUT) operations."""
 
 
-class BrowserIsolationPermissionsApplicationScimConfigMapping(TypedDict, total=False):
+class BrowserIsolationPermissionsApplicationSCIMConfigMapping(TypedDict, total=False):
     schema: Required[str]
     """Which SCIM resource type this mapping applies to."""
 
@@ -2227,7 +2227,7 @@ class BrowserIsolationPermissionsApplicationScimConfigMapping(TypedDict, total=F
     that matches resources that should be provisioned to this application.
     """
 
-    operations: BrowserIsolationPermissionsApplicationScimConfigMappingOperations
+    operations: BrowserIsolationPermissionsApplicationSCIMConfigMappingOperations
     """Whether or not this mapping applies to creates, updates, or deletes."""
 
     transform_jsonata: str
@@ -2237,7 +2237,7 @@ class BrowserIsolationPermissionsApplicationScimConfigMapping(TypedDict, total=F
     """
 
 
-class BrowserIsolationPermissionsApplicationScimConfig(TypedDict, total=False):
+class BrowserIsolationPermissionsApplicationSCIMConfig(TypedDict, total=False):
     idp_uid: Required[str]
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -2247,7 +2247,7 @@ class BrowserIsolationPermissionsApplicationScimConfig(TypedDict, total=False):
     remote_uri: Required[str]
     """The base URI for the application's SCIM-compatible API."""
 
-    authentication: BrowserIsolationPermissionsApplicationScimConfigAuthentication
+    authentication: BrowserIsolationPermissionsApplicationSCIMConfigAuthentication
     """
     Attributes for configuring HTTP Basic authentication scheme for SCIM
     provisioning to an application.
@@ -2263,7 +2263,7 @@ class BrowserIsolationPermissionsApplicationScimConfig(TypedDict, total=False):
     enabled: bool
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Iterable[BrowserIsolationPermissionsApplicationScimConfigMapping]
+    mappings: Iterable[BrowserIsolationPermissionsApplicationSCIMConfigMapping]
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
@@ -2289,7 +2289,7 @@ class BookmarkApplication(TypedDict, total=False):
     name: str
     """The name of the application."""
 
-    scim_config: BookmarkApplicationScimConfig
+    scim_config: BookmarkApplicationSCIMConfig
     """Configuration for provisioning to this application via SCIM.
 
     This is currently in closed beta.
@@ -2305,7 +2305,7 @@ class BookmarkApplication(TypedDict, total=False):
     """The application type."""
 
 
-class BookmarkApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic(TypedDict, total=False):
+class BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic(TypedDict, total=False):
     password: Required[str]
     """Password used to authenticate with the remote SCIM service."""
 
@@ -2316,7 +2316,7 @@ class BookmarkApplicationScimConfigAuthenticationAccessScimConfigAuthenticationH
     """User name used to authenticate with the remote SCIM service."""
 
 
-class BookmarkApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken(TypedDict, total=False):
+class BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken(TypedDict, total=False):
     token: Required[str]
     """Token used to authenticate with the remote SCIM service."""
 
@@ -2324,7 +2324,7 @@ class BookmarkApplicationScimConfigAuthenticationAccessScimConfigAuthenticationO
     """The authentication scheme to use when making SCIM requests to this application."""
 
 
-class BookmarkApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2(TypedDict, total=False):
+class BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2(TypedDict, total=False):
     authorization_url: Required[str]
     """URL used to generate the auth code used during token generation."""
 
@@ -2356,14 +2356,14 @@ class BookmarkApplicationScimConfigAuthenticationAccessScimConfigAuthenticationO
     """
 
 
-BookmarkApplicationScimConfigAuthentication = Union[
-    BookmarkApplicationScimConfigAuthenticationAccessScimConfigAuthenticationHTTPBasic,
-    BookmarkApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOAuthBearerToken,
-    BookmarkApplicationScimConfigAuthenticationAccessScimConfigAuthenticationOauth2,
+BookmarkApplicationSCIMConfigAuthentication = Union[
+    BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationHTTPBasic,
+    BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOAuthBearerToken,
+    BookmarkApplicationSCIMConfigAuthenticationAccessSCIMConfigAuthenticationOauth2,
 ]
 
 
-class BookmarkApplicationScimConfigMappingOperations(TypedDict, total=False):
+class BookmarkApplicationSCIMConfigMappingOperations(TypedDict, total=False):
     create: bool
     """Whether or not this mapping applies to create (POST) operations."""
 
@@ -2374,7 +2374,7 @@ class BookmarkApplicationScimConfigMappingOperations(TypedDict, total=False):
     """Whether or not this mapping applies to update (PATCH/PUT) operations."""
 
 
-class BookmarkApplicationScimConfigMapping(TypedDict, total=False):
+class BookmarkApplicationSCIMConfigMapping(TypedDict, total=False):
     schema: Required[str]
     """Which SCIM resource type this mapping applies to."""
 
@@ -2388,7 +2388,7 @@ class BookmarkApplicationScimConfigMapping(TypedDict, total=False):
     that matches resources that should be provisioned to this application.
     """
 
-    operations: BookmarkApplicationScimConfigMappingOperations
+    operations: BookmarkApplicationSCIMConfigMappingOperations
     """Whether or not this mapping applies to creates, updates, or deletes."""
 
     transform_jsonata: str
@@ -2398,7 +2398,7 @@ class BookmarkApplicationScimConfigMapping(TypedDict, total=False):
     """
 
 
-class BookmarkApplicationScimConfig(TypedDict, total=False):
+class BookmarkApplicationSCIMConfig(TypedDict, total=False):
     idp_uid: Required[str]
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -2408,7 +2408,7 @@ class BookmarkApplicationScimConfig(TypedDict, total=False):
     remote_uri: Required[str]
     """The base URI for the application's SCIM-compatible API."""
 
-    authentication: BookmarkApplicationScimConfigAuthentication
+    authentication: BookmarkApplicationSCIMConfigAuthentication
     """
     Attributes for configuring HTTP Basic authentication scheme for SCIM
     provisioning to an application.
@@ -2424,7 +2424,7 @@ class BookmarkApplicationScimConfig(TypedDict, total=False):
     enabled: bool
     """Whether SCIM provisioning is turned on for this application."""
 
-    mappings: Iterable[BookmarkApplicationScimConfigMapping]
+    mappings: Iterable[BookmarkApplicationSCIMConfigMapping]
     """
     A list of mappings to apply to SCIM resources before provisioning them in this
     application. These can transform or filter the resources to be provisioned.
