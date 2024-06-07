@@ -5266,7 +5266,7 @@ from cloudflare.types.zero_trust import (
     GenericOAuthConfig,
     IdentityProvider,
     IdentityProviderType,
-    ScimConfig,
+    SCIMConfig,
     IdentityProviderListResponse,
     IdentityProviderDeleteResponse,
 )

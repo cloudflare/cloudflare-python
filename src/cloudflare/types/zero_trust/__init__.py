@@ -12,7 +12,7 @@ from .group_rule import GroupRule as GroupRule
 from .access_rule import AccessRule as AccessRule
 from .domain_rule import DomainRule as DomainRule
 from .percentiles import Percentiles as Percentiles
-from .scim_config import ScimConfig as ScimConfig
+from .scim_config import SCIMConfig as SCIMConfig
 from .country_rule import CountryRule as CountryRule
 from .ip_list_rule import IPListRule as IPListRule
 from .login_design import LoginDesign as LoginDesign
@@ -32,7 +32,7 @@ from .access_rule_param import AccessRuleParam as AccessRuleParam
 from .domain_rule_param import DomainRuleParam as DomainRuleParam
 from .gsuite_group_rule import GSuiteGroupRule as GSuiteGroupRule
 from .identity_provider import IdentityProvider as IdentityProvider
-from .scim_config_param import ScimConfigParam as ScimConfigParam
+from .scim_config_param import SCIMConfigParam as SCIMConfigParam
 from .country_rule_param import CountryRuleParam as CountryRuleParam
 from .ip_list_rule_param import IPListRuleParam as IPListRuleParam
 from .login_design_param import LoginDesignParam as LoginDesignParam

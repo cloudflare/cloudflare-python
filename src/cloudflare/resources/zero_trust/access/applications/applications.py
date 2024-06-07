@@ -114,7 +114,7 @@ class ApplicationsResource(SyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.SelfHostedApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -227,7 +227,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
         saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.SaaSApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -306,7 +306,7 @@ class ApplicationsResource(SyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BrowserSSHApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -430,7 +430,7 @@ class ApplicationsResource(SyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserVncApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BrowserVncApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserVncApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -539,7 +539,7 @@ class ApplicationsResource(SyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.AppLauncherApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -595,7 +595,7 @@ class ApplicationsResource(SyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -651,7 +651,7 @@ class ApplicationsResource(SyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BrowserIsolationPermissionsApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -707,7 +707,7 @@ class ApplicationsResource(SyncAPIResource):
         domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BookmarkApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -775,7 +775,7 @@ class ApplicationsResource(SyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.SelfHostedApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -875,7 +875,7 @@ class ApplicationsResource(SyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.SelfHostedApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -991,7 +991,7 @@ class ApplicationsResource(SyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
         saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.SaaSApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1073,7 +1073,7 @@ class ApplicationsResource(SyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BrowserSSHApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -1200,7 +1200,7 @@ class ApplicationsResource(SyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserVncApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BrowserVncApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserVncApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -1312,7 +1312,7 @@ class ApplicationsResource(SyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.AppLauncherApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1371,7 +1371,7 @@ class ApplicationsResource(SyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1430,7 +1430,7 @@ class ApplicationsResource(SyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BrowserIsolationPermissionsApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -1489,7 +1489,7 @@ class ApplicationsResource(SyncAPIResource):
         domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BookmarkApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -1560,7 +1560,7 @@ class ApplicationsResource(SyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.SelfHostedApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -1900,7 +1900,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.SelfHostedApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -2013,7 +2013,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
         saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.SaaSApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2092,7 +2092,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BrowserSSHApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -2216,7 +2216,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserVncApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BrowserVncApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserVncApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -2325,7 +2325,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.AppLauncherApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2381,7 +2381,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2437,7 +2437,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BrowserIsolationPermissionsApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -2493,7 +2493,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.BookmarkApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2561,7 +2561,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_create_params.SelfHostedApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -2661,7 +2661,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.SelfHostedApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -2777,7 +2777,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         name: str | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
         saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.SaaSApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -2859,7 +2859,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BrowserSSHApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -2986,7 +2986,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserVncApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BrowserVncApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserVncApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
@@ -3098,7 +3098,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.AppLauncherApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3157,7 +3157,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3216,7 +3216,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BrowserIsolationPermissionsApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -3275,7 +3275,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         domain: str | NotGiven = NOT_GIVEN,
         logo_url: str | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.BookmarkApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -3346,7 +3346,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
         path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
         same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-        scim_config: application_update_params.SelfHostedApplicationScimConfig | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
         service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
