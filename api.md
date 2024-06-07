@@ -3498,15 +3498,9 @@ Methods:
 
 ### Downloads
 
-Types:
-
-```python
-from cloudflare.types.addressing.loa_documents import DownloadGetResponse
-```
-
 Methods:
 
-- <code title="get /accounts/{account_id}/addressing/loa_documents/{loa_document_id}/download">client.addressing.loa_documents.downloads.<a href="./src/cloudflare/resources/addressing/loa_documents/downloads.py">get</a>(loa_document_id, \*, account_id) -> <a href="./src/cloudflare/types/addressing/loa_documents/download_get_response.py">object</a></code>
+- <code title="get /accounts/{account_id}/addressing/loa_documents/{loa_document_id}/download">client.addressing.loa_documents.downloads.<a href="./src/cloudflare/resources/addressing/loa_documents/downloads.py">get</a>(loa_document_id, \*, account_id) -> BinaryAPIResponse</code>
 
 ## Prefixes
 

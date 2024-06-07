@@ -10,10 +10,14 @@ from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
-    to_raw_response_wrapper,
-    to_streamed_response_wrapper,
-    async_to_raw_response_wrapper,
-    async_to_streamed_response_wrapper,
+    BinaryAPIResponse,
+    AsyncBinaryAPIResponse,
+    StreamedBinaryAPIResponse,
+    AsyncStreamedBinaryAPIResponse,
+    to_custom_raw_response_wrapper,
+    to_custom_streamed_response_wrapper,
+    async_to_custom_raw_response_wrapper,
+    async_to_custom_streamed_response_wrapper,
 )
 from ...._base_client import (
     make_request_options,
@@ -42,7 +46,7 @@ class DownloadsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> BinaryAPIResponse:
         """
         Download specified LOA document under the account.
 
@@ -63,12 +67,13 @@ class DownloadsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not loa_document_id:
             raise ValueError(f"Expected a non-empty value for `loa_document_id` but received {loa_document_id!r}")
+        extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return self._get(
             f"/accounts/{account_id}/addressing/loa_documents/{loa_document_id}/download",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=BinaryAPIResponse,
         )
 
 
@@ -92,7 +97,7 @@ class AsyncDownloadsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> AsyncBinaryAPIResponse:
         """
         Download specified LOA document under the account.
 
@@ -113,12 +118,13 @@ class AsyncDownloadsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not loa_document_id:
             raise ValueError(f"Expected a non-empty value for `loa_document_id` but received {loa_document_id!r}")
+        extra_headers = {"Accept": "application/pdf", **(extra_headers or {})}
         return await self._get(
             f"/accounts/{account_id}/addressing/loa_documents/{loa_document_id}/download",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=object,
+            cast_to=AsyncBinaryAPIResponse,
         )
 
 
@@ -126,8 +132,9 @@ class DownloadsResourceWithRawResponse:
     def __init__(self, downloads: DownloadsResource) -> None:
         self._downloads = downloads
 
-        self.get = to_raw_response_wrapper(
+        self.get = to_custom_raw_response_wrapper(
             downloads.get,
+            BinaryAPIResponse,
         )
 
 
@@ -135,8 +142,9 @@ class AsyncDownloadsResourceWithRawResponse:
     def __init__(self, downloads: AsyncDownloadsResource) -> None:
         self._downloads = downloads
 
-        self.get = async_to_raw_response_wrapper(
+        self.get = async_to_custom_raw_response_wrapper(
             downloads.get,
+            AsyncBinaryAPIResponse,
         )
 
 
@@ -144,8 +152,9 @@ class DownloadsResourceWithStreamingResponse:
     def __init__(self, downloads: DownloadsResource) -> None:
         self._downloads = downloads
 
-        self.get = to_streamed_response_wrapper(
+        self.get = to_custom_streamed_response_wrapper(
             downloads.get,
+            StreamedBinaryAPIResponse,
         )
 
 
@@ -153,6 +162,7 @@ class AsyncDownloadsResourceWithStreamingResponse:
     def __init__(self, downloads: AsyncDownloadsResource) -> None:
         self._downloads = downloads
 
-        self.get = async_to_streamed_response_wrapper(
+        self.get = async_to_custom_streamed_response_wrapper(
             downloads.get,
+            AsyncStreamedBinaryAPIResponse,
         )

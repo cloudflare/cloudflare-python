@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import List, Type, Iterable, Optional, cast
 
 import httpx
 
@@ -85,6 +85,8 @@ class AddressMapsResource(SyncAPIResource):
         account_id: str,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         enabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        ips: List[str] | NotGiven = NOT_GIVEN,
+        memberships: Iterable[address_map_create_params.Membership] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -104,6 +106,9 @@ class AddressMapsResource(SyncAPIResource):
           enabled: Whether the Address Map is enabled or not. Cloudflare's DNS will not respond
               with IP addresses on an Address Map until the map is enabled.
 
+          memberships: Zones and Accounts which will be assigned IPs on this Address Map. A zone
+              membership will take priority over an account membership.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -120,6 +125,8 @@ class AddressMapsResource(SyncAPIResource):
                 {
                     "description": description,
                     "enabled": enabled,
+                    "ips": ips,
+                    "memberships": memberships,
                 },
                 address_map_create_params.AddressMapCreateParams,
             ),
@@ -354,6 +361,8 @@ class AsyncAddressMapsResource(AsyncAPIResource):
         account_id: str,
         description: Optional[str] | NotGiven = NOT_GIVEN,
         enabled: Optional[bool] | NotGiven = NOT_GIVEN,
+        ips: List[str] | NotGiven = NOT_GIVEN,
+        memberships: Iterable[address_map_create_params.Membership] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -373,6 +382,9 @@ class AsyncAddressMapsResource(AsyncAPIResource):
           enabled: Whether the Address Map is enabled or not. Cloudflare's DNS will not respond
               with IP addresses on an Address Map until the map is enabled.
 
+          memberships: Zones and Accounts which will be assigned IPs on this Address Map. A zone
+              membership will take priority over an account membership.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -389,6 +401,8 @@ class AsyncAddressMapsResource(AsyncAPIResource):
                 {
                     "description": description,
                     "enabled": enabled,
+                    "ips": ips,
+                    "memberships": memberships,
                 },
                 address_map_create_params.AddressMapCreateParams,
             ),
