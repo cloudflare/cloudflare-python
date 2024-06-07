@@ -23,7 +23,7 @@ class Membership(BaseModel):
     created_at: Optional[datetime] = None
 
     identifier: Optional[str] = None
-    """Identifier"""
+    """The identifier for the membership (eg. a zone or account tag)."""
 
     kind: Optional[Kind] = None
     """The type of the membership."""
