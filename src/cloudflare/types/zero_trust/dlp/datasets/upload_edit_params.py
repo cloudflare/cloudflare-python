@@ -12,4 +12,4 @@ class UploadEditParams(TypedDict, total=False):
 
     dataset_id: Required[str]
 
-    body: Required[object]
+    body: Required[str]
