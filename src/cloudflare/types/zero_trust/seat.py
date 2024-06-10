@@ -18,6 +18,6 @@ class Seat(BaseModel):
     """True if the seat is part of Gateway."""
 
     seat_uid: Optional[str] = None
-    """Identifier"""
+    """The unique API identifier for the Zero Trust seat."""
 
     updated_at: Optional[datetime] = None

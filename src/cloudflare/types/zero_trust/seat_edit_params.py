@@ -21,3 +21,6 @@ class Body(TypedDict, total=False):
 
     gateway_seat: Required[bool]
     """True if the seat is part of Gateway."""
+
+    seat_uid: Required[str]
+    """The unique API identifier for the Zero Trust seat."""
