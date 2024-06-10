@@ -629,6 +629,13 @@ class SaaSApplicationSaaSAppAccessOIDCSaaSAppRefreshTokenOptions(TypedDict, tota
 
 
 class SaaSApplicationSaaSAppAccessOIDCSaaSApp(TypedDict, total=False):
+    access_token_lifetime: str
+    """The lifetime of the OIDC Access Token after creation.
+
+    Valid units are m,h. Must be greater than or equal to 1m and less than or equal
+    to 24h.
+    """
+
     allow_pkce_without_client_secret: bool
     """
     If client secret should be required on the token endpoint when
