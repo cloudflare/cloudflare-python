@@ -7,7 +7,7 @@ from ..._models import BaseModel
 from ..shared.role import Role
 
 __all__ = [
-    "MemberUpdateResponse",
+    "MemberListResponse",
     "Policy",
     "PolicyPermissionGroup",
     "PolicyResourceGroup",
@@ -95,7 +95,7 @@ class User(BaseModel):
     """
 
 
-class MemberUpdateResponse(BaseModel):
+class MemberListResponse(BaseModel):
     id: Optional[str] = None
     """Membership identifier tag."""
 

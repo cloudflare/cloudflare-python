@@ -22,10 +22,12 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from ....pagination import SyncV4PagePagination, AsyncV4PagePagination
 from ...._base_client import (
+    AsyncPaginator,
     make_request_options,
 )
-from ....types.workers.scripts import version_create_params
+from ....types.workers.scripts import version_list_params, version_create_params
 from ....types.workers.scripts.version_get_response import VersionGetResponse
 from ....types.workers.scripts.version_list_response import VersionListResponse
 from ....types.workers.scripts.version_create_response import VersionCreateResponse
@@ -113,13 +115,16 @@ class VersionsResource(SyncAPIResource):
         script_name: str,
         *,
         account_id: str,
+        deployable: bool | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[VersionListResponse]:
+    ) -> SyncV4PagePagination[VersionListResponse]:
         """List of Worker Versions.
 
         The first version in the list is the latest version.
@@ -128,6 +133,12 @@ class VersionsResource(SyncAPIResource):
           account_id: Identifier
 
           script_name: Name of the script.
+
+          deployable: Only return versions that can be used in a deployment. Ignores pagination.
+
+          page: Current page.
+
+          per_page: Items per-page.
 
           extra_headers: Send extra headers
 
@@ -141,16 +152,24 @@ class VersionsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        return self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/workers/scripts/{script_name}/versions",
+            page=SyncV4PagePagination[VersionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[VersionListResponse]]._unwrapper,
+                query=maybe_transform(
+                    {
+                        "deployable": deployable,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    version_list_params.VersionListParams,
+                ),
             ),
-            cast_to=cast(Type[Optional[VersionListResponse]], ResultWrapper[VersionListResponse]),
+            model=VersionListResponse,
         )
 
     def get(
@@ -276,18 +295,21 @@ class AsyncVersionsResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[VersionCreateResponse]], ResultWrapper[VersionCreateResponse]),
         )
 
-    async def list(
+    def list(
         self,
         script_name: str,
         *,
         account_id: str,
+        deployable: bool | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[VersionListResponse]:
+    ) -> AsyncPaginator[VersionListResponse, AsyncV4PagePagination[VersionListResponse]]:
         """List of Worker Versions.
 
         The first version in the list is the latest version.
@@ -296,6 +318,12 @@ class AsyncVersionsResource(AsyncAPIResource):
           account_id: Identifier
 
           script_name: Name of the script.
+
+          deployable: Only return versions that can be used in a deployment. Ignores pagination.
+
+          page: Current page.
+
+          per_page: Items per-page.
 
           extra_headers: Send extra headers
 
@@ -309,16 +337,24 @@ class AsyncVersionsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
-        return await self._get(
+        return self._get_api_list(
             f"/accounts/{account_id}/workers/scripts/{script_name}/versions",
+            page=AsyncV4PagePagination[VersionListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[VersionListResponse]]._unwrapper,
+                query=maybe_transform(
+                    {
+                        "deployable": deployable,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    version_list_params.VersionListParams,
+                ),
             ),
-            cast_to=cast(Type[Optional[VersionListResponse]], ResultWrapper[VersionListResponse]),
+            model=VersionListResponse,
         )
 
     async def get(

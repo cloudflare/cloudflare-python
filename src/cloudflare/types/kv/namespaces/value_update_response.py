@@ -1,7 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union
+
+
+from ...._models import BaseModel
 
 __all__ = ["ValueUpdateResponse"]
 
-ValueUpdateResponse = Union[str, object]
+
+class ValueUpdateResponse(BaseModel):
+    pass

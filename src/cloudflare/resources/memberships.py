@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -55,7 +55,7 @@ class MembershipsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MembershipUpdateResponse:
+    ) -> Optional[MembershipUpdateResponse]:
         """
         Accept or reject this account invitation.
 
@@ -74,18 +74,17 @@ class MembershipsResource(SyncAPIResource):
         """
         if not membership_id:
             raise ValueError(f"Expected a non-empty value for `membership_id` but received {membership_id!r}")
-        return cast(
-            MembershipUpdateResponse,
-            self._put(
-                f"/memberships/{membership_id}",
-                body=maybe_transform({"status": status}, membership_update_params.MembershipUpdateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(
-                    Any, MembershipUpdateResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/memberships/{membership_id}",
+            body=maybe_transform({"status": status}, membership_update_params.MembershipUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MembershipUpdateResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[MembershipUpdateResponse]], ResultWrapper[MembershipUpdateResponse]),
         )
 
     def list(
@@ -202,7 +201,7 @@ class MembershipsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MembershipGetResponse:
+    ) -> Optional[MembershipGetResponse]:
         """
         Get a specific membership.
 
@@ -219,17 +218,16 @@ class MembershipsResource(SyncAPIResource):
         """
         if not membership_id:
             raise ValueError(f"Expected a non-empty value for `membership_id` but received {membership_id!r}")
-        return cast(
-            MembershipGetResponse,
-            self._get(
-                f"/memberships/{membership_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(
-                    Any, MembershipGetResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/memberships/{membership_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MembershipGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[MembershipGetResponse]], ResultWrapper[MembershipGetResponse]),
         )
 
 
@@ -253,7 +251,7 @@ class AsyncMembershipsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MembershipUpdateResponse:
+    ) -> Optional[MembershipUpdateResponse]:
         """
         Accept or reject this account invitation.
 
@@ -272,18 +270,17 @@ class AsyncMembershipsResource(AsyncAPIResource):
         """
         if not membership_id:
             raise ValueError(f"Expected a non-empty value for `membership_id` but received {membership_id!r}")
-        return cast(
-            MembershipUpdateResponse,
-            await self._put(
-                f"/memberships/{membership_id}",
-                body=await async_maybe_transform({"status": status}, membership_update_params.MembershipUpdateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(
-                    Any, MembershipUpdateResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/memberships/{membership_id}",
+            body=await async_maybe_transform({"status": status}, membership_update_params.MembershipUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MembershipUpdateResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[MembershipUpdateResponse]], ResultWrapper[MembershipUpdateResponse]),
         )
 
     def list(
@@ -400,7 +397,7 @@ class AsyncMembershipsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MembershipGetResponse:
+    ) -> Optional[MembershipGetResponse]:
         """
         Get a specific membership.
 
@@ -417,17 +414,16 @@ class AsyncMembershipsResource(AsyncAPIResource):
         """
         if not membership_id:
             raise ValueError(f"Expected a non-empty value for `membership_id` but received {membership_id!r}")
-        return cast(
-            MembershipGetResponse,
-            await self._get(
-                f"/memberships/{membership_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-                ),
-                cast_to=cast(
-                    Any, MembershipGetResponse
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/memberships/{membership_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MembershipGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[MembershipGetResponse]], ResultWrapper[MembershipGetResponse]),
         )
 
 

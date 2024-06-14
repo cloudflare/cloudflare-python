@@ -50,6 +50,7 @@ from cloudflare.types.accounts import (
     UserWithInviteCode,
     MemberCreateResponse,
     MemberUpdateResponse,
+    MemberListResponse,
     MemberDeleteResponse,
     MemberGetResponse,
 )
@@ -57,11 +58,11 @@ from cloudflare.types.accounts import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/members">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_create_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_create_response.py">MemberCreateResponse</a></code>
-- <code title="put /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">update</a>(member_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_update_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_update_response.py">MemberUpdateResponse</a></code>
-- <code title="get /accounts/{account_id}/members">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_list_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/member.py">SyncV4PagePaginationArray[Member]</a></code>
+- <code title="post /accounts/{account_id}/members">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_create_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_create_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">update</a>(member_id, \*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_update_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/members">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/accounts/member_list_params.py">params</a>) -> <a href="./src/cloudflare/types/accounts/member_list_response.py">SyncV4PagePaginationArray[MemberListResponse]</a></code>
 - <code title="delete /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">delete</a>(member_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/member_delete_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">get</a>(member_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/member_get_response.py">MemberGetResponse</a></code>
+- <code title="get /accounts/{account_id}/members/{member_id}">client.accounts.members.<a href="./src/cloudflare/resources/accounts/members.py">get</a>(member_id, \*, account_id) -> <a href="./src/cloudflare/types/accounts/member_get_response.py">Optional</a></code>
 
 ## Roles
 
@@ -123,10 +124,10 @@ from cloudflare.types.memberships import (
 
 Methods:
 
-- <code title="put /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">update</a>(membership_id, \*\*<a href="src/cloudflare/types/memberships/membership_update_params.py">params</a>) -> <a href="./src/cloudflare/types/memberships/membership_update_response.py">MembershipUpdateResponse</a></code>
+- <code title="put /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">update</a>(membership_id, \*\*<a href="src/cloudflare/types/memberships/membership_update_params.py">params</a>) -> <a href="./src/cloudflare/types/memberships/membership_update_response.py">Optional</a></code>
 - <code title="get /memberships">client.memberships.<a href="./src/cloudflare/resources/memberships.py">list</a>(\*\*<a href="src/cloudflare/types/memberships/membership_list_params.py">params</a>) -> <a href="./src/cloudflare/types/memberships/membership.py">SyncV4PagePaginationArray[Membership]</a></code>
 - <code title="delete /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">delete</a>(membership_id) -> <a href="./src/cloudflare/types/memberships/membership_delete_response.py">Optional</a></code>
-- <code title="get /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">get</a>(membership_id) -> <a href="./src/cloudflare/types/memberships/membership_get_response.py">MembershipGetResponse</a></code>
+- <code title="get /memberships/{membership_id}">client.memberships.<a href="./src/cloudflare/resources/memberships.py">get</a>(membership_id) -> <a href="./src/cloudflare/types/memberships/membership_get_response.py">Optional</a></code>
 
 # User
 
@@ -2765,7 +2766,7 @@ from cloudflare.types.workers.scripts import (
 Methods:
 
 - <code title="post /accounts/{account_id}/workers/scripts/{script_name}/versions">client.workers.scripts.versions.<a href="./src/cloudflare/resources/workers/scripts/versions.py">create</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/version_create_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/version_create_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/versions">client.workers.scripts.versions.<a href="./src/cloudflare/resources/workers/scripts/versions.py">list</a>(script_name, \*, account_id) -> <a href="./src/cloudflare/types/workers/scripts/version_list_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/workers/scripts/{script_name}/versions">client.workers.scripts.versions.<a href="./src/cloudflare/resources/workers/scripts/versions.py">list</a>(script_name, \*, account_id, \*\*<a href="src/cloudflare/types/workers/scripts/version_list_params.py">params</a>) -> <a href="./src/cloudflare/types/workers/scripts/version_list_response.py">SyncV4PagePagination[VersionListResponse]</a></code>
 - <code title="get /accounts/{account_id}/workers/scripts/{script_name}/versions/{version_id}">client.workers.scripts.versions.<a href="./src/cloudflare/resources/workers/scripts/versions.py">get</a>(version_id, \*, account_id, script_name) -> <a href="./src/cloudflare/types/workers/scripts/version_get_response.py">Optional</a></code>
 
 ## AccountSettings
@@ -2821,11 +2822,11 @@ from cloudflare.types.kv import Namespace, NamespaceUpdateResponse, NamespaceDel
 
 Methods:
 
-- <code title="post /accounts/{account_id}/storage/kv/namespaces">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/kv/namespace_create_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespace.py">Namespace</a></code>
-- <code title="put /accounts/{account_id}/storage/kv/namespaces/{namespace_id}">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">update</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespace_update_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespace_update_response.py">NamespaceUpdateResponse</a></code>
+- <code title="post /accounts/{account_id}/storage/kv/namespaces">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/kv/namespace_create_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespace.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/storage/kv/namespaces/{namespace_id}">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">update</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespace_update_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespace_update_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/storage/kv/namespaces">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/kv/namespace_list_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespace.py">SyncV4PagePaginationArray[Namespace]</a></code>
-- <code title="delete /accounts/{account_id}/storage/kv/namespaces/{namespace_id}">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">delete</a>(namespace_id, \*, account_id) -> <a href="./src/cloudflare/types/kv/namespace_delete_response.py">NamespaceDeleteResponse</a></code>
-- <code title="get /accounts/{account_id}/storage/kv/namespaces/{namespace_id}">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">get</a>(namespace_id, \*, account_id) -> <a href="./src/cloudflare/types/kv/namespace.py">Namespace</a></code>
+- <code title="delete /accounts/{account_id}/storage/kv/namespaces/{namespace_id}">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">delete</a>(namespace_id, \*, account_id) -> <a href="./src/cloudflare/types/kv/namespace_delete_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/storage/kv/namespaces/{namespace_id}">client.kv.namespaces.<a href="./src/cloudflare/resources/kv/namespaces/namespaces.py">get</a>(namespace_id, \*, account_id) -> <a href="./src/cloudflare/types/kv/namespace.py">Optional</a></code>
 
 ### Bulk
 
@@ -2837,8 +2838,8 @@ from cloudflare.types.kv.namespaces import BulkUpdateResponse, BulkDeleteRespons
 
 Methods:
 
-- <code title="put /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk">client.kv.namespaces.bulk.<a href="./src/cloudflare/resources/kv/namespaces/bulk.py">update</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespaces/bulk_update_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/bulk_update_response.py">BulkUpdateResponse</a></code>
-- <code title="delete /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk">client.kv.namespaces.bulk.<a href="./src/cloudflare/resources/kv/namespaces/bulk.py">delete</a>(namespace_id, \*, account_id) -> <a href="./src/cloudflare/types/kv/namespaces/bulk_delete_response.py">BulkDeleteResponse</a></code>
+- <code title="put /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk">client.kv.namespaces.bulk.<a href="./src/cloudflare/resources/kv/namespaces/bulk.py">update</a>(namespace_id, \*, account_id, \*\*<a href="src/cloudflare/types/kv/namespaces/bulk_update_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/bulk_update_response.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk">client.kv.namespaces.bulk.<a href="./src/cloudflare/resources/kv/namespaces/bulk.py">delete</a>(namespace_id, \*, account_id) -> <a href="./src/cloudflare/types/kv/namespaces/bulk_delete_response.py">Optional</a></code>
 
 ### Keys
 
@@ -2862,25 +2863,21 @@ from cloudflare.types.kv.namespaces import MetadataGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/metadata/{key_name}">client.kv.namespaces.metadata.<a href="./src/cloudflare/resources/kv/namespaces/metadata.py">get</a>(key_name, \*, account_id, namespace_id) -> <a href="./src/cloudflare/types/kv/namespaces/metadata_get_response.py">object</a></code>
+- <code title="get /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/metadata/{key_name}">client.kv.namespaces.metadata.<a href="./src/cloudflare/resources/kv/namespaces/metadata.py">get</a>(key_name, \*, account_id, namespace_id) -> <a href="./src/cloudflare/types/kv/namespaces/metadata_get_response.py">Optional</a></code>
 
 ### Values
 
 Types:
 
 ```python
-from cloudflare.types.kv.namespaces import (
-    ValueUpdateResponse,
-    ValueDeleteResponse,
-    ValueGetResponse,
-)
+from cloudflare.types.kv.namespaces import ValueUpdateResponse, ValueDeleteResponse
 ```
 
 Methods:
 
-- <code title="put /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}">client.kv.namespaces.values.<a href="./src/cloudflare/resources/kv/namespaces/values.py">update</a>(key_name, \*, account_id, namespace_id, \*\*<a href="src/cloudflare/types/kv/namespaces/value_update_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/value_update_response.py">ValueUpdateResponse</a></code>
-- <code title="delete /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}">client.kv.namespaces.values.<a href="./src/cloudflare/resources/kv/namespaces/values.py">delete</a>(key_name, \*, account_id, namespace_id) -> <a href="./src/cloudflare/types/kv/namespaces/value_delete_response.py">ValueDeleteResponse</a></code>
-- <code title="get /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}">client.kv.namespaces.values.<a href="./src/cloudflare/resources/kv/namespaces/values.py">get</a>(key_name, \*, account_id, namespace_id) -> str</code>
+- <code title="put /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}">client.kv.namespaces.values.<a href="./src/cloudflare/resources/kv/namespaces/values.py">update</a>(key_name, \*, account_id, namespace_id, \*\*<a href="src/cloudflare/types/kv/namespaces/value_update_params.py">params</a>) -> <a href="./src/cloudflare/types/kv/namespaces/value_update_response.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}">client.kv.namespaces.values.<a href="./src/cloudflare/resources/kv/namespaces/values.py">delete</a>(key_name, \*, account_id, namespace_id) -> <a href="./src/cloudflare/types/kv/namespaces/value_delete_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}">client.kv.namespaces.values.<a href="./src/cloudflare/resources/kv/namespaces/values.py">get</a>(key_name, \*, account_id, namespace_id) -> BinaryAPIResponse</code>
 
 # DurableObjects
 
@@ -4474,8 +4471,8 @@ from cloudflare.types.storage import Components, Schema
 
 Methods:
 
-- <code title="get /accounts/{account_id}/storage/analytics">client.storage.analytics.<a href="./src/cloudflare/resources/storage/analytics.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/storage/analytics_list_params.py">params</a>) -> <a href="./src/cloudflare/types/storage/schema.py">Schema</a></code>
-- <code title="get /accounts/{account_id}/storage/analytics/stored">client.storage.analytics.<a href="./src/cloudflare/resources/storage/analytics.py">stored</a>(\*, account_id, \*\*<a href="src/cloudflare/types/storage/analytics_stored_params.py">params</a>) -> <a href="./src/cloudflare/types/storage/components.py">Components</a></code>
+- <code title="get /accounts/{account_id}/storage/analytics">client.storage.analytics.<a href="./src/cloudflare/resources/storage/analytics.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/storage/analytics_list_params.py">params</a>) -> <a href="./src/cloudflare/types/storage/schema.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/storage/analytics/stored">client.storage.analytics.<a href="./src/cloudflare/resources/storage/analytics.py">stored</a>(\*, account_id, \*\*<a href="src/cloudflare/types/storage/analytics_stored_params.py">params</a>) -> <a href="./src/cloudflare/types/storage/components.py">Optional</a></code>
 
 # Stream
 

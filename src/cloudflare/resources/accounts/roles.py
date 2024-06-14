@@ -50,6 +50,8 @@ class RolesResource(SyncAPIResource):
         Get all available roles for an account.
 
         Args:
+          account_id: Account identifier tag.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -85,6 +87,8 @@ class RolesResource(SyncAPIResource):
         Get information about a specific role for an account.
 
         Args:
+          account_id: Account identifier tag.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -132,6 +136,8 @@ class AsyncRolesResource(AsyncAPIResource):
         Get all available roles for an account.
 
         Args:
+          account_id: Account identifier tag.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -167,6 +173,8 @@ class AsyncRolesResource(AsyncAPIResource):
         Get information about a specific role for an account.
 
         Args:
+          account_id: Account identifier tag.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

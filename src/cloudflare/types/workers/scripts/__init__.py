@@ -9,6 +9,7 @@ from .deployment_param import DeploymentParam as DeploymentParam
 from .tail_get_response import TailGetResponse as TailGetResponse
 from .tail_create_params import TailCreateParams as TailCreateParams
 from .setting_edit_params import SettingEditParams as SettingEditParams
+from .version_list_params import VersionListParams as VersionListParams
 from .tail_create_response import TailCreateResponse as TailCreateResponse
 from .tail_delete_response import TailDeleteResponse as TailDeleteResponse
 from .version_get_response import VersionGetResponse as VersionGetResponse
