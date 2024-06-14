@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -19,13 +20,17 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
 from ...types.page_shield import policy_create_params, policy_update_params
-from ...types.page_shield.policy import Policy
+from ...types.page_shield.policy_get_response import PolicyGetResponse
+from ...types.page_shield.policy_list_response import PolicyListResponse
+from ...types.page_shield.policy_create_response import PolicyCreateResponse
+from ...types.page_shield.policy_update_response import PolicyUpdateResponse
 
 __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 
@@ -43,18 +48,18 @@ class PoliciesResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        action: Literal["allow", "log"] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        value: str | NotGiven = NOT_GIVEN,
+        action: Literal["allow", "log"],
+        description: str,
+        enabled: bool,
+        expression: str,
+        value: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> Optional[PolicyCreateResponse]:
         """
         Create a Page Shield policy.
 
@@ -95,9 +100,13 @@ class PoliciesResource(SyncAPIResource):
                 policy_create_params.PolicyCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PolicyCreateResponse]]._unwrapper,
             ),
-            cast_to=Policy,
+            cast_to=cast(Type[Optional[PolicyCreateResponse]], ResultWrapper[PolicyCreateResponse]),
         )
 
     def update(
@@ -116,14 +125,14 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> Optional[PolicyUpdateResponse]:
         """
         Update a Page Shield policy by ID.
 
         Args:
           zone_id: Identifier
 
-          policy_id: The ID of the policy.
+          policy_id: Identifier
 
           action: The action to take if the expression matches
 
@@ -161,9 +170,13 @@ class PoliciesResource(SyncAPIResource):
                 policy_update_params.PolicyUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PolicyUpdateResponse]]._unwrapper,
             ),
-            cast_to=Policy,
+            cast_to=cast(Type[Optional[PolicyUpdateResponse]], ResultWrapper[PolicyUpdateResponse]),
         )
 
     def list(
@@ -176,7 +189,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Policy]:
+    ) -> SyncSinglePage[PolicyListResponse]:
         """
         Lists all Page Shield policies.
 
@@ -195,11 +208,11 @@ class PoliciesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/page_shield/policies",
-            page=SyncSinglePage[Policy],
+            page=SyncSinglePage[PolicyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Policy,
+            model=PolicyListResponse,
         )
 
     def delete(
@@ -220,7 +233,7 @@ class PoliciesResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
-          policy_id: The ID of the policy.
+          policy_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -254,14 +267,14 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> Optional[PolicyGetResponse]:
         """
         Fetches a Page Shield policy by ID.
 
         Args:
           zone_id: Identifier
 
-          policy_id: The ID of the policy.
+          policy_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -278,9 +291,13 @@ class PoliciesResource(SyncAPIResource):
         return self._get(
             f"/zones/{zone_id}/page_shield/policies/{policy_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PolicyGetResponse]]._unwrapper,
             ),
-            cast_to=Policy,
+            cast_to=cast(Type[Optional[PolicyGetResponse]], ResultWrapper[PolicyGetResponse]),
         )
 
 
@@ -297,18 +314,18 @@ class AsyncPoliciesResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        action: Literal["allow", "log"] | NotGiven = NOT_GIVEN,
-        description: str | NotGiven = NOT_GIVEN,
-        enabled: bool | NotGiven = NOT_GIVEN,
-        expression: str | NotGiven = NOT_GIVEN,
-        value: str | NotGiven = NOT_GIVEN,
+        action: Literal["allow", "log"],
+        description: str,
+        enabled: bool,
+        expression: str,
+        value: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> Optional[PolicyCreateResponse]:
         """
         Create a Page Shield policy.
 
@@ -349,9 +366,13 @@ class AsyncPoliciesResource(AsyncAPIResource):
                 policy_create_params.PolicyCreateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PolicyCreateResponse]]._unwrapper,
             ),
-            cast_to=Policy,
+            cast_to=cast(Type[Optional[PolicyCreateResponse]], ResultWrapper[PolicyCreateResponse]),
         )
 
     async def update(
@@ -370,14 +391,14 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> Optional[PolicyUpdateResponse]:
         """
         Update a Page Shield policy by ID.
 
         Args:
           zone_id: Identifier
 
-          policy_id: The ID of the policy.
+          policy_id: Identifier
 
           action: The action to take if the expression matches
 
@@ -415,9 +436,13 @@ class AsyncPoliciesResource(AsyncAPIResource):
                 policy_update_params.PolicyUpdateParams,
             ),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PolicyUpdateResponse]]._unwrapper,
             ),
-            cast_to=Policy,
+            cast_to=cast(Type[Optional[PolicyUpdateResponse]], ResultWrapper[PolicyUpdateResponse]),
         )
 
     def list(
@@ -430,7 +455,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Policy, AsyncSinglePage[Policy]]:
+    ) -> AsyncPaginator[PolicyListResponse, AsyncSinglePage[PolicyListResponse]]:
         """
         Lists all Page Shield policies.
 
@@ -449,11 +474,11 @@ class AsyncPoliciesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/page_shield/policies",
-            page=AsyncSinglePage[Policy],
+            page=AsyncSinglePage[PolicyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Policy,
+            model=PolicyListResponse,
         )
 
     async def delete(
@@ -474,7 +499,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
-          policy_id: The ID of the policy.
+          policy_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -508,14 +533,14 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> Optional[PolicyGetResponse]:
         """
         Fetches a Page Shield policy by ID.
 
         Args:
           zone_id: Identifier
 
-          policy_id: The ID of the policy.
+          policy_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -532,9 +557,13 @@ class AsyncPoliciesResource(AsyncAPIResource):
         return await self._get(
             f"/zones/{zone_id}/page_shield/policies/{policy_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PolicyGetResponse]]._unwrapper,
             ),
-            cast_to=Policy,
+            cast_to=cast(Type[Optional[PolicyGetResponse]], ResultWrapper[PolicyGetResponse]),
         )
 
 

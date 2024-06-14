@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -22,7 +22,7 @@ class TestPageShield:
         page_shield = client.page_shield.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PageShieldUpdateResponse, page_shield, path=["response"])
+        assert_matches_type(Optional[PageShieldUpdateResponse], page_shield, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
@@ -32,7 +32,7 @@ class TestPageShield:
             use_cloudflare_reporting_endpoint=True,
             use_connection_url_path=True,
         )
-        assert_matches_type(PageShieldUpdateResponse, page_shield, path=["response"])
+        assert_matches_type(Optional[PageShieldUpdateResponse], page_shield, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -43,7 +43,7 @@ class TestPageShield:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         page_shield = response.parse()
-        assert_matches_type(PageShieldUpdateResponse, page_shield, path=["response"])
+        assert_matches_type(Optional[PageShieldUpdateResponse], page_shield, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -54,7 +54,7 @@ class TestPageShield:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             page_shield = response.parse()
-            assert_matches_type(PageShieldUpdateResponse, page_shield, path=["response"])
+            assert_matches_type(Optional[PageShieldUpdateResponse], page_shield, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -70,7 +70,7 @@ class TestPageShield:
         page_shield = client.page_shield.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Setting, page_shield, path=["response"])
+        assert_matches_type(Optional[Setting], page_shield, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -81,7 +81,7 @@ class TestPageShield:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         page_shield = response.parse()
-        assert_matches_type(Setting, page_shield, path=["response"])
+        assert_matches_type(Optional[Setting], page_shield, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -92,7 +92,7 @@ class TestPageShield:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             page_shield = response.parse()
-            assert_matches_type(Setting, page_shield, path=["response"])
+            assert_matches_type(Optional[Setting], page_shield, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -112,7 +112,7 @@ class TestAsyncPageShield:
         page_shield = await async_client.page_shield.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(PageShieldUpdateResponse, page_shield, path=["response"])
+        assert_matches_type(Optional[PageShieldUpdateResponse], page_shield, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -122,7 +122,7 @@ class TestAsyncPageShield:
             use_cloudflare_reporting_endpoint=True,
             use_connection_url_path=True,
         )
-        assert_matches_type(PageShieldUpdateResponse, page_shield, path=["response"])
+        assert_matches_type(Optional[PageShieldUpdateResponse], page_shield, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -133,7 +133,7 @@ class TestAsyncPageShield:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         page_shield = await response.parse()
-        assert_matches_type(PageShieldUpdateResponse, page_shield, path=["response"])
+        assert_matches_type(Optional[PageShieldUpdateResponse], page_shield, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -144,7 +144,7 @@ class TestAsyncPageShield:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             page_shield = await response.parse()
-            assert_matches_type(PageShieldUpdateResponse, page_shield, path=["response"])
+            assert_matches_type(Optional[PageShieldUpdateResponse], page_shield, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -160,7 +160,7 @@ class TestAsyncPageShield:
         page_shield = await async_client.page_shield.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Setting, page_shield, path=["response"])
+        assert_matches_type(Optional[Setting], page_shield, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -171,7 +171,7 @@ class TestAsyncPageShield:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         page_shield = await response.parse()
-        assert_matches_type(Setting, page_shield, path=["response"])
+        assert_matches_type(Optional[Setting], page_shield, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -182,7 +182,7 @@ class TestAsyncPageShield:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             page_shield = await response.parse()
-            assert_matches_type(Setting, page_shield, path=["response"])
+            assert_matches_type(Optional[Setting], page_shield, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

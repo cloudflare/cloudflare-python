@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -88,7 +88,7 @@ class PageShieldResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldUpdateResponse:
+    ) -> Optional[PageShieldUpdateResponse]:
         """
         Updates Page Shield settings.
 
@@ -127,9 +127,9 @@ class PageShieldResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PageShieldUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageShieldUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PageShieldUpdateResponse], ResultWrapper[PageShieldUpdateResponse]),
+            cast_to=cast(Type[Optional[PageShieldUpdateResponse]], ResultWrapper[PageShieldUpdateResponse]),
         )
 
     def get(
@@ -142,7 +142,7 @@ class PageShieldResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Setting:
+    ) -> Optional[Setting]:
         """
         Fetches the Page Shield settings.
 
@@ -166,9 +166,9 @@ class PageShieldResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Setting]._unwrapper,
+                post_parser=ResultWrapper[Optional[Setting]]._unwrapper,
             ),
-            cast_to=cast(Type[Setting], ResultWrapper[Setting]),
+            cast_to=cast(Type[Optional[Setting]], ResultWrapper[Setting]),
         )
 
 
@@ -206,7 +206,7 @@ class AsyncPageShieldResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldUpdateResponse:
+    ) -> Optional[PageShieldUpdateResponse]:
         """
         Updates Page Shield settings.
 
@@ -245,9 +245,9 @@ class AsyncPageShieldResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PageShieldUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageShieldUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PageShieldUpdateResponse], ResultWrapper[PageShieldUpdateResponse]),
+            cast_to=cast(Type[Optional[PageShieldUpdateResponse]], ResultWrapper[PageShieldUpdateResponse]),
         )
 
     async def get(
@@ -260,7 +260,7 @@ class AsyncPageShieldResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Setting:
+    ) -> Optional[Setting]:
         """
         Fetches the Page Shield settings.
 
@@ -284,9 +284,9 @@ class AsyncPageShieldResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Setting]._unwrapper,
+                post_parser=ResultWrapper[Optional[Setting]]._unwrapper,
             ),
-            cast_to=cast(Type[Setting], ResultWrapper[Setting]),
+            cast_to=cast(Type[Optional[Setting]], ResultWrapper[Setting]),
         )
 
 
