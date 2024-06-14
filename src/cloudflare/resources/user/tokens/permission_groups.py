@@ -41,7 +41,7 @@ class PermissionGroupsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[object]:
-        """Find all available permission groups."""
+        """Find all available permission groups for API Tokens"""
         return self._get_api_list(
             "/user/tokens/permission_groups",
             page=SyncSinglePage[object],
@@ -71,7 +71,7 @@ class AsyncPermissionGroupsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[object, AsyncSinglePage[object]]:
-        """Find all available permission groups."""
+        """Find all available permission groups for API Tokens"""
         return self._get_api_list(
             "/user/tokens/permission_groups",
             page=AsyncSinglePage[object],

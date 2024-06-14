@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare.pagination import SyncV4PagePagination, AsyncV4PagePagination
 from cloudflare.types.workers.scripts import (
     VersionGetResponse,
     VersionListResponse,
@@ -107,7 +108,18 @@ class TestVersions:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[VersionListResponse], version, path=["response"])
+        assert_matches_type(SyncV4PagePagination[VersionListResponse], version, path=["response"])
+
+    @parametrize
+    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
+        version = client.workers.scripts.versions.list(
+            "this-is_my_script-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deployable=True,
+            page=0,
+            per_page=0,
+        )
+        assert_matches_type(SyncV4PagePagination[VersionListResponse], version, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -119,7 +131,7 @@ class TestVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = response.parse()
-        assert_matches_type(Optional[VersionListResponse], version, path=["response"])
+        assert_matches_type(SyncV4PagePagination[VersionListResponse], version, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -131,7 +143,7 @@ class TestVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = response.parse()
-            assert_matches_type(Optional[VersionListResponse], version, path=["response"])
+            assert_matches_type(SyncV4PagePagination[VersionListResponse], version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -299,7 +311,18 @@ class TestAsyncVersions:
             "this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[VersionListResponse], version, path=["response"])
+        assert_matches_type(AsyncV4PagePagination[VersionListResponse], version, path=["response"])
+
+    @parametrize
+    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        version = await async_client.workers.scripts.versions.list(
+            "this-is_my_script-01",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            deployable=True,
+            page=0,
+            per_page=0,
+        )
+        assert_matches_type(AsyncV4PagePagination[VersionListResponse], version, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -311,7 +334,7 @@ class TestAsyncVersions:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         version = await response.parse()
-        assert_matches_type(Optional[VersionListResponse], version, path=["response"])
+        assert_matches_type(AsyncV4PagePagination[VersionListResponse], version, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -323,7 +346,7 @@ class TestAsyncVersions:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             version = await response.parse()
-            assert_matches_type(Optional[VersionListResponse], version, path=["response"])
+            assert_matches_type(AsyncV4PagePagination[VersionListResponse], version, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

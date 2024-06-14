@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -102,7 +102,7 @@ class NamespacesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Namespace:
+    ) -> Optional[Namespace]:
         """Creates a namespace under the given title.
 
         A `400` is returned if the account
@@ -132,9 +132,9 @@ class NamespacesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Namespace]._unwrapper,
+                post_parser=ResultWrapper[Optional[Namespace]]._unwrapper,
             ),
-            cast_to=cast(Type[Namespace], ResultWrapper[Namespace]),
+            cast_to=cast(Type[Optional[Namespace]], ResultWrapper[Namespace]),
         )
 
     def update(
@@ -149,7 +149,7 @@ class NamespacesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NamespaceUpdateResponse:
+    ) -> Optional[NamespaceUpdateResponse]:
         """
         Modifies a namespace's title.
 
@@ -172,22 +172,17 @@ class NamespacesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
-        return cast(
-            NamespaceUpdateResponse,
-            self._put(
-                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
-                body=maybe_transform({"title": title}, namespace_update_params.NamespaceUpdateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[NamespaceUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[NamespaceUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+            body=maybe_transform({"title": title}, namespace_update_params.NamespaceUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[NamespaceUpdateResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[NamespaceUpdateResponse]], ResultWrapper[NamespaceUpdateResponse]),
         )
 
     def list(
@@ -261,7 +256,7 @@ class NamespacesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NamespaceDeleteResponse:
+    ) -> Optional[NamespaceDeleteResponse]:
         """
         Deletes the namespace corresponding to the given ID.
 
@@ -282,21 +277,16 @@ class NamespacesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
-        return cast(
-            NamespaceDeleteResponse,
-            self._delete(
-                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[NamespaceDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[NamespaceDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[NamespaceDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[NamespaceDeleteResponse]], ResultWrapper[NamespaceDeleteResponse]),
         )
 
     def get(
@@ -310,7 +300,7 @@ class NamespacesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Namespace:
+    ) -> Optional[Namespace]:
         """
         Get the namespace corresponding to the given ID.
 
@@ -338,9 +328,9 @@ class NamespacesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Namespace]._unwrapper,
+                post_parser=ResultWrapper[Optional[Namespace]]._unwrapper,
             ),
-            cast_to=cast(Type[Namespace], ResultWrapper[Namespace]),
+            cast_to=cast(Type[Optional[Namespace]], ResultWrapper[Namespace]),
         )
 
 
@@ -380,7 +370,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Namespace:
+    ) -> Optional[Namespace]:
         """Creates a namespace under the given title.
 
         A `400` is returned if the account
@@ -410,9 +400,9 @@ class AsyncNamespacesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Namespace]._unwrapper,
+                post_parser=ResultWrapper[Optional[Namespace]]._unwrapper,
             ),
-            cast_to=cast(Type[Namespace], ResultWrapper[Namespace]),
+            cast_to=cast(Type[Optional[Namespace]], ResultWrapper[Namespace]),
         )
 
     async def update(
@@ -427,7 +417,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NamespaceUpdateResponse:
+    ) -> Optional[NamespaceUpdateResponse]:
         """
         Modifies a namespace's title.
 
@@ -450,22 +440,17 @@ class AsyncNamespacesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
-        return cast(
-            NamespaceUpdateResponse,
-            await self._put(
-                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
-                body=await async_maybe_transform({"title": title}, namespace_update_params.NamespaceUpdateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[NamespaceUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[NamespaceUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+            body=await async_maybe_transform({"title": title}, namespace_update_params.NamespaceUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[NamespaceUpdateResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[NamespaceUpdateResponse]], ResultWrapper[NamespaceUpdateResponse]),
         )
 
     def list(
@@ -539,7 +524,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> NamespaceDeleteResponse:
+    ) -> Optional[NamespaceDeleteResponse]:
         """
         Deletes the namespace corresponding to the given ID.
 
@@ -560,21 +545,16 @@ class AsyncNamespacesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
-        return cast(
-            NamespaceDeleteResponse,
-            await self._delete(
-                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[NamespaceDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[NamespaceDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[NamespaceDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[NamespaceDeleteResponse]], ResultWrapper[NamespaceDeleteResponse]),
         )
 
     async def get(
@@ -588,7 +568,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Namespace:
+    ) -> Optional[Namespace]:
         """
         Get the namespace corresponding to the given ID.
 
@@ -616,9 +596,9 @@ class AsyncNamespacesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Namespace]._unwrapper,
+                post_parser=ResultWrapper[Optional[Namespace]]._unwrapper,
             ),
-            cast_to=cast(Type[Namespace], ResultWrapper[Namespace]),
+            cast_to=cast(Type[Optional[Namespace]], ResultWrapper[Namespace]),
         )
 
 
