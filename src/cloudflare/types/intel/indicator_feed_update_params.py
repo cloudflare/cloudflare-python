@@ -19,3 +19,6 @@ class IndicatorFeedUpdateParams(TypedDict, total=False):
 
     is_public: bool
     """The new is_public value of the feed"""
+
+    name: str
+    """The new name of the feed"""

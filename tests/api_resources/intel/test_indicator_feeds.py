@@ -86,6 +86,7 @@ class TestIndicatorFeeds:
             description="This is an example description",
             is_attributable=True,
             is_public=True,
+            name="indicator_list",
         )
         assert_matches_type(Optional[IndicatorFeedUpdateResponse], indicator_feed, path=["response"])
 
@@ -312,6 +313,7 @@ class TestAsyncIndicatorFeeds:
             description="This is an example description",
             is_attributable=True,
             is_public=True,
+            name="indicator_list",
         )
         assert_matches_type(Optional[IndicatorFeedUpdateResponse], indicator_feed, path=["response"])
 

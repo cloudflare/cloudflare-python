@@ -19,6 +19,12 @@ class IndicatorFeedGetResponse(BaseModel):
     description: Optional[str] = None
     """The description of the example test"""
 
+    is_attributable: Optional[bool] = None
+    """Whether the indicator feed can be attributed to a provider"""
+
+    is_public: Optional[bool] = None
+    """Whether the indicator feed is exposed to customers"""
+
     latest_upload_status: Optional[
         Literal["Mirroring", "Unifying", "Loading", "Provisioning", "Complete", "Error"]
     ] = None
@@ -29,3 +35,9 @@ class IndicatorFeedGetResponse(BaseModel):
 
     name: Optional[str] = None
     """The name of the indicator feed"""
+
+    provider_id: Optional[str] = None
+    """The unique identifier for the provider"""
+
+    provider_name: Optional[str] = None
+    """The provider of the indicator feed"""
