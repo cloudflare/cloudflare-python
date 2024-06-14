@@ -44,6 +44,7 @@ from .permission_groups import (
     PermissionGroupsResourceWithStreamingResponse,
     AsyncPermissionGroupsResourceWithStreamingResponse,
 )
+from ....types.user.policy_param import PolicyParam
 from ....types.user.token_create_response import TokenCreateResponse
 from ....types.user.token_delete_response import TokenDeleteResponse
 from ....types.user.token_verify_response import TokenVerifyResponse
@@ -72,7 +73,7 @@ class TokensResource(SyncAPIResource):
         self,
         *,
         name: str,
-        policies: Iterable[token_create_params.Policy],
+        policies: Iterable[PolicyParam],
         condition: token_create_params.Condition | NotGiven = NOT_GIVEN,
         expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
         not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -131,7 +132,7 @@ class TokensResource(SyncAPIResource):
         token_id: object,
         *,
         name: str,
-        policies: Iterable[token_update_params.Policy],
+        policies: Iterable[PolicyParam],
         status: Literal["active", "disabled", "expired"],
         condition: token_update_params.Condition | NotGiven = NOT_GIVEN,
         expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -355,7 +356,7 @@ class AsyncTokensResource(AsyncAPIResource):
         self,
         *,
         name: str,
-        policies: Iterable[token_create_params.Policy],
+        policies: Iterable[PolicyParam],
         condition: token_create_params.Condition | NotGiven = NOT_GIVEN,
         expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
         not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
@@ -414,7 +415,7 @@ class AsyncTokensResource(AsyncAPIResource):
         token_id: object,
         *,
         name: str,
-        policies: Iterable[token_update_params.Policy],
+        policies: Iterable[PolicyParam],
         status: Literal["active", "disabled", "expired"],
         condition: token_update_params.Condition | NotGiven = NOT_GIVEN,
         expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
