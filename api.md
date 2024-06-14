@@ -233,6 +233,7 @@ Types:
 ```python
 from cloudflare.types.user import (
     CIDRList,
+    Policy,
     Token,
     TokenCreateResponse,
     TokenUpdateResponse,
