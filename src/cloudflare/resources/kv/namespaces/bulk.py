@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Iterable, cast
+from typing import Type, Iterable, Optional, cast
 
 import httpx
 
@@ -51,7 +51,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkUpdateResponse:
+    ) -> Optional[BulkUpdateResponse]:
         """Write multiple keys and values at once.
 
         Body should be an array of up to 10,000
@@ -78,22 +78,17 @@ class BulkResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
-        return cast(
-            BulkUpdateResponse,
-            self._put(
-                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
-                body=maybe_transform(body, bulk_update_params.BulkUpdateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[BulkUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[BulkUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
+            body=maybe_transform(body, bulk_update_params.BulkUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[BulkUpdateResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[BulkUpdateResponse]], ResultWrapper[BulkUpdateResponse]),
         )
 
     def delete(
@@ -107,7 +102,7 @@ class BulkResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkDeleteResponse:
+    ) -> Optional[BulkDeleteResponse]:
         """Remove multiple KV pairs from the namespace.
 
         Body should be an array of up to
@@ -130,21 +125,16 @@ class BulkResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
-        return cast(
-            BulkDeleteResponse,
-            self._delete(
-                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[BulkDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[BulkDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[BulkDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[BulkDeleteResponse]], ResultWrapper[BulkDeleteResponse]),
         )
 
 
@@ -169,7 +159,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkUpdateResponse:
+    ) -> Optional[BulkUpdateResponse]:
         """Write multiple keys and values at once.
 
         Body should be an array of up to 10,000
@@ -196,22 +186,17 @@ class AsyncBulkResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
-        return cast(
-            BulkUpdateResponse,
-            await self._put(
-                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
-                body=await async_maybe_transform(body, bulk_update_params.BulkUpdateParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[BulkUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[BulkUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
+            body=await async_maybe_transform(body, bulk_update_params.BulkUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[BulkUpdateResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[BulkUpdateResponse]], ResultWrapper[BulkUpdateResponse]),
         )
 
     async def delete(
@@ -225,7 +210,7 @@ class AsyncBulkResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BulkDeleteResponse:
+    ) -> Optional[BulkDeleteResponse]:
         """Remove multiple KV pairs from the namespace.
 
         Body should be an array of up to
@@ -248,21 +233,16 @@ class AsyncBulkResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
-        return cast(
-            BulkDeleteResponse,
-            await self._delete(
-                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[BulkDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[BulkDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[BulkDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[BulkDeleteResponse]], ResultWrapper[BulkDeleteResponse]),
         )
 
 

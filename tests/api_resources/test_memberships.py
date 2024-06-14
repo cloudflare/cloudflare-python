@@ -29,7 +29,7 @@ class TestMemberships:
             "4536bcfad5faccb111b47003c79917fa",
             status="accepted",
         )
-        assert_matches_type(MembershipUpdateResponse, membership, path=["response"])
+        assert_matches_type(Optional[MembershipUpdateResponse], membership, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -41,7 +41,7 @@ class TestMemberships:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         membership = response.parse()
-        assert_matches_type(MembershipUpdateResponse, membership, path=["response"])
+        assert_matches_type(Optional[MembershipUpdateResponse], membership, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -53,7 +53,7 @@ class TestMemberships:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             membership = response.parse()
-            assert_matches_type(MembershipUpdateResponse, membership, path=["response"])
+            assert_matches_type(Optional[MembershipUpdateResponse], membership, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -146,7 +146,7 @@ class TestMemberships:
         membership = client.memberships.get(
             "4536bcfad5faccb111b47003c79917fa",
         )
-        assert_matches_type(MembershipGetResponse, membership, path=["response"])
+        assert_matches_type(Optional[MembershipGetResponse], membership, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -157,7 +157,7 @@ class TestMemberships:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         membership = response.parse()
-        assert_matches_type(MembershipGetResponse, membership, path=["response"])
+        assert_matches_type(Optional[MembershipGetResponse], membership, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -168,7 +168,7 @@ class TestMemberships:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             membership = response.parse()
-            assert_matches_type(MembershipGetResponse, membership, path=["response"])
+            assert_matches_type(Optional[MembershipGetResponse], membership, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -189,7 +189,7 @@ class TestAsyncMemberships:
             "4536bcfad5faccb111b47003c79917fa",
             status="accepted",
         )
-        assert_matches_type(MembershipUpdateResponse, membership, path=["response"])
+        assert_matches_type(Optional[MembershipUpdateResponse], membership, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -201,7 +201,7 @@ class TestAsyncMemberships:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         membership = await response.parse()
-        assert_matches_type(MembershipUpdateResponse, membership, path=["response"])
+        assert_matches_type(Optional[MembershipUpdateResponse], membership, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -213,7 +213,7 @@ class TestAsyncMemberships:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             membership = await response.parse()
-            assert_matches_type(MembershipUpdateResponse, membership, path=["response"])
+            assert_matches_type(Optional[MembershipUpdateResponse], membership, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -306,7 +306,7 @@ class TestAsyncMemberships:
         membership = await async_client.memberships.get(
             "4536bcfad5faccb111b47003c79917fa",
         )
-        assert_matches_type(MembershipGetResponse, membership, path=["response"])
+        assert_matches_type(Optional[MembershipGetResponse], membership, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -317,7 +317,7 @@ class TestAsyncMemberships:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         membership = await response.parse()
-        assert_matches_type(MembershipGetResponse, membership, path=["response"])
+        assert_matches_type(Optional[MembershipGetResponse], membership, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -328,7 +328,7 @@ class TestAsyncMemberships:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             membership = await response.parse()
-            assert_matches_type(MembershipGetResponse, membership, path=["response"])
+            assert_matches_type(Optional[MembershipGetResponse], membership, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -35,7 +35,8 @@ class TokenUpdateParams(TypedDict, total=False):
 
 
 class PolicyPermissionGroup(TypedDict, total=False):
-    pass
+    meta: object
+    """Attributes associated to the permission group."""
 
 
 class Policy(TypedDict, total=False):
