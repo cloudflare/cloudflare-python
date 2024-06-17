@@ -10,6 +10,9 @@ __all__ = ["Account", "Settings"]
 
 
 class Settings(BaseModel):
+    abuse_contact_email: Optional[str] = None
+    """Sets an abuse contact email to notify for abuse reports."""
+
     default_nameservers: Optional[Literal["cloudflare.standard", "custom.account", "custom.tenant"]] = None
     """
     Specifies the default nameservers to be used for new zones added to this
