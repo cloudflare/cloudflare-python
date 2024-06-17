@@ -161,6 +161,7 @@ class TestValues:
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
             )
 
+    @pytest.mark.skip(reason="HTTP 406 from prism")
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_method_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
@@ -177,6 +178,7 @@ class TestValues:
         assert cast(Any, value.is_closed) is True
         assert isinstance(value, BinaryAPIResponse)
 
+    @pytest.mark.skip(reason="HTTP 406 from prism")
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
@@ -195,6 +197,7 @@ class TestValues:
         assert value.json() == {"foo": "bar"}
         assert isinstance(value, BinaryAPIResponse)
 
+    @pytest.mark.skip(reason="HTTP 406 from prism")
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_streaming_response_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
@@ -215,6 +218,7 @@ class TestValues:
 
         assert cast(Any, value.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 406 from prism")
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_path_params_get(self, client: Cloudflare) -> None:
@@ -379,6 +383,7 @@ class TestAsyncValues:
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
             )
 
+    @pytest.mark.skip(reason="HTTP 406 from prism")
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_method_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
@@ -395,6 +400,7 @@ class TestAsyncValues:
         assert cast(Any, value.is_closed) is True
         assert isinstance(value, AsyncBinaryAPIResponse)
 
+    @pytest.mark.skip(reason="HTTP 406 from prism")
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_raw_response_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
@@ -413,6 +419,7 @@ class TestAsyncValues:
         assert await value.json() == {"foo": "bar"}
         assert isinstance(value, AsyncBinaryAPIResponse)
 
+    @pytest.mark.skip(reason="HTTP 406 from prism")
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_streaming_response_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
@@ -433,6 +440,7 @@ class TestAsyncValues:
 
         assert cast(Any, value.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 406 from prism")
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
