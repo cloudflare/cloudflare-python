@@ -49,14 +49,6 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .app_configuration import (
-    AppConfigurationResource,
-    AsyncAppConfigurationResource,
-    AppConfigurationResourceWithRawResponse,
-    AsyncAppConfigurationResourceWithRawResponse,
-    AppConfigurationResourceWithStreamingResponse,
-    AsyncAppConfigurationResourceWithStreamingResponse,
-)
 from ....types.magic_transit import (
     site_edit_params,
     site_list_params,
@@ -70,10 +62,6 @@ __all__ = ["SitesResource", "AsyncSitesResource"]
 
 
 class SitesResource(SyncAPIResource):
-    @cached_property
-    def app_configuration(self) -> AppConfigurationResource:
-        return AppConfigurationResource(self._client)
-
     @cached_property
     def acls(self) -> ACLsResource:
         return ACLsResource(self._client)
@@ -431,10 +419,6 @@ class SitesResource(SyncAPIResource):
 
 
 class AsyncSitesResource(AsyncAPIResource):
-    @cached_property
-    def app_configuration(self) -> AsyncAppConfigurationResource:
-        return AsyncAppConfigurationResource(self._client)
-
     @cached_property
     def acls(self) -> AsyncACLsResource:
         return AsyncACLsResource(self._client)
@@ -815,10 +799,6 @@ class SitesResourceWithRawResponse:
         )
 
     @cached_property
-    def app_configuration(self) -> AppConfigurationResourceWithRawResponse:
-        return AppConfigurationResourceWithRawResponse(self._sites.app_configuration)
-
-    @cached_property
     def acls(self) -> ACLsResourceWithRawResponse:
         return ACLsResourceWithRawResponse(self._sites.acls)
 
@@ -853,10 +833,6 @@ class AsyncSitesResourceWithRawResponse:
         self.get = async_to_raw_response_wrapper(
             sites.get,
         )
-
-    @cached_property
-    def app_configuration(self) -> AsyncAppConfigurationResourceWithRawResponse:
-        return AsyncAppConfigurationResourceWithRawResponse(self._sites.app_configuration)
 
     @cached_property
     def acls(self) -> AsyncACLsResourceWithRawResponse:
@@ -895,10 +871,6 @@ class SitesResourceWithStreamingResponse:
         )
 
     @cached_property
-    def app_configuration(self) -> AppConfigurationResourceWithStreamingResponse:
-        return AppConfigurationResourceWithStreamingResponse(self._sites.app_configuration)
-
-    @cached_property
     def acls(self) -> ACLsResourceWithStreamingResponse:
         return ACLsResourceWithStreamingResponse(self._sites.acls)
 
@@ -933,10 +905,6 @@ class AsyncSitesResourceWithStreamingResponse:
         self.get = async_to_streamed_response_wrapper(
             sites.get,
         )
-
-    @cached_property
-    def app_configuration(self) -> AsyncAppConfigurationResourceWithStreamingResponse:
-        return AsyncAppConfigurationResourceWithStreamingResponse(self._sites.app_configuration)
 
     @cached_property
     def acls(self) -> AsyncACLsResourceWithStreamingResponse:
