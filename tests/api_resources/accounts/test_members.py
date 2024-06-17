@@ -24,6 +24,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestMembers:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     def test_method_create_overload_1(self, client: Cloudflare) -> None:
         member = client.accounts.members.create(
@@ -37,6 +38,7 @@ class TestMembers:
         )
         assert_matches_type(Optional[MemberCreateResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
         member = client.accounts.members.create(
@@ -51,6 +53,7 @@ class TestMembers:
         )
         assert_matches_type(Optional[MemberCreateResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
         response = client.accounts.members.with_raw_response.create(
@@ -68,6 +71,7 @@ class TestMembers:
         member = response.parse()
         assert_matches_type(Optional[MemberCreateResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
         with client.accounts.members.with_streaming_response.create(
@@ -87,6 +91,7 @@ class TestMembers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -100,6 +105,7 @@ class TestMembers:
                 ],
             )
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     def test_method_create_overload_2(self, client: Cloudflare) -> None:
         member = client.accounts.members.create(
@@ -146,6 +152,7 @@ class TestMembers:
         )
         assert_matches_type(Optional[MemberCreateResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
         member = client.accounts.members.create(
@@ -193,6 +200,7 @@ class TestMembers:
         )
         assert_matches_type(Optional[MemberCreateResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
         response = client.accounts.members.with_raw_response.create(
@@ -243,6 +251,7 @@ class TestMembers:
         member = response.parse()
         assert_matches_type(Optional[MemberCreateResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
         with client.accounts.members.with_streaming_response.create(
@@ -295,6 +304,7 @@ class TestMembers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -699,6 +709,7 @@ class TestMembers:
                 account_id="",
             )
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         member = client.accounts.members.delete(
@@ -707,6 +718,7 @@ class TestMembers:
         )
         assert_matches_type(Optional[MemberDeleteResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.accounts.members.with_raw_response.delete(
@@ -719,6 +731,7 @@ class TestMembers:
         member = response.parse()
         assert_matches_type(Optional[MemberDeleteResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.accounts.members.with_streaming_response.delete(
@@ -733,6 +746,7 @@ class TestMembers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -747,6 +761,7 @@ class TestMembers:
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
             )
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         member = client.accounts.members.get(
@@ -755,6 +770,7 @@ class TestMembers:
         )
         assert_matches_type(Optional[MemberGetResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.accounts.members.with_raw_response.get(
@@ -767,6 +783,7 @@ class TestMembers:
         member = response.parse()
         assert_matches_type(Optional[MemberGetResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.accounts.members.with_streaming_response.get(
@@ -781,6 +798,7 @@ class TestMembers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -799,6 +817,7 @@ class TestMembers:
 class TestAsyncMembers:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.create(
@@ -812,6 +831,7 @@ class TestAsyncMembers:
         )
         assert_matches_type(Optional[MemberCreateResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.create(
@@ -826,6 +846,7 @@ class TestAsyncMembers:
         )
         assert_matches_type(Optional[MemberCreateResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.members.with_raw_response.create(
@@ -843,6 +864,7 @@ class TestAsyncMembers:
         member = await response.parse()
         assert_matches_type(Optional[MemberCreateResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.members.with_streaming_response.create(
@@ -862,6 +884,7 @@ class TestAsyncMembers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -875,6 +898,7 @@ class TestAsyncMembers:
                 ],
             )
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.create(
@@ -921,6 +945,7 @@ class TestAsyncMembers:
         )
         assert_matches_type(Optional[MemberCreateResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.create(
@@ -968,6 +993,7 @@ class TestAsyncMembers:
         )
         assert_matches_type(Optional[MemberCreateResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.members.with_raw_response.create(
@@ -1018,6 +1044,7 @@ class TestAsyncMembers:
         member = await response.parse()
         assert_matches_type(Optional[MemberCreateResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.members.with_streaming_response.create(
@@ -1070,6 +1097,7 @@ class TestAsyncMembers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1474,6 +1502,7 @@ class TestAsyncMembers:
                 account_id="",
             )
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.delete(
@@ -1482,6 +1511,7 @@ class TestAsyncMembers:
         )
         assert_matches_type(Optional[MemberDeleteResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.members.with_raw_response.delete(
@@ -1494,6 +1524,7 @@ class TestAsyncMembers:
         member = await response.parse()
         assert_matches_type(Optional[MemberDeleteResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.members.with_streaming_response.delete(
@@ -1508,6 +1539,7 @@ class TestAsyncMembers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
@@ -1522,6 +1554,7 @@ class TestAsyncMembers:
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
             )
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.get(
@@ -1530,6 +1563,7 @@ class TestAsyncMembers:
         )
         assert_matches_type(Optional[MemberGetResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.members.with_raw_response.get(
@@ -1542,6 +1576,7 @@ class TestAsyncMembers:
         member = await response.parse()
         assert_matches_type(Optional[MemberGetResponse], member, path=["response"])
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.members.with_streaming_response.get(
@@ -1556,6 +1591,7 @@ class TestAsyncMembers:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="HTTP 422 error from prism")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
