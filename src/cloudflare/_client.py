@@ -130,7 +130,7 @@ class Cloudflare(SyncAPIClient):
     cloudforce_one: resources.CloudforceOneResource
     event_notifications: resources.EventNotificationsResource
     ai_gateway: resources.AIGatewayResource
-    iam: resources.IamResource
+    iam: resources.IAMResource
     with_raw_response: CloudflareWithRawResponse
     with_streaming_response: CloudflareWithStreamedResponse
 
@@ -289,7 +289,7 @@ class Cloudflare(SyncAPIClient):
         self.cloudforce_one = resources.CloudforceOneResource(self)
         self.event_notifications = resources.EventNotificationsResource(self)
         self.ai_gateway = resources.AIGatewayResource(self)
-        self.iam = resources.IamResource(self)
+        self.iam = resources.IAMResource(self)
         self.with_raw_response = CloudflareWithRawResponse(self)
         self.with_streaming_response = CloudflareWithStreamedResponse(self)
 
@@ -551,7 +551,7 @@ class AsyncCloudflare(AsyncAPIClient):
     cloudforce_one: resources.AsyncCloudforceOneResource
     event_notifications: resources.AsyncEventNotificationsResource
     ai_gateway: resources.AsyncAIGatewayResource
-    iam: resources.AsyncIamResource
+    iam: resources.AsyncIAMResource
     with_raw_response: AsyncCloudflareWithRawResponse
     with_streaming_response: AsyncCloudflareWithStreamedResponse
 
@@ -710,7 +710,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.cloudforce_one = resources.AsyncCloudforceOneResource(self)
         self.event_notifications = resources.AsyncEventNotificationsResource(self)
         self.ai_gateway = resources.AsyncAIGatewayResource(self)
-        self.iam = resources.AsyncIamResource(self)
+        self.iam = resources.AsyncIAMResource(self)
         self.with_raw_response = AsyncCloudflareWithRawResponse(self)
         self.with_streaming_response = AsyncCloudflareWithStreamedResponse(self)
 
@@ -983,7 +983,7 @@ class CloudflareWithRawResponse:
         self.cloudforce_one = resources.CloudforceOneResourceWithRawResponse(client.cloudforce_one)
         self.event_notifications = resources.EventNotificationsResourceWithRawResponse(client.event_notifications)
         self.ai_gateway = resources.AIGatewayResourceWithRawResponse(client.ai_gateway)
-        self.iam = resources.IamResourceWithRawResponse(client.iam)
+        self.iam = resources.IAMResourceWithRawResponse(client.iam)
 
 
 class AsyncCloudflareWithRawResponse:
@@ -1085,7 +1085,7 @@ class AsyncCloudflareWithRawResponse:
         self.cloudforce_one = resources.AsyncCloudforceOneResourceWithRawResponse(client.cloudforce_one)
         self.event_notifications = resources.AsyncEventNotificationsResourceWithRawResponse(client.event_notifications)
         self.ai_gateway = resources.AsyncAIGatewayResourceWithRawResponse(client.ai_gateway)
-        self.iam = resources.AsyncIamResourceWithRawResponse(client.iam)
+        self.iam = resources.AsyncIAMResourceWithRawResponse(client.iam)
 
 
 class CloudflareWithStreamedResponse:
@@ -1187,7 +1187,7 @@ class CloudflareWithStreamedResponse:
         self.cloudforce_one = resources.CloudforceOneResourceWithStreamingResponse(client.cloudforce_one)
         self.event_notifications = resources.EventNotificationsResourceWithStreamingResponse(client.event_notifications)
         self.ai_gateway = resources.AIGatewayResourceWithStreamingResponse(client.ai_gateway)
-        self.iam = resources.IamResourceWithStreamingResponse(client.iam)
+        self.iam = resources.IAMResourceWithStreamingResponse(client.iam)
 
 
 class AsyncCloudflareWithStreamedResponse:
@@ -1297,7 +1297,7 @@ class AsyncCloudflareWithStreamedResponse:
             client.event_notifications
         )
         self.ai_gateway = resources.AsyncAIGatewayResourceWithStreamingResponse(client.ai_gateway)
-        self.iam = resources.AsyncIamResourceWithStreamingResponse(client.iam)
+        self.iam = resources.AsyncIAMResourceWithStreamingResponse(client.iam)
 
 
 Client = Cloudflare

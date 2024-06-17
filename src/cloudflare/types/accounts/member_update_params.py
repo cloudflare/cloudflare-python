@@ -9,10 +9,10 @@ __all__ = [
     "MemberUpdateParams",
     "Member",
     "MemberRole",
-    "IamUpdateMemberWithPolicies",
-    "IamUpdateMemberWithPoliciesPolicy",
-    "IamUpdateMemberWithPoliciesPolicyPermissionGroup",
-    "IamUpdateMemberWithPoliciesPolicyResourceGroup",
+    "IAMUpdateMemberWithPolicies",
+    "IAMUpdateMemberWithPoliciesPolicy",
+    "IAMUpdateMemberWithPoliciesPolicyPermissionGroup",
+    "IAMUpdateMemberWithPoliciesPolicyResourceGroup",
 ]
 
 
@@ -29,33 +29,33 @@ class MemberRole(TypedDict, total=False):
     """Role identifier tag."""
 
 
-class IamUpdateMemberWithPolicies(TypedDict, total=False):
+class IAMUpdateMemberWithPolicies(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
 
-    policies: Required[Iterable[IamUpdateMemberWithPoliciesPolicy]]
+    policies: Required[Iterable[IAMUpdateMemberWithPoliciesPolicy]]
     """Array of policies associated with this member."""
 
 
-class IamUpdateMemberWithPoliciesPolicyPermissionGroup(TypedDict, total=False):
+class IAMUpdateMemberWithPoliciesPolicyPermissionGroup(TypedDict, total=False):
     id: Required[str]
     """Identifier of the group."""
 
 
-class IamUpdateMemberWithPoliciesPolicyResourceGroup(TypedDict, total=False):
+class IAMUpdateMemberWithPoliciesPolicyResourceGroup(TypedDict, total=False):
     id: Required[str]
     """Identifier of the group."""
 
 
-class IamUpdateMemberWithPoliciesPolicy(TypedDict, total=False):
+class IAMUpdateMemberWithPoliciesPolicy(TypedDict, total=False):
     access: Required[Literal["allow", "deny"]]
     """Allow or deny operations against the resources."""
 
-    permission_groups: Required[Iterable[IamUpdateMemberWithPoliciesPolicyPermissionGroup]]
+    permission_groups: Required[Iterable[IAMUpdateMemberWithPoliciesPolicyPermissionGroup]]
     """A set of permission groups that are specified to the policy."""
 
-    resource_groups: Required[Iterable[IamUpdateMemberWithPoliciesPolicyResourceGroup]]
+    resource_groups: Required[Iterable[IAMUpdateMemberWithPoliciesPolicyResourceGroup]]
     """A list of resource groups that the policy applies to."""
 
 
-MemberUpdateParams = Union[Member, IamUpdateMemberWithPolicies]
+MemberUpdateParams = Union[Member, IAMUpdateMemberWithPolicies]
