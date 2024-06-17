@@ -32,22 +32,8 @@ from .sites import (
     SitesResourceWithStreamingResponse,
     AsyncSitesResourceWithStreamingResponse,
 )
-from .app_configuration import (
-    AppConfigurationResource,
-    AsyncAppConfigurationResource,
-    AppConfigurationResourceWithRawResponse,
-    AsyncAppConfigurationResourceWithRawResponse,
-    AppConfigurationResourceWithStreamingResponse,
-    AsyncAppConfigurationResourceWithStreamingResponse,
-)
 
 __all__ = [
-    "AppConfigurationResource",
-    "AsyncAppConfigurationResource",
-    "AppConfigurationResourceWithRawResponse",
-    "AsyncAppConfigurationResourceWithRawResponse",
-    "AppConfigurationResourceWithStreamingResponse",
-    "AsyncAppConfigurationResourceWithStreamingResponse",
     "ACLsResource",
     "AsyncACLsResource",
     "ACLsResourceWithRawResponse",
