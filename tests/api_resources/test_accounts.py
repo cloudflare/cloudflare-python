@@ -31,6 +31,7 @@ class TestAccounts:
             account_id={},
             name="Demo Account",
             settings={
+                "abuse_contact_email": "string",
                 "default_nameservers": "cloudflare.standard",
                 "enforce_twofactor": True,
                 "use_account_custom_ns_by_default": True,
@@ -148,6 +149,7 @@ class TestAsyncAccounts:
             account_id={},
             name="Demo Account",
             settings={
+                "abuse_contact_email": "string",
                 "default_nameservers": "cloudflare.standard",
                 "enforce_twofactor": True,
                 "use_account_custom_ns_by_default": True,
