@@ -41,12 +41,12 @@ from .dns import (
     AsyncDNSResourceWithStreamingResponse,
 )
 from .iam import (
-    IamResource,
-    AsyncIamResource,
-    IamResourceWithRawResponse,
-    AsyncIamResourceWithRawResponse,
-    IamResourceWithStreamingResponse,
-    AsyncIamResourceWithStreamingResponse,
+    IAMResource,
+    AsyncIAMResource,
+    IAMResourceWithRawResponse,
+    AsyncIAMResourceWithRawResponse,
+    IAMResourceWithStreamingResponse,
+    AsyncIAMResourceWithStreamingResponse,
 )
 from .ips import (
     IPsResource,
@@ -1172,10 +1172,10 @@ __all__ = [
     "AsyncAIGatewayResourceWithRawResponse",
     "AIGatewayResourceWithStreamingResponse",
     "AsyncAIGatewayResourceWithStreamingResponse",
-    "IamResource",
-    "AsyncIamResource",
-    "IamResourceWithRawResponse",
-    "AsyncIamResourceWithRawResponse",
-    "IamResourceWithStreamingResponse",
-    "AsyncIamResourceWithStreamingResponse",
+    "IAMResource",
+    "AsyncIAMResource",
+    "IAMResourceWithRawResponse",
+    "AsyncIAMResourceWithRawResponse",
+    "IAMResourceWithStreamingResponse",
+    "AsyncIAMResourceWithStreamingResponse",
 ]

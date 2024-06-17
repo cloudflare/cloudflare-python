@@ -1,12 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .iam import (
-    IamResource,
-    AsyncIamResource,
-    IamResourceWithRawResponse,
-    AsyncIamResourceWithRawResponse,
-    IamResourceWithStreamingResponse,
-    AsyncIamResourceWithStreamingResponse,
+    IAMResource,
+    AsyncIAMResource,
+    IAMResourceWithRawResponse,
+    AsyncIAMResourceWithRawResponse,
+    IAMResourceWithStreamingResponse,
+    AsyncIAMResourceWithStreamingResponse,
 )
 from .resource_groups import (
     ResourceGroupsResource,
@@ -38,10 +38,10 @@ __all__ = [
     "AsyncResourceGroupsResourceWithRawResponse",
     "ResourceGroupsResourceWithStreamingResponse",
     "AsyncResourceGroupsResourceWithStreamingResponse",
-    "IamResource",
-    "AsyncIamResource",
-    "IamResourceWithRawResponse",
-    "AsyncIamResourceWithRawResponse",
-    "IamResourceWithStreamingResponse",
-    "AsyncIamResourceWithStreamingResponse",
+    "IAMResource",
+    "AsyncIAMResource",
+    "IAMResourceWithRawResponse",
+    "AsyncIAMResourceWithRawResponse",
+    "IAMResourceWithStreamingResponse",
+    "AsyncIAMResourceWithStreamingResponse",
 ]

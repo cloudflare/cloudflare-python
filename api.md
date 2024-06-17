@@ -7897,7 +7897,7 @@ Methods:
 
 - <code title="get /accounts/{account_id}/ai-gateway/gateways/{id}/logs">client.ai_gateway.logs.<a href="./src/cloudflare/resources/ai_gateway/logs.py">get</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/ai_gateway/log_get_params.py">params</a>) -> <a href="./src/cloudflare/types/ai_gateway/log_get_response.py">LogGetResponse</a></code>
 
-# Iam
+# IAM
 
 ## PermissionGroups
 

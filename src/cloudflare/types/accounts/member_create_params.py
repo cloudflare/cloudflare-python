@@ -7,15 +7,15 @@ from typing_extensions import Literal, Required, TypedDict
 
 __all__ = [
     "MemberCreateParams",
-    "IamCreateMemberWithRoles",
-    "IamCreateMemberWithPolicies",
-    "IamCreateMemberWithPoliciesPolicy",
-    "IamCreateMemberWithPoliciesPolicyPermissionGroup",
-    "IamCreateMemberWithPoliciesPolicyResourceGroup",
+    "IAMCreateMemberWithRoles",
+    "IAMCreateMemberWithPolicies",
+    "IAMCreateMemberWithPoliciesPolicy",
+    "IAMCreateMemberWithPoliciesPolicyPermissionGroup",
+    "IAMCreateMemberWithPoliciesPolicyResourceGroup",
 ]
 
 
-class IamCreateMemberWithRoles(TypedDict, total=False):
+class IAMCreateMemberWithRoles(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
 
@@ -28,38 +28,38 @@ class IamCreateMemberWithRoles(TypedDict, total=False):
     status: Literal["accepted", "pending"]
 
 
-class IamCreateMemberWithPolicies(TypedDict, total=False):
+class IAMCreateMemberWithPolicies(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
 
     email: Required[str]
     """The contact email address of the user."""
 
-    policies: Required[Iterable[IamCreateMemberWithPoliciesPolicy]]
+    policies: Required[Iterable[IAMCreateMemberWithPoliciesPolicy]]
     """Array of policies associated with this member."""
 
     status: Literal["accepted", "pending"]
 
 
-class IamCreateMemberWithPoliciesPolicyPermissionGroup(TypedDict, total=False):
+class IAMCreateMemberWithPoliciesPolicyPermissionGroup(TypedDict, total=False):
     id: Required[str]
     """Identifier of the group."""
 
 
-class IamCreateMemberWithPoliciesPolicyResourceGroup(TypedDict, total=False):
+class IAMCreateMemberWithPoliciesPolicyResourceGroup(TypedDict, total=False):
     id: Required[str]
     """Identifier of the group."""
 
 
-class IamCreateMemberWithPoliciesPolicy(TypedDict, total=False):
+class IAMCreateMemberWithPoliciesPolicy(TypedDict, total=False):
     access: Required[Literal["allow", "deny"]]
     """Allow or deny operations against the resources."""
 
-    permission_groups: Required[Iterable[IamCreateMemberWithPoliciesPolicyPermissionGroup]]
+    permission_groups: Required[Iterable[IAMCreateMemberWithPoliciesPolicyPermissionGroup]]
     """A set of permission groups that are specified to the policy."""
 
-    resource_groups: Required[Iterable[IamCreateMemberWithPoliciesPolicyResourceGroup]]
+    resource_groups: Required[Iterable[IAMCreateMemberWithPoliciesPolicyResourceGroup]]
     """A list of resource groups that the policy applies to."""
 
 
-MemberCreateParams = Union[IamCreateMemberWithRoles, IamCreateMemberWithPolicies]
+MemberCreateParams = Union[IAMCreateMemberWithRoles, IAMCreateMemberWithPolicies]
