@@ -87,7 +87,7 @@ class MembersResource(SyncAPIResource):
         *,
         account_id: str,
         email: str,
-        policies: Iterable[member_create_params.IamCreateMemberWithPoliciesPolicy],
+        policies: Iterable[member_create_params.IAMCreateMemberWithPoliciesPolicy],
         status: Literal["accepted", "pending"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -124,7 +124,7 @@ class MembersResource(SyncAPIResource):
         email: str,
         roles: List[str] | NotGiven = NOT_GIVEN,
         status: Literal["accepted", "pending"] | NotGiven = NOT_GIVEN,
-        policies: Iterable[member_create_params.IamCreateMemberWithPoliciesPolicy] | NotGiven = NOT_GIVEN,
+        policies: Iterable[member_create_params.IAMCreateMemberWithPoliciesPolicy] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -195,7 +195,7 @@ class MembersResource(SyncAPIResource):
         member_id: str,
         *,
         account_id: str,
-        policies: Iterable[member_update_params.IamUpdateMemberWithPoliciesPolicy],
+        policies: Iterable[member_update_params.IAMUpdateMemberWithPoliciesPolicy],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -230,7 +230,7 @@ class MembersResource(SyncAPIResource):
         *,
         account_id: str,
         roles: Iterable[member_update_params.MemberRole] | NotGiven = NOT_GIVEN,
-        policies: Iterable[member_update_params.IamUpdateMemberWithPoliciesPolicy] | NotGiven = NOT_GIVEN,
+        policies: Iterable[member_update_params.IAMUpdateMemberWithPoliciesPolicy] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -464,7 +464,7 @@ class AsyncMembersResource(AsyncAPIResource):
         *,
         account_id: str,
         email: str,
-        policies: Iterable[member_create_params.IamCreateMemberWithPoliciesPolicy],
+        policies: Iterable[member_create_params.IAMCreateMemberWithPoliciesPolicy],
         status: Literal["accepted", "pending"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -501,7 +501,7 @@ class AsyncMembersResource(AsyncAPIResource):
         email: str,
         roles: List[str] | NotGiven = NOT_GIVEN,
         status: Literal["accepted", "pending"] | NotGiven = NOT_GIVEN,
-        policies: Iterable[member_create_params.IamCreateMemberWithPoliciesPolicy] | NotGiven = NOT_GIVEN,
+        policies: Iterable[member_create_params.IAMCreateMemberWithPoliciesPolicy] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -572,7 +572,7 @@ class AsyncMembersResource(AsyncAPIResource):
         member_id: str,
         *,
         account_id: str,
-        policies: Iterable[member_update_params.IamUpdateMemberWithPoliciesPolicy],
+        policies: Iterable[member_update_params.IAMUpdateMemberWithPoliciesPolicy],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -607,7 +607,7 @@ class AsyncMembersResource(AsyncAPIResource):
         *,
         account_id: str,
         roles: Iterable[member_update_params.MemberRole] | NotGiven = NOT_GIVEN,
-        policies: Iterable[member_update_params.IamUpdateMemberWithPoliciesPolicy] | NotGiven = NOT_GIVEN,
+        policies: Iterable[member_update_params.IAMUpdateMemberWithPoliciesPolicy] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,

@@ -21,10 +21,10 @@ from .permission_groups import (
     AsyncPermissionGroupsResourceWithStreamingResponse,
 )
 
-__all__ = ["IamResource", "AsyncIamResource"]
+__all__ = ["IAMResource", "AsyncIAMResource"]
 
 
-class IamResource(SyncAPIResource):
+class IAMResource(SyncAPIResource):
     @cached_property
     def permission_groups(self) -> PermissionGroupsResource:
         return PermissionGroupsResource(self._client)
@@ -34,15 +34,15 @@ class IamResource(SyncAPIResource):
         return ResourceGroupsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> IamResourceWithRawResponse:
-        return IamResourceWithRawResponse(self)
+    def with_raw_response(self) -> IAMResourceWithRawResponse:
+        return IAMResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> IamResourceWithStreamingResponse:
-        return IamResourceWithStreamingResponse(self)
+    def with_streaming_response(self) -> IAMResourceWithStreamingResponse:
+        return IAMResourceWithStreamingResponse(self)
 
 
-class AsyncIamResource(AsyncAPIResource):
+class AsyncIAMResource(AsyncAPIResource):
     @cached_property
     def permission_groups(self) -> AsyncPermissionGroupsResource:
         return AsyncPermissionGroupsResource(self._client)
@@ -52,16 +52,16 @@ class AsyncIamResource(AsyncAPIResource):
         return AsyncResourceGroupsResource(self._client)
 
     @cached_property
-    def with_raw_response(self) -> AsyncIamResourceWithRawResponse:
-        return AsyncIamResourceWithRawResponse(self)
+    def with_raw_response(self) -> AsyncIAMResourceWithRawResponse:
+        return AsyncIAMResourceWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncIamResourceWithStreamingResponse:
-        return AsyncIamResourceWithStreamingResponse(self)
+    def with_streaming_response(self) -> AsyncIAMResourceWithStreamingResponse:
+        return AsyncIAMResourceWithStreamingResponse(self)
 
 
-class IamResourceWithRawResponse:
-    def __init__(self, iam: IamResource) -> None:
+class IAMResourceWithRawResponse:
+    def __init__(self, iam: IAMResource) -> None:
         self._iam = iam
 
     @cached_property
@@ -73,8 +73,8 @@ class IamResourceWithRawResponse:
         return ResourceGroupsResourceWithRawResponse(self._iam.resource_groups)
 
 
-class AsyncIamResourceWithRawResponse:
-    def __init__(self, iam: AsyncIamResource) -> None:
+class AsyncIAMResourceWithRawResponse:
+    def __init__(self, iam: AsyncIAMResource) -> None:
         self._iam = iam
 
     @cached_property
@@ -86,8 +86,8 @@ class AsyncIamResourceWithRawResponse:
         return AsyncResourceGroupsResourceWithRawResponse(self._iam.resource_groups)
 
 
-class IamResourceWithStreamingResponse:
-    def __init__(self, iam: IamResource) -> None:
+class IAMResourceWithStreamingResponse:
+    def __init__(self, iam: IAMResource) -> None:
         self._iam = iam
 
     @cached_property
@@ -99,8 +99,8 @@ class IamResourceWithStreamingResponse:
         return ResourceGroupsResourceWithStreamingResponse(self._iam.resource_groups)
 
 
-class AsyncIamResourceWithStreamingResponse:
-    def __init__(self, iam: AsyncIamResource) -> None:
+class AsyncIAMResourceWithStreamingResponse:
+    def __init__(self, iam: AsyncIAMResource) -> None:
         self._iam = iam
 
     @cached_property
