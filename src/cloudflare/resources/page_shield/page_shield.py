@@ -6,6 +6,14 @@ from typing import Type, Optional, cast
 
 import httpx
 
+from .cookies import (
+    CookiesResource,
+    AsyncCookiesResource,
+    CookiesResourceWithRawResponse,
+    AsyncCookiesResourceWithRawResponse,
+    CookiesResourceWithStreamingResponse,
+    AsyncCookiesResourceWithStreamingResponse,
+)
 from .scripts import (
     ScriptsResource,
     AsyncScriptsResource,
@@ -66,6 +74,10 @@ class PageShieldResource(SyncAPIResource):
     @cached_property
     def scripts(self) -> ScriptsResource:
         return ScriptsResource(self._client)
+
+    @cached_property
+    def cookies(self) -> CookiesResource:
+        return CookiesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> PageShieldResourceWithRawResponse:
@@ -184,6 +196,10 @@ class AsyncPageShieldResource(AsyncAPIResource):
     @cached_property
     def scripts(self) -> AsyncScriptsResource:
         return AsyncScriptsResource(self._client)
+
+    @cached_property
+    def cookies(self) -> AsyncCookiesResource:
+        return AsyncCookiesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncPageShieldResourceWithRawResponse:
@@ -313,6 +329,10 @@ class PageShieldResourceWithRawResponse:
     def scripts(self) -> ScriptsResourceWithRawResponse:
         return ScriptsResourceWithRawResponse(self._page_shield.scripts)
 
+    @cached_property
+    def cookies(self) -> CookiesResourceWithRawResponse:
+        return CookiesResourceWithRawResponse(self._page_shield.cookies)
+
 
 class AsyncPageShieldResourceWithRawResponse:
     def __init__(self, page_shield: AsyncPageShieldResource) -> None:
@@ -336,6 +356,10 @@ class AsyncPageShieldResourceWithRawResponse:
     @cached_property
     def scripts(self) -> AsyncScriptsResourceWithRawResponse:
         return AsyncScriptsResourceWithRawResponse(self._page_shield.scripts)
+
+    @cached_property
+    def cookies(self) -> AsyncCookiesResourceWithRawResponse:
+        return AsyncCookiesResourceWithRawResponse(self._page_shield.cookies)
 
 
 class PageShieldResourceWithStreamingResponse:
@@ -361,6 +385,10 @@ class PageShieldResourceWithStreamingResponse:
     def scripts(self) -> ScriptsResourceWithStreamingResponse:
         return ScriptsResourceWithStreamingResponse(self._page_shield.scripts)
 
+    @cached_property
+    def cookies(self) -> CookiesResourceWithStreamingResponse:
+        return CookiesResourceWithStreamingResponse(self._page_shield.cookies)
+
 
 class AsyncPageShieldResourceWithStreamingResponse:
     def __init__(self, page_shield: AsyncPageShieldResource) -> None:
@@ -384,3 +412,7 @@ class AsyncPageShieldResourceWithStreamingResponse:
     @cached_property
     def scripts(self) -> AsyncScriptsResourceWithStreamingResponse:
         return AsyncScriptsResourceWithStreamingResponse(self._page_shield.scripts)
+
+    @cached_property
+    def cookies(self) -> AsyncCookiesResourceWithStreamingResponse:
+        return AsyncCookiesResourceWithStreamingResponse(self._page_shield.cookies)

@@ -40,6 +40,14 @@ from .dns import (
     DNSResourceWithStreamingResponse,
     AsyncDNSResourceWithStreamingResponse,
 )
+from .iam import (
+    IamResource,
+    AsyncIamResource,
+    IamResourceWithRawResponse,
+    AsyncIamResourceWithRawResponse,
+    IamResourceWithStreamingResponse,
+    AsyncIamResourceWithStreamingResponse,
+)
 from .ips import (
     IPsResource,
     AsyncIPsResource,
@@ -1164,4 +1172,10 @@ __all__ = [
     "AsyncAIGatewayResourceWithRawResponse",
     "AIGatewayResourceWithStreamingResponse",
     "AsyncAIGatewayResourceWithStreamingResponse",
+    "IamResource",
+    "AsyncIamResource",
+    "IamResourceWithRawResponse",
+    "AsyncIamResourceWithRawResponse",
+    "IamResourceWithStreamingResponse",
+    "AsyncIamResourceWithStreamingResponse",
 ]
