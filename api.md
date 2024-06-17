@@ -4095,26 +4095,6 @@ Methods:
 - <code title="patch /accounts/{account_id}/magic/sites/{site_id}">client.magic_transit.sites.<a href="./src/cloudflare/resources/magic_transit/sites/sites.py">edit</a>(site_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/site_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/site.py">Site</a></code>
 - <code title="get /accounts/{account_id}/magic/sites/{site_id}">client.magic_transit.sites.<a href="./src/cloudflare/resources/magic_transit/sites/sites.py">get</a>(site_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/site.py">Site</a></code>
 
-### AppConfiguration
-
-Types:
-
-```python
-from cloudflare.types.magic_transit.sites import (
-    AppConfigurationCreateResponse,
-    AppConfigurationUpdateResponse,
-    AppConfigurationListResponse,
-    AppConfigurationDeleteResponse,
-)
-```
-
-Methods:
-
-- <code title="post /accounts/{account_id}/magic/sites/{site_id}/app_configs">client.magic_transit.sites.app_configuration.<a href="./src/cloudflare/resources/magic_transit/sites/app_configuration.py">create</a>(site_id, \*, account_id, \*\*<a href="src/cloudflare/types/magic_transit/sites/app_configuration_create_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/sites/app_configuration_create_response.py">Optional</a></code>
-- <code title="put /accounts/{account_id}/magic/sites/{site_id}/app_configs/{app_config_id}">client.magic_transit.sites.app_configuration.<a href="./src/cloudflare/resources/magic_transit/sites/app_configuration.py">update</a>(app_config_id, \*, account_id, site_id, \*\*<a href="src/cloudflare/types/magic_transit/sites/app_configuration_update_params.py">params</a>) -> <a href="./src/cloudflare/types/magic_transit/sites/app_configuration_update_response.py">Optional</a></code>
-- <code title="get /accounts/{account_id}/magic/sites/{site_id}/app_configs">client.magic_transit.sites.app_configuration.<a href="./src/cloudflare/resources/magic_transit/sites/app_configuration.py">list</a>(site_id, \*, account_id) -> <a href="./src/cloudflare/types/magic_transit/sites/app_configuration_list_response.py">SyncSinglePage[AppConfigurationListResponse]</a></code>
-- <code title="delete /accounts/{account_id}/magic/sites/{site_id}/app_configs/{app_config_id}">client.magic_transit.sites.app_configuration.<a href="./src/cloudflare/resources/magic_transit/sites/app_configuration.py">delete</a>(app_config_id, \*, account_id, site_id) -> <a href="./src/cloudflare/types/magic_transit/sites/app_configuration_delete_response.py">Optional</a></code>
-
 ### ACLs
 
 Types:
