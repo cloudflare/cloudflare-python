@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 from .tls_settings_param import TLSSettingsParam
 from .fips_settings_param import FipsSettingsParam
@@ -15,12 +15,7 @@ from .extended_email_matching_param import ExtendedEmailMatchingParam
 from .browser_isolation_settings_param import BrowserIsolationSettingsParam
 from .custom_certificate_settings_param import CustomCertificateSettingsParam
 
-__all__ = ["GatewayConfigurationSettingsParam", "Certificate"]
-
-
-class Certificate(TypedDict, total=False):
-    id: Required[str]
-    """UUID of certificate to be used for interception."""
+__all__ = ["GatewayConfigurationSettingsParam"]
 
 
 class GatewayConfigurationSettingsParam(TypedDict, total=False):
@@ -39,17 +34,8 @@ class GatewayConfigurationSettingsParam(TypedDict, total=False):
     browser_isolation: BrowserIsolationSettingsParam
     """Browser isolation settings."""
 
-    certificate: Certificate
-    """Certificate settings for Gateway TLS interception.
-
-    If not specified, the Cloudflare Root CA will be used.
-    """
-
     custom_certificate: CustomCertificateSettingsParam
-    """Custom certificate settings for BYO-PKI.
-
-    (deprecated and replaced by `certificate`)
-    """
+    """Custom certificate settings for BYO-PKI."""
 
     extended_email_matching: ExtendedEmailMatchingParam
     """Extended e-mail matching settings."""

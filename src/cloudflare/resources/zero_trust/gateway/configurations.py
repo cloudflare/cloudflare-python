@@ -102,8 +102,8 @@ class ConfigurationsResource(SyncAPIResource):
         This endpoint can update a
         single subcollection of settings such as `antivirus`, `tls_decrypt`,
         `activity_log`, `block_page`, `browser_isolation`, `fips`, `body_scanning`, or
-        `certificate`, without updating the entire configuration object. Returns an
-        error if any collection of settings is not properly configured.
+        `custom_certificate`, without updating the entire configuration object. Returns
+        an error if any collection of settings is not properly configured.
 
         Args:
           settings: account settings.
@@ -238,8 +238,8 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         This endpoint can update a
         single subcollection of settings such as `antivirus`, `tls_decrypt`,
         `activity_log`, `block_page`, `browser_isolation`, `fips`, `body_scanning`, or
-        `certificate`, without updating the entire configuration object. Returns an
-        error if any collection of settings is not properly configured.
+        `custom_certificate`, without updating the entire configuration object. Returns
+        an error if any collection of settings is not properly configured.
 
         Args:
           settings: account settings.
