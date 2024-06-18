@@ -25,7 +25,7 @@ class MetaConfidenceInfoAnnotation(BaseModel):
 
     event_type: str = FieldInfo(alias="eventType")
 
-    is_instantaneous: object = FieldInfo(alias="isInstantaneous")
+    is_instantaneous: bool = FieldInfo(alias="isInstantaneous")
 
     end_time: Optional[datetime] = FieldInfo(alias="endTime", default=None)
 

@@ -87,6 +87,7 @@ class TopResource(SyncAPIResource):
         limit_per_location: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        normalization: Literal["PERCENTAGE", "MIN_MAX"] | NotGiven = NOT_GIVEN,
         protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -134,6 +135,9 @@ class TopResource(SyncAPIResource):
 
           name: Array of names that will be used to name the series in responses.
 
+          normalization: Normalization method applied. Refer to
+              [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
           protocol: Array of L3/4 attack types.
 
           extra_headers: Send extra headers
@@ -164,6 +168,7 @@ class TopResource(SyncAPIResource):
                         "limit_per_location": limit_per_location,
                         "location": location,
                         "name": name,
+                        "normalization": normalization,
                         "protocol": protocol,
                     },
                     top_attacks_params.TopAttacksParams,
@@ -428,6 +433,7 @@ class AsyncTopResource(AsyncAPIResource):
         limit_per_location: int | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        normalization: Literal["PERCENTAGE", "MIN_MAX"] | NotGiven = NOT_GIVEN,
         protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -475,6 +481,9 @@ class AsyncTopResource(AsyncAPIResource):
 
           name: Array of names that will be used to name the series in responses.
 
+          normalization: Normalization method applied. Refer to
+              [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
           protocol: Array of L3/4 attack types.
 
           extra_headers: Send extra headers
@@ -505,6 +514,7 @@ class AsyncTopResource(AsyncAPIResource):
                         "limit_per_location": limit_per_location,
                         "location": location,
                         "name": name,
+                        "normalization": normalization,
                         "protocol": protocol,
                     },
                     top_attacks_params.TopAttacksParams,

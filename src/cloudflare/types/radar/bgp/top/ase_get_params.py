@@ -69,10 +69,19 @@ class AseGetParams(TypedDict, total=False):
     """Array of BGP update types."""
 
 
-class Prefix(TypedDict, total=False):
-    location: Required[str]
+_PrefixReservedKeywords = TypedDict(
+    "_PrefixReservedKeywords",
+    {
+        "in": str,
+    },
+    total=False,
+)
 
+
+class Prefix(_PrefixReservedKeywords, total=False):
     name: Required[str]
+
+    test: Required[float]
 
     type: str
     """Network prefix, IPv4 or IPv6."""

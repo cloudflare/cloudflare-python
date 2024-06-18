@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import List
 from typing_extensions import Literal, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
@@ -11,7 +11,7 @@ __all__ = ["RankingTopParams"]
 
 
 class RankingTopParams(TypedDict, total=False):
-    date: List[Optional[str]]
+    date: List[str]
     """Array of dates to filter the ranking."""
 
     format: Literal["JSON", "CSV"]
