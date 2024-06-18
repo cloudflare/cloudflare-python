@@ -2,11 +2,17 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing import Union
+from datetime import datetime
+from typing_extensions import Annotated, TypedDict
+
+from ...._utils import PropertyInfo
 
 __all__ = ["GatewayItemParam"]
 
 
 class GatewayItemParam(TypedDict, total=False):
+    created_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+
     value: str
     """The value of the item in a list."""

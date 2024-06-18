@@ -14,7 +14,12 @@ from .extended_email_matching import ExtendedEmailMatching
 from .browser_isolation_settings import BrowserIsolationSettings
 from .custom_certificate_settings import CustomCertificateSettings
 
-__all__ = ["GatewayConfigurationSettings"]
+__all__ = ["GatewayConfigurationSettings", "Certificate"]
+
+
+class Certificate(BaseModel):
+    id: str
+    """UUID of certificate to be used for interception."""
 
 
 class GatewayConfigurationSettings(BaseModel):
@@ -33,8 +38,17 @@ class GatewayConfigurationSettings(BaseModel):
     browser_isolation: Optional[BrowserIsolationSettings] = None
     """Browser isolation settings."""
 
+    certificate: Optional[Certificate] = None
+    """Certificate settings for Gateway TLS interception.
+
+    If not specified, the Cloudflare Root CA will be used.
+    """
+
     custom_certificate: Optional[CustomCertificateSettings] = None
-    """Custom certificate settings for BYO-PKI."""
+    """Custom certificate settings for BYO-PKI.
+
+    (deprecated and replaced by `certificate`)
+    """
 
     extended_email_matching: Optional[ExtendedEmailMatching] = None
     """Extended e-mail matching settings."""
