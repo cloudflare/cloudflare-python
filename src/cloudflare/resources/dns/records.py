@@ -59,14 +59,16 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["A"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -85,7 +87,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           content: A valid IPv4 address.
 
@@ -93,6 +95,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -104,6 +108,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -119,14 +125,16 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["AAAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -145,7 +153,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           content: A valid IPv6 address.
 
@@ -153,6 +161,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -164,6 +174,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -179,13 +191,15 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.CAARecordData,
         name: str,
         type: Literal["CAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -204,7 +218,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a CAA record.
 
@@ -212,6 +226,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -220,6 +236,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -235,13 +253,15 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.CERTRecordData,
         name: str,
         type: Literal["CERT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -260,7 +280,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a CERT record.
 
@@ -268,6 +288,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -276,6 +298,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -291,14 +315,16 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: object,
         name: str,
         type: Literal["CNAME"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -317,13 +343,15 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           content: A valid hostname. Must not match the record's name.
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -337,6 +365,8 @@ class RecordsResource(SyncAPIResource):
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
 
+          body_zone_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -351,13 +381,15 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.DNSKEYRecordData,
         name: str,
         type: Literal["DNSKEY"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -376,7 +408,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a DNSKEY record.
 
@@ -384,6 +416,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -392,6 +426,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -407,13 +443,15 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.DSRecordData,
         name: str,
         type: Literal["DS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -432,7 +470,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a DS record.
 
@@ -440,6 +478,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -448,6 +488,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -463,13 +505,15 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.HTTPSRecordData,
         name: str,
         type: Literal["HTTPS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -488,7 +532,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a HTTPS record.
 
@@ -496,6 +540,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -504,6 +550,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -519,13 +567,15 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.LOCRecordData,
         name: str,
         type: Literal["LOC"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -544,7 +594,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a LOC record.
 
@@ -552,6 +602,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -560,6 +612,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -575,14 +629,16 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         priority: float,
         type: Literal["MX"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -601,7 +657,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           content: A valid mail server hostname.
 
@@ -612,6 +668,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -620,6 +678,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -635,13 +695,15 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.NAPTRRecordData,
         name: str,
         type: Literal["NAPTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -660,7 +722,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a NAPTR record.
 
@@ -668,6 +730,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -676,6 +740,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -691,13 +757,15 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["NS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -716,7 +784,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           content: A valid name server host name.
 
@@ -724,6 +792,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -732,6 +802,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -747,13 +819,15 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["PTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -772,7 +846,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           content: Domain name pointing to the address.
 
@@ -780,6 +854,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -788,6 +864,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -803,13 +881,15 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.SMIMEARecordData,
         name: str,
         type: Literal["SMIMEA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -828,7 +908,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a SMIMEA record.
 
@@ -836,6 +916,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -844,6 +926,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -859,13 +943,15 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.SRVRecordData,
         name: str,
         type: Literal["SRV"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -884,7 +970,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a SRV record.
 
@@ -894,6 +980,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -902,6 +990,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -917,13 +1007,15 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.SSHFPRecordData,
         name: str,
         type: Literal["SSHFP"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -942,7 +1034,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a SSHFP record.
 
@@ -950,6 +1042,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -958,6 +1052,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -973,13 +1069,15 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.SVCBRecordData,
         name: str,
         type: Literal["SVCB"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -998,7 +1096,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a SVCB record.
 
@@ -1006,6 +1104,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1014,6 +1114,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -1029,13 +1131,15 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.TLSARecordData,
         name: str,
         type: Literal["TLSA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1054,7 +1158,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a TLSA record.
 
@@ -1062,6 +1166,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1070,6 +1176,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -1085,13 +1193,15 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["TXT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1110,7 +1220,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           content: Text content for the record.
 
@@ -1118,6 +1228,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1126,6 +1238,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -1141,14 +1255,16 @@ class RecordsResource(SyncAPIResource):
     def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.URIRecordData,
         name: str,
         priority: float,
         type: Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1167,7 +1283,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a URI record.
 
@@ -1178,6 +1294,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1186,6 +1304,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -1198,10 +1318,10 @@ class RecordsResource(SyncAPIResource):
         ...
 
     @required_args(
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "priority", "type"],
-        ["zone_id", "data", "name", "priority", "type"],
+        ["path_zone_id", "content", "name", "type"],
+        ["path_zone_id", "data", "name", "type"],
+        ["path_zone_id", "content", "name", "priority", "type"],
+        ["path_zone_id", "data", "name", "priority", "type"],
     )
     def create(
         self,
@@ -1229,6 +1349,7 @@ class RecordsResource(SyncAPIResource):
         | Literal["TLSA"]
         | Literal["TXT"]
         | Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -1253,21 +1374,23 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Record]:
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not path_zone_id:
+            raise ValueError(f"Expected a non-empty value for `path_zone_id` but received {path_zone_id!r}")
         return cast(
             Optional[Record],
             self._post(
-                f"/zones/{zone_id}/dns_records",
+                f"/zones/{path_zone_id}/dns_records",
                 body=maybe_transform(
                     {
                         "content": content,
                         "name": name,
                         "type": type,
+                        "id": id,
                         "comment": comment,
                         "proxied": proxied,
                         "tags": tags,
                         "ttl": ttl,
+                        "zone_id": body_zone_id,
                         "data": data,
                         "priority": priority,
                     },
@@ -1291,14 +1414,16 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["A"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1316,7 +1441,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -1326,6 +1451,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1337,6 +1464,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -1353,14 +1482,16 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["AAAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1378,7 +1509,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -1388,6 +1519,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1399,6 +1532,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -1415,13 +1550,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.CAARecordData,
         name: str,
         type: Literal["CAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1439,7 +1576,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -1449,6 +1586,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1457,6 +1596,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -1473,13 +1614,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.CERTRecordData,
         name: str,
         type: Literal["CERT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1497,7 +1640,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -1507,6 +1650,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1515,6 +1660,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -1531,14 +1678,16 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: object,
         name: str,
         type: Literal["CNAME"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1556,7 +1705,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -1565,6 +1714,8 @@ class RecordsResource(SyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1578,6 +1729,8 @@ class RecordsResource(SyncAPIResource):
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
 
+          body_zone_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -1593,13 +1746,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.DNSKEYRecordData,
         name: str,
         type: Literal["DNSKEY"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1617,7 +1772,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -1627,6 +1782,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1635,6 +1792,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -1651,13 +1810,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.DSRecordData,
         name: str,
         type: Literal["DS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1675,7 +1836,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -1685,6 +1846,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1693,6 +1856,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -1709,13 +1874,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.HTTPSRecordData,
         name: str,
         type: Literal["HTTPS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1733,7 +1900,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -1743,6 +1910,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1751,6 +1920,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -1767,13 +1938,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.LOCRecordData,
         name: str,
         type: Literal["LOC"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1791,7 +1964,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -1801,6 +1974,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1809,6 +1984,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -1825,14 +2002,16 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         priority: float,
         type: Literal["MX"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1850,7 +2029,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -1863,6 +2042,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1871,6 +2052,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -1887,13 +2070,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.NAPTRRecordData,
         name: str,
         type: Literal["NAPTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1911,7 +2096,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -1921,6 +2106,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1929,6 +2116,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -1945,13 +2134,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["NS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1969,7 +2160,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -1979,6 +2170,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1987,6 +2180,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -2003,13 +2198,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["PTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2027,7 +2224,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -2037,6 +2234,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2045,6 +2244,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -2061,13 +2262,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.SMIMEARecordData,
         name: str,
         type: Literal["SMIMEA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2085,7 +2288,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -2095,6 +2298,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2103,6 +2308,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -2119,13 +2326,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.SRVRecordData,
         name: str,
         type: Literal["SRV"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2143,7 +2352,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -2155,6 +2364,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2163,6 +2374,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -2179,13 +2392,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.SSHFPRecordData,
         name: str,
         type: Literal["SSHFP"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2203,7 +2418,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -2213,6 +2428,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2221,6 +2438,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -2237,13 +2456,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.SVCBRecordData,
         name: str,
         type: Literal["SVCB"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2261,7 +2482,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -2271,6 +2492,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2279,6 +2502,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -2295,13 +2520,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.TLSARecordData,
         name: str,
         type: Literal["TLSA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2319,7 +2546,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -2329,6 +2556,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2337,6 +2566,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -2353,13 +2584,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["TXT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2377,7 +2610,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -2387,6 +2620,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2395,6 +2630,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -2411,14 +2648,16 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.URIRecordData,
         name: str,
         priority: float,
         type: Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2436,7 +2675,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -2449,6 +2688,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2457,6 +2698,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -2469,10 +2712,10 @@ class RecordsResource(SyncAPIResource):
         ...
 
     @required_args(
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "priority", "type"],
-        ["zone_id", "data", "name", "priority", "type"],
+        ["path_zone_id", "content", "name", "type"],
+        ["path_zone_id", "data", "name", "type"],
+        ["path_zone_id", "content", "name", "priority", "type"],
+        ["path_zone_id", "data", "name", "priority", "type"],
     )
     def update(
         self,
@@ -2501,6 +2744,7 @@ class RecordsResource(SyncAPIResource):
         | Literal["TLSA"]
         | Literal["TXT"]
         | Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -2525,23 +2769,25 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Record]:
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not path_zone_id:
+            raise ValueError(f"Expected a non-empty value for `path_zone_id` but received {path_zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
             Optional[Record],
             self._put(
-                f"/zones/{zone_id}/dns_records/{dns_record_id}",
+                f"/zones/{path_zone_id}/dns_records/{dns_record_id}",
                 body=maybe_transform(
                     {
                         "content": content,
                         "name": name,
                         "type": type,
+                        "id": id,
                         "comment": comment,
                         "proxied": proxied,
                         "tags": tags,
                         "ttl": ttl,
+                        "zone_id": body_zone_id,
                         "data": data,
                         "priority": priority,
                     },
@@ -2734,14 +2980,16 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["A"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2759,7 +3007,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -2769,6 +3017,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2780,6 +3030,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -2796,14 +3048,16 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["AAAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2821,7 +3075,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -2831,6 +3085,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2842,6 +3098,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -2858,13 +3116,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.CAARecordData,
         name: str,
         type: Literal["CAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2882,7 +3142,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -2892,6 +3152,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2900,6 +3162,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -2916,13 +3180,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.CERTRecordData,
         name: str,
         type: Literal["CERT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2940,7 +3206,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -2950,6 +3216,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2958,6 +3226,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -2974,14 +3244,16 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: object,
         name: str,
         type: Literal["CNAME"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2999,7 +3271,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -3008,6 +3280,8 @@ class RecordsResource(SyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -3021,6 +3295,8 @@ class RecordsResource(SyncAPIResource):
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
 
+          body_zone_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -3036,13 +3312,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.DNSKEYRecordData,
         name: str,
         type: Literal["DNSKEY"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3060,7 +3338,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -3070,6 +3348,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3078,6 +3358,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -3094,13 +3376,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.DSRecordData,
         name: str,
         type: Literal["DS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3118,7 +3402,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -3128,6 +3412,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3136,6 +3422,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -3152,13 +3440,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.HTTPSRecordData,
         name: str,
         type: Literal["HTTPS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3176,7 +3466,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -3186,6 +3476,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3194,6 +3486,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -3210,13 +3504,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.LOCRecordData,
         name: str,
         type: Literal["LOC"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3234,7 +3530,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -3244,6 +3540,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3252,6 +3550,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -3268,14 +3568,16 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         priority: float,
         type: Literal["MX"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3293,7 +3595,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -3306,6 +3608,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3314,6 +3618,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -3330,13 +3636,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.NAPTRRecordData,
         name: str,
         type: Literal["NAPTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3354,7 +3662,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -3364,6 +3672,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3372,6 +3682,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -3388,13 +3700,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["NS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3412,7 +3726,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -3422,6 +3736,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3430,6 +3746,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -3446,13 +3764,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["PTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3470,7 +3790,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -3480,6 +3800,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3488,6 +3810,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -3504,13 +3828,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.SMIMEARecordData,
         name: str,
         type: Literal["SMIMEA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3528,7 +3854,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -3538,6 +3864,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3546,6 +3874,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -3562,13 +3892,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.SRVRecordData,
         name: str,
         type: Literal["SRV"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3586,7 +3918,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -3598,6 +3930,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3606,6 +3940,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -3622,13 +3958,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.SSHFPRecordData,
         name: str,
         type: Literal["SSHFP"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3646,7 +3984,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -3656,6 +3994,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3664,6 +4004,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -3680,13 +4022,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.SVCBRecordData,
         name: str,
         type: Literal["SVCB"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3704,7 +4048,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -3714,6 +4058,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3722,6 +4068,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -3738,13 +4086,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.TLSARecordData,
         name: str,
         type: Literal["TLSA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3762,7 +4112,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -3772,6 +4122,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3780,6 +4132,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -3796,13 +4150,15 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["TXT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3820,7 +4176,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -3830,6 +4186,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3838,6 +4196,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -3854,14 +4214,16 @@ class RecordsResource(SyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.URIRecordData,
         name: str,
         priority: float,
         type: Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3879,7 +4241,7 @@ class RecordsResource(SyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -3892,6 +4254,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3900,6 +4264,8 @@ class RecordsResource(SyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -3912,10 +4278,10 @@ class RecordsResource(SyncAPIResource):
         ...
 
     @required_args(
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "priority", "type"],
-        ["zone_id", "data", "name", "priority", "type"],
+        ["path_zone_id", "content", "name", "type"],
+        ["path_zone_id", "data", "name", "type"],
+        ["path_zone_id", "content", "name", "priority", "type"],
+        ["path_zone_id", "data", "name", "priority", "type"],
     )
     def edit(
         self,
@@ -3944,6 +4310,7 @@ class RecordsResource(SyncAPIResource):
         | Literal["TLSA"]
         | Literal["TXT"]
         | Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -3968,23 +4335,25 @@ class RecordsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Record]:
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not path_zone_id:
+            raise ValueError(f"Expected a non-empty value for `path_zone_id` but received {path_zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
             Optional[Record],
             self._patch(
-                f"/zones/{zone_id}/dns_records/{dns_record_id}",
+                f"/zones/{path_zone_id}/dns_records/{dns_record_id}",
                 body=maybe_transform(
                     {
                         "content": content,
                         "name": name,
                         "type": type,
+                        "id": id,
                         "comment": comment,
                         "proxied": proxied,
                         "tags": tags,
                         "ttl": ttl,
+                        "zone_id": body_zone_id,
                         "data": data,
                         "priority": priority,
                     },
@@ -4215,14 +4584,16 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["A"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4241,7 +4612,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           content: A valid IPv4 address.
 
@@ -4249,6 +4620,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4260,6 +4633,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -4275,14 +4650,16 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["AAAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4301,7 +4678,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           content: A valid IPv6 address.
 
@@ -4309,6 +4686,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4320,6 +4699,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -4335,13 +4716,15 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.CAARecordData,
         name: str,
         type: Literal["CAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4360,7 +4743,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a CAA record.
 
@@ -4368,6 +4751,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4376,6 +4761,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -4391,13 +4778,15 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.CERTRecordData,
         name: str,
         type: Literal["CERT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4416,7 +4805,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a CERT record.
 
@@ -4424,6 +4813,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4432,6 +4823,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -4447,14 +4840,16 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: object,
         name: str,
         type: Literal["CNAME"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4473,13 +4868,15 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           content: A valid hostname. Must not match the record's name.
 
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -4493,6 +4890,8 @@ class AsyncRecordsResource(AsyncAPIResource):
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
 
+          body_zone_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -4507,13 +4906,15 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.DNSKEYRecordData,
         name: str,
         type: Literal["DNSKEY"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4532,7 +4933,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a DNSKEY record.
 
@@ -4540,6 +4941,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4548,6 +4951,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -4563,13 +4968,15 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.DSRecordData,
         name: str,
         type: Literal["DS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4588,7 +4995,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a DS record.
 
@@ -4596,6 +5003,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4604,6 +5013,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -4619,13 +5030,15 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.HTTPSRecordData,
         name: str,
         type: Literal["HTTPS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4644,7 +5057,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a HTTPS record.
 
@@ -4652,6 +5065,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4660,6 +5075,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -4675,13 +5092,15 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.LOCRecordData,
         name: str,
         type: Literal["LOC"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4700,7 +5119,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a LOC record.
 
@@ -4708,6 +5127,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4716,6 +5137,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -4731,14 +5154,16 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         priority: float,
         type: Literal["MX"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4757,7 +5182,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           content: A valid mail server hostname.
 
@@ -4768,6 +5193,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4776,6 +5203,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -4791,13 +5220,15 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.NAPTRRecordData,
         name: str,
         type: Literal["NAPTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4816,7 +5247,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a NAPTR record.
 
@@ -4824,6 +5255,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4832,6 +5265,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -4847,13 +5282,15 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["NS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4872,7 +5309,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           content: A valid name server host name.
 
@@ -4880,6 +5317,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4888,6 +5327,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -4903,13 +5344,15 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["PTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4928,7 +5371,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           content: Domain name pointing to the address.
 
@@ -4936,6 +5379,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4944,6 +5389,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -4959,13 +5406,15 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.SMIMEARecordData,
         name: str,
         type: Literal["SMIMEA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -4984,7 +5433,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a SMIMEA record.
 
@@ -4992,6 +5441,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5000,6 +5451,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -5015,13 +5468,15 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.SRVRecordData,
         name: str,
         type: Literal["SRV"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5040,7 +5495,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a SRV record.
 
@@ -5050,6 +5505,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5058,6 +5515,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -5073,13 +5532,15 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.SSHFPRecordData,
         name: str,
         type: Literal["SSHFP"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5098,7 +5559,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a SSHFP record.
 
@@ -5106,6 +5567,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5114,6 +5577,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -5129,13 +5594,15 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.SVCBRecordData,
         name: str,
         type: Literal["SVCB"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5154,7 +5621,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a SVCB record.
 
@@ -5162,6 +5629,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5170,6 +5639,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -5185,13 +5656,15 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.TLSARecordData,
         name: str,
         type: Literal["TLSA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5210,7 +5683,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a TLSA record.
 
@@ -5218,6 +5691,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5226,6 +5701,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -5241,13 +5718,15 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["TXT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5266,7 +5745,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           content: Text content for the record.
 
@@ -5274,6 +5753,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5282,6 +5763,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -5297,14 +5780,16 @@ class AsyncRecordsResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_create_params.URIRecordData,
         name: str,
         priority: float,
         type: Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5323,7 +5808,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           data: Components of a URI record.
 
@@ -5334,6 +5819,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5342,6 +5829,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -5354,10 +5843,10 @@ class AsyncRecordsResource(AsyncAPIResource):
         ...
 
     @required_args(
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "priority", "type"],
-        ["zone_id", "data", "name", "priority", "type"],
+        ["path_zone_id", "content", "name", "type"],
+        ["path_zone_id", "data", "name", "type"],
+        ["path_zone_id", "content", "name", "priority", "type"],
+        ["path_zone_id", "data", "name", "priority", "type"],
     )
     async def create(
         self,
@@ -5385,6 +5874,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["TLSA"]
         | Literal["TXT"]
         | Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -5409,21 +5899,23 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Record]:
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not path_zone_id:
+            raise ValueError(f"Expected a non-empty value for `path_zone_id` but received {path_zone_id!r}")
         return cast(
             Optional[Record],
             await self._post(
-                f"/zones/{zone_id}/dns_records",
+                f"/zones/{path_zone_id}/dns_records",
                 body=await async_maybe_transform(
                     {
                         "content": content,
                         "name": name,
                         "type": type,
+                        "id": id,
                         "comment": comment,
                         "proxied": proxied,
                         "tags": tags,
                         "ttl": ttl,
+                        "zone_id": body_zone_id,
                         "data": data,
                         "priority": priority,
                     },
@@ -5447,14 +5939,16 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["A"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5472,7 +5966,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -5482,6 +5976,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5493,6 +5989,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -5509,14 +6007,16 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["AAAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5534,7 +6034,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -5544,6 +6044,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5555,6 +6057,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -5571,13 +6075,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.CAARecordData,
         name: str,
         type: Literal["CAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5595,7 +6101,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -5605,6 +6111,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5613,6 +6121,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -5629,13 +6139,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.CERTRecordData,
         name: str,
         type: Literal["CERT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5653,7 +6165,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -5663,6 +6175,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5671,6 +6185,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -5687,14 +6203,16 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: object,
         name: str,
         type: Literal["CNAME"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5712,7 +6230,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -5721,6 +6239,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5734,6 +6254,8 @@ class AsyncRecordsResource(AsyncAPIResource):
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
 
+          body_zone_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -5749,13 +6271,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.DNSKEYRecordData,
         name: str,
         type: Literal["DNSKEY"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5773,7 +6297,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -5783,6 +6307,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5791,6 +6317,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -5807,13 +6335,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.DSRecordData,
         name: str,
         type: Literal["DS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5831,7 +6361,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -5841,6 +6371,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5849,6 +6381,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -5865,13 +6399,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.HTTPSRecordData,
         name: str,
         type: Literal["HTTPS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5889,7 +6425,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -5899,6 +6435,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5907,6 +6445,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -5923,13 +6463,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.LOCRecordData,
         name: str,
         type: Literal["LOC"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -5947,7 +6489,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -5957,6 +6499,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5965,6 +6509,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -5981,14 +6527,16 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         priority: float,
         type: Literal["MX"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6006,7 +6554,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -6019,6 +6567,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6027,6 +6577,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -6043,13 +6595,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.NAPTRRecordData,
         name: str,
         type: Literal["NAPTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6067,7 +6621,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -6077,6 +6631,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6085,6 +6641,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -6101,13 +6659,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["NS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6125,7 +6685,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -6135,6 +6695,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6143,6 +6705,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -6159,13 +6723,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["PTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6183,7 +6749,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -6193,6 +6759,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6201,6 +6769,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -6217,13 +6787,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.SMIMEARecordData,
         name: str,
         type: Literal["SMIMEA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6241,7 +6813,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -6251,6 +6823,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6259,6 +6833,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -6275,13 +6851,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.SRVRecordData,
         name: str,
         type: Literal["SRV"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6299,7 +6877,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -6311,6 +6889,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6319,6 +6899,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -6335,13 +6917,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.SSHFPRecordData,
         name: str,
         type: Literal["SSHFP"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6359,7 +6943,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -6369,6 +6953,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6377,6 +6963,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -6393,13 +6981,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.SVCBRecordData,
         name: str,
         type: Literal["SVCB"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6417,7 +7007,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -6427,6 +7017,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6435,6 +7027,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -6451,13 +7045,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.TLSARecordData,
         name: str,
         type: Literal["TLSA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6475,7 +7071,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -6485,6 +7081,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6493,6 +7091,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -6509,13 +7109,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["TXT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6533,7 +7135,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -6543,6 +7145,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6551,6 +7155,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -6567,14 +7173,16 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_update_params.URIRecordData,
         name: str,
         priority: float,
         type: Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6592,7 +7200,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -6605,6 +7213,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6613,6 +7223,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -6625,10 +7237,10 @@ class AsyncRecordsResource(AsyncAPIResource):
         ...
 
     @required_args(
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "priority", "type"],
-        ["zone_id", "data", "name", "priority", "type"],
+        ["path_zone_id", "content", "name", "type"],
+        ["path_zone_id", "data", "name", "type"],
+        ["path_zone_id", "content", "name", "priority", "type"],
+        ["path_zone_id", "data", "name", "priority", "type"],
     )
     async def update(
         self,
@@ -6657,6 +7269,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["TLSA"]
         | Literal["TXT"]
         | Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -6681,23 +7294,25 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Record]:
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not path_zone_id:
+            raise ValueError(f"Expected a non-empty value for `path_zone_id` but received {path_zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
             Optional[Record],
             await self._put(
-                f"/zones/{zone_id}/dns_records/{dns_record_id}",
+                f"/zones/{path_zone_id}/dns_records/{dns_record_id}",
                 body=await async_maybe_transform(
                     {
                         "content": content,
                         "name": name,
                         "type": type,
+                        "id": id,
                         "comment": comment,
                         "proxied": proxied,
                         "tags": tags,
                         "ttl": ttl,
+                        "zone_id": body_zone_id,
                         "data": data,
                         "priority": priority,
                     },
@@ -6890,14 +7505,16 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["A"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6915,7 +7532,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -6925,6 +7542,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6936,6 +7555,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -6952,14 +7573,16 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["AAAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -6977,7 +7600,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -6987,6 +7610,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6998,6 +7623,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -7014,13 +7641,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.CAARecordData,
         name: str,
         type: Literal["CAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7038,7 +7667,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -7048,6 +7677,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7056,6 +7687,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -7072,13 +7705,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.CERTRecordData,
         name: str,
         type: Literal["CERT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7096,7 +7731,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -7106,6 +7741,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7114,6 +7751,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -7130,14 +7769,16 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: object,
         name: str,
         type: Literal["CNAME"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7155,7 +7796,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -7164,6 +7805,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -7177,6 +7820,8 @@ class AsyncRecordsResource(AsyncAPIResource):
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
 
+          body_zone_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -7192,13 +7837,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.DNSKEYRecordData,
         name: str,
         type: Literal["DNSKEY"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7216,7 +7863,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -7226,6 +7873,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7234,6 +7883,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -7250,13 +7901,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.DSRecordData,
         name: str,
         type: Literal["DS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7274,7 +7927,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -7284,6 +7937,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7292,6 +7947,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -7308,13 +7965,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.HTTPSRecordData,
         name: str,
         type: Literal["HTTPS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7332,7 +7991,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -7342,6 +8001,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7350,6 +8011,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -7366,13 +8029,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.LOCRecordData,
         name: str,
         type: Literal["LOC"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7390,7 +8055,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -7400,6 +8065,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7408,6 +8075,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -7424,14 +8093,16 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         priority: float,
         type: Literal["MX"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7449,7 +8120,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -7462,6 +8133,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7470,6 +8143,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -7486,13 +8161,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.NAPTRRecordData,
         name: str,
         type: Literal["NAPTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7510,7 +8187,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -7520,6 +8197,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7528,6 +8207,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -7544,13 +8225,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["NS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7568,7 +8251,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -7578,6 +8261,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7586,6 +8271,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -7602,13 +8289,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["PTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7626,7 +8315,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -7636,6 +8325,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7644,6 +8335,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -7660,13 +8353,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.SMIMEARecordData,
         name: str,
         type: Literal["SMIMEA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7684,7 +8379,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -7694,6 +8389,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7702,6 +8399,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -7718,13 +8417,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.SRVRecordData,
         name: str,
         type: Literal["SRV"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7742,7 +8443,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -7754,6 +8455,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7762,6 +8465,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -7778,13 +8483,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.SSHFPRecordData,
         name: str,
         type: Literal["SSHFP"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7802,7 +8509,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -7812,6 +8519,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7820,6 +8529,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -7836,13 +8547,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.SVCBRecordData,
         name: str,
         type: Literal["SVCB"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7860,7 +8573,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -7870,6 +8583,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7878,6 +8593,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -7894,13 +8611,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.TLSARecordData,
         name: str,
         type: Literal["TLSA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7918,7 +8637,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -7928,6 +8647,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7936,6 +8657,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -7952,13 +8675,15 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         content: str,
         name: str,
         type: Literal["TXT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -7976,7 +8701,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -7986,6 +8711,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7994,6 +8721,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -8010,14 +8739,16 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         dns_record_id: str,
         *,
-        zone_id: str,
+        path_zone_id: str,
         data: record_edit_params.URIRecordData,
         name: str,
         priority: float,
         type: Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
+        body_zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -8035,7 +8766,7 @@ class AsyncRecordsResource(AsyncAPIResource):
           were used when creating the record.
 
         Args:
-          zone_id: Identifier
+          path_zone_id: Identifier
 
           dns_record_id: Identifier
 
@@ -8048,6 +8779,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -8056,6 +8789,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           ttl: Time To Live (TTL) of the DNS record in seconds. Setting to 1 means 'automatic'.
               Value must be between 60 and 86400, with the minimum reduced to 30 for
               Enterprise zones.
+
+          body_zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -8068,10 +8803,10 @@ class AsyncRecordsResource(AsyncAPIResource):
         ...
 
     @required_args(
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "priority", "type"],
-        ["zone_id", "data", "name", "priority", "type"],
+        ["path_zone_id", "content", "name", "type"],
+        ["path_zone_id", "data", "name", "type"],
+        ["path_zone_id", "content", "name", "priority", "type"],
+        ["path_zone_id", "data", "name", "priority", "type"],
     )
     async def edit(
         self,
@@ -8100,6 +8835,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["TLSA"]
         | Literal["TXT"]
         | Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -8124,23 +8860,25 @@ class AsyncRecordsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Record]:
-        if not zone_id:
-            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not path_zone_id:
+            raise ValueError(f"Expected a non-empty value for `path_zone_id` but received {path_zone_id!r}")
         if not dns_record_id:
             raise ValueError(f"Expected a non-empty value for `dns_record_id` but received {dns_record_id!r}")
         return cast(
             Optional[Record],
             await self._patch(
-                f"/zones/{zone_id}/dns_records/{dns_record_id}",
+                f"/zones/{path_zone_id}/dns_records/{dns_record_id}",
                 body=await async_maybe_transform(
                     {
                         "content": content,
                         "name": name,
                         "type": type,
+                        "id": id,
                         "comment": comment,
                         "proxied": proxied,
                         "tags": tags,
                         "ttl": ttl,
+                        "zone_id": body_zone_id,
                         "data": data,
                         "priority": priority,
                     },
