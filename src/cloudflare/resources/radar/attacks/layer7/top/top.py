@@ -100,6 +100,7 @@ class TopResource(SyncAPIResource):
         location: List[str] | NotGiven = NOT_GIVEN,
         magnitude: Literal["AFFECTED_ZONES", "MITIGATED_REQUESTS"] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        normalization: Literal["PERCENTAGE", "MIN_MAX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -152,6 +153,9 @@ class TopResource(SyncAPIResource):
 
           name: Array of names that will be used to name the series in responses.
 
+          normalization: Normalization method applied. Refer to
+              [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -181,6 +185,7 @@ class TopResource(SyncAPIResource):
                         "location": location,
                         "magnitude": magnitude,
                         "name": name,
+                        "normalization": normalization,
                     },
                     top_attacks_params.TopAttacksParams,
                 ),
@@ -445,6 +450,7 @@ class AsyncTopResource(AsyncAPIResource):
         location: List[str] | NotGiven = NOT_GIVEN,
         magnitude: Literal["AFFECTED_ZONES", "MITIGATED_REQUESTS"] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        normalization: Literal["PERCENTAGE", "MIN_MAX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -497,6 +503,9 @@ class AsyncTopResource(AsyncAPIResource):
 
           name: Array of names that will be used to name the series in responses.
 
+          normalization: Normalization method applied. Refer to
+              [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -526,6 +535,7 @@ class AsyncTopResource(AsyncAPIResource):
                         "location": location,
                         "magnitude": magnitude,
                         "name": name,
+                        "normalization": normalization,
                     },
                     top_attacks_params.TopAttacksParams,
                 ),

@@ -102,14 +102,6 @@ class TestDatasets:
         assert_matches_type(str, dataset, path=["response"])
 
     @parametrize
-    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
-        dataset = client.radar.datasets.get(
-            "ranking_top_1000",
-            date="string",
-        )
-        assert_matches_type(str, dataset, path=["response"])
-
-    @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.radar.datasets.with_raw_response.get(
             "ranking_top_1000",
@@ -222,14 +214,6 @@ class TestAsyncDatasets:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         dataset = await async_client.radar.datasets.get(
             "ranking_top_1000",
-        )
-        assert_matches_type(str, dataset, path=["response"])
-
-    @parametrize
-    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        dataset = await async_client.radar.datasets.get(
-            "ranking_top_1000",
-            date="string",
         )
         assert_matches_type(str, dataset, path=["response"])
 
