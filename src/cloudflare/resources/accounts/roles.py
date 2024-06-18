@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -22,7 +22,6 @@ from ..._base_client import (
     make_request_options,
 )
 from ...types.shared.role import Role
-from ...types.accounts.role_get_response import RoleGetResponse
 
 __all__ = ["RolesResource", "AsyncRolesResource"]
 
@@ -51,6 +50,8 @@ class RolesResource(SyncAPIResource):
         Get all available roles for an account.
 
         Args:
+          account_id: Account identifier tag.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -81,11 +82,13 @@ class RolesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RoleGetResponse:
+    ) -> object:
         """
         Get information about a specific role for an account.
 
         Args:
+          account_id: Account identifier tag.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -96,21 +99,16 @@ class RolesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            RoleGetResponse,
-            self._get(
-                f"/accounts/{account_id}/roles/{role_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[RoleGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[RoleGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/accounts/{account_id}/roles/{role_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
@@ -138,6 +136,8 @@ class AsyncRolesResource(AsyncAPIResource):
         Get all available roles for an account.
 
         Args:
+          account_id: Account identifier tag.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -168,11 +168,13 @@ class AsyncRolesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RoleGetResponse:
+    ) -> object:
         """
         Get information about a specific role for an account.
 
         Args:
+          account_id: Account identifier tag.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -183,21 +185,16 @@ class AsyncRolesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            RoleGetResponse,
-            await self._get(
-                f"/accounts/{account_id}/roles/{role_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[RoleGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[RoleGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/accounts/{account_id}/roles/{role_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 

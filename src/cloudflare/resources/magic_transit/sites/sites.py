@@ -49,7 +49,12 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.magic_transit import site_list_params, site_create_params, site_update_params
+from ....types.magic_transit import (
+    site_edit_params,
+    site_list_params,
+    site_create_params,
+    site_update_params,
+)
 from ....types.magic_transit.site import Site
 from ....types.magic_transit.site_location_param import SiteLocationParam
 
@@ -102,14 +107,14 @@ class SitesResource(SyncAPIResource):
 
           name: The name of the site.
 
-          connector_id: Magic WAN Connector identifier tag.
+          connector_id: Magic Connector identifier tag.
 
           ha_mode: Site high availability mode. If set to true, the site can have two connectors
               and runs in high availability mode.
 
           location: Location of site in latitude and longitude.
 
-          secondary_connector_id: Magic WAN Connector identifier tag. Used when high availability mode is on.
+          secondary_connector_id: Magic Connector identifier tag. Used when high availability mode is on.
 
           extra_headers: Send extra headers
 
@@ -169,13 +174,13 @@ class SitesResource(SyncAPIResource):
 
           site_id: Identifier
 
-          connector_id: Magic WAN Connector identifier tag.
+          connector_id: Magic Connector identifier tag.
 
           location: Location of site in latitude and longitude.
 
           name: The name of the site.
 
-          secondary_connector_id: Magic WAN Connector identifier tag. Used when high availability mode is on.
+          secondary_connector_id: Magic Connector identifier tag. Used when high availability mode is on.
 
           extra_headers: Send extra headers
 
@@ -301,6 +306,73 @@ class SitesResource(SyncAPIResource):
             cast_to=cast(Type[Site], ResultWrapper[Site]),
         )
 
+    def edit(
+        self,
+        site_id: str,
+        *,
+        account_id: str,
+        connector_id: str | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        location: SiteLocationParam | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        secondary_connector_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Site:
+        """
+        Patch a specific Site.
+
+        Args:
+          account_id: Identifier
+
+          site_id: Identifier
+
+          connector_id: Magic Connector identifier tag.
+
+          location: Location of site in latitude and longitude.
+
+          name: The name of the site.
+
+          secondary_connector_id: Magic Connector identifier tag. Used when high availability mode is on.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
+        return self._patch(
+            f"/accounts/{account_id}/magic/sites/{site_id}",
+            body=maybe_transform(
+                {
+                    "connector_id": connector_id,
+                    "description": description,
+                    "location": location,
+                    "name": name,
+                    "secondary_connector_id": secondary_connector_id,
+                },
+                site_edit_params.SiteEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Site]._unwrapper,
+            ),
+            cast_to=cast(Type[Site], ResultWrapper[Site]),
+        )
+
     def get(
         self,
         site_id: str,
@@ -392,14 +464,14 @@ class AsyncSitesResource(AsyncAPIResource):
 
           name: The name of the site.
 
-          connector_id: Magic WAN Connector identifier tag.
+          connector_id: Magic Connector identifier tag.
 
           ha_mode: Site high availability mode. If set to true, the site can have two connectors
               and runs in high availability mode.
 
           location: Location of site in latitude and longitude.
 
-          secondary_connector_id: Magic WAN Connector identifier tag. Used when high availability mode is on.
+          secondary_connector_id: Magic Connector identifier tag. Used when high availability mode is on.
 
           extra_headers: Send extra headers
 
@@ -459,13 +531,13 @@ class AsyncSitesResource(AsyncAPIResource):
 
           site_id: Identifier
 
-          connector_id: Magic WAN Connector identifier tag.
+          connector_id: Magic Connector identifier tag.
 
           location: Location of site in latitude and longitude.
 
           name: The name of the site.
 
-          secondary_connector_id: Magic WAN Connector identifier tag. Used when high availability mode is on.
+          secondary_connector_id: Magic Connector identifier tag. Used when high availability mode is on.
 
           extra_headers: Send extra headers
 
@@ -591,6 +663,73 @@ class AsyncSitesResource(AsyncAPIResource):
             cast_to=cast(Type[Site], ResultWrapper[Site]),
         )
 
+    async def edit(
+        self,
+        site_id: str,
+        *,
+        account_id: str,
+        connector_id: str | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        location: SiteLocationParam | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        secondary_connector_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Site:
+        """
+        Patch a specific Site.
+
+        Args:
+          account_id: Identifier
+
+          site_id: Identifier
+
+          connector_id: Magic Connector identifier tag.
+
+          location: Location of site in latitude and longitude.
+
+          name: The name of the site.
+
+          secondary_connector_id: Magic Connector identifier tag. Used when high availability mode is on.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
+        return await self._patch(
+            f"/accounts/{account_id}/magic/sites/{site_id}",
+            body=await async_maybe_transform(
+                {
+                    "connector_id": connector_id,
+                    "description": description,
+                    "location": location,
+                    "name": name,
+                    "secondary_connector_id": secondary_connector_id,
+                },
+                site_edit_params.SiteEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Site]._unwrapper,
+            ),
+            cast_to=cast(Type[Site], ResultWrapper[Site]),
+        )
+
     async def get(
         self,
         site_id: str,
@@ -652,6 +791,9 @@ class SitesResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             sites.delete,
         )
+        self.edit = to_raw_response_wrapper(
+            sites.edit,
+        )
         self.get = to_raw_response_wrapper(
             sites.get,
         )
@@ -684,6 +826,9 @@ class AsyncSitesResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             sites.delete,
+        )
+        self.edit = async_to_raw_response_wrapper(
+            sites.edit,
         )
         self.get = async_to_raw_response_wrapper(
             sites.get,
@@ -718,6 +863,9 @@ class SitesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             sites.delete,
         )
+        self.edit = to_streamed_response_wrapper(
+            sites.edit,
+        )
         self.get = to_streamed_response_wrapper(
             sites.get,
         )
@@ -750,6 +898,9 @@ class AsyncSitesResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             sites.delete,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            sites.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             sites.get,

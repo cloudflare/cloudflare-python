@@ -201,6 +201,9 @@ class DeploymentConfigsPreviewQueueProducers(BaseModel):
 
 
 class DeploymentConfigsPreviewR2BucketsR2Binding(BaseModel):
+    jurisdiction: Optional[str] = None
+    """Jurisdiction of the R2 bucket."""
+
     name: Optional[str] = None
     """Name of the R2 bucket."""
 
@@ -398,6 +401,9 @@ class DeploymentConfigsProductionQueueProducers(BaseModel):
 
 
 class DeploymentConfigsProductionR2BucketsR2Binding(BaseModel):
+    jurisdiction: Optional[str] = None
+    """Jurisdiction of the R2 bucket."""
+
     name: Optional[str] = None
     """Name of the R2 bucket."""
 

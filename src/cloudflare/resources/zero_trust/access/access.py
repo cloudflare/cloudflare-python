@@ -42,6 +42,14 @@ from .groups import (
     GroupsResourceWithStreamingResponse,
     AsyncGroupsResourceWithStreamingResponse,
 )
+from .policies import (
+    PoliciesResource,
+    AsyncPoliciesResource,
+    PoliciesResourceWithRawResponse,
+    AsyncPoliciesResourceWithRawResponse,
+    PoliciesResourceWithStreamingResponse,
+    AsyncPoliciesResourceWithStreamingResponse,
+)
 from .bookmarks import (
     BookmarksResource,
     AsyncBookmarksResource,
@@ -134,6 +142,10 @@ class AccessResource(SyncAPIResource):
         return TagsResource(self._client)
 
     @cached_property
+    def policies(self) -> PoliciesResource:
+        return PoliciesResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AccessResourceWithRawResponse:
         return AccessResourceWithRawResponse(self)
 
@@ -182,6 +194,10 @@ class AsyncAccessResource(AsyncAPIResource):
     @cached_property
     def tags(self) -> AsyncTagsResource:
         return AsyncTagsResource(self._client)
+
+    @cached_property
+    def policies(self) -> AsyncPoliciesResource:
+        return AsyncPoliciesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAccessResourceWithRawResponse:
@@ -236,6 +252,10 @@ class AccessResourceWithRawResponse:
     def tags(self) -> TagsResourceWithRawResponse:
         return TagsResourceWithRawResponse(self._access.tags)
 
+    @cached_property
+    def policies(self) -> PoliciesResourceWithRawResponse:
+        return PoliciesResourceWithRawResponse(self._access.policies)
+
 
 class AsyncAccessResourceWithRawResponse:
     def __init__(self, access: AsyncAccessResource) -> None:
@@ -280,6 +300,10 @@ class AsyncAccessResourceWithRawResponse:
     @cached_property
     def tags(self) -> AsyncTagsResourceWithRawResponse:
         return AsyncTagsResourceWithRawResponse(self._access.tags)
+
+    @cached_property
+    def policies(self) -> AsyncPoliciesResourceWithRawResponse:
+        return AsyncPoliciesResourceWithRawResponse(self._access.policies)
 
 
 class AccessResourceWithStreamingResponse:
@@ -326,6 +350,10 @@ class AccessResourceWithStreamingResponse:
     def tags(self) -> TagsResourceWithStreamingResponse:
         return TagsResourceWithStreamingResponse(self._access.tags)
 
+    @cached_property
+    def policies(self) -> PoliciesResourceWithStreamingResponse:
+        return PoliciesResourceWithStreamingResponse(self._access.policies)
+
 
 class AsyncAccessResourceWithStreamingResponse:
     def __init__(self, access: AsyncAccessResource) -> None:
@@ -370,3 +398,7 @@ class AsyncAccessResourceWithStreamingResponse:
     @cached_property
     def tags(self) -> AsyncTagsResourceWithStreamingResponse:
         return AsyncTagsResourceWithStreamingResponse(self._access.tags)
+
+    @cached_property
+    def policies(self) -> AsyncPoliciesResourceWithStreamingResponse:
+        return AsyncPoliciesResourceWithStreamingResponse(self._access.policies)

@@ -45,9 +45,6 @@ class NetworkPathGetResponse(BaseModel):
     result_id: str = FieldInfo(alias="resultId")
     """API Resource UUID tag."""
 
-    time_start: str
-    """date time of this traceroute test"""
-
     device_name: Optional[str] = FieldInfo(alias="deviceName", default=None)
     """name of the device associated with this network path response"""
 

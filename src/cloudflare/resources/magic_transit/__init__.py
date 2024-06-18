@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .apps import (
+    AppsResource,
+    AsyncAppsResource,
+    AppsResourceWithRawResponse,
+    AsyncAppsResourceWithRawResponse,
+    AppsResourceWithStreamingResponse,
+    AsyncAppsResourceWithStreamingResponse,
+)
 from .sites import (
     SitesResource,
     AsyncSitesResource,
@@ -15,6 +23,14 @@ from .routes import (
     AsyncRoutesResourceWithRawResponse,
     RoutesResourceWithStreamingResponse,
     AsyncRoutesResourceWithStreamingResponse,
+)
+from .connectors import (
+    ConnectorsResource,
+    AsyncConnectorsResource,
+    ConnectorsResourceWithRawResponse,
+    AsyncConnectorsResourceWithRawResponse,
+    ConnectorsResourceWithStreamingResponse,
+    AsyncConnectorsResourceWithStreamingResponse,
 )
 from .gre_tunnels import (
     GRETunnelsResource,
@@ -50,6 +66,12 @@ from .cf_interconnects import (
 )
 
 __all__ = [
+    "AppsResource",
+    "AsyncAppsResource",
+    "AppsResourceWithRawResponse",
+    "AsyncAppsResourceWithRawResponse",
+    "AppsResourceWithStreamingResponse",
+    "AsyncAppsResourceWithStreamingResponse",
     "CfInterconnectsResource",
     "AsyncCfInterconnectsResource",
     "CfInterconnectsResourceWithRawResponse",
@@ -80,6 +102,12 @@ __all__ = [
     "AsyncSitesResourceWithRawResponse",
     "SitesResourceWithStreamingResponse",
     "AsyncSitesResourceWithStreamingResponse",
+    "ConnectorsResource",
+    "AsyncConnectorsResource",
+    "ConnectorsResourceWithRawResponse",
+    "AsyncConnectorsResourceWithRawResponse",
+    "ConnectorsResourceWithStreamingResponse",
+    "AsyncConnectorsResourceWithStreamingResponse",
     "MagicTransitResource",
     "AsyncMagicTransitResource",
     "MagicTransitResourceWithRawResponse",

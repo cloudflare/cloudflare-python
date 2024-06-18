@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from .apps import (
+    AppsResource,
+    AsyncAppsResource,
+    AppsResourceWithRawResponse,
+    AsyncAppsResourceWithRawResponse,
+    AppsResourceWithStreamingResponse,
+    AsyncAppsResourceWithStreamingResponse,
+)
 from .sites import (
     SitesResource,
     AsyncSitesResource,
@@ -19,6 +27,14 @@ from .routes import (
     AsyncRoutesResourceWithStreamingResponse,
 )
 from ..._compat import cached_property
+from .connectors import (
+    ConnectorsResource,
+    AsyncConnectorsResource,
+    ConnectorsResourceWithRawResponse,
+    AsyncConnectorsResourceWithRawResponse,
+    ConnectorsResourceWithStreamingResponse,
+    AsyncConnectorsResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from .gre_tunnels import (
     GRETunnelsResource,
@@ -51,6 +67,10 @@ __all__ = ["MagicTransitResource", "AsyncMagicTransitResource"]
 
 class MagicTransitResource(SyncAPIResource):
     @cached_property
+    def apps(self) -> AppsResource:
+        return AppsResource(self._client)
+
+    @cached_property
     def cf_interconnects(self) -> CfInterconnectsResource:
         return CfInterconnectsResource(self._client)
 
@@ -71,6 +91,10 @@ class MagicTransitResource(SyncAPIResource):
         return SitesResource(self._client)
 
     @cached_property
+    def connectors(self) -> ConnectorsResource:
+        return ConnectorsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> MagicTransitResourceWithRawResponse:
         return MagicTransitResourceWithRawResponse(self)
 
@@ -80,6 +104,10 @@ class MagicTransitResource(SyncAPIResource):
 
 
 class AsyncMagicTransitResource(AsyncAPIResource):
+    @cached_property
+    def apps(self) -> AsyncAppsResource:
+        return AsyncAppsResource(self._client)
+
     @cached_property
     def cf_interconnects(self) -> AsyncCfInterconnectsResource:
         return AsyncCfInterconnectsResource(self._client)
@@ -101,6 +129,10 @@ class AsyncMagicTransitResource(AsyncAPIResource):
         return AsyncSitesResource(self._client)
 
     @cached_property
+    def connectors(self) -> AsyncConnectorsResource:
+        return AsyncConnectorsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncMagicTransitResourceWithRawResponse:
         return AsyncMagicTransitResourceWithRawResponse(self)
 
@@ -112,6 +144,10 @@ class AsyncMagicTransitResource(AsyncAPIResource):
 class MagicTransitResourceWithRawResponse:
     def __init__(self, magic_transit: MagicTransitResource) -> None:
         self._magic_transit = magic_transit
+
+    @cached_property
+    def apps(self) -> AppsResourceWithRawResponse:
+        return AppsResourceWithRawResponse(self._magic_transit.apps)
 
     @cached_property
     def cf_interconnects(self) -> CfInterconnectsResourceWithRawResponse:
@@ -133,10 +169,18 @@ class MagicTransitResourceWithRawResponse:
     def sites(self) -> SitesResourceWithRawResponse:
         return SitesResourceWithRawResponse(self._magic_transit.sites)
 
+    @cached_property
+    def connectors(self) -> ConnectorsResourceWithRawResponse:
+        return ConnectorsResourceWithRawResponse(self._magic_transit.connectors)
+
 
 class AsyncMagicTransitResourceWithRawResponse:
     def __init__(self, magic_transit: AsyncMagicTransitResource) -> None:
         self._magic_transit = magic_transit
+
+    @cached_property
+    def apps(self) -> AsyncAppsResourceWithRawResponse:
+        return AsyncAppsResourceWithRawResponse(self._magic_transit.apps)
 
     @cached_property
     def cf_interconnects(self) -> AsyncCfInterconnectsResourceWithRawResponse:
@@ -158,10 +202,18 @@ class AsyncMagicTransitResourceWithRawResponse:
     def sites(self) -> AsyncSitesResourceWithRawResponse:
         return AsyncSitesResourceWithRawResponse(self._magic_transit.sites)
 
+    @cached_property
+    def connectors(self) -> AsyncConnectorsResourceWithRawResponse:
+        return AsyncConnectorsResourceWithRawResponse(self._magic_transit.connectors)
+
 
 class MagicTransitResourceWithStreamingResponse:
     def __init__(self, magic_transit: MagicTransitResource) -> None:
         self._magic_transit = magic_transit
+
+    @cached_property
+    def apps(self) -> AppsResourceWithStreamingResponse:
+        return AppsResourceWithStreamingResponse(self._magic_transit.apps)
 
     @cached_property
     def cf_interconnects(self) -> CfInterconnectsResourceWithStreamingResponse:
@@ -183,10 +235,18 @@ class MagicTransitResourceWithStreamingResponse:
     def sites(self) -> SitesResourceWithStreamingResponse:
         return SitesResourceWithStreamingResponse(self._magic_transit.sites)
 
+    @cached_property
+    def connectors(self) -> ConnectorsResourceWithStreamingResponse:
+        return ConnectorsResourceWithStreamingResponse(self._magic_transit.connectors)
+
 
 class AsyncMagicTransitResourceWithStreamingResponse:
     def __init__(self, magic_transit: AsyncMagicTransitResource) -> None:
         self._magic_transit = magic_transit
+
+    @cached_property
+    def apps(self) -> AsyncAppsResourceWithStreamingResponse:
+        return AsyncAppsResourceWithStreamingResponse(self._magic_transit.apps)
 
     @cached_property
     def cf_interconnects(self) -> AsyncCfInterconnectsResourceWithStreamingResponse:
@@ -207,3 +267,7 @@ class AsyncMagicTransitResourceWithStreamingResponse:
     @cached_property
     def sites(self) -> AsyncSitesResourceWithStreamingResponse:
         return AsyncSitesResourceWithStreamingResponse(self._magic_transit.sites)
+
+    @cached_property
+    def connectors(self) -> AsyncConnectorsResourceWithStreamingResponse:
+        return AsyncConnectorsResourceWithStreamingResponse(self._magic_transit.connectors)

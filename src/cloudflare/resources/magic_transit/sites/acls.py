@@ -25,7 +25,7 @@ from ...._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.magic_transit.sites import acl_create_params, acl_update_params
+from ....types.magic_transit.sites import acl_edit_params, acl_create_params, acl_update_params
 from ....types.magic_transit.sites.acl import ACL
 from ....types.magic_transit.sites.allowed_protocol import AllowedProtocol
 from ....types.magic_transit.sites.acl_configuration_param import ACLConfigurationParam
@@ -74,8 +74,8 @@ class ACLsResource(SyncAPIResource):
 
           forward_locally: The desired forwarding action for this ACL policy. If set to "false", the policy
               will forward traffic to Cloudflare. If set to "true", the policy will forward
-              traffic locally on the Magic WAN Connector. If not included in request, will
-              default to false.
+              traffic locally on the Magic Connector. If not included in request, will default
+              to false.
 
           extra_headers: Send extra headers
 
@@ -145,8 +145,8 @@ class ACLsResource(SyncAPIResource):
 
           forward_locally: The desired forwarding action for this ACL policy. If set to "false", the policy
               will forward traffic to Cloudflare. If set to "true", the policy will forward
-              traffic locally on the Magic WAN Connector. If not included in request, will
-              default to false.
+              traffic locally on the Magic Connector. If not included in request, will default
+              to false.
 
           name: The name of the ACL.
 
@@ -277,6 +277,81 @@ class ACLsResource(SyncAPIResource):
             cast_to=cast(Type[ACL], ResultWrapper[ACL]),
         )
 
+    def edit(
+        self,
+        acl_identifier: str,
+        *,
+        account_id: str,
+        site_id: str,
+        description: str | NotGiven = NOT_GIVEN,
+        forward_locally: bool | NotGiven = NOT_GIVEN,
+        lan_1: ACLConfigurationParam | NotGiven = NOT_GIVEN,
+        lan_2: ACLConfigurationParam | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ACL:
+        """
+        Patch a specific Site ACL.
+
+        Args:
+          account_id: Identifier
+
+          site_id: Identifier
+
+          acl_identifier: Identifier
+
+          description: Description for the ACL.
+
+          forward_locally: The desired forwarding action for this ACL policy. If set to "false", the policy
+              will forward traffic to Cloudflare. If set to "true", the policy will forward
+              traffic locally on the Magic Connector. If not included in request, will default
+              to false.
+
+          name: The name of the ACL.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
+        if not acl_identifier:
+            raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
+        return self._patch(
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "forward_locally": forward_locally,
+                    "lan_1": lan_1,
+                    "lan_2": lan_2,
+                    "name": name,
+                    "protocols": protocols,
+                },
+                acl_edit_params.ACLEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ACL]._unwrapper,
+            ),
+            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
+        )
+
     def get(
         self,
         acl_identifier: str,
@@ -368,8 +443,8 @@ class AsyncACLsResource(AsyncAPIResource):
 
           forward_locally: The desired forwarding action for this ACL policy. If set to "false", the policy
               will forward traffic to Cloudflare. If set to "true", the policy will forward
-              traffic locally on the Magic WAN Connector. If not included in request, will
-              default to false.
+              traffic locally on the Magic Connector. If not included in request, will default
+              to false.
 
           extra_headers: Send extra headers
 
@@ -439,8 +514,8 @@ class AsyncACLsResource(AsyncAPIResource):
 
           forward_locally: The desired forwarding action for this ACL policy. If set to "false", the policy
               will forward traffic to Cloudflare. If set to "true", the policy will forward
-              traffic locally on the Magic WAN Connector. If not included in request, will
-              default to false.
+              traffic locally on the Magic Connector. If not included in request, will default
+              to false.
 
           name: The name of the ACL.
 
@@ -571,6 +646,81 @@ class AsyncACLsResource(AsyncAPIResource):
             cast_to=cast(Type[ACL], ResultWrapper[ACL]),
         )
 
+    async def edit(
+        self,
+        acl_identifier: str,
+        *,
+        account_id: str,
+        site_id: str,
+        description: str | NotGiven = NOT_GIVEN,
+        forward_locally: bool | NotGiven = NOT_GIVEN,
+        lan_1: ACLConfigurationParam | NotGiven = NOT_GIVEN,
+        lan_2: ACLConfigurationParam | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        protocols: List[AllowedProtocol] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ACL:
+        """
+        Patch a specific Site ACL.
+
+        Args:
+          account_id: Identifier
+
+          site_id: Identifier
+
+          acl_identifier: Identifier
+
+          description: Description for the ACL.
+
+          forward_locally: The desired forwarding action for this ACL policy. If set to "false", the policy
+              will forward traffic to Cloudflare. If set to "true", the policy will forward
+              traffic locally on the Magic Connector. If not included in request, will default
+              to false.
+
+          name: The name of the ACL.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not site_id:
+            raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
+        if not acl_identifier:
+            raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
+        return await self._patch(
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
+            body=await async_maybe_transform(
+                {
+                    "description": description,
+                    "forward_locally": forward_locally,
+                    "lan_1": lan_1,
+                    "lan_2": lan_2,
+                    "name": name,
+                    "protocols": protocols,
+                },
+                acl_edit_params.ACLEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ACL]._unwrapper,
+            ),
+            cast_to=cast(Type[ACL], ResultWrapper[ACL]),
+        )
+
     async def get(
         self,
         acl_identifier: str,
@@ -637,6 +787,9 @@ class ACLsResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             acls.delete,
         )
+        self.edit = to_raw_response_wrapper(
+            acls.edit,
+        )
         self.get = to_raw_response_wrapper(
             acls.get,
         )
@@ -657,6 +810,9 @@ class AsyncACLsResourceWithRawResponse:
         )
         self.delete = async_to_raw_response_wrapper(
             acls.delete,
+        )
+        self.edit = async_to_raw_response_wrapper(
+            acls.edit,
         )
         self.get = async_to_raw_response_wrapper(
             acls.get,
@@ -679,6 +835,9 @@ class ACLsResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             acls.delete,
         )
+        self.edit = to_streamed_response_wrapper(
+            acls.edit,
+        )
         self.get = to_streamed_response_wrapper(
             acls.get,
         )
@@ -699,6 +858,9 @@ class AsyncACLsResourceWithStreamingResponse:
         )
         self.delete = async_to_streamed_response_wrapper(
             acls.delete,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            acls.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             acls.get,

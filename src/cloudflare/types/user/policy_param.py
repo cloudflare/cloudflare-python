@@ -9,7 +9,8 @@ __all__ = ["PolicyParam", "PermissionGroup"]
 
 
 class PermissionGroup(TypedDict, total=False):
-    pass
+    meta: object
+    """Attributes associated to the permission group."""
 
 
 class PolicyParam(TypedDict, total=False):

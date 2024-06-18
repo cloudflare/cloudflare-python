@@ -124,7 +124,7 @@ class GroupsResource(SyncAPIResource):
 
     def update(
         self,
-        uuid: str,
+        group_id: str,
         *,
         include: Iterable[AccessRuleParam],
         name: str,
@@ -144,7 +144,7 @@ class GroupsResource(SyncAPIResource):
         Updates a configured Access group.
 
         Args:
-          uuid: UUID
+          group_id: UUID
 
           include: Rules evaluated with an OR logical operator. A user needs to meet only one of
               the Include rules.
@@ -171,8 +171,8 @@ class GroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not group_id:
+            raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -186,7 +186,7 @@ class GroupsResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/groups/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/groups/{group_id}",
             body=maybe_transform(
                 {
                     "include": include,
@@ -258,7 +258,7 @@ class GroupsResource(SyncAPIResource):
 
     def delete(
         self,
-        uuid: str,
+        group_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -273,7 +273,7 @@ class GroupsResource(SyncAPIResource):
         Deletes an Access group.
 
         Args:
-          uuid: UUID
+          group_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -287,8 +287,8 @@ class GroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not group_id:
+            raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -302,7 +302,7 @@ class GroupsResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/groups/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/groups/{group_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -315,7 +315,7 @@ class GroupsResource(SyncAPIResource):
 
     def get(
         self,
-        uuid: str,
+        group_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -330,7 +330,7 @@ class GroupsResource(SyncAPIResource):
         Fetches a single Access group.
 
         Args:
-          uuid: UUID
+          group_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -344,8 +344,8 @@ class GroupsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not group_id:
+            raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -359,7 +359,7 @@ class GroupsResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/groups/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/groups/{group_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -462,7 +462,7 @@ class AsyncGroupsResource(AsyncAPIResource):
 
     async def update(
         self,
-        uuid: str,
+        group_id: str,
         *,
         include: Iterable[AccessRuleParam],
         name: str,
@@ -482,7 +482,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         Updates a configured Access group.
 
         Args:
-          uuid: UUID
+          group_id: UUID
 
           include: Rules evaluated with an OR logical operator. A user needs to meet only one of
               the Include rules.
@@ -509,8 +509,8 @@ class AsyncGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not group_id:
+            raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -524,7 +524,7 @@ class AsyncGroupsResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/groups/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/groups/{group_id}",
             body=await async_maybe_transform(
                 {
                     "include": include,
@@ -596,7 +596,7 @@ class AsyncGroupsResource(AsyncAPIResource):
 
     async def delete(
         self,
-        uuid: str,
+        group_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -611,7 +611,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         Deletes an Access group.
 
         Args:
-          uuid: UUID
+          group_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -625,8 +625,8 @@ class AsyncGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not group_id:
+            raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -640,7 +640,7 @@ class AsyncGroupsResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/groups/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/groups/{group_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -653,7 +653,7 @@ class AsyncGroupsResource(AsyncAPIResource):
 
     async def get(
         self,
-        uuid: str,
+        group_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -668,7 +668,7 @@ class AsyncGroupsResource(AsyncAPIResource):
         Fetches a single Access group.
 
         Args:
-          uuid: UUID
+          group_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -682,8 +682,8 @@ class AsyncGroupsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not group_id:
+            raise ValueError(f"Expected a non-empty value for `group_id` but received {group_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -697,7 +697,7 @@ class AsyncGroupsResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/groups/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/groups/{group_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

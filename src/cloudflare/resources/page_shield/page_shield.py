@@ -2,10 +2,18 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
+from .cookies import (
+    CookiesResource,
+    AsyncCookiesResource,
+    CookiesResourceWithRawResponse,
+    AsyncCookiesResourceWithRawResponse,
+    CookiesResourceWithStreamingResponse,
+    AsyncCookiesResourceWithStreamingResponse,
+)
 from .scripts import (
     ScriptsResource,
     AsyncScriptsResource,
@@ -68,6 +76,10 @@ class PageShieldResource(SyncAPIResource):
         return ScriptsResource(self._client)
 
     @cached_property
+    def cookies(self) -> CookiesResource:
+        return CookiesResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> PageShieldResourceWithRawResponse:
         return PageShieldResourceWithRawResponse(self)
 
@@ -88,7 +100,7 @@ class PageShieldResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldUpdateResponse:
+    ) -> Optional[PageShieldUpdateResponse]:
         """
         Updates Page Shield settings.
 
@@ -127,9 +139,9 @@ class PageShieldResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PageShieldUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageShieldUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PageShieldUpdateResponse], ResultWrapper[PageShieldUpdateResponse]),
+            cast_to=cast(Type[Optional[PageShieldUpdateResponse]], ResultWrapper[PageShieldUpdateResponse]),
         )
 
     def get(
@@ -142,7 +154,7 @@ class PageShieldResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Setting:
+    ) -> Optional[Setting]:
         """
         Fetches the Page Shield settings.
 
@@ -166,9 +178,9 @@ class PageShieldResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Setting]._unwrapper,
+                post_parser=ResultWrapper[Optional[Setting]]._unwrapper,
             ),
-            cast_to=cast(Type[Setting], ResultWrapper[Setting]),
+            cast_to=cast(Type[Optional[Setting]], ResultWrapper[Setting]),
         )
 
 
@@ -184,6 +196,10 @@ class AsyncPageShieldResource(AsyncAPIResource):
     @cached_property
     def scripts(self) -> AsyncScriptsResource:
         return AsyncScriptsResource(self._client)
+
+    @cached_property
+    def cookies(self) -> AsyncCookiesResource:
+        return AsyncCookiesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncPageShieldResourceWithRawResponse:
@@ -206,7 +222,7 @@ class AsyncPageShieldResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PageShieldUpdateResponse:
+    ) -> Optional[PageShieldUpdateResponse]:
         """
         Updates Page Shield settings.
 
@@ -245,9 +261,9 @@ class AsyncPageShieldResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PageShieldUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PageShieldUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PageShieldUpdateResponse], ResultWrapper[PageShieldUpdateResponse]),
+            cast_to=cast(Type[Optional[PageShieldUpdateResponse]], ResultWrapper[PageShieldUpdateResponse]),
         )
 
     async def get(
@@ -260,7 +276,7 @@ class AsyncPageShieldResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Setting:
+    ) -> Optional[Setting]:
         """
         Fetches the Page Shield settings.
 
@@ -284,9 +300,9 @@ class AsyncPageShieldResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Setting]._unwrapper,
+                post_parser=ResultWrapper[Optional[Setting]]._unwrapper,
             ),
-            cast_to=cast(Type[Setting], ResultWrapper[Setting]),
+            cast_to=cast(Type[Optional[Setting]], ResultWrapper[Setting]),
         )
 
 
@@ -313,6 +329,10 @@ class PageShieldResourceWithRawResponse:
     def scripts(self) -> ScriptsResourceWithRawResponse:
         return ScriptsResourceWithRawResponse(self._page_shield.scripts)
 
+    @cached_property
+    def cookies(self) -> CookiesResourceWithRawResponse:
+        return CookiesResourceWithRawResponse(self._page_shield.cookies)
+
 
 class AsyncPageShieldResourceWithRawResponse:
     def __init__(self, page_shield: AsyncPageShieldResource) -> None:
@@ -336,6 +356,10 @@ class AsyncPageShieldResourceWithRawResponse:
     @cached_property
     def scripts(self) -> AsyncScriptsResourceWithRawResponse:
         return AsyncScriptsResourceWithRawResponse(self._page_shield.scripts)
+
+    @cached_property
+    def cookies(self) -> AsyncCookiesResourceWithRawResponse:
+        return AsyncCookiesResourceWithRawResponse(self._page_shield.cookies)
 
 
 class PageShieldResourceWithStreamingResponse:
@@ -361,6 +385,10 @@ class PageShieldResourceWithStreamingResponse:
     def scripts(self) -> ScriptsResourceWithStreamingResponse:
         return ScriptsResourceWithStreamingResponse(self._page_shield.scripts)
 
+    @cached_property
+    def cookies(self) -> CookiesResourceWithStreamingResponse:
+        return CookiesResourceWithStreamingResponse(self._page_shield.cookies)
+
 
 class AsyncPageShieldResourceWithStreamingResponse:
     def __init__(self, page_shield: AsyncPageShieldResource) -> None:
@@ -384,3 +412,7 @@ class AsyncPageShieldResourceWithStreamingResponse:
     @cached_property
     def scripts(self) -> AsyncScriptsResourceWithStreamingResponse:
         return AsyncScriptsResourceWithStreamingResponse(self._page_shield.scripts)
+
+    @cached_property
+    def cookies(self) -> AsyncCookiesResourceWithStreamingResponse:
+        return AsyncCookiesResourceWithStreamingResponse(self._page_shield.cookies)

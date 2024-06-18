@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -60,21 +60,16 @@ class AvailableAlertsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            Optional[AvailableAlertListResponse],
-            self._get(
-                f"/accounts/{account_id}/alerting/v3/available_alerts",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[AvailableAlertListResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AvailableAlertListResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/accounts/{account_id}/alerting/v3/available_alerts",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AvailableAlertListResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[AvailableAlertListResponse]], ResultWrapper[AvailableAlertListResponse]),
         )
 
 
@@ -114,21 +109,16 @@ class AsyncAvailableAlertsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            Optional[AvailableAlertListResponse],
-            await self._get(
-                f"/accounts/{account_id}/alerting/v3/available_alerts",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[AvailableAlertListResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AvailableAlertListResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/accounts/{account_id}/alerting/v3/available_alerts",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[AvailableAlertListResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[AvailableAlertListResponse]], ResultWrapper[AvailableAlertListResponse]),
         )
 
 

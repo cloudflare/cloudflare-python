@@ -18,27 +18,17 @@ jobs:
 
       - name: Install Rye
         run: |
-          curl -sSf https://rye-up.com/get | bash
+          curl -sSf https://rye.astral.sh/get | bash
           echo "$HOME/.rye/shims" >> $GITHUB_PATH
         env:
           RYE_VERSION: 0.24.0
           RYE_INSTALL_OPTION: '--yes'
 
       - name: Install dependencies
-        run: |
-          rye sync --all-features
+        run: rye sync --all-features
 
-      - name: Run ruff
-        run: |
-          rye run check:ruff
-
-      - name: Run type checking
-        run: |
-          rye run typecheck
-
-      - name: Ensure importable
-        run: |
-          rye run python -c 'import cloudflare'
+      - name: Run lints
+        run: ./scripts/lint
   test:
     name: test
     runs-on: ubuntu-latest
@@ -48,7 +38,7 @@ jobs:
 
       - name: Install Rye
         run: |
-          curl -sSf https://rye-up.com/get | bash
+          curl -sSf https://rye.astral.sh/get | bash
           echo "$HOME/.rye/shims" >> $GITHUB_PATH
         env:
           RYE_VERSION: 0.24.0
@@ -68,7 +58,7 @@ jobs:
 
       - name: Install Rye
         run: |
-          curl -sSf https://rye-up.com/get | bash
+          curl -sSf https://rye.astral.sh/get | bash
           echo "$HOME/.rye/shims" >> $GITHUB_PATH
         env:
           RYE_VERSION: 0.24.0

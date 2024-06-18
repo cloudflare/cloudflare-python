@@ -124,9 +124,10 @@ class IndicatorFeedsResource(SyncAPIResource):
         feed_id: int,
         *,
         account_id: str,
-        feed_description: str | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
         is_attributable: bool | NotGiven = NOT_GIVEN,
         is_public: bool | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -142,11 +143,13 @@ class IndicatorFeedsResource(SyncAPIResource):
 
           feed_id: Indicator feed ID
 
-          feed_description: The new description of the feed
+          description: The new description of the feed
 
           is_attributable: The new is_attributable value of the feed
 
           is_public: The new is_public value of the feed
+
+          name: The new name of the feed
 
           extra_headers: Send extra headers
 
@@ -162,9 +165,10 @@ class IndicatorFeedsResource(SyncAPIResource):
             f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}",
             body=maybe_transform(
                 {
-                    "feed_description": feed_description,
+                    "description": description,
                     "is_attributable": is_attributable,
                     "is_public": is_public,
+                    "name": name,
                 },
                 indicator_feed_update_params.IndicatorFeedUpdateParams,
             ),
@@ -370,9 +374,10 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         feed_id: int,
         *,
         account_id: str,
-        feed_description: str | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
         is_attributable: bool | NotGiven = NOT_GIVEN,
         is_public: bool | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -388,11 +393,13 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
 
           feed_id: Indicator feed ID
 
-          feed_description: The new description of the feed
+          description: The new description of the feed
 
           is_attributable: The new is_attributable value of the feed
 
           is_public: The new is_public value of the feed
+
+          name: The new name of the feed
 
           extra_headers: Send extra headers
 
@@ -408,9 +415,10 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
             f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}",
             body=await async_maybe_transform(
                 {
-                    "feed_description": feed_description,
+                    "description": description,
                     "is_attributable": is_attributable,
                     "is_public": is_public,
+                    "name": name,
                 },
                 indicator_feed_update_params.IndicatorFeedUpdateParams,
             ),

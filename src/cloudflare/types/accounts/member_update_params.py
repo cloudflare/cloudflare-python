@@ -2,19 +2,60 @@
 
 from __future__ import annotations
 
-from typing import Iterable
-from typing_extensions import Required, TypedDict
+from typing import Union, Iterable
+from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["MemberUpdateParams", "Role"]
+__all__ = [
+    "MemberUpdateParams",
+    "Member",
+    "MemberRole",
+    "IAMUpdateMemberWithPolicies",
+    "IAMUpdateMemberWithPoliciesPolicy",
+    "IAMUpdateMemberWithPoliciesPolicyPermissionGroup",
+    "IAMUpdateMemberWithPoliciesPolicyResourceGroup",
+]
 
 
-class MemberUpdateParams(TypedDict, total=False):
+class Member(TypedDict, total=False):
     account_id: Required[str]
+    """Account identifier tag."""
 
-    roles: Required[Iterable[Role]]
+    roles: Iterable[MemberRole]
     """Roles assigned to this member."""
 
 
-class Role(TypedDict, total=False):
+class MemberRole(TypedDict, total=False):
     id: Required[str]
     """Role identifier tag."""
+
+
+class IAMUpdateMemberWithPolicies(TypedDict, total=False):
+    account_id: Required[str]
+    """Account identifier tag."""
+
+    policies: Required[Iterable[IAMUpdateMemberWithPoliciesPolicy]]
+    """Array of policies associated with this member."""
+
+
+class IAMUpdateMemberWithPoliciesPolicyPermissionGroup(TypedDict, total=False):
+    id: Required[str]
+    """Identifier of the group."""
+
+
+class IAMUpdateMemberWithPoliciesPolicyResourceGroup(TypedDict, total=False):
+    id: Required[str]
+    """Identifier of the group."""
+
+
+class IAMUpdateMemberWithPoliciesPolicy(TypedDict, total=False):
+    access: Required[Literal["allow", "deny"]]
+    """Allow or deny operations against the resources."""
+
+    permission_groups: Required[Iterable[IAMUpdateMemberWithPoliciesPolicyPermissionGroup]]
+    """A set of permission groups that are specified to the policy."""
+
+    resource_groups: Required[Iterable[IAMUpdateMemberWithPoliciesPolicyResourceGroup]]
+    """A list of resource groups that the policy applies to."""
+
+
+MemberUpdateParams = Union[Member, IAMUpdateMemberWithPolicies]

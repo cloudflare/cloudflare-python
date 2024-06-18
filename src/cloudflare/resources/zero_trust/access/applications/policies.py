@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import Type, Iterable, Optional, cast
-from typing_extensions import Literal
 
 import httpx
 
@@ -26,11 +25,16 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from .....types.zero_trust.access import Decision
+from .....types.zero_trust.access.decision import Decision
 from .....types.zero_trust.access_rule_param import AccessRuleParam
 from .....types.zero_trust.access.applications import policy_create_params, policy_update_params
-from .....types.zero_trust.access.applications.policy import Policy
+from .....types.zero_trust.access.applications.policy_get_response import PolicyGetResponse
 from .....types.zero_trust.access.applications.approval_group_param import ApprovalGroupParam
+from .....types.zero_trust.access.applications.policy_list_response import PolicyListResponse
+from .....types.zero_trust.access.applications.policy_create_response import PolicyCreateResponse
 from .....types.zero_trust.access.applications.policy_delete_response import PolicyDeleteResponse
+from .....types.zero_trust.access.applications.policy_update_response import PolicyUpdateResponse
 
 __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 
@@ -46,9 +50,9 @@ class PoliciesResource(SyncAPIResource):
 
     def create(
         self,
-        uuid: str,
+        app_id: str,
         *,
-        decision: Literal["allow", "deny", "non_identity", "bypass"],
+        decision: Decision,
         include: Iterable[AccessRuleParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -68,12 +72,15 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Policy]:
+    ) -> Optional[PolicyCreateResponse]:
         """
-        Create a new Access policy for an application.
+        Creates a policy applying exclusive to a single application that defines the
+        users or groups who can reach it. We recommend creating a reusable policy
+        instead and subsequently referencing its ID in the application's 'policies'
+        array.
 
         Args:
-          uuid: UUID
+          app_id: UUID
 
           decision: The action Access will take if a user matches this policy.
 
@@ -98,7 +105,8 @@ class PoliciesResource(SyncAPIResource):
               this policy. 'Client Web Isolation' must be on for the account in order to use
               this feature.
 
-          precedence: The order of execution for this policy. Must be unique for each policy.
+          precedence: The order of execution for this policy. Must be unique for each policy within an
+              app.
 
           purpose_justification_prompt: A custom message that will appear on the purpose justification screen.
 
@@ -119,8 +127,8 @@ class PoliciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -134,7 +142,7 @@ class PoliciesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/policies",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
             body=maybe_transform(
                 {
                     "decision": decision,
@@ -157,17 +165,17 @@ class PoliciesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Policy]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PolicyCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
+            cast_to=cast(Type[Optional[PolicyCreateResponse]], ResultWrapper[PolicyCreateResponse]),
         )
 
     def update(
         self,
-        uuid: str,
+        policy_id: str,
         *,
-        uuid1: str,
-        decision: Literal["allow", "deny", "non_identity", "bypass"],
+        app_id: str,
+        decision: Decision,
         include: Iterable[AccessRuleParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -187,14 +195,16 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Policy]:
-        """
-        Update a configured Access policy.
+    ) -> Optional[PolicyUpdateResponse]:
+        """Updates an Access policy specific to an application.
+
+        To update a reusable
+        policy, use the /account or zones/{account or zone_id}/policies/{uid} endpoint.
 
         Args:
-          uuid1: UUID
+          app_id: UUID
 
-          uuid: UUID
+          policy_id: UUID
 
           decision: The action Access will take if a user matches this policy.
 
@@ -219,7 +229,8 @@ class PoliciesResource(SyncAPIResource):
               this policy. 'Client Web Isolation' must be on for the account in order to use
               this feature.
 
-          precedence: The order of execution for this policy. Must be unique for each policy.
+          precedence: The order of execution for this policy. Must be unique for each policy within an
+              app.
 
           purpose_justification_prompt: A custom message that will appear on the purpose justification screen.
 
@@ -240,10 +251,10 @@ class PoliciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid1:
-            raise ValueError(f"Expected a non-empty value for `uuid1` but received {uuid1!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if not policy_id:
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -257,7 +268,7 @@ class PoliciesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid1}/policies/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
             body=maybe_transform(
                 {
                     "decision": decision,
@@ -280,14 +291,14 @@ class PoliciesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Policy]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PolicyUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
+            cast_to=cast(Type[Optional[PolicyUpdateResponse]], ResultWrapper[PolicyUpdateResponse]),
         )
 
     def list(
         self,
-        uuid: str,
+        app_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -297,12 +308,14 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Policy]:
-        """
-        Lists Access policies configured for an application.
+    ) -> SyncSinglePage[PolicyListResponse]:
+        """Lists Access policies configured for an application.
+
+        Returns both exclusively
+        scoped and reusable policies used by the application.
 
         Args:
-          uuid: UUID
+          app_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -316,8 +329,8 @@ class PoliciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -331,19 +344,19 @@ class PoliciesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/policies",
-            page=SyncSinglePage[Policy],
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+            page=SyncSinglePage[PolicyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Policy,
+            model=PolicyListResponse,
         )
 
     def delete(
         self,
-        uuid: str,
+        policy_id: str,
         *,
-        uuid1: str,
+        app_id: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -353,13 +366,15 @@ class PoliciesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[PolicyDeleteResponse]:
-        """
-        Delete an Access policy.
+        """Deletes an Access policy specific to an application.
+
+        To delete a reusable
+        policy, use the /account or zones/{account or zone_id}/policies/{uid} endpoint.
 
         Args:
-          uuid1: UUID
+          app_id: UUID
 
-          uuid: UUID
+          policy_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -373,10 +388,10 @@ class PoliciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid1:
-            raise ValueError(f"Expected a non-empty value for `uuid1` but received {uuid1!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if not policy_id:
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -390,7 +405,7 @@ class PoliciesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid1}/policies/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -403,9 +418,9 @@ class PoliciesResource(SyncAPIResource):
 
     def get(
         self,
-        uuid: str,
+        policy_id: str,
         *,
-        uuid1: str,
+        app_id: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -414,14 +429,16 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Policy]:
-        """
-        Fetches a single Access policy.
+    ) -> Optional[PolicyGetResponse]:
+        """Fetches a single Access policy configured for an application.
+
+        Returns both
+        exclusively owned and reusable policies used by the application.
 
         Args:
-          uuid1: UUID
+          app_id: UUID
 
-          uuid: UUID
+          policy_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -435,10 +452,10 @@ class PoliciesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid1:
-            raise ValueError(f"Expected a non-empty value for `uuid1` but received {uuid1!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if not policy_id:
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -452,15 +469,15 @@ class PoliciesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid1}/policies/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Policy]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PolicyGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
+            cast_to=cast(Type[Optional[PolicyGetResponse]], ResultWrapper[PolicyGetResponse]),
         )
 
 
@@ -475,9 +492,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
     async def create(
         self,
-        uuid: str,
+        app_id: str,
         *,
-        decision: Literal["allow", "deny", "non_identity", "bypass"],
+        decision: Decision,
         include: Iterable[AccessRuleParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -497,12 +514,15 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Policy]:
+    ) -> Optional[PolicyCreateResponse]:
         """
-        Create a new Access policy for an application.
+        Creates a policy applying exclusive to a single application that defines the
+        users or groups who can reach it. We recommend creating a reusable policy
+        instead and subsequently referencing its ID in the application's 'policies'
+        array.
 
         Args:
-          uuid: UUID
+          app_id: UUID
 
           decision: The action Access will take if a user matches this policy.
 
@@ -527,7 +547,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
               this policy. 'Client Web Isolation' must be on for the account in order to use
               this feature.
 
-          precedence: The order of execution for this policy. Must be unique for each policy.
+          precedence: The order of execution for this policy. Must be unique for each policy within an
+              app.
 
           purpose_justification_prompt: A custom message that will appear on the purpose justification screen.
 
@@ -548,8 +569,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -563,7 +584,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/policies",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
             body=await async_maybe_transform(
                 {
                     "decision": decision,
@@ -586,17 +607,17 @@ class AsyncPoliciesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Policy]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PolicyCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
+            cast_to=cast(Type[Optional[PolicyCreateResponse]], ResultWrapper[PolicyCreateResponse]),
         )
 
     async def update(
         self,
-        uuid: str,
+        policy_id: str,
         *,
-        uuid1: str,
-        decision: Literal["allow", "deny", "non_identity", "bypass"],
+        app_id: str,
+        decision: Decision,
         include: Iterable[AccessRuleParam],
         name: str,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -616,14 +637,16 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Policy]:
-        """
-        Update a configured Access policy.
+    ) -> Optional[PolicyUpdateResponse]:
+        """Updates an Access policy specific to an application.
+
+        To update a reusable
+        policy, use the /account or zones/{account or zone_id}/policies/{uid} endpoint.
 
         Args:
-          uuid1: UUID
+          app_id: UUID
 
-          uuid: UUID
+          policy_id: UUID
 
           decision: The action Access will take if a user matches this policy.
 
@@ -648,7 +671,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
               this policy. 'Client Web Isolation' must be on for the account in order to use
               this feature.
 
-          precedence: The order of execution for this policy. Must be unique for each policy.
+          precedence: The order of execution for this policy. Must be unique for each policy within an
+              app.
 
           purpose_justification_prompt: A custom message that will appear on the purpose justification screen.
 
@@ -669,10 +693,10 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid1:
-            raise ValueError(f"Expected a non-empty value for `uuid1` but received {uuid1!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if not policy_id:
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -686,7 +710,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid1}/policies/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
             body=await async_maybe_transform(
                 {
                     "decision": decision,
@@ -709,14 +733,14 @@ class AsyncPoliciesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Policy]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PolicyUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
+            cast_to=cast(Type[Optional[PolicyUpdateResponse]], ResultWrapper[PolicyUpdateResponse]),
         )
 
     def list(
         self,
-        uuid: str,
+        app_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -726,12 +750,14 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Policy, AsyncSinglePage[Policy]]:
-        """
-        Lists Access policies configured for an application.
+    ) -> AsyncPaginator[PolicyListResponse, AsyncSinglePage[PolicyListResponse]]:
+        """Lists Access policies configured for an application.
+
+        Returns both exclusively
+        scoped and reusable policies used by the application.
 
         Args:
-          uuid: UUID
+          app_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -745,8 +771,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -760,19 +786,19 @@ class AsyncPoliciesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get_api_list(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/policies",
-            page=AsyncSinglePage[Policy],
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
+            page=AsyncSinglePage[PolicyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Policy,
+            model=PolicyListResponse,
         )
 
     async def delete(
         self,
-        uuid: str,
+        policy_id: str,
         *,
-        uuid1: str,
+        app_id: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -782,13 +808,15 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[PolicyDeleteResponse]:
-        """
-        Delete an Access policy.
+        """Deletes an Access policy specific to an application.
+
+        To delete a reusable
+        policy, use the /account or zones/{account or zone_id}/policies/{uid} endpoint.
 
         Args:
-          uuid1: UUID
+          app_id: UUID
 
-          uuid: UUID
+          policy_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -802,10 +830,10 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid1:
-            raise ValueError(f"Expected a non-empty value for `uuid1` but received {uuid1!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if not policy_id:
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -819,7 +847,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid1}/policies/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -832,9 +860,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
     async def get(
         self,
-        uuid: str,
+        policy_id: str,
         *,
-        uuid1: str,
+        app_id: str,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -843,14 +871,16 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Policy]:
-        """
-        Fetches a single Access policy.
+    ) -> Optional[PolicyGetResponse]:
+        """Fetches a single Access policy configured for an application.
+
+        Returns both
+        exclusively owned and reusable policies used by the application.
 
         Args:
-          uuid1: UUID
+          app_id: UUID
 
-          uuid: UUID
+          policy_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -864,10 +894,10 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid1:
-            raise ValueError(f"Expected a non-empty value for `uuid1` but received {uuid1!r}")
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
+        if not policy_id:
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -881,15 +911,15 @@ class AsyncPoliciesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid1}/policies/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies/{policy_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Policy]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PolicyGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
+            cast_to=cast(Type[Optional[PolicyGetResponse]], ResultWrapper[PolicyGetResponse]),
         )
 
 

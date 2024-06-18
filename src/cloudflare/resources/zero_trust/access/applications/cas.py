@@ -40,7 +40,7 @@ class CAsResource(SyncAPIResource):
 
     def create(
         self,
-        uuid: str,
+        app_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -55,7 +55,7 @@ class CAsResource(SyncAPIResource):
         Generates a new short-lived certificate CA and public key.
 
         Args:
-          uuid: UUID
+          app_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -69,8 +69,8 @@ class CAsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -86,7 +86,7 @@ class CAsResource(SyncAPIResource):
         return cast(
             Optional[CACreateResponse],
             self._post(
-                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/ca",
+                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/ca",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -151,7 +151,7 @@ class CAsResource(SyncAPIResource):
 
     def delete(
         self,
-        uuid: str,
+        app_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -166,7 +166,7 @@ class CAsResource(SyncAPIResource):
         Deletes a short-lived certificate CA.
 
         Args:
-          uuid: UUID
+          app_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -180,8 +180,8 @@ class CAsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -195,7 +195,7 @@ class CAsResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/ca",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/ca",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -208,7 +208,7 @@ class CAsResource(SyncAPIResource):
 
     def get(
         self,
-        uuid: str,
+        app_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -223,7 +223,7 @@ class CAsResource(SyncAPIResource):
         Fetches a short-lived certificate CA and its public key.
 
         Args:
-          uuid: UUID
+          app_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -237,8 +237,8 @@ class CAsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -254,7 +254,7 @@ class CAsResource(SyncAPIResource):
         return cast(
             Optional[CAGetResponse],
             self._get(
-                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/ca",
+                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/ca",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -280,7 +280,7 @@ class AsyncCAsResource(AsyncAPIResource):
 
     async def create(
         self,
-        uuid: str,
+        app_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -295,7 +295,7 @@ class AsyncCAsResource(AsyncAPIResource):
         Generates a new short-lived certificate CA and public key.
 
         Args:
-          uuid: UUID
+          app_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -309,8 +309,8 @@ class AsyncCAsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -326,7 +326,7 @@ class AsyncCAsResource(AsyncAPIResource):
         return cast(
             Optional[CACreateResponse],
             await self._post(
-                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/ca",
+                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/ca",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -391,7 +391,7 @@ class AsyncCAsResource(AsyncAPIResource):
 
     async def delete(
         self,
-        uuid: str,
+        app_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -406,7 +406,7 @@ class AsyncCAsResource(AsyncAPIResource):
         Deletes a short-lived certificate CA.
 
         Args:
-          uuid: UUID
+          app_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -420,8 +420,8 @@ class AsyncCAsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -435,7 +435,7 @@ class AsyncCAsResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/ca",
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/ca",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -448,7 +448,7 @@ class AsyncCAsResource(AsyncAPIResource):
 
     async def get(
         self,
-        uuid: str,
+        app_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -463,7 +463,7 @@ class AsyncCAsResource(AsyncAPIResource):
         Fetches a short-lived certificate CA and its public key.
 
         Args:
-          uuid: UUID
+          app_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -477,8 +477,8 @@ class AsyncCAsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -494,7 +494,7 @@ class AsyncCAsResource(AsyncAPIResource):
         return cast(
             Optional[CAGetResponse],
             await self._get(
-                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{uuid}/ca",
+                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/ca",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

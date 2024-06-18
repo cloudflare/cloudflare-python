@@ -3,14 +3,19 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.page_shield import Policy
+from cloudflare.types.page_shield import (
+    PolicyGetResponse,
+    PolicyListResponse,
+    PolicyCreateResponse,
+    PolicyUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,12 +27,17 @@ class TestPolicies:
     def test_method_create(self, client: Cloudflare) -> None:
         policy = client.page_shield.policies.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="allow",
+            description="Checkout page CSP policy",
+            enabled=True,
+            expression='ends_with(http.request.uri.path, "/checkout")',
+            value="script-src 'none';",
         )
-        assert_matches_type(Policy, policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        policy = client.page_shield.policies.create(
+    def test_raw_response_create(self, client: Cloudflare) -> None:
+        response = client.page_shield.policies.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             action="allow",
             description="Checkout page CSP policy",
@@ -35,29 +45,27 @@ class TestPolicies:
             expression='ends_with(http.request.uri.path, "/checkout")',
             value="script-src 'none';",
         )
-        assert_matches_type(Policy, policy, path=["response"])
-
-    @parametrize
-    def test_raw_response_create(self, client: Cloudflare) -> None:
-        response = client.page_shield.policies.with_raw_response.create(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(Policy, policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.page_shield.policies.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="allow",
+            description="Checkout page CSP policy",
+            enabled=True,
+            expression='ends_with(http.request.uri.path, "/checkout")',
+            value="script-src 'none';",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(Policy, policy, path=["response"])
+            assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -66,20 +74,25 @@ class TestPolicies:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.page_shield.policies.with_raw_response.create(
                 zone_id="",
+                action="allow",
+                description="Checkout page CSP policy",
+                enabled=True,
+                expression='ends_with(http.request.uri.path, "/checkout")',
+                value="script-src 'none';",
             )
 
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         policy = client.page_shield.policies.update(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Policy, policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         policy = client.page_shield.policies.update(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             action="allow",
             description="Checkout page CSP policy",
@@ -87,31 +100,31 @@ class TestPolicies:
             expression='ends_with(http.request.uri.path, "/checkout")',
             value="script-src 'none';",
         )
-        assert_matches_type(Policy, policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.page_shield.policies.with_raw_response.update(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(Policy, policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.page_shield.policies.with_streaming_response.update(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(Policy, policy, path=["response"])
+            assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -119,7 +132,7 @@ class TestPolicies:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.page_shield.policies.with_raw_response.update(
-                "c9ef84a6bf5e47138c75d95e2f933e8f",
+                "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
@@ -134,7 +147,7 @@ class TestPolicies:
         policy = client.page_shield.policies.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[Policy], policy, path=["response"])
+        assert_matches_type(SyncSinglePage[PolicyListResponse], policy, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -145,7 +158,7 @@ class TestPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(SyncSinglePage[Policy], policy, path=["response"])
+        assert_matches_type(SyncSinglePage[PolicyListResponse], policy, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -156,7 +169,7 @@ class TestPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(SyncSinglePage[Policy], policy, path=["response"])
+            assert_matches_type(SyncSinglePage[PolicyListResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -170,7 +183,7 @@ class TestPolicies:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         policy = client.page_shield.policies.delete(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert policy is None
@@ -178,7 +191,7 @@ class TestPolicies:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.page_shield.policies.with_raw_response.delete(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -190,7 +203,7 @@ class TestPolicies:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.page_shield.policies.with_streaming_response.delete(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -205,7 +218,7 @@ class TestPolicies:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.page_shield.policies.with_raw_response.delete(
-                "c9ef84a6bf5e47138c75d95e2f933e8f",
+                "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
@@ -218,34 +231,34 @@ class TestPolicies:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         policy = client.page_shield.policies.get(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Policy, policy, path=["response"])
+        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.page_shield.policies.with_raw_response.get(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = response.parse()
-        assert_matches_type(Policy, policy, path=["response"])
+        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.page_shield.policies.with_streaming_response.get(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = response.parse()
-            assert_matches_type(Policy, policy, path=["response"])
+            assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -253,7 +266,7 @@ class TestPolicies:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.page_shield.policies.with_raw_response.get(
-                "c9ef84a6bf5e47138c75d95e2f933e8f",
+                "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
@@ -271,12 +284,17 @@ class TestAsyncPolicies:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.page_shield.policies.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="allow",
+            description="Checkout page CSP policy",
+            enabled=True,
+            expression='ends_with(http.request.uri.path, "/checkout")',
+            value="script-src 'none';",
         )
-        assert_matches_type(Policy, policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        policy = await async_client.page_shield.policies.create(
+    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.page_shield.policies.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             action="allow",
             description="Checkout page CSP policy",
@@ -284,29 +302,27 @@ class TestAsyncPolicies:
             expression='ends_with(http.request.uri.path, "/checkout")',
             value="script-src 'none';",
         )
-        assert_matches_type(Policy, policy, path=["response"])
-
-    @parametrize
-    async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.page_shield.policies.with_raw_response.create(
-            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-        )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(Policy, policy, path=["response"])
+        assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.page_shield.policies.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="allow",
+            description="Checkout page CSP policy",
+            enabled=True,
+            expression='ends_with(http.request.uri.path, "/checkout")',
+            value="script-src 'none';",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(Policy, policy, path=["response"])
+            assert_matches_type(Optional[PolicyCreateResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -315,20 +331,25 @@ class TestAsyncPolicies:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.page_shield.policies.with_raw_response.create(
                 zone_id="",
+                action="allow",
+                description="Checkout page CSP policy",
+                enabled=True,
+                expression='ends_with(http.request.uri.path, "/checkout")',
+                value="script-src 'none';",
             )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.page_shield.policies.update(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Policy, policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.page_shield.policies.update(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             action="allow",
             description="Checkout page CSP policy",
@@ -336,31 +357,31 @@ class TestAsyncPolicies:
             expression='ends_with(http.request.uri.path, "/checkout")',
             value="script-src 'none';",
         )
-        assert_matches_type(Policy, policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.page_shield.policies.with_raw_response.update(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(Policy, policy, path=["response"])
+        assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.page_shield.policies.with_streaming_response.update(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(Policy, policy, path=["response"])
+            assert_matches_type(Optional[PolicyUpdateResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -368,7 +389,7 @@ class TestAsyncPolicies:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.page_shield.policies.with_raw_response.update(
-                "c9ef84a6bf5e47138c75d95e2f933e8f",
+                "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
@@ -383,7 +404,7 @@ class TestAsyncPolicies:
         policy = await async_client.page_shield.policies.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[Policy], policy, path=["response"])
+        assert_matches_type(AsyncSinglePage[PolicyListResponse], policy, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -394,7 +415,7 @@ class TestAsyncPolicies:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(AsyncSinglePage[Policy], policy, path=["response"])
+        assert_matches_type(AsyncSinglePage[PolicyListResponse], policy, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -405,7 +426,7 @@ class TestAsyncPolicies:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(AsyncSinglePage[Policy], policy, path=["response"])
+            assert_matches_type(AsyncSinglePage[PolicyListResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -419,7 +440,7 @@ class TestAsyncPolicies:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.page_shield.policies.delete(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert policy is None
@@ -427,7 +448,7 @@ class TestAsyncPolicies:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.page_shield.policies.with_raw_response.delete(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -439,7 +460,7 @@ class TestAsyncPolicies:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.page_shield.policies.with_streaming_response.delete(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -454,7 +475,7 @@ class TestAsyncPolicies:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.page_shield.policies.with_raw_response.delete(
-                "c9ef84a6bf5e47138c75d95e2f933e8f",
+                "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
@@ -467,34 +488,34 @@ class TestAsyncPolicies:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.page_shield.policies.get(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Policy, policy, path=["response"])
+        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.page_shield.policies.with_raw_response.get(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         policy = await response.parse()
-        assert_matches_type(Policy, policy, path=["response"])
+        assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.page_shield.policies.with_streaming_response.get(
-            "c9ef84a6bf5e47138c75d95e2f933e8f",
+            "023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             policy = await response.parse()
-            assert_matches_type(Policy, policy, path=["response"])
+            assert_matches_type(Optional[PolicyGetResponse], policy, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -502,7 +523,7 @@ class TestAsyncPolicies:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.page_shield.policies.with_raw_response.get(
-                "c9ef84a6bf5e47138c75d95e2f933e8f",
+                "023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 

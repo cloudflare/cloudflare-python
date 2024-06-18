@@ -18,3 +18,6 @@ class BucketCreateParams(TypedDict, total=False):
 
     location_hint: Annotated[Literal["apac", "eeur", "enam", "weur", "wnam"], PropertyInfo(alias="locationHint")]
     """Location of the bucket"""
+
+    storage_class: Annotated[Literal["Standard", "InfrequentAccess"], PropertyInfo(alias="storageClass")]
+    """Storage class for newly uploaded objects, unless specified otherwise."""

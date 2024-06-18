@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Optional
+from typing import Dict
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["BehaviourUpdateParams", "Behaviors"]
@@ -15,4 +15,4 @@ class BehaviourUpdateParams(TypedDict, total=False):
 class Behaviors(TypedDict, total=False):
     enabled: Required[bool]
 
-    risk_level: Required[Optional[Literal["low", "medium", "high"]]]
+    risk_level: Required[Literal["low", "medium", "high"]]

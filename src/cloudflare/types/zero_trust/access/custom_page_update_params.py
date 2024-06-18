@@ -8,7 +8,7 @@ __all__ = ["CustomPageUpdateParams"]
 
 
 class CustomPageUpdateParams(TypedDict, total=False):
-    identifier: Required[str]
+    account_id: Required[str]
     """Identifier"""
 
     custom_html: Required[str]

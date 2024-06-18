@@ -11,7 +11,7 @@ class IndicatorFeedUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    feed_description: str
+    description: str
     """The new description of the feed"""
 
     is_attributable: bool
@@ -19,3 +19,6 @@ class IndicatorFeedUpdateParams(TypedDict, total=False):
 
     is_public: bool
     """The new is_public value of the feed"""
+
+    name: str
+    """The new name of the feed"""

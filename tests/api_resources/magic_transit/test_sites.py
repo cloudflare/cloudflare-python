@@ -10,7 +10,9 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.magic_transit import Site
+from cloudflare.types.magic_transit import (
+    Site,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -230,6 +232,70 @@ class TestSites:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             client.magic_transit.sites.with_raw_response.delete(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
+    def test_method_edit(self, client: Cloudflare) -> None:
+        site = client.magic_transit.sites.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Site, site, path=["response"])
+
+    @parametrize
+    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
+        site = client.magic_transit.sites.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            connector_id="ac60d3d0435248289d446cedd870bcf4",
+            description="string",
+            location={
+                "lat": "37.6192",
+                "lon": "122.3816",
+            },
+            name="site_1",
+            secondary_connector_id="8d67040d3835dbcf46ce29da440dc482",
+        )
+        assert_matches_type(Site, site, path=["response"])
+
+    @parametrize
+    def test_raw_response_edit(self, client: Cloudflare) -> None:
+        response = client.magic_transit.sites.with_raw_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        site = response.parse()
+        assert_matches_type(Site, site, path=["response"])
+
+    @parametrize
+    def test_streaming_response_edit(self, client: Cloudflare) -> None:
+        with client.magic_transit.sites.with_streaming_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            site = response.parse()
+            assert_matches_type(Site, site, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_edit(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.magic_transit.sites.with_raw_response.edit(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
+            client.magic_transit.sites.with_raw_response.edit(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -498,6 +564,70 @@ class TestAsyncSites:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             await async_client.magic_transit.sites.with_raw_response.delete(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
+    async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
+        site = await async_client.magic_transit.sites.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+        assert_matches_type(Site, site, path=["response"])
+
+    @parametrize
+    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        site = await async_client.magic_transit.sites.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            connector_id="ac60d3d0435248289d446cedd870bcf4",
+            description="string",
+            location={
+                "lat": "37.6192",
+                "lon": "122.3816",
+            },
+            name="site_1",
+            secondary_connector_id="8d67040d3835dbcf46ce29da440dc482",
+        )
+        assert_matches_type(Site, site, path=["response"])
+
+    @parametrize
+    async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.magic_transit.sites.with_raw_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        site = await response.parse()
+        assert_matches_type(Site, site, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.magic_transit.sites.with_streaming_response.edit(
+            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            site = await response.parse()
+            assert_matches_type(Site, site, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.magic_transit.sites.with_raw_response.edit(
+                "023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
+            await async_client.magic_transit.sites.with_raw_response.edit(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

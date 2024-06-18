@@ -23,4 +23,4 @@ class Organization(BaseModel):
     """List of roles that a user has within an organization."""
 
     status: Optional[Status] = None
-    """Whether the user is a member of the organization or has an inivitation pending."""
+    """Whether the user is a member of the organization or has an invitation pending."""

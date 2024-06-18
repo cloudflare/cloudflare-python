@@ -15,11 +15,11 @@ class TracerouteTestNetworkPathParams(TypedDict, total=False):
     device_id: Required[Annotated[str, PropertyInfo(alias="deviceId")]]
     """Device to filter tracroute result runs to"""
 
+    from_: Required[Annotated[str, PropertyInfo(alias="from")]]
+    """Start time for aggregate metrics in ISO ms"""
+
     interval: Required[Literal["minute", "hour"]]
     """Time interval for aggregate time slots."""
 
-    time_end: Required[Annotated[str, PropertyInfo(alias="timeEnd")]]
+    to: Required[str]
     """End time for aggregate metrics in ISO ms"""
-
-    time_start: Required[Annotated[str, PropertyInfo(alias="timeStart")]]
-    """Start time for aggregate metrics in ISO ms"""

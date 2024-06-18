@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -70,22 +70,17 @@ class TieredCachingResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            TieredCachingEditResponse,
-            self._patch(
-                f"/zones/{zone_id}/argo/tiered_caching",
-                body=maybe_transform({"value": value}, tiered_caching_edit_params.TieredCachingEditParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[TieredCachingEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TieredCachingEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._patch(
+            f"/zones/{zone_id}/argo/tiered_caching",
+            body=maybe_transform({"value": value}, tiered_caching_edit_params.TieredCachingEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[TieredCachingEditResponse]._unwrapper,
             ),
+            cast_to=cast(Type[TieredCachingEditResponse], ResultWrapper[TieredCachingEditResponse]),
         )
 
     def get(
@@ -115,21 +110,16 @@ class TieredCachingResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            TieredCachingGetResponse,
-            self._get(
-                f"/zones/{zone_id}/argo/tiered_caching",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[TieredCachingGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TieredCachingGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/zones/{zone_id}/argo/tiered_caching",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[TieredCachingGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[TieredCachingGetResponse], ResultWrapper[TieredCachingGetResponse]),
         )
 
 
@@ -172,22 +162,17 @@ class AsyncTieredCachingResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            TieredCachingEditResponse,
-            await self._patch(
-                f"/zones/{zone_id}/argo/tiered_caching",
-                body=await async_maybe_transform({"value": value}, tiered_caching_edit_params.TieredCachingEditParams),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[TieredCachingEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TieredCachingEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._patch(
+            f"/zones/{zone_id}/argo/tiered_caching",
+            body=await async_maybe_transform({"value": value}, tiered_caching_edit_params.TieredCachingEditParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[TieredCachingEditResponse]._unwrapper,
             ),
+            cast_to=cast(Type[TieredCachingEditResponse], ResultWrapper[TieredCachingEditResponse]),
         )
 
     async def get(
@@ -217,21 +202,16 @@ class AsyncTieredCachingResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            TieredCachingGetResponse,
-            await self._get(
-                f"/zones/{zone_id}/argo/tiered_caching",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[TieredCachingGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TieredCachingGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/zones/{zone_id}/argo/tiered_caching",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[TieredCachingGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[TieredCachingGetResponse], ResultWrapper[TieredCachingGetResponse]),
         )
 
 

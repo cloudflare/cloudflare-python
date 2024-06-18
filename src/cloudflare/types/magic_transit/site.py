@@ -13,7 +13,7 @@ class Site(BaseModel):
     """Identifier"""
 
     connector_id: Optional[str] = None
-    """Magic WAN Connector identifier tag."""
+    """Magic Connector identifier tag."""
 
     description: Optional[str] = None
 
@@ -31,4 +31,4 @@ class Site(BaseModel):
     """The name of the site."""
 
     secondary_connector_id: Optional[str] = None
-    """Magic WAN Connector identifier tag. Used when high availability mode is on."""
+    """Magic Connector identifier tag. Used when high availability mode is on."""

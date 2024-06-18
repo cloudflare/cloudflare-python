@@ -9,7 +9,7 @@ __all__ = ["DatabaseQueryParams"]
 
 
 class DatabaseQueryParams(TypedDict, total=False):
-    account_identifier: Required[str]
+    account_id: Required[str]
     """Account identifier tag."""
 
     sql: Required[str]

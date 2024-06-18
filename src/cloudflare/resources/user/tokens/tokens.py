@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Union, Iterable, Optional, cast
+from typing import Type, Union, Iterable, Optional, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -45,10 +45,8 @@ from .permission_groups import (
     AsyncPermissionGroupsResourceWithStreamingResponse,
 )
 from ....types.user.policy_param import PolicyParam
-from ....types.user.token_get_response import TokenGetResponse
 from ....types.user.token_create_response import TokenCreateResponse
 from ....types.user.token_delete_response import TokenDeleteResponse
-from ....types.user.token_update_response import TokenUpdateResponse
 from ....types.user.token_verify_response import TokenVerifyResponse
 
 __all__ = ["TokensResource", "AsyncTokensResource"]
@@ -85,7 +83,7 @@ class TokensResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TokenCreateResponse:
+    ) -> Optional[TokenCreateResponse]:
         """
         Create a new access token.
 
@@ -124,9 +122,9 @@ class TokensResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[TokenCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[TokenCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[TokenCreateResponse], ResultWrapper[TokenCreateResponse]),
+            cast_to=cast(Type[Optional[TokenCreateResponse]], ResultWrapper[TokenCreateResponse]),
         )
 
     def update(
@@ -145,7 +143,7 @@ class TokensResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TokenUpdateResponse:
+    ) -> object:
         """
         Update an existing token.
 
@@ -169,32 +167,27 @@ class TokensResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            TokenUpdateResponse,
-            self._put(
-                f"/user/tokens/{token_id}",
-                body=maybe_transform(
-                    {
-                        "name": name,
-                        "policies": policies,
-                        "status": status,
-                        "condition": condition,
-                        "expires_on": expires_on,
-                        "not_before": not_before,
-                    },
-                    token_update_params.TokenUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[TokenUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TokenUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/user/tokens/{token_id}",
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "policies": policies,
+                    "status": status,
+                    "condition": condition,
+                    "expires_on": expires_on,
+                    "not_before": not_before,
+                },
+                token_update_params.TokenUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def list(
@@ -293,7 +286,7 @@ class TokensResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TokenGetResponse:
+    ) -> object:
         """
         Get information about a specific token.
 
@@ -306,21 +299,16 @@ class TokensResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            TokenGetResponse,
-            self._get(
-                f"/user/tokens/{token_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[TokenGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TokenGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/user/tokens/{token_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def verify(
@@ -332,7 +320,7 @@ class TokensResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TokenVerifyResponse:
+    ) -> Optional[TokenVerifyResponse]:
         """Test whether a token works."""
         return self._get(
             "/user/tokens/verify",
@@ -341,9 +329,9 @@ class TokensResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[TokenVerifyResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[TokenVerifyResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[TokenVerifyResponse], ResultWrapper[TokenVerifyResponse]),
+            cast_to=cast(Type[Optional[TokenVerifyResponse]], ResultWrapper[TokenVerifyResponse]),
         )
 
 
@@ -378,7 +366,7 @@ class AsyncTokensResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TokenCreateResponse:
+    ) -> Optional[TokenCreateResponse]:
         """
         Create a new access token.
 
@@ -417,9 +405,9 @@ class AsyncTokensResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[TokenCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[TokenCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[TokenCreateResponse], ResultWrapper[TokenCreateResponse]),
+            cast_to=cast(Type[Optional[TokenCreateResponse]], ResultWrapper[TokenCreateResponse]),
         )
 
     async def update(
@@ -438,7 +426,7 @@ class AsyncTokensResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TokenUpdateResponse:
+    ) -> object:
         """
         Update an existing token.
 
@@ -462,32 +450,27 @@ class AsyncTokensResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            TokenUpdateResponse,
-            await self._put(
-                f"/user/tokens/{token_id}",
-                body=await async_maybe_transform(
-                    {
-                        "name": name,
-                        "policies": policies,
-                        "status": status,
-                        "condition": condition,
-                        "expires_on": expires_on,
-                        "not_before": not_before,
-                    },
-                    token_update_params.TokenUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[TokenUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TokenUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/user/tokens/{token_id}",
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "policies": policies,
+                    "status": status,
+                    "condition": condition,
+                    "expires_on": expires_on,
+                    "not_before": not_before,
+                },
+                token_update_params.TokenUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def list(
@@ -586,7 +569,7 @@ class AsyncTokensResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TokenGetResponse:
+    ) -> object:
         """
         Get information about a specific token.
 
@@ -599,21 +582,16 @@ class AsyncTokensResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            TokenGetResponse,
-            await self._get(
-                f"/user/tokens/{token_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[TokenGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[TokenGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/user/tokens/{token_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def verify(
@@ -625,7 +603,7 @@ class AsyncTokensResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TokenVerifyResponse:
+    ) -> Optional[TokenVerifyResponse]:
         """Test whether a token works."""
         return await self._get(
             "/user/tokens/verify",
@@ -634,9 +612,9 @@ class AsyncTokensResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[TokenVerifyResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[TokenVerifyResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[TokenVerifyResponse], ResultWrapper[TokenVerifyResponse]),
+            cast_to=cast(Type[Optional[TokenVerifyResponse]], ResultWrapper[TokenVerifyResponse]),
         )
 
 

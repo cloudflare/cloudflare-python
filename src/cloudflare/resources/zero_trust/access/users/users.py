@@ -70,8 +70,8 @@ class UsersResource(SyncAPIResource):
 
     def list(
         self,
-        identifier: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -83,7 +83,7 @@ class UsersResource(SyncAPIResource):
         Gets a list of users for an account.
 
         Args:
-          identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -93,10 +93,10 @@ class UsersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{identifier}/access/users",
+            f"/accounts/{account_id}/access/users",
             page=SyncSinglePage[AccessUser],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -128,8 +128,8 @@ class AsyncUsersResource(AsyncAPIResource):
 
     def list(
         self,
-        identifier: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -141,7 +141,7 @@ class AsyncUsersResource(AsyncAPIResource):
         Gets a list of users for an account.
 
         Args:
-          identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -151,10 +151,10 @@ class AsyncUsersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{identifier}/access/users",
+            f"/accounts/{account_id}/access/users",
             page=AsyncSinglePage[AccessUser],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout

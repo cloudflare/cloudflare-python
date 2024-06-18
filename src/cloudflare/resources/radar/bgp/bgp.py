@@ -2,12 +2,20 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, cast
+from typing import List, Type, Union, Iterable, cast
 from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
 
+from .ips import (
+    IPsResource,
+    AsyncIPsResource,
+    IPsResourceWithRawResponse,
+    AsyncIPsResourceWithRawResponse,
+    IPsResourceWithStreamingResponse,
+    AsyncIPsResourceWithStreamingResponse,
+)
 from .top import (
     TopResource,
     AsyncTopResource,
@@ -84,6 +92,10 @@ class BGPResource(SyncAPIResource):
         return RoutesResource(self._client)
 
     @cached_property
+    def ips(self) -> IPsResource:
+        return IPsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> BGPResourceWithRawResponse:
         return BGPResourceWithRawResponse(self)
 
@@ -120,7 +132,7 @@ class BGPResource(SyncAPIResource):
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
-        prefix: List[str] | NotGiven = NOT_GIVEN,
+        prefix: Iterable[bgp_timeseries_params.Prefix] | NotGiven = NOT_GIVEN,
         update_type: List[Literal["ANNOUNCEMENT", "WITHDRAWAL"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -213,6 +225,10 @@ class AsyncBGPResource(AsyncAPIResource):
         return AsyncRoutesResource(self._client)
 
     @cached_property
+    def ips(self) -> AsyncIPsResource:
+        return AsyncIPsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncBGPResourceWithRawResponse:
         return AsyncBGPResourceWithRawResponse(self)
 
@@ -249,7 +265,7 @@ class AsyncBGPResource(AsyncAPIResource):
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
-        prefix: List[str] | NotGiven = NOT_GIVEN,
+        prefix: Iterable[bgp_timeseries_params.Prefix] | NotGiven = NOT_GIVEN,
         update_type: List[Literal["ANNOUNCEMENT", "WITHDRAWAL"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -348,6 +364,10 @@ class BGPResourceWithRawResponse:
     def routes(self) -> RoutesResourceWithRawResponse:
         return RoutesResourceWithRawResponse(self._bgp.routes)
 
+    @cached_property
+    def ips(self) -> IPsResourceWithRawResponse:
+        return IPsResourceWithRawResponse(self._bgp.ips)
+
 
 class AsyncBGPResourceWithRawResponse:
     def __init__(self, bgp: AsyncBGPResource) -> None:
@@ -372,6 +392,10 @@ class AsyncBGPResourceWithRawResponse:
     @cached_property
     def routes(self) -> AsyncRoutesResourceWithRawResponse:
         return AsyncRoutesResourceWithRawResponse(self._bgp.routes)
+
+    @cached_property
+    def ips(self) -> AsyncIPsResourceWithRawResponse:
+        return AsyncIPsResourceWithRawResponse(self._bgp.ips)
 
 
 class BGPResourceWithStreamingResponse:
@@ -398,6 +422,10 @@ class BGPResourceWithStreamingResponse:
     def routes(self) -> RoutesResourceWithStreamingResponse:
         return RoutesResourceWithStreamingResponse(self._bgp.routes)
 
+    @cached_property
+    def ips(self) -> IPsResourceWithStreamingResponse:
+        return IPsResourceWithStreamingResponse(self._bgp.ips)
+
 
 class AsyncBGPResourceWithStreamingResponse:
     def __init__(self, bgp: AsyncBGPResource) -> None:
@@ -422,3 +450,7 @@ class AsyncBGPResourceWithStreamingResponse:
     @cached_property
     def routes(self) -> AsyncRoutesResourceWithStreamingResponse:
         return AsyncRoutesResourceWithStreamingResponse(self._bgp.routes)
+
+    @cached_property
+    def ips(self) -> AsyncIPsResourceWithStreamingResponse:
+        return AsyncIPsResourceWithStreamingResponse(self._bgp.ips)

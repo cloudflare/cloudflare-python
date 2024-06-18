@@ -2,11 +2,17 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Union, Optional, cast
+from datetime import datetime
+from typing_extensions import Literal
 
 import httpx
 
 from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
 from ....._resource import SyncAPIResource, AsyncAPIResource
 from ....._response import (
@@ -19,6 +25,7 @@ from ....._wrappers import ResultWrapper
 from ....._base_client import (
     make_request_options,
 )
+from .....types.zero_trust.access.logs import access_request_list_params
 from .....types.zero_trust.access.logs.access_request_list_response import AccessRequestListResponse
 
 __all__ = ["AccessRequestsResource", "AsyncAccessRequestsResource"]
@@ -35,8 +42,12 @@ class AccessRequestsResource(SyncAPIResource):
 
     def list(
         self,
-        identifier: str,
         *,
+        account_id: str,
+        direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        since: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        until: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -48,7 +59,15 @@ class AccessRequestsResource(SyncAPIResource):
         Gets a list of Access authentication audit logs for an account.
 
         Args:
-          identifier: Identifier
+          account_id: Identifier
+
+          direction: The chronological sorting order for the logs.
+
+          limit: The maximum number of log entries to retrieve.
+
+          since: The earliest event timestamp to query.
+
+          until: The latest event timestamp to query.
 
           extra_headers: Send extra headers
 
@@ -58,15 +77,24 @@ class AccessRequestsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
-            f"/accounts/{identifier}/access/logs/access_requests",
+            f"/accounts/{account_id}/access/logs/access_requests",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "direction": direction,
+                        "limit": limit,
+                        "since": since,
+                        "until": until,
+                    },
+                    access_request_list_params.AccessRequestListParams,
+                ),
                 post_parser=ResultWrapper[Optional[AccessRequestListResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AccessRequestListResponse]], ResultWrapper[AccessRequestListResponse]),
@@ -84,8 +112,12 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
 
     async def list(
         self,
-        identifier: str,
         *,
+        account_id: str,
+        direction: Literal["desc", "asc"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        since: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        until: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -97,7 +129,15 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
         Gets a list of Access authentication audit logs for an account.
 
         Args:
-          identifier: Identifier
+          account_id: Identifier
+
+          direction: The chronological sorting order for the logs.
+
+          limit: The maximum number of log entries to retrieve.
+
+          since: The earliest event timestamp to query.
+
+          until: The latest event timestamp to query.
 
           extra_headers: Send extra headers
 
@@ -107,15 +147,24 @@ class AsyncAccessRequestsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
-            f"/accounts/{identifier}/access/logs/access_requests",
+            f"/accounts/{account_id}/access/logs/access_requests",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "direction": direction,
+                        "limit": limit,
+                        "since": since,
+                        "until": until,
+                    },
+                    access_request_list_params.AccessRequestListParams,
+                ),
                 post_parser=ResultWrapper[Optional[AccessRequestListResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[AccessRequestListResponse]], ResultWrapper[AccessRequestListResponse]),

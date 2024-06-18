@@ -32,7 +32,7 @@ from ...types.zero_trust import (
     identity_provider_update_params,
 )
 from ...types.zero_trust.identity_provider import IdentityProvider
-from ...types.zero_trust.scim_config_param import ScimConfigParam
+from ...types.zero_trust.scim_config_param import SCIMConfigParam
 from ...types.zero_trust.identity_provider_type import IdentityProviderType
 from ...types.zero_trust.generic_oauth_config_param import GenericOAuthConfigParam
 from ...types.zero_trust.identity_provider_list_response import IdentityProviderListResponse
@@ -59,7 +59,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -107,7 +107,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -155,7 +155,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -203,7 +203,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -251,7 +251,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -299,7 +299,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -347,7 +347,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -395,7 +395,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -443,7 +443,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -491,7 +491,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -539,7 +539,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -587,7 +587,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -635,7 +635,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -683,7 +683,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -722,22 +722,7 @@ class IdentityProvidersResource(SyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-    )
+    @required_args(["config", "name", "type"])
     def create(
         self,
         *,
@@ -756,7 +741,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -805,14 +790,14 @@ class IdentityProvidersResource(SyncAPIResource):
     @overload
     def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AzureADConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -824,7 +809,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -856,14 +841,14 @@ class IdentityProvidersResource(SyncAPIResource):
     @overload
     def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AccessCentrifyConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -875,7 +860,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -907,14 +892,14 @@ class IdentityProvidersResource(SyncAPIResource):
     @overload
     def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -926,7 +911,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -958,14 +943,14 @@ class IdentityProvidersResource(SyncAPIResource):
     @overload
     def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -977,7 +962,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1009,14 +994,14 @@ class IdentityProvidersResource(SyncAPIResource):
     @overload
     def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AccessGoogleConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1028,7 +1013,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1060,14 +1045,14 @@ class IdentityProvidersResource(SyncAPIResource):
     @overload
     def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AccessGoogleAppsConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1079,7 +1064,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1111,14 +1096,14 @@ class IdentityProvidersResource(SyncAPIResource):
     @overload
     def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1130,7 +1115,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1162,14 +1147,14 @@ class IdentityProvidersResource(SyncAPIResource):
     @overload
     def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AccessOIDCConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1181,7 +1166,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1213,14 +1198,14 @@ class IdentityProvidersResource(SyncAPIResource):
     @overload
     def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AccessOktaConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1232,7 +1217,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1264,14 +1249,14 @@ class IdentityProvidersResource(SyncAPIResource):
     @overload
     def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AccessOneloginConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1283,7 +1268,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1315,14 +1300,14 @@ class IdentityProvidersResource(SyncAPIResource):
     @overload
     def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AccessPingoneConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1334,7 +1319,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1366,14 +1351,14 @@ class IdentityProvidersResource(SyncAPIResource):
     @overload
     def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AccessSAMLConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1385,7 +1370,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1417,14 +1402,14 @@ class IdentityProvidersResource(SyncAPIResource):
     @overload
     def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1436,7 +1421,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1468,14 +1453,14 @@ class IdentityProvidersResource(SyncAPIResource):
     @overload
     def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: object,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1487,7 +1472,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -1516,25 +1501,10 @@ class IdentityProvidersResource(SyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-    )
+    @required_args(["config", "name", "type"])
     def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AzureADConfig
         | identity_provider_update_params.AccessCentrifyConfig
@@ -1551,7 +1521,7 @@ class IdentityProvidersResource(SyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1559,8 +1529,10 @@ class IdentityProvidersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[IdentityProvider]:
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not identity_provider_id:
+            raise ValueError(
+                f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
+            )
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1576,7 +1548,7 @@ class IdentityProvidersResource(SyncAPIResource):
         return cast(
             Optional[IdentityProvider],
             self._put(
-                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
+                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
                 body=maybe_transform(
                     {
                         "config": config,
@@ -1652,7 +1624,7 @@ class IdentityProvidersResource(SyncAPIResource):
 
     def delete(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -1667,7 +1639,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Deletes an identity provider from Access.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -1681,8 +1653,10 @@ class IdentityProvidersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not identity_provider_id:
+            raise ValueError(
+                f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
+            )
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1696,7 +1670,7 @@ class IdentityProvidersResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -1709,7 +1683,7 @@ class IdentityProvidersResource(SyncAPIResource):
 
     def get(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -1724,7 +1698,7 @@ class IdentityProvidersResource(SyncAPIResource):
         Fetches a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -1738,8 +1712,10 @@ class IdentityProvidersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not identity_provider_id:
+            raise ValueError(
+                f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
+            )
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1755,7 +1731,7 @@ class IdentityProvidersResource(SyncAPIResource):
         return cast(
             Optional[IdentityProvider],
             self._get(
-                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
+                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -1788,7 +1764,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1836,7 +1812,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1884,7 +1860,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1932,7 +1908,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1980,7 +1956,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2028,7 +2004,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2076,7 +2052,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2124,7 +2100,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2172,7 +2148,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2220,7 +2196,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2268,7 +2244,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2316,7 +2292,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2364,7 +2340,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2412,7 +2388,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2451,22 +2427,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-    )
+    @required_args(["config", "name", "type"])
     async def create(
         self,
         *,
@@ -2485,7 +2446,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2534,14 +2495,14 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AzureADConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2553,7 +2514,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -2585,14 +2546,14 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AccessCentrifyConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2604,7 +2565,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -2636,14 +2597,14 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2655,7 +2616,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -2687,14 +2648,14 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2706,7 +2667,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -2738,14 +2699,14 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AccessGoogleConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2757,7 +2718,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -2789,14 +2750,14 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AccessGoogleAppsConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2808,7 +2769,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -2840,14 +2801,14 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2859,7 +2820,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -2891,14 +2852,14 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AccessOIDCConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2910,7 +2871,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -2942,14 +2903,14 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AccessOktaConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2961,7 +2922,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -2993,14 +2954,14 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AccessOneloginConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3012,7 +2973,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -3044,14 +3005,14 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AccessPingoneConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3063,7 +3024,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -3095,14 +3056,14 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AccessSAMLConfig,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3114,7 +3075,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -3146,14 +3107,14 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: GenericOAuthConfigParam,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3165,7 +3126,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -3197,14 +3158,14 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: object,
         name: str,
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3216,7 +3177,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Updates a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           config: The configuration parameters for the identity provider. To view the required
               parameters for a specific provider, refer to our
@@ -3245,25 +3206,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-        ["config", "name", "type"],
-    )
+    @required_args(["config", "name", "type"])
     async def update(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         config: identity_provider_update_params.AzureADConfig
         | identity_provider_update_params.AccessCentrifyConfig
@@ -3280,7 +3226,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         type: IdentityProviderType,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
-        scim_config: ScimConfigParam | NotGiven = NOT_GIVEN,
+        scim_config: SCIMConfigParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3288,8 +3234,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[IdentityProvider]:
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not identity_provider_id:
+            raise ValueError(
+                f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
+            )
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3305,7 +3253,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         return cast(
             Optional[IdentityProvider],
             await self._put(
-                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
+                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
                 body=await async_maybe_transform(
                     {
                         "config": config,
@@ -3381,7 +3329,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
     async def delete(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -3396,7 +3344,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Deletes an identity provider from Access.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -3410,8 +3358,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not identity_provider_id:
+            raise ValueError(
+                f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
+            )
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3425,7 +3375,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -3438,7 +3388,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
     async def get(
         self,
-        uuid: str,
+        identity_provider_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -3453,7 +3403,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         Fetches a configured identity provider.
 
         Args:
-          uuid: UUID
+          identity_provider_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -3467,8 +3417,10 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not identity_provider_id:
+            raise ValueError(
+                f"Expected a non-empty value for `identity_provider_id` but received {identity_provider_id!r}"
+            )
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3484,7 +3436,7 @@ class AsyncIdentityProvidersResource(AsyncAPIResource):
         return cast(
             Optional[IdentityProvider],
             await self._get(
-                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{uuid}",
+                f"/{account_or_zone}/{account_or_zone_id}/access/identity_providers/{identity_provider_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

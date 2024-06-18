@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -16,6 +17,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
     AsyncPaginator,
@@ -169,14 +171,14 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScriptGetResponse:
+    ) -> Optional[ScriptGetResponse]:
         """
         Fetches a script detected by Page Shield by script ID.
 
         Args:
           zone_id: Identifier
 
-          script_id: The ID of the resource.
+          script_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -193,9 +195,13 @@ class ScriptsResource(SyncAPIResource):
         return self._get(
             f"/zones/{zone_id}/page_shield/scripts/{script_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ScriptGetResponse]]._unwrapper,
             ),
-            cast_to=ScriptGetResponse,
+            cast_to=cast(Type[Optional[ScriptGetResponse]], ResultWrapper[ScriptGetResponse]),
         )
 
 
@@ -340,14 +346,14 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ScriptGetResponse:
+    ) -> Optional[ScriptGetResponse]:
         """
         Fetches a script detected by Page Shield by script ID.
 
         Args:
           zone_id: Identifier
 
-          script_id: The ID of the resource.
+          script_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -364,9 +370,13 @@ class AsyncScriptsResource(AsyncAPIResource):
         return await self._get(
             f"/zones/{zone_id}/page_shield/scripts/{script_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ScriptGetResponse]]._unwrapper,
             ),
-            cast_to=ScriptGetResponse,
+            cast_to=cast(Type[Optional[ScriptGetResponse]], ResultWrapper[ScriptGetResponse]),
         )
 
 

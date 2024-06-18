@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Union, cast
-from datetime import datetime
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -25,11 +24,11 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.radar.bgp import route_moas_params, route_stats_params, route_pfx2as_params, route_timeseries_params
+from ....types.radar.bgp import route_ases_params, route_moas_params, route_stats_params, route_pfx2as_params
+from ....types.radar.bgp.route_ases_response import RouteAsesResponse
 from ....types.radar.bgp.route_moas_response import RouteMoasResponse
 from ....types.radar.bgp.route_stats_response import RouteStatsResponse
 from ....types.radar.bgp.route_pfx2as_response import RoutePfx2asResponse
-from ....types.radar.bgp.route_timeseries_response import RouteTimeseriesResponse
 
 __all__ = ["RoutesResource", "AsyncRoutesResource"]
 
@@ -42,6 +41,66 @@ class RoutesResource(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> RoutesResourceWithStreamingResponse:
         return RoutesResourceWithStreamingResponse(self)
+
+    def ases(
+        self,
+        *,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: str | NotGiven = NOT_GIVEN,
+        sort_by: Literal["cone", "pfxs", "ipv4", "ipv6", "rpki_valid", "rpki_invalid", "rpki_unknown"]
+        | NotGiven = NOT_GIVEN,
+        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteAsesResponse:
+        """
+        List all ASes on current global routing tables with routing statistics
+
+        Args:
+          format: Format results are returned in.
+
+          limit: Limit the number of objects in the response.
+
+          location: Location Alpha2 code.
+
+          sort_by: Return order results by given type
+
+          sort_order: Sort by value ascending or descending
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get(
+            "/radar/bgp/routes/ases",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "format": format,
+                        "limit": limit,
+                        "location": location,
+                        "sort_by": sort_by,
+                        "sort_order": sort_order,
+                    },
+                    route_ases_params.RouteAsesParams,
+                ),
+                post_parser=ResultWrapper[RouteAsesResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[RouteAsesResponse], ResultWrapper[RouteAsesResponse]),
+        )
 
     def moas(
         self,
@@ -67,7 +126,7 @@ class RoutesResource(SyncAPIResource):
 
           origin: Lookup MOASes originated by the given ASN
 
-          prefix: Lookup MOASes by prefix
+          prefix: Network prefix, IPv4 or IPv6.
 
           extra_headers: Send extra headers
 
@@ -124,7 +183,7 @@ class RoutesResource(SyncAPIResource):
 
           origin: Lookup prefixes originated by the given ASN
 
-          prefix: Lookup origin ASNs of the given prefix
+          prefix: Network prefix, IPv4 or IPv6.
 
           rpki_status: Return only results with matching rpki status: valid, invalid or unknown
 
@@ -209,92 +268,6 @@ class RoutesResource(SyncAPIResource):
             cast_to=cast(Type[RouteStatsResponse], ResultWrapper[RouteStatsResponse]),
         )
 
-    def timeseries(
-        self,
-        *,
-        asn: int | NotGiven = NOT_GIVEN,
-        date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_range: Literal[
-            "1d",
-            "2d",
-            "7d",
-            "14d",
-            "28d",
-            "12w",
-            "24w",
-            "52w",
-            "1dControl",
-            "2dControl",
-            "7dControl",
-            "14dControl",
-            "28dControl",
-            "12wControl",
-            "24wControl",
-        ]
-        | NotGiven = NOT_GIVEN,
-        date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        include_delay: bool | NotGiven = NOT_GIVEN,
-        location: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteTimeseriesResponse:
-        """
-        Gets time-series data for the announced IP space count, represented as the
-        number of IPv4 /24s and IPv6 /48s, for a given ASN.
-
-        Args:
-          asn: Single ASN as integer.
-
-          date_end: End of the date range (inclusive).
-
-          date_range: Shorthand date ranges for the last X days - use when you don't need specific
-              start and end dates.
-
-          date_start: Start of the date range (inclusive).
-
-          format: Format results are returned in.
-
-          include_delay: Include data delay meta information
-
-          location: Location Alpha2 code.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._get(
-            "/radar/bgp/routes/timeseries",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "asn": asn,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "format": format,
-                        "include_delay": include_delay,
-                        "location": location,
-                    },
-                    route_timeseries_params.RouteTimeseriesParams,
-                ),
-                post_parser=ResultWrapper[RouteTimeseriesResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[RouteTimeseriesResponse], ResultWrapper[RouteTimeseriesResponse]),
-        )
-
 
 class AsyncRoutesResource(AsyncAPIResource):
     @cached_property
@@ -304,6 +277,66 @@ class AsyncRoutesResource(AsyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> AsyncRoutesResourceWithStreamingResponse:
         return AsyncRoutesResourceWithStreamingResponse(self)
+
+    async def ases(
+        self,
+        *,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        location: str | NotGiven = NOT_GIVEN,
+        sort_by: Literal["cone", "pfxs", "ipv4", "ipv6", "rpki_valid", "rpki_invalid", "rpki_unknown"]
+        | NotGiven = NOT_GIVEN,
+        sort_order: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteAsesResponse:
+        """
+        List all ASes on current global routing tables with routing statistics
+
+        Args:
+          format: Format results are returned in.
+
+          limit: Limit the number of objects in the response.
+
+          location: Location Alpha2 code.
+
+          sort_by: Return order results by given type
+
+          sort_order: Sort by value ascending or descending
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._get(
+            "/radar/bgp/routes/ases",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "format": format,
+                        "limit": limit,
+                        "location": location,
+                        "sort_by": sort_by,
+                        "sort_order": sort_order,
+                    },
+                    route_ases_params.RouteAsesParams,
+                ),
+                post_parser=ResultWrapper[RouteAsesResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[RouteAsesResponse], ResultWrapper[RouteAsesResponse]),
+        )
 
     async def moas(
         self,
@@ -329,7 +362,7 @@ class AsyncRoutesResource(AsyncAPIResource):
 
           origin: Lookup MOASes originated by the given ASN
 
-          prefix: Lookup MOASes by prefix
+          prefix: Network prefix, IPv4 or IPv6.
 
           extra_headers: Send extra headers
 
@@ -386,7 +419,7 @@ class AsyncRoutesResource(AsyncAPIResource):
 
           origin: Lookup prefixes originated by the given ASN
 
-          prefix: Lookup origin ASNs of the given prefix
+          prefix: Network prefix, IPv4 or IPv6.
 
           rpki_status: Return only results with matching rpki status: valid, invalid or unknown
 
@@ -471,97 +504,14 @@ class AsyncRoutesResource(AsyncAPIResource):
             cast_to=cast(Type[RouteStatsResponse], ResultWrapper[RouteStatsResponse]),
         )
 
-    async def timeseries(
-        self,
-        *,
-        asn: int | NotGiven = NOT_GIVEN,
-        date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_range: Literal[
-            "1d",
-            "2d",
-            "7d",
-            "14d",
-            "28d",
-            "12w",
-            "24w",
-            "52w",
-            "1dControl",
-            "2dControl",
-            "7dControl",
-            "14dControl",
-            "28dControl",
-            "12wControl",
-            "24wControl",
-        ]
-        | NotGiven = NOT_GIVEN,
-        date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-        include_delay: bool | NotGiven = NOT_GIVEN,
-        location: str | NotGiven = NOT_GIVEN,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> RouteTimeseriesResponse:
-        """
-        Gets time-series data for the announced IP space count, represented as the
-        number of IPv4 /24s and IPv6 /48s, for a given ASN.
-
-        Args:
-          asn: Single ASN as integer.
-
-          date_end: End of the date range (inclusive).
-
-          date_range: Shorthand date ranges for the last X days - use when you don't need specific
-              start and end dates.
-
-          date_start: Start of the date range (inclusive).
-
-          format: Format results are returned in.
-
-          include_delay: Include data delay meta information
-
-          location: Location Alpha2 code.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._get(
-            "/radar/bgp/routes/timeseries",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "asn": asn,
-                        "date_end": date_end,
-                        "date_range": date_range,
-                        "date_start": date_start,
-                        "format": format,
-                        "include_delay": include_delay,
-                        "location": location,
-                    },
-                    route_timeseries_params.RouteTimeseriesParams,
-                ),
-                post_parser=ResultWrapper[RouteTimeseriesResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[RouteTimeseriesResponse], ResultWrapper[RouteTimeseriesResponse]),
-        )
-
 
 class RoutesResourceWithRawResponse:
     def __init__(self, routes: RoutesResource) -> None:
         self._routes = routes
 
+        self.ases = to_raw_response_wrapper(
+            routes.ases,
+        )
         self.moas = to_raw_response_wrapper(
             routes.moas,
         )
@@ -571,15 +521,15 @@ class RoutesResourceWithRawResponse:
         self.stats = to_raw_response_wrapper(
             routes.stats,
         )
-        self.timeseries = to_raw_response_wrapper(
-            routes.timeseries,
-        )
 
 
 class AsyncRoutesResourceWithRawResponse:
     def __init__(self, routes: AsyncRoutesResource) -> None:
         self._routes = routes
 
+        self.ases = async_to_raw_response_wrapper(
+            routes.ases,
+        )
         self.moas = async_to_raw_response_wrapper(
             routes.moas,
         )
@@ -589,15 +539,15 @@ class AsyncRoutesResourceWithRawResponse:
         self.stats = async_to_raw_response_wrapper(
             routes.stats,
         )
-        self.timeseries = async_to_raw_response_wrapper(
-            routes.timeseries,
-        )
 
 
 class RoutesResourceWithStreamingResponse:
     def __init__(self, routes: RoutesResource) -> None:
         self._routes = routes
 
+        self.ases = to_streamed_response_wrapper(
+            routes.ases,
+        )
         self.moas = to_streamed_response_wrapper(
             routes.moas,
         )
@@ -607,15 +557,15 @@ class RoutesResourceWithStreamingResponse:
         self.stats = to_streamed_response_wrapper(
             routes.stats,
         )
-        self.timeseries = to_streamed_response_wrapper(
-            routes.timeseries,
-        )
 
 
 class AsyncRoutesResourceWithStreamingResponse:
     def __init__(self, routes: AsyncRoutesResource) -> None:
         self._routes = routes
 
+        self.ases = async_to_streamed_response_wrapper(
+            routes.ases,
+        )
         self.moas = async_to_streamed_response_wrapper(
             routes.moas,
         )
@@ -624,7 +574,4 @@ class AsyncRoutesResourceWithStreamingResponse:
         )
         self.stats = async_to_streamed_response_wrapper(
             routes.stats,
-        )
-        self.timeseries = async_to_streamed_response_wrapper(
-            routes.timeseries,
         )

@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.addressing import (
     AddressMap,
@@ -36,6 +37,24 @@ class TestAddressMaps:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="My Ecommerce zones",
             enabled=True,
+            ips=["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+            memberships=[
+                {
+                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
+                    "identifier": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "kind": "zone",
+                },
+                {
+                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
+                    "identifier": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "kind": "zone",
+                },
+                {
+                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
+                    "identifier": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "kind": "zone",
+                },
+            ],
         )
         assert_matches_type(Optional[AddressMapCreateResponse], address_map, path=["response"])
 
@@ -280,6 +299,24 @@ class TestAsyncAddressMaps:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="My Ecommerce zones",
             enabled=True,
+            ips=["192.0.2.1", "192.0.2.1", "192.0.2.1"],
+            memberships=[
+                {
+                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
+                    "identifier": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "kind": "zone",
+                },
+                {
+                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
+                    "identifier": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "kind": "zone",
+                },
+                {
+                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
+                    "identifier": "023e105f4ecef8ad9ca31a8372d0c353",
+                    "kind": "zone",
+                },
+            ],
         )
         assert_matches_type(Optional[AddressMapCreateResponse], address_map, path=["response"])
 

@@ -9,9 +9,9 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.gateway import (
     ProxyEndpoint,
+    ProxyEndpointGetResponse,
     ProxyEndpointDeleteResponse,
 )
 
@@ -72,7 +72,7 @@ class TestProxyEndpoints:
         proxy_endpoint = client.zero_trust.gateway.proxy_endpoints.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(SyncSinglePage[ProxyEndpoint], proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -83,7 +83,7 @@ class TestProxyEndpoints:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         proxy_endpoint = response.parse()
-        assert_matches_type(SyncSinglePage[ProxyEndpoint], proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -94,7 +94,7 @@ class TestProxyEndpoints:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             proxy_endpoint = response.parse()
-            assert_matches_type(SyncSinglePage[ProxyEndpoint], proxy_endpoint, path=["response"])
+            assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -217,7 +217,7 @@ class TestProxyEndpoints:
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpointGetResponse], proxy_endpoint, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -229,7 +229,7 @@ class TestProxyEndpoints:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         proxy_endpoint = response.parse()
-        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpointGetResponse], proxy_endpoint, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -241,7 +241,7 @@ class TestProxyEndpoints:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             proxy_endpoint = response.parse()
-            assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
+            assert_matches_type(Optional[ProxyEndpointGetResponse], proxy_endpoint, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -314,7 +314,7 @@ class TestAsyncProxyEndpoints:
         proxy_endpoint = await async_client.zero_trust.gateway.proxy_endpoints.list(
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(AsyncSinglePage[ProxyEndpoint], proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -325,7 +325,7 @@ class TestAsyncProxyEndpoints:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         proxy_endpoint = await response.parse()
-        assert_matches_type(AsyncSinglePage[ProxyEndpoint], proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -336,7 +336,7 @@ class TestAsyncProxyEndpoints:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             proxy_endpoint = await response.parse()
-            assert_matches_type(AsyncSinglePage[ProxyEndpoint], proxy_endpoint, path=["response"])
+            assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -459,7 +459,7 @@ class TestAsyncProxyEndpoints:
             "ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpointGetResponse], proxy_endpoint, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -471,7 +471,7 @@ class TestAsyncProxyEndpoints:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         proxy_endpoint = await response.parse()
-        assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
+        assert_matches_type(Optional[ProxyEndpointGetResponse], proxy_endpoint, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -483,7 +483,7 @@ class TestAsyncProxyEndpoints:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             proxy_endpoint = await response.parse()
-            assert_matches_type(Optional[ProxyEndpoint], proxy_endpoint, path=["response"])
+            assert_matches_type(Optional[ProxyEndpointGetResponse], proxy_endpoint, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

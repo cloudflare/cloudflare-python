@@ -71,6 +71,13 @@ __all__ = [
     "SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTL",
     "SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRange",
     "SetCacheSettingsRuleActionParametersServeStale",
+    "RulesetsLogCustomFieldRule",
+    "RulesetsLogCustomFieldRuleActionParameters",
+    "RulesetsLogCustomFieldRuleActionParametersCookieField",
+    "RulesetsLogCustomFieldRuleActionParametersRequestField",
+    "RulesetsLogCustomFieldRuleActionParametersResponseField",
+    "RulesetsDDoSDynamicRule",
+    "RulesetsForceConnectionCloseRule",
 ]
 
 
@@ -780,14 +787,20 @@ class SetConfigRuleActionParameters(TypedDict, total=False):
     bic: bool
     """Turn on or off Browser Integrity Check."""
 
-    disable_apps: bool
+    disable_apps: Literal[True]
     """Turn off all active Cloudflare Apps."""
 
-    disable_zaraz: bool
+    disable_rum: Literal[True]
+    """Turn off Real User Monitoring (RUM)."""
+
+    disable_zaraz: Literal[True]
     """Turn off Zaraz."""
 
     email_obfuscation: bool
     """Turn on or off Email Obfuscation."""
+
+    fonts: bool
+    """Turn on or off Cloudflare Fonts."""
 
     hotlink_protection: bool
     """Turn on or off the Hotlink Protection."""
@@ -1181,6 +1194,137 @@ class SetCacheSettingsRuleActionParameters(TypedDict, total=False):
     """
 
 
+class RulesetsLogCustomFieldRule(TypedDict, total=False):
+    ruleset_id: Required[str]
+    """The unique ID of the ruleset."""
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    id: str
+    """The unique ID of the rule."""
+
+    action: Literal["log_custom_field"]
+    """The action to perform when the rule matches."""
+
+    action_parameters: RulesetsLogCustomFieldRuleActionParameters
+    """The parameters configuring the rule's action."""
+
+    description: str
+    """An informative description of the rule."""
+
+    enabled: bool
+    """Whether the rule should be executed."""
+
+    expression: str
+    """The expression defining which traffic will match the rule."""
+
+    logging: LoggingParam
+    """An object configuring the rule's logging behavior."""
+
+    ref: str
+    """The reference of the rule (the rule ID by default)."""
+
+
+class RulesetsLogCustomFieldRuleActionParametersCookieField(TypedDict, total=False):
+    name: Required[str]
+    """The name of the field."""
+
+
+class RulesetsLogCustomFieldRuleActionParametersRequestField(TypedDict, total=False):
+    name: Required[str]
+    """The name of the field."""
+
+
+class RulesetsLogCustomFieldRuleActionParametersResponseField(TypedDict, total=False):
+    name: Required[str]
+    """The name of the field."""
+
+
+class RulesetsLogCustomFieldRuleActionParameters(TypedDict, total=False):
+    cookie_fields: Iterable[RulesetsLogCustomFieldRuleActionParametersCookieField]
+    """The cookie fields to log."""
+
+    request_fields: Iterable[RulesetsLogCustomFieldRuleActionParametersRequestField]
+    """The request fields to log."""
+
+    response_fields: Iterable[RulesetsLogCustomFieldRuleActionParametersResponseField]
+    """The response fields to log."""
+
+
+class RulesetsDDoSDynamicRule(TypedDict, total=False):
+    ruleset_id: Required[str]
+    """The unique ID of the ruleset."""
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    id: str
+    """The unique ID of the rule."""
+
+    action: Literal["ddos_dynamic"]
+    """The action to perform when the rule matches."""
+
+    action_parameters: object
+    """The parameters configuring the rule's action."""
+
+    description: str
+    """An informative description of the rule."""
+
+    enabled: bool
+    """Whether the rule should be executed."""
+
+    expression: str
+    """The expression defining which traffic will match the rule."""
+
+    logging: LoggingParam
+    """An object configuring the rule's logging behavior."""
+
+    ref: str
+    """The reference of the rule (the rule ID by default)."""
+
+
+class RulesetsForceConnectionCloseRule(TypedDict, total=False):
+    ruleset_id: Required[str]
+    """The unique ID of the ruleset."""
+
+    account_id: str
+    """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
+
+    zone_id: str
+    """The Zone ID to use for this endpoint. Mutually exclusive with the Account ID."""
+
+    id: str
+    """The unique ID of the rule."""
+
+    action: Literal["force_connection_close"]
+    """The action to perform when the rule matches."""
+
+    action_parameters: object
+    """The parameters configuring the rule's action."""
+
+    description: str
+    """An informative description of the rule."""
+
+    enabled: bool
+    """Whether the rule should be executed."""
+
+    expression: str
+    """The expression defining which traffic will match the rule."""
+
+    logging: LoggingParam
+    """An object configuring the rule's logging behavior."""
+
+    ref: str
+    """The reference of the rule (the rule ID by default)."""
+
+
 RuleEditParams = Union[
     BlockRule,
     ChallengeRule,
@@ -1197,4 +1341,7 @@ RuleEditParams = Union[
     SetConfigRule,
     SkipRule,
     SetCacheSettingsRule,
+    RulesetsLogCustomFieldRule,
+    RulesetsDDoSDynamicRule,
+    RulesetsForceConnectionCloseRule,
 ]

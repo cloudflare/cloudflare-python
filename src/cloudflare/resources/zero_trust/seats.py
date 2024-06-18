@@ -40,8 +40,8 @@ class SeatsResource(SyncAPIResource):
 
     def edit(
         self,
-        identifier: str,
         *,
+        account_id: str,
         body: Iterable[seat_edit_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -55,7 +55,7 @@ class SeatsResource(SyncAPIResource):
         are set to false.
 
         Args:
-          identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -65,10 +65,10 @@ class SeatsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._patch(
-            f"/accounts/{identifier}/access/seats",
+            f"/accounts/{account_id}/access/seats",
             body=maybe_transform(body, seat_edit_params.SeatEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -92,8 +92,8 @@ class AsyncSeatsResource(AsyncAPIResource):
 
     async def edit(
         self,
-        identifier: str,
         *,
+        account_id: str,
         body: Iterable[seat_edit_params.Body],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -107,7 +107,7 @@ class AsyncSeatsResource(AsyncAPIResource):
         are set to false.
 
         Args:
-          identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -117,10 +117,10 @@ class AsyncSeatsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._patch(
-            f"/accounts/{identifier}/access/seats",
+            f"/accounts/{account_id}/access/seats",
             body=await async_maybe_transform(body, seat_edit_params.SeatEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,

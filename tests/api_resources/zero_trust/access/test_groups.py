@@ -207,7 +207,7 @@ class TestGroups:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             client.zero_trust.access.groups.with_raw_response.update(
                 "",
                 include=[
@@ -347,7 +347,7 @@ class TestGroups:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             client.zero_trust.access.groups.with_raw_response.delete(
                 "",
                 account_id="string",
@@ -414,7 +414,7 @@ class TestGroups:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             client.zero_trust.access.groups.with_raw_response.get(
                 "",
                 account_id="string",
@@ -622,7 +622,7 @@ class TestAsyncGroups:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             await async_client.zero_trust.access.groups.with_raw_response.update(
                 "",
                 include=[
@@ -762,7 +762,7 @@ class TestAsyncGroups:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             await async_client.zero_trust.access.groups.with_raw_response.delete(
                 "",
                 account_id="string",
@@ -829,7 +829,7 @@ class TestAsyncGroups:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `group_id` but received ''"):
             await async_client.zero_trust.access.groups.with_raw_response.get(
                 "",
                 account_id="string",

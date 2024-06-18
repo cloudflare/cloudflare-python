@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -14,10 +14,18 @@ from ...._utils import (
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 from ...._response import (
+    BinaryAPIResponse,
+    AsyncBinaryAPIResponse,
+    StreamedBinaryAPIResponse,
+    AsyncStreamedBinaryAPIResponse,
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
+    to_custom_raw_response_wrapper,
     async_to_streamed_response_wrapper,
+    to_custom_streamed_response_wrapper,
+    async_to_custom_raw_response_wrapper,
+    async_to_custom_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import (
@@ -53,7 +61,7 @@ class ValuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ValueUpdateResponse:
+    ) -> Optional[ValueUpdateResponse]:
         """Write a value identified by a key.
 
         Use URL-encoding to use special characters
@@ -89,28 +97,23 @@ class ValuesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
-        return cast(
-            ValueUpdateResponse,
-            self._put(
-                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
-                body=maybe_transform(
-                    {
-                        "metadata": metadata,
-                        "value": value,
-                    },
-                    value_update_params.ValueUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ValueUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ValueUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+            body=maybe_transform(
+                {
+                    "metadata": metadata,
+                    "value": value,
+                },
+                value_update_params.ValueUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ValueUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[ValueUpdateResponse]], ResultWrapper[ValueUpdateResponse]),
         )
 
     def delete(
@@ -125,7 +128,7 @@ class ValuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ValueDeleteResponse:
+    ) -> Optional[ValueDeleteResponse]:
         """Remove a KV pair from the namespace.
 
         Use URL-encoding to use special characters
@@ -153,21 +156,16 @@ class ValuesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
-        return cast(
-            ValueDeleteResponse,
-            self._delete(
-                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ValueDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ValueDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ValueDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[ValueDeleteResponse]], ResultWrapper[ValueDeleteResponse]),
         )
 
     def get(
@@ -182,7 +180,7 @@ class ValuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> BinaryAPIResponse:
         """Returns the value associated with the given key in the given namespace.
 
         Use
@@ -213,12 +211,13 @@ class ValuesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
+        extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return self._get(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=str,
+            cast_to=BinaryAPIResponse,
         )
 
 
@@ -245,7 +244,7 @@ class AsyncValuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ValueUpdateResponse:
+    ) -> Optional[ValueUpdateResponse]:
         """Write a value identified by a key.
 
         Use URL-encoding to use special characters
@@ -281,28 +280,23 @@ class AsyncValuesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
-        return cast(
-            ValueUpdateResponse,
-            await self._put(
-                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
-                body=await async_maybe_transform(
-                    {
-                        "metadata": metadata,
-                        "value": value,
-                    },
-                    value_update_params.ValueUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ValueUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ValueUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+            body=await async_maybe_transform(
+                {
+                    "metadata": metadata,
+                    "value": value,
+                },
+                value_update_params.ValueUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ValueUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[ValueUpdateResponse]], ResultWrapper[ValueUpdateResponse]),
         )
 
     async def delete(
@@ -317,7 +311,7 @@ class AsyncValuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ValueDeleteResponse:
+    ) -> Optional[ValueDeleteResponse]:
         """Remove a KV pair from the namespace.
 
         Use URL-encoding to use special characters
@@ -345,21 +339,16 @@ class AsyncValuesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
-        return cast(
-            ValueDeleteResponse,
-            await self._delete(
-                f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ValueDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ValueDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ValueDeleteResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[ValueDeleteResponse]], ResultWrapper[ValueDeleteResponse]),
         )
 
     async def get(
@@ -374,7 +363,7 @@ class AsyncValuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> AsyncBinaryAPIResponse:
         """Returns the value associated with the given key in the given namespace.
 
         Use
@@ -405,12 +394,13 @@ class AsyncValuesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         if not key_name:
             raise ValueError(f"Expected a non-empty value for `key_name` but received {key_name!r}")
+        extra_headers = {"Accept": "application/octet-stream", **(extra_headers or {})}
         return await self._get(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/values/{key_name}",
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=str,
+            cast_to=AsyncBinaryAPIResponse,
         )
 
 
@@ -424,8 +414,9 @@ class ValuesResourceWithRawResponse:
         self.delete = to_raw_response_wrapper(
             values.delete,
         )
-        self.get = to_raw_response_wrapper(
+        self.get = to_custom_raw_response_wrapper(
             values.get,
+            BinaryAPIResponse,
         )
 
 
@@ -439,8 +430,9 @@ class AsyncValuesResourceWithRawResponse:
         self.delete = async_to_raw_response_wrapper(
             values.delete,
         )
-        self.get = async_to_raw_response_wrapper(
+        self.get = async_to_custom_raw_response_wrapper(
             values.get,
+            AsyncBinaryAPIResponse,
         )
 
 
@@ -454,8 +446,9 @@ class ValuesResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             values.delete,
         )
-        self.get = to_streamed_response_wrapper(
+        self.get = to_custom_streamed_response_wrapper(
             values.get,
+            StreamedBinaryAPIResponse,
         )
 
 
@@ -469,6 +462,7 @@ class AsyncValuesResourceWithStreamingResponse:
         self.delete = async_to_streamed_response_wrapper(
             values.delete,
         )
-        self.get = async_to_streamed_response_wrapper(
+        self.get = async_to_custom_streamed_response_wrapper(
             values.get,
+            AsyncStreamedBinaryAPIResponse,
         )

@@ -1,5 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from .cookies import (
+    CookiesResource,
+    AsyncCookiesResource,
+    CookiesResourceWithRawResponse,
+    AsyncCookiesResourceWithRawResponse,
+    CookiesResourceWithStreamingResponse,
+    AsyncCookiesResourceWithStreamingResponse,
+)
 from .scripts import (
     ScriptsResource,
     AsyncScriptsResource,
@@ -52,6 +60,12 @@ __all__ = [
     "AsyncScriptsResourceWithRawResponse",
     "ScriptsResourceWithStreamingResponse",
     "AsyncScriptsResourceWithStreamingResponse",
+    "CookiesResource",
+    "AsyncCookiesResource",
+    "CookiesResourceWithRawResponse",
+    "AsyncCookiesResourceWithRawResponse",
+    "CookiesResourceWithStreamingResponse",
+    "AsyncCookiesResourceWithStreamingResponse",
     "PageShieldResource",
     "AsyncPageShieldResource",
     "PageShieldResourceWithRawResponse",

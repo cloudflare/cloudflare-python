@@ -85,6 +85,7 @@ class Cloudflare(SyncAPIClient):
     kv: resources.KVResource
     durable_objects: resources.DurableObjectsResource
     queues: resources.QueuesResource
+    api_gateway: resources.APIGatewayResource
     managed_headers: resources.ManagedHeadersResource
     page_shield: resources.PageShieldResource
     rulesets: resources.RulesetsResource
@@ -129,6 +130,7 @@ class Cloudflare(SyncAPIClient):
     cloudforce_one: resources.CloudforceOneResource
     event_notifications: resources.EventNotificationsResource
     ai_gateway: resources.AIGatewayResource
+    iam: resources.IAMResource
     with_raw_response: CloudflareWithRawResponse
     with_streaming_response: CloudflareWithStreamedResponse
 
@@ -242,6 +244,7 @@ class Cloudflare(SyncAPIClient):
         self.kv = resources.KVResource(self)
         self.durable_objects = resources.DurableObjectsResource(self)
         self.queues = resources.QueuesResource(self)
+        self.api_gateway = resources.APIGatewayResource(self)
         self.managed_headers = resources.ManagedHeadersResource(self)
         self.page_shield = resources.PageShieldResource(self)
         self.rulesets = resources.RulesetsResource(self)
@@ -286,6 +289,7 @@ class Cloudflare(SyncAPIClient):
         self.cloudforce_one = resources.CloudforceOneResource(self)
         self.event_notifications = resources.EventNotificationsResource(self)
         self.ai_gateway = resources.AIGatewayResource(self)
+        self.iam = resources.IAMResource(self)
         self.with_raw_response = CloudflareWithRawResponse(self)
         self.with_streaming_response = CloudflareWithStreamedResponse(self)
 
@@ -502,6 +506,7 @@ class AsyncCloudflare(AsyncAPIClient):
     kv: resources.AsyncKVResource
     durable_objects: resources.AsyncDurableObjectsResource
     queues: resources.AsyncQueuesResource
+    api_gateway: resources.AsyncAPIGatewayResource
     managed_headers: resources.AsyncManagedHeadersResource
     page_shield: resources.AsyncPageShieldResource
     rulesets: resources.AsyncRulesetsResource
@@ -546,6 +551,7 @@ class AsyncCloudflare(AsyncAPIClient):
     cloudforce_one: resources.AsyncCloudforceOneResource
     event_notifications: resources.AsyncEventNotificationsResource
     ai_gateway: resources.AsyncAIGatewayResource
+    iam: resources.AsyncIAMResource
     with_raw_response: AsyncCloudflareWithRawResponse
     with_streaming_response: AsyncCloudflareWithStreamedResponse
 
@@ -659,6 +665,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.kv = resources.AsyncKVResource(self)
         self.durable_objects = resources.AsyncDurableObjectsResource(self)
         self.queues = resources.AsyncQueuesResource(self)
+        self.api_gateway = resources.AsyncAPIGatewayResource(self)
         self.managed_headers = resources.AsyncManagedHeadersResource(self)
         self.page_shield = resources.AsyncPageShieldResource(self)
         self.rulesets = resources.AsyncRulesetsResource(self)
@@ -703,6 +710,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.cloudforce_one = resources.AsyncCloudforceOneResource(self)
         self.event_notifications = resources.AsyncEventNotificationsResource(self)
         self.ai_gateway = resources.AsyncAIGatewayResource(self)
+        self.iam = resources.AsyncIAMResource(self)
         self.with_raw_response = AsyncCloudflareWithRawResponse(self)
         self.with_streaming_response = AsyncCloudflareWithStreamedResponse(self)
 
@@ -926,6 +934,7 @@ class CloudflareWithRawResponse:
         self.kv = resources.KVResourceWithRawResponse(client.kv)
         self.durable_objects = resources.DurableObjectsResourceWithRawResponse(client.durable_objects)
         self.queues = resources.QueuesResourceWithRawResponse(client.queues)
+        self.api_gateway = resources.APIGatewayResourceWithRawResponse(client.api_gateway)
         self.managed_headers = resources.ManagedHeadersResourceWithRawResponse(client.managed_headers)
         self.page_shield = resources.PageShieldResourceWithRawResponse(client.page_shield)
         self.rulesets = resources.RulesetsResourceWithRawResponse(client.rulesets)
@@ -974,6 +983,7 @@ class CloudflareWithRawResponse:
         self.cloudforce_one = resources.CloudforceOneResourceWithRawResponse(client.cloudforce_one)
         self.event_notifications = resources.EventNotificationsResourceWithRawResponse(client.event_notifications)
         self.ai_gateway = resources.AIGatewayResourceWithRawResponse(client.ai_gateway)
+        self.iam = resources.IAMResourceWithRawResponse(client.iam)
 
 
 class AsyncCloudflareWithRawResponse:
@@ -1024,6 +1034,7 @@ class AsyncCloudflareWithRawResponse:
         self.kv = resources.AsyncKVResourceWithRawResponse(client.kv)
         self.durable_objects = resources.AsyncDurableObjectsResourceWithRawResponse(client.durable_objects)
         self.queues = resources.AsyncQueuesResourceWithRawResponse(client.queues)
+        self.api_gateway = resources.AsyncAPIGatewayResourceWithRawResponse(client.api_gateway)
         self.managed_headers = resources.AsyncManagedHeadersResourceWithRawResponse(client.managed_headers)
         self.page_shield = resources.AsyncPageShieldResourceWithRawResponse(client.page_shield)
         self.rulesets = resources.AsyncRulesetsResourceWithRawResponse(client.rulesets)
@@ -1074,6 +1085,7 @@ class AsyncCloudflareWithRawResponse:
         self.cloudforce_one = resources.AsyncCloudforceOneResourceWithRawResponse(client.cloudforce_one)
         self.event_notifications = resources.AsyncEventNotificationsResourceWithRawResponse(client.event_notifications)
         self.ai_gateway = resources.AsyncAIGatewayResourceWithRawResponse(client.ai_gateway)
+        self.iam = resources.AsyncIAMResourceWithRawResponse(client.iam)
 
 
 class CloudflareWithStreamedResponse:
@@ -1124,6 +1136,7 @@ class CloudflareWithStreamedResponse:
         self.kv = resources.KVResourceWithStreamingResponse(client.kv)
         self.durable_objects = resources.DurableObjectsResourceWithStreamingResponse(client.durable_objects)
         self.queues = resources.QueuesResourceWithStreamingResponse(client.queues)
+        self.api_gateway = resources.APIGatewayResourceWithStreamingResponse(client.api_gateway)
         self.managed_headers = resources.ManagedHeadersResourceWithStreamingResponse(client.managed_headers)
         self.page_shield = resources.PageShieldResourceWithStreamingResponse(client.page_shield)
         self.rulesets = resources.RulesetsResourceWithStreamingResponse(client.rulesets)
@@ -1174,6 +1187,7 @@ class CloudflareWithStreamedResponse:
         self.cloudforce_one = resources.CloudforceOneResourceWithStreamingResponse(client.cloudforce_one)
         self.event_notifications = resources.EventNotificationsResourceWithStreamingResponse(client.event_notifications)
         self.ai_gateway = resources.AIGatewayResourceWithStreamingResponse(client.ai_gateway)
+        self.iam = resources.IAMResourceWithStreamingResponse(client.iam)
 
 
 class AsyncCloudflareWithStreamedResponse:
@@ -1230,6 +1244,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.kv = resources.AsyncKVResourceWithStreamingResponse(client.kv)
         self.durable_objects = resources.AsyncDurableObjectsResourceWithStreamingResponse(client.durable_objects)
         self.queues = resources.AsyncQueuesResourceWithStreamingResponse(client.queues)
+        self.api_gateway = resources.AsyncAPIGatewayResourceWithStreamingResponse(client.api_gateway)
         self.managed_headers = resources.AsyncManagedHeadersResourceWithStreamingResponse(client.managed_headers)
         self.page_shield = resources.AsyncPageShieldResourceWithStreamingResponse(client.page_shield)
         self.rulesets = resources.AsyncRulesetsResourceWithStreamingResponse(client.rulesets)
@@ -1282,6 +1297,7 @@ class AsyncCloudflareWithStreamedResponse:
             client.event_notifications
         )
         self.ai_gateway = resources.AsyncAIGatewayResourceWithStreamingResponse(client.ai_gateway)
+        self.iam = resources.AsyncIAMResourceWithStreamingResponse(client.iam)
 
 
 Client = Cloudflare

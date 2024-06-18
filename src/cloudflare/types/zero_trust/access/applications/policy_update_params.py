@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 from typing import Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
+from ..decision import Decision
 from ...access_rule_param import AccessRuleParam
 from .approval_group_param import ApprovalGroupParam
 
@@ -12,10 +13,10 @@ __all__ = ["PolicyUpdateParams"]
 
 
 class PolicyUpdateParams(TypedDict, total=False):
-    uuid1: Required[str]
+    app_id: Required[str]
     """UUID"""
 
-    decision: Required[Literal["allow", "deny", "non_identity", "bypass"]]
+    decision: Required[Decision]
     """The action Access will take if a user matches this policy."""
 
     include: Required[Iterable[AccessRuleParam]]
@@ -56,7 +57,10 @@ class PolicyUpdateParams(TypedDict, total=False):
     """
 
     precedence: int
-    """The order of execution for this policy. Must be unique for each policy."""
+    """The order of execution for this policy.
+
+    Must be unique for each policy within an app.
+    """
 
     purpose_justification_prompt: str
     """A custom message that will appear on the purpose justification screen."""

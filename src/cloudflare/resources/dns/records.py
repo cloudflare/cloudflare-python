@@ -1199,24 +1199,8 @@ class RecordsResource(SyncAPIResource):
 
     @required_args(
         ["zone_id", "content", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
         ["zone_id", "data", "name", "type"],
         ["zone_id", "content", "name", "priority", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "type"],
         ["zone_id", "data", "name", "priority", "type"],
     )
     def create(
@@ -2486,24 +2470,8 @@ class RecordsResource(SyncAPIResource):
 
     @required_args(
         ["zone_id", "content", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
         ["zone_id", "data", "name", "type"],
         ["zone_id", "content", "name", "priority", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "type"],
         ["zone_id", "data", "name", "priority", "type"],
     )
     def update(
@@ -3945,24 +3913,8 @@ class RecordsResource(SyncAPIResource):
 
     @required_args(
         ["zone_id", "content", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
         ["zone_id", "data", "name", "type"],
         ["zone_id", "content", "name", "priority", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "type"],
         ["zone_id", "data", "name", "priority", "type"],
     )
     def edit(
@@ -5403,24 +5355,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
     @required_args(
         ["zone_id", "content", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
         ["zone_id", "data", "name", "type"],
         ["zone_id", "content", "name", "priority", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "type"],
         ["zone_id", "data", "name", "priority", "type"],
     )
     async def create(
@@ -6690,24 +6626,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
     @required_args(
         ["zone_id", "content", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
         ["zone_id", "data", "name", "type"],
         ["zone_id", "content", "name", "priority", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "type"],
         ["zone_id", "data", "name", "priority", "type"],
     )
     async def update(
@@ -8149,24 +8069,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
     @required_args(
         ["zone_id", "content", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
         ["zone_id", "data", "name", "type"],
         ["zone_id", "content", "name", "priority", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "content", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "data", "name", "type"],
-        ["zone_id", "content", "name", "type"],
         ["zone_id", "data", "name", "priority", "type"],
     )
     async def edit(

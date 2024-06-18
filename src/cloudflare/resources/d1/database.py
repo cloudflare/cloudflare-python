@@ -12,7 +12,7 @@ from ..._utils import (
     async_maybe_transform,
 )
 from ..._compat import cached_property
-from ...types.d1 import database_list_params, database_query_params, database_create_params
+from ...types.d1 import database_raw_params, database_list_params, database_query_params, database_create_params
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
@@ -27,6 +27,7 @@ from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
+from ...types.d1.database_raw_response import DatabaseRawResponse
 from ...types.d1.database_list_response import DatabaseListResponse
 from ...types.d1.database_query_response import DatabaseQueryResponse
 from ...types.d1.database_create_response import DatabaseCreateResponse
@@ -143,9 +144,9 @@ class DatabaseResource(SyncAPIResource):
 
     def delete(
         self,
-        database_identifier: str,
+        database_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -157,7 +158,7 @@ class DatabaseResource(SyncAPIResource):
         Deletes the specified D1 database.
 
         Args:
-          account_identifier: Account identifier tag.
+          account_id: Account identifier tag.
 
           extra_headers: Send extra headers
 
@@ -167,16 +168,14 @@ class DatabaseResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not database_identifier:
-            raise ValueError(
-                f"Expected a non-empty value for `database_identifier` but received {database_identifier!r}"
-            )
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return cast(
             DatabaseDeleteResponse,
             self._delete(
-                f"/accounts/{account_identifier}/d1/database/{database_identifier}",
+                f"/accounts/{account_id}/d1/database/{database_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -192,9 +191,9 @@ class DatabaseResource(SyncAPIResource):
 
     def get(
         self,
-        database_identifier: str,
+        database_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -206,7 +205,7 @@ class DatabaseResource(SyncAPIResource):
         Returns the specified D1 database.
 
         Args:
-          account_identifier: Account identifier tag.
+          account_id: Account identifier tag.
 
           extra_headers: Send extra headers
 
@@ -216,14 +215,12 @@ class DatabaseResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not database_identifier:
-            raise ValueError(
-                f"Expected a non-empty value for `database_identifier` but received {database_identifier!r}"
-            )
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._get(
-            f"/accounts/{account_identifier}/d1/database/{database_identifier}",
+            f"/accounts/{account_id}/d1/database/{database_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -236,9 +233,9 @@ class DatabaseResource(SyncAPIResource):
 
     def query(
         self,
-        database_identifier: str,
+        database_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         sql: str,
         params: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -249,10 +246,10 @@ class DatabaseResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DatabaseQueryResponse:
         """
-        Returns the query result.
+        Returns the query result as an object.
 
         Args:
-          account_identifier: Account identifier tag.
+          account_id: Account identifier tag.
 
           extra_headers: Send extra headers
 
@@ -262,14 +259,12 @@ class DatabaseResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not database_identifier:
-            raise ValueError(
-                f"Expected a non-empty value for `database_identifier` but received {database_identifier!r}"
-            )
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._post(
-            f"/accounts/{account_identifier}/d1/database/{database_identifier}/query",
+            f"/accounts/{account_id}/d1/database/{database_id}/query",
             body=maybe_transform(
                 {
                     "sql": sql,
@@ -285,6 +280,59 @@ class DatabaseResource(SyncAPIResource):
                 post_parser=ResultWrapper[DatabaseQueryResponse]._unwrapper,
             ),
             cast_to=cast(Type[DatabaseQueryResponse], ResultWrapper[DatabaseQueryResponse]),
+        )
+
+    def raw(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        sql: str,
+        params: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseRawResponse:
+        """Returns the query result rows as arrays rather than objects.
+
+        This is a
+        performance-optimized version of the /query endpoint.
+
+        Args:
+          account_id: Account identifier tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
+        return self._post(
+            f"/accounts/{account_id}/d1/database/{database_id}/raw",
+            body=maybe_transform(
+                {
+                    "sql": sql,
+                    "params": params,
+                },
+                database_raw_params.DatabaseRawParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DatabaseRawResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[DatabaseRawResponse], ResultWrapper[DatabaseRawResponse]),
         )
 
 
@@ -396,9 +444,9 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
     async def delete(
         self,
-        database_identifier: str,
+        database_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -410,7 +458,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         Deletes the specified D1 database.
 
         Args:
-          account_identifier: Account identifier tag.
+          account_id: Account identifier tag.
 
           extra_headers: Send extra headers
 
@@ -420,16 +468,14 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not database_identifier:
-            raise ValueError(
-                f"Expected a non-empty value for `database_identifier` but received {database_identifier!r}"
-            )
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return cast(
             DatabaseDeleteResponse,
             await self._delete(
-                f"/accounts/{account_identifier}/d1/database/{database_identifier}",
+                f"/accounts/{account_id}/d1/database/{database_id}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -445,9 +491,9 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
     async def get(
         self,
-        database_identifier: str,
+        database_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -459,7 +505,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         Returns the specified D1 database.
 
         Args:
-          account_identifier: Account identifier tag.
+          account_id: Account identifier tag.
 
           extra_headers: Send extra headers
 
@@ -469,14 +515,12 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not database_identifier:
-            raise ValueError(
-                f"Expected a non-empty value for `database_identifier` but received {database_identifier!r}"
-            )
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return await self._get(
-            f"/accounts/{account_identifier}/d1/database/{database_identifier}",
+            f"/accounts/{account_id}/d1/database/{database_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -489,9 +533,9 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
     async def query(
         self,
-        database_identifier: str,
+        database_id: str,
         *,
-        account_identifier: str,
+        account_id: str,
         sql: str,
         params: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -502,10 +546,10 @@ class AsyncDatabaseResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> DatabaseQueryResponse:
         """
-        Returns the query result.
+        Returns the query result as an object.
 
         Args:
-          account_identifier: Account identifier tag.
+          account_id: Account identifier tag.
 
           extra_headers: Send extra headers
 
@@ -515,14 +559,12 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
-        if not database_identifier:
-            raise ValueError(
-                f"Expected a non-empty value for `database_identifier` but received {database_identifier!r}"
-            )
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return await self._post(
-            f"/accounts/{account_identifier}/d1/database/{database_identifier}/query",
+            f"/accounts/{account_id}/d1/database/{database_id}/query",
             body=await async_maybe_transform(
                 {
                     "sql": sql,
@@ -538,6 +580,59 @@ class AsyncDatabaseResource(AsyncAPIResource):
                 post_parser=ResultWrapper[DatabaseQueryResponse]._unwrapper,
             ),
             cast_to=cast(Type[DatabaseQueryResponse], ResultWrapper[DatabaseQueryResponse]),
+        )
+
+    async def raw(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        sql: str,
+        params: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseRawResponse:
+        """Returns the query result rows as arrays rather than objects.
+
+        This is a
+        performance-optimized version of the /query endpoint.
+
+        Args:
+          account_id: Account identifier tag.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not database_id:
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
+        return await self._post(
+            f"/accounts/{account_id}/d1/database/{database_id}/raw",
+            body=await async_maybe_transform(
+                {
+                    "sql": sql,
+                    "params": params,
+                },
+                database_raw_params.DatabaseRawParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DatabaseRawResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[DatabaseRawResponse], ResultWrapper[DatabaseRawResponse]),
         )
 
 
@@ -560,6 +655,9 @@ class DatabaseResourceWithRawResponse:
         self.query = to_raw_response_wrapper(
             database.query,
         )
+        self.raw = to_raw_response_wrapper(
+            database.raw,
+        )
 
 
 class AsyncDatabaseResourceWithRawResponse:
@@ -580,6 +678,9 @@ class AsyncDatabaseResourceWithRawResponse:
         )
         self.query = async_to_raw_response_wrapper(
             database.query,
+        )
+        self.raw = async_to_raw_response_wrapper(
+            database.raw,
         )
 
 
@@ -602,6 +703,9 @@ class DatabaseResourceWithStreamingResponse:
         self.query = to_streamed_response_wrapper(
             database.query,
         )
+        self.raw = to_streamed_response_wrapper(
+            database.raw,
+        )
 
 
 class AsyncDatabaseResourceWithStreamingResponse:
@@ -622,4 +726,7 @@ class AsyncDatabaseResourceWithStreamingResponse:
         )
         self.query = async_to_streamed_response_wrapper(
             database.query,
+        )
+        self.raw = async_to_streamed_response_wrapper(
+            database.raw,
         )

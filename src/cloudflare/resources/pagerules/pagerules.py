@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import typing_extensions
 from typing import Any, Type, Iterable, Optional, cast
 from typing_extensions import Literal
 
@@ -63,6 +64,9 @@ class PagerulesResource(SyncAPIResource):
     def with_streaming_response(self) -> PagerulesResourceWithStreamingResponse:
         return PagerulesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
+    )
     def create(
         self,
         *,
@@ -133,6 +137,9 @@ class PagerulesResource(SyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated(
+        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
+    )
     def update(
         self,
         pagerule_id: str,
@@ -210,6 +217,9 @@ class PagerulesResource(SyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated(
+        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
+    )
     def list(
         self,
         *,
@@ -271,6 +281,9 @@ class PagerulesResource(SyncAPIResource):
             cast_to=cast(Type[PageruleListResponse], ResultWrapper[PageruleListResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
+    )
     def delete(
         self,
         pagerule_id: str,
@@ -315,6 +328,9 @@ class PagerulesResource(SyncAPIResource):
             cast_to=cast(Type[Optional[PageruleDeleteResponse]], ResultWrapper[PageruleDeleteResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
+    )
     def edit(
         self,
         pagerule_id: str,
@@ -390,6 +406,9 @@ class PagerulesResource(SyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated(
+        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
+    )
     def get(
         self,
         pagerule_id: str,
@@ -453,6 +472,9 @@ class AsyncPagerulesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncPagerulesResourceWithStreamingResponse:
         return AsyncPagerulesResourceWithStreamingResponse(self)
 
+    @typing_extensions.deprecated(
+        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
+    )
     async def create(
         self,
         *,
@@ -523,6 +545,9 @@ class AsyncPagerulesResource(AsyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated(
+        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
+    )
     async def update(
         self,
         pagerule_id: str,
@@ -600,6 +625,9 @@ class AsyncPagerulesResource(AsyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated(
+        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
+    )
     async def list(
         self,
         *,
@@ -661,6 +689,9 @@ class AsyncPagerulesResource(AsyncAPIResource):
             cast_to=cast(Type[PageruleListResponse], ResultWrapper[PageruleListResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
+    )
     async def delete(
         self,
         pagerule_id: str,
@@ -705,6 +736,9 @@ class AsyncPagerulesResource(AsyncAPIResource):
             cast_to=cast(Type[Optional[PageruleDeleteResponse]], ResultWrapper[PageruleDeleteResponse]),
         )
 
+    @typing_extensions.deprecated(
+        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
+    )
     async def edit(
         self,
         pagerule_id: str,
@@ -780,6 +814,9 @@ class AsyncPagerulesResource(AsyncAPIResource):
             ),
         )
 
+    @typing_extensions.deprecated(
+        "The Page Rules API is deprecated in favour of the Ruleset Engine. See https://developers.cloudflare.com/fundamentals/api/reference/deprecations/#page-rules for full details."
+    )
     async def get(
         self,
         pagerule_id: str,
@@ -834,23 +871,35 @@ class PagerulesResourceWithRawResponse:
     def __init__(self, pagerules: PagerulesResource) -> None:
         self._pagerules = pagerules
 
-        self.create = to_raw_response_wrapper(
-            pagerules.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                pagerules.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = to_raw_response_wrapper(
-            pagerules.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                pagerules.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_raw_response_wrapper(
-            pagerules.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                pagerules.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_raw_response_wrapper(
-            pagerules.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                pagerules.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_raw_response_wrapper(
-            pagerules.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                pagerules.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_raw_response_wrapper(
-            pagerules.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_raw_response_wrapper(
+                pagerules.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -862,23 +911,35 @@ class AsyncPagerulesResourceWithRawResponse:
     def __init__(self, pagerules: AsyncPagerulesResource) -> None:
         self._pagerules = pagerules
 
-        self.create = async_to_raw_response_wrapper(
-            pagerules.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                pagerules.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = async_to_raw_response_wrapper(
-            pagerules.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                pagerules.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_raw_response_wrapper(
-            pagerules.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                pagerules.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_raw_response_wrapper(
-            pagerules.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                pagerules.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_raw_response_wrapper(
-            pagerules.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                pagerules.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_raw_response_wrapper(
-            pagerules.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_raw_response_wrapper(
+                pagerules.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -890,23 +951,35 @@ class PagerulesResourceWithStreamingResponse:
     def __init__(self, pagerules: PagerulesResource) -> None:
         self._pagerules = pagerules
 
-        self.create = to_streamed_response_wrapper(
-            pagerules.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                pagerules.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = to_streamed_response_wrapper(
-            pagerules.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                pagerules.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = to_streamed_response_wrapper(
-            pagerules.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                pagerules.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = to_streamed_response_wrapper(
-            pagerules.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                pagerules.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = to_streamed_response_wrapper(
-            pagerules.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                pagerules.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = to_streamed_response_wrapper(
-            pagerules.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            to_streamed_response_wrapper(
+                pagerules.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property
@@ -918,23 +991,35 @@ class AsyncPagerulesResourceWithStreamingResponse:
     def __init__(self, pagerules: AsyncPagerulesResource) -> None:
         self._pagerules = pagerules
 
-        self.create = async_to_streamed_response_wrapper(
-            pagerules.create,
+        self.create = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                pagerules.create  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.update = async_to_streamed_response_wrapper(
-            pagerules.update,
+        self.update = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                pagerules.update  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.list = async_to_streamed_response_wrapper(
-            pagerules.list,
+        self.list = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                pagerules.list  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.delete = async_to_streamed_response_wrapper(
-            pagerules.delete,
+        self.delete = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                pagerules.delete  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.edit = async_to_streamed_response_wrapper(
-            pagerules.edit,
+        self.edit = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                pagerules.edit  # pyright: ignore[reportDeprecated],
+            )
         )
-        self.get = async_to_streamed_response_wrapper(
-            pagerules.get,
+        self.get = (  # pyright: ignore[reportDeprecated]
+            async_to_streamed_response_wrapper(
+                pagerules.get  # pyright: ignore[reportDeprecated],
+            )
         )
 
     @cached_property

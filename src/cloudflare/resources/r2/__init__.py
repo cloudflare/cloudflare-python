@@ -24,6 +24,14 @@ from .buckets import (
     BucketsResourceWithStreamingResponse,
     AsyncBucketsResourceWithStreamingResponse,
 )
+from .temporary_credentials import (
+    TemporaryCredentialsResource,
+    AsyncTemporaryCredentialsResource,
+    TemporaryCredentialsResourceWithRawResponse,
+    AsyncTemporaryCredentialsResourceWithRawResponse,
+    TemporaryCredentialsResourceWithStreamingResponse,
+    AsyncTemporaryCredentialsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "BucketsResource",
@@ -38,6 +46,12 @@ __all__ = [
     "AsyncSippyResourceWithRawResponse",
     "SippyResourceWithStreamingResponse",
     "AsyncSippyResourceWithStreamingResponse",
+    "TemporaryCredentialsResource",
+    "AsyncTemporaryCredentialsResource",
+    "TemporaryCredentialsResourceWithRawResponse",
+    "AsyncTemporaryCredentialsResourceWithRawResponse",
+    "TemporaryCredentialsResourceWithStreamingResponse",
+    "AsyncTemporaryCredentialsResourceWithStreamingResponse",
     "R2Resource",
     "AsyncR2Resource",
     "R2ResourceWithRawResponse",

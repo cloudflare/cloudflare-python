@@ -21,19 +21,22 @@ class TestSeats:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         seat = client.zero_trust.seats.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 {
                     "access_seat": False,
                     "gateway_seat": False,
+                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 },
                 {
                     "access_seat": False,
                     "gateway_seat": False,
+                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 },
                 {
                     "access_seat": False,
                     "gateway_seat": False,
+                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 },
             ],
         )
@@ -43,19 +46,22 @@ class TestSeats:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.zero_trust.seats.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 {
                     "access_seat": False,
                     "gateway_seat": False,
+                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 },
                 {
                     "access_seat": False,
                     "gateway_seat": False,
+                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 },
                 {
                     "access_seat": False,
                     "gateway_seat": False,
+                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 },
             ],
         )
@@ -69,19 +75,22 @@ class TestSeats:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.zero_trust.seats.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 {
                     "access_seat": False,
                     "gateway_seat": False,
+                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 },
                 {
                     "access_seat": False,
                     "gateway_seat": False,
+                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 },
                 {
                     "access_seat": False,
                     "gateway_seat": False,
+                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 },
             ],
         ) as response:
@@ -96,21 +105,24 @@ class TestSeats:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.seats.with_raw_response.edit(
-                "",
+                account_id="",
                 body=[
                     {
                         "access_seat": False,
                         "gateway_seat": False,
+                        "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     },
                     {
                         "access_seat": False,
                         "gateway_seat": False,
+                        "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     },
                     {
                         "access_seat": False,
                         "gateway_seat": False,
+                        "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     },
                 ],
             )
@@ -123,19 +135,22 @@ class TestAsyncSeats:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         seat = await async_client.zero_trust.seats.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 {
                     "access_seat": False,
                     "gateway_seat": False,
+                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 },
                 {
                     "access_seat": False,
                     "gateway_seat": False,
+                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 },
                 {
                     "access_seat": False,
                     "gateway_seat": False,
+                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 },
             ],
         )
@@ -145,19 +160,22 @@ class TestAsyncSeats:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.seats.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 {
                     "access_seat": False,
                     "gateway_seat": False,
+                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 },
                 {
                     "access_seat": False,
                     "gateway_seat": False,
+                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 },
                 {
                     "access_seat": False,
                     "gateway_seat": False,
+                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 },
             ],
         )
@@ -171,19 +189,22 @@ class TestAsyncSeats:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.seats.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="699d98642c564d2e855e9661899b7252",
             body=[
                 {
                     "access_seat": False,
                     "gateway_seat": False,
+                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 },
                 {
                     "access_seat": False,
                     "gateway_seat": False,
+                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 },
                 {
                     "access_seat": False,
                     "gateway_seat": False,
+                    "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 },
             ],
         ) as response:
@@ -198,21 +219,24 @@ class TestAsyncSeats:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.seats.with_raw_response.edit(
-                "",
+                account_id="",
                 body=[
                     {
                         "access_seat": False,
                         "gateway_seat": False,
+                        "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     },
                     {
                         "access_seat": False,
                         "gateway_seat": False,
+                        "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     },
                     {
                         "access_seat": False,
                         "gateway_seat": False,
+                        "seat_uid": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                     },
                 ],
             )

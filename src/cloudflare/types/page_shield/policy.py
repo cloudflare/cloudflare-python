@@ -1,6 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -9,23 +8,20 @@ __all__ = ["Policy"]
 
 
 class Policy(BaseModel):
-    id: Optional[str] = None
-    """The ID of the policy"""
-
-    action: Optional[Literal["allow", "log"]] = None
+    action: Literal["allow", "log"]
     """The action to take if the expression matches"""
 
-    description: Optional[str] = None
+    description: str
     """A description for the policy"""
 
-    enabled: Optional[bool] = None
+    enabled: bool
     """Whether the policy is enabled"""
 
-    expression: Optional[str] = None
+    expression: str
     """
     The expression which must match for the policy to be applied, using the
     Cloudflare Firewall rule expression syntax
     """
 
-    value: Optional[str] = None
+    value: str
     """The policy which will be applied"""

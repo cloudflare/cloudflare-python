@@ -372,6 +372,7 @@ class TestCloudflare:
         assert request.headers.get("X-Auth-Key") == api_key
 
         client2 = Cloudflare(base_url=base_url, api_key=None, api_email=None, _strict_response_validation=True)
+
         with pytest.raises(
             TypeError,
             match="Could not resolve authentication method. Expected one of api_email, api_key, api_token or user_service_key to be set. Or for one of the `X-Auth-Email`, `X-Auth-Key`, `Authorization` or `X-Auth-User-Service-Key` headers to be explicitly omitted",
@@ -1142,6 +1143,7 @@ class TestAsyncCloudflare:
         assert request.headers.get("X-Auth-Key") == api_key
 
         client2 = AsyncCloudflare(base_url=base_url, api_key=None, api_email=None, _strict_response_validation=True)
+
         with pytest.raises(
             TypeError,
             match="Could not resolve authentication method. Expected one of api_email, api_key, api_token or user_service_key to be set. Or for one of the `X-Auth-Email`, `X-Auth-Key`, `Authorization` or `X-Auth-User-Service-Key` headers to be explicitly omitted",

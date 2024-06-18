@@ -125,7 +125,7 @@ class CertificatesResource(SyncAPIResource):
 
     def update(
         self,
-        uuid: str,
+        certificate_id: str,
         *,
         associated_hostnames: List[AssociatedHostnames],
         account_id: str | NotGiven = NOT_GIVEN,
@@ -142,7 +142,7 @@ class CertificatesResource(SyncAPIResource):
         Updates a configured mTLS certificate.
 
         Args:
-          uuid: UUID
+          certificate_id: UUID
 
           associated_hostnames: The hostnames of the applications that will use this certificate.
 
@@ -160,8 +160,8 @@ class CertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -175,7 +175,7 @@ class CertificatesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
             body=maybe_transform(
                 {
                     "associated_hostnames": associated_hostnames,
@@ -244,7 +244,7 @@ class CertificatesResource(SyncAPIResource):
 
     def delete(
         self,
-        uuid: str,
+        certificate_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -259,7 +259,7 @@ class CertificatesResource(SyncAPIResource):
         Deletes an mTLS certificate.
 
         Args:
-          uuid: UUID
+          certificate_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -273,8 +273,8 @@ class CertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -288,7 +288,7 @@ class CertificatesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -301,7 +301,7 @@ class CertificatesResource(SyncAPIResource):
 
     def get(
         self,
-        uuid: str,
+        certificate_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -316,7 +316,7 @@ class CertificatesResource(SyncAPIResource):
         Fetches a single mTLS certificate.
 
         Args:
-          uuid: UUID
+          certificate_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -330,8 +330,8 @@ class CertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -345,7 +345,7 @@ class CertificatesResource(SyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -441,7 +441,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
 
     async def update(
         self,
-        uuid: str,
+        certificate_id: str,
         *,
         associated_hostnames: List[AssociatedHostnames],
         account_id: str | NotGiven = NOT_GIVEN,
@@ -458,7 +458,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         Updates a configured mTLS certificate.
 
         Args:
-          uuid: UUID
+          certificate_id: UUID
 
           associated_hostnames: The hostnames of the applications that will use this certificate.
 
@@ -476,8 +476,8 @@ class AsyncCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -491,7 +491,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
             body=await async_maybe_transform(
                 {
                     "associated_hostnames": associated_hostnames,
@@ -560,7 +560,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
 
     async def delete(
         self,
-        uuid: str,
+        certificate_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -575,7 +575,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         Deletes an mTLS certificate.
 
         Args:
-          uuid: UUID
+          certificate_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -589,8 +589,8 @@ class AsyncCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -604,7 +604,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._delete(
-            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -617,7 +617,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
 
     async def get(
         self,
-        uuid: str,
+        certificate_id: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -632,7 +632,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
         Fetches a single mTLS certificate.
 
         Args:
-          uuid: UUID
+          certificate_id: UUID
 
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
@@ -646,8 +646,8 @@ class AsyncCertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not uuid:
-            raise ValueError(f"Expected a non-empty value for `uuid` but received {uuid!r}")
+        if not certificate_id:
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -661,7 +661,7 @@ class AsyncCertificatesResource(AsyncAPIResource):
             account_or_zone = "zones"
             account_or_zone_id = zone_id
         return await self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{uuid}",
+            f"/{account_or_zone}/{account_or_zone_id}/access/certificates/{certificate_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

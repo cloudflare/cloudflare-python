@@ -248,7 +248,7 @@ class BotManagementResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["zone_id"], ["zone_id"], ["zone_id"], ["zone_id"])
+    @required_args(["zone_id"])
     def update(
         self,
         *,
@@ -563,7 +563,7 @@ class AsyncBotManagementResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["zone_id"], ["zone_id"], ["zone_id"], ["zone_id"])
+    @required_args(["zone_id"])
     async def update(
         self,
         *,

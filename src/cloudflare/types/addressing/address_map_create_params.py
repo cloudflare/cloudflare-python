@@ -2,10 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Optional
-from typing_extensions import Required, TypedDict
+from typing import List, Union, Iterable, Optional
+from datetime import datetime
+from typing_extensions import Required, Annotated, TypedDict
 
-__all__ = ["AddressMapCreateParams"]
+from .kind import Kind
+from ..._utils import PropertyInfo
+
+__all__ = ["AddressMapCreateParams", "Membership"]
 
 
 class AddressMapCreateParams(TypedDict, total=False):
@@ -24,3 +28,21 @@ class AddressMapCreateParams(TypedDict, total=False):
     Cloudflare's DNS will not respond with IP addresses on an Address Map until the
     map is enabled.
     """
+
+    ips: List[str]
+
+    memberships: Iterable[Membership]
+    """Zones and Accounts which will be assigned IPs on this Address Map.
+
+    A zone membership will take priority over an account membership.
+    """
+
+
+class Membership(TypedDict, total=False):
+    created_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+
+    identifier: str
+    """The identifier for the membership (eg. a zone or account tag)."""
+
+    kind: Kind
+    """The type of the membership."""

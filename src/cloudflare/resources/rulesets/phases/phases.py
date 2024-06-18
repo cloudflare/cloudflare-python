@@ -31,8 +31,7 @@ from ...._wrappers import ResultWrapper
 from ...._base_client import (
     make_request_options,
 )
-from ....types.rulesets import Kind, Phase, phase_update_params
-from ....types.rulesets.kind import Kind
+from ....types.rulesets import Phase, phase_update_params
 from ....types.rulesets.phase import Phase
 from ....types.rulesets.phase_get_response import PhaseGetResponse
 from ....types.rulesets.phase_update_response import PhaseUpdateResponse
@@ -61,9 +60,7 @@ class PhasesResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        kind: Kind | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        phase: Phase | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -85,11 +82,7 @@ class PhasesResource(SyncAPIResource):
 
           description: An informative description of the ruleset.
 
-          kind: The kind of the ruleset.
-
           name: The human-readable name of the ruleset.
-
-          phase: The phase of the ruleset.
 
           extra_headers: Send extra headers
 
@@ -119,9 +112,7 @@ class PhasesResource(SyncAPIResource):
                 {
                     "rules": rules,
                     "description": description,
-                    "kind": kind,
                     "name": name,
-                    "phase": phase,
                 },
                 phase_update_params.PhaseUpdateParams,
             ),
@@ -215,9 +206,7 @@ class AsyncPhasesResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
-        kind: Kind | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
-        phase: Phase | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -239,11 +228,7 @@ class AsyncPhasesResource(AsyncAPIResource):
 
           description: An informative description of the ruleset.
 
-          kind: The kind of the ruleset.
-
           name: The human-readable name of the ruleset.
-
-          phase: The phase of the ruleset.
 
           extra_headers: Send extra headers
 
@@ -273,9 +258,7 @@ class AsyncPhasesResource(AsyncAPIResource):
                 {
                     "rules": rules,
                     "description": description,
-                    "kind": kind,
                     "name": name,
-                    "phase": phase,
                 },
                 phase_update_params.PhaseUpdateParams,
             ),

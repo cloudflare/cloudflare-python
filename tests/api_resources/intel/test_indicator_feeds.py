@@ -83,9 +83,10 @@ class TestIndicatorFeeds:
         indicator_feed = client.intel.indicator_feeds.update(
             12,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            feed_description="This is an example description",
+            description="This is an example description",
             is_attributable=True,
             is_public=True,
+            name="indicator_list",
         )
         assert_matches_type(Optional[IndicatorFeedUpdateResponse], indicator_feed, path=["response"])
 
@@ -309,9 +310,10 @@ class TestAsyncIndicatorFeeds:
         indicator_feed = await async_client.intel.indicator_feeds.update(
             12,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            feed_description="This is an example description",
+            description="This is an example description",
             is_attributable=True,
             is_public=True,
+            name="indicator_list",
         )
         assert_matches_type(Optional[IndicatorFeedUpdateResponse], indicator_feed, path=["response"])
 

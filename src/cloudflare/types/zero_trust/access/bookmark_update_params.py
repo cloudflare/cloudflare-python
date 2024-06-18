@@ -8,6 +8,6 @@ __all__ = ["BookmarkUpdateParams"]
 
 
 class BookmarkUpdateParams(TypedDict, total=False):
-    identifier: Required[str]
+    account_id: Required[str]
 
     body: Required[object]

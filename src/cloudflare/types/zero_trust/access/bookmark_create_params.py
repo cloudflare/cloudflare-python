@@ -8,6 +8,6 @@ __all__ = ["BookmarkCreateParams"]
 
 
 class BookmarkCreateParams(TypedDict, total=False):
-    identifier: Required[str]
+    account_id: Required[str]
 
     body: Required[object]

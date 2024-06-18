@@ -11,7 +11,6 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.shared import Role
-from cloudflare.types.accounts import RoleGetResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,14 +21,14 @@ class TestRoles:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         role = client.accounts.roles.list(
-            account_id="string",
+            account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
         assert_matches_type(SyncSinglePage[Role], role, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.accounts.roles.with_raw_response.list(
-            account_id="string",
+            account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
 
         assert response.is_closed is True
@@ -40,7 +39,7 @@ class TestRoles:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.accounts.roles.with_streaming_response.list(
-            account_id="string",
+            account_id="eb78d65290b24279ba6f44721b3ea3c4",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -61,33 +60,33 @@ class TestRoles:
     def test_method_get(self, client: Cloudflare) -> None:
         role = client.accounts.roles.get(
             {},
-            account_id="string",
+            account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
-        assert_matches_type(RoleGetResponse, role, path=["response"])
+        assert_matches_type(object, role, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.accounts.roles.with_raw_response.get(
             {},
-            account_id="string",
+            account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = response.parse()
-        assert_matches_type(RoleGetResponse, role, path=["response"])
+        assert_matches_type(object, role, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.accounts.roles.with_streaming_response.get(
             {},
-            account_id="string",
+            account_id="eb78d65290b24279ba6f44721b3ea3c4",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = response.parse()
-            assert_matches_type(RoleGetResponse, role, path=["response"])
+            assert_matches_type(object, role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -106,14 +105,14 @@ class TestAsyncRoles:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         role = await async_client.accounts.roles.list(
-            account_id="string",
+            account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
         assert_matches_type(AsyncSinglePage[Role], role, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.roles.with_raw_response.list(
-            account_id="string",
+            account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
 
         assert response.is_closed is True
@@ -124,7 +123,7 @@ class TestAsyncRoles:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.roles.with_streaming_response.list(
-            account_id="string",
+            account_id="eb78d65290b24279ba6f44721b3ea3c4",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -145,33 +144,33 @@ class TestAsyncRoles:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         role = await async_client.accounts.roles.get(
             {},
-            account_id="string",
+            account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
-        assert_matches_type(RoleGetResponse, role, path=["response"])
+        assert_matches_type(object, role, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.roles.with_raw_response.get(
             {},
-            account_id="string",
+            account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         role = await response.parse()
-        assert_matches_type(RoleGetResponse, role, path=["response"])
+        assert_matches_type(object, role, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.roles.with_streaming_response.get(
             {},
-            account_id="string",
+            account_id="eb78d65290b24279ba6f44721b3ea3c4",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             role = await response.parse()
-            assert_matches_type(RoleGetResponse, role, path=["response"])
+            assert_matches_type(object, role, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

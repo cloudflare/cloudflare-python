@@ -42,8 +42,8 @@ class KeysResource(SyncAPIResource):
 
     def update(
         self,
-        identifier: str,
         *,
+        account_id: str,
         key_rotation_interval_days: float,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -56,7 +56,7 @@ class KeysResource(SyncAPIResource):
         Updates the Access key rotation settings for an account.
 
         Args:
-          identifier: Identifier
+          account_id: Identifier
 
           key_rotation_interval_days: The number of days between key rotations.
 
@@ -68,12 +68,12 @@ class KeysResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
             Optional[KeyUpdateResponse],
             self._put(
-                f"/accounts/{identifier}/access/keys",
+                f"/accounts/{account_id}/access/keys",
                 body=maybe_transform(
                     {"key_rotation_interval_days": key_rotation_interval_days}, key_update_params.KeyUpdateParams
                 ),
@@ -92,8 +92,8 @@ class KeysResource(SyncAPIResource):
 
     def get(
         self,
-        identifier: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -105,7 +105,7 @@ class KeysResource(SyncAPIResource):
         Gets the Access key rotation settings for an account.
 
         Args:
-          identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -115,12 +115,12 @@ class KeysResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
             Optional[KeyGetResponse],
             self._get(
-                f"/accounts/{identifier}/access/keys",
+                f"/accounts/{account_id}/access/keys",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -136,8 +136,8 @@ class KeysResource(SyncAPIResource):
 
     def rotate(
         self,
-        identifier: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -149,7 +149,7 @@ class KeysResource(SyncAPIResource):
         Perfoms a key rotation for an account.
 
         Args:
-          identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -159,12 +159,12 @@ class KeysResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
             Optional[KeyRotateResponse],
             self._post(
-                f"/accounts/{identifier}/access/keys/rotate",
+                f"/accounts/{account_id}/access/keys/rotate",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -190,8 +190,8 @@ class AsyncKeysResource(AsyncAPIResource):
 
     async def update(
         self,
-        identifier: str,
         *,
+        account_id: str,
         key_rotation_interval_days: float,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -204,7 +204,7 @@ class AsyncKeysResource(AsyncAPIResource):
         Updates the Access key rotation settings for an account.
 
         Args:
-          identifier: Identifier
+          account_id: Identifier
 
           key_rotation_interval_days: The number of days between key rotations.
 
@@ -216,12 +216,12 @@ class AsyncKeysResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
             Optional[KeyUpdateResponse],
             await self._put(
-                f"/accounts/{identifier}/access/keys",
+                f"/accounts/{account_id}/access/keys",
                 body=await async_maybe_transform(
                     {"key_rotation_interval_days": key_rotation_interval_days}, key_update_params.KeyUpdateParams
                 ),
@@ -240,8 +240,8 @@ class AsyncKeysResource(AsyncAPIResource):
 
     async def get(
         self,
-        identifier: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -253,7 +253,7 @@ class AsyncKeysResource(AsyncAPIResource):
         Gets the Access key rotation settings for an account.
 
         Args:
-          identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -263,12 +263,12 @@ class AsyncKeysResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
             Optional[KeyGetResponse],
             await self._get(
-                f"/accounts/{identifier}/access/keys",
+                f"/accounts/{account_id}/access/keys",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -284,8 +284,8 @@ class AsyncKeysResource(AsyncAPIResource):
 
     async def rotate(
         self,
-        identifier: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -297,7 +297,7 @@ class AsyncKeysResource(AsyncAPIResource):
         Perfoms a key rotation for an account.
 
         Args:
-          identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -307,12 +307,12 @@ class AsyncKeysResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return cast(
             Optional[KeyRotateResponse],
             await self._post(
-                f"/accounts/{identifier}/access/keys/rotate",
+                f"/accounts/{account_id}/access/keys/rotate",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

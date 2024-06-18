@@ -65,6 +65,8 @@ class LogsResource(SyncAPIResource):
         List Gateway Logs
 
         Args:
+          id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -138,6 +140,8 @@ class AsyncLogsResource(AsyncAPIResource):
         List Gateway Logs
 
         Args:
+          id: gateway id
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request

@@ -40,6 +40,14 @@ from .dns import (
     DNSResourceWithStreamingResponse,
     AsyncDNSResourceWithStreamingResponse,
 )
+from .iam import (
+    IAMResource,
+    AsyncIAMResource,
+    IAMResourceWithRawResponse,
+    AsyncIAMResourceWithRawResponse,
+    IAMResourceWithStreamingResponse,
+    AsyncIAMResourceWithStreamingResponse,
+)
 from .ips import (
     IPsResource,
     AsyncIPsResource,
@@ -383,6 +391,14 @@ from .zero_trust import (
     AsyncZeroTrustResourceWithRawResponse,
     ZeroTrustResourceWithStreamingResponse,
     AsyncZeroTrustResourceWithStreamingResponse,
+)
+from .api_gateway import (
+    APIGatewayResource,
+    AsyncAPIGatewayResource,
+    APIGatewayResourceWithRawResponse,
+    AsyncAPIGatewayResourceWithRawResponse,
+    APIGatewayResourceWithStreamingResponse,
+    AsyncAPIGatewayResourceWithStreamingResponse,
 )
 from .diagnostics import (
     DiagnosticsResource,
@@ -886,6 +902,12 @@ __all__ = [
     "AsyncQueuesResourceWithRawResponse",
     "QueuesResourceWithStreamingResponse",
     "AsyncQueuesResourceWithStreamingResponse",
+    "APIGatewayResource",
+    "AsyncAPIGatewayResource",
+    "APIGatewayResourceWithRawResponse",
+    "AsyncAPIGatewayResourceWithRawResponse",
+    "APIGatewayResourceWithStreamingResponse",
+    "AsyncAPIGatewayResourceWithStreamingResponse",
     "ManagedHeadersResource",
     "AsyncManagedHeadersResource",
     "ManagedHeadersResourceWithRawResponse",
@@ -1150,4 +1172,10 @@ __all__ = [
     "AsyncAIGatewayResourceWithRawResponse",
     "AIGatewayResourceWithStreamingResponse",
     "AsyncAIGatewayResourceWithStreamingResponse",
+    "IAMResource",
+    "AsyncIAMResource",
+    "IAMResourceWithRawResponse",
+    "AsyncIAMResourceWithRawResponse",
+    "IAMResourceWithStreamingResponse",
+    "AsyncIAMResourceWithStreamingResponse",
 ]

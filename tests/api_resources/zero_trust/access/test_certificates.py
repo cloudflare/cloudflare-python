@@ -143,7 +143,7 @@ class TestCertificates:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_id` but received ''"):
             client.zero_trust.access.certificates.with_raw_response.update(
                 "",
                 associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
@@ -268,7 +268,7 @@ class TestCertificates:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_id` but received ''"):
             client.zero_trust.access.certificates.with_raw_response.delete(
                 "",
                 account_id="string",
@@ -335,7 +335,7 @@ class TestCertificates:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_id` but received ''"):
             client.zero_trust.access.certificates.with_raw_response.get(
                 "",
                 account_id="string",
@@ -479,7 +479,7 @@ class TestAsyncCertificates:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_id` but received ''"):
             await async_client.zero_trust.access.certificates.with_raw_response.update(
                 "",
                 associated_hostnames=["admin.example.com", "admin.example.com", "admin.example.com"],
@@ -604,7 +604,7 @@ class TestAsyncCertificates:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_id` but received ''"):
             await async_client.zero_trust.access.certificates.with_raw_response.delete(
                 "",
                 account_id="string",
@@ -671,7 +671,7 @@ class TestAsyncCertificates:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `uuid` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_id` but received ''"):
             await async_client.zero_trust.access.certificates.with_raw_response.get(
                 "",
                 account_id="string",

@@ -11,20 +11,20 @@ class PolicyCreateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    action: Literal["allow", "log"]
+    action: Required[Literal["allow", "log"]]
     """The action to take if the expression matches"""
 
-    description: str
+    description: Required[str]
     """A description for the policy"""
 
-    enabled: bool
+    enabled: Required[bool]
     """Whether the policy is enabled"""
 
-    expression: str
+    expression: Required[str]
     """
     The expression which must match for the policy to be applied, using the
     Cloudflare Firewall rule expression syntax
     """
 
-    value: str
+    value: Required[str]
     """The policy which will be applied"""

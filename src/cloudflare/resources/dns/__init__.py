@@ -24,6 +24,14 @@ from .firewall import (
     FirewallResourceWithStreamingResponse,
     AsyncFirewallResourceWithStreamingResponse,
 )
+from .settings import (
+    SettingsResource,
+    AsyncSettingsResource,
+    SettingsResourceWithRawResponse,
+    AsyncSettingsResourceWithRawResponse,
+    SettingsResourceWithStreamingResponse,
+    AsyncSettingsResourceWithStreamingResponse,
+)
 from .analytics import (
     AnalyticsResource,
     AsyncAnalyticsResource,
@@ -40,6 +48,12 @@ __all__ = [
     "AsyncRecordsResourceWithRawResponse",
     "RecordsResourceWithStreamingResponse",
     "AsyncRecordsResourceWithStreamingResponse",
+    "SettingsResource",
+    "AsyncSettingsResource",
+    "SettingsResourceWithRawResponse",
+    "AsyncSettingsResourceWithRawResponse",
+    "SettingsResourceWithStreamingResponse",
+    "AsyncSettingsResourceWithStreamingResponse",
     "AnalyticsResource",
     "AsyncAnalyticsResource",
     "AnalyticsResourceWithRawResponse",

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -16,6 +17,7 @@ from ..._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import (
     AsyncPaginator,
@@ -161,14 +163,14 @@ class ConnectionsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Connection:
+    ) -> Optional[Connection]:
         """
         Fetches a connection detected by Page Shield by connection ID.
 
         Args:
           zone_id: Identifier
 
-          connection_id: The ID of the resource.
+          connection_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -185,9 +187,13 @@ class ConnectionsResource(SyncAPIResource):
         return self._get(
             f"/zones/{zone_id}/page_shield/connections/{connection_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Connection]]._unwrapper,
             ),
-            cast_to=Connection,
+            cast_to=cast(Type[Optional[Connection]], ResultWrapper[Connection]),
         )
 
 
@@ -325,14 +331,14 @@ class AsyncConnectionsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Connection:
+    ) -> Optional[Connection]:
         """
         Fetches a connection detected by Page Shield by connection ID.
 
         Args:
           zone_id: Identifier
 
-          connection_id: The ID of the resource.
+          connection_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -349,9 +355,13 @@ class AsyncConnectionsResource(AsyncAPIResource):
         return await self._get(
             f"/zones/{zone_id}/page_shield/connections/{connection_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Connection]]._unwrapper,
             ),
-            cast_to=Connection,
+            cast_to=cast(Type[Optional[Connection]], ResultWrapper[Connection]),
         )
 
 

@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from typing_extensions import Literal
 
 from ..._models import BaseModel
 from .permission_grant import PermissionGrant
@@ -68,12 +69,14 @@ class User(BaseModel):
 
 
 class Member(BaseModel):
-    id: str
+    id: Optional[str] = None
     """Membership identifier tag."""
 
-    roles: List[Role]
+    roles: Optional[List[Role]] = None
     """Roles assigned to this member."""
 
-    status: object
+    status: Optional[Literal["accepted", "pending"]] = None
+    """A member's status in the account."""
 
-    user: User
+    user: Optional[User] = None
+    """Details of the user associated to the membership."""

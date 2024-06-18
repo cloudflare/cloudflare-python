@@ -54,8 +54,8 @@ from ...types.rulesets import Kind, Phase, ruleset_create_params, ruleset_update
 from .versions.versions import VersionsResource, AsyncVersionsResource
 from ...types.rulesets.kind import Kind
 from ...types.rulesets.phase import Phase
-from ...types.rulesets.ruleset import Ruleset
 from ...types.rulesets.ruleset_get_response import RulesetGetResponse
+from ...types.rulesets.ruleset_list_response import RulesetListResponse
 from ...types.rulesets.ruleset_create_response import RulesetCreateResponse
 from ...types.rulesets.ruleset_update_response import RulesetUpdateResponse
 
@@ -253,7 +253,7 @@ class RulesetsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Ruleset]:
+    ) -> SyncSinglePage[RulesetListResponse]:
         """
         Fetches all rulesets.
 
@@ -284,11 +284,11 @@ class RulesetsResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/rulesets",
-            page=SyncSinglePage[Ruleset],
+            page=SyncSinglePage[RulesetListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Ruleset,
+            model=RulesetListResponse,
         )
 
     def delete(
@@ -594,7 +594,7 @@ class AsyncRulesetsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Ruleset, AsyncSinglePage[Ruleset]]:
+    ) -> AsyncPaginator[RulesetListResponse, AsyncSinglePage[RulesetListResponse]]:
         """
         Fetches all rulesets.
 
@@ -625,11 +625,11 @@ class AsyncRulesetsResource(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/rulesets",
-            page=AsyncSinglePage[Ruleset],
+            page=AsyncSinglePage[RulesetListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Ruleset,
+            model=RulesetListResponse,
         )
 
     async def delete(

@@ -18,6 +18,9 @@ class AccountUpdateParams(TypedDict, total=False):
 
 
 class Settings(TypedDict, total=False):
+    abuse_contact_email: str
+    """Sets an abuse contact email to notify for abuse reports."""
+
     default_nameservers: Literal["cloudflare.standard", "custom.account", "custom.tenant"]
     """
     Specifies the default nameservers to be used for new zones added to this

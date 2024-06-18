@@ -11,6 +11,7 @@ from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.types.d1 import (
     D1,
+    DatabaseRawResponse,
     DatabaseListResponse,
     DatabaseQueryResponse,
     DatabaseCreateResponse,
@@ -118,7 +119,7 @@ class TestDatabase:
     def test_method_delete(self, client: Cloudflare) -> None:
         database = client.d1.database.delete(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(DatabaseDeleteResponse, database, path=["response"])
 
@@ -126,7 +127,7 @@ class TestDatabase:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.d1.database.with_raw_response.delete(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -138,7 +139,7 @@ class TestDatabase:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.d1.database.with_streaming_response.delete(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -150,23 +151,23 @@ class TestDatabase:
 
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.d1.database.with_raw_response.delete(
                 "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-                account_identifier="",
+                account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
             client.d1.database.with_raw_response.delete(
                 "",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         database = client.d1.database.get(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(D1, database, path=["response"])
 
@@ -174,7 +175,7 @@ class TestDatabase:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.d1.database.with_raw_response.get(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -186,7 +187,7 @@ class TestDatabase:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.d1.database.with_streaming_response.get(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -198,23 +199,23 @@ class TestDatabase:
 
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.d1.database.with_raw_response.get(
                 "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-                account_identifier="",
+                account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
             client.d1.database.with_raw_response.get(
                 "",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_query(self, client: Cloudflare) -> None:
         database = client.d1.database.query(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
         )
         assert_matches_type(DatabaseQueryResponse, database, path=["response"])
@@ -223,7 +224,7 @@ class TestDatabase:
     def test_method_query_with_all_params(self, client: Cloudflare) -> None:
         database = client.d1.database.query(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
             params=["firstParam", "secondParam"],
         )
@@ -233,7 +234,7 @@ class TestDatabase:
     def test_raw_response_query(self, client: Cloudflare) -> None:
         response = client.d1.database.with_raw_response.query(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
         )
 
@@ -246,7 +247,7 @@ class TestDatabase:
     def test_streaming_response_query(self, client: Cloudflare) -> None:
         with client.d1.database.with_streaming_response.query(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
         ) as response:
             assert not response.is_closed
@@ -259,17 +260,80 @@ class TestDatabase:
 
     @parametrize
     def test_path_params_query(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.d1.database.with_raw_response.query(
                 "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-                account_identifier="",
+                account_id="",
                 sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
             client.d1.database.with_raw_response.query(
                 "",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
+            )
+
+    @parametrize
+    def test_method_raw(self, client: Cloudflare) -> None:
+        database = client.d1.database.raw(
+            "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
+        )
+        assert_matches_type(DatabaseRawResponse, database, path=["response"])
+
+    @parametrize
+    def test_method_raw_with_all_params(self, client: Cloudflare) -> None:
+        database = client.d1.database.raw(
+            "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
+            params=["firstParam", "secondParam"],
+        )
+        assert_matches_type(DatabaseRawResponse, database, path=["response"])
+
+    @parametrize
+    def test_raw_response_raw(self, client: Cloudflare) -> None:
+        response = client.d1.database.with_raw_response.raw(
+            "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        database = response.parse()
+        assert_matches_type(DatabaseRawResponse, database, path=["response"])
+
+    @parametrize
+    def test_streaming_response_raw(self, client: Cloudflare) -> None:
+        with client.d1.database.with_streaming_response.raw(
+            "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            database = response.parse()
+            assert_matches_type(DatabaseRawResponse, database, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_raw(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.d1.database.with_raw_response.raw(
+                "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                account_id="",
+                sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
+            client.d1.database.with_raw_response.raw(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
             )
 
@@ -371,7 +435,7 @@ class TestAsyncDatabase:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         database = await async_client.d1.database.delete(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(DatabaseDeleteResponse, database, path=["response"])
 
@@ -379,7 +443,7 @@ class TestAsyncDatabase:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.d1.database.with_raw_response.delete(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -391,7 +455,7 @@ class TestAsyncDatabase:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.d1.database.with_streaming_response.delete(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -403,23 +467,23 @@ class TestAsyncDatabase:
 
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.d1.database.with_raw_response.delete(
                 "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-                account_identifier="",
+                account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
             await async_client.d1.database.with_raw_response.delete(
                 "",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         database = await async_client.d1.database.get(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(D1, database, path=["response"])
 
@@ -427,7 +491,7 @@ class TestAsyncDatabase:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.d1.database.with_raw_response.get(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -439,7 +503,7 @@ class TestAsyncDatabase:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.d1.database.with_streaming_response.get(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -451,23 +515,23 @@ class TestAsyncDatabase:
 
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.d1.database.with_raw_response.get(
                 "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-                account_identifier="",
+                account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
             await async_client.d1.database.with_raw_response.get(
                 "",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_query(self, async_client: AsyncCloudflare) -> None:
         database = await async_client.d1.database.query(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
         )
         assert_matches_type(DatabaseQueryResponse, database, path=["response"])
@@ -476,7 +540,7 @@ class TestAsyncDatabase:
     async def test_method_query_with_all_params(self, async_client: AsyncCloudflare) -> None:
         database = await async_client.d1.database.query(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
             params=["firstParam", "secondParam"],
         )
@@ -486,7 +550,7 @@ class TestAsyncDatabase:
     async def test_raw_response_query(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.d1.database.with_raw_response.query(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
         )
 
@@ -499,7 +563,7 @@ class TestAsyncDatabase:
     async def test_streaming_response_query(self, async_client: AsyncCloudflare) -> None:
         async with async_client.d1.database.with_streaming_response.query(
             "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
             sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
         ) as response:
             assert not response.is_closed
@@ -512,16 +576,79 @@ class TestAsyncDatabase:
 
     @parametrize
     async def test_path_params_query(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.d1.database.with_raw_response.query(
                 "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-                account_identifier="",
+                account_id="",
                 sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
             await async_client.d1.database.with_raw_response.query(
                 "",
-                account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
+            )
+
+    @parametrize
+    async def test_method_raw(self, async_client: AsyncCloudflare) -> None:
+        database = await async_client.d1.database.raw(
+            "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
+        )
+        assert_matches_type(DatabaseRawResponse, database, path=["response"])
+
+    @parametrize
+    async def test_method_raw_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        database = await async_client.d1.database.raw(
+            "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
+            params=["firstParam", "secondParam"],
+        )
+        assert_matches_type(DatabaseRawResponse, database, path=["response"])
+
+    @parametrize
+    async def test_raw_response_raw(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.d1.database.with_raw_response.raw(
+            "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        database = await response.parse()
+        assert_matches_type(DatabaseRawResponse, database, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_raw(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.d1.database.with_streaming_response.raw(
+            "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            database = await response.parse()
+            assert_matches_type(DatabaseRawResponse, database, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_raw(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.d1.database.with_raw_response.raw(
+                "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                account_id="",
+                sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
+            await async_client.d1.database.with_raw_response.raw(
+                "",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 sql="SELECT * FROM myTable WHERE field = ? OR field = ?;",
             )

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -118,7 +118,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyCreateResponse:
+    ) -> Optional[PolicyCreateResponse]:
         """
         Creates a new Notification policy.
 
@@ -170,9 +170,9 @@ class PoliciesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PolicyCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PolicyCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PolicyCreateResponse], ResultWrapper[PolicyCreateResponse]),
+            cast_to=cast(Type[Optional[PolicyCreateResponse]], ResultWrapper[PolicyCreateResponse]),
         )
 
     def update(
@@ -249,7 +249,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyUpdateResponse:
+    ) -> Optional[PolicyUpdateResponse]:
         """
         Update a Notification policy.
 
@@ -305,9 +305,9 @@ class PoliciesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PolicyUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PolicyUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PolicyUpdateResponse], ResultWrapper[PolicyUpdateResponse]),
+            cast_to=cast(Type[Optional[PolicyUpdateResponse]], ResultWrapper[PolicyUpdateResponse]),
         )
 
     def list(
@@ -357,7 +357,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyDeleteResponse]:
+    ) -> PolicyDeleteResponse:
         """
         Delete a Notification policy.
 
@@ -378,21 +378,12 @@ class PoliciesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
-        return cast(
-            Optional[PolicyDeleteResponse],
-            self._delete(
-                f"/accounts/{account_id}/alerting/v3/policies/{policy_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[PolicyDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PolicyDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/alerting/v3/policies/{policy_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=PolicyDeleteResponse,
         )
 
     def get(
@@ -406,7 +397,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> Optional[Policy]:
         """
         Get details for a single policy.
 
@@ -434,9 +425,9 @@ class PoliciesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Policy]._unwrapper,
+                post_parser=ResultWrapper[Optional[Policy]]._unwrapper,
             ),
-            cast_to=cast(Type[Policy], ResultWrapper[Policy]),
+            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
         )
 
 
@@ -521,7 +512,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyCreateResponse:
+    ) -> Optional[PolicyCreateResponse]:
         """
         Creates a new Notification policy.
 
@@ -573,9 +564,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PolicyCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PolicyCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PolicyCreateResponse], ResultWrapper[PolicyCreateResponse]),
+            cast_to=cast(Type[Optional[PolicyCreateResponse]], ResultWrapper[PolicyCreateResponse]),
         )
 
     async def update(
@@ -652,7 +643,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> PolicyUpdateResponse:
+    ) -> Optional[PolicyUpdateResponse]:
         """
         Update a Notification policy.
 
@@ -708,9 +699,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[PolicyUpdateResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[PolicyUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[PolicyUpdateResponse], ResultWrapper[PolicyUpdateResponse]),
+            cast_to=cast(Type[Optional[PolicyUpdateResponse]], ResultWrapper[PolicyUpdateResponse]),
         )
 
     def list(
@@ -760,7 +751,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PolicyDeleteResponse]:
+    ) -> PolicyDeleteResponse:
         """
         Delete a Notification policy.
 
@@ -781,21 +772,12 @@ class AsyncPoliciesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
-        return cast(
-            Optional[PolicyDeleteResponse],
-            await self._delete(
-                f"/accounts/{account_id}/alerting/v3/policies/{policy_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[PolicyDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[PolicyDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/alerting/v3/policies/{policy_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=PolicyDeleteResponse,
         )
 
     async def get(
@@ -809,7 +791,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Policy:
+    ) -> Optional[Policy]:
         """
         Get details for a single policy.
 
@@ -837,9 +819,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Policy]._unwrapper,
+                post_parser=ResultWrapper[Optional[Policy]]._unwrapper,
             ),
-            cast_to=cast(Type[Policy], ResultWrapper[Policy]),
+            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
         )
 
 

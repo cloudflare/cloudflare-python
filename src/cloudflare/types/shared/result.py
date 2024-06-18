@@ -11,9 +11,9 @@ __all__ = ["Result", "UnionMember0", "AaaAPIResponseCommon"]
 
 
 class UnionMember0(BaseModel):
-    errors: Optional[object] = None
+    errors: Optional[List[ResponseInfo]] = None
 
-    messages: Optional[List[object]] = None
+    messages: Optional[List[ResponseInfo]] = None
 
     result: Optional[List[AuditLog]] = None
 
@@ -24,8 +24,6 @@ class AaaAPIResponseCommon(BaseModel):
     errors: List[ResponseInfo]
 
     messages: List[ResponseInfo]
-
-    result: Union[List[object], str, object]
 
     success: Literal[True]
     """Whether the API call was successful"""

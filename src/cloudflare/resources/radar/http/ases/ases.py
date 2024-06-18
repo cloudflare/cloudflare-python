@@ -78,6 +78,14 @@ from .http_protocol import (
     HTTPProtocolResourceWithStreamingResponse,
     AsyncHTTPProtocolResourceWithStreamingResponse,
 )
+from .browser_family import (
+    BrowserFamilyResource,
+    AsyncBrowserFamilyResource,
+    BrowserFamilyResourceWithRawResponse,
+    AsyncBrowserFamilyResourceWithRawResponse,
+    BrowserFamilyResourceWithStreamingResponse,
+    AsyncBrowserFamilyResourceWithStreamingResponse,
+)
 from ....._base_client import (
     make_request_options,
 )
@@ -117,6 +125,10 @@ class AsesResource(SyncAPIResource):
         return TLSVersionResource(self._client)
 
     @cached_property
+    def browser_family(self) -> BrowserFamilyResource:
+        return BrowserFamilyResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsesResourceWithRawResponse:
         return AsesResourceWithRawResponse(self)
 
@@ -129,6 +141,7 @@ class AsesResource(SyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
@@ -182,6 +195,8 @@ class AsesResource(SyncAPIResource):
 
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
+
+          browser_family: Filter for browser family.
 
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start
               with `-` to exclude from results. For example, `-EU,NA` excludes results from
@@ -236,6 +251,7 @@ class AsesResource(SyncAPIResource):
                     {
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -289,6 +305,10 @@ class AsyncAsesResource(AsyncAPIResource):
         return AsyncTLSVersionResource(self._client)
 
     @cached_property
+    def browser_family(self) -> AsyncBrowserFamilyResource:
+        return AsyncBrowserFamilyResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncAsesResourceWithRawResponse:
         return AsyncAsesResourceWithRawResponse(self)
 
@@ -301,6 +321,7 @@ class AsyncAsesResource(AsyncAPIResource):
         *,
         asn: List[str] | NotGiven = NOT_GIVEN,
         bot_class: List[Literal["LIKELY_AUTOMATED", "LIKELY_HUMAN"]] | NotGiven = NOT_GIVEN,
+        browser_family: List[Literal["CHROME", "EDGE", "FIREFOX", "SAFARI"]] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         date_range: List[
@@ -355,6 +376,8 @@ class AsyncAsesResource(AsyncAPIResource):
           bot_class: Filter for bot class. Refer to
               [Bot classes](https://developers.cloudflare.com/radar/concepts/bot-classes/).
 
+          browser_family: Filter for browser family.
+
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start
               with `-` to exclude from results. For example, `-EU,NA` excludes results from
               Europe, but includes results from North America.
@@ -408,6 +431,7 @@ class AsyncAsesResource(AsyncAPIResource):
                     {
                         "asn": asn,
                         "bot_class": bot_class,
+                        "browser_family": browser_family,
                         "continent": continent,
                         "date_end": date_end,
                         "date_range": date_range,
@@ -467,6 +491,10 @@ class AsesResourceWithRawResponse:
     def tls_version(self) -> TLSVersionResourceWithRawResponse:
         return TLSVersionResourceWithRawResponse(self._ases.tls_version)
 
+    @cached_property
+    def browser_family(self) -> BrowserFamilyResourceWithRawResponse:
+        return BrowserFamilyResourceWithRawResponse(self._ases.browser_family)
+
 
 class AsyncAsesResourceWithRawResponse:
     def __init__(self, ases: AsyncAsesResource) -> None:
@@ -503,6 +531,10 @@ class AsyncAsesResourceWithRawResponse:
     @cached_property
     def tls_version(self) -> AsyncTLSVersionResourceWithRawResponse:
         return AsyncTLSVersionResourceWithRawResponse(self._ases.tls_version)
+
+    @cached_property
+    def browser_family(self) -> AsyncBrowserFamilyResourceWithRawResponse:
+        return AsyncBrowserFamilyResourceWithRawResponse(self._ases.browser_family)
 
 
 class AsesResourceWithStreamingResponse:
@@ -541,6 +573,10 @@ class AsesResourceWithStreamingResponse:
     def tls_version(self) -> TLSVersionResourceWithStreamingResponse:
         return TLSVersionResourceWithStreamingResponse(self._ases.tls_version)
 
+    @cached_property
+    def browser_family(self) -> BrowserFamilyResourceWithStreamingResponse:
+        return BrowserFamilyResourceWithStreamingResponse(self._ases.browser_family)
+
 
 class AsyncAsesResourceWithStreamingResponse:
     def __init__(self, ases: AsyncAsesResource) -> None:
@@ -577,3 +613,7 @@ class AsyncAsesResourceWithStreamingResponse:
     @cached_property
     def tls_version(self) -> AsyncTLSVersionResourceWithStreamingResponse:
         return AsyncTLSVersionResourceWithStreamingResponse(self._ases.tls_version)
+
+    @cached_property
+    def browser_family(self) -> AsyncBrowserFamilyResourceWithStreamingResponse:
+        return AsyncBrowserFamilyResourceWithStreamingResponse(self._ases.browser_family)

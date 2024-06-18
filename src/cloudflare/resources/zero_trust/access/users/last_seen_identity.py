@@ -35,9 +35,9 @@ class LastSeenIdentityResource(SyncAPIResource):
 
     def get(
         self,
-        id: str,
+        user_id: str,
         *,
-        identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -49,9 +49,9 @@ class LastSeenIdentityResource(SyncAPIResource):
         Get last seen identity for a single user.
 
         Args:
-          identifier: Identifier
+          account_id: Identifier
 
-          id: UUID
+          user_id: UUID
 
           extra_headers: Send extra headers
 
@@ -61,12 +61,12 @@ class LastSeenIdentityResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return self._get(
-            f"/accounts/{identifier}/access/users/{id}/last_seen_identity",
+            f"/accounts/{account_id}/access/users/{user_id}/last_seen_identity",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -89,9 +89,9 @@ class AsyncLastSeenIdentityResource(AsyncAPIResource):
 
     async def get(
         self,
-        id: str,
+        user_id: str,
         *,
-        identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -103,9 +103,9 @@ class AsyncLastSeenIdentityResource(AsyncAPIResource):
         Get last seen identity for a single user.
 
         Args:
-          identifier: Identifier
+          account_id: Identifier
 
-          id: UUID
+          user_id: UUID
 
           extra_headers: Send extra headers
 
@@ -115,12 +115,12 @@ class AsyncLastSeenIdentityResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not identifier:
-            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
-        if not id:
-            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not user_id:
+            raise ValueError(f"Expected a non-empty value for `user_id` but received {user_id!r}")
         return await self._get(
-            f"/accounts/{identifier}/access/users/{id}/last_seen_identity",
+            f"/accounts/{account_id}/access/users/{user_id}/last_seen_identity",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
