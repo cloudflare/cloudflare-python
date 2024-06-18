@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 from typing import List, Union
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ..._utils import PropertyInfo
 from .ttl_param import TTLParam
 from .record_tags import RecordTags
 
@@ -47,7 +48,7 @@ __all__ = [
 
 
 class ARecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     content: Required[str]
@@ -59,6 +60,9 @@ class ARecord(TypedDict, total=False):
     type: Required[Literal["A"]]
     """Record type."""
 
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -81,9 +85,12 @@ class ARecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
+
 
 class AAAARecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     content: Required[str]
@@ -95,6 +102,9 @@ class AAAARecord(TypedDict, total=False):
     type: Required[Literal["AAAA"]]
     """Record type."""
 
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -117,9 +127,12 @@ class AAAARecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
+
 
 class CAARecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     data: Required[CAARecordData]
@@ -130,6 +143,9 @@ class CAARecord(TypedDict, total=False):
 
     type: Required[Literal["CAA"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -146,6 +162,9 @@ class CAARecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
+
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
 
 
 class CAARecordData(TypedDict, total=False):
@@ -160,7 +179,7 @@ class CAARecordData(TypedDict, total=False):
 
 
 class CERTRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     data: Required[CERTRecordData]
@@ -171,6 +190,9 @@ class CERTRecord(TypedDict, total=False):
 
     type: Required[Literal["CERT"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -187,6 +209,9 @@ class CERTRecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
+
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
 
 
 class CERTRecordData(TypedDict, total=False):
@@ -204,7 +229,7 @@ class CERTRecordData(TypedDict, total=False):
 
 
 class CNAMERecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     content: Required[object]
@@ -215,6 +240,9 @@ class CNAMERecord(TypedDict, total=False):
 
     type: Required[Literal["CNAME"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -238,9 +266,12 @@ class CNAMERecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
+
 
 class DNSKEYRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     data: Required[DNSKEYRecordData]
@@ -251,6 +282,9 @@ class DNSKEYRecord(TypedDict, total=False):
 
     type: Required[Literal["DNSKEY"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -267,6 +301,9 @@ class DNSKEYRecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
+
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
 
 
 class DNSKEYRecordData(TypedDict, total=False):
@@ -284,7 +321,7 @@ class DNSKEYRecordData(TypedDict, total=False):
 
 
 class DSRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     data: Required[DSRecordData]
@@ -295,6 +332,9 @@ class DSRecord(TypedDict, total=False):
 
     type: Required[Literal["DS"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -311,6 +351,9 @@ class DSRecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
+
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
 
 
 class DSRecordData(TypedDict, total=False):
@@ -328,7 +371,7 @@ class DSRecordData(TypedDict, total=False):
 
 
 class HTTPSRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     data: Required[HTTPSRecordData]
@@ -339,6 +382,9 @@ class HTTPSRecord(TypedDict, total=False):
 
     type: Required[Literal["HTTPS"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -355,6 +401,9 @@ class HTTPSRecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
+
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
 
 
 class HTTPSRecordData(TypedDict, total=False):
@@ -369,7 +418,7 @@ class HTTPSRecordData(TypedDict, total=False):
 
 
 class LOCRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     data: Required[LOCRecordData]
@@ -380,6 +429,9 @@ class LOCRecord(TypedDict, total=False):
 
     type: Required[Literal["LOC"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -396,6 +448,9 @@ class LOCRecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
+
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
 
 
 class LOCRecordData(TypedDict, total=False):
@@ -437,7 +492,7 @@ class LOCRecordData(TypedDict, total=False):
 
 
 class MXRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     content: Required[str]
@@ -455,6 +510,9 @@ class MXRecord(TypedDict, total=False):
     type: Required[Literal["MX"]]
     """Record type."""
 
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -471,9 +529,12 @@ class MXRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
+
 
 class NAPTRRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     data: Required[NAPTRRecordData]
@@ -485,6 +546,9 @@ class NAPTRRecord(TypedDict, total=False):
     type: Required[Literal["NAPTR"]]
     """Record type."""
 
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -500,6 +564,9 @@ class NAPTRRecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
+
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
 
 
 class NAPTRRecordData(TypedDict, total=False):
@@ -523,7 +590,7 @@ class NAPTRRecordData(TypedDict, total=False):
 
 
 class NSRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     content: Required[str]
@@ -535,6 +602,9 @@ class NSRecord(TypedDict, total=False):
     type: Required[Literal["NS"]]
     """Record type."""
 
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -551,9 +621,12 @@ class NSRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
+
 
 class PTRRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     content: Required[str]
@@ -565,6 +638,9 @@ class PTRRecord(TypedDict, total=False):
     type: Required[Literal["PTR"]]
     """Record type."""
 
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -581,9 +657,12 @@ class PTRRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
+
 
 class SMIMEARecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     data: Required[SMIMEARecordData]
@@ -595,6 +674,9 @@ class SMIMEARecord(TypedDict, total=False):
     type: Required[Literal["SMIMEA"]]
     """Record type."""
 
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -610,6 +692,9 @@ class SMIMEARecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
+
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
 
 
 class SMIMEARecordData(TypedDict, total=False):
@@ -627,7 +712,7 @@ class SMIMEARecordData(TypedDict, total=False):
 
 
 class SRVRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     data: Required[SRVRecordData]
@@ -642,6 +727,9 @@ class SRVRecord(TypedDict, total=False):
 
     type: Required[Literal["SRV"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -658,6 +746,9 @@ class SRVRecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
+
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
 
 
 class SRVRecordData(TypedDict, total=False):
@@ -700,7 +791,7 @@ class SRVRecordData(TypedDict, total=False):
 
 
 class SSHFPRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     data: Required[SSHFPRecordData]
@@ -711,6 +802,9 @@ class SSHFPRecord(TypedDict, total=False):
 
     type: Required[Literal["SSHFP"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -727,6 +821,9 @@ class SSHFPRecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
+
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
 
 
 class SSHFPRecordData(TypedDict, total=False):
@@ -741,7 +838,7 @@ class SSHFPRecordData(TypedDict, total=False):
 
 
 class SVCBRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     data: Required[SVCBRecordData]
@@ -752,6 +849,9 @@ class SVCBRecord(TypedDict, total=False):
 
     type: Required[Literal["SVCB"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -768,6 +868,9 @@ class SVCBRecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
+
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
 
 
 class SVCBRecordData(TypedDict, total=False):
@@ -782,7 +885,7 @@ class SVCBRecordData(TypedDict, total=False):
 
 
 class TLSARecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     data: Required[TLSARecordData]
@@ -793,6 +896,9 @@ class TLSARecord(TypedDict, total=False):
 
     type: Required[Literal["TLSA"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -809,6 +915,9 @@ class TLSARecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
+
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
 
 
 class TLSARecordData(TypedDict, total=False):
@@ -826,7 +935,7 @@ class TLSARecordData(TypedDict, total=False):
 
 
 class TXTRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     content: Required[str]
@@ -837,6 +946,9 @@ class TXTRecord(TypedDict, total=False):
 
     type: Required[Literal["TXT"]]
     """Record type."""
+
+    id: str
+    """Identifier"""
 
     comment: str
     """Comments or notes about the DNS record.
@@ -854,9 +966,12 @@ class TXTRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
+
 
 class URIRecord(TypedDict, total=False):
-    zone_id: Required[str]
+    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
     """Identifier"""
 
     data: Required[URIRecordData]
@@ -874,6 +989,9 @@ class URIRecord(TypedDict, total=False):
     type: Required[Literal["URI"]]
     """Record type."""
 
+    id: str
+    """Identifier"""
+
     comment: str
     """Comments or notes about the DNS record.
 
@@ -889,6 +1007,9 @@ class URIRecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
+
+    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
+    """Identifier"""
 
 
 class URIRecordData(TypedDict, total=False):
