@@ -9,7 +9,6 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.gateway import (
     GatewayList,
@@ -39,20 +38,7 @@ class TestLists:
             name="Admin Serial Numbers",
             type="SERIAL",
             description="The serial numbers for administrators",
-            items=[
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "value": "8GE8721REF",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "value": "8GE8721REF",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "value": "8GE8721REF",
-                },
-            ],
+            items=[{"value": "8GE8721REF"}, {"value": "8GE8721REF"}, {"value": "8GE8721REF"}],
         )
         assert_matches_type(Optional[ListCreateResponse], list_, path=["response"])
 
@@ -164,14 +150,6 @@ class TestLists:
         assert_matches_type(SyncSinglePage[GatewayList], list_, path=["response"])
 
     @parametrize
-    def test_method_list_with_all_params(self, client: Cloudflare) -> None:
-        list_ = client.zero_trust.gateway.lists.list(
-            account_id="699d98642c564d2e855e9661899b7252",
-            type="SERIAL",
-        )
-        assert_matches_type(SyncSinglePage[GatewayList], list_, path=["response"])
-
-    @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.lists.with_raw_response.list(
             account_id="699d98642c564d2e855e9661899b7252",
@@ -263,20 +241,7 @@ class TestLists:
         list_ = client.zero_trust.gateway.lists.edit(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            append=[
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "value": "8GE8721REF",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "value": "8GE8721REF",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "value": "8GE8721REF",
-                },
-            ],
+            append=[{"value": "8GE8721REF"}, {"value": "8GE8721REF"}, {"value": "8GE8721REF"}],
             remove=["8GE8721REF", "8GE8721REF", "8GE8721REF"],
         )
         assert_matches_type(Optional[GatewayList], list_, path=["response"])
@@ -389,20 +354,7 @@ class TestAsyncLists:
             name="Admin Serial Numbers",
             type="SERIAL",
             description="The serial numbers for administrators",
-            items=[
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "value": "8GE8721REF",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "value": "8GE8721REF",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "value": "8GE8721REF",
-                },
-            ],
+            items=[{"value": "8GE8721REF"}, {"value": "8GE8721REF"}, {"value": "8GE8721REF"}],
         )
         assert_matches_type(Optional[ListCreateResponse], list_, path=["response"])
 
@@ -514,14 +466,6 @@ class TestAsyncLists:
         assert_matches_type(AsyncSinglePage[GatewayList], list_, path=["response"])
 
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        list_ = await async_client.zero_trust.gateway.lists.list(
-            account_id="699d98642c564d2e855e9661899b7252",
-            type="SERIAL",
-        )
-        assert_matches_type(AsyncSinglePage[GatewayList], list_, path=["response"])
-
-    @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.lists.with_raw_response.list(
             account_id="699d98642c564d2e855e9661899b7252",
@@ -613,20 +557,7 @@ class TestAsyncLists:
         list_ = await async_client.zero_trust.gateway.lists.edit(
             "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
-            append=[
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "value": "8GE8721REF",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "value": "8GE8721REF",
-                },
-                {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
-                    "value": "8GE8721REF",
-                },
-            ],
+            append=[{"value": "8GE8721REF"}, {"value": "8GE8721REF"}, {"value": "8GE8721REF"}],
             remove=["8GE8721REF", "8GE8721REF", "8GE8721REF"],
         )
         assert_matches_type(Optional[GatewayList], list_, path=["response"])
