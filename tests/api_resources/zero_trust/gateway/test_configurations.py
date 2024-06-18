@@ -60,6 +60,7 @@ class TestConfigurations:
                     "non_identity_enabled": True,
                     "url_browser_isolation_enabled": True,
                 },
+                "certificate": {"id": "d1b364c5-1311-466e-a194-f0e943e0799f"},
                 "custom_certificate": {
                     "enabled": True,
                     "id": "d1b364c5-1311-466e-a194-f0e943e0799f",
@@ -142,6 +143,7 @@ class TestConfigurations:
                     "non_identity_enabled": True,
                     "url_browser_isolation_enabled": True,
                 },
+                "certificate": {"id": "d1b364c5-1311-466e-a194-f0e943e0799f"},
                 "custom_certificate": {
                     "enabled": True,
                     "id": "d1b364c5-1311-466e-a194-f0e943e0799f",
@@ -266,6 +268,7 @@ class TestAsyncConfigurations:
                     "non_identity_enabled": True,
                     "url_browser_isolation_enabled": True,
                 },
+                "certificate": {"id": "d1b364c5-1311-466e-a194-f0e943e0799f"},
                 "custom_certificate": {
                     "enabled": True,
                     "id": "d1b364c5-1311-466e-a194-f0e943e0799f",
@@ -348,6 +351,7 @@ class TestAsyncConfigurations:
                     "non_identity_enabled": True,
                     "url_browser_isolation_enabled": True,
                 },
+                "certificate": {"id": "d1b364c5-1311-466e-a194-f0e943e0799f"},
                 "custom_certificate": {
                     "enabled": True,
                     "id": "d1b364c5-1311-466e-a194-f0e943e0799f",

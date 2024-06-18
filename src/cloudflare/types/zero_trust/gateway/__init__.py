@@ -19,6 +19,7 @@ from .schedule_param import ScheduleParam as ScheduleParam
 from .logging_setting import LoggingSetting as LoggingSetting
 from .gateway_settings import GatewaySettings as GatewaySettings
 from .list_edit_params import ListEditParams as ListEditParams
+from .list_list_params import ListListParams as ListListParams
 from .location_network import LocationNetwork as LocationNetwork
 from .gateway_item_param import GatewayItemParam as GatewayItemParam
 from .list_create_params import ListCreateParams as ListCreateParams
