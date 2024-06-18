@@ -50,6 +50,7 @@ class TestTop:
             location=["string", "string", "string"],
             magnitude="MITIGATED_REQUESTS",
             name=["string", "string", "string"],
+            normalization="PERCENTAGE",
         )
         assert_matches_type(TopAttacksResponse, top, path=["response"])
 
@@ -201,6 +202,7 @@ class TestAsyncTop:
             location=["string", "string", "string"],
             magnitude="MITIGATED_REQUESTS",
             name=["string", "string", "string"],
+            normalization="PERCENTAGE",
         )
         assert_matches_type(TopAttacksResponse, top, path=["response"])
 

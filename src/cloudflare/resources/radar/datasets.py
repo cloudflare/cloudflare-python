@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -21,7 +21,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...types.radar import dataset_get_params, dataset_list_params, dataset_download_params
+from ...types.radar import dataset_list_params, dataset_download_params
 from ..._base_client import (
     make_request_options,
 )
@@ -139,7 +139,6 @@ class DatasetsResource(SyncAPIResource):
         self,
         alias: str,
         *,
-        date: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -156,8 +155,6 @@ class DatasetsResource(SyncAPIResource):
         Args:
           alias: Dataset alias or id
 
-          date: Filter dataset alias by date
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -172,11 +169,7 @@ class DatasetsResource(SyncAPIResource):
         return self._get(
             f"/radar/datasets/{alias}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform({"date": date}, dataset_get_params.DatasetGetParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=str,
         )
@@ -290,7 +283,6 @@ class AsyncDatasetsResource(AsyncAPIResource):
         self,
         alias: str,
         *,
-        date: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -307,8 +299,6 @@ class AsyncDatasetsResource(AsyncAPIResource):
         Args:
           alias: Dataset alias or id
 
-          date: Filter dataset alias by date
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -323,11 +313,7 @@ class AsyncDatasetsResource(AsyncAPIResource):
         return await self._get(
             f"/radar/datasets/{alias}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform({"date": date}, dataset_get_params.DatasetGetParams),
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
             cast_to=str,
         )

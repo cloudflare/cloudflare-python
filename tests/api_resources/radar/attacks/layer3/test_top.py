@@ -49,6 +49,7 @@ class TestTop:
             limit_per_location=10,
             location=["string", "string", "string"],
             name=["string", "string", "string"],
+            normalization="PERCENTAGE",
             protocol=["UDP", "TCP", "ICMP"],
         )
         assert_matches_type(TopAttacksResponse, top, path=["response"])
@@ -202,6 +203,7 @@ class TestAsyncTop:
             limit_per_location=10,
             location=["string", "string", "string"],
             name=["string", "string", "string"],
+            normalization="PERCENTAGE",
             protocol=["UDP", "TCP", "ICMP"],
         )
         assert_matches_type(TopAttacksResponse, top, path=["response"])

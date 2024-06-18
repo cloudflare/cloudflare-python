@@ -43,18 +43,21 @@ class TestBGP:
             name=["string", "string", "string"],
             prefix=[
                 {
-                    "location": "query",
+                    "in": "query",
                     "name": "prefix",
+                    "test": 12,
                     "type": "1.1.1.0/24",
                 },
                 {
-                    "location": "query",
+                    "in": "query",
                     "name": "prefix",
+                    "test": 12,
                     "type": "1.1.1.0/24",
                 },
                 {
-                    "location": "query",
+                    "in": "query",
                     "name": "prefix",
+                    "test": 12,
                     "type": "1.1.1.0/24",
                 },
             ],
@@ -111,18 +114,21 @@ class TestAsyncBGP:
             name=["string", "string", "string"],
             prefix=[
                 {
-                    "location": "query",
+                    "in": "query",
                     "name": "prefix",
+                    "test": 12,
                     "type": "1.1.1.0/24",
                 },
                 {
-                    "location": "query",
+                    "in": "query",
                     "name": "prefix",
+                    "test": 12,
                     "type": "1.1.1.0/24",
                 },
                 {
-                    "location": "query",
+                    "in": "query",
                     "name": "prefix",
+                    "test": 12,
                     "type": "1.1.1.0/24",
                 },
             ],
