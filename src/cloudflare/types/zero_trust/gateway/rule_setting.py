@@ -28,19 +28,19 @@ class AuditSSH(BaseModel):
 
 class BisoAdminControls(BaseModel):
     dcp: Optional[bool] = None
-    """Set to false to enable copy-pasting."""
+    """Set to true to enable copy-pasting."""
 
     dd: Optional[bool] = None
-    """Set to false to enable downloading."""
+    """Set to true to enable downloading."""
 
     dk: Optional[bool] = None
-    """Set to false to enable keyboard usage."""
+    """Set to true to enable keyboard usage."""
 
     dp: Optional[bool] = None
-    """Set to false to enable printing."""
+    """Set to true to enable printing."""
 
     du: Optional[bool] = None
-    """Set to false to enable uploading."""
+    """Set to true to enable uploading."""
 
 
 class CheckSession(BaseModel):
@@ -151,13 +151,6 @@ class RuleSetting(BaseModel):
 
     You can enable this setting for rules with Egress actions and filters, or omit
     it to indicate local egress via WARP IPs.
-    """
-
-    ignore_cname_category_matches: Optional[bool] = None
-    """Set to true, to ignore the category matches at CNAME domains in a response.
-
-    If unchecked, the categories in this rule will be checked against all the CNAME
-    domain categories in a response.
     """
 
     insecure_disable_dnssec_validation: Optional[bool] = None
