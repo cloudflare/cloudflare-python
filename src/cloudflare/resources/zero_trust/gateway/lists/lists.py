@@ -34,7 +34,7 @@ from ....._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from .....types.zero_trust.gateway import list_edit_params, list_create_params, list_update_params
+from .....types.zero_trust.gateway import list_edit_params, list_list_params, list_create_params, list_update_params
 from .....types.zero_trust.gateway.gateway_list import GatewayList
 from .....types.zero_trust.gateway.gateway_item_param import GatewayItemParam
 from .....types.zero_trust.gateway.list_create_response import ListCreateResponse
@@ -173,6 +173,7 @@ class ListsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -184,6 +185,8 @@ class ListsResource(SyncAPIResource):
         Fetches all Zero Trust lists for an account.
 
         Args:
+          type: The type of list.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -198,7 +201,11 @@ class ListsResource(SyncAPIResource):
             f"/accounts/{account_id}/gateway/lists",
             page=SyncSinglePage[GatewayList],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"type": type}, list_list_params.ListListParams),
             ),
             model=GatewayList,
         )
@@ -478,6 +485,7 @@ class AsyncListsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        type: Literal["SERIAL", "URL", "DOMAIN", "EMAIL", "IP"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -489,6 +497,8 @@ class AsyncListsResource(AsyncAPIResource):
         Fetches all Zero Trust lists for an account.
 
         Args:
+          type: The type of list.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -503,7 +513,11 @@ class AsyncListsResource(AsyncAPIResource):
             f"/accounts/{account_id}/gateway/lists",
             page=AsyncSinglePage[GatewayList],
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"type": type}, list_list_params.ListListParams),
             ),
             model=GatewayList,
         )
