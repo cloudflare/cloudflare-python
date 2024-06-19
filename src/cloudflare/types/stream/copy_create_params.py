@@ -65,6 +65,16 @@ class CopyCreateParams(TypedDict, total=False):
 
     watermark: Watermark
 
+    upload_creator: Annotated[str, PropertyInfo(alias="Upload-Creator")]
+    """A user-defined identifier for the media creator."""
+
+    upload_metadata: Annotated[str, PropertyInfo(alias="Upload-Metadata")]
+    """Comma-separated key-value pairs following the TUS protocol specification.
+
+    Values are Base-64 encoded. Supported keys: `name`, `requiresignedurls`,
+    `allowedorigins`, `thumbnailtimestamppct`, `watermark`, `scheduleddeletion`.
+    """
+
 
 class Watermark(TypedDict, total=False):
     uid: str

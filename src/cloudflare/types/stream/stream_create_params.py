@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
+
+from ..._utils import PropertyInfo
 
 __all__ = ["StreamCreateParams"]
 
@@ -12,3 +14,26 @@ class StreamCreateParams(TypedDict, total=False):
     """The account identifier tag."""
 
     body: Required[object]
+
+    tus_resumable: Required[Annotated[Literal["1.0.0"], PropertyInfo(alias="Tus-Resumable")]]
+    """Specifies the TUS protocol version.
+
+    This value must be included in every upload request. Notes: The only supported
+    version of TUS protocol is 1.0.0.
+    """
+
+    upload_length: Required[Annotated[int, PropertyInfo(alias="Upload-Length")]]
+    """Indicates the size of the entire upload in bytes.
+
+    The value must be a non-negative integer.
+    """
+
+    upload_creator: Annotated[str, PropertyInfo(alias="Upload-Creator")]
+    """A user-defined identifier for the media creator."""
+
+    upload_metadata: Annotated[str, PropertyInfo(alias="Upload-Metadata")]
+    """Comma-separated key-value pairs following the TUS protocol specification.
+
+    Values are Base-64 encoded. Supported keys: `name`, `requiresignedurls`,
+    `allowedorigins`, `thumbnailtimestamppct`, `watermark`, `scheduleddeletion`.
+    """
