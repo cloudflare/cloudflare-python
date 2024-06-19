@@ -23,7 +23,7 @@ from ...._response import (
 from ...._base_client import (
     make_request_options,
 )
-from ....types.api_gateway.settings import schema_validation_update_params
+from ....types.api_gateway.settings import schema_validation_edit_params, schema_validation_update_params
 from ....types.api_gateway.settings.settings import Settings
 
 __all__ = ["SchemaValidationResource", "AsyncSchemaValidationResource"]
@@ -93,6 +93,69 @@ class SchemaValidationResource(SyncAPIResource):
                     "validation_override_mitigation_action": validation_override_mitigation_action,
                 },
                 schema_validation_update_params.SchemaValidationUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Settings,
+        )
+
+    def edit(
+        self,
+        *,
+        zone_id: str,
+        validation_default_mitigation_action: Optional[Literal["none", "log", "block"]] | NotGiven = NOT_GIVEN,
+        validation_override_mitigation_action: Optional[Literal["none", "disable_override"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Settings:
+        """
+        Updates zone level schema validation settings on the zone
+
+        Args:
+          zone_id: Identifier
+
+          validation_default_mitigation_action: The default mitigation action used when there is no mitigation action defined on
+              the operation Mitigation actions are as follows:
+
+              - `log` - log request when request does not conform to schema
+              - `block` - deny access to the site when request does not conform to schema
+
+              A special value of of `none` will skip running schema validation entirely for
+              the request when there is no mitigation action defined on the operation
+
+              `null` will have no effect.
+
+          validation_override_mitigation_action: When set, this overrides both zone level and operation level mitigation actions.
+
+              - `none` will skip running schema validation entirely for the request
+
+              To clear any override, use the special value `disable_override`
+
+              `null` will have no effect.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return self._patch(
+            f"/zones/{zone_id}/api_gateway/settings/schema_validation",
+            body=maybe_transform(
+                {
+                    "validation_default_mitigation_action": validation_default_mitigation_action,
+                    "validation_override_mitigation_action": validation_override_mitigation_action,
+                },
+                schema_validation_edit_params.SchemaValidationEditParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -207,6 +270,69 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
             cast_to=Settings,
         )
 
+    async def edit(
+        self,
+        *,
+        zone_id: str,
+        validation_default_mitigation_action: Optional[Literal["none", "log", "block"]] | NotGiven = NOT_GIVEN,
+        validation_override_mitigation_action: Optional[Literal["none", "disable_override"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Settings:
+        """
+        Updates zone level schema validation settings on the zone
+
+        Args:
+          zone_id: Identifier
+
+          validation_default_mitigation_action: The default mitigation action used when there is no mitigation action defined on
+              the operation Mitigation actions are as follows:
+
+              - `log` - log request when request does not conform to schema
+              - `block` - deny access to the site when request does not conform to schema
+
+              A special value of of `none` will skip running schema validation entirely for
+              the request when there is no mitigation action defined on the operation
+
+              `null` will have no effect.
+
+          validation_override_mitigation_action: When set, this overrides both zone level and operation level mitigation actions.
+
+              - `none` will skip running schema validation entirely for the request
+
+              To clear any override, use the special value `disable_override`
+
+              `null` will have no effect.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        return await self._patch(
+            f"/zones/{zone_id}/api_gateway/settings/schema_validation",
+            body=await async_maybe_transform(
+                {
+                    "validation_default_mitigation_action": validation_default_mitigation_action,
+                    "validation_override_mitigation_action": validation_override_mitigation_action,
+                },
+                schema_validation_edit_params.SchemaValidationEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Settings,
+        )
+
     async def get(
         self,
         *,
@@ -250,6 +376,9 @@ class SchemaValidationResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             schema_validation.update,
         )
+        self.edit = to_raw_response_wrapper(
+            schema_validation.edit,
+        )
         self.get = to_raw_response_wrapper(
             schema_validation.get,
         )
@@ -261,6 +390,9 @@ class AsyncSchemaValidationResourceWithRawResponse:
 
         self.update = async_to_raw_response_wrapper(
             schema_validation.update,
+        )
+        self.edit = async_to_raw_response_wrapper(
+            schema_validation.edit,
         )
         self.get = async_to_raw_response_wrapper(
             schema_validation.get,
@@ -274,6 +406,9 @@ class SchemaValidationResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             schema_validation.update,
         )
+        self.edit = to_streamed_response_wrapper(
+            schema_validation.edit,
+        )
         self.get = to_streamed_response_wrapper(
             schema_validation.get,
         )
@@ -285,6 +420,9 @@ class AsyncSchemaValidationResourceWithStreamingResponse:
 
         self.update = async_to_streamed_response_wrapper(
             schema_validation.update,
+        )
+        self.edit = async_to_streamed_response_wrapper(
+            schema_validation.edit,
         )
         self.get = async_to_streamed_response_wrapper(
             schema_validation.get,
