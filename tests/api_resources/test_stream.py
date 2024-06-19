@@ -25,6 +25,21 @@ class TestStream:
         stream = client.stream.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
+            tus_resumable="1.0.0",
+            upload_length=0,
+        )
+        assert stream is None
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        stream = client.stream.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
+            tus_resumable="1.0.0",
+            upload_length=0,
+            upload_creator="creator-id_abcde12345",
+            upload_metadata="name aGVsbG8gd29ybGQ=, requiresignedurls, allowedorigins ZXhhbXBsZS5jb20sdGVzdC5jb20=",
         )
         assert stream is None
 
@@ -34,6 +49,8 @@ class TestStream:
         response = client.stream.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
+            tus_resumable="1.0.0",
+            upload_length=0,
         )
 
         assert response.is_closed is True
@@ -47,6 +64,8 @@ class TestStream:
         with client.stream.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
+            tus_resumable="1.0.0",
+            upload_length=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -63,6 +82,8 @@ class TestStream:
             client.stream.with_raw_response.create(
                 account_id="",
                 body={},
+                tus_resumable="1.0.0",
+                upload_length=0,
             )
 
     @parametrize
@@ -224,6 +245,21 @@ class TestAsyncStream:
         stream = await async_client.stream.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
+            tus_resumable="1.0.0",
+            upload_length=0,
+        )
+        assert stream is None
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        stream = await async_client.stream.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body={},
+            tus_resumable="1.0.0",
+            upload_length=0,
+            upload_creator="creator-id_abcde12345",
+            upload_metadata="name aGVsbG8gd29ybGQ=, requiresignedurls, allowedorigins ZXhhbXBsZS5jb20sdGVzdC5jb20=",
         )
         assert stream is None
 
@@ -233,6 +269,8 @@ class TestAsyncStream:
         response = await async_client.stream.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
+            tus_resumable="1.0.0",
+            upload_length=0,
         )
 
         assert response.is_closed is True
@@ -246,6 +284,8 @@ class TestAsyncStream:
         async with async_client.stream.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
+            tus_resumable="1.0.0",
+            upload_length=0,
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -262,6 +302,8 @@ class TestAsyncStream:
             await async_client.stream.with_raw_response.create(
                 account_id="",
                 body={},
+                tus_resumable="1.0.0",
+                upload_length=0,
             )
 
     @parametrize

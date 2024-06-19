@@ -10,6 +10,7 @@ import httpx
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
+    strip_not_given,
     async_maybe_transform,
 )
 from ..._compat import cached_property
@@ -53,6 +54,7 @@ class DirectUploadResource(SyncAPIResource):
         scheduled_deletion: Union[str, datetime] | NotGiven = NOT_GIVEN,
         thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
         watermark: direct_upload_create_params.Watermark | NotGiven = NOT_GIVEN,
+        upload_creator: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -94,6 +96,8 @@ class DirectUploadResource(SyncAPIResource):
               divide the desired timestamp by the total duration of the video. If this value
               is not set, the default thumbnail image is taken from 0s of the video.
 
+          upload_creator: A user-defined identifier for the media creator.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -104,6 +108,7 @@ class DirectUploadResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {**strip_not_given({"Upload-Creator": upload_creator}), **(extra_headers or {})}
         return self._post(
             f"/accounts/{account_id}/stream/direct_upload",
             body=maybe_transform(
@@ -153,6 +158,7 @@ class AsyncDirectUploadResource(AsyncAPIResource):
         scheduled_deletion: Union[str, datetime] | NotGiven = NOT_GIVEN,
         thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
         watermark: direct_upload_create_params.Watermark | NotGiven = NOT_GIVEN,
+        upload_creator: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -194,6 +200,8 @@ class AsyncDirectUploadResource(AsyncAPIResource):
               divide the desired timestamp by the total duration of the video. If this value
               is not set, the default thumbnail image is taken from 0s of the video.
 
+          upload_creator: A user-defined identifier for the media creator.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -204,6 +212,7 @@ class AsyncDirectUploadResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {**strip_not_given({"Upload-Creator": upload_creator}), **(extra_headers or {})}
         return await self._post(
             f"/accounts/{account_id}/stream/direct_upload",
             body=await async_maybe_transform(

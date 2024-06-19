@@ -59,6 +59,7 @@ from .videos import (
 from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
 from ..._utils import (
     maybe_transform,
+    strip_not_given,
     async_maybe_transform,
 )
 from .captions import (
@@ -205,6 +206,10 @@ class StreamResource(SyncAPIResource):
         *,
         account_id: str,
         body: object,
+        tus_resumable: Literal["1.0.0"],
+        upload_length: int,
+        upload_creator: str | NotGiven = NOT_GIVEN,
+        upload_metadata: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -222,6 +227,18 @@ class StreamResource(SyncAPIResource):
         Args:
           account_id: The account identifier tag.
 
+          tus_resumable: Specifies the TUS protocol version. This value must be included in every upload
+              request. Notes: The only supported version of TUS protocol is 1.0.0.
+
+          upload_length: Indicates the size of the entire upload in bytes. The value must be a
+              non-negative integer.
+
+          upload_creator: A user-defined identifier for the media creator.
+
+          upload_metadata: Comma-separated key-value pairs following the TUS protocol specification. Values
+              are Base-64 encoded. Supported keys: `name`, `requiresignedurls`,
+              `allowedorigins`, `thumbnailtimestamppct`, `watermark`, `scheduleddeletion`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -233,6 +250,17 @@ class StreamResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Tus-Resumable": str(tus_resumable),
+                    "Upload-Length": str(upload_length),
+                    "Upload-Creator": upload_creator,
+                    "Upload-Metadata": upload_metadata,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             f"/accounts/{account_id}/stream",
             body=maybe_transform(body, stream_create_params.StreamCreateParams),
@@ -475,6 +503,10 @@ class AsyncStreamResource(AsyncAPIResource):
         *,
         account_id: str,
         body: object,
+        tus_resumable: Literal["1.0.0"],
+        upload_length: int,
+        upload_creator: str | NotGiven = NOT_GIVEN,
+        upload_metadata: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -492,6 +524,18 @@ class AsyncStreamResource(AsyncAPIResource):
         Args:
           account_id: The account identifier tag.
 
+          tus_resumable: Specifies the TUS protocol version. This value must be included in every upload
+              request. Notes: The only supported version of TUS protocol is 1.0.0.
+
+          upload_length: Indicates the size of the entire upload in bytes. The value must be a
+              non-negative integer.
+
+          upload_creator: A user-defined identifier for the media creator.
+
+          upload_metadata: Comma-separated key-value pairs following the TUS protocol specification. Values
+              are Base-64 encoded. Supported keys: `name`, `requiresignedurls`,
+              `allowedorigins`, `thumbnailtimestamppct`, `watermark`, `scheduleddeletion`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -503,6 +547,17 @@ class AsyncStreamResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Tus-Resumable": str(tus_resumable),
+                    "Upload-Length": str(upload_length),
+                    "Upload-Creator": upload_creator,
+                    "Upload-Metadata": upload_metadata,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             f"/accounts/{account_id}/stream",
             body=await async_maybe_transform(body, stream_create_params.StreamCreateParams),
