@@ -68,6 +68,9 @@ class DirectUploadCreateParams(TypedDict, total=False):
 
     watermark: Watermark
 
+    upload_creator: Annotated[str, PropertyInfo(alias="Upload-Creator")]
+    """A user-defined identifier for the media creator."""
+
 
 class Watermark(TypedDict, total=False):
     uid: str

@@ -32,3 +32,7 @@ class ContentUpdateParams(TypedDict, total=False):
 
     metadata: WorkerMetadataParam
     """JSON encoded metadata about the uploaded parts and Worker configuration."""
+
+    cf_worker_body_part: Annotated[str, PropertyInfo(alias="CF-WORKER-BODY-PART")]
+
+    cf_worker_main_module_part: Annotated[str, PropertyInfo(alias="CF-WORKER-MAIN-MODULE-PART")]

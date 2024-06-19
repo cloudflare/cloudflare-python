@@ -10,6 +10,7 @@ import httpx
 from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import (
     maybe_transform,
+    strip_not_given,
     async_maybe_transform,
 )
 from ..._compat import cached_property
@@ -52,6 +53,8 @@ class CopyResource(SyncAPIResource):
         scheduled_deletion: Union[str, datetime] | NotGiven = NOT_GIVEN,
         thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
         watermark: copy_create_params.Watermark | NotGiven = NOT_GIVEN,
+        upload_creator: str | NotGiven = NOT_GIVEN,
+        upload_metadata: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -90,6 +93,12 @@ class CopyResource(SyncAPIResource):
               divide the desired timestamp by the total duration of the video. If this value
               is not set, the default thumbnail image is taken from 0s of the video.
 
+          upload_creator: A user-defined identifier for the media creator.
+
+          upload_metadata: Comma-separated key-value pairs following the TUS protocol specification. Values
+              are Base-64 encoded. Supported keys: `name`, `requiresignedurls`,
+              `allowedorigins`, `thumbnailtimestamppct`, `watermark`, `scheduleddeletion`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -100,6 +109,15 @@ class CopyResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Upload-Creator": upload_creator,
+                    "Upload-Metadata": upload_metadata,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             f"/accounts/{account_id}/stream/copy",
             body=maybe_transform(
@@ -147,6 +165,8 @@ class AsyncCopyResource(AsyncAPIResource):
         scheduled_deletion: Union[str, datetime] | NotGiven = NOT_GIVEN,
         thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
         watermark: copy_create_params.Watermark | NotGiven = NOT_GIVEN,
+        upload_creator: str | NotGiven = NOT_GIVEN,
+        upload_metadata: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -185,6 +205,12 @@ class AsyncCopyResource(AsyncAPIResource):
               divide the desired timestamp by the total duration of the video. If this value
               is not set, the default thumbnail image is taken from 0s of the video.
 
+          upload_creator: A user-defined identifier for the media creator.
+
+          upload_metadata: Comma-separated key-value pairs following the TUS protocol specification. Values
+              are Base-64 encoded. Supported keys: `name`, `requiresignedurls`,
+              `allowedorigins`, `thumbnailtimestamppct`, `watermark`, `scheduleddeletion`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -195,6 +221,15 @@ class AsyncCopyResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Upload-Creator": upload_creator,
+                    "Upload-Metadata": upload_metadata,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             f"/accounts/{account_id}/stream/copy",
             body=await async_maybe_transform(

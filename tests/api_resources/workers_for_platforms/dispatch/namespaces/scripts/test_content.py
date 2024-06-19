@@ -47,6 +47,8 @@ class TestContent:
                 "body_part": "worker.js",
                 "main_module": "worker.js",
             },
+            cf_worker_body_part="string",
+            cf_worker_main_module_part="string",
         )
         assert_matches_type(Optional[Script], content, path=["response"])
 
@@ -208,6 +210,8 @@ class TestAsyncContent:
                 "body_part": "worker.js",
                 "main_module": "worker.js",
             },
+            cf_worker_body_part="string",
+            cf_worker_main_module_part="string",
         )
         assert_matches_type(Optional[Script], content, path=["response"])
 
