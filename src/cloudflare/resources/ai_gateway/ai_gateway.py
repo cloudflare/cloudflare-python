@@ -190,7 +190,7 @@ class AIGatewayResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncV4PagePaginationArray[AIGatewayListResponse]:
         """
-        List Gateway's
+        List Gateways
 
         Args:
           id: gateway id
@@ -457,7 +457,7 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[AIGatewayListResponse, AsyncV4PagePaginationArray[AIGatewayListResponse]]:
         """
-        List Gateway's
+        List Gateways
 
         Args:
           id: gateway id
