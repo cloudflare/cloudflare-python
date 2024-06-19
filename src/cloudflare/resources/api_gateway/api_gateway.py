@@ -52,14 +52,6 @@ from .configurations import (
     ConfigurationsResourceWithStreamingResponse,
     AsyncConfigurationsResourceWithStreamingResponse,
 )
-from .schema_validation import (
-    SchemaValidationResource,
-    AsyncSchemaValidationResource,
-    SchemaValidationResourceWithRawResponse,
-    AsyncSchemaValidationResourceWithRawResponse,
-    SchemaValidationResourceWithStreamingResponse,
-    AsyncSchemaValidationResourceWithStreamingResponse,
-)
 from .settings.settings import SettingsResource, AsyncSettingsResource
 from .discovery.discovery import DiscoveryResource, AsyncDiscoveryResource
 from .operations.operations import OperationsResource, AsyncOperationsResource
@@ -94,10 +86,6 @@ class APIGatewayResource(SyncAPIResource):
         return UserSchemasResource(self._client)
 
     @cached_property
-    def schema_validation(self) -> SchemaValidationResource:
-        return SchemaValidationResource(self._client)
-
-    @cached_property
     def with_raw_response(self) -> APIGatewayResourceWithRawResponse:
         return APIGatewayResourceWithRawResponse(self)
 
@@ -130,10 +118,6 @@ class AsyncAPIGatewayResource(AsyncAPIResource):
     @cached_property
     def user_schemas(self) -> AsyncUserSchemasResource:
         return AsyncUserSchemasResource(self._client)
-
-    @cached_property
-    def schema_validation(self) -> AsyncSchemaValidationResource:
-        return AsyncSchemaValidationResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncAPIGatewayResourceWithRawResponse:
@@ -172,10 +156,6 @@ class APIGatewayResourceWithRawResponse:
     def user_schemas(self) -> UserSchemasResourceWithRawResponse:
         return UserSchemasResourceWithRawResponse(self._api_gateway.user_schemas)
 
-    @cached_property
-    def schema_validation(self) -> SchemaValidationResourceWithRawResponse:
-        return SchemaValidationResourceWithRawResponse(self._api_gateway.schema_validation)
-
 
 class AsyncAPIGatewayResourceWithRawResponse:
     def __init__(self, api_gateway: AsyncAPIGatewayResource) -> None:
@@ -204,10 +184,6 @@ class AsyncAPIGatewayResourceWithRawResponse:
     @cached_property
     def user_schemas(self) -> AsyncUserSchemasResourceWithRawResponse:
         return AsyncUserSchemasResourceWithRawResponse(self._api_gateway.user_schemas)
-
-    @cached_property
-    def schema_validation(self) -> AsyncSchemaValidationResourceWithRawResponse:
-        return AsyncSchemaValidationResourceWithRawResponse(self._api_gateway.schema_validation)
 
 
 class APIGatewayResourceWithStreamingResponse:
@@ -238,10 +214,6 @@ class APIGatewayResourceWithStreamingResponse:
     def user_schemas(self) -> UserSchemasResourceWithStreamingResponse:
         return UserSchemasResourceWithStreamingResponse(self._api_gateway.user_schemas)
 
-    @cached_property
-    def schema_validation(self) -> SchemaValidationResourceWithStreamingResponse:
-        return SchemaValidationResourceWithStreamingResponse(self._api_gateway.schema_validation)
-
 
 class AsyncAPIGatewayResourceWithStreamingResponse:
     def __init__(self, api_gateway: AsyncAPIGatewayResource) -> None:
@@ -270,7 +242,3 @@ class AsyncAPIGatewayResourceWithStreamingResponse:
     @cached_property
     def user_schemas(self) -> AsyncUserSchemasResourceWithStreamingResponse:
         return AsyncUserSchemasResourceWithStreamingResponse(self._api_gateway.user_schemas)
-
-    @cached_property
-    def schema_validation(self) -> AsyncSchemaValidationResourceWithStreamingResponse:
-        return AsyncSchemaValidationResourceWithStreamingResponse(self._api_gateway.schema_validation)

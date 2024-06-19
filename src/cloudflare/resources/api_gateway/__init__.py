@@ -56,14 +56,6 @@ from .configurations import (
     ConfigurationsResourceWithStreamingResponse,
     AsyncConfigurationsResourceWithStreamingResponse,
 )
-from .schema_validation import (
-    SchemaValidationResource,
-    AsyncSchemaValidationResource,
-    SchemaValidationResourceWithRawResponse,
-    AsyncSchemaValidationResourceWithRawResponse,
-    SchemaValidationResourceWithStreamingResponse,
-    AsyncSchemaValidationResourceWithStreamingResponse,
-)
 
 __all__ = [
     "ConfigurationsResource",
@@ -102,12 +94,6 @@ __all__ = [
     "AsyncUserSchemasResourceWithRawResponse",
     "UserSchemasResourceWithStreamingResponse",
     "AsyncUserSchemasResourceWithStreamingResponse",
-    "SchemaValidationResource",
-    "AsyncSchemaValidationResource",
-    "SchemaValidationResourceWithRawResponse",
-    "AsyncSchemaValidationResourceWithRawResponse",
-    "SchemaValidationResourceWithStreamingResponse",
-    "AsyncSchemaValidationResourceWithStreamingResponse",
     "APIGatewayResource",
     "AsyncAPIGatewayResource",
     "APIGatewayResourceWithRawResponse",

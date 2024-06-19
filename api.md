@@ -3043,17 +3043,18 @@ Methods:
 
 ## Settings
 
-### SchemaValidation
-
 Types:
 
 ```python
-from cloudflare.types.api_gateway.settings import Settings
+from cloudflare.types.api_gateway import Settings
 ```
+
+### SchemaValidation
 
 Methods:
 
 - <code title="put /zones/{zone_id}/api_gateway/settings/schema_validation">client.api_gateway.settings.schema_validation.<a href="./src/cloudflare/resources/api_gateway/settings/schema_validation.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/settings/schema_validation_update_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/settings/settings.py">Settings</a></code>
+- <code title="patch /zones/{zone_id}/api_gateway/settings/schema_validation">client.api_gateway.settings.schema_validation.<a href="./src/cloudflare/resources/api_gateway/settings/schema_validation.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/settings/schema_validation_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/settings/settings.py">Settings</a></code>
 - <code title="get /zones/{zone_id}/api_gateway/settings/schema_validation">client.api_gateway.settings.schema_validation.<a href="./src/cloudflare/resources/api_gateway/settings/schema_validation.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/api_gateway/settings/settings.py">Settings</a></code>
 
 ## UserSchemas
@@ -3088,12 +3089,6 @@ from cloudflare.types.api_gateway.user_schemas import OperationListResponse
 Methods:
 
 - <code title="get /zones/{zone_id}/api_gateway/user_schemas/{schema_id}/operations">client.api_gateway.user_schemas.operations.<a href="./src/cloudflare/resources/api_gateway/user_schemas/operations.py">list</a>(schema_id, \*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/user_schemas/operation_list_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/user_schemas/operation_list_response.py">SyncSinglePage[OperationListResponse]</a></code>
-
-## SchemaValidation
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/api_gateway/settings/schema_validation">client.api_gateway.schema_validation.<a href="./src/cloudflare/resources/api_gateway/schema_validation.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/api_gateway/schema_validation_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/api_gateway/settings/settings.py">Settings</a></code>
 
 # ManagedHeaders
 
