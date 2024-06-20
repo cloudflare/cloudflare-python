@@ -7886,12 +7886,37 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.ai_gateway import LogListResponse
+from cloudflare.types.ai_gateway import LogListResponse, LogGetResponse
 ```
 
 Methods:
 
 - <code title="get /accounts/{account_id}/ai-gateway/gateways/{id}/logs">client.ai_gateway.logs.<a href="./src/cloudflare/resources/ai_gateway/logs/logs.py">list</a>(id, \*, account_id, \*\*<a href="src/cloudflare/types/ai_gateway/log_list_params.py">params</a>) -> <a href="./src/cloudflare/types/ai_gateway/log_list_response.py">SyncV4PagePaginationArray[LogListResponse]</a></code>
+- <code title="get /accounts/{account_id}/ai-gateway/gateways/{id}/logs/{logId}">client.ai_gateway.logs.<a href="./src/cloudflare/resources/ai_gateway/logs/logs.py">get</a>(log_id, \*, account_id, id) -> <a href="./src/cloudflare/types/ai_gateway/log_get_response.py">LogGetResponse</a></code>
+
+### Request
+
+Types:
+
+```python
+from cloudflare.types.ai_gateway.logs import RequestGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/ai-gateway/gateways/{id}/logs/{logId}/request">client.ai_gateway.logs.request.<a href="./src/cloudflare/resources/ai_gateway/logs/request.py">get</a>(log_id, \*, account_id, id) -> <a href="./src/cloudflare/types/ai_gateway/logs/request_get_response.py">object</a></code>
+
+### Response
+
+Types:
+
+```python
+from cloudflare.types.ai_gateway.logs import ResponseGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/ai-gateway/gateways/{id}/logs/{logId}/response">client.ai_gateway.logs.response.<a href="./src/cloudflare/resources/ai_gateway/logs/response.py">get</a>(log_id, \*, account_id, id) -> <a href="./src/cloudflare/types/ai_gateway/logs/response_get_response.py">object</a></code>
 
 # IAM
 
