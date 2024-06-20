@@ -42,14 +42,17 @@ class TestLists:
             items=[
                 {
                     "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
+                    "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
                 {
                     "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
+                    "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
                 {
                     "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
+                    "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
             ],
@@ -266,14 +269,17 @@ class TestLists:
             append=[
                 {
                     "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
+                    "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
                 {
                     "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
+                    "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
                 {
                     "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
+                    "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
             ],
@@ -392,14 +398,17 @@ class TestAsyncLists:
             items=[
                 {
                     "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
+                    "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
                 {
                     "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
+                    "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
                 {
                     "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
+                    "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
             ],
@@ -616,14 +625,17 @@ class TestAsyncLists:
             append=[
                 {
                     "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
+                    "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
                 {
                     "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
+                    "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
                 {
                     "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
+                    "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
             ],
