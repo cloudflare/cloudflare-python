@@ -12,12 +12,14 @@ from .dhcp_relay import DHCPRelay as DHCPRelay
 from .dhcp_server import DHCPServer as DHCPServer
 from .subnet_param import SubnetParam as SubnetParam
 from .routed_subnet import RoutedSubnet as RoutedSubnet
+from .acl_edit_params import ACLEditParams as ACLEditParams
 from .lan_edit_params import LANEditParams as LANEditParams
 from .wan_edit_params import WANEditParams as WANEditParams
 from .allowed_protocol import AllowedProtocol as AllowedProtocol
 from .dhcp_relay_param import DHCPRelayParam as DHCPRelayParam
 from .acl_configuration import ACLConfiguration as ACLConfiguration
 from .acl_create_params import ACLCreateParams as ACLCreateParams
+from .acl_update_params import ACLUpdateParams as ACLUpdateParams
 from .dhcp_server_param import DHCPServerParam as DHCPServerParam
 from .lan_create_params import LANCreateParams as LANCreateParams
 from .lan_update_params import LANUpdateParams as LANUpdateParams

@@ -8,23 +8,23 @@ from typing_extensions import Literal
 
 import httpx
 
-from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ...._utils import maybe_transform
-from ...._compat import cached_property
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ...._response import (
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...._base_client import (
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ..._base_client import (
     AsyncPaginator,
     make_request_options,
 )
-from ....types.ai_gateway import log_list_params
-from ....types.ai_gateway.log_list_response import LogListResponse
+from ...types.ai_gateway import log_list_params
+from ...types.ai_gateway.log_list_response import LogListResponse
 
 __all__ = ["LogsResource", "AsyncLogsResource"]
 

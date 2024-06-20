@@ -21,7 +21,6 @@ from ..._utils import (
     async_maybe_transform,
 )
 from ..._compat import cached_property
-from .logs.logs import LogsResource, AsyncLogsResource
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
     to_raw_response_wrapper,
