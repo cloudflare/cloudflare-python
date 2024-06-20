@@ -65,6 +65,14 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
+from .certificates import (
+    CertificatesResource,
+    AsyncCertificatesResource,
+    CertificatesResourceWithRawResponse,
+    AsyncCertificatesResourceWithRawResponse,
+    CertificatesResourceWithStreamingResponse,
+    AsyncCertificatesResourceWithStreamingResponse,
+)
 from .configurations import (
     ConfigurationsResource,
     AsyncConfigurationsResource,
@@ -134,6 +142,10 @@ class GatewayResource(SyncAPIResource):
     @cached_property
     def rules(self) -> RulesResource:
         return RulesResource(self._client)
+
+    @cached_property
+    def certificates(self) -> CertificatesResource:
+        return CertificatesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> GatewayResourceWithRawResponse:
@@ -254,6 +266,10 @@ class AsyncGatewayResource(AsyncAPIResource):
     @cached_property
     def rules(self) -> AsyncRulesResource:
         return AsyncRulesResource(self._client)
+
+    @cached_property
+    def certificates(self) -> AsyncCertificatesResource:
+        return AsyncCertificatesResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncGatewayResourceWithRawResponse:
@@ -385,6 +401,10 @@ class GatewayResourceWithRawResponse:
     def rules(self) -> RulesResourceWithRawResponse:
         return RulesResourceWithRawResponse(self._gateway.rules)
 
+    @cached_property
+    def certificates(self) -> CertificatesResourceWithRawResponse:
+        return CertificatesResourceWithRawResponse(self._gateway.certificates)
+
 
 class AsyncGatewayResourceWithRawResponse:
     def __init__(self, gateway: AsyncGatewayResource) -> None:
@@ -432,6 +452,10 @@ class AsyncGatewayResourceWithRawResponse:
     @cached_property
     def rules(self) -> AsyncRulesResourceWithRawResponse:
         return AsyncRulesResourceWithRawResponse(self._gateway.rules)
+
+    @cached_property
+    def certificates(self) -> AsyncCertificatesResourceWithRawResponse:
+        return AsyncCertificatesResourceWithRawResponse(self._gateway.certificates)
 
 
 class GatewayResourceWithStreamingResponse:
@@ -481,6 +505,10 @@ class GatewayResourceWithStreamingResponse:
     def rules(self) -> RulesResourceWithStreamingResponse:
         return RulesResourceWithStreamingResponse(self._gateway.rules)
 
+    @cached_property
+    def certificates(self) -> CertificatesResourceWithStreamingResponse:
+        return CertificatesResourceWithStreamingResponse(self._gateway.certificates)
+
 
 class AsyncGatewayResourceWithStreamingResponse:
     def __init__(self, gateway: AsyncGatewayResource) -> None:
@@ -528,3 +556,7 @@ class AsyncGatewayResourceWithStreamingResponse:
     @cached_property
     def rules(self) -> AsyncRulesResourceWithStreamingResponse:
         return AsyncRulesResourceWithStreamingResponse(self._gateway.rules)
+
+    @cached_property
+    def certificates(self) -> AsyncCertificatesResourceWithStreamingResponse:
+        return AsyncCertificatesResourceWithStreamingResponse(self._gateway.certificates)

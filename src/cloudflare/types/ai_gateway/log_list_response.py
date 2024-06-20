@@ -5,10 +5,10 @@ from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["LogGetResponse"]
+__all__ = ["LogListResponse"]
 
 
-class LogGetResponse(BaseModel):
+class LogListResponse(BaseModel):
     id: str
 
     cached: bool

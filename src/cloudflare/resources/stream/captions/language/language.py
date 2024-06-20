@@ -51,6 +51,55 @@ class LanguageResource(SyncAPIResource):
     def with_streaming_response(self) -> LanguageResourceWithStreamingResponse:
         return LanguageResourceWithStreamingResponse(self)
 
+    def create(
+        self,
+        language: str,
+        *,
+        account_id: str,
+        identifier: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Caption]:
+        """
+        Generate captions or subtitles for provided language via AI.
+
+        Args:
+          account_id: Identifier
+
+          identifier: A Cloudflare-generated unique identifier for a media item.
+
+          language: The language tag in BCP 47 format.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not language:
+            raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
+        return self._post(
+            f"/accounts/{account_id}/stream/{identifier}/captions/{language}/generate",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Caption]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Caption]], ResultWrapper[Caption]),
+        )
+
     def update(
         self,
         language: str,
@@ -217,6 +266,55 @@ class AsyncLanguageResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncLanguageResourceWithStreamingResponse:
         return AsyncLanguageResourceWithStreamingResponse(self)
 
+    async def create(
+        self,
+        language: str,
+        *,
+        account_id: str,
+        identifier: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Caption]:
+        """
+        Generate captions or subtitles for provided language via AI.
+
+        Args:
+          account_id: Identifier
+
+          identifier: A Cloudflare-generated unique identifier for a media item.
+
+          language: The language tag in BCP 47 format.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        if not language:
+            raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
+        return await self._post(
+            f"/accounts/{account_id}/stream/{identifier}/captions/{language}/generate",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Caption]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[Caption]], ResultWrapper[Caption]),
+        )
+
     async def update(
         self,
         language: str,
@@ -374,6 +472,9 @@ class LanguageResourceWithRawResponse:
     def __init__(self, language: LanguageResource) -> None:
         self._language = language
 
+        self.create = to_raw_response_wrapper(
+            language.create,
+        )
         self.update = to_raw_response_wrapper(
             language.update,
         )
@@ -393,6 +494,9 @@ class AsyncLanguageResourceWithRawResponse:
     def __init__(self, language: AsyncLanguageResource) -> None:
         self._language = language
 
+        self.create = async_to_raw_response_wrapper(
+            language.create,
+        )
         self.update = async_to_raw_response_wrapper(
             language.update,
         )
@@ -412,6 +516,9 @@ class LanguageResourceWithStreamingResponse:
     def __init__(self, language: LanguageResource) -> None:
         self._language = language
 
+        self.create = to_streamed_response_wrapper(
+            language.create,
+        )
         self.update = to_streamed_response_wrapper(
             language.update,
         )
@@ -431,6 +538,9 @@ class AsyncLanguageResourceWithStreamingResponse:
     def __init__(self, language: AsyncLanguageResource) -> None:
         self._language = language
 
+        self.create = async_to_streamed_response_wrapper(
+            language.create,
+        )
         self.update = async_to_streamed_response_wrapper(
             language.update,
         )
