@@ -8,8 +8,36 @@ from .logs import (
     LogsResourceWithStreamingResponse,
     AsyncLogsResourceWithStreamingResponse,
 )
+from .request import (
+    RequestResource,
+    AsyncRequestResource,
+    RequestResourceWithRawResponse,
+    AsyncRequestResourceWithRawResponse,
+    RequestResourceWithStreamingResponse,
+    AsyncRequestResourceWithStreamingResponse,
+)
+from .response import (
+    ResponseResource,
+    AsyncResponseResource,
+    ResponseResourceWithRawResponse,
+    AsyncResponseResourceWithRawResponse,
+    ResponseResourceWithStreamingResponse,
+    AsyncResponseResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "RequestResource",
+    "AsyncRequestResource",
+    "RequestResourceWithRawResponse",
+    "AsyncRequestResourceWithRawResponse",
+    "RequestResourceWithStreamingResponse",
+    "AsyncRequestResourceWithStreamingResponse",
+    "ResponseResource",
+    "AsyncResponseResource",
+    "ResponseResourceWithRawResponse",
+    "AsyncResponseResourceWithRawResponse",
+    "ResponseResourceWithStreamingResponse",
+    "AsyncResponseResourceWithStreamingResponse",
     "LogsResource",
     "AsyncLogsResource",
     "LogsResourceWithRawResponse",
