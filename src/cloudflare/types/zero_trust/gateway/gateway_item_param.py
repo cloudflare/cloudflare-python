@@ -14,5 +14,8 @@ __all__ = ["GatewayItemParam"]
 class GatewayItemParam(TypedDict, total=False):
     created_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
+    description: str
+    """The description of the list item, if present"""
+
     value: str
     """The value of the item in a list."""
