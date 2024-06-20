@@ -23,10 +23,14 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.magic_transit import route_create_params
+from ...types.magic_transit import route_create_params, route_update_params
+from ...types.magic_transit.scope_param import ScopeParam
+from ...types.magic_transit.route_get_response import RouteGetResponse
 from ...types.magic_transit.route_list_response import RouteListResponse
 from ...types.magic_transit.route_empty_response import RouteEmptyResponse
 from ...types.magic_transit.route_create_response import RouteCreateResponse
+from ...types.magic_transit.route_delete_response import RouteDeleteResponse
+from ...types.magic_transit.route_update_response import RouteUpdateResponse
 
 __all__ = ["RoutesResource", "AsyncRoutesResource"]
 
@@ -83,6 +87,81 @@ class RoutesResource(SyncAPIResource):
             cast_to=cast(Type[RouteCreateResponse], ResultWrapper[RouteCreateResponse]),
         )
 
+    def update(
+        self,
+        route_id: str,
+        *,
+        account_id: str,
+        nexthop: str,
+        prefix: str,
+        priority: int,
+        description: str | NotGiven = NOT_GIVEN,
+        scope: ScopeParam | NotGiven = NOT_GIVEN,
+        weight: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteUpdateResponse:
+        """Update a specific Magic static route.
+
+        Use `?validate_only=true` as an optional
+        query parameter to run validation only without persisting changes.
+
+        Args:
+          account_id: Identifier
+
+          route_id: Identifier
+
+          nexthop: The next-hop IP Address for the static route.
+
+          prefix: IP Prefix in Classless Inter-Domain Routing format.
+
+          priority: Priority of the static route.
+
+          description: An optional human provided description of the static route.
+
+          scope: Used only for ECMP routes.
+
+          weight: Optional weight of the ECMP scope - if provided.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not route_id:
+            raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
+        return self._put(
+            f"/accounts/{account_id}/magic/routes/{route_id}",
+            body=maybe_transform(
+                {
+                    "nexthop": nexthop,
+                    "prefix": prefix,
+                    "priority": priority,
+                    "description": description,
+                    "scope": scope,
+                    "weight": weight,
+                },
+                route_update_params.RouteUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RouteUpdateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[RouteUpdateResponse], ResultWrapper[RouteUpdateResponse]),
+        )
+
     def list(
         self,
         *,
@@ -122,6 +201,50 @@ class RoutesResource(SyncAPIResource):
             cast_to=cast(Type[RouteListResponse], ResultWrapper[RouteListResponse]),
         )
 
+    def delete(
+        self,
+        route_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteDeleteResponse:
+        """
+        Disable and remove a specific Magic static route.
+
+        Args:
+          account_id: Identifier
+
+          route_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not route_id:
+            raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
+        return self._delete(
+            f"/accounts/{account_id}/magic/routes/{route_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RouteDeleteResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[RouteDeleteResponse], ResultWrapper[RouteDeleteResponse]),
+        )
+
     def empty(
         self,
         *,
@@ -159,6 +282,50 @@ class RoutesResource(SyncAPIResource):
                 post_parser=ResultWrapper[RouteEmptyResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteEmptyResponse], ResultWrapper[RouteEmptyResponse]),
+        )
+
+    def get(
+        self,
+        route_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteGetResponse:
+        """
+        Get a specific Magic static route.
+
+        Args:
+          account_id: Identifier
+
+          route_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not route_id:
+            raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/magic/routes/{route_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RouteGetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[RouteGetResponse], ResultWrapper[RouteGetResponse]),
         )
 
 
@@ -214,6 +381,81 @@ class AsyncRoutesResource(AsyncAPIResource):
             cast_to=cast(Type[RouteCreateResponse], ResultWrapper[RouteCreateResponse]),
         )
 
+    async def update(
+        self,
+        route_id: str,
+        *,
+        account_id: str,
+        nexthop: str,
+        prefix: str,
+        priority: int,
+        description: str | NotGiven = NOT_GIVEN,
+        scope: ScopeParam | NotGiven = NOT_GIVEN,
+        weight: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteUpdateResponse:
+        """Update a specific Magic static route.
+
+        Use `?validate_only=true` as an optional
+        query parameter to run validation only without persisting changes.
+
+        Args:
+          account_id: Identifier
+
+          route_id: Identifier
+
+          nexthop: The next-hop IP Address for the static route.
+
+          prefix: IP Prefix in Classless Inter-Domain Routing format.
+
+          priority: Priority of the static route.
+
+          description: An optional human provided description of the static route.
+
+          scope: Used only for ECMP routes.
+
+          weight: Optional weight of the ECMP scope - if provided.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not route_id:
+            raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
+        return await self._put(
+            f"/accounts/{account_id}/magic/routes/{route_id}",
+            body=await async_maybe_transform(
+                {
+                    "nexthop": nexthop,
+                    "prefix": prefix,
+                    "priority": priority,
+                    "description": description,
+                    "scope": scope,
+                    "weight": weight,
+                },
+                route_update_params.RouteUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RouteUpdateResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[RouteUpdateResponse], ResultWrapper[RouteUpdateResponse]),
+        )
+
     async def list(
         self,
         *,
@@ -251,6 +493,50 @@ class AsyncRoutesResource(AsyncAPIResource):
                 post_parser=ResultWrapper[RouteListResponse]._unwrapper,
             ),
             cast_to=cast(Type[RouteListResponse], ResultWrapper[RouteListResponse]),
+        )
+
+    async def delete(
+        self,
+        route_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteDeleteResponse:
+        """
+        Disable and remove a specific Magic static route.
+
+        Args:
+          account_id: Identifier
+
+          route_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not route_id:
+            raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
+        return await self._delete(
+            f"/accounts/{account_id}/magic/routes/{route_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RouteDeleteResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[RouteDeleteResponse], ResultWrapper[RouteDeleteResponse]),
         )
 
     async def empty(
@@ -292,6 +578,50 @@ class AsyncRoutesResource(AsyncAPIResource):
             cast_to=cast(Type[RouteEmptyResponse], ResultWrapper[RouteEmptyResponse]),
         )
 
+    async def get(
+        self,
+        route_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> RouteGetResponse:
+        """
+        Get a specific Magic static route.
+
+        Args:
+          account_id: Identifier
+
+          route_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not route_id:
+            raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/magic/routes/{route_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[RouteGetResponse]._unwrapper,
+            ),
+            cast_to=cast(Type[RouteGetResponse], ResultWrapper[RouteGetResponse]),
+        )
+
 
 class RoutesResourceWithRawResponse:
     def __init__(self, routes: RoutesResource) -> None:
@@ -300,11 +630,20 @@ class RoutesResourceWithRawResponse:
         self.create = to_raw_response_wrapper(
             routes.create,
         )
+        self.update = to_raw_response_wrapper(
+            routes.update,
+        )
         self.list = to_raw_response_wrapper(
             routes.list,
         )
+        self.delete = to_raw_response_wrapper(
+            routes.delete,
+        )
         self.empty = to_raw_response_wrapper(
             routes.empty,
+        )
+        self.get = to_raw_response_wrapper(
+            routes.get,
         )
 
 
@@ -315,11 +654,20 @@ class AsyncRoutesResourceWithRawResponse:
         self.create = async_to_raw_response_wrapper(
             routes.create,
         )
+        self.update = async_to_raw_response_wrapper(
+            routes.update,
+        )
         self.list = async_to_raw_response_wrapper(
             routes.list,
         )
+        self.delete = async_to_raw_response_wrapper(
+            routes.delete,
+        )
         self.empty = async_to_raw_response_wrapper(
             routes.empty,
+        )
+        self.get = async_to_raw_response_wrapper(
+            routes.get,
         )
 
 
@@ -330,11 +678,20 @@ class RoutesResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             routes.create,
         )
+        self.update = to_streamed_response_wrapper(
+            routes.update,
+        )
         self.list = to_streamed_response_wrapper(
             routes.list,
         )
+        self.delete = to_streamed_response_wrapper(
+            routes.delete,
+        )
         self.empty = to_streamed_response_wrapper(
             routes.empty,
+        )
+        self.get = to_streamed_response_wrapper(
+            routes.get,
         )
 
 
@@ -345,9 +702,18 @@ class AsyncRoutesResourceWithStreamingResponse:
         self.create = async_to_streamed_response_wrapper(
             routes.create,
         )
+        self.update = async_to_streamed_response_wrapper(
+            routes.update,
+        )
         self.list = async_to_streamed_response_wrapper(
             routes.list,
         )
+        self.delete = async_to_streamed_response_wrapper(
+            routes.delete,
+        )
         self.empty = async_to_streamed_response_wrapper(
             routes.empty,
+        )
+        self.get = async_to_streamed_response_wrapper(
+            routes.get,
         )
