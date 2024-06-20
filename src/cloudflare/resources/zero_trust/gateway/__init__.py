@@ -56,6 +56,14 @@ from .categories import (
     CategoriesResourceWithStreamingResponse,
     AsyncCategoriesResourceWithStreamingResponse,
 )
+from .certificates import (
+    CertificatesResource,
+    AsyncCertificatesResource,
+    CertificatesResourceWithRawResponse,
+    AsyncCertificatesResourceWithRawResponse,
+    CertificatesResourceWithStreamingResponse,
+    AsyncCertificatesResourceWithStreamingResponse,
+)
 from .configurations import (
     ConfigurationsResource,
     AsyncConfigurationsResource,
@@ -136,6 +144,12 @@ __all__ = [
     "AsyncRulesResourceWithRawResponse",
     "RulesResourceWithStreamingResponse",
     "AsyncRulesResourceWithStreamingResponse",
+    "CertificatesResource",
+    "AsyncCertificatesResource",
+    "CertificatesResourceWithRawResponse",
+    "AsyncCertificatesResourceWithRawResponse",
+    "CertificatesResourceWithStreamingResponse",
+    "AsyncCertificatesResourceWithStreamingResponse",
     "GatewayResource",
     "AsyncGatewayResource",
     "GatewayResourceWithRawResponse",

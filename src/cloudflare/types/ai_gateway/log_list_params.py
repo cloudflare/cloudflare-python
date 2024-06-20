@@ -8,10 +8,10 @@ from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
 
-__all__ = ["LogGetParams"]
+__all__ = ["LogListParams"]
 
 
-class LogGetParams(TypedDict, total=False):
+class LogListParams(TypedDict, total=False):
     account_id: Required[str]
 
     cached: bool
