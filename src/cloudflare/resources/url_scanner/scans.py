@@ -32,7 +32,7 @@ from ..._wrappers import ResultWrapper
 from ..._base_client import (
     make_request_options,
 )
-from ...types.url_scanner import scan_create_params, scan_screenshot_params
+from ...types.url_scanner import scan_get_params, scan_create_params, scan_screenshot_params
 from ...types.url_scanner.scan_get_response import ScanGetResponse
 from ...types.url_scanner.scan_har_response import ScanHarResponse
 from ...types.url_scanner.scan_create_response import ScanCreateResponse
@@ -119,6 +119,7 @@ class ScansResource(SyncAPIResource):
         scan_id: str,
         *,
         account_id: str,
+        full: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -133,6 +134,8 @@ class ScansResource(SyncAPIResource):
           account_id: Account Id
 
           scan_id: Scan uuid
+
+          full: Whether to return full report (scan summary and network log).
 
           extra_headers: Send extra headers
 
@@ -153,6 +156,7 @@ class ScansResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform({"full": full}, scan_get_params.ScanGetParams),
                 post_parser=ResultWrapper[ScanGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[ScanGetResponse], ResultWrapper[ScanGetResponse]),
@@ -332,6 +336,7 @@ class AsyncScansResource(AsyncAPIResource):
         scan_id: str,
         *,
         account_id: str,
+        full: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -346,6 +351,8 @@ class AsyncScansResource(AsyncAPIResource):
           account_id: Account Id
 
           scan_id: Scan uuid
+
+          full: Whether to return full report (scan summary and network log).
 
           extra_headers: Send extra headers
 
@@ -366,6 +373,7 @@ class AsyncScansResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform({"full": full}, scan_get_params.ScanGetParams),
                 post_parser=ResultWrapper[ScanGetResponse]._unwrapper,
             ),
             cast_to=cast(Type[ScanGetResponse], ResultWrapper[ScanGetResponse]),
