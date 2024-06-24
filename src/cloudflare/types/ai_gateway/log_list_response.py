@@ -1,14 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime
 
 from ..._models import BaseModel
 
-__all__ = ["LogGetResponse", "LogGetResponseItem"]
+__all__ = ["LogListResponse"]
 
 
-class LogGetResponseItem(BaseModel):
+class LogListResponse(BaseModel):
     id: str
 
     cached: bool
@@ -44,6 +44,3 @@ class LogGetResponseItem(BaseModel):
     status_code: Optional[int] = None
 
     step: Optional[int] = None
-
-
-LogGetResponse = List[LogGetResponseItem]

@@ -171,7 +171,7 @@ class TestIPSECTunnels:
                 name="IPsec_1",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ipsec_tunnel_id` but received ''"):
             client.magic_transit.ipsec_tunnels.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -260,7 +260,7 @@ class TestIPSECTunnels:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ipsec_tunnel_id` but received ''"):
             client.magic_transit.ipsec_tunnels.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -308,7 +308,7 @@ class TestIPSECTunnels:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ipsec_tunnel_id` but received ''"):
             client.magic_transit.ipsec_tunnels.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -360,7 +360,7 @@ class TestIPSECTunnels:
                 body={},
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ipsec_tunnel_id` but received ''"):
             client.magic_transit.ipsec_tunnels.with_raw_response.psk_generate(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -518,7 +518,7 @@ class TestAsyncIPSECTunnels:
                 name="IPsec_1",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ipsec_tunnel_id` but received ''"):
             await async_client.magic_transit.ipsec_tunnels.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -607,7 +607,7 @@ class TestAsyncIPSECTunnels:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ipsec_tunnel_id` but received ''"):
             await async_client.magic_transit.ipsec_tunnels.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -655,7 +655,7 @@ class TestAsyncIPSECTunnels:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ipsec_tunnel_id` but received ''"):
             await async_client.magic_transit.ipsec_tunnels.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -707,7 +707,7 @@ class TestAsyncIPSECTunnels:
                 body={},
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `ipsec_tunnel_id` but received ''"):
             await async_client.magic_transit.ipsec_tunnels.with_raw_response.psk_generate(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",

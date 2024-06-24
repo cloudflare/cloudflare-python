@@ -81,7 +81,7 @@ class TestCfInterconnects:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `cf_interconnect_id` but received ''"):
             client.magic_transit.cf_interconnects.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -167,7 +167,7 @@ class TestCfInterconnects:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `cf_interconnect_id` but received ''"):
             client.magic_transit.cf_interconnects.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -237,7 +237,7 @@ class TestAsyncCfInterconnects:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `cf_interconnect_id` but received ''"):
             await async_client.magic_transit.cf_interconnects.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -323,7 +323,7 @@ class TestAsyncCfInterconnects:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `cf_interconnect_id` but received ''"):
             await async_client.magic_transit.cf_interconnects.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",

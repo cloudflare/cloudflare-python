@@ -39,6 +39,7 @@ class TestDirectUpload:
             scheduled_deletion=parse_datetime("2014-01-02T02:20:00Z"),
             thumbnail_timestamp_pct=0.529241,
             watermark={"uid": "ea95132c15732412d22c1476fa83f27a"},
+            upload_creator="creator-id_abcde12345",
         )
         assert_matches_type(Optional[DirectUploadCreateResponse], direct_upload, path=["response"])
 
@@ -101,6 +102,7 @@ class TestAsyncDirectUpload:
             scheduled_deletion=parse_datetime("2014-01-02T02:20:00Z"),
             thumbnail_timestamp_pct=0.529241,
             watermark={"uid": "ea95132c15732412d22c1476fa83f27a"},
+            upload_creator="creator-id_abcde12345",
         )
         assert_matches_type(Optional[DirectUploadCreateResponse], direct_upload, path=["response"])
 

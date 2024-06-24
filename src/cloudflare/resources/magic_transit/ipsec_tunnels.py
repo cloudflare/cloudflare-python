@@ -131,7 +131,7 @@ class IPSECTunnelsResource(SyncAPIResource):
 
     def update(
         self,
-        tunnel_identifier: str,
+        ipsec_tunnel_id: str,
         *,
         account_id: str,
         cloudflare_endpoint: str,
@@ -158,7 +158,7 @@ class IPSECTunnelsResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          tunnel_identifier: Identifier
+          ipsec_tunnel_id: Identifier
 
           cloudflare_endpoint: The IP address assigned to the Cloudflare side of the IPsec tunnel.
 
@@ -188,10 +188,10 @@ class IPSECTunnelsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_identifier:
-            raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
+        if not ipsec_tunnel_id:
+            raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
         return self._put(
-            f"/accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}",
             body=maybe_transform(
                 {
                     "cloudflare_endpoint": cloudflare_endpoint,
@@ -256,7 +256,7 @@ class IPSECTunnelsResource(SyncAPIResource):
 
     def delete(
         self,
-        tunnel_identifier: str,
+        ipsec_tunnel_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -274,7 +274,7 @@ class IPSECTunnelsResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          tunnel_identifier: Identifier
+          ipsec_tunnel_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -286,10 +286,10 @@ class IPSECTunnelsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_identifier:
-            raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
+        if not ipsec_tunnel_id:
+            raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -302,7 +302,7 @@ class IPSECTunnelsResource(SyncAPIResource):
 
     def get(
         self,
-        tunnel_identifier: str,
+        ipsec_tunnel_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -318,7 +318,7 @@ class IPSECTunnelsResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          tunnel_identifier: Identifier
+          ipsec_tunnel_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -330,10 +330,10 @@ class IPSECTunnelsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_identifier:
-            raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
+        if not ipsec_tunnel_id:
+            raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
         return self._get(
-            f"/accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -346,7 +346,7 @@ class IPSECTunnelsResource(SyncAPIResource):
 
     def psk_generate(
         self,
-        tunnel_identifier: str,
+        ipsec_tunnel_id: str,
         *,
         account_id: str,
         body: object,
@@ -367,7 +367,7 @@ class IPSECTunnelsResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          tunnel_identifier: Identifier
+          ipsec_tunnel_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -379,10 +379,10 @@ class IPSECTunnelsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_identifier:
-            raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
+        if not ipsec_tunnel_id:
+            raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
         return self._post(
-            f"/accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}/psk_generate",
+            f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}/psk_generate",
             body=maybe_transform(body, ipsec_tunnel_psk_generate_params.IPSECTunnelPSKGenerateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -487,7 +487,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
 
     async def update(
         self,
-        tunnel_identifier: str,
+        ipsec_tunnel_id: str,
         *,
         account_id: str,
         cloudflare_endpoint: str,
@@ -514,7 +514,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          tunnel_identifier: Identifier
+          ipsec_tunnel_id: Identifier
 
           cloudflare_endpoint: The IP address assigned to the Cloudflare side of the IPsec tunnel.
 
@@ -544,10 +544,10 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_identifier:
-            raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
+        if not ipsec_tunnel_id:
+            raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}",
             body=await async_maybe_transform(
                 {
                     "cloudflare_endpoint": cloudflare_endpoint,
@@ -612,7 +612,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
 
     async def delete(
         self,
-        tunnel_identifier: str,
+        ipsec_tunnel_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -630,7 +630,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          tunnel_identifier: Identifier
+          ipsec_tunnel_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -642,10 +642,10 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_identifier:
-            raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
+        if not ipsec_tunnel_id:
+            raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -658,7 +658,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
 
     async def get(
         self,
-        tunnel_identifier: str,
+        ipsec_tunnel_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -674,7 +674,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          tunnel_identifier: Identifier
+          ipsec_tunnel_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -686,10 +686,10 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_identifier:
-            raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
+        if not ipsec_tunnel_id:
+            raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -702,7 +702,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
 
     async def psk_generate(
         self,
-        tunnel_identifier: str,
+        ipsec_tunnel_id: str,
         *,
         account_id: str,
         body: object,
@@ -723,7 +723,7 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          tunnel_identifier: Identifier
+          ipsec_tunnel_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -735,10 +735,10 @@ class AsyncIPSECTunnelsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_identifier:
-            raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
+        if not ipsec_tunnel_id:
+            raise ValueError(f"Expected a non-empty value for `ipsec_tunnel_id` but received {ipsec_tunnel_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/magic/ipsec_tunnels/{tunnel_identifier}/psk_generate",
+            f"/accounts/{account_id}/magic/ipsec_tunnels/{ipsec_tunnel_id}/psk_generate",
             body=await async_maybe_transform(body, ipsec_tunnel_psk_generate_params.IPSECTunnelPSKGenerateParams),
             options=make_request_options(
                 extra_headers=extra_headers,

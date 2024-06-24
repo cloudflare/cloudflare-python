@@ -89,7 +89,7 @@ class RoutesResource(SyncAPIResource):
 
     def update(
         self,
-        route_identifier: str,
+        route_id: str,
         *,
         account_id: str,
         nexthop: str,
@@ -113,7 +113,7 @@ class RoutesResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          route_identifier: Identifier
+          route_id: Identifier
 
           nexthop: The next-hop IP Address for the static route.
 
@@ -137,10 +137,10 @@ class RoutesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not route_identifier:
-            raise ValueError(f"Expected a non-empty value for `route_identifier` but received {route_identifier!r}")
+        if not route_id:
+            raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
         return self._put(
-            f"/accounts/{account_id}/magic/routes/{route_identifier}",
+            f"/accounts/{account_id}/magic/routes/{route_id}",
             body=maybe_transform(
                 {
                     "nexthop": nexthop,
@@ -203,7 +203,7 @@ class RoutesResource(SyncAPIResource):
 
     def delete(
         self,
-        route_identifier: str,
+        route_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -219,7 +219,7 @@ class RoutesResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          route_identifier: Identifier
+          route_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -231,10 +231,10 @@ class RoutesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not route_identifier:
-            raise ValueError(f"Expected a non-empty value for `route_identifier` but received {route_identifier!r}")
+        if not route_id:
+            raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/magic/routes/{route_identifier}",
+            f"/accounts/{account_id}/magic/routes/{route_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -286,7 +286,7 @@ class RoutesResource(SyncAPIResource):
 
     def get(
         self,
-        route_identifier: str,
+        route_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -302,7 +302,7 @@ class RoutesResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          route_identifier: Identifier
+          route_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -314,10 +314,10 @@ class RoutesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not route_identifier:
-            raise ValueError(f"Expected a non-empty value for `route_identifier` but received {route_identifier!r}")
+        if not route_id:
+            raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
         return self._get(
-            f"/accounts/{account_id}/magic/routes/{route_identifier}",
+            f"/accounts/{account_id}/magic/routes/{route_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -383,7 +383,7 @@ class AsyncRoutesResource(AsyncAPIResource):
 
     async def update(
         self,
-        route_identifier: str,
+        route_id: str,
         *,
         account_id: str,
         nexthop: str,
@@ -407,7 +407,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          route_identifier: Identifier
+          route_id: Identifier
 
           nexthop: The next-hop IP Address for the static route.
 
@@ -431,10 +431,10 @@ class AsyncRoutesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not route_identifier:
-            raise ValueError(f"Expected a non-empty value for `route_identifier` but received {route_identifier!r}")
+        if not route_id:
+            raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/magic/routes/{route_identifier}",
+            f"/accounts/{account_id}/magic/routes/{route_id}",
             body=await async_maybe_transform(
                 {
                     "nexthop": nexthop,
@@ -497,7 +497,7 @@ class AsyncRoutesResource(AsyncAPIResource):
 
     async def delete(
         self,
-        route_identifier: str,
+        route_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -513,7 +513,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          route_identifier: Identifier
+          route_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -525,10 +525,10 @@ class AsyncRoutesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not route_identifier:
-            raise ValueError(f"Expected a non-empty value for `route_identifier` but received {route_identifier!r}")
+        if not route_id:
+            raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/magic/routes/{route_identifier}",
+            f"/accounts/{account_id}/magic/routes/{route_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -580,7 +580,7 @@ class AsyncRoutesResource(AsyncAPIResource):
 
     async def get(
         self,
-        route_identifier: str,
+        route_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -596,7 +596,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          route_identifier: Identifier
+          route_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -608,10 +608,10 @@ class AsyncRoutesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not route_identifier:
-            raise ValueError(f"Expected a non-empty value for `route_identifier` but received {route_identifier!r}")
+        if not route_id:
+            raise ValueError(f"Expected a non-empty value for `route_id` but received {route_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/magic/routes/{route_identifier}",
+            f"/accounts/{account_id}/magic/routes/{route_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

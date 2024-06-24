@@ -185,7 +185,7 @@ class TestACLs:
                 site_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -293,7 +293,7 @@ class TestACLs:
                 site_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -378,7 +378,7 @@ class TestACLs:
                 site_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.edit(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -438,7 +438,7 @@ class TestACLs:
                 site_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -614,7 +614,7 @@ class TestAsyncACLs:
                 site_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -722,7 +722,7 @@ class TestAsyncACLs:
                 site_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -807,7 +807,7 @@ class TestAsyncACLs:
                 site_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.edit(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -867,7 +867,7 @@ class TestAsyncACLs:
                 site_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",

@@ -42,7 +42,7 @@ class CfInterconnectsResource(SyncAPIResource):
 
     def update(
         self,
-        tunnel_identifier: str,
+        cf_interconnect_id: str,
         *,
         account_id: str,
         description: str | NotGiven = NOT_GIVEN,
@@ -66,7 +66,7 @@ class CfInterconnectsResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          tunnel_identifier: Identifier
+          cf_interconnect_id: Identifier
 
           description: An optional description of the interconnect.
 
@@ -89,10 +89,10 @@ class CfInterconnectsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_identifier:
-            raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
+        if not cf_interconnect_id:
+            raise ValueError(f"Expected a non-empty value for `cf_interconnect_id` but received {cf_interconnect_id!r}")
         return self._put(
-            f"/accounts/{account_id}/magic/cf_interconnects/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
             body=maybe_transform(
                 {
                     "description": description,
@@ -154,7 +154,7 @@ class CfInterconnectsResource(SyncAPIResource):
 
     def get(
         self,
-        tunnel_identifier: str,
+        cf_interconnect_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -170,7 +170,7 @@ class CfInterconnectsResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          tunnel_identifier: Identifier
+          cf_interconnect_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -182,10 +182,10 @@ class CfInterconnectsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_identifier:
-            raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
+        if not cf_interconnect_id:
+            raise ValueError(f"Expected a non-empty value for `cf_interconnect_id` but received {cf_interconnect_id!r}")
         return self._get(
-            f"/accounts/{account_id}/magic/cf_interconnects/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -208,7 +208,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
 
     async def update(
         self,
-        tunnel_identifier: str,
+        cf_interconnect_id: str,
         *,
         account_id: str,
         description: str | NotGiven = NOT_GIVEN,
@@ -232,7 +232,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          tunnel_identifier: Identifier
+          cf_interconnect_id: Identifier
 
           description: An optional description of the interconnect.
 
@@ -255,10 +255,10 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_identifier:
-            raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
+        if not cf_interconnect_id:
+            raise ValueError(f"Expected a non-empty value for `cf_interconnect_id` but received {cf_interconnect_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/magic/cf_interconnects/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
             body=await async_maybe_transform(
                 {
                     "description": description,
@@ -320,7 +320,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
 
     async def get(
         self,
-        tunnel_identifier: str,
+        cf_interconnect_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -336,7 +336,7 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          tunnel_identifier: Identifier
+          cf_interconnect_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -348,10 +348,10 @@ class AsyncCfInterconnectsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_identifier:
-            raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
+        if not cf_interconnect_id:
+            raise ValueError(f"Expected a non-empty value for `cf_interconnect_id` but received {cf_interconnect_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/magic/cf_interconnects/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/cf_interconnects/{cf_interconnect_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import List, Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -43,7 +43,7 @@ class DomainResource(SyncAPIResource):
         self,
         domain: str,
         *,
-        date: List[Optional[str]] | NotGiven = NOT_GIVEN,
+        date: List[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
@@ -119,7 +119,7 @@ class AsyncDomainResource(AsyncAPIResource):
         self,
         domain: str,
         *,
-        date: List[Optional[str]] | NotGiven = NOT_GIVEN,
+        date: List[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,

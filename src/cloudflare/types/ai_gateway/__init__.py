@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from .log_get_params import LogGetParams as LogGetParams
-from .log_get_response import LogGetResponse as LogGetResponse
+from .log_list_params import LogListParams as LogListParams
+from .log_list_response import LogListResponse as LogListResponse
 from .ai_gateway_list_params import AIGatewayListParams as AIGatewayListParams
 from .ai_gateway_get_response import AIGatewayGetResponse as AIGatewayGetResponse
 from .ai_gateway_create_params import AIGatewayCreateParams as AIGatewayCreateParams

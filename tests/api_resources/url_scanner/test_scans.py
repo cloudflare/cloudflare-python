@@ -91,6 +91,15 @@ class TestScans:
         assert_matches_type(ScanGetResponse, scan, path=["response"])
 
     @parametrize
+    def test_method_get_with_all_params(self, client: Cloudflare) -> None:
+        scan = client.url_scanner.scans.get(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="string",
+            full=True,
+        )
+        assert_matches_type(ScanGetResponse, scan, path=["response"])
+
+    @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.url_scanner.scans.with_raw_response.get(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
@@ -322,6 +331,15 @@ class TestAsyncScans:
         scan = await async_client.url_scanner.scans.get(
             "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="string",
+        )
+        assert_matches_type(ScanGetResponse, scan, path=["response"])
+
+    @parametrize
+    async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        scan = await async_client.url_scanner.scans.get(
+            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            account_id="string",
+            full=True,
         )
         assert_matches_type(ScanGetResponse, scan, path=["response"])
 

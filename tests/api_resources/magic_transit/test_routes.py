@@ -141,7 +141,7 @@ class TestRoutes:
                 priority=0,
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_id` but received ''"):
             client.magic_transit.routes.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -230,7 +230,7 @@ class TestRoutes:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_id` but received ''"):
             client.magic_transit.routes.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -316,7 +316,7 @@ class TestRoutes:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_id` but received ''"):
             client.magic_transit.routes.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -443,7 +443,7 @@ class TestAsyncRoutes:
                 priority=0,
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_id` but received ''"):
             await async_client.magic_transit.routes.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -532,7 +532,7 @@ class TestAsyncRoutes:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_id` but received ''"):
             await async_client.magic_transit.routes.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -618,7 +618,7 @@ class TestAsyncRoutes:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_id` but received ''"):
             await async_client.magic_transit.routes.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",

@@ -63,6 +63,7 @@ class RecordsResource(SyncAPIResource):
         content: str,
         name: str,
         type: Literal["A"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -92,6 +93,8 @@ class RecordsResource(SyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -123,6 +126,7 @@ class RecordsResource(SyncAPIResource):
         content: str,
         name: str,
         type: Literal["AAAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -152,6 +156,8 @@ class RecordsResource(SyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -183,6 +189,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.CAARecordData,
         name: str,
         type: Literal["CAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -212,6 +219,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -239,6 +248,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.CERTRecordData,
         name: str,
         type: Literal["CERT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -268,6 +278,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -295,6 +307,7 @@ class RecordsResource(SyncAPIResource):
         content: object,
         name: str,
         type: Literal["CNAME"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -324,6 +337,8 @@ class RecordsResource(SyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -355,6 +370,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.DNSKEYRecordData,
         name: str,
         type: Literal["DNSKEY"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -384,6 +400,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -411,6 +429,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.DSRecordData,
         name: str,
         type: Literal["DS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -440,6 +459,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -467,6 +488,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.HTTPSRecordData,
         name: str,
         type: Literal["HTTPS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -496,6 +518,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -523,6 +547,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.LOCRecordData,
         name: str,
         type: Literal["LOC"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -552,6 +577,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -580,6 +607,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         priority: float,
         type: Literal["MX"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -612,6 +640,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -639,6 +669,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.NAPTRRecordData,
         name: str,
         type: Literal["NAPTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -668,6 +699,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -695,6 +728,7 @@ class RecordsResource(SyncAPIResource):
         content: str,
         name: str,
         type: Literal["NS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -724,6 +758,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -751,6 +787,7 @@ class RecordsResource(SyncAPIResource):
         content: str,
         name: str,
         type: Literal["PTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -780,6 +817,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -807,6 +846,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.SMIMEARecordData,
         name: str,
         type: Literal["SMIMEA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -836,6 +876,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -863,6 +905,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.SRVRecordData,
         name: str,
         type: Literal["SRV"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -894,6 +937,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -921,6 +966,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.SSHFPRecordData,
         name: str,
         type: Literal["SSHFP"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -950,6 +996,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -977,6 +1025,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.SVCBRecordData,
         name: str,
         type: Literal["SVCB"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -1006,6 +1055,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1033,6 +1084,7 @@ class RecordsResource(SyncAPIResource):
         data: record_create_params.TLSARecordData,
         name: str,
         type: Literal["TLSA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -1062,6 +1114,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1089,6 +1143,7 @@ class RecordsResource(SyncAPIResource):
         content: str,
         name: str,
         type: Literal["TXT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -1118,6 +1173,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1146,6 +1203,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         priority: float,
         type: Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -1177,6 +1235,8 @@ class RecordsResource(SyncAPIResource):
               lower priorities are preferred.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1229,6 +1289,7 @@ class RecordsResource(SyncAPIResource):
         | Literal["TLSA"]
         | Literal["TXT"]
         | Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -1264,6 +1325,7 @@ class RecordsResource(SyncAPIResource):
                         "content": content,
                         "name": name,
                         "type": type,
+                        "id": id,
                         "comment": comment,
                         "proxied": proxied,
                         "tags": tags,
@@ -1295,6 +1357,7 @@ class RecordsResource(SyncAPIResource):
         content: str,
         name: str,
         type: Literal["A"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -1325,6 +1388,8 @@ class RecordsResource(SyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1357,6 +1422,7 @@ class RecordsResource(SyncAPIResource):
         content: str,
         name: str,
         type: Literal["AAAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -1387,6 +1453,8 @@ class RecordsResource(SyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1419,6 +1487,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.CAARecordData,
         name: str,
         type: Literal["CAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -1449,6 +1518,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1477,6 +1548,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.CERTRecordData,
         name: str,
         type: Literal["CERT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -1507,6 +1579,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1535,6 +1609,7 @@ class RecordsResource(SyncAPIResource):
         content: object,
         name: str,
         type: Literal["CNAME"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -1565,6 +1640,8 @@ class RecordsResource(SyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -1597,6 +1674,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.DNSKEYRecordData,
         name: str,
         type: Literal["DNSKEY"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -1627,6 +1705,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1655,6 +1735,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.DSRecordData,
         name: str,
         type: Literal["DS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -1685,6 +1766,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1713,6 +1796,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.HTTPSRecordData,
         name: str,
         type: Literal["HTTPS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -1743,6 +1827,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1771,6 +1857,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.LOCRecordData,
         name: str,
         type: Literal["LOC"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -1801,6 +1888,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1830,6 +1919,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         priority: float,
         type: Literal["MX"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -1863,6 +1953,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1891,6 +1983,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.NAPTRRecordData,
         name: str,
         type: Literal["NAPTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -1921,6 +2014,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -1949,6 +2044,7 @@ class RecordsResource(SyncAPIResource):
         content: str,
         name: str,
         type: Literal["NS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -1979,6 +2075,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2007,6 +2105,7 @@ class RecordsResource(SyncAPIResource):
         content: str,
         name: str,
         type: Literal["PTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -2037,6 +2136,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2065,6 +2166,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.SMIMEARecordData,
         name: str,
         type: Literal["SMIMEA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -2095,6 +2197,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2123,6 +2227,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.SRVRecordData,
         name: str,
         type: Literal["SRV"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -2155,6 +2260,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2183,6 +2290,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.SSHFPRecordData,
         name: str,
         type: Literal["SSHFP"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -2213,6 +2321,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2241,6 +2351,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.SVCBRecordData,
         name: str,
         type: Literal["SVCB"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -2271,6 +2382,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2299,6 +2412,7 @@ class RecordsResource(SyncAPIResource):
         data: record_update_params.TLSARecordData,
         name: str,
         type: Literal["TLSA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -2329,6 +2443,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2357,6 +2473,7 @@ class RecordsResource(SyncAPIResource):
         content: str,
         name: str,
         type: Literal["TXT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -2387,6 +2504,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2416,6 +2535,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         priority: float,
         type: Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -2448,6 +2568,8 @@ class RecordsResource(SyncAPIResource):
               lower priorities are preferred.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -2501,6 +2623,7 @@ class RecordsResource(SyncAPIResource):
         | Literal["TLSA"]
         | Literal["TXT"]
         | Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -2538,6 +2661,7 @@ class RecordsResource(SyncAPIResource):
                         "content": content,
                         "name": name,
                         "type": type,
+                        "id": id,
                         "comment": comment,
                         "proxied": proxied,
                         "tags": tags,
@@ -2738,6 +2862,7 @@ class RecordsResource(SyncAPIResource):
         content: str,
         name: str,
         type: Literal["A"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -2768,6 +2893,8 @@ class RecordsResource(SyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -2800,6 +2927,7 @@ class RecordsResource(SyncAPIResource):
         content: str,
         name: str,
         type: Literal["AAAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -2830,6 +2958,8 @@ class RecordsResource(SyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -2862,6 +2992,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.CAARecordData,
         name: str,
         type: Literal["CAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -2892,6 +3023,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2920,6 +3053,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.CERTRecordData,
         name: str,
         type: Literal["CERT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -2950,6 +3084,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -2978,6 +3114,7 @@ class RecordsResource(SyncAPIResource):
         content: object,
         name: str,
         type: Literal["CNAME"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -3008,6 +3145,8 @@ class RecordsResource(SyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -3040,6 +3179,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.DNSKEYRecordData,
         name: str,
         type: Literal["DNSKEY"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -3070,6 +3210,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3098,6 +3240,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.DSRecordData,
         name: str,
         type: Literal["DS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -3128,6 +3271,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3156,6 +3301,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.HTTPSRecordData,
         name: str,
         type: Literal["HTTPS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -3186,6 +3332,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3214,6 +3362,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.LOCRecordData,
         name: str,
         type: Literal["LOC"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -3244,6 +3393,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3273,6 +3424,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         priority: float,
         type: Literal["MX"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -3306,6 +3458,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3334,6 +3488,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.NAPTRRecordData,
         name: str,
         type: Literal["NAPTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -3364,6 +3519,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3392,6 +3549,7 @@ class RecordsResource(SyncAPIResource):
         content: str,
         name: str,
         type: Literal["NS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -3422,6 +3580,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3450,6 +3610,7 @@ class RecordsResource(SyncAPIResource):
         content: str,
         name: str,
         type: Literal["PTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -3480,6 +3641,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3508,6 +3671,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.SMIMEARecordData,
         name: str,
         type: Literal["SMIMEA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -3538,6 +3702,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3566,6 +3732,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.SRVRecordData,
         name: str,
         type: Literal["SRV"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -3598,6 +3765,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3626,6 +3795,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.SSHFPRecordData,
         name: str,
         type: Literal["SSHFP"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -3656,6 +3826,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3684,6 +3856,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.SVCBRecordData,
         name: str,
         type: Literal["SVCB"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -3714,6 +3887,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3742,6 +3917,7 @@ class RecordsResource(SyncAPIResource):
         data: record_edit_params.TLSARecordData,
         name: str,
         type: Literal["TLSA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -3772,6 +3948,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3800,6 +3978,7 @@ class RecordsResource(SyncAPIResource):
         content: str,
         name: str,
         type: Literal["TXT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -3830,6 +4009,8 @@ class RecordsResource(SyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -3859,6 +4040,7 @@ class RecordsResource(SyncAPIResource):
         name: str,
         priority: float,
         type: Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -3891,6 +4073,8 @@ class RecordsResource(SyncAPIResource):
               lower priorities are preferred.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -3944,6 +4128,7 @@ class RecordsResource(SyncAPIResource):
         | Literal["TLSA"]
         | Literal["TXT"]
         | Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -3981,6 +4166,7 @@ class RecordsResource(SyncAPIResource):
                         "content": content,
                         "name": name,
                         "type": type,
+                        "id": id,
                         "comment": comment,
                         "proxied": proxied,
                         "tags": tags,
@@ -4219,6 +4405,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str,
         name: str,
         type: Literal["A"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -4248,6 +4435,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -4279,6 +4468,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str,
         name: str,
         type: Literal["AAAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -4308,6 +4498,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -4339,6 +4531,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.CAARecordData,
         name: str,
         type: Literal["CAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -4368,6 +4561,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4395,6 +4590,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.CERTRecordData,
         name: str,
         type: Literal["CERT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -4424,6 +4620,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4451,6 +4649,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: object,
         name: str,
         type: Literal["CNAME"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -4480,6 +4679,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -4511,6 +4712,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.DNSKEYRecordData,
         name: str,
         type: Literal["DNSKEY"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -4540,6 +4742,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4567,6 +4771,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.DSRecordData,
         name: str,
         type: Literal["DS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -4596,6 +4801,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4623,6 +4830,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.HTTPSRecordData,
         name: str,
         type: Literal["HTTPS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -4652,6 +4860,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4679,6 +4889,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.LOCRecordData,
         name: str,
         type: Literal["LOC"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -4708,6 +4919,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4736,6 +4949,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         priority: float,
         type: Literal["MX"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -4768,6 +4982,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4795,6 +5011,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.NAPTRRecordData,
         name: str,
         type: Literal["NAPTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -4824,6 +5041,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4851,6 +5070,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str,
         name: str,
         type: Literal["NS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -4880,6 +5100,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4907,6 +5129,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str,
         name: str,
         type: Literal["PTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -4936,6 +5159,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -4963,6 +5188,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.SMIMEARecordData,
         name: str,
         type: Literal["SMIMEA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -4992,6 +5218,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5019,6 +5247,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.SRVRecordData,
         name: str,
         type: Literal["SRV"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -5050,6 +5279,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5077,6 +5308,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.SSHFPRecordData,
         name: str,
         type: Literal["SSHFP"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -5106,6 +5338,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5133,6 +5367,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.SVCBRecordData,
         name: str,
         type: Literal["SVCB"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -5162,6 +5397,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5189,6 +5426,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_create_params.TLSARecordData,
         name: str,
         type: Literal["TLSA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -5218,6 +5456,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5245,6 +5485,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str,
         name: str,
         type: Literal["TXT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -5274,6 +5515,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5302,6 +5545,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         priority: float,
         type: Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -5333,6 +5577,8 @@ class AsyncRecordsResource(AsyncAPIResource):
               lower priorities are preferred.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5385,6 +5631,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["TLSA"]
         | Literal["TXT"]
         | Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -5420,6 +5667,7 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "content": content,
                         "name": name,
                         "type": type,
+                        "id": id,
                         "comment": comment,
                         "proxied": proxied,
                         "tags": tags,
@@ -5451,6 +5699,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str,
         name: str,
         type: Literal["A"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -5481,6 +5730,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5513,6 +5764,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str,
         name: str,
         type: Literal["AAAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -5543,6 +5795,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5575,6 +5829,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.CAARecordData,
         name: str,
         type: Literal["CAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -5605,6 +5860,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5633,6 +5890,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.CERTRecordData,
         name: str,
         type: Literal["CERT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -5663,6 +5921,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5691,6 +5951,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: object,
         name: str,
         type: Literal["CNAME"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -5721,6 +5982,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -5753,6 +6016,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.DNSKEYRecordData,
         name: str,
         type: Literal["DNSKEY"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -5783,6 +6047,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5811,6 +6077,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.DSRecordData,
         name: str,
         type: Literal["DS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -5841,6 +6108,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5869,6 +6138,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.HTTPSRecordData,
         name: str,
         type: Literal["HTTPS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -5899,6 +6169,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5927,6 +6199,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.LOCRecordData,
         name: str,
         type: Literal["LOC"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -5957,6 +6230,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -5986,6 +6261,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         priority: float,
         type: Literal["MX"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -6019,6 +6295,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6047,6 +6325,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.NAPTRRecordData,
         name: str,
         type: Literal["NAPTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -6077,6 +6356,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6105,6 +6386,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str,
         name: str,
         type: Literal["NS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -6135,6 +6417,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6163,6 +6447,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str,
         name: str,
         type: Literal["PTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -6193,6 +6478,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6221,6 +6508,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.SMIMEARecordData,
         name: str,
         type: Literal["SMIMEA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -6251,6 +6539,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6279,6 +6569,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.SRVRecordData,
         name: str,
         type: Literal["SRV"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -6311,6 +6602,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6339,6 +6632,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.SSHFPRecordData,
         name: str,
         type: Literal["SSHFP"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -6369,6 +6663,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6397,6 +6693,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.SVCBRecordData,
         name: str,
         type: Literal["SVCB"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -6427,6 +6724,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6455,6 +6754,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_update_params.TLSARecordData,
         name: str,
         type: Literal["TLSA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -6485,6 +6785,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6513,6 +6815,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str,
         name: str,
         type: Literal["TXT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -6543,6 +6846,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -6572,6 +6877,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         priority: float,
         type: Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -6604,6 +6910,8 @@ class AsyncRecordsResource(AsyncAPIResource):
               lower priorities are preferred.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -6657,6 +6965,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["TLSA"]
         | Literal["TXT"]
         | Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -6694,6 +7003,7 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "content": content,
                         "name": name,
                         "type": type,
+                        "id": id,
                         "comment": comment,
                         "proxied": proxied,
                         "tags": tags,
@@ -6894,6 +7204,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str,
         name: str,
         type: Literal["A"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -6924,6 +7235,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -6956,6 +7269,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str,
         name: str,
         type: Literal["AAAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -6986,6 +7300,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -7018,6 +7334,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.CAARecordData,
         name: str,
         type: Literal["CAA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -7048,6 +7365,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7076,6 +7395,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.CERTRecordData,
         name: str,
         type: Literal["CERT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -7106,6 +7426,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7134,6 +7456,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: object,
         name: str,
         type: Literal["CNAME"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -7164,6 +7487,8 @@ class AsyncRecordsResource(AsyncAPIResource):
           name: DNS record name (or @ for the zone apex) in Punycode.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -7196,6 +7521,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.DNSKEYRecordData,
         name: str,
         type: Literal["DNSKEY"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -7226,6 +7552,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7254,6 +7582,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.DSRecordData,
         name: str,
         type: Literal["DS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -7284,6 +7613,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7312,6 +7643,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.HTTPSRecordData,
         name: str,
         type: Literal["HTTPS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -7342,6 +7674,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7370,6 +7704,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.LOCRecordData,
         name: str,
         type: Literal["LOC"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -7400,6 +7735,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7429,6 +7766,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         priority: float,
         type: Literal["MX"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -7462,6 +7800,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7490,6 +7830,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.NAPTRRecordData,
         name: str,
         type: Literal["NAPTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -7520,6 +7861,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7548,6 +7891,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str,
         name: str,
         type: Literal["NS"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -7578,6 +7922,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7606,6 +7952,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str,
         name: str,
         type: Literal["PTR"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -7636,6 +7983,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7664,6 +8013,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.SMIMEARecordData,
         name: str,
         type: Literal["SMIMEA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -7694,6 +8044,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7722,6 +8074,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.SRVRecordData,
         name: str,
         type: Literal["SRV"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -7754,6 +8107,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7782,6 +8137,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.SSHFPRecordData,
         name: str,
         type: Literal["SSHFP"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -7812,6 +8168,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7840,6 +8198,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.SVCBRecordData,
         name: str,
         type: Literal["SVCB"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -7870,6 +8229,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7898,6 +8259,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         data: record_edit_params.TLSARecordData,
         name: str,
         type: Literal["TLSA"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -7928,6 +8290,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -7956,6 +8320,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         content: str,
         name: str,
         type: Literal["TXT"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -7986,6 +8351,8 @@ class AsyncRecordsResource(AsyncAPIResource):
 
           type: Record type.
 
+          id: Identifier
+
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
 
@@ -8015,6 +8382,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         name: str,
         priority: float,
         type: Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
         ttl: TTLParam | NotGiven = NOT_GIVEN,
@@ -8047,6 +8415,8 @@ class AsyncRecordsResource(AsyncAPIResource):
               lower priorities are preferred.
 
           type: Record type.
+
+          id: Identifier
 
           comment: Comments or notes about the DNS record. This field has no effect on DNS
               responses.
@@ -8100,6 +8470,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         | Literal["TLSA"]
         | Literal["TXT"]
         | Literal["URI"],
+        id: str | NotGiven = NOT_GIVEN,
         comment: str | NotGiven = NOT_GIVEN,
         proxied: bool | NotGiven = NOT_GIVEN,
         tags: List[RecordTags] | NotGiven = NOT_GIVEN,
@@ -8137,6 +8508,7 @@ class AsyncRecordsResource(AsyncAPIResource):
                         "content": content,
                         "name": name,
                         "type": type,
+                        "id": id,
                         "comment": comment,
                         "proxied": proxied,
                         "tags": tags,

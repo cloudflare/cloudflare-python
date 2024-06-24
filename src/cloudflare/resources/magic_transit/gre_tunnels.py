@@ -88,7 +88,7 @@ class GRETunnelsResource(SyncAPIResource):
 
     def update(
         self,
-        tunnel_identifier: str,
+        gre_tunnel_id: str,
         *,
         account_id: str,
         cloudflare_gre_endpoint: str,
@@ -114,7 +114,7 @@ class GRETunnelsResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          tunnel_identifier: Identifier
+          gre_tunnel_id: Identifier
 
           cloudflare_gre_endpoint: The IP address assigned to the Cloudflare side of the GRE tunnel.
 
@@ -144,10 +144,10 @@ class GRETunnelsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_identifier:
-            raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
+        if not gre_tunnel_id:
+            raise ValueError(f"Expected a non-empty value for `gre_tunnel_id` but received {gre_tunnel_id!r}")
         return self._put(
-            f"/accounts/{account_id}/magic/gre_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/gre_tunnels/{gre_tunnel_id}",
             body=maybe_transform(
                 {
                     "cloudflare_gre_endpoint": cloudflare_gre_endpoint,
@@ -212,7 +212,7 @@ class GRETunnelsResource(SyncAPIResource):
 
     def delete(
         self,
-        tunnel_identifier: str,
+        gre_tunnel_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -230,7 +230,7 @@ class GRETunnelsResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          tunnel_identifier: Identifier
+          gre_tunnel_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -242,10 +242,10 @@ class GRETunnelsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_identifier:
-            raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
+        if not gre_tunnel_id:
+            raise ValueError(f"Expected a non-empty value for `gre_tunnel_id` but received {gre_tunnel_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/magic/gre_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/gre_tunnels/{gre_tunnel_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -258,7 +258,7 @@ class GRETunnelsResource(SyncAPIResource):
 
     def get(
         self,
-        tunnel_identifier: str,
+        gre_tunnel_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -274,7 +274,7 @@ class GRETunnelsResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          tunnel_identifier: Identifier
+          gre_tunnel_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -286,10 +286,10 @@ class GRETunnelsResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_identifier:
-            raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
+        if not gre_tunnel_id:
+            raise ValueError(f"Expected a non-empty value for `gre_tunnel_id` but received {gre_tunnel_id!r}")
         return self._get(
-            f"/accounts/{account_id}/magic/gre_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/gre_tunnels/{gre_tunnel_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -355,7 +355,7 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
 
     async def update(
         self,
-        tunnel_identifier: str,
+        gre_tunnel_id: str,
         *,
         account_id: str,
         cloudflare_gre_endpoint: str,
@@ -381,7 +381,7 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          tunnel_identifier: Identifier
+          gre_tunnel_id: Identifier
 
           cloudflare_gre_endpoint: The IP address assigned to the Cloudflare side of the GRE tunnel.
 
@@ -411,10 +411,10 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_identifier:
-            raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
+        if not gre_tunnel_id:
+            raise ValueError(f"Expected a non-empty value for `gre_tunnel_id` but received {gre_tunnel_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/magic/gre_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/gre_tunnels/{gre_tunnel_id}",
             body=await async_maybe_transform(
                 {
                     "cloudflare_gre_endpoint": cloudflare_gre_endpoint,
@@ -479,7 +479,7 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
 
     async def delete(
         self,
-        tunnel_identifier: str,
+        gre_tunnel_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -497,7 +497,7 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          tunnel_identifier: Identifier
+          gre_tunnel_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -509,10 +509,10 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_identifier:
-            raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
+        if not gre_tunnel_id:
+            raise ValueError(f"Expected a non-empty value for `gre_tunnel_id` but received {gre_tunnel_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/magic/gre_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/gre_tunnels/{gre_tunnel_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -525,7 +525,7 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
 
     async def get(
         self,
-        tunnel_identifier: str,
+        gre_tunnel_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -541,7 +541,7 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          tunnel_identifier: Identifier
+          gre_tunnel_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -553,10 +553,10 @@ class AsyncGRETunnelsResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_identifier:
-            raise ValueError(f"Expected a non-empty value for `tunnel_identifier` but received {tunnel_identifier!r}")
+        if not gre_tunnel_id:
+            raise ValueError(f"Expected a non-empty value for `gre_tunnel_id` but received {gre_tunnel_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/magic/gre_tunnels/{tunnel_identifier}",
+            f"/accounts/{account_id}/magic/gre_tunnels/{gre_tunnel_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

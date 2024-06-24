@@ -10,6 +10,7 @@ from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
 from ...._utils import (
     extract_files,
     maybe_transform,
+    strip_not_given,
     deepcopy_minimal,
     async_maybe_transform,
 )
@@ -56,6 +57,8 @@ class ContentResource(SyncAPIResource):
         account_id: str,
         any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
         metadata: WorkerMetadataParam | NotGiven = NOT_GIVEN,
+        cf_worker_body_part: str | NotGiven = NOT_GIVEN,
+        cf_worker_main_module_part: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -92,6 +95,15 @@ class ContentResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "CF-WORKER-BODY-PART": cf_worker_body_part,
+                    "CF-WORKER-MAIN-MODULE-PART": cf_worker_main_module_part,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         body = deepcopy_minimal(
             {
                 "any_part_name": any_part_name,
@@ -176,6 +188,8 @@ class AsyncContentResource(AsyncAPIResource):
         account_id: str,
         any_part_name: List[FileTypes] | NotGiven = NOT_GIVEN,
         metadata: WorkerMetadataParam | NotGiven = NOT_GIVEN,
+        cf_worker_body_part: str | NotGiven = NOT_GIVEN,
+        cf_worker_main_module_part: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -212,6 +226,15 @@ class AsyncContentResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "CF-WORKER-BODY-PART": cf_worker_body_part,
+                    "CF-WORKER-MAIN-MODULE-PART": cf_worker_main_module_part,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         body = deepcopy_minimal(
             {
                 "any_part_name": any_part_name,

@@ -149,7 +149,7 @@ class TestGRETunnels:
                 name="GRE_1",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `gre_tunnel_id` but received ''"):
             client.magic_transit.gre_tunnels.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -239,7 +239,7 @@ class TestGRETunnels:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `gre_tunnel_id` but received ''"):
             client.magic_transit.gre_tunnels.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -287,7 +287,7 @@ class TestGRETunnels:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `gre_tunnel_id` but received ''"):
             client.magic_transit.gre_tunnels.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -423,7 +423,7 @@ class TestAsyncGRETunnels:
                 name="GRE_1",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `gre_tunnel_id` but received ''"):
             await async_client.magic_transit.gre_tunnels.with_raw_response.update(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -513,7 +513,7 @@ class TestAsyncGRETunnels:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `gre_tunnel_id` but received ''"):
             await async_client.magic_transit.gre_tunnels.with_raw_response.delete(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -561,7 +561,7 @@ class TestAsyncGRETunnels:
                 account_id="",
             )
 
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_identifier` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `gre_tunnel_id` but received ''"):
             await async_client.magic_transit.gre_tunnels.with_raw_response.get(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",

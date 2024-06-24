@@ -85,5 +85,12 @@ class TopAttacksParams(TypedDict, total=False):
     name: List[str]
     """Array of names that will be used to name the series in responses."""
 
+    normalization: Literal["PERCENTAGE", "MIN_MAX"]
+    """Normalization method applied.
+
+    Refer to
+    [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+    """
+
     protocol: List[Literal["UDP", "TCP", "ICMP", "GRE"]]
     """Array of L3/4 attack types."""

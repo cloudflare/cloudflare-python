@@ -114,7 +114,7 @@ class ACLsResource(SyncAPIResource):
 
     def update(
         self,
-        acl_identifier: str,
+        acl_id: str,
         *,
         account_id: str,
         site_id: str,
@@ -139,7 +139,7 @@ class ACLsResource(SyncAPIResource):
 
           site_id: Identifier
 
-          acl_identifier: Identifier
+          acl_id: Identifier
 
           description: Description for the ACL.
 
@@ -162,10 +162,10 @@ class ACLsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
-        if not acl_identifier:
-            raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
+        if not acl_id:
+            raise ValueError(f"Expected a non-empty value for `acl_id` but received {acl_id!r}")
         return self._put(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
             body=maybe_transform(
                 {
                     "description": description,
@@ -230,7 +230,7 @@ class ACLsResource(SyncAPIResource):
 
     def delete(
         self,
-        acl_identifier: str,
+        acl_id: str,
         *,
         account_id: str,
         site_id: str,
@@ -249,7 +249,7 @@ class ACLsResource(SyncAPIResource):
 
           site_id: Identifier
 
-          acl_identifier: Identifier
+          acl_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -263,10 +263,10 @@ class ACLsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
-        if not acl_identifier:
-            raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
+        if not acl_id:
+            raise ValueError(f"Expected a non-empty value for `acl_id` but received {acl_id!r}")
         return self._delete(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -279,7 +279,7 @@ class ACLsResource(SyncAPIResource):
 
     def edit(
         self,
-        acl_identifier: str,
+        acl_id: str,
         *,
         account_id: str,
         site_id: str,
@@ -304,7 +304,7 @@ class ACLsResource(SyncAPIResource):
 
           site_id: Identifier
 
-          acl_identifier: Identifier
+          acl_id: Identifier
 
           description: Description for the ACL.
 
@@ -327,10 +327,10 @@ class ACLsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
-        if not acl_identifier:
-            raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
+        if not acl_id:
+            raise ValueError(f"Expected a non-empty value for `acl_id` but received {acl_id!r}")
         return self._patch(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
             body=maybe_transform(
                 {
                     "description": description,
@@ -354,7 +354,7 @@ class ACLsResource(SyncAPIResource):
 
     def get(
         self,
-        acl_identifier: str,
+        acl_id: str,
         *,
         account_id: str,
         site_id: str,
@@ -373,7 +373,7 @@ class ACLsResource(SyncAPIResource):
 
           site_id: Identifier
 
-          acl_identifier: Identifier
+          acl_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -387,10 +387,10 @@ class ACLsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
-        if not acl_identifier:
-            raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
+        if not acl_id:
+            raise ValueError(f"Expected a non-empty value for `acl_id` but received {acl_id!r}")
         return self._get(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -483,7 +483,7 @@ class AsyncACLsResource(AsyncAPIResource):
 
     async def update(
         self,
-        acl_identifier: str,
+        acl_id: str,
         *,
         account_id: str,
         site_id: str,
@@ -508,7 +508,7 @@ class AsyncACLsResource(AsyncAPIResource):
 
           site_id: Identifier
 
-          acl_identifier: Identifier
+          acl_id: Identifier
 
           description: Description for the ACL.
 
@@ -531,10 +531,10 @@ class AsyncACLsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
-        if not acl_identifier:
-            raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
+        if not acl_id:
+            raise ValueError(f"Expected a non-empty value for `acl_id` but received {acl_id!r}")
         return await self._put(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
             body=await async_maybe_transform(
                 {
                     "description": description,
@@ -599,7 +599,7 @@ class AsyncACLsResource(AsyncAPIResource):
 
     async def delete(
         self,
-        acl_identifier: str,
+        acl_id: str,
         *,
         account_id: str,
         site_id: str,
@@ -618,7 +618,7 @@ class AsyncACLsResource(AsyncAPIResource):
 
           site_id: Identifier
 
-          acl_identifier: Identifier
+          acl_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -632,10 +632,10 @@ class AsyncACLsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
-        if not acl_identifier:
-            raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
+        if not acl_id:
+            raise ValueError(f"Expected a non-empty value for `acl_id` but received {acl_id!r}")
         return await self._delete(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -648,7 +648,7 @@ class AsyncACLsResource(AsyncAPIResource):
 
     async def edit(
         self,
-        acl_identifier: str,
+        acl_id: str,
         *,
         account_id: str,
         site_id: str,
@@ -673,7 +673,7 @@ class AsyncACLsResource(AsyncAPIResource):
 
           site_id: Identifier
 
-          acl_identifier: Identifier
+          acl_id: Identifier
 
           description: Description for the ACL.
 
@@ -696,10 +696,10 @@ class AsyncACLsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
-        if not acl_identifier:
-            raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
+        if not acl_id:
+            raise ValueError(f"Expected a non-empty value for `acl_id` but received {acl_id!r}")
         return await self._patch(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
             body=await async_maybe_transform(
                 {
                     "description": description,
@@ -723,7 +723,7 @@ class AsyncACLsResource(AsyncAPIResource):
 
     async def get(
         self,
-        acl_identifier: str,
+        acl_id: str,
         *,
         account_id: str,
         site_id: str,
@@ -742,7 +742,7 @@ class AsyncACLsResource(AsyncAPIResource):
 
           site_id: Identifier
 
-          acl_identifier: Identifier
+          acl_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -756,10 +756,10 @@ class AsyncACLsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not site_id:
             raise ValueError(f"Expected a non-empty value for `site_id` but received {site_id!r}")
-        if not acl_identifier:
-            raise ValueError(f"Expected a non-empty value for `acl_identifier` but received {acl_identifier!r}")
+        if not acl_id:
+            raise ValueError(f"Expected a non-empty value for `acl_id` but received {acl_id!r}")
         return await self._get(
-            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_identifier}",
+            f"/accounts/{account_id}/magic/sites/{site_id}/acls/{acl_id}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

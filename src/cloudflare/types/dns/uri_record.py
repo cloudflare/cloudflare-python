@@ -75,9 +75,3 @@ class URIRecord(BaseModel):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
-
-    zone_id: Optional[str] = None
-    """Identifier"""
-
-    zone_name: Optional[str] = None
-    """The domain of the record."""
