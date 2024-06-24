@@ -3,9 +3,8 @@
 from __future__ import annotations
 
 from typing import List, Union
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
-from ..._utils import PropertyInfo
 from .ttl_param import TTLParam
 from .record_tags import RecordTags
 
@@ -48,7 +47,7 @@ __all__ = [
 
 
 class ARecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     content: Required[str]
@@ -85,12 +84,9 @@ class ARecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
-
 
 class AAAARecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     content: Required[str]
@@ -127,12 +123,9 @@ class AAAARecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
-
 
 class CAARecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     data: Required[CAARecordData]
@@ -163,9 +156,6 @@ class CAARecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
-
 
 class CAARecordData(TypedDict, total=False):
     flags: float
@@ -179,7 +169,7 @@ class CAARecordData(TypedDict, total=False):
 
 
 class CERTRecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     data: Required[CERTRecordData]
@@ -210,9 +200,6 @@ class CERTRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
-
 
 class CERTRecordData(TypedDict, total=False):
     algorithm: float
@@ -229,7 +216,7 @@ class CERTRecordData(TypedDict, total=False):
 
 
 class CNAMERecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     content: Required[object]
@@ -266,12 +253,9 @@ class CNAMERecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
-
 
 class DNSKEYRecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     data: Required[DNSKEYRecordData]
@@ -302,9 +286,6 @@ class DNSKEYRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
-
 
 class DNSKEYRecordData(TypedDict, total=False):
     algorithm: float
@@ -321,7 +302,7 @@ class DNSKEYRecordData(TypedDict, total=False):
 
 
 class DSRecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     data: Required[DSRecordData]
@@ -352,9 +333,6 @@ class DSRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
-
 
 class DSRecordData(TypedDict, total=False):
     algorithm: float
@@ -371,7 +349,7 @@ class DSRecordData(TypedDict, total=False):
 
 
 class HTTPSRecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     data: Required[HTTPSRecordData]
@@ -402,9 +380,6 @@ class HTTPSRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
-
 
 class HTTPSRecordData(TypedDict, total=False):
     priority: float
@@ -418,7 +393,7 @@ class HTTPSRecordData(TypedDict, total=False):
 
 
 class LOCRecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     data: Required[LOCRecordData]
@@ -448,9 +423,6 @@ class LOCRecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
-
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
 
 
 class LOCRecordData(TypedDict, total=False):
@@ -492,7 +464,7 @@ class LOCRecordData(TypedDict, total=False):
 
 
 class MXRecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     content: Required[str]
@@ -529,12 +501,9 @@ class MXRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
-
 
 class NAPTRRecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     data: Required[NAPTRRecordData]
@@ -565,9 +534,6 @@ class NAPTRRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
-
 
 class NAPTRRecordData(TypedDict, total=False):
     flags: str
@@ -590,7 +556,7 @@ class NAPTRRecordData(TypedDict, total=False):
 
 
 class NSRecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     content: Required[str]
@@ -621,12 +587,9 @@ class NSRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
-
 
 class PTRRecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     content: Required[str]
@@ -657,12 +620,9 @@ class PTRRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
-
 
 class SMIMEARecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     data: Required[SMIMEARecordData]
@@ -693,9 +653,6 @@ class SMIMEARecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
-
 
 class SMIMEARecordData(TypedDict, total=False):
     certificate: str
@@ -712,7 +669,7 @@ class SMIMEARecordData(TypedDict, total=False):
 
 
 class SRVRecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     data: Required[SRVRecordData]
@@ -746,9 +703,6 @@ class SRVRecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
-
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
 
 
 class SRVRecordData(TypedDict, total=False):
@@ -791,7 +745,7 @@ class SRVRecordData(TypedDict, total=False):
 
 
 class SSHFPRecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     data: Required[SSHFPRecordData]
@@ -822,9 +776,6 @@ class SSHFPRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
-
 
 class SSHFPRecordData(TypedDict, total=False):
     algorithm: float
@@ -838,7 +789,7 @@ class SSHFPRecordData(TypedDict, total=False):
 
 
 class SVCBRecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     data: Required[SVCBRecordData]
@@ -869,9 +820,6 @@ class SVCBRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
-
 
 class SVCBRecordData(TypedDict, total=False):
     priority: float
@@ -885,7 +833,7 @@ class SVCBRecordData(TypedDict, total=False):
 
 
 class TLSARecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     data: Required[TLSARecordData]
@@ -916,9 +864,6 @@ class TLSARecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
-
 
 class TLSARecordData(TypedDict, total=False):
     certificate: str
@@ -935,7 +880,7 @@ class TLSARecordData(TypedDict, total=False):
 
 
 class TXTRecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     content: Required[str]
@@ -966,12 +911,9 @@ class TXTRecord(TypedDict, total=False):
     minimum reduced to 30 for Enterprise zones.
     """
 
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
-
 
 class URIRecord(TypedDict, total=False):
-    path_zone_id: Required[Annotated[str, PropertyInfo(alias="zone_id")]]
+    zone_id: Required[str]
     """Identifier"""
 
     data: Required[URIRecordData]
@@ -1007,9 +949,6 @@ class URIRecord(TypedDict, total=False):
     Setting to 1 means 'automatic'. Value must be between 60 and 86400, with the
     minimum reduced to 30 for Enterprise zones.
     """
-
-    body_zone_id: Annotated[str, PropertyInfo(alias="zone_id")]
-    """Identifier"""
 
 
 class URIRecordData(TypedDict, total=False):
