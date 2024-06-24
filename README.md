@@ -14,7 +14,7 @@ The REST API documentation can be found [on developers.cloudflare.com](https://d
 
 ```sh
 # install from PyPI
-pip install --pre cloudflare
+pip install cloudflare
 ```
 
 ## Usage
