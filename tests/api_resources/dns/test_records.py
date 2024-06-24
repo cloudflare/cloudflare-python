@@ -27,7 +27,7 @@ class TestRecords:
     @parametrize
     def test_method_create_overload_1(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -38,7 +38,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_1(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -47,7 +47,6 @@ class TestRecords:
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -55,7 +54,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -70,7 +69,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_1(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -86,20 +85,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 content="198.51.100.4",
                 name="example.com",
                 type="A",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_2(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -110,7 +108,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -119,7 +117,6 @@ class TestRecords:
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -127,7 +124,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -142,7 +139,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -158,20 +155,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 content="2400:cb00:2049::1",
                 name="example.com",
                 type="AAAA",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_3(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CAA",
@@ -182,7 +178,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_3(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "flags": 1,
                 "tag": "issue",
@@ -194,7 +190,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -202,7 +197,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_3(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CAA",
@@ -217,7 +212,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_3(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CAA",
@@ -233,20 +228,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_3(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="CAA",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_4(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CERT",
@@ -257,7 +251,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_4(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 8,
                 "certificate": "string",
@@ -270,7 +264,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -278,7 +271,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_4(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CERT",
@@ -293,7 +286,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_4(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CERT",
@@ -309,20 +302,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_4(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="CERT",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_5(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -333,7 +325,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_5(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -342,7 +334,6 @@ class TestRecords:
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -350,7 +341,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_5(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -365,7 +356,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_5(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -381,20 +372,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_5(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 content={},
                 name="example.com",
                 type="CNAME",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_6(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DNSKEY",
@@ -405,7 +395,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_6(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 5,
                 "flags": 1,
@@ -418,7 +408,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -426,7 +415,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_6(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DNSKEY",
@@ -441,7 +430,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_6(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DNSKEY",
@@ -457,20 +446,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_6(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="DNSKEY",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_7(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DS",
@@ -481,7 +469,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_7(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 3,
                 "digest": "string",
@@ -494,7 +482,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -502,7 +489,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_7(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DS",
@@ -517,7 +504,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_7(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DS",
@@ -533,20 +520,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_7(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="DS",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_8(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="HTTPS",
@@ -557,7 +543,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_8(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "priority": 1,
                 "target": ".",
@@ -569,7 +555,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -577,7 +562,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_8(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="HTTPS",
@@ -592,7 +577,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_8(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="HTTPS",
@@ -608,20 +593,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_8(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="HTTPS",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_9(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="LOC",
@@ -632,7 +616,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_9(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "altitude": 0,
                 "lat_degrees": 37,
@@ -653,7 +637,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -661,7 +644,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_9(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="LOC",
@@ -676,7 +659,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_9(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="LOC",
@@ -692,20 +675,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_9(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="LOC",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_10(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -717,7 +699,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_10(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -726,7 +708,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -734,7 +715,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_10(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -750,7 +731,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_10(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -767,21 +748,20 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_10(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 content="mx.example.com",
                 name="example.com",
                 priority=10,
                 type="MX",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_11(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="NAPTR",
@@ -792,7 +772,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_11(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "flags": "string",
                 "order": 100,
@@ -807,7 +787,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -815,7 +794,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_11(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="NAPTR",
@@ -830,7 +809,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_11(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="NAPTR",
@@ -846,20 +825,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_11(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="NAPTR",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_12(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -870,7 +848,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_12(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -878,7 +856,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -886,7 +863,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_12(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -901,7 +878,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_12(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -917,20 +894,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_12(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 content="ns1.example.com",
                 name="example.com",
                 type="NS",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_13(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -941,7 +917,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_13(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -949,7 +925,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -957,7 +932,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_13(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -972,7 +947,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_13(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -988,20 +963,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_13(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 content="example.com",
                 name="example.com",
                 type="PTR",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_14(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SMIMEA",
@@ -1012,7 +986,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_14(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "certificate": "string",
                 "matching_type": 0,
@@ -1025,7 +999,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -1033,7 +1006,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_14(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SMIMEA",
@@ -1048,7 +1021,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_14(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SMIMEA",
@@ -1064,20 +1037,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_14(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="SMIMEA",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_15(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
@@ -1088,7 +1060,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_15(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "name": "example.com",
                 "port": 8806,
@@ -1104,7 +1076,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -1112,7 +1083,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_15(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
@@ -1127,7 +1098,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_15(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
@@ -1143,20 +1114,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_15(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="_sip._tcp.example.com",
                 type="SRV",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_16(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SSHFP",
@@ -1167,7 +1137,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_16(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 2,
                 "fingerprint": "string",
@@ -1179,7 +1149,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -1187,7 +1156,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_16(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SSHFP",
@@ -1202,7 +1171,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_16(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SSHFP",
@@ -1218,20 +1187,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_16(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="SSHFP",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_17(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SVCB",
@@ -1242,7 +1210,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_17(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "priority": 1,
                 "target": ".",
@@ -1254,7 +1222,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -1262,7 +1229,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_17(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SVCB",
@@ -1277,7 +1244,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_17(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SVCB",
@@ -1293,20 +1260,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_17(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="SVCB",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_18(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="TLSA",
@@ -1317,7 +1283,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_18(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "certificate": "string",
                 "matching_type": 1,
@@ -1330,7 +1296,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -1338,7 +1303,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_18(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="TLSA",
@@ -1353,7 +1318,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_18(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="TLSA",
@@ -1369,20 +1334,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_18(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="TLSA",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_19(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -1393,7 +1357,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_19(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -1401,7 +1365,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -1409,7 +1372,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_19(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -1424,7 +1387,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_19(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -1440,20 +1403,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_19(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 content="example text content",
                 name="example.com",
                 type="TXT",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_20(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             priority=10,
@@ -1465,7 +1427,7 @@ class TestRecords:
     @parametrize
     def test_method_create_with_all_params_overload_20(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "target": "http://example.com/example.html",
                 "weight": 20,
@@ -1477,7 +1439,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -1485,7 +1446,7 @@ class TestRecords:
     @parametrize
     def test_raw_response_create_overload_20(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             priority=10,
@@ -1501,7 +1462,7 @@ class TestRecords:
     @parametrize
     def test_streaming_response_create_overload_20(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             priority=10,
@@ -1518,14 +1479,13 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_create_overload_20(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 priority=10,
                 type="URI",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -1533,7 +1493,7 @@ class TestRecords:
     def test_method_update_overload_1(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -1545,7 +1505,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_1(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -1554,7 +1514,6 @@ class TestRecords:
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -1563,7 +1522,7 @@ class TestRecords:
     def test_raw_response_update_overload_1(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -1579,7 +1538,7 @@ class TestRecords:
     def test_streaming_response_update_overload_1(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -1595,20 +1554,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_1(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="198.51.100.4",
                 name="example.com",
                 type="A",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="198.51.100.4",
                 name="example.com",
                 type="A",
@@ -1619,7 +1577,7 @@ class TestRecords:
     def test_method_update_overload_2(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -1631,7 +1589,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_2(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -1640,7 +1598,6 @@ class TestRecords:
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -1649,7 +1606,7 @@ class TestRecords:
     def test_raw_response_update_overload_2(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -1665,7 +1622,7 @@ class TestRecords:
     def test_streaming_response_update_overload_2(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -1681,20 +1638,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_2(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="2400:cb00:2049::1",
                 name="example.com",
                 type="AAAA",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="2400:cb00:2049::1",
                 name="example.com",
                 type="AAAA",
@@ -1705,7 +1661,7 @@ class TestRecords:
     def test_method_update_overload_3(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CAA",
@@ -1717,7 +1673,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_3(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "flags": 1,
                 "tag": "issue",
@@ -1729,7 +1685,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -1738,7 +1693,7 @@ class TestRecords:
     def test_raw_response_update_overload_3(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CAA",
@@ -1754,7 +1709,7 @@ class TestRecords:
     def test_streaming_response_update_overload_3(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CAA",
@@ -1770,20 +1725,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_3(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="CAA",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="CAA",
@@ -1794,7 +1748,7 @@ class TestRecords:
     def test_method_update_overload_4(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CERT",
@@ -1806,7 +1760,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_4(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 8,
                 "certificate": "string",
@@ -1819,7 +1773,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -1828,7 +1781,7 @@ class TestRecords:
     def test_raw_response_update_overload_4(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CERT",
@@ -1844,7 +1797,7 @@ class TestRecords:
     def test_streaming_response_update_overload_4(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CERT",
@@ -1860,20 +1813,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_4(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="CERT",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="CERT",
@@ -1884,7 +1836,7 @@ class TestRecords:
     def test_method_update_overload_5(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -1896,7 +1848,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_5(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -1905,7 +1857,6 @@ class TestRecords:
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -1914,7 +1865,7 @@ class TestRecords:
     def test_raw_response_update_overload_5(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -1930,7 +1881,7 @@ class TestRecords:
     def test_streaming_response_update_overload_5(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -1946,20 +1897,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_5(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content={},
                 name="example.com",
                 type="CNAME",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content={},
                 name="example.com",
                 type="CNAME",
@@ -1970,7 +1920,7 @@ class TestRecords:
     def test_method_update_overload_6(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DNSKEY",
@@ -1982,7 +1932,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_6(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 5,
                 "flags": 1,
@@ -1995,7 +1945,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -2004,7 +1953,7 @@ class TestRecords:
     def test_raw_response_update_overload_6(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DNSKEY",
@@ -2020,7 +1969,7 @@ class TestRecords:
     def test_streaming_response_update_overload_6(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DNSKEY",
@@ -2036,20 +1985,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_6(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="DNSKEY",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="DNSKEY",
@@ -2060,7 +2008,7 @@ class TestRecords:
     def test_method_update_overload_7(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DS",
@@ -2072,7 +2020,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_7(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 3,
                 "digest": "string",
@@ -2085,7 +2033,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -2094,7 +2041,7 @@ class TestRecords:
     def test_raw_response_update_overload_7(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DS",
@@ -2110,7 +2057,7 @@ class TestRecords:
     def test_streaming_response_update_overload_7(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DS",
@@ -2126,20 +2073,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_7(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="DS",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="DS",
@@ -2150,7 +2096,7 @@ class TestRecords:
     def test_method_update_overload_8(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="HTTPS",
@@ -2162,7 +2108,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_8(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "priority": 1,
                 "target": ".",
@@ -2174,7 +2120,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -2183,7 +2128,7 @@ class TestRecords:
     def test_raw_response_update_overload_8(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="HTTPS",
@@ -2199,7 +2144,7 @@ class TestRecords:
     def test_streaming_response_update_overload_8(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="HTTPS",
@@ -2215,20 +2160,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_8(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="HTTPS",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="HTTPS",
@@ -2239,7 +2183,7 @@ class TestRecords:
     def test_method_update_overload_9(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="LOC",
@@ -2251,7 +2195,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_9(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "altitude": 0,
                 "lat_degrees": 37,
@@ -2272,7 +2216,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -2281,7 +2224,7 @@ class TestRecords:
     def test_raw_response_update_overload_9(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="LOC",
@@ -2297,7 +2240,7 @@ class TestRecords:
     def test_streaming_response_update_overload_9(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="LOC",
@@ -2313,20 +2256,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_9(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="LOC",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="LOC",
@@ -2337,7 +2279,7 @@ class TestRecords:
     def test_method_update_overload_10(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -2350,7 +2292,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_10(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -2359,7 +2301,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -2368,7 +2309,7 @@ class TestRecords:
     def test_raw_response_update_overload_10(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -2385,7 +2326,7 @@ class TestRecords:
     def test_streaming_response_update_overload_10(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -2402,21 +2343,20 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_10(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="mx.example.com",
                 name="example.com",
                 priority=10,
                 type="MX",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="mx.example.com",
                 name="example.com",
                 priority=10,
@@ -2428,7 +2368,7 @@ class TestRecords:
     def test_method_update_overload_11(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="NAPTR",
@@ -2440,7 +2380,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_11(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "flags": "string",
                 "order": 100,
@@ -2455,7 +2395,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -2464,7 +2403,7 @@ class TestRecords:
     def test_raw_response_update_overload_11(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="NAPTR",
@@ -2480,7 +2419,7 @@ class TestRecords:
     def test_streaming_response_update_overload_11(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="NAPTR",
@@ -2496,20 +2435,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_11(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="NAPTR",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="NAPTR",
@@ -2520,7 +2458,7 @@ class TestRecords:
     def test_method_update_overload_12(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -2532,7 +2470,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_12(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -2540,7 +2478,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -2549,7 +2486,7 @@ class TestRecords:
     def test_raw_response_update_overload_12(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -2565,7 +2502,7 @@ class TestRecords:
     def test_streaming_response_update_overload_12(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -2581,20 +2518,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_12(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="ns1.example.com",
                 name="example.com",
                 type="NS",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="ns1.example.com",
                 name="example.com",
                 type="NS",
@@ -2605,7 +2541,7 @@ class TestRecords:
     def test_method_update_overload_13(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -2617,7 +2553,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_13(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -2625,7 +2561,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -2634,7 +2569,7 @@ class TestRecords:
     def test_raw_response_update_overload_13(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -2650,7 +2585,7 @@ class TestRecords:
     def test_streaming_response_update_overload_13(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -2666,20 +2601,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_13(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="example.com",
                 name="example.com",
                 type="PTR",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="example.com",
                 name="example.com",
                 type="PTR",
@@ -2690,7 +2624,7 @@ class TestRecords:
     def test_method_update_overload_14(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SMIMEA",
@@ -2702,7 +2636,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_14(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "certificate": "string",
                 "matching_type": 0,
@@ -2715,7 +2649,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -2724,7 +2657,7 @@ class TestRecords:
     def test_raw_response_update_overload_14(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SMIMEA",
@@ -2740,7 +2673,7 @@ class TestRecords:
     def test_streaming_response_update_overload_14(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SMIMEA",
@@ -2756,20 +2689,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_14(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="SMIMEA",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="SMIMEA",
@@ -2780,7 +2712,7 @@ class TestRecords:
     def test_method_update_overload_15(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
@@ -2792,7 +2724,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_15(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "name": "example.com",
                 "port": 8806,
@@ -2808,7 +2740,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -2817,7 +2748,7 @@ class TestRecords:
     def test_raw_response_update_overload_15(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
@@ -2833,7 +2764,7 @@ class TestRecords:
     def test_streaming_response_update_overload_15(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
@@ -2849,20 +2780,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_15(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="_sip._tcp.example.com",
                 type="SRV",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="_sip._tcp.example.com",
                 type="SRV",
@@ -2873,7 +2803,7 @@ class TestRecords:
     def test_method_update_overload_16(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SSHFP",
@@ -2885,7 +2815,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_16(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 2,
                 "fingerprint": "string",
@@ -2897,7 +2827,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -2906,7 +2835,7 @@ class TestRecords:
     def test_raw_response_update_overload_16(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SSHFP",
@@ -2922,7 +2851,7 @@ class TestRecords:
     def test_streaming_response_update_overload_16(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SSHFP",
@@ -2938,20 +2867,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_16(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="SSHFP",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="SSHFP",
@@ -2962,7 +2890,7 @@ class TestRecords:
     def test_method_update_overload_17(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SVCB",
@@ -2974,7 +2902,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_17(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "priority": 1,
                 "target": ".",
@@ -2986,7 +2914,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -2995,7 +2922,7 @@ class TestRecords:
     def test_raw_response_update_overload_17(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SVCB",
@@ -3011,7 +2938,7 @@ class TestRecords:
     def test_streaming_response_update_overload_17(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SVCB",
@@ -3027,20 +2954,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_17(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="SVCB",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="SVCB",
@@ -3051,7 +2977,7 @@ class TestRecords:
     def test_method_update_overload_18(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="TLSA",
@@ -3063,7 +2989,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_18(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "certificate": "string",
                 "matching_type": 1,
@@ -3076,7 +3002,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -3085,7 +3010,7 @@ class TestRecords:
     def test_raw_response_update_overload_18(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="TLSA",
@@ -3101,7 +3026,7 @@ class TestRecords:
     def test_streaming_response_update_overload_18(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="TLSA",
@@ -3117,20 +3042,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_18(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="TLSA",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="TLSA",
@@ -3141,7 +3065,7 @@ class TestRecords:
     def test_method_update_overload_19(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -3153,7 +3077,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_19(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -3161,7 +3085,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -3170,7 +3093,7 @@ class TestRecords:
     def test_raw_response_update_overload_19(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -3186,7 +3109,7 @@ class TestRecords:
     def test_streaming_response_update_overload_19(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -3202,20 +3125,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_19(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="example text content",
                 name="example.com",
                 type="TXT",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="example text content",
                 name="example.com",
                 type="TXT",
@@ -3226,7 +3148,7 @@ class TestRecords:
     def test_method_update_overload_20(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             priority=10,
@@ -3239,7 +3161,7 @@ class TestRecords:
     def test_method_update_with_all_params_overload_20(self, client: Cloudflare) -> None:
         record = client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "target": "http://example.com/example.html",
                 "weight": 20,
@@ -3251,7 +3173,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -3260,7 +3181,7 @@ class TestRecords:
     def test_raw_response_update_overload_20(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             priority=10,
@@ -3277,7 +3198,7 @@ class TestRecords:
     def test_streaming_response_update_overload_20(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             priority=10,
@@ -3294,21 +3215,20 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_20(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 priority=10,
                 type="URI",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 priority=10,
@@ -3440,7 +3360,7 @@ class TestRecords:
     def test_method_edit_overload_1(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -3452,7 +3372,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_1(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -3461,7 +3381,6 @@ class TestRecords:
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -3470,7 +3389,7 @@ class TestRecords:
     def test_raw_response_edit_overload_1(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -3486,7 +3405,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_1(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -3502,20 +3421,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_1(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="198.51.100.4",
                 name="example.com",
                 type="A",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="198.51.100.4",
                 name="example.com",
                 type="A",
@@ -3526,7 +3444,7 @@ class TestRecords:
     def test_method_edit_overload_2(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -3538,7 +3456,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_2(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -3547,7 +3465,6 @@ class TestRecords:
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -3556,7 +3473,7 @@ class TestRecords:
     def test_raw_response_edit_overload_2(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -3572,7 +3489,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_2(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -3588,20 +3505,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_2(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="2400:cb00:2049::1",
                 name="example.com",
                 type="AAAA",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="2400:cb00:2049::1",
                 name="example.com",
                 type="AAAA",
@@ -3612,7 +3528,7 @@ class TestRecords:
     def test_method_edit_overload_3(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CAA",
@@ -3624,7 +3540,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_3(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "flags": 1,
                 "tag": "issue",
@@ -3636,7 +3552,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -3645,7 +3560,7 @@ class TestRecords:
     def test_raw_response_edit_overload_3(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CAA",
@@ -3661,7 +3576,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_3(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CAA",
@@ -3677,20 +3592,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_3(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="CAA",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="CAA",
@@ -3701,7 +3615,7 @@ class TestRecords:
     def test_method_edit_overload_4(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CERT",
@@ -3713,7 +3627,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_4(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 8,
                 "certificate": "string",
@@ -3726,7 +3640,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -3735,7 +3648,7 @@ class TestRecords:
     def test_raw_response_edit_overload_4(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CERT",
@@ -3751,7 +3664,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_4(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CERT",
@@ -3767,20 +3680,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_4(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="CERT",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="CERT",
@@ -3791,7 +3703,7 @@ class TestRecords:
     def test_method_edit_overload_5(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -3803,7 +3715,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_5(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -3812,7 +3724,6 @@ class TestRecords:
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -3821,7 +3732,7 @@ class TestRecords:
     def test_raw_response_edit_overload_5(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -3837,7 +3748,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_5(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -3853,20 +3764,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_5(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content={},
                 name="example.com",
                 type="CNAME",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content={},
                 name="example.com",
                 type="CNAME",
@@ -3877,7 +3787,7 @@ class TestRecords:
     def test_method_edit_overload_6(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DNSKEY",
@@ -3889,7 +3799,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_6(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 5,
                 "flags": 1,
@@ -3902,7 +3812,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -3911,7 +3820,7 @@ class TestRecords:
     def test_raw_response_edit_overload_6(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DNSKEY",
@@ -3927,7 +3836,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_6(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DNSKEY",
@@ -3943,20 +3852,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_6(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="DNSKEY",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="DNSKEY",
@@ -3967,7 +3875,7 @@ class TestRecords:
     def test_method_edit_overload_7(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DS",
@@ -3979,7 +3887,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_7(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 3,
                 "digest": "string",
@@ -3992,7 +3900,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -4001,7 +3908,7 @@ class TestRecords:
     def test_raw_response_edit_overload_7(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DS",
@@ -4017,7 +3924,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_7(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DS",
@@ -4033,20 +3940,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_7(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="DS",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="DS",
@@ -4057,7 +3963,7 @@ class TestRecords:
     def test_method_edit_overload_8(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="HTTPS",
@@ -4069,7 +3975,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_8(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "priority": 1,
                 "target": ".",
@@ -4081,7 +3987,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -4090,7 +3995,7 @@ class TestRecords:
     def test_raw_response_edit_overload_8(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="HTTPS",
@@ -4106,7 +4011,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_8(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="HTTPS",
@@ -4122,20 +4027,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_8(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="HTTPS",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="HTTPS",
@@ -4146,7 +4050,7 @@ class TestRecords:
     def test_method_edit_overload_9(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="LOC",
@@ -4158,7 +4062,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_9(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "altitude": 0,
                 "lat_degrees": 37,
@@ -4179,7 +4083,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -4188,7 +4091,7 @@ class TestRecords:
     def test_raw_response_edit_overload_9(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="LOC",
@@ -4204,7 +4107,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_9(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="LOC",
@@ -4220,20 +4123,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_9(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="LOC",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="LOC",
@@ -4244,7 +4146,7 @@ class TestRecords:
     def test_method_edit_overload_10(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -4257,7 +4159,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_10(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -4266,7 +4168,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -4275,7 +4176,7 @@ class TestRecords:
     def test_raw_response_edit_overload_10(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -4292,7 +4193,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_10(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -4309,21 +4210,20 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_10(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="mx.example.com",
                 name="example.com",
                 priority=10,
                 type="MX",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="mx.example.com",
                 name="example.com",
                 priority=10,
@@ -4335,7 +4235,7 @@ class TestRecords:
     def test_method_edit_overload_11(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="NAPTR",
@@ -4347,7 +4247,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_11(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "flags": "string",
                 "order": 100,
@@ -4362,7 +4262,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -4371,7 +4270,7 @@ class TestRecords:
     def test_raw_response_edit_overload_11(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="NAPTR",
@@ -4387,7 +4286,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_11(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="NAPTR",
@@ -4403,20 +4302,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_11(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="NAPTR",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="NAPTR",
@@ -4427,7 +4325,7 @@ class TestRecords:
     def test_method_edit_overload_12(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -4439,7 +4337,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_12(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -4447,7 +4345,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -4456,7 +4353,7 @@ class TestRecords:
     def test_raw_response_edit_overload_12(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -4472,7 +4369,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_12(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -4488,20 +4385,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_12(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="ns1.example.com",
                 name="example.com",
                 type="NS",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="ns1.example.com",
                 name="example.com",
                 type="NS",
@@ -4512,7 +4408,7 @@ class TestRecords:
     def test_method_edit_overload_13(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -4524,7 +4420,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_13(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -4532,7 +4428,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -4541,7 +4436,7 @@ class TestRecords:
     def test_raw_response_edit_overload_13(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -4557,7 +4452,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_13(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -4573,20 +4468,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_13(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="example.com",
                 name="example.com",
                 type="PTR",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="example.com",
                 name="example.com",
                 type="PTR",
@@ -4597,7 +4491,7 @@ class TestRecords:
     def test_method_edit_overload_14(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SMIMEA",
@@ -4609,7 +4503,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_14(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "certificate": "string",
                 "matching_type": 0,
@@ -4622,7 +4516,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -4631,7 +4524,7 @@ class TestRecords:
     def test_raw_response_edit_overload_14(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SMIMEA",
@@ -4647,7 +4540,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_14(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SMIMEA",
@@ -4663,20 +4556,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_14(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="SMIMEA",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="SMIMEA",
@@ -4687,7 +4579,7 @@ class TestRecords:
     def test_method_edit_overload_15(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
@@ -4699,7 +4591,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_15(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "name": "example.com",
                 "port": 8806,
@@ -4715,7 +4607,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -4724,7 +4615,7 @@ class TestRecords:
     def test_raw_response_edit_overload_15(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
@@ -4740,7 +4631,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_15(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
@@ -4756,20 +4647,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_15(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="_sip._tcp.example.com",
                 type="SRV",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="_sip._tcp.example.com",
                 type="SRV",
@@ -4780,7 +4670,7 @@ class TestRecords:
     def test_method_edit_overload_16(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SSHFP",
@@ -4792,7 +4682,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_16(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 2,
                 "fingerprint": "string",
@@ -4804,7 +4694,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -4813,7 +4702,7 @@ class TestRecords:
     def test_raw_response_edit_overload_16(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SSHFP",
@@ -4829,7 +4718,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_16(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SSHFP",
@@ -4845,20 +4734,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_16(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="SSHFP",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="SSHFP",
@@ -4869,7 +4757,7 @@ class TestRecords:
     def test_method_edit_overload_17(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SVCB",
@@ -4881,7 +4769,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_17(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "priority": 1,
                 "target": ".",
@@ -4893,7 +4781,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -4902,7 +4789,7 @@ class TestRecords:
     def test_raw_response_edit_overload_17(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SVCB",
@@ -4918,7 +4805,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_17(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SVCB",
@@ -4934,20 +4821,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_17(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="SVCB",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="SVCB",
@@ -4958,7 +4844,7 @@ class TestRecords:
     def test_method_edit_overload_18(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="TLSA",
@@ -4970,7 +4856,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_18(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "certificate": "string",
                 "matching_type": 1,
@@ -4983,7 +4869,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -4992,7 +4877,7 @@ class TestRecords:
     def test_raw_response_edit_overload_18(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="TLSA",
@@ -5008,7 +4893,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_18(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="TLSA",
@@ -5024,20 +4909,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_18(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="TLSA",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="TLSA",
@@ -5048,7 +4932,7 @@ class TestRecords:
     def test_method_edit_overload_19(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -5060,7 +4944,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_19(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -5068,7 +4952,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -5077,7 +4960,7 @@ class TestRecords:
     def test_raw_response_edit_overload_19(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -5093,7 +4976,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_19(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -5109,20 +4992,19 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_19(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="example text content",
                 name="example.com",
                 type="TXT",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="example text content",
                 name="example.com",
                 type="TXT",
@@ -5133,7 +5015,7 @@ class TestRecords:
     def test_method_edit_overload_20(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             priority=10,
@@ -5146,7 +5028,7 @@ class TestRecords:
     def test_method_edit_with_all_params_overload_20(self, client: Cloudflare) -> None:
         record = client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "target": "http://example.com/example.html",
                 "weight": 20,
@@ -5158,7 +5040,6 @@ class TestRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -5167,7 +5048,7 @@ class TestRecords:
     def test_raw_response_edit_overload_20(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             priority=10,
@@ -5184,7 +5065,7 @@ class TestRecords:
     def test_streaming_response_edit_overload_20(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             priority=10,
@@ -5201,21 +5082,20 @@ class TestRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit_overload_20(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 priority=10,
                 type="URI",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 priority=10,
@@ -5414,7 +5294,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -5425,7 +5305,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -5434,7 +5314,6 @@ class TestAsyncRecords:
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -5442,7 +5321,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -5457,7 +5336,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -5473,20 +5352,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 content="198.51.100.4",
                 name="example.com",
                 type="A",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -5497,7 +5375,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -5506,7 +5384,6 @@ class TestAsyncRecords:
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -5514,7 +5391,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -5529,7 +5406,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -5545,20 +5422,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 content="2400:cb00:2049::1",
                 name="example.com",
                 type="AAAA",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CAA",
@@ -5569,7 +5445,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "flags": 1,
                 "tag": "issue",
@@ -5581,7 +5457,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -5589,7 +5464,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CAA",
@@ -5604,7 +5479,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CAA",
@@ -5620,20 +5495,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_3(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="CAA",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CERT",
@@ -5644,7 +5518,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 8,
                 "certificate": "string",
@@ -5657,7 +5531,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -5665,7 +5538,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CERT",
@@ -5680,7 +5553,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CERT",
@@ -5696,20 +5569,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_4(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="CERT",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -5720,7 +5592,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -5729,7 +5601,6 @@ class TestAsyncRecords:
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -5737,7 +5608,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -5752,7 +5623,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -5768,20 +5639,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_5(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 content={},
                 name="example.com",
                 type="CNAME",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DNSKEY",
@@ -5792,7 +5662,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 5,
                 "flags": 1,
@@ -5805,7 +5675,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -5813,7 +5682,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DNSKEY",
@@ -5828,7 +5697,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DNSKEY",
@@ -5844,20 +5713,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_6(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="DNSKEY",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DS",
@@ -5868,7 +5736,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 3,
                 "digest": "string",
@@ -5881,7 +5749,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -5889,7 +5756,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DS",
@@ -5904,7 +5771,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DS",
@@ -5920,20 +5787,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_7(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="DS",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="HTTPS",
@@ -5944,7 +5810,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "priority": 1,
                 "target": ".",
@@ -5956,7 +5822,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -5964,7 +5829,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="HTTPS",
@@ -5979,7 +5844,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="HTTPS",
@@ -5995,20 +5860,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_8(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="HTTPS",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_9(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="LOC",
@@ -6019,7 +5883,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_9(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "altitude": 0,
                 "lat_degrees": 37,
@@ -6040,7 +5904,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -6048,7 +5911,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_9(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="LOC",
@@ -6063,7 +5926,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_9(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="LOC",
@@ -6079,20 +5942,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_9(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="LOC",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_10(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -6104,7 +5966,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_10(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -6113,7 +5975,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -6121,7 +5982,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_10(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -6137,7 +5998,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_10(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -6154,21 +6015,20 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_10(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 content="mx.example.com",
                 name="example.com",
                 priority=10,
                 type="MX",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_11(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="NAPTR",
@@ -6179,7 +6039,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_11(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "flags": "string",
                 "order": 100,
@@ -6194,7 +6054,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -6202,7 +6061,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_11(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="NAPTR",
@@ -6217,7 +6076,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_11(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="NAPTR",
@@ -6233,20 +6092,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_11(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="NAPTR",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_12(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -6257,7 +6115,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_12(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -6265,7 +6123,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -6273,7 +6130,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_12(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -6288,7 +6145,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_12(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -6304,20 +6161,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_12(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 content="ns1.example.com",
                 name="example.com",
                 type="NS",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_13(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -6328,7 +6184,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_13(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -6336,7 +6192,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -6344,7 +6199,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_13(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -6359,7 +6214,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_13(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -6375,20 +6230,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_13(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 content="example.com",
                 name="example.com",
                 type="PTR",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_14(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SMIMEA",
@@ -6399,7 +6253,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_14(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "certificate": "string",
                 "matching_type": 0,
@@ -6412,7 +6266,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -6420,7 +6273,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_14(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SMIMEA",
@@ -6435,7 +6288,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_14(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SMIMEA",
@@ -6451,20 +6304,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_14(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="SMIMEA",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_15(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
@@ -6475,7 +6327,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_15(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "name": "example.com",
                 "port": 8806,
@@ -6491,7 +6343,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -6499,7 +6350,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_15(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
@@ -6514,7 +6365,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_15(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
@@ -6530,20 +6381,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_15(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="_sip._tcp.example.com",
                 type="SRV",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_16(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SSHFP",
@@ -6554,7 +6404,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_16(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 2,
                 "fingerprint": "string",
@@ -6566,7 +6416,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -6574,7 +6423,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_16(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SSHFP",
@@ -6589,7 +6438,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_16(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SSHFP",
@@ -6605,20 +6454,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_16(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="SSHFP",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_17(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SVCB",
@@ -6629,7 +6477,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_17(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "priority": 1,
                 "target": ".",
@@ -6641,7 +6489,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -6649,7 +6496,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_17(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SVCB",
@@ -6664,7 +6511,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_17(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SVCB",
@@ -6680,20 +6527,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_17(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="SVCB",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_18(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="TLSA",
@@ -6704,7 +6550,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_18(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "certificate": "string",
                 "matching_type": 1,
@@ -6717,7 +6563,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -6725,7 +6570,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_18(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="TLSA",
@@ -6740,7 +6585,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_18(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="TLSA",
@@ -6756,20 +6601,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_18(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="TLSA",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_19(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -6780,7 +6624,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_19(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -6788,7 +6632,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -6796,7 +6639,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_19(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -6811,7 +6654,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_19(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -6827,20 +6670,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_19(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 content="example text content",
                 name="example.com",
                 type="TXT",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_20(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             priority=10,
@@ -6852,7 +6694,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_method_create_with_all_params_overload_20(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "target": "http://example.com/example.html",
                 "weight": 20,
@@ -6864,7 +6706,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -6872,7 +6713,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_raw_response_create_overload_20(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             priority=10,
@@ -6888,7 +6729,7 @@ class TestAsyncRecords:
     @parametrize
     async def test_streaming_response_create_overload_20(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             priority=10,
@@ -6905,14 +6746,13 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_create_overload_20(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 priority=10,
                 type="URI",
-                body_zone_id="",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -6920,7 +6760,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -6932,7 +6772,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -6941,7 +6781,6 @@ class TestAsyncRecords:
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -6950,7 +6789,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -6966,7 +6805,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -6982,20 +6821,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_1(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="198.51.100.4",
                 name="example.com",
                 type="A",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="198.51.100.4",
                 name="example.com",
                 type="A",
@@ -7006,7 +6844,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -7018,7 +6856,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -7027,7 +6865,6 @@ class TestAsyncRecords:
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -7036,7 +6873,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -7052,7 +6889,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -7068,20 +6905,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_2(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="2400:cb00:2049::1",
                 name="example.com",
                 type="AAAA",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="2400:cb00:2049::1",
                 name="example.com",
                 type="AAAA",
@@ -7092,7 +6928,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CAA",
@@ -7104,7 +6940,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "flags": 1,
                 "tag": "issue",
@@ -7116,7 +6952,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -7125,7 +6960,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CAA",
@@ -7141,7 +6976,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CAA",
@@ -7157,20 +6992,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_3(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="CAA",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="CAA",
@@ -7181,7 +7015,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CERT",
@@ -7193,7 +7027,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 8,
                 "certificate": "string",
@@ -7206,7 +7040,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -7215,7 +7048,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CERT",
@@ -7231,7 +7064,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CERT",
@@ -7247,20 +7080,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_4(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="CERT",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="CERT",
@@ -7271,7 +7103,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -7283,7 +7115,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -7292,7 +7124,6 @@ class TestAsyncRecords:
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -7301,7 +7132,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -7317,7 +7148,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -7333,20 +7164,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_5(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content={},
                 name="example.com",
                 type="CNAME",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content={},
                 name="example.com",
                 type="CNAME",
@@ -7357,7 +7187,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DNSKEY",
@@ -7369,7 +7199,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 5,
                 "flags": 1,
@@ -7382,7 +7212,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -7391,7 +7220,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DNSKEY",
@@ -7407,7 +7236,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DNSKEY",
@@ -7423,20 +7252,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_6(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="DNSKEY",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="DNSKEY",
@@ -7447,7 +7275,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DS",
@@ -7459,7 +7287,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 3,
                 "digest": "string",
@@ -7472,7 +7300,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -7481,7 +7308,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DS",
@@ -7497,7 +7324,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DS",
@@ -7513,20 +7340,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_7(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="DS",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="DS",
@@ -7537,7 +7363,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="HTTPS",
@@ -7549,7 +7375,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "priority": 1,
                 "target": ".",
@@ -7561,7 +7387,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -7570,7 +7395,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="HTTPS",
@@ -7586,7 +7411,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="HTTPS",
@@ -7602,20 +7427,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_8(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="HTTPS",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="HTTPS",
@@ -7626,7 +7450,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_9(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="LOC",
@@ -7638,7 +7462,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_9(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "altitude": 0,
                 "lat_degrees": 37,
@@ -7659,7 +7483,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -7668,7 +7491,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_9(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="LOC",
@@ -7684,7 +7507,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_9(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="LOC",
@@ -7700,20 +7523,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_9(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="LOC",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="LOC",
@@ -7724,7 +7546,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_10(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -7737,7 +7559,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_10(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -7746,7 +7568,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -7755,7 +7576,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_10(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -7772,7 +7593,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_10(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -7789,21 +7610,20 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_10(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="mx.example.com",
                 name="example.com",
                 priority=10,
                 type="MX",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="mx.example.com",
                 name="example.com",
                 priority=10,
@@ -7815,7 +7635,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_11(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="NAPTR",
@@ -7827,7 +7647,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_11(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "flags": "string",
                 "order": 100,
@@ -7842,7 +7662,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -7851,7 +7670,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_11(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="NAPTR",
@@ -7867,7 +7686,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_11(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="NAPTR",
@@ -7883,20 +7702,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_11(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="NAPTR",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="NAPTR",
@@ -7907,7 +7725,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_12(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -7919,7 +7737,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_12(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -7927,7 +7745,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -7936,7 +7753,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_12(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -7952,7 +7769,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_12(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -7968,20 +7785,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_12(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="ns1.example.com",
                 name="example.com",
                 type="NS",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="ns1.example.com",
                 name="example.com",
                 type="NS",
@@ -7992,7 +7808,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_13(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -8004,7 +7820,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_13(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -8012,7 +7828,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -8021,7 +7836,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_13(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -8037,7 +7852,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_13(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -8053,20 +7868,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_13(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="example.com",
                 name="example.com",
                 type="PTR",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="example.com",
                 name="example.com",
                 type="PTR",
@@ -8077,7 +7891,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_14(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SMIMEA",
@@ -8089,7 +7903,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_14(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "certificate": "string",
                 "matching_type": 0,
@@ -8102,7 +7916,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -8111,7 +7924,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_14(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SMIMEA",
@@ -8127,7 +7940,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_14(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SMIMEA",
@@ -8143,20 +7956,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_14(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="SMIMEA",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="SMIMEA",
@@ -8167,7 +7979,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_15(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
@@ -8179,7 +7991,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_15(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "name": "example.com",
                 "port": 8806,
@@ -8195,7 +8007,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -8204,7 +8015,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_15(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
@@ -8220,7 +8031,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_15(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
@@ -8236,20 +8047,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_15(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="_sip._tcp.example.com",
                 type="SRV",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="_sip._tcp.example.com",
                 type="SRV",
@@ -8260,7 +8070,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_16(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SSHFP",
@@ -8272,7 +8082,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_16(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 2,
                 "fingerprint": "string",
@@ -8284,7 +8094,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -8293,7 +8102,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_16(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SSHFP",
@@ -8309,7 +8118,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_16(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SSHFP",
@@ -8325,20 +8134,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_16(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="SSHFP",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="SSHFP",
@@ -8349,7 +8157,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_17(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SVCB",
@@ -8361,7 +8169,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_17(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "priority": 1,
                 "target": ".",
@@ -8373,7 +8181,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -8382,7 +8189,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_17(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SVCB",
@@ -8398,7 +8205,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_17(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SVCB",
@@ -8414,20 +8221,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_17(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="SVCB",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="SVCB",
@@ -8438,7 +8244,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_18(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="TLSA",
@@ -8450,7 +8256,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_18(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "certificate": "string",
                 "matching_type": 1,
@@ -8463,7 +8269,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -8472,7 +8277,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_18(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="TLSA",
@@ -8488,7 +8293,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_18(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="TLSA",
@@ -8504,20 +8309,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_18(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="TLSA",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="TLSA",
@@ -8528,7 +8332,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_19(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -8540,7 +8344,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_19(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -8548,7 +8352,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -8557,7 +8360,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_19(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -8573,7 +8376,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_19(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -8589,20 +8392,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_19(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="example text content",
                 name="example.com",
                 type="TXT",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="example text content",
                 name="example.com",
                 type="TXT",
@@ -8613,7 +8415,7 @@ class TestAsyncRecords:
     async def test_method_update_overload_20(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             priority=10,
@@ -8626,7 +8428,7 @@ class TestAsyncRecords:
     async def test_method_update_with_all_params_overload_20(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "target": "http://example.com/example.html",
                 "weight": 20,
@@ -8638,7 +8440,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -8647,7 +8448,7 @@ class TestAsyncRecords:
     async def test_raw_response_update_overload_20(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             priority=10,
@@ -8664,7 +8465,7 @@ class TestAsyncRecords:
     async def test_streaming_response_update_overload_20(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.update(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             priority=10,
@@ -8681,21 +8482,20 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_20(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 priority=10,
                 type="URI",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.update(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 priority=10,
@@ -8827,7 +8627,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -8839,7 +8639,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -8848,7 +8648,6 @@ class TestAsyncRecords:
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -8857,7 +8656,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -8873,7 +8672,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="198.51.100.4",
             name="example.com",
             type="A",
@@ -8889,20 +8688,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="198.51.100.4",
                 name="example.com",
                 type="A",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="198.51.100.4",
                 name="example.com",
                 type="A",
@@ -8913,7 +8711,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -8925,7 +8723,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -8934,7 +8732,6 @@ class TestAsyncRecords:
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -8943,7 +8740,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -8959,7 +8756,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="2400:cb00:2049::1",
             name="example.com",
             type="AAAA",
@@ -8975,20 +8772,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="2400:cb00:2049::1",
                 name="example.com",
                 type="AAAA",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="2400:cb00:2049::1",
                 name="example.com",
                 type="AAAA",
@@ -8999,7 +8795,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CAA",
@@ -9011,7 +8807,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "flags": 1,
                 "tag": "issue",
@@ -9023,7 +8819,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -9032,7 +8827,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CAA",
@@ -9048,7 +8843,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CAA",
@@ -9064,20 +8859,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="CAA",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="CAA",
@@ -9088,7 +8882,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CERT",
@@ -9100,7 +8894,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 8,
                 "certificate": "string",
@@ -9113,7 +8907,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -9122,7 +8915,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CERT",
@@ -9138,7 +8931,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="CERT",
@@ -9154,20 +8947,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="CERT",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="CERT",
@@ -9178,7 +8970,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_5(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -9190,7 +8982,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -9199,7 +8991,6 @@ class TestAsyncRecords:
             proxied=False,
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -9208,7 +8999,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -9224,7 +9015,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content={},
             name="example.com",
             type="CNAME",
@@ -9240,20 +9031,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_5(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content={},
                 name="example.com",
                 type="CNAME",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content={},
                 name="example.com",
                 type="CNAME",
@@ -9264,7 +9054,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_6(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DNSKEY",
@@ -9276,7 +9066,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 5,
                 "flags": 1,
@@ -9289,7 +9079,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -9298,7 +9087,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_6(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DNSKEY",
@@ -9314,7 +9103,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_6(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DNSKEY",
@@ -9330,20 +9119,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_6(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="DNSKEY",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="DNSKEY",
@@ -9354,7 +9142,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_7(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DS",
@@ -9366,7 +9154,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 3,
                 "digest": "string",
@@ -9379,7 +9167,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -9388,7 +9175,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_7(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DS",
@@ -9404,7 +9191,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_7(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="DS",
@@ -9420,20 +9207,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_7(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="DS",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="DS",
@@ -9444,7 +9230,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_8(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="HTTPS",
@@ -9456,7 +9242,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "priority": 1,
                 "target": ".",
@@ -9468,7 +9254,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -9477,7 +9262,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_8(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="HTTPS",
@@ -9493,7 +9278,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_8(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="HTTPS",
@@ -9509,20 +9294,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_8(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="HTTPS",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="HTTPS",
@@ -9533,7 +9317,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_9(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="LOC",
@@ -9545,7 +9329,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_9(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "altitude": 0,
                 "lat_degrees": 37,
@@ -9566,7 +9350,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -9575,7 +9358,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_9(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="LOC",
@@ -9591,7 +9374,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_9(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="LOC",
@@ -9607,20 +9390,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_9(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="LOC",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="LOC",
@@ -9631,7 +9413,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_10(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -9644,7 +9426,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_10(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -9653,7 +9435,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -9662,7 +9443,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_10(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -9679,7 +9460,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_10(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="mx.example.com",
             name="example.com",
             priority=10,
@@ -9696,21 +9477,20 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_10(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="mx.example.com",
                 name="example.com",
                 priority=10,
                 type="MX",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="mx.example.com",
                 name="example.com",
                 priority=10,
@@ -9722,7 +9502,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_11(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="NAPTR",
@@ -9734,7 +9514,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_11(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "flags": "string",
                 "order": 100,
@@ -9749,7 +9529,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -9758,7 +9537,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_11(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="NAPTR",
@@ -9774,7 +9553,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_11(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="NAPTR",
@@ -9790,20 +9569,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_11(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="NAPTR",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="NAPTR",
@@ -9814,7 +9592,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_12(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -9826,7 +9604,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_12(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -9834,7 +9612,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -9843,7 +9620,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_12(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -9859,7 +9636,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_12(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="ns1.example.com",
             name="example.com",
             type="NS",
@@ -9875,20 +9652,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_12(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="ns1.example.com",
                 name="example.com",
                 type="NS",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="ns1.example.com",
                 name="example.com",
                 type="NS",
@@ -9899,7 +9675,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_13(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -9911,7 +9687,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_13(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -9919,7 +9695,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -9928,7 +9703,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_13(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -9944,7 +9719,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_13(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example.com",
             name="example.com",
             type="PTR",
@@ -9960,20 +9735,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_13(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="example.com",
                 name="example.com",
                 type="PTR",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="example.com",
                 name="example.com",
                 type="PTR",
@@ -9984,7 +9758,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_14(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SMIMEA",
@@ -9996,7 +9770,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_14(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "certificate": "string",
                 "matching_type": 0,
@@ -10009,7 +9783,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -10018,7 +9791,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_14(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SMIMEA",
@@ -10034,7 +9807,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_14(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SMIMEA",
@@ -10050,20 +9823,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_14(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="SMIMEA",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="SMIMEA",
@@ -10074,7 +9846,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_15(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
@@ -10086,7 +9858,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_15(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "name": "example.com",
                 "port": 8806,
@@ -10102,7 +9874,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -10111,7 +9882,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_15(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
@@ -10127,7 +9898,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_15(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="_sip._tcp.example.com",
             type="SRV",
@@ -10143,20 +9914,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_15(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="_sip._tcp.example.com",
                 type="SRV",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="_sip._tcp.example.com",
                 type="SRV",
@@ -10167,7 +9937,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_16(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SSHFP",
@@ -10179,7 +9949,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_16(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "algorithm": 2,
                 "fingerprint": "string",
@@ -10191,7 +9961,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -10200,7 +9969,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_16(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SSHFP",
@@ -10216,7 +9985,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_16(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SSHFP",
@@ -10232,20 +10001,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_16(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="SSHFP",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="SSHFP",
@@ -10256,7 +10024,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_17(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SVCB",
@@ -10268,7 +10036,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_17(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "priority": 1,
                 "target": ".",
@@ -10280,7 +10048,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -10289,7 +10056,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_17(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SVCB",
@@ -10305,7 +10072,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_17(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="SVCB",
@@ -10321,20 +10088,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_17(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="SVCB",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="SVCB",
@@ -10345,7 +10111,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="TLSA",
@@ -10357,7 +10123,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_18(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "certificate": "string",
                 "matching_type": 1,
@@ -10370,7 +10136,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -10379,7 +10144,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="TLSA",
@@ -10395,7 +10160,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             type="TLSA",
@@ -10411,20 +10176,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 type="TLSA",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 type="TLSA",
@@ -10435,7 +10199,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -10447,7 +10211,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_19(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -10455,7 +10219,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -10464,7 +10227,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -10480,7 +10243,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             content="example text content",
             name="example.com",
             type="TXT",
@@ -10496,20 +10259,19 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 content="example text content",
                 name="example.com",
                 type="TXT",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 content="example text content",
                 name="example.com",
                 type="TXT",
@@ -10520,7 +10282,7 @@ class TestAsyncRecords:
     async def test_method_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             priority=10,
@@ -10533,7 +10295,7 @@ class TestAsyncRecords:
     async def test_method_edit_with_all_params_overload_20(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={
                 "target": "http://example.com/example.html",
                 "weight": 20,
@@ -10545,7 +10307,6 @@ class TestAsyncRecords:
             comment="Domain verification record",
             tags=["owner:dns-team", "owner:dns-team", "owner:dns-team"],
             ttl=3600,
-            body_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Record], record, path=["response"])
 
@@ -10554,7 +10315,7 @@ class TestAsyncRecords:
     async def test_raw_response_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             priority=10,
@@ -10571,7 +10332,7 @@ class TestAsyncRecords:
     async def test_streaming_response_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
-            path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+            zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             data={},
             name="example.com",
             priority=10,
@@ -10588,21 +10349,20 @@ class TestAsyncRecords:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_zone_id` but received ''"):
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
-                path_zone_id="",
+                zone_id="",
                 data={},
                 name="example.com",
                 priority=10,
                 type="URI",
-                body_zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_record_id` but received ''"):
             await async_client.dns.records.with_raw_response.edit(
                 "",
-                path_zone_id="023e105f4ecef8ad9ca31a8372d0c353",
+                zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 data={},
                 name="example.com",
                 priority=10,
