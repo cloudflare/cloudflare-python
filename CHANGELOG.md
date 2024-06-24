@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.0.1 (2024-06-24)
+
+Full Changelog: [v3.0.0...v3.0.1](https://github.com/cloudflare/cloudflare-python/compare/v3.0.0...v3.0.1)
+
+### Features
+
+* remove `--pre` ([3b05435](https://github.com/cloudflare/cloudflare-python/commit/3b05435cabbdacd555d605dbd67e299d75ef3f95))
+
 ## 3.0.0 (2024-06-24)
 
 Full Changelog: [v3.0.0-beta.10...v3.0.0](https://github.com/cloudflare/cloudflare-python/compare/v3.0.0-beta.10...v3.0.0)
