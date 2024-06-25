@@ -1196,6 +1196,7 @@ class TestRules:
                         },
                         "header": {
                             "check_presence": ["string", "string", "string"],
+                            "contains": {"foo": ["string", "string", "string"]},
                             "exclude_origin": True,
                             "include": ["string", "string", "string"],
                         },
@@ -2998,6 +2999,7 @@ class TestRules:
                         },
                         "header": {
                             "check_presence": ["string", "string", "string"],
+                            "contains": {"foo": ["string", "string", "string"]},
                             "exclude_origin": True,
                             "include": ["string", "string", "string"],
                         },
@@ -4579,6 +4581,7 @@ class TestAsyncRules:
                         },
                         "header": {
                             "check_presence": ["string", "string", "string"],
+                            "contains": {"foo": ["string", "string", "string"]},
                             "exclude_origin": True,
                             "include": ["string", "string", "string"],
                         },
@@ -6381,6 +6384,7 @@ class TestAsyncRules:
                         },
                         "header": {
                             "check_presence": ["string", "string", "string"],
+                            "contains": {"foo": ["string", "string", "string"]},
                             "exclude_origin": True,
                             "include": ["string", "string", "string"],
                         },

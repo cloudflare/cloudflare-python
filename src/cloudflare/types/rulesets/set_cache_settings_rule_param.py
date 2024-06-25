@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Dict, List, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from .logging_param import LoggingParam
@@ -52,6 +52,14 @@ class ActionParametersCacheKeyCustomKeyHeader(TypedDict, total=False):
     """Checks for the presence of these header names.
 
     The presence of these headers is used in building the cache key.
+    """
+
+    contains: Dict[str, List[str]]
+    """
+    For each header name and list of values combination, check if the request header
+    contains any of the values provided. The presence of the request header and
+    whether any of the values provided are contained in the request header value is
+    used in building the cache key.
     """
 
     exclude_origin: bool
