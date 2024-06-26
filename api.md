@@ -307,427 +307,70 @@ Methods:
 
 ## Settings
 
-### ZeroRTT
-
 Types:
 
 ```python
-from cloudflare.types.zones.settings import ZeroRTT
-```
-
-### AdvancedDDoS
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import AdvancedDDoS
-```
-
-### AlwaysOnline
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import AlwaysOnline
-```
-
-### AlwaysUseHTTPS
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import AlwaysUseHTTPS
-```
-
-### AutomaticHTTPSRewrites
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import AutomaticHTTPSRewrites
-```
-
-### AutomaticPlatformOptimization
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import AutomaticPlatformOptimization
-```
-
-### Brotli
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import Brotli
-```
-
-### BrowserCacheTTL
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import BrowserCacheTTL
-```
-
-### BrowserCheck
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import BrowserCheck
-```
-
-### CacheLevel
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import CacheLevel
-```
-
-### ChallengeTTL
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import ChallengeTTL
-```
-
-### Ciphers
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import Ciphers
-```
-
-### DevelopmentMode
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import DevelopmentMode
-```
-
-### EarlyHints
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import EarlyHints
-```
-
-### EmailObfuscation
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import EmailObfuscation
-```
-
-### H2Prioritization
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import H2Prioritization
-```
-
-### HotlinkProtection
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import HotlinkProtection
-```
-
-### HTTP2
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import HTTP2
-```
-
-### HTTP3
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import HTTP3
-```
-
-### ImageResizing
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import ImageResizing
-```
-
-### IPGeolocation
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import IPGeolocation
-```
-
-### IPV6
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import IPV6
-```
-
-### MinTLSVersion
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import MinTLSVersion
-```
-
-### Minify
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import Minify
-```
-
-### Mirage
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import Mirage
-```
-
-### MobileRedirect
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import MobileRedirect
-```
-
-### NEL
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import NEL
-```
-
-### OpportunisticEncryption
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import OpportunisticEncryption
-```
-
-### OpportunisticOnion
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import OpportunisticOnion
-```
-
-### OrangeToOrange
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import OrangeToOrange
-```
-
-### OriginErrorPagePassThru
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import OriginErrorPagePassThru
-```
-
-### OriginMaxHTTPVersion
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import (
+from cloudflare.types.zones import (
+    AdvancedDDoS,
+    AlwaysOnline,
+    AlwaysUseHTTPS,
+    AutomaticHTTPSRewrites,
+    AutomaticPlatformOptimization,
+    Brotli,
+    BrowserCacheTTL,
+    BrowserCheck,
+    CacheLevel,
+    ChallengeTTL,
+    Ciphers,
+    DevelopmentMode,
+    EarlyHints,
+    EmailObfuscation,
+    FontSettings,
+    H2Prioritization,
+    HotlinkProtection,
+    HTTP2,
+    HTTP3,
+    ImageResizing,
+    IPGeolocation,
+    IPV6,
+    MinTLSVersion,
+    Minify,
+    Mirage,
+    MobileRedirect,
+    NEL,
+    OpportunisticEncryption,
+    OpportunisticOnion,
+    OrangeToOrange,
+    OriginErrorPagePassThru,
     OriginMaxHTTPVersion,
-    OriginMaxHTTPVersionEditResponse,
-    OriginMaxHTTPVersionGetResponse,
+    Polish,
+    PrefetchPreload,
+    ProxyReadTimeout,
+    PseudoIPV4,
+    ResponseBuffering,
+    RocketLoader,
+    SecurityHeaders,
+    SecurityLevel,
+    ServerSideExcludes,
+    SortQueryStringForCache,
+    SSL,
+    SSLRecommender,
+    TLS1_3,
+    TLSClientAuth,
+    TrueClientIPHeader,
+    WAF,
+    WebP,
+    Websocket,
+    ZeroRTT,
+    SettingEditResponse,
+    SettingGetResponse,
 )
 ```
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/origin_max_http_version">client.zones.settings.origin_max_http_version.<a href="./src/cloudflare/resources/zones/settings/origin_max_http_version.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/origin_max_http_version_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/origin_max_http_version_edit_response.py">OriginMaxHTTPVersionEditResponse</a></code>
-- <code title="get /zones/{zone_id}/settings/origin_max_http_version">client.zones.settings.origin_max_http_version.<a href="./src/cloudflare/resources/zones/settings/origin_max_http_version.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/origin_max_http_version_get_response.py">OriginMaxHTTPVersionGetResponse</a></code>
-
-### Polish
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import Polish
-```
-
-### PrefetchPreload
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import PrefetchPreload
-```
-
-### ProxyReadTimeout
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import ProxyReadTimeout
-```
-
-### PseudoIPV4
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import PseudoIPV4
-```
-
-### ResponseBuffering
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import ResponseBuffering
-```
-
-### RocketLoader
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import RocketLoader
-```
-
-### SecurityHeaders
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import SecurityHeaders
-```
-
-### SecurityLevel
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import SecurityLevel
-```
-
-### ServerSideExcludes
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import ServerSideExcludes
-```
-
-### SortQueryStringForCache
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import SortQueryStringForCache
-```
-
-### SSL
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import SSL
-```
-
-### SSLRecommender
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import SSLRecommender
-```
-
-### TLS1_3
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import TLS1_3
-```
-
-### TLSClientAuth
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import TLSClientAuth
-```
-
-### TrueClientIPHeader
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import TrueClientIPHeader
-```
-
-### WAF
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import WAF
-```
-
-### WebP
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import WebP
-```
-
-### Websocket
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import Websocket
-```
-
-### FontSettings
-
-Types:
-
-```python
-from cloudflare.types.zones.settings import FontSettings
-```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/fonts">client.zones.settings.font_settings.<a href="./src/cloudflare/resources/zones/settings/font_settings.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/font_setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/font_settings.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/fonts">client.zones.settings.font_settings.<a href="./src/cloudflare/resources/zones/settings/font_settings.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/font_settings.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/{setting_id}">client.zones.settings.<a href="./src/cloudflare/resources/zones/settings.py">edit</a>(setting_id, \*, zone_id) -> <a href="./src/cloudflare/types/zones/setting_edit_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/settings/{setting_id}">client.zones.settings.<a href="./src/cloudflare/resources/zones/settings.py">get</a>(setting_id, \*, zone_id) -> <a href="./src/cloudflare/types/zones/setting_get_response.py">Optional</a></code>
 
 ## CustomNameservers
 
