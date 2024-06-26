@@ -13,8 +13,8 @@ __all__ = [
     "ImageClassification",
     "ObjectDetection",
     "ObjectDetectionBox",
-    "UnionMember7",
-    "UnionMember7ToolCall",
+    "UnionMember6",
+    "UnionMember6ToolCall",
     "Translation",
     "Summarization",
     "ImageToText",
@@ -75,16 +75,16 @@ class ObjectDetection(BaseModel):
     score: Optional[float] = None
 
 
-class UnionMember7ToolCall(BaseModel):
+class UnionMember6ToolCall(BaseModel):
     arguments: Optional[object] = None
 
     name: Optional[str] = None
 
 
-class UnionMember7(BaseModel):
+class UnionMember6(BaseModel):
     response: Optional[str] = None
 
-    tool_calls: Optional[List[UnionMember7ToolCall]] = None
+    tool_calls: Optional[List[UnionMember6ToolCall]] = None
 
 
 class Translation(BaseModel):
@@ -102,14 +102,14 @@ class ImageToText(BaseModel):
 AIRunResponse = Union[
     List[TextClassification],
     object,
-    List[float],
     TextEmbeddings,
     SpeechRecognition,
     List[ImageClassification],
     List[ObjectDetection],
-    UnionMember7,
+    UnionMember6,
     object,
     Translation,
     Summarization,
     ImageToText,
+    object,
 ]
