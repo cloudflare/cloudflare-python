@@ -315,11 +315,6 @@ Types:
 from cloudflare.types.zones.settings import ZeroRTT
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/0rtt">client.zones.settings.zero_rtt.<a href="./src/cloudflare/resources/zones/settings/zero_rtt.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/zero_rtt_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/zero_rtt.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/0rtt">client.zones.settings.zero_rtt.<a href="./src/cloudflare/resources/zones/settings/zero_rtt.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/zero_rtt.py">Optional</a></code>
-
 ### AdvancedDDoS
 
 Types:
@@ -327,10 +322,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import AdvancedDDoS
 ```
-
-Methods:
-
-- <code title="get /zones/{zone_id}/settings/advanced_ddos">client.zones.settings.advanced_ddos.<a href="./src/cloudflare/resources/zones/settings/advanced_ddos.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/advanced_ddos.py">Optional</a></code>
 
 ### AlwaysOnline
 
@@ -340,11 +331,6 @@ Types:
 from cloudflare.types.zones.settings import AlwaysOnline
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/always_online">client.zones.settings.always_online.<a href="./src/cloudflare/resources/zones/settings/always_online.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/always_online_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/always_online.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/always_online">client.zones.settings.always_online.<a href="./src/cloudflare/resources/zones/settings/always_online.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/always_online.py">Optional</a></code>
-
 ### AlwaysUseHTTPS
 
 Types:
@@ -352,11 +338,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import AlwaysUseHTTPS
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/always_use_https">client.zones.settings.always_use_https.<a href="./src/cloudflare/resources/zones/settings/always_use_https.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/always_use_https_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/always_use_https.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/always_use_https">client.zones.settings.always_use_https.<a href="./src/cloudflare/resources/zones/settings/always_use_https.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/always_use_https.py">Optional</a></code>
 
 ### AutomaticHTTPSRewrites
 
@@ -366,11 +347,6 @@ Types:
 from cloudflare.types.zones.settings import AutomaticHTTPSRewrites
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/automatic_https_rewrites">client.zones.settings.automatic_https_rewrites.<a href="./src/cloudflare/resources/zones/settings/automatic_https_rewrites.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/automatic_https_rewrite_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/automatic_https_rewrites.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/automatic_https_rewrites">client.zones.settings.automatic_https_rewrites.<a href="./src/cloudflare/resources/zones/settings/automatic_https_rewrites.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/automatic_https_rewrites.py">Optional</a></code>
-
 ### AutomaticPlatformOptimization
 
 Types:
@@ -378,11 +354,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import AutomaticPlatformOptimization
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/automatic_platform_optimization">client.zones.settings.automatic_platform_optimization.<a href="./src/cloudflare/resources/zones/settings/automatic_platform_optimization.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/automatic_platform_optimization_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/automatic_platform_optimization.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/automatic_platform_optimization">client.zones.settings.automatic_platform_optimization.<a href="./src/cloudflare/resources/zones/settings/automatic_platform_optimization.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/automatic_platform_optimization.py">Optional</a></code>
 
 ### Brotli
 
@@ -392,11 +363,6 @@ Types:
 from cloudflare.types.zones.settings import Brotli
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/brotli">client.zones.settings.brotli.<a href="./src/cloudflare/resources/zones/settings/brotli.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/brotli_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/brotli.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/brotli">client.zones.settings.brotli.<a href="./src/cloudflare/resources/zones/settings/brotli.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/brotli.py">Optional</a></code>
-
 ### BrowserCacheTTL
 
 Types:
@@ -404,11 +370,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import BrowserCacheTTL
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/browser_cache_ttl">client.zones.settings.browser_cache_ttl.<a href="./src/cloudflare/resources/zones/settings/browser_cache_ttl.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/browser_cache_ttl_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/browser_cache_ttl.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/browser_cache_ttl">client.zones.settings.browser_cache_ttl.<a href="./src/cloudflare/resources/zones/settings/browser_cache_ttl.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/browser_cache_ttl.py">Optional</a></code>
 
 ### BrowserCheck
 
@@ -418,11 +379,6 @@ Types:
 from cloudflare.types.zones.settings import BrowserCheck
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/browser_check">client.zones.settings.browser_check.<a href="./src/cloudflare/resources/zones/settings/browser_check.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/browser_check_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/browser_check.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/browser_check">client.zones.settings.browser_check.<a href="./src/cloudflare/resources/zones/settings/browser_check.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/browser_check.py">Optional</a></code>
-
 ### CacheLevel
 
 Types:
@@ -430,11 +386,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import CacheLevel
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/cache_level">client.zones.settings.cache_level.<a href="./src/cloudflare/resources/zones/settings/cache_level.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/cache_level_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/cache_level.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/cache_level">client.zones.settings.cache_level.<a href="./src/cloudflare/resources/zones/settings/cache_level.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/cache_level.py">Optional</a></code>
 
 ### ChallengeTTL
 
@@ -444,11 +395,6 @@ Types:
 from cloudflare.types.zones.settings import ChallengeTTL
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/challenge_ttl">client.zones.settings.challenge_ttl.<a href="./src/cloudflare/resources/zones/settings/challenge_ttl.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/challenge_ttl_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/challenge_ttl.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/challenge_ttl">client.zones.settings.challenge_ttl.<a href="./src/cloudflare/resources/zones/settings/challenge_ttl.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/challenge_ttl.py">Optional</a></code>
-
 ### Ciphers
 
 Types:
@@ -456,11 +402,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import Ciphers
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/ciphers">client.zones.settings.ciphers.<a href="./src/cloudflare/resources/zones/settings/ciphers.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/cipher_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/ciphers.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/ciphers">client.zones.settings.ciphers.<a href="./src/cloudflare/resources/zones/settings/ciphers.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/ciphers.py">Optional</a></code>
 
 ### DevelopmentMode
 
@@ -470,11 +411,6 @@ Types:
 from cloudflare.types.zones.settings import DevelopmentMode
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/development_mode">client.zones.settings.development_mode.<a href="./src/cloudflare/resources/zones/settings/development_mode.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/development_mode_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/development_mode.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/development_mode">client.zones.settings.development_mode.<a href="./src/cloudflare/resources/zones/settings/development_mode.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/development_mode.py">Optional</a></code>
-
 ### EarlyHints
 
 Types:
@@ -482,11 +418,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import EarlyHints
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/early_hints">client.zones.settings.early_hints.<a href="./src/cloudflare/resources/zones/settings/early_hints.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/early_hint_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/early_hints.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/early_hints">client.zones.settings.early_hints.<a href="./src/cloudflare/resources/zones/settings/early_hints.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/early_hints.py">Optional</a></code>
 
 ### EmailObfuscation
 
@@ -496,11 +427,6 @@ Types:
 from cloudflare.types.zones.settings import EmailObfuscation
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/email_obfuscation">client.zones.settings.email_obfuscation.<a href="./src/cloudflare/resources/zones/settings/email_obfuscation.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/email_obfuscation_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/email_obfuscation.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/email_obfuscation">client.zones.settings.email_obfuscation.<a href="./src/cloudflare/resources/zones/settings/email_obfuscation.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/email_obfuscation.py">Optional</a></code>
-
 ### H2Prioritization
 
 Types:
@@ -508,11 +434,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import H2Prioritization
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/h2_prioritization">client.zones.settings.h2_prioritization.<a href="./src/cloudflare/resources/zones/settings/h2_prioritization.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/h2_prioritization_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/h2_prioritization.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/h2_prioritization">client.zones.settings.h2_prioritization.<a href="./src/cloudflare/resources/zones/settings/h2_prioritization.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/h2_prioritization.py">Optional</a></code>
 
 ### HotlinkProtection
 
@@ -522,11 +443,6 @@ Types:
 from cloudflare.types.zones.settings import HotlinkProtection
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/hotlink_protection">client.zones.settings.hotlink_protection.<a href="./src/cloudflare/resources/zones/settings/hotlink_protection.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/hotlink_protection_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/hotlink_protection.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/hotlink_protection">client.zones.settings.hotlink_protection.<a href="./src/cloudflare/resources/zones/settings/hotlink_protection.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/hotlink_protection.py">Optional</a></code>
-
 ### HTTP2
 
 Types:
@@ -534,11 +450,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import HTTP2
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/http2">client.zones.settings.http2.<a href="./src/cloudflare/resources/zones/settings/http2.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/http2_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/http2.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/http2">client.zones.settings.http2.<a href="./src/cloudflare/resources/zones/settings/http2.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/http2.py">Optional</a></code>
 
 ### HTTP3
 
@@ -548,11 +459,6 @@ Types:
 from cloudflare.types.zones.settings import HTTP3
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/http3">client.zones.settings.http3.<a href="./src/cloudflare/resources/zones/settings/http3.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/http3_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/http3.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/http3">client.zones.settings.http3.<a href="./src/cloudflare/resources/zones/settings/http3.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/http3.py">Optional</a></code>
-
 ### ImageResizing
 
 Types:
@@ -560,11 +466,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import ImageResizing
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/image_resizing">client.zones.settings.image_resizing.<a href="./src/cloudflare/resources/zones/settings/image_resizing.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/image_resizing_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/image_resizing.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/image_resizing">client.zones.settings.image_resizing.<a href="./src/cloudflare/resources/zones/settings/image_resizing.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/image_resizing.py">Optional</a></code>
 
 ### IPGeolocation
 
@@ -574,11 +475,6 @@ Types:
 from cloudflare.types.zones.settings import IPGeolocation
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/ip_geolocation">client.zones.settings.ip_geolocation.<a href="./src/cloudflare/resources/zones/settings/ip_geolocation.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/ip_geolocation_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/ip_geolocation.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/ip_geolocation">client.zones.settings.ip_geolocation.<a href="./src/cloudflare/resources/zones/settings/ip_geolocation.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/ip_geolocation.py">Optional</a></code>
-
 ### IPV6
 
 Types:
@@ -586,11 +482,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import IPV6
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/ipv6">client.zones.settings.ipv6.<a href="./src/cloudflare/resources/zones/settings/ipv6.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/ipv6_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/ipv6.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/ipv6">client.zones.settings.ipv6.<a href="./src/cloudflare/resources/zones/settings/ipv6.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/ipv6.py">Optional</a></code>
 
 ### MinTLSVersion
 
@@ -600,11 +491,6 @@ Types:
 from cloudflare.types.zones.settings import MinTLSVersion
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/min_tls_version">client.zones.settings.min_tls_version.<a href="./src/cloudflare/resources/zones/settings/min_tls_version.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/min_tls_version_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/min_tls_version.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/min_tls_version">client.zones.settings.min_tls_version.<a href="./src/cloudflare/resources/zones/settings/min_tls_version.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/min_tls_version.py">Optional</a></code>
-
 ### Minify
 
 Types:
@@ -612,11 +498,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import Minify
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/minify">client.zones.settings.minify.<a href="./src/cloudflare/resources/zones/settings/minify.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/minify_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/minify.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/minify">client.zones.settings.minify.<a href="./src/cloudflare/resources/zones/settings/minify.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/minify.py">Optional</a></code>
 
 ### Mirage
 
@@ -626,11 +507,6 @@ Types:
 from cloudflare.types.zones.settings import Mirage
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/mirage">client.zones.settings.mirage.<a href="./src/cloudflare/resources/zones/settings/mirage.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/mirage_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/mirage.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/mirage">client.zones.settings.mirage.<a href="./src/cloudflare/resources/zones/settings/mirage.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/mirage.py">Optional</a></code>
-
 ### MobileRedirect
 
 Types:
@@ -638,11 +514,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import MobileRedirect
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/mobile_redirect">client.zones.settings.mobile_redirect.<a href="./src/cloudflare/resources/zones/settings/mobile_redirect.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/mobile_redirect_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/mobile_redirect.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/mobile_redirect">client.zones.settings.mobile_redirect.<a href="./src/cloudflare/resources/zones/settings/mobile_redirect.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/mobile_redirect.py">Optional</a></code>
 
 ### NEL
 
@@ -652,11 +523,6 @@ Types:
 from cloudflare.types.zones.settings import NEL
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/nel">client.zones.settings.nel.<a href="./src/cloudflare/resources/zones/settings/nel.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/nel_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/nel.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/nel">client.zones.settings.nel.<a href="./src/cloudflare/resources/zones/settings/nel.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/nel.py">Optional</a></code>
-
 ### OpportunisticEncryption
 
 Types:
@@ -664,11 +530,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import OpportunisticEncryption
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/opportunistic_encryption">client.zones.settings.opportunistic_encryption.<a href="./src/cloudflare/resources/zones/settings/opportunistic_encryption.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/opportunistic_encryption_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/opportunistic_encryption.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/opportunistic_encryption">client.zones.settings.opportunistic_encryption.<a href="./src/cloudflare/resources/zones/settings/opportunistic_encryption.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/opportunistic_encryption.py">Optional</a></code>
 
 ### OpportunisticOnion
 
@@ -678,11 +539,6 @@ Types:
 from cloudflare.types.zones.settings import OpportunisticOnion
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/opportunistic_onion">client.zones.settings.opportunistic_onion.<a href="./src/cloudflare/resources/zones/settings/opportunistic_onion.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/opportunistic_onion_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/opportunistic_onion.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/opportunistic_onion">client.zones.settings.opportunistic_onion.<a href="./src/cloudflare/resources/zones/settings/opportunistic_onion.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/opportunistic_onion.py">Optional</a></code>
-
 ### OrangeToOrange
 
 Types:
@@ -691,11 +547,6 @@ Types:
 from cloudflare.types.zones.settings import OrangeToOrange
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/orange_to_orange">client.zones.settings.orange_to_orange.<a href="./src/cloudflare/resources/zones/settings/orange_to_orange.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/orange_to_orange_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/orange_to_orange.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/orange_to_orange">client.zones.settings.orange_to_orange.<a href="./src/cloudflare/resources/zones/settings/orange_to_orange.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/orange_to_orange.py">Optional</a></code>
-
 ### OriginErrorPagePassThru
 
 Types:
@@ -703,11 +554,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import OriginErrorPagePassThru
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/origin_error_page_pass_thru">client.zones.settings.origin_error_page_pass_thru.<a href="./src/cloudflare/resources/zones/settings/origin_error_page_pass_thru.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/origin_error_page_pass_thru_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/origin_error_page_pass_thru.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/origin_error_page_pass_thru">client.zones.settings.origin_error_page_pass_thru.<a href="./src/cloudflare/resources/zones/settings/origin_error_page_pass_thru.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/origin_error_page_pass_thru.py">Optional</a></code>
 
 ### OriginMaxHTTPVersion
 
@@ -734,11 +580,6 @@ Types:
 from cloudflare.types.zones.settings import Polish
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/polish">client.zones.settings.polish.<a href="./src/cloudflare/resources/zones/settings/polish.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/polish_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/polish.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/polish">client.zones.settings.polish.<a href="./src/cloudflare/resources/zones/settings/polish.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/polish.py">Optional</a></code>
-
 ### PrefetchPreload
 
 Types:
@@ -746,11 +587,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import PrefetchPreload
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/prefetch_preload">client.zones.settings.prefetch_preload.<a href="./src/cloudflare/resources/zones/settings/prefetch_preload.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/prefetch_preload_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/prefetch_preload.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/prefetch_preload">client.zones.settings.prefetch_preload.<a href="./src/cloudflare/resources/zones/settings/prefetch_preload.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/prefetch_preload.py">Optional</a></code>
 
 ### ProxyReadTimeout
 
@@ -760,11 +596,6 @@ Types:
 from cloudflare.types.zones.settings import ProxyReadTimeout
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/proxy_read_timeout">client.zones.settings.proxy_read_timeout.<a href="./src/cloudflare/resources/zones/settings/proxy_read_timeout.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/proxy_read_timeout_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/proxy_read_timeout.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/proxy_read_timeout">client.zones.settings.proxy_read_timeout.<a href="./src/cloudflare/resources/zones/settings/proxy_read_timeout.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/proxy_read_timeout.py">Optional</a></code>
-
 ### PseudoIPV4
 
 Types:
@@ -772,11 +603,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import PseudoIPV4
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/pseudo_ipv4">client.zones.settings.pseudo_ipv4.<a href="./src/cloudflare/resources/zones/settings/pseudo_ipv4.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/pseudo_ipv4_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/pseudo_ipv4.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/pseudo_ipv4">client.zones.settings.pseudo_ipv4.<a href="./src/cloudflare/resources/zones/settings/pseudo_ipv4.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/pseudo_ipv4.py">Optional</a></code>
 
 ### ResponseBuffering
 
@@ -786,11 +612,6 @@ Types:
 from cloudflare.types.zones.settings import ResponseBuffering
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/response_buffering">client.zones.settings.response_buffering.<a href="./src/cloudflare/resources/zones/settings/response_buffering.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/response_buffering_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/response_buffering.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/response_buffering">client.zones.settings.response_buffering.<a href="./src/cloudflare/resources/zones/settings/response_buffering.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/response_buffering.py">Optional</a></code>
-
 ### RocketLoader
 
 Types:
@@ -798,11 +619,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import RocketLoader
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/rocket_loader">client.zones.settings.rocket_loader.<a href="./src/cloudflare/resources/zones/settings/rocket_loader.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/rocket_loader_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/rocket_loader.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/rocket_loader">client.zones.settings.rocket_loader.<a href="./src/cloudflare/resources/zones/settings/rocket_loader.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/rocket_loader.py">Optional</a></code>
 
 ### SecurityHeaders
 
@@ -812,11 +628,6 @@ Types:
 from cloudflare.types.zones.settings import SecurityHeaders
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/security_header">client.zones.settings.security_headers.<a href="./src/cloudflare/resources/zones/settings/security_headers.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/security_header_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/security_headers.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/security_header">client.zones.settings.security_headers.<a href="./src/cloudflare/resources/zones/settings/security_headers.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/security_headers.py">Optional</a></code>
-
 ### SecurityLevel
 
 Types:
@@ -824,11 +635,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import SecurityLevel
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/security_level">client.zones.settings.security_level.<a href="./src/cloudflare/resources/zones/settings/security_level.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/security_level_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/security_level.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/security_level">client.zones.settings.security_level.<a href="./src/cloudflare/resources/zones/settings/security_level.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/security_level.py">Optional</a></code>
 
 ### ServerSideExcludes
 
@@ -838,11 +644,6 @@ Types:
 from cloudflare.types.zones.settings import ServerSideExcludes
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/server_side_exclude">client.zones.settings.server_side_excludes.<a href="./src/cloudflare/resources/zones/settings/server_side_excludes.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/server_side_exclude_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/server_side_excludes.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/server_side_exclude">client.zones.settings.server_side_excludes.<a href="./src/cloudflare/resources/zones/settings/server_side_excludes.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/server_side_excludes.py">Optional</a></code>
-
 ### SortQueryStringForCache
 
 Types:
@@ -850,11 +651,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import SortQueryStringForCache
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/sort_query_string_for_cache">client.zones.settings.sort_query_string_for_cache.<a href="./src/cloudflare/resources/zones/settings/sort_query_string_for_cache.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/sort_query_string_for_cache_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/sort_query_string_for_cache.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/sort_query_string_for_cache">client.zones.settings.sort_query_string_for_cache.<a href="./src/cloudflare/resources/zones/settings/sort_query_string_for_cache.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/sort_query_string_for_cache.py">Optional</a></code>
 
 ### SSL
 
@@ -864,11 +660,6 @@ Types:
 from cloudflare.types.zones.settings import SSL
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/ssl">client.zones.settings.ssl.<a href="./src/cloudflare/resources/zones/settings/ssl.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/ssl_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/ssl.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/ssl">client.zones.settings.ssl.<a href="./src/cloudflare/resources/zones/settings/ssl.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/ssl.py">Optional</a></code>
-
 ### SSLRecommender
 
 Types:
@@ -876,11 +667,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import SSLRecommender
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/ssl_recommender">client.zones.settings.ssl_recommender.<a href="./src/cloudflare/resources/zones/settings/ssl_recommender.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/ssl_recommender_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/ssl_recommender.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/ssl_recommender">client.zones.settings.ssl_recommender.<a href="./src/cloudflare/resources/zones/settings/ssl_recommender.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/ssl_recommender.py">Optional</a></code>
 
 ### TLS1_3
 
@@ -890,11 +676,6 @@ Types:
 from cloudflare.types.zones.settings import TLS1_3
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/tls_1_3">client.zones.settings.tls_1_3.<a href="./src/cloudflare/resources/zones/settings/tls_1_3.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/tls_1_3_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/tls_1_3.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/tls_1_3">client.zones.settings.tls_1_3.<a href="./src/cloudflare/resources/zones/settings/tls_1_3.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/tls_1_3.py">Optional</a></code>
-
 ### TLSClientAuth
 
 Types:
@@ -902,11 +683,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import TLSClientAuth
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/tls_client_auth">client.zones.settings.tls_client_auth.<a href="./src/cloudflare/resources/zones/settings/tls_client_auth.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/tls_client_auth_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/tls_client_auth.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/tls_client_auth">client.zones.settings.tls_client_auth.<a href="./src/cloudflare/resources/zones/settings/tls_client_auth.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/tls_client_auth.py">Optional</a></code>
 
 ### TrueClientIPHeader
 
@@ -916,11 +692,6 @@ Types:
 from cloudflare.types.zones.settings import TrueClientIPHeader
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/true_client_ip_header">client.zones.settings.true_client_ip_header.<a href="./src/cloudflare/resources/zones/settings/true_client_ip_header.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/true_client_ip_header_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/true_client_ip_header.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/true_client_ip_header">client.zones.settings.true_client_ip_header.<a href="./src/cloudflare/resources/zones/settings/true_client_ip_header.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/true_client_ip_header.py">Optional</a></code>
-
 ### WAF
 
 Types:
@@ -928,11 +699,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import WAF
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/waf">client.zones.settings.waf.<a href="./src/cloudflare/resources/zones/settings/waf.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/waf_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/waf.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/waf">client.zones.settings.waf.<a href="./src/cloudflare/resources/zones/settings/waf.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/waf.py">Optional</a></code>
 
 ### WebP
 
@@ -942,11 +708,6 @@ Types:
 from cloudflare.types.zones.settings import WebP
 ```
 
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/webp">client.zones.settings.webp.<a href="./src/cloudflare/resources/zones/settings/webp.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/webp_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/webp.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/webp">client.zones.settings.webp.<a href="./src/cloudflare/resources/zones/settings/webp.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/webp.py">Optional</a></code>
-
 ### Websocket
 
 Types:
@@ -954,11 +715,6 @@ Types:
 ```python
 from cloudflare.types.zones.settings import Websocket
 ```
-
-Methods:
-
-- <code title="patch /zones/{zone_id}/settings/websockets">client.zones.settings.websocket.<a href="./src/cloudflare/resources/zones/settings/websocket.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/zones/settings/websocket_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/settings/websocket.py">Optional</a></code>
-- <code title="get /zones/{zone_id}/settings/websockets">client.zones.settings.websocket.<a href="./src/cloudflare/resources/zones/settings/websocket.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/zones/settings/websocket.py">Optional</a></code>
 
 ### FontSettings
 
