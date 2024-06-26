@@ -17,7 +17,11 @@ class Value(BaseModel):
     """
 
     status: Optional[Literal["on", "off"]] = None
-    """Whether or not mobile redirect is enabled."""
+    """
+    Deprecated: Use Single Redirects instead
+    https://developers.cloudflare.com/rules/url-forwarding/single-redirects/examples/#perform-mobile-redirects.
+    Whether or not mobile redirect is enabled.
+    """
 
     strip_uri: Optional[bool] = None
     """
