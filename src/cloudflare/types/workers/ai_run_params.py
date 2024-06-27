@@ -11,7 +11,7 @@ __all__ = [
     "TextClassification",
     "TextToImage",
     "TextEmbeddings",
-    "AutomaticSpeechRecognition",
+    "SpeechRecognition",
     "ImageClassification",
     "ObjectDetection",
     "TextGeneration",
@@ -57,7 +57,7 @@ class TextEmbeddings(TypedDict, total=False):
     text: Required[Union[str, List[str]]]
 
 
-class AutomaticSpeechRecognition(TypedDict, total=False):
+class SpeechRecognition(TypedDict, total=False):
     account_id: Required[str]
 
     audio: Required[Iterable[float]]
@@ -142,7 +142,7 @@ AIRunParams = Union[
     TextClassification,
     TextToImage,
     TextEmbeddings,
-    AutomaticSpeechRecognition,
+    SpeechRecognition,
     ImageClassification,
     ObjectDetection,
     TextGeneration,
