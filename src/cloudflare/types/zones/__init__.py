@@ -52,6 +52,7 @@ from .proxy_read_timeout import ProxyReadTimeout as ProxyReadTimeout
 from .response_buffering import ResponseBuffering as ResponseBuffering
 from .zone_create_params import ZoneCreateParams as ZoneCreateParams
 from .opportunistic_onion import OpportunisticOnion as OpportunisticOnion
+from .setting_edit_params import SettingEditParams as SettingEditParams
 from .server_side_excludes import ServerSideExcludes as ServerSideExcludes
 from .setting_get_response import SettingGetResponse as SettingGetResponse
 from .zone_delete_response import ZoneDeleteResponse as ZoneDeleteResponse
@@ -70,3 +71,6 @@ from .automatic_platform_optimization import AutomaticPlatformOptimization as Au
 from .custom_nameserver_update_params import CustomNameserverUpdateParams as CustomNameserverUpdateParams
 from .activation_check_trigger_response import ActivationCheckTriggerResponse as ActivationCheckTriggerResponse
 from .custom_nameserver_update_response import CustomNameserverUpdateResponse as CustomNameserverUpdateResponse
+from .automatic_platform_optimization_param import (
+    AutomaticPlatformOptimizationParam as AutomaticPlatformOptimizationParam,
+)
