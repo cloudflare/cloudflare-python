@@ -8,8 +8,8 @@ __all__ = [
     "AIRunResponse",
     "TextClassification",
     "TextEmbeddings",
-    "AutomaticSpeechRecognition",
-    "AutomaticSpeechRecognitionWord",
+    "SpeechRecognition",
+    "SpeechRecognitionWord",
     "ImageClassification",
     "ObjectDetection",
     "ObjectDetectionBox",
@@ -33,7 +33,7 @@ class TextEmbeddings(BaseModel):
     shape: Optional[List[float]] = None
 
 
-class AutomaticSpeechRecognitionWord(BaseModel):
+class SpeechRecognitionWord(BaseModel):
     end: Optional[float] = None
 
     start: Optional[float] = None
@@ -41,14 +41,14 @@ class AutomaticSpeechRecognitionWord(BaseModel):
     word: Optional[str] = None
 
 
-class AutomaticSpeechRecognition(BaseModel):
+class SpeechRecognition(BaseModel):
     text: str
 
     vtt: Optional[str] = None
 
     word_count: Optional[float] = None
 
-    words: Optional[List[AutomaticSpeechRecognitionWord]] = None
+    words: Optional[List[SpeechRecognitionWord]] = None
 
 
 class ImageClassification(BaseModel):
@@ -103,7 +103,7 @@ AIRunResponse = Union[
     List[TextClassification],
     object,
     TextEmbeddings,
-    AutomaticSpeechRecognition,
+    SpeechRecognition,
     List[ImageClassification],
     List[ObjectDetection],
     UnionMember6,
