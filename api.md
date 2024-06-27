@@ -369,7 +369,7 @@ from cloudflare.types.zones import (
 
 Methods:
 
-- <code title="patch /zones/{zone_id}/settings/{setting_id}">client.zones.settings.<a href="./src/cloudflare/resources/zones/settings.py">edit</a>(setting_id, \*, zone_id) -> <a href="./src/cloudflare/types/zones/setting_edit_response.py">Optional</a></code>
+- <code title="patch /zones/{zone_id}/settings/{setting_id}">client.zones.settings.<a href="./src/cloudflare/resources/zones/settings.py">edit</a>(setting_id, \*, zone_id, \*\*<a href="src/cloudflare/types/zones/setting_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/setting_edit_response.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/settings/{setting_id}">client.zones.settings.<a href="./src/cloudflare/resources/zones/settings.py">get</a>(setting_id, \*, zone_id) -> <a href="./src/cloudflare/types/zones/setting_get_response.py">Optional</a></code>
 
 ## CustomNameservers
