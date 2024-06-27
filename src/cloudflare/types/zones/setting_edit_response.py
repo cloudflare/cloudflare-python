@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import Union, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -57,18 +57,17 @@ from .automatic_platform_optimization import AutomaticPlatformOptimization
 
 __all__ = [
     "SettingEditResponse",
-    "SettingEditResponseItem",
-    "SettingEditResponseItemZonesCNAMEFlattening",
-    "SettingEditResponseItemZonesEdgeCacheTTL",
-    "SettingEditResponseItemZonesMaxUpload",
-    "SettingEditResponseItemZonesReplaceInsecureJS",
-    "SettingEditResponseItemZonesSchemasAutomaticPlatformOptimization",
-    "SettingEditResponseItemZonesSha1Support",
-    "SettingEditResponseItemZonesTLS1_2Only",
+    "ZonesCNAMEFlattening",
+    "ZonesEdgeCacheTTL",
+    "ZonesMaxUpload",
+    "ZonesReplaceInsecureJS",
+    "ZonesSchemasAutomaticPlatformOptimization",
+    "ZonesSha1Support",
+    "ZonesTLS1_2Only",
 ]
 
 
-class SettingEditResponseItemZonesCNAMEFlattening(BaseModel):
+class ZonesCNAMEFlattening(BaseModel):
     id: Literal["cname_flattening"]
     """How to flatten the cname destination."""
 
@@ -85,7 +84,7 @@ class SettingEditResponseItemZonesCNAMEFlattening(BaseModel):
     """last time this setting was modified."""
 
 
-class SettingEditResponseItemZonesEdgeCacheTTL(BaseModel):
+class ZonesEdgeCacheTTL(BaseModel):
     id: Literal["edge_cache_ttl"]
     """ID of the zone setting."""
 
@@ -124,7 +123,7 @@ class SettingEditResponseItemZonesEdgeCacheTTL(BaseModel):
     """last time this setting was modified."""
 
 
-class SettingEditResponseItemZonesMaxUpload(BaseModel):
+class ZonesMaxUpload(BaseModel):
     id: Literal["max_upload"]
     """identifier of the zone setting."""
 
@@ -141,7 +140,7 @@ class SettingEditResponseItemZonesMaxUpload(BaseModel):
     """last time this setting was modified."""
 
 
-class SettingEditResponseItemZonesReplaceInsecureJS(BaseModel):
+class ZonesReplaceInsecureJS(BaseModel):
     id: Literal["replace_insecure_js"]
     """ID of the zone setting."""
 
@@ -158,7 +157,7 @@ class SettingEditResponseItemZonesReplaceInsecureJS(BaseModel):
     """last time this setting was modified."""
 
 
-class SettingEditResponseItemZonesSchemasAutomaticPlatformOptimization(BaseModel):
+class ZonesSchemasAutomaticPlatformOptimization(BaseModel):
     id: Literal["automatic_platform_optimization"]
     """ID of the zone setting."""
 
@@ -175,7 +174,7 @@ class SettingEditResponseItemZonesSchemasAutomaticPlatformOptimization(BaseModel
     """last time this setting was modified."""
 
 
-class SettingEditResponseItemZonesSha1Support(BaseModel):
+class ZonesSha1Support(BaseModel):
     id: Literal["sha1_support"]
     """Zone setting identifier."""
 
@@ -192,7 +191,7 @@ class SettingEditResponseItemZonesSha1Support(BaseModel):
     """last time this setting was modified."""
 
 
-class SettingEditResponseItemZonesTLS1_2Only(BaseModel):
+class ZonesTLS1_2Only(BaseModel):
     id: Literal["tls_1_2_only"]
     """Zone setting identifier."""
 
@@ -209,7 +208,7 @@ class SettingEditResponseItemZonesTLS1_2Only(BaseModel):
     """last time this setting was modified."""
 
 
-SettingEditResponseItem = Union[
+SettingEditResponse = Union[
     ZeroRTT,
     AdvancedDDoS,
     AlwaysOnline,
@@ -221,10 +220,10 @@ SettingEditResponseItem = Union[
     CacheLevel,
     ChallengeTTL,
     Ciphers,
-    SettingEditResponseItemZonesCNAMEFlattening,
+    ZonesCNAMEFlattening,
     DevelopmentMode,
     EarlyHints,
-    SettingEditResponseItemZonesEdgeCacheTTL,
+    ZonesEdgeCacheTTL,
     EmailObfuscation,
     H2Prioritization,
     HotlinkProtection,
@@ -233,7 +232,7 @@ SettingEditResponseItem = Union[
     ImageResizing,
     IPGeolocation,
     IPV6,
-    SettingEditResponseItemZonesMaxUpload,
+    ZonesMaxUpload,
     MinTLSVersion,
     Minify,
     Mirage,
@@ -247,18 +246,18 @@ SettingEditResponseItem = Union[
     PrefetchPreload,
     ProxyReadTimeout,
     PseudoIPV4,
-    SettingEditResponseItemZonesReplaceInsecureJS,
+    ZonesReplaceInsecureJS,
     ResponseBuffering,
     RocketLoader,
-    SettingEditResponseItemZonesSchemasAutomaticPlatformOptimization,
+    ZonesSchemasAutomaticPlatformOptimization,
     SecurityHeaders,
     SecurityLevel,
     ServerSideExcludes,
-    SettingEditResponseItemZonesSha1Support,
+    ZonesSha1Support,
     SortQueryStringForCache,
     SSL,
     SSLRecommender,
-    SettingEditResponseItemZonesTLS1_2Only,
+    ZonesTLS1_2Only,
     TLS1_3,
     TLSClientAuth,
     TrueClientIPHeader,
@@ -266,5 +265,3 @@ SettingEditResponseItem = Union[
     WebP,
     Websocket,
 ]
-
-SettingEditResponse = List[SettingEditResponseItem]
