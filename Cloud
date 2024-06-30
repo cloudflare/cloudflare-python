@@ -1,0 +1,83 @@
+WPScan Vulnerability Testbench
+
+A DDEV/docker based environment for exploring and replicating vulnerabilities in WordPress plugins and themes.
+
+Up and running
+
+See the DDEV installation instructions for how to install and set up docker and DDEV on your system.
+
+Clone this repo:
+
+$ git clone <repo-url> [<test-site-root>]
+Enter the test site directory and launch it:
+
+$ cd <test-site-root>
+$ ddev start
+$ ddev launch wp-admin/
+This should open the test site in your web browser, where you can install the plugin/theme you want to test as normal.
+
+Why?
+
+When evaluating potential vulnerabilities reported to WPScan, we see a number of common issues that makes it difficult to verify the reported vulnerability.
+
+Sometimes this is because the environment where the reported originally reproduced the issue is configured in a specific way. Also we do get a number of reported issues that does not properly consider the WordPress security model, like users with Administrator or Editor privileges being allowed to inject HTML and Javascript in places where it would normally not make sense to do so.
+
+To adress both of these issues, we decided we should try to supply a standardised environment so that issues can be reproduced reliably and in a known environment.
+
+Standard setup
+
+This DDEV environment will by default set up WordPress in a multisite configuration with one site at the root of the domain. It will create the following users:
+
+Username	Description
+superadmin	The superadmin with access to the full network
+simpleadmin	Admin for the base site
+editor	User with Editor role for the base site
+author	User with Author role for the base site
+contributor	User with Contributor role for the base site
+subscriber	User with Subscriber role for the base site
+The password for all users is password.
+
+Other useful commands
+
+Stop the site:
+
+$ ddev stop
+Completely remove the site:
+
+$ ddev delete --omit-snapshot
+Note: this removes the containers completely, but does no changes to the file system. The --omit-snapshots flag is to not store a database dump of the db when deleting the site.
+
+Check aggregated server logs
+
+$ ddev logs
+Run WPCli
+
+$ ddev wp <command> ...
+For example:
+
+$ ddev wp plugin install woocommerce --activate-network
+To install the WooCommerce plugin and activate it on all sites of the network.
+
+Get help
+
+$ ddev help
+License
+
+WPScan Vulnerability Test Bench
+Copyright (C) 2023  Automattic, Inc
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+LICENSE file in the root of the repo for details.
+Releases
+
+No releases published
+Packages
+
+No packages published
