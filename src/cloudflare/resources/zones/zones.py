@@ -59,7 +59,6 @@ from .activation_check import (
     ActivationCheckResourceWithStreamingResponse,
     AsyncActivationCheckResourceWithStreamingResponse,
 )
-from .settings.settings import SettingsResource, AsyncSettingsResource
 from ...types.zones.type import Type as ZonesType
 from ...types.zones.zone import Zone
 from .custom_nameservers import (

@@ -12,6 +12,6 @@ class QueueUpdated(BaseModel):
 
     modified_on: Optional[object] = None
 
-    queue_id: Optional[object] = None
+    queue_id: Optional[str] = None
 
     queue_name: Optional[str] = None

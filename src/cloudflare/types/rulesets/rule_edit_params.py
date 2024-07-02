@@ -955,6 +955,14 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyHeader(TypedDict, tot
     The presence of these headers is used in building the cache key.
     """
 
+    contains: Dict[str, List[str]]
+    """
+    For each header name and list of values combination, check if the request header
+    contains any of the values provided. The presence of the request header and
+    whether any of the values provided are contained in the request header value is
+    used in building the cache key.
+    """
+
     exclude_origin: bool
     """Whether or not to include the origin header.
 

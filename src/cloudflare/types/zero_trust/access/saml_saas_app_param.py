@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict
+from typing import Union
+from datetime import datetime
+from typing_extensions import Literal, Annotated, TypedDict
 
+from ...._utils import PropertyInfo
 from .saas_app_name_format import SaaSAppNameFormat
 from .saas_app_source_param import SaaSAppSourceParam
 from .saas_app_name_id_format import SaaSAppNameIDFormat
@@ -40,6 +43,8 @@ class SAMLSaaSAppParam(TypedDict, total=False):
     The service provider's endpoint that is responsible for receiving and parsing a
     SAML assertion.
     """
+
+    created_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
     custom_attributes: CustomAttributes
 
@@ -80,3 +85,5 @@ class SAMLSaaSAppParam(TypedDict, total=False):
 
     sso_endpoint: str
     """The endpoint where your SaaS application will send login requests."""
+
+    updated_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]

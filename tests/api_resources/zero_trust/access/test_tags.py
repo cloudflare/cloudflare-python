@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.access import Tag, TagDeleteResponse
 
@@ -23,6 +24,16 @@ class TestTags:
         tag = client.zero_trust.access.tags.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="engineers",
+        )
+        assert_matches_type(Optional[Tag], tag, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        tag = client.zero_trust.access.tags.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="engineers",
+            created_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
+            updated_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
         )
         assert_matches_type(Optional[Tag], tag, path=["response"])
 
@@ -66,6 +77,17 @@ class TestTags:
             "engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="engineers",
+        )
+        assert_matches_type(Optional[Tag], tag, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        tag = client.zero_trust.access.tags.update(
+            "engineers",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="engineers",
+            created_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
+            updated_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
         )
         assert_matches_type(Optional[Tag], tag, path=["response"])
 
@@ -260,6 +282,16 @@ class TestAsyncTags:
         assert_matches_type(Optional[Tag], tag, path=["response"])
 
     @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        tag = await async_client.zero_trust.access.tags.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="engineers",
+            created_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
+            updated_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
+        )
+        assert_matches_type(Optional[Tag], tag, path=["response"])
+
+    @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.tags.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -299,6 +331,17 @@ class TestAsyncTags:
             "engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="engineers",
+        )
+        assert_matches_type(Optional[Tag], tag, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        tag = await async_client.zero_trust.access.tags.update(
+            "engineers",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="engineers",
+            created_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
+            updated_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
         )
         assert_matches_type(Optional[Tag], tag, path=["response"])
 

@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -54,6 +54,14 @@ class ActionParametersCacheKeyCustomKeyHeader(BaseModel):
     """Checks for the presence of these header names.
 
     The presence of these headers is used in building the cache key.
+    """
+
+    contains: Optional[Dict[str, List[str]]] = None
+    """
+    For each header name and list of values combination, check if the request header
+    contains any of the values provided. The presence of the request header and
+    whether any of the values provided are contained in the request header value is
+    used in building the cache key.
     """
 
     exclude_origin: Optional[bool] = None

@@ -7,11 +7,11 @@ from typing_extensions import Required, TypedDict
 
 __all__ = [
     "AIRunParams",
+    "DumbPipe",
     "TextClassification",
     "TextToImage",
-    "SentenceSimilarity",
     "TextEmbeddings",
-    "SpeechRecognition",
+    "AutomaticSpeechRecognition",
     "ImageClassification",
     "ObjectDetection",
     "TextGeneration",
@@ -21,6 +21,12 @@ __all__ = [
     "ImageToText",
     "ImageToTextMessage",
 ]
+
+
+class DumbPipe(TypedDict, total=False):
+    account_id: Required[str]
+
+    body: Required[object]
 
 
 class TextClassification(TypedDict, total=False):
@@ -45,21 +51,13 @@ class TextToImage(TypedDict, total=False):
     strength: float
 
 
-class SentenceSimilarity(TypedDict, total=False):
-    account_id: Required[str]
-
-    sentences: Required[List[str]]
-
-    source: Required[str]
-
-
 class TextEmbeddings(TypedDict, total=False):
     account_id: Required[str]
 
     text: Required[Union[str, List[str]]]
 
 
-class SpeechRecognition(TypedDict, total=False):
+class AutomaticSpeechRecognition(TypedDict, total=False):
     account_id: Required[str]
 
     audio: Required[Iterable[float]]
@@ -140,11 +138,11 @@ class ImageToTextMessage(TypedDict, total=False):
 
 
 AIRunParams = Union[
+    DumbPipe,
     TextClassification,
     TextToImage,
-    SentenceSimilarity,
     TextEmbeddings,
-    SpeechRecognition,
+    AutomaticSpeechRecognition,
     ImageClassification,
     ObjectDetection,
     TextGeneration,
