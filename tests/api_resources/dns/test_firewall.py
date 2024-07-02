@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -28,7 +28,7 @@ class TestFirewall:
             name="My Awesome DNS Firewall cluster",
             upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         )
-        assert_matches_type(Firewall, firewall, path=["response"])
+        assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -48,7 +48,7 @@ class TestFirewall:
             ratelimit=600,
             retries=2,
         )
-        assert_matches_type(Firewall, firewall, path=["response"])
+        assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -61,7 +61,7 @@ class TestFirewall:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall = response.parse()
-        assert_matches_type(Firewall, firewall, path=["response"])
+        assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -74,7 +74,7 @@ class TestFirewall:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall = response.parse()
-            assert_matches_type(Firewall, firewall, path=["response"])
+            assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -140,7 +140,7 @@ class TestFirewall:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(FirewallDeleteResponse, firewall, path=["response"])
+        assert_matches_type(Optional[FirewallDeleteResponse], firewall, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -152,7 +152,7 @@ class TestFirewall:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall = response.parse()
-        assert_matches_type(FirewallDeleteResponse, firewall, path=["response"])
+        assert_matches_type(Optional[FirewallDeleteResponse], firewall, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -164,7 +164,7 @@ class TestFirewall:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall = response.parse()
-            assert_matches_type(FirewallDeleteResponse, firewall, path=["response"])
+            assert_matches_type(Optional[FirewallDeleteResponse], firewall, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -187,6 +187,7 @@ class TestFirewall:
         firewall = client.dns.firewall.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             deprecate_any_requests=True,
             dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
             ecs_fallback=False,
@@ -195,13 +196,14 @@ class TestFirewall:
             name="My Awesome DNS Firewall cluster",
             upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         )
-        assert_matches_type(Firewall, firewall, path=["response"])
+        assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         firewall = client.dns.firewall.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             deprecate_any_requests=True,
             dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
             ecs_fallback=False,
@@ -217,13 +219,14 @@ class TestFirewall:
             ratelimit=600,
             retries=2,
         )
-        assert_matches_type(Firewall, firewall, path=["response"])
+        assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.dns.firewall.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             deprecate_any_requests=True,
             dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
             ecs_fallback=False,
@@ -236,13 +239,14 @@ class TestFirewall:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall = response.parse()
-        assert_matches_type(Firewall, firewall, path=["response"])
+        assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.dns.firewall.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             deprecate_any_requests=True,
             dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
             ecs_fallback=False,
@@ -255,7 +259,7 @@ class TestFirewall:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall = response.parse()
-            assert_matches_type(Firewall, firewall, path=["response"])
+            assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -265,6 +269,7 @@ class TestFirewall:
             client.dns.firewall.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
+                id="023e105f4ecef8ad9ca31a8372d0c353",
                 deprecate_any_requests=True,
                 dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
                 ecs_fallback=False,
@@ -278,6 +283,7 @@ class TestFirewall:
             client.dns.firewall.with_raw_response.edit(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="023e105f4ecef8ad9ca31a8372d0c353",
                 deprecate_any_requests=True,
                 dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
                 ecs_fallback=False,
@@ -293,7 +299,7 @@ class TestFirewall:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Firewall, firewall, path=["response"])
+        assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -305,7 +311,7 @@ class TestFirewall:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall = response.parse()
-        assert_matches_type(Firewall, firewall, path=["response"])
+        assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -317,7 +323,7 @@ class TestFirewall:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall = response.parse()
-            assert_matches_type(Firewall, firewall, path=["response"])
+            assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -346,7 +352,7 @@ class TestAsyncFirewall:
             name="My Awesome DNS Firewall cluster",
             upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         )
-        assert_matches_type(Firewall, firewall, path=["response"])
+        assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -366,7 +372,7 @@ class TestAsyncFirewall:
             ratelimit=600,
             retries=2,
         )
-        assert_matches_type(Firewall, firewall, path=["response"])
+        assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -379,7 +385,7 @@ class TestAsyncFirewall:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall = await response.parse()
-        assert_matches_type(Firewall, firewall, path=["response"])
+        assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -392,7 +398,7 @@ class TestAsyncFirewall:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall = await response.parse()
-            assert_matches_type(Firewall, firewall, path=["response"])
+            assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -458,7 +464,7 @@ class TestAsyncFirewall:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(FirewallDeleteResponse, firewall, path=["response"])
+        assert_matches_type(Optional[FirewallDeleteResponse], firewall, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -470,7 +476,7 @@ class TestAsyncFirewall:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall = await response.parse()
-        assert_matches_type(FirewallDeleteResponse, firewall, path=["response"])
+        assert_matches_type(Optional[FirewallDeleteResponse], firewall, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -482,7 +488,7 @@ class TestAsyncFirewall:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall = await response.parse()
-            assert_matches_type(FirewallDeleteResponse, firewall, path=["response"])
+            assert_matches_type(Optional[FirewallDeleteResponse], firewall, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -505,6 +511,7 @@ class TestAsyncFirewall:
         firewall = await async_client.dns.firewall.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             deprecate_any_requests=True,
             dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
             ecs_fallback=False,
@@ -513,13 +520,14 @@ class TestAsyncFirewall:
             name="My Awesome DNS Firewall cluster",
             upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
         )
-        assert_matches_type(Firewall, firewall, path=["response"])
+        assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         firewall = await async_client.dns.firewall.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             deprecate_any_requests=True,
             dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
             ecs_fallback=False,
@@ -535,13 +543,14 @@ class TestAsyncFirewall:
             ratelimit=600,
             retries=2,
         )
-        assert_matches_type(Firewall, firewall, path=["response"])
+        assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.firewall.with_raw_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             deprecate_any_requests=True,
             dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
             ecs_fallback=False,
@@ -554,13 +563,14 @@ class TestAsyncFirewall:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall = await response.parse()
-        assert_matches_type(Firewall, firewall, path=["response"])
+        assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.firewall.with_streaming_response.edit(
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            id="023e105f4ecef8ad9ca31a8372d0c353",
             deprecate_any_requests=True,
             dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
             ecs_fallback=False,
@@ -573,7 +583,7 @@ class TestAsyncFirewall:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall = await response.parse()
-            assert_matches_type(Firewall, firewall, path=["response"])
+            assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -583,6 +593,7 @@ class TestAsyncFirewall:
             await async_client.dns.firewall.with_raw_response.edit(
                 "023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
+                id="023e105f4ecef8ad9ca31a8372d0c353",
                 deprecate_any_requests=True,
                 dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
                 ecs_fallback=False,
@@ -596,6 +607,7 @@ class TestAsyncFirewall:
             await async_client.dns.firewall.with_raw_response.edit(
                 "",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                id="023e105f4ecef8ad9ca31a8372d0c353",
                 deprecate_any_requests=True,
                 dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
                 ecs_fallback=False,
@@ -611,7 +623,7 @@ class TestAsyncFirewall:
             "023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Firewall, firewall, path=["response"])
+        assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -623,7 +635,7 @@ class TestAsyncFirewall:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         firewall = await response.parse()
-        assert_matches_type(Firewall, firewall, path=["response"])
+        assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -635,7 +647,7 @@ class TestAsyncFirewall:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             firewall = await response.parse()
-            assert_matches_type(Firewall, firewall, path=["response"])
+            assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

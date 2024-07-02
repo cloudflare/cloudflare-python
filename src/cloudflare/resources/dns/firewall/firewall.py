@@ -77,7 +77,7 @@ class FirewallResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Firewall:
+    ) -> Optional[Firewall]:
         """
         Create a configured DNS Firewall Cluster.
 
@@ -136,9 +136,9 @@ class FirewallResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Firewall]._unwrapper,
+                post_parser=ResultWrapper[Optional[Firewall]]._unwrapper,
             ),
-            cast_to=cast(Type[Firewall], ResultWrapper[Firewall]),
+            cast_to=cast(Type[Optional[Firewall]], ResultWrapper[Firewall]),
         )
 
     def list(
@@ -204,7 +204,7 @@ class FirewallResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FirewallDeleteResponse:
+    ) -> Optional[FirewallDeleteResponse]:
         """
         Delete a configured DNS Firewall Cluster.
 
@@ -232,9 +232,9 @@ class FirewallResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[FirewallDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[FirewallDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[FirewallDeleteResponse], ResultWrapper[FirewallDeleteResponse]),
+            cast_to=cast(Type[Optional[FirewallDeleteResponse]], ResultWrapper[FirewallDeleteResponse]),
         )
 
     def edit(
@@ -242,6 +242,7 @@ class FirewallResource(SyncAPIResource):
         dns_firewall_id: str,
         *,
         account_id: str,
+        id: str,
         deprecate_any_requests: bool,
         dns_firewall_ips: List[FirewallIPsParam],
         ecs_fallback: bool,
@@ -259,7 +260,7 @@ class FirewallResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Firewall:
+    ) -> Optional[Firewall]:
         """
         Modify a DNS Firewall Cluster configuration.
 
@@ -267,6 +268,8 @@ class FirewallResource(SyncAPIResource):
           account_id: Identifier
 
           dns_firewall_id: Identifier
+
+          id: Identifier
 
           deprecate_any_requests: Deprecate the response to ANY requests.
 
@@ -304,6 +307,7 @@ class FirewallResource(SyncAPIResource):
             f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
             body=maybe_transform(
                 {
+                    "id": id,
                     "deprecate_any_requests": deprecate_any_requests,
                     "dns_firewall_ips": dns_firewall_ips,
                     "ecs_fallback": ecs_fallback,
@@ -323,9 +327,9 @@ class FirewallResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Firewall]._unwrapper,
+                post_parser=ResultWrapper[Optional[Firewall]]._unwrapper,
             ),
-            cast_to=cast(Type[Firewall], ResultWrapper[Firewall]),
+            cast_to=cast(Type[Optional[Firewall]], ResultWrapper[Firewall]),
         )
 
     def get(
@@ -339,7 +343,7 @@ class FirewallResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Firewall:
+    ) -> Optional[Firewall]:
         """
         Show a single configured DNS Firewall cluster for an account.
 
@@ -367,9 +371,9 @@ class FirewallResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Firewall]._unwrapper,
+                post_parser=ResultWrapper[Optional[Firewall]]._unwrapper,
             ),
-            cast_to=cast(Type[Firewall], ResultWrapper[Firewall]),
+            cast_to=cast(Type[Optional[Firewall]], ResultWrapper[Firewall]),
         )
 
 
@@ -406,7 +410,7 @@ class AsyncFirewallResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Firewall:
+    ) -> Optional[Firewall]:
         """
         Create a configured DNS Firewall Cluster.
 
@@ -465,9 +469,9 @@ class AsyncFirewallResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Firewall]._unwrapper,
+                post_parser=ResultWrapper[Optional[Firewall]]._unwrapper,
             ),
-            cast_to=cast(Type[Firewall], ResultWrapper[Firewall]),
+            cast_to=cast(Type[Optional[Firewall]], ResultWrapper[Firewall]),
         )
 
     def list(
@@ -533,7 +537,7 @@ class AsyncFirewallResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> FirewallDeleteResponse:
+    ) -> Optional[FirewallDeleteResponse]:
         """
         Delete a configured DNS Firewall Cluster.
 
@@ -561,9 +565,9 @@ class AsyncFirewallResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[FirewallDeleteResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[FirewallDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[FirewallDeleteResponse], ResultWrapper[FirewallDeleteResponse]),
+            cast_to=cast(Type[Optional[FirewallDeleteResponse]], ResultWrapper[FirewallDeleteResponse]),
         )
 
     async def edit(
@@ -571,6 +575,7 @@ class AsyncFirewallResource(AsyncAPIResource):
         dns_firewall_id: str,
         *,
         account_id: str,
+        id: str,
         deprecate_any_requests: bool,
         dns_firewall_ips: List[FirewallIPsParam],
         ecs_fallback: bool,
@@ -588,7 +593,7 @@ class AsyncFirewallResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Firewall:
+    ) -> Optional[Firewall]:
         """
         Modify a DNS Firewall Cluster configuration.
 
@@ -596,6 +601,8 @@ class AsyncFirewallResource(AsyncAPIResource):
           account_id: Identifier
 
           dns_firewall_id: Identifier
+
+          id: Identifier
 
           deprecate_any_requests: Deprecate the response to ANY requests.
 
@@ -633,6 +640,7 @@ class AsyncFirewallResource(AsyncAPIResource):
             f"/accounts/{account_id}/dns_firewall/{dns_firewall_id}",
             body=await async_maybe_transform(
                 {
+                    "id": id,
                     "deprecate_any_requests": deprecate_any_requests,
                     "dns_firewall_ips": dns_firewall_ips,
                     "ecs_fallback": ecs_fallback,
@@ -652,9 +660,9 @@ class AsyncFirewallResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Firewall]._unwrapper,
+                post_parser=ResultWrapper[Optional[Firewall]]._unwrapper,
             ),
-            cast_to=cast(Type[Firewall], ResultWrapper[Firewall]),
+            cast_to=cast(Type[Optional[Firewall]], ResultWrapper[Firewall]),
         )
 
     async def get(
@@ -668,7 +676,7 @@ class AsyncFirewallResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Firewall:
+    ) -> Optional[Firewall]:
         """
         Show a single configured DNS Firewall cluster for an account.
 
@@ -696,9 +704,9 @@ class AsyncFirewallResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Firewall]._unwrapper,
+                post_parser=ResultWrapper[Optional[Firewall]]._unwrapper,
             ),
-            cast_to=cast(Type[Firewall], ResultWrapper[Firewall]),
+            cast_to=cast(Type[Optional[Firewall]], ResultWrapper[Firewall]),
         )
 
 

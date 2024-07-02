@@ -16,6 +16,9 @@ class FirewallEditParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
+    id: Required[str]
+    """Identifier"""
+
     deprecate_any_requests: Required[bool]
     """Deprecate the response to ANY requests."""
 
