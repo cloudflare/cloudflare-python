@@ -110,11 +110,10 @@ class UserSchemasResource(SyncAPIResource):
             }
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
-        if files:
-            # It should be noted that the actual Content-Type header that will be
-            # sent to the server will contain a `boundary` parameter, e.g.
-            # multipart/form-data; boundary=---abc--
-            extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             f"/zones/{zone_id}/api_gateway/user_schemas",
             body=maybe_transform(body, user_schema_create_params.UserSchemaCreateParams),
@@ -392,11 +391,10 @@ class AsyncUserSchemasResource(AsyncAPIResource):
             }
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
-        if files:
-            # It should be noted that the actual Content-Type header that will be
-            # sent to the server will contain a `boundary` parameter, e.g.
-            # multipart/form-data; boundary=---abc--
-            extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             f"/zones/{zone_id}/api_gateway/user_schemas",
             body=await async_maybe_transform(body, user_schema_create_params.UserSchemaCreateParams),
