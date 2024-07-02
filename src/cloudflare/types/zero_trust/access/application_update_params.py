@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 from typing import Dict, List, Union, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from datetime import datetime
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .decision import Decision
+from ...._utils import PropertyInfo
 from .allowed_idps import AllowedIdPs
 from .application_type import ApplicationType
 from ..access_rule_param import AccessRuleParam
@@ -657,6 +659,8 @@ class SaaSApplicationSaaSAppAccessOIDCSaaSApp(TypedDict, total=False):
     client_secret: str
     """The application client secret, only returned on POST request."""
 
+    created_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+
     custom_claims: SaaSApplicationSaaSAppAccessOIDCSaaSAppCustomClaims
 
     grant_types: List[
@@ -685,6 +689,8 @@ class SaaSApplicationSaaSAppAccessOIDCSaaSApp(TypedDict, total=False):
     Define the user information shared with access, "offline_access" scope will be
     automatically enabled if refresh tokens are enabled
     """
+
+    updated_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
 
 
 SaaSApplicationSaaSApp = Union[SAMLSaaSAppParam, SaaSApplicationSaaSAppAccessOIDCSaaSApp]

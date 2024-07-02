@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.access import (
     ApplicationGetResponse,
@@ -233,6 +234,7 @@ class TestApplications:
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
+                "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                 "custom_attributes": {
                     "friendly_name": "Last Name",
                     "name": "family_name",
@@ -254,6 +256,7 @@ class TestApplications:
                 "saml_attribute_transform_jsonata": "$ ~>| groups | {'group_name': name} |",
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
+                "updated_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
             },
             scim_config={
                 "authentication": {
@@ -1383,6 +1386,7 @@ class TestApplications:
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
+                "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                 "custom_attributes": {
                     "friendly_name": "Last Name",
                     "name": "family_name",
@@ -1404,6 +1408,7 @@ class TestApplications:
                 "saml_attribute_transform_jsonata": "$ ~>| groups | {'group_name': name} |",
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
+                "updated_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
             },
             scim_config={
                 "authentication": {
@@ -2807,6 +2812,7 @@ class TestAsyncApplications:
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
+                "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                 "custom_attributes": {
                     "friendly_name": "Last Name",
                     "name": "family_name",
@@ -2828,6 +2834,7 @@ class TestAsyncApplications:
                 "saml_attribute_transform_jsonata": "$ ~>| groups | {'group_name': name} |",
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
+                "updated_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
             },
             scim_config={
                 "authentication": {
@@ -3957,6 +3964,7 @@ class TestAsyncApplications:
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
+                "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                 "custom_attributes": {
                     "friendly_name": "Last Name",
                     "name": "family_name",
@@ -3978,6 +3986,7 @@ class TestAsyncApplications:
                 "saml_attribute_transform_jsonata": "$ ~>| groups | {'group_name': name} |",
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
+                "updated_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
             },
             scim_config={
                 "authentication": {
