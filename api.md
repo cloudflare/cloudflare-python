@@ -1098,11 +1098,11 @@ from cloudflare.types.dns import (
 
 Methods:
 
-- <code title="post /accounts/{account_id}/dns_firewall">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/firewall_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/firewall/firewall.py">Firewall</a></code>
+- <code title="post /accounts/{account_id}/dns_firewall">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/firewall_create_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/firewall/firewall.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/dns_firewall">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/dns/firewall_list_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/firewall/firewall.py">SyncV4PagePaginationArray[Firewall]</a></code>
-- <code title="delete /accounts/{account_id}/dns_firewall/{dns_firewall_id}">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">delete</a>(dns_firewall_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/firewall_delete_response.py">FirewallDeleteResponse</a></code>
-- <code title="patch /accounts/{account_id}/dns_firewall/{dns_firewall_id}">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">edit</a>(dns_firewall_id, \*, account_id, \*\*<a href="src/cloudflare/types/dns/firewall_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/firewall/firewall.py">Firewall</a></code>
-- <code title="get /accounts/{account_id}/dns_firewall/{dns_firewall_id}">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">get</a>(dns_firewall_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/firewall/firewall.py">Firewall</a></code>
+- <code title="delete /accounts/{account_id}/dns_firewall/{dns_firewall_id}">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">delete</a>(dns_firewall_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/firewall_delete_response.py">Optional</a></code>
+- <code title="patch /accounts/{account_id}/dns_firewall/{dns_firewall_id}">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">edit</a>(dns_firewall_id, \*, account_id, \*\*<a href="src/cloudflare/types/dns/firewall_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dns/firewall/firewall.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/dns_firewall/{dns_firewall_id}">client.dns.firewall.<a href="./src/cloudflare/resources/dns/firewall/firewall.py">get</a>(dns_firewall_id, \*, account_id) -> <a href="./src/cloudflare/types/dns/firewall/firewall.py">Optional</a></code>
 
 ### Analytics
 
