@@ -44,6 +44,10 @@ class TextToImage(TypedDict, total=False):
 
     image: Iterable[float]
 
+    lora_weights: Iterable[float]
+
+    loras: List[str]
+
     mask: Iterable[float]
 
     num_steps: int
