@@ -15,7 +15,7 @@ class TemporaryCredentialCreateParams(TypedDict, total=False):
     """Account ID"""
 
     bucket: Required[str]
-    """Name of the GCS bucket"""
+    """Name of the R2 bucket"""
 
     parent_access_key_id: Required[Annotated[str, PropertyInfo(alias="parentAccessKeyId")]]
     """The parent access key id to use for signing"""
