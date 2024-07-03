@@ -640,6 +640,9 @@ class SecurityHeadersValueStrictTransportSecurity(TypedDict, total=False):
     nosniff: bool
     """Whether or not to include 'X-Content-Type-Options: nosniff' header."""
 
+    preload: bool
+    """Enable automatic preload of the HSTS configuration."""
+
 
 class SecurityHeadersValue(TypedDict, total=False):
     strict_transport_security: SecurityHeadersValueStrictTransportSecurity
