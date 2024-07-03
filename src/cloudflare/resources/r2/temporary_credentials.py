@@ -63,7 +63,7 @@ class TemporaryCredentialsResource(SyncAPIResource):
         Args:
           account_id: Account ID
 
-          bucket: Name of the GCS bucket
+          bucket: Name of the R2 bucket
 
           parent_access_key_id: The parent access key id to use for signing
 
@@ -142,7 +142,7 @@ class AsyncTemporaryCredentialsResource(AsyncAPIResource):
         Args:
           account_id: Account ID
 
-          bucket: Name of the GCS bucket
+          bucket: Name of the R2 bucket
 
           parent_access_key_id: The parent access key id to use for signing
 
