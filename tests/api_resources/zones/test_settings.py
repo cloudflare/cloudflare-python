@@ -2493,6 +2493,7 @@ class TestSettings:
                     "include_subdomains": True,
                     "max_age": 86400,
                     "nosniff": True,
+                    "preload": True,
                 }
             },
         )
@@ -5825,6 +5826,7 @@ class TestAsyncSettings:
                     "include_subdomains": True,
                     "max_age": 86400,
                     "nosniff": True,
+                    "preload": True,
                 }
             },
         )
