@@ -22,6 +22,9 @@ class ValueStrictTransportSecurity(BaseModel):
     nosniff: Optional[bool] = None
     """Whether or not to include 'X-Content-Type-Options: nosniff' header."""
 
+    preload: Optional[bool] = None
+    """Enable automatic preload of the HSTS configuration."""
+
 
 class Value(BaseModel):
     strict_transport_security: Optional[ValueStrictTransportSecurity] = None
