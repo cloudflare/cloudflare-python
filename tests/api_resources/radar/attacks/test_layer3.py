@@ -34,7 +34,7 @@ class TestLayer3:
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -91,7 +91,7 @@ class TestAsyncLayer3:
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
