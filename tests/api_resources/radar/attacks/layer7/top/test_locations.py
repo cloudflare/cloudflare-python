@@ -36,14 +36,18 @@ class TestLocations:
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
             format="JSON",
+            http_method=["GET", "POST", "DELETE"],
+            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
+            ip_version=["IPv4", "IPv6"],
             limit=5,
+            mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
             name=["string", "string", "string"],
         )
         assert_matches_type(LocationOriginResponse, location, path=["response"])
@@ -82,14 +86,18 @@ class TestLocations:
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
             format="JSON",
+            http_method=["GET", "POST", "DELETE"],
+            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
+            ip_version=["IPv4", "IPv6"],
             limit=5,
+            mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
             name=["string", "string", "string"],
         )
         assert_matches_type(LocationTargetResponse, location, path=["response"])
@@ -133,14 +141,18 @@ class TestAsyncLocations:
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
             format="JSON",
+            http_method=["GET", "POST", "DELETE"],
+            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
+            ip_version=["IPv4", "IPv6"],
             limit=5,
+            mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
             name=["string", "string", "string"],
         )
         assert_matches_type(LocationOriginResponse, location, path=["response"])
@@ -179,14 +191,18 @@ class TestAsyncLocations:
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
             format="JSON",
+            http_method=["GET", "POST", "DELETE"],
+            http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
+            ip_version=["IPv4", "IPv6"],
             limit=5,
+            mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
             name=["string", "string", "string"],
         )
         assert_matches_type(LocationTargetResponse, location, path=["response"])
