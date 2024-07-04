@@ -47,29 +47,69 @@ class LocationsResource(SyncAPIResource):
         asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_method: List[
             Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
+                "GET",
+                "POST",
+                "DELETE",
+                "PUT",
+                "HEAD",
+                "PURGE",
+                "OPTIONS",
+                "PROPFIND",
+                "MKCOL",
+                "PATCH",
+                "ACL",
+                "BCOPY",
+                "BDELETE",
+                "BMOVE",
+                "BPROPFIND",
+                "BPROPPATCH",
+                "CHECKIN",
+                "CHECKOUT",
+                "CONNECT",
+                "COPY",
+                "LABEL",
+                "LOCK",
+                "MERGE",
+                "MKACTIVITY",
+                "MKWORKSPACE",
+                "MOVE",
+                "NOTIFY",
+                "ORDERPATCH",
+                "POLL",
+                "PROPPATCH",
+                "REPORT",
+                "SEARCH",
+                "SUBSCRIBE",
+                "TRACE",
+                "UNCHECKOUT",
+                "UNLOCK",
+                "UNSUBSCRIBE",
+                "UPDATE",
+                "VERSIONCONTROL",
+                "BASELINECONTROL",
+                "XMSENUMATTS",
+                "RPC_OUT_DATA",
+                "RPC_IN_DATA",
+                "JSON",
+                "COOK",
+                "TRACK",
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
+        mitigation_product: List[
+            Literal[
+                "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -103,7 +143,15 @@ class LocationsResource(SyncAPIResource):
 
           format: Format results are returned in.
 
+          http_method: Filter for http method.
+
+          http_version: Filter for http version.
+
+          ip_version: Filter for ip version.
+
           limit: Limit the number of objects in the response.
+
+          mitigation_product: Array of L7 mitigation products.
 
           name: Array of names that will be used to name the series in responses.
 
@@ -130,7 +178,11 @@ class LocationsResource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "http_method": http_method,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
                         "limit": limit,
+                        "mitigation_product": mitigation_product,
                         "name": name,
                     },
                     location_origin_params.LocationOriginParams,
@@ -145,29 +197,69 @@ class LocationsResource(SyncAPIResource):
         *,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_method: List[
             Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
+                "GET",
+                "POST",
+                "DELETE",
+                "PUT",
+                "HEAD",
+                "PURGE",
+                "OPTIONS",
+                "PROPFIND",
+                "MKCOL",
+                "PATCH",
+                "ACL",
+                "BCOPY",
+                "BDELETE",
+                "BMOVE",
+                "BPROPFIND",
+                "BPROPPATCH",
+                "CHECKIN",
+                "CHECKOUT",
+                "CONNECT",
+                "COPY",
+                "LABEL",
+                "LOCK",
+                "MERGE",
+                "MKACTIVITY",
+                "MKWORKSPACE",
+                "MOVE",
+                "NOTIFY",
+                "ORDERPATCH",
+                "POLL",
+                "PROPPATCH",
+                "REPORT",
+                "SEARCH",
+                "SUBSCRIBE",
+                "TRACE",
+                "UNCHECKOUT",
+                "UNLOCK",
+                "UNSUBSCRIBE",
+                "UPDATE",
+                "VERSIONCONTROL",
+                "BASELINECONTROL",
+                "XMSENUMATTS",
+                "RPC_OUT_DATA",
+                "RPC_IN_DATA",
+                "JSON",
+                "COOK",
+                "TRACK",
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
+        mitigation_product: List[
+            Literal[
+                "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -197,7 +289,15 @@ class LocationsResource(SyncAPIResource):
 
           format: Format results are returned in.
 
+          http_method: Filter for http method.
+
+          http_version: Filter for http version.
+
+          ip_version: Filter for ip version.
+
           limit: Limit the number of objects in the response.
+
+          mitigation_product: Array of L7 mitigation products.
 
           name: Array of names that will be used to name the series in responses.
 
@@ -223,7 +323,11 @@ class LocationsResource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "http_method": http_method,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
                         "limit": limit,
+                        "mitigation_product": mitigation_product,
                         "name": name,
                     },
                     location_target_params.LocationTargetParams,
@@ -249,29 +353,69 @@ class AsyncLocationsResource(AsyncAPIResource):
         asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_method: List[
             Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
+                "GET",
+                "POST",
+                "DELETE",
+                "PUT",
+                "HEAD",
+                "PURGE",
+                "OPTIONS",
+                "PROPFIND",
+                "MKCOL",
+                "PATCH",
+                "ACL",
+                "BCOPY",
+                "BDELETE",
+                "BMOVE",
+                "BPROPFIND",
+                "BPROPPATCH",
+                "CHECKIN",
+                "CHECKOUT",
+                "CONNECT",
+                "COPY",
+                "LABEL",
+                "LOCK",
+                "MERGE",
+                "MKACTIVITY",
+                "MKWORKSPACE",
+                "MOVE",
+                "NOTIFY",
+                "ORDERPATCH",
+                "POLL",
+                "PROPPATCH",
+                "REPORT",
+                "SEARCH",
+                "SUBSCRIBE",
+                "TRACE",
+                "UNCHECKOUT",
+                "UNLOCK",
+                "UNSUBSCRIBE",
+                "UPDATE",
+                "VERSIONCONTROL",
+                "BASELINECONTROL",
+                "XMSENUMATTS",
+                "RPC_OUT_DATA",
+                "RPC_IN_DATA",
+                "JSON",
+                "COOK",
+                "TRACK",
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
+        mitigation_product: List[
+            Literal[
+                "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -305,7 +449,15 @@ class AsyncLocationsResource(AsyncAPIResource):
 
           format: Format results are returned in.
 
+          http_method: Filter for http method.
+
+          http_version: Filter for http version.
+
+          ip_version: Filter for ip version.
+
           limit: Limit the number of objects in the response.
+
+          mitigation_product: Array of L7 mitigation products.
 
           name: Array of names that will be used to name the series in responses.
 
@@ -332,7 +484,11 @@ class AsyncLocationsResource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "http_method": http_method,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
                         "limit": limit,
+                        "mitigation_product": mitigation_product,
                         "name": name,
                     },
                     location_origin_params.LocationOriginParams,
@@ -347,29 +503,69 @@ class AsyncLocationsResource(AsyncAPIResource):
         *,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_method: List[
             Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
+                "GET",
+                "POST",
+                "DELETE",
+                "PUT",
+                "HEAD",
+                "PURGE",
+                "OPTIONS",
+                "PROPFIND",
+                "MKCOL",
+                "PATCH",
+                "ACL",
+                "BCOPY",
+                "BDELETE",
+                "BMOVE",
+                "BPROPFIND",
+                "BPROPPATCH",
+                "CHECKIN",
+                "CHECKOUT",
+                "CONNECT",
+                "COPY",
+                "LABEL",
+                "LOCK",
+                "MERGE",
+                "MKACTIVITY",
+                "MKWORKSPACE",
+                "MOVE",
+                "NOTIFY",
+                "ORDERPATCH",
+                "POLL",
+                "PROPPATCH",
+                "REPORT",
+                "SEARCH",
+                "SUBSCRIBE",
+                "TRACE",
+                "UNCHECKOUT",
+                "UNLOCK",
+                "UNSUBSCRIBE",
+                "UPDATE",
+                "VERSIONCONTROL",
+                "BASELINECONTROL",
+                "XMSENUMATTS",
+                "RPC_OUT_DATA",
+                "RPC_IN_DATA",
+                "JSON",
+                "COOK",
+                "TRACK",
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
+        mitigation_product: List[
+            Literal[
+                "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -399,7 +595,15 @@ class AsyncLocationsResource(AsyncAPIResource):
 
           format: Format results are returned in.
 
+          http_method: Filter for http method.
+
+          http_version: Filter for http version.
+
+          ip_version: Filter for ip version.
+
           limit: Limit the number of objects in the response.
+
+          mitigation_product: Array of L7 mitigation products.
 
           name: Array of names that will be used to name the series in responses.
 
@@ -425,7 +629,11 @@ class AsyncLocationsResource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "http_method": http_method,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
                         "limit": limit,
+                        "mitigation_product": mitigation_product,
                         "name": name,
                     },
                     location_target_params.LocationTargetParams,
