@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -87,7 +87,7 @@ class TestIssues:
         issue = client.intel.attack_surface_report.issues.class_(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IssueClassResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueClassResponse], issue, path=["response"])
 
     @parametrize
     def test_method_class_with_all_params(self, client: Cloudflare) -> None:
@@ -105,7 +105,7 @@ class TestIssues:
             subject=["example.com", "example.com", "example.com"],
             subject_neq=["example.com", "example.com", "example.com"],
         )
-        assert_matches_type(IssueClassResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueClassResponse], issue, path=["response"])
 
     @parametrize
     def test_raw_response_class(self, client: Cloudflare) -> None:
@@ -116,7 +116,7 @@ class TestIssues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         issue = response.parse()
-        assert_matches_type(IssueClassResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueClassResponse], issue, path=["response"])
 
     @parametrize
     def test_streaming_response_class(self, client: Cloudflare) -> None:
@@ -127,7 +127,7 @@ class TestIssues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             issue = response.parse()
-            assert_matches_type(IssueClassResponse, issue, path=["response"])
+            assert_matches_type(Optional[IssueClassResponse], issue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -144,7 +144,7 @@ class TestIssues:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IssueDismissResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueDismissResponse], issue, path=["response"])
 
     @parametrize
     def test_method_dismiss_with_all_params(self, client: Cloudflare) -> None:
@@ -153,7 +153,7 @@ class TestIssues:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dismiss=True,
         )
-        assert_matches_type(IssueDismissResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueDismissResponse], issue, path=["response"])
 
     @parametrize
     def test_raw_response_dismiss(self, client: Cloudflare) -> None:
@@ -165,7 +165,7 @@ class TestIssues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         issue = response.parse()
-        assert_matches_type(IssueDismissResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueDismissResponse], issue, path=["response"])
 
     @parametrize
     def test_streaming_response_dismiss(self, client: Cloudflare) -> None:
@@ -177,7 +177,7 @@ class TestIssues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             issue = response.parse()
-            assert_matches_type(IssueDismissResponse, issue, path=["response"])
+            assert_matches_type(Optional[IssueDismissResponse], issue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -200,7 +200,7 @@ class TestIssues:
         issue = client.intel.attack_surface_report.issues.severity(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IssueSeverityResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueSeverityResponse], issue, path=["response"])
 
     @parametrize
     def test_method_severity_with_all_params(self, client: Cloudflare) -> None:
@@ -218,7 +218,7 @@ class TestIssues:
             subject=["example.com", "example.com", "example.com"],
             subject_neq=["example.com", "example.com", "example.com"],
         )
-        assert_matches_type(IssueSeverityResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueSeverityResponse], issue, path=["response"])
 
     @parametrize
     def test_raw_response_severity(self, client: Cloudflare) -> None:
@@ -229,7 +229,7 @@ class TestIssues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         issue = response.parse()
-        assert_matches_type(IssueSeverityResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueSeverityResponse], issue, path=["response"])
 
     @parametrize
     def test_streaming_response_severity(self, client: Cloudflare) -> None:
@@ -240,7 +240,7 @@ class TestIssues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             issue = response.parse()
-            assert_matches_type(IssueSeverityResponse, issue, path=["response"])
+            assert_matches_type(Optional[IssueSeverityResponse], issue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -256,7 +256,7 @@ class TestIssues:
         issue = client.intel.attack_surface_report.issues.type(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IssueTypeResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueTypeResponse], issue, path=["response"])
 
     @parametrize
     def test_method_type_with_all_params(self, client: Cloudflare) -> None:
@@ -274,7 +274,7 @@ class TestIssues:
             subject=["example.com", "example.com", "example.com"],
             subject_neq=["example.com", "example.com", "example.com"],
         )
-        assert_matches_type(IssueTypeResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueTypeResponse], issue, path=["response"])
 
     @parametrize
     def test_raw_response_type(self, client: Cloudflare) -> None:
@@ -285,7 +285,7 @@ class TestIssues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         issue = response.parse()
-        assert_matches_type(IssueTypeResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueTypeResponse], issue, path=["response"])
 
     @parametrize
     def test_streaming_response_type(self, client: Cloudflare) -> None:
@@ -296,7 +296,7 @@ class TestIssues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             issue = response.parse()
-            assert_matches_type(IssueTypeResponse, issue, path=["response"])
+            assert_matches_type(Optional[IssueTypeResponse], issue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -374,7 +374,7 @@ class TestAsyncIssues:
         issue = await async_client.intel.attack_surface_report.issues.class_(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IssueClassResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueClassResponse], issue, path=["response"])
 
     @parametrize
     async def test_method_class_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -392,7 +392,7 @@ class TestAsyncIssues:
             subject=["example.com", "example.com", "example.com"],
             subject_neq=["example.com", "example.com", "example.com"],
         )
-        assert_matches_type(IssueClassResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueClassResponse], issue, path=["response"])
 
     @parametrize
     async def test_raw_response_class(self, async_client: AsyncCloudflare) -> None:
@@ -403,7 +403,7 @@ class TestAsyncIssues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         issue = await response.parse()
-        assert_matches_type(IssueClassResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueClassResponse], issue, path=["response"])
 
     @parametrize
     async def test_streaming_response_class(self, async_client: AsyncCloudflare) -> None:
@@ -414,7 +414,7 @@ class TestAsyncIssues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             issue = await response.parse()
-            assert_matches_type(IssueClassResponse, issue, path=["response"])
+            assert_matches_type(Optional[IssueClassResponse], issue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -431,7 +431,7 @@ class TestAsyncIssues:
             "string",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IssueDismissResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueDismissResponse], issue, path=["response"])
 
     @parametrize
     async def test_method_dismiss_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -440,7 +440,7 @@ class TestAsyncIssues:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dismiss=True,
         )
-        assert_matches_type(IssueDismissResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueDismissResponse], issue, path=["response"])
 
     @parametrize
     async def test_raw_response_dismiss(self, async_client: AsyncCloudflare) -> None:
@@ -452,7 +452,7 @@ class TestAsyncIssues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         issue = await response.parse()
-        assert_matches_type(IssueDismissResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueDismissResponse], issue, path=["response"])
 
     @parametrize
     async def test_streaming_response_dismiss(self, async_client: AsyncCloudflare) -> None:
@@ -464,7 +464,7 @@ class TestAsyncIssues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             issue = await response.parse()
-            assert_matches_type(IssueDismissResponse, issue, path=["response"])
+            assert_matches_type(Optional[IssueDismissResponse], issue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -487,7 +487,7 @@ class TestAsyncIssues:
         issue = await async_client.intel.attack_surface_report.issues.severity(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IssueSeverityResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueSeverityResponse], issue, path=["response"])
 
     @parametrize
     async def test_method_severity_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -505,7 +505,7 @@ class TestAsyncIssues:
             subject=["example.com", "example.com", "example.com"],
             subject_neq=["example.com", "example.com", "example.com"],
         )
-        assert_matches_type(IssueSeverityResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueSeverityResponse], issue, path=["response"])
 
     @parametrize
     async def test_raw_response_severity(self, async_client: AsyncCloudflare) -> None:
@@ -516,7 +516,7 @@ class TestAsyncIssues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         issue = await response.parse()
-        assert_matches_type(IssueSeverityResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueSeverityResponse], issue, path=["response"])
 
     @parametrize
     async def test_streaming_response_severity(self, async_client: AsyncCloudflare) -> None:
@@ -527,7 +527,7 @@ class TestAsyncIssues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             issue = await response.parse()
-            assert_matches_type(IssueSeverityResponse, issue, path=["response"])
+            assert_matches_type(Optional[IssueSeverityResponse], issue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -543,7 +543,7 @@ class TestAsyncIssues:
         issue = await async_client.intel.attack_surface_report.issues.type(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(IssueTypeResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueTypeResponse], issue, path=["response"])
 
     @parametrize
     async def test_method_type_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -561,7 +561,7 @@ class TestAsyncIssues:
             subject=["example.com", "example.com", "example.com"],
             subject_neq=["example.com", "example.com", "example.com"],
         )
-        assert_matches_type(IssueTypeResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueTypeResponse], issue, path=["response"])
 
     @parametrize
     async def test_raw_response_type(self, async_client: AsyncCloudflare) -> None:
@@ -572,7 +572,7 @@ class TestAsyncIssues:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         issue = await response.parse()
-        assert_matches_type(IssueTypeResponse, issue, path=["response"])
+        assert_matches_type(Optional[IssueTypeResponse], issue, path=["response"])
 
     @parametrize
     async def test_streaming_response_type(self, async_client: AsyncCloudflare) -> None:
@@ -583,7 +583,7 @@ class TestAsyncIssues:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             issue = await response.parse()
-            assert_matches_type(IssueTypeResponse, issue, path=["response"])
+            assert_matches_type(Optional[IssueTypeResponse], issue, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
