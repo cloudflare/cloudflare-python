@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -43,7 +43,7 @@ class IssueTypesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IssueTypeGetResponse:
+    ) -> Optional[IssueTypeGetResponse]:
         """
         Get Security Center Issues Types
 
@@ -67,9 +67,9 @@ class IssueTypesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[IssueTypeGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[IssueTypeGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[IssueTypeGetResponse], ResultWrapper[IssueTypeGetResponse]),
+            cast_to=cast(Type[Optional[IssueTypeGetResponse]], ResultWrapper[IssueTypeGetResponse]),
         )
 
 
@@ -92,7 +92,7 @@ class AsyncIssueTypesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IssueTypeGetResponse:
+    ) -> Optional[IssueTypeGetResponse]:
         """
         Get Security Center Issues Types
 
@@ -116,9 +116,9 @@ class AsyncIssueTypesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[IssueTypeGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[IssueTypeGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[IssueTypeGetResponse], ResultWrapper[IssueTypeGetResponse]),
+            cast_to=cast(Type[Optional[IssueTypeGetResponse]], ResultWrapper[IssueTypeGetResponse]),
         )
 
 
