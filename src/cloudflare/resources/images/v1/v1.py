@@ -53,10 +53,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePagination, AsyncV4PagePagination
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.images import v1_edit_params, v1_list_params, v1_create_params
 from ....types.images.image import Image
 from ....types.images.v1_list_response import V1ListResponse

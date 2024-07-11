@@ -22,10 +22,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.waiting_rooms import rule_edit_params, rule_create_params, rule_update_params
 from ...types.waiting_rooms.waiting_room_rule import WaitingRoomRule
 from ...types.waiting_rooms.rule_edit_response import RuleEditResponse

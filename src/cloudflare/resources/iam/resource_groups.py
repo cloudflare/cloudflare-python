@@ -22,10 +22,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...types.iam import resource_group_list_params, resource_group_create_params, resource_group_update_params
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.iam.resource_group_get_response import ResourceGroupGetResponse
 from ...types.iam.resource_group_create_response import ResourceGroupCreateResponse
 from ...types.iam.resource_group_delete_response import ResourceGroupDeleteResponse

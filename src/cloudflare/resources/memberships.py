@@ -22,10 +22,7 @@ from .._response import (
 )
 from .._wrappers import ResultWrapper
 from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from .._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.memberships import membership_list_params, membership_update_params
 from ..types.memberships.membership import Membership
 from ..types.memberships.membership_get_response import MembershipGetResponse

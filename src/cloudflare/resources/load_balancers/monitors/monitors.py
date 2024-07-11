@@ -38,10 +38,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.load_balancers import monitor_edit_params, monitor_create_params, monitor_update_params
 from ....types.load_balancers.monitor import Monitor
 from ....types.load_balancers.monitor_delete_response import MonitorDeleteResponse

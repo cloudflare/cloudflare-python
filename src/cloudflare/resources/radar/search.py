@@ -22,9 +22,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.radar import search_global_params
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.radar.search_global_response import SearchGlobalResponse
 
 __all__ = ["SearchResource", "AsyncSearchResource"]

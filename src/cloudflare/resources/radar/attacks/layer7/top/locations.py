@@ -22,9 +22,7 @@ from ......_response import (
     async_to_streamed_response_wrapper,
 )
 from ......_wrappers import ResultWrapper
-from ......_base_client import (
-    make_request_options,
-)
+from ......_base_client import make_request_options
 from ......types.radar.attacks.layer7.top import location_origin_params, location_target_params
 from ......types.radar.attacks.layer7.top.location_origin_response import LocationOriginResponse
 from ......types.radar.attacks.layer7.top.location_target_response import LocationTargetResponse

@@ -30,10 +30,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.ai_gateway import ai_gateway_list_params, ai_gateway_create_params, ai_gateway_update_params
 from ...types.ai_gateway.ai_gateway_get_response import AIGatewayGetResponse
 from ...types.ai_gateway.ai_gateway_list_response import AIGatewayListResponse

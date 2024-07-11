@@ -22,10 +22,7 @@ from .._response import (
 )
 from .._wrappers import ResultWrapper
 from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from .._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.filters import filter_list_params, filter_create_params, filter_update_params
 from ..types.filters.firewall_filter import FirewallFilter
 from ..types.filters.filter_create_response import FilterCreateResponse

@@ -19,9 +19,7 @@ from ...._response import (
     async_to_custom_raw_response_wrapper,
     async_to_custom_streamed_response_wrapper,
 )
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 
 __all__ = ["DownloadsResource", "AsyncDownloadsResource"]
 

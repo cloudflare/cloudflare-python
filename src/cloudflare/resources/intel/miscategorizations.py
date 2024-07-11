@@ -22,9 +22,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.intel import miscategorization_create_params
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.intel.miscategorization_create_response import MiscategorizationCreateResponse
 
 __all__ = ["MiscategorizationsResource", "AsyncMiscategorizationsResource"]

@@ -63,10 +63,7 @@ from .configurations import (
     ConfigurationsResourceWithStreamingResponse,
     AsyncConfigurationsResourceWithStreamingResponse,
 )
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust import tunnel_edit_params, tunnel_list_params, tunnel_create_params
 from ....types.zero_trust.tunnel_get_response import TunnelGetResponse
 from ....types.zero_trust.tunnel_edit_response import TunnelEditResponse

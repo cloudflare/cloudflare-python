@@ -17,10 +17,7 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
-from ....._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.access.users.active_session_get_response import ActiveSessionGetResponse
 from .....types.zero_trust.access.users.active_session_list_response import ActiveSessionListResponse
 

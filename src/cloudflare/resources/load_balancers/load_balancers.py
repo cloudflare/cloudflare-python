@@ -62,10 +62,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from .pools.pools import PoolsResource, AsyncPoolsResource
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from .monitors.monitors import MonitorsResource, AsyncMonitorsResource
 from ...types.load_balancers import (
     SteeringPolicy,

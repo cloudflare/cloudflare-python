@@ -19,9 +19,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import (
-    make_request_options,
-)
+from .._base_client import make_request_options
 from ..types.managed_headers import managed_header_edit_params
 from ..types.managed_headers.request_model_param import RequestModelParam
 from ..types.managed_headers.managed_header_edit_response import ManagedHeaderEditResponse

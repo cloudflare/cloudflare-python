@@ -16,9 +16,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.images.v1.key_list_response import KeyListResponse
 from ....types.images.v1.key_delete_response import KeyDeleteResponse
 from ....types.images.v1.key_update_response import KeyUpdateResponse

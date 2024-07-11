@@ -20,9 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.workers.scripts import schedule_update_params
 from ....types.workers.scripts.schedule_get_response import ScheduleGetResponse
 from ....types.workers.scripts.schedule_update_response import ScheduleUpdateResponse

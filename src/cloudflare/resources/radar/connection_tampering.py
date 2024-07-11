@@ -23,9 +23,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.radar import connection_tampering_summary_params, connection_tampering_timeseries_groups_params
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.radar.connection_tampering_summary_response import ConnectionTamperingSummaryResponse
 from ...types.radar.connection_tampering_timeseries_groups_response import ConnectionTamperingTimeseriesGroupsResponse
 

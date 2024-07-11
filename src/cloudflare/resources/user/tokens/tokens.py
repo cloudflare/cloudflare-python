@@ -32,10 +32,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ....types.user import token_list_params, token_create_params, token_update_params
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from .permission_groups import (
     PermissionGroupsResource,
     AsyncPermissionGroupsResource,

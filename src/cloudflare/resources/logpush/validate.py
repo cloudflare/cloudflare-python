@@ -20,9 +20,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.logpush import validate_origin_params, validate_destination_params
 from ...types.logpush.validate_origin_response import ValidateOriginResponse
 from ...types.logpush.validate_destination_response import ValidateDestinationResponse

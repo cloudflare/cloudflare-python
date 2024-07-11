@@ -16,10 +16,7 @@ from ..._response import (
 )
 from ...types.iam import permission_group_list_params
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.iam.permission_group_get_response import PermissionGroupGetResponse
 
 __all__ = ["PermissionGroupsResource", "AsyncPermissionGroupsResource"]

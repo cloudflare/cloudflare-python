@@ -30,10 +30,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.email_routing import rule_list_params, rule_create_params, rule_update_params
 from ....types.email_routing.action_param import ActionParam
 from ....types.email_routing.matcher_param import MatcherParam

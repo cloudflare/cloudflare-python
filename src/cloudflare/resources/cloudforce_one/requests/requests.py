@@ -39,10 +39,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.cloudforce_one import request_list_params, request_create_params, request_update_params
 from ....types.cloudforce_one.item import Item
 from ....types.cloudforce_one.quota import Quota

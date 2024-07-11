@@ -38,10 +38,7 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ....._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.networks import route_edit_params, route_list_params, route_create_params
 from .....types.zero_trust.networks.route import Route
 from .....types.zero_trust.networks.teamnet import Teamnet

@@ -22,9 +22,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.speed import schedule_get_params, schedule_create_params, schedule_delete_params
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.speed.schedule import Schedule
 from ...types.speed.schedule_create_response import ScheduleCreateResponse
 from ...types.speed.schedule_delete_response import ScheduleDeleteResponse

@@ -20,9 +20,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
-from ....._base_client import (
-    make_request_options,
-)
+from ....._base_client import make_request_options
 from .....types.zero_trust.dlp.dataset import Dataset
 from .....types.zero_trust.dlp.datasets import upload_edit_params
 from .....types.zero_trust.dlp.datasets.new_version import NewVersion

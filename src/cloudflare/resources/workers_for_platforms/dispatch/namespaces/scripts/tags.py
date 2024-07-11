@@ -21,10 +21,7 @@ from ......_response import (
 )
 from ......_wrappers import ResultWrapper
 from ......pagination import SyncSinglePage, AsyncSinglePage
-from ......_base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ......_base_client import AsyncPaginator, make_request_options
 from ......types.workers_for_platforms.dispatch.namespaces.scripts import tag_update_params
 from ......types.workers_for_platforms.dispatch.namespaces.scripts.tag_list_response import TagListResponse
 from ......types.workers_for_platforms.dispatch.namespaces.scripts.tag_update_response import TagUpdateResponse

@@ -22,9 +22,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.cache import smart_tiered_cache_edit_params
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.cache.smart_tiered_cache_get_response import SmartTieredCacheGetResponse
 from ...types.cache.smart_tiered_cache_edit_response import SmartTieredCacheEditResponse
 from ...types.cache.smart_tiered_cache_delete_response import SmartTieredCacheDeleteResponse

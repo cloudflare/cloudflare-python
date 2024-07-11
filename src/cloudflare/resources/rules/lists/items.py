@@ -21,10 +21,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncCursorPagination, AsyncCursorPagination
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.rules.lists import item_list_params, item_create_params, item_update_params
 from ....types.rules.lists.item_get_response import ItemGetResponse
 from ....types.rules.lists.item_create_response import ItemCreateResponse

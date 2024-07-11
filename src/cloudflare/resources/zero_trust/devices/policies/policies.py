@@ -45,10 +45,7 @@ from .default_policy import (
     DefaultPolicyResourceWithStreamingResponse,
     AsyncDefaultPolicyResourceWithStreamingResponse,
 )
-from ....._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....._base_client import AsyncPaginator, make_request_options
 from .fallback_domains import (
     FallbackDomainsResource,
     AsyncFallbackDomainsResource,

@@ -21,10 +21,7 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
-from ....._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.devices.policies import fallback_domain_update_params
 from .....types.zero_trust.devices.policies.fallback_domain import FallbackDomain
 from .....types.zero_trust.devices.policies.fallback_domain_param import FallbackDomainParam

@@ -31,9 +31,7 @@ from ......_response import (
     async_to_custom_streamed_response_wrapper,
 )
 from ......_wrappers import ResultWrapper
-from ......_base_client import (
-    make_request_options,
-)
+from ......_base_client import make_request_options
 from ......types.workers.script import Script
 from ......types.workers.worker_metadata_param import WorkerMetadataParam
 from ......types.workers_for_platforms.dispatch.namespaces.scripts import content_update_params

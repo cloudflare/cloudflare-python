@@ -21,9 +21,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.ssl import analyze_create_params
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.custom_hostnames import BundleMethod
 from ...types.ssl.analyze_create_response import AnalyzeCreateResponse
 from ...types.custom_hostnames.bundle_method import BundleMethod

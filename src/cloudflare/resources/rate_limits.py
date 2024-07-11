@@ -22,10 +22,7 @@ from .._response import (
 )
 from .._wrappers import ResultWrapper
 from ..pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from .._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.rate_limits import rate_limit_edit_params, rate_limit_list_params, rate_limit_create_params
 from ..types.rate_limits.rate_limit import RateLimit
 from ..types.rate_limits.rate_limit_get_response import RateLimitGetResponse

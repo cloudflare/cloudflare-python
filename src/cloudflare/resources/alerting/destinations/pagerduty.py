@@ -16,9 +16,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.alerting.destinations.pagerduty_get_response import PagerdutyGetResponse
 from ....types.alerting.destinations.pagerduty_link_response import PagerdutyLinkResponse
 from ....types.alerting.destinations.pagerduty_create_response import PagerdutyCreateResponse

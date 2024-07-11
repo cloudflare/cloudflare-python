@@ -22,10 +22,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.devices import network_create_params, network_update_params
 from ....types.zero_trust.devices.device_network import DeviceNetwork
 from ....types.zero_trust.devices.network_delete_response import NetworkDeleteResponse

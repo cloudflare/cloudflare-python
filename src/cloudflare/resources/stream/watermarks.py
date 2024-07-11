@@ -21,10 +21,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.stream import watermark_create_params
 from ...types.stream.watermark import Watermark
 from ...types.stream.watermark_delete_response import WatermarkDeleteResponse

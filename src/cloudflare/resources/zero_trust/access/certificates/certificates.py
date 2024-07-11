@@ -29,10 +29,7 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
-from ....._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.access import certificate_create_params, certificate_update_params
 from .....types.zero_trust.access.certificate import Certificate
 from .....types.zero_trust.access.associated_hostnames import AssociatedHostnames

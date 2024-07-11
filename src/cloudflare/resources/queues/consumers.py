@@ -20,9 +20,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.queues import consumer_create_params, consumer_update_params
 from ...types.queues.consumer_get_response import ConsumerGetResponse
 from ...types.queues.consumer_create_response import ConsumerCreateResponse

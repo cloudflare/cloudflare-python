@@ -21,9 +21,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.hostnames.settings import tls_update_params
 from ....types.hostnames.settings.setting import Setting
 from ....types.hostnames.settings.tls_get_response import TLSGetResponse

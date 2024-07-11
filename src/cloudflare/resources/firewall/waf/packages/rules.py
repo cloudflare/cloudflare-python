@@ -22,10 +22,7 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ....._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.firewall.waf.packages import rule_edit_params, rule_list_params
 from .....types.firewall.waf.packages.rule_get_response import RuleGetResponse
 from .....types.firewall.waf.packages.rule_edit_response import RuleEditResponse

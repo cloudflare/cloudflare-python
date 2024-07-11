@@ -86,9 +86,7 @@ from .browser_family import (
     BrowserFamilyResourceWithStreamingResponse,
     AsyncBrowserFamilyResourceWithStreamingResponse,
 )
-from ....._base_client import (
-    make_request_options,
-)
+from ....._base_client import make_request_options
 from .....types.radar.http import location_get_params
 from .....types.radar.http.location_get_response import LocationGetResponse
 

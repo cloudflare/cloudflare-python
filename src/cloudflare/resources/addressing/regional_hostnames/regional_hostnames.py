@@ -29,10 +29,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.addressing import regional_hostname_edit_params, regional_hostname_create_params
 from ....types.addressing.regional_hostname_get_response import RegionalHostnameGetResponse
 from ....types.addressing.regional_hostname_edit_response import RegionalHostnameEditResponse
