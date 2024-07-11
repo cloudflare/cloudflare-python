@@ -130,7 +130,7 @@ class TestAddressMaps:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         address_map = client.addressing.address_maps.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[AddressMapDeleteResponse], address_map, path=["response"])
@@ -138,7 +138,7 @@ class TestAddressMaps:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.addressing.address_maps.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -150,7 +150,7 @@ class TestAddressMaps:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.addressing.address_maps.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -165,20 +165,20 @@ class TestAddressMaps:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.addressing.address_maps.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
             client.addressing.address_maps.with_raw_response.delete(
-                "",
+                address_map_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         address_map = client.addressing.address_maps.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[AddressMap], address_map, path=["response"])
@@ -186,7 +186,7 @@ class TestAddressMaps:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         address_map = client.addressing.address_maps.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             default_sni="*.example.com",
             description="My Ecommerce zones",
@@ -197,7 +197,7 @@ class TestAddressMaps:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.addressing.address_maps.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -209,7 +209,7 @@ class TestAddressMaps:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.addressing.address_maps.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -224,20 +224,20 @@ class TestAddressMaps:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.addressing.address_maps.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
             client.addressing.address_maps.with_raw_response.edit(
-                "",
+                address_map_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         address_map = client.addressing.address_maps.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[AddressMapGetResponse], address_map, path=["response"])
@@ -245,7 +245,7 @@ class TestAddressMaps:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.addressing.address_maps.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -257,7 +257,7 @@ class TestAddressMaps:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.addressing.address_maps.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -272,13 +272,13 @@ class TestAddressMaps:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.addressing.address_maps.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
             client.addressing.address_maps.with_raw_response.get(
-                "",
+                address_map_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -392,7 +392,7 @@ class TestAsyncAddressMaps:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         address_map = await async_client.addressing.address_maps.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[AddressMapDeleteResponse], address_map, path=["response"])
@@ -400,7 +400,7 @@ class TestAsyncAddressMaps:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.address_maps.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -412,7 +412,7 @@ class TestAsyncAddressMaps:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.address_maps.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -427,20 +427,20 @@ class TestAsyncAddressMaps:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.addressing.address_maps.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
             await async_client.addressing.address_maps.with_raw_response.delete(
-                "",
+                address_map_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         address_map = await async_client.addressing.address_maps.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[AddressMap], address_map, path=["response"])
@@ -448,7 +448,7 @@ class TestAsyncAddressMaps:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         address_map = await async_client.addressing.address_maps.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             default_sni="*.example.com",
             description="My Ecommerce zones",
@@ -459,7 +459,7 @@ class TestAsyncAddressMaps:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.address_maps.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -471,7 +471,7 @@ class TestAsyncAddressMaps:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.address_maps.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -486,20 +486,20 @@ class TestAsyncAddressMaps:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.addressing.address_maps.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
             await async_client.addressing.address_maps.with_raw_response.edit(
-                "",
+                address_map_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         address_map = await async_client.addressing.address_maps.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[AddressMapGetResponse], address_map, path=["response"])
@@ -507,7 +507,7 @@ class TestAsyncAddressMaps:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.address_maps.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -519,7 +519,7 @@ class TestAsyncAddressMaps:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.address_maps.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -534,12 +534,12 @@ class TestAsyncAddressMaps:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.addressing.address_maps.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
             await async_client.addressing.address_maps.with_raw_response.get(
-                "",
+                address_map_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

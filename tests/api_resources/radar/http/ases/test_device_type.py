@@ -21,14 +21,14 @@ class TestDeviceType:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         device_type = client.radar.http.ases.device_type.get(
-            "DESKTOP",
+            device_type="DESKTOP",
         )
         assert_matches_type(DeviceTypeGetResponse, device_type, path=["response"])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         device_type = client.radar.http.ases.device_type.get(
-            "DESKTOP",
+            device_type="DESKTOP",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
             browser_family=["CHROME", "EDGE", "FIREFOX"],
@@ -59,7 +59,7 @@ class TestDeviceType:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.radar.http.ases.device_type.with_raw_response.get(
-            "DESKTOP",
+            device_type="DESKTOP",
         )
 
         assert response.is_closed is True
@@ -70,7 +70,7 @@ class TestDeviceType:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.radar.http.ases.device_type.with_streaming_response.get(
-            "DESKTOP",
+            device_type="DESKTOP",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -87,14 +87,14 @@ class TestAsyncDeviceType:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         device_type = await async_client.radar.http.ases.device_type.get(
-            "DESKTOP",
+            device_type="DESKTOP",
         )
         assert_matches_type(DeviceTypeGetResponse, device_type, path=["response"])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         device_type = await async_client.radar.http.ases.device_type.get(
-            "DESKTOP",
+            device_type="DESKTOP",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
             browser_family=["CHROME", "EDGE", "FIREFOX"],
@@ -125,7 +125,7 @@ class TestAsyncDeviceType:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.http.ases.device_type.with_raw_response.get(
-            "DESKTOP",
+            device_type="DESKTOP",
         )
 
         assert response.is_closed is True
@@ -136,7 +136,7 @@ class TestAsyncDeviceType:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.http.ases.device_type.with_streaming_response.get(
-            "DESKTOP",
+            device_type="DESKTOP",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

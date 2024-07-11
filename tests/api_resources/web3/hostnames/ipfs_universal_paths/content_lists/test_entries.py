@@ -26,7 +26,7 @@ class TestEntries:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         entry = client.web3.hostnames.ipfs_universal_paths.content_lists.entries.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
             type="cid",
@@ -36,7 +36,7 @@ class TestEntries:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         entry = client.web3.hostnames.ipfs_universal_paths.content_lists.entries.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
             type="cid",
@@ -47,7 +47,7 @@ class TestEntries:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
             type="cid",
@@ -61,7 +61,7 @@ class TestEntries:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
             type="cid",
@@ -78,7 +78,7 @@ class TestEntries:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.create(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="",
                 content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
                 type="cid",
@@ -86,7 +86,7 @@ class TestEntries:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.create(
-                "",
+                identifier="",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
                 type="cid",
@@ -95,7 +95,7 @@ class TestEntries:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         entry = client.web3.hostnames.ipfs_universal_paths.content_lists.entries.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
             content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
@@ -106,7 +106,7 @@ class TestEntries:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         entry = client.web3.hostnames.ipfs_universal_paths.content_lists.entries.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
             content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
@@ -118,7 +118,7 @@ class TestEntries:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
             content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
@@ -133,7 +133,7 @@ class TestEntries:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
             content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
@@ -151,7 +151,7 @@ class TestEntries:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="",
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
@@ -160,7 +160,7 @@ class TestEntries:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="",
                 content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
@@ -171,7 +171,7 @@ class TestEntries:
             ValueError, match=r"Expected a non-empty value for `content_list_entry_identifier` but received ''"
         ):
             client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.update(
-                "",
+                content_list_entry_identifier="",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
@@ -181,7 +181,7 @@ class TestEntries:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         entry = client.web3.hostnames.ipfs_universal_paths.content_lists.entries.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[EntryListResponse], entry, path=["response"])
@@ -189,7 +189,7 @@ class TestEntries:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -201,7 +201,7 @@ class TestEntries:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -216,20 +216,20 @@ class TestEntries:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.list(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.list(
-                "",
+                identifier="",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         entry = client.web3.hostnames.ipfs_universal_paths.content_lists.entries.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -238,7 +238,7 @@ class TestEntries:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -251,7 +251,7 @@ class TestEntries:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -267,14 +267,14 @@ class TestEntries:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="",
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="",
             )
@@ -283,7 +283,7 @@ class TestEntries:
             ValueError, match=r"Expected a non-empty value for `content_list_entry_identifier` but received ''"
         ):
             client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.delete(
-                "",
+                content_list_entry_identifier="",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -291,7 +291,7 @@ class TestEntries:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         entry = client.web3.hostnames.ipfs_universal_paths.content_lists.entries.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -300,7 +300,7 @@ class TestEntries:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -313,7 +313,7 @@ class TestEntries:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -329,14 +329,14 @@ class TestEntries:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="",
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="",
             )
@@ -345,7 +345,7 @@ class TestEntries:
             ValueError, match=r"Expected a non-empty value for `content_list_entry_identifier` but received ''"
         ):
             client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.get(
-                "",
+                content_list_entry_identifier="",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -357,7 +357,7 @@ class TestAsyncEntries:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         entry = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
             type="cid",
@@ -367,7 +367,7 @@ class TestAsyncEntries:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         entry = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
             type="cid",
@@ -379,7 +379,7 @@ class TestAsyncEntries:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = (
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.create(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
                 type="cid",
@@ -394,7 +394,7 @@ class TestAsyncEntries:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
             type="cid",
@@ -411,7 +411,7 @@ class TestAsyncEntries:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.create(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="",
                 content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
                 type="cid",
@@ -419,7 +419,7 @@ class TestAsyncEntries:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.create(
-                "",
+                identifier="",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
                 type="cid",
@@ -428,7 +428,7 @@ class TestAsyncEntries:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         entry = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
             content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
@@ -439,7 +439,7 @@ class TestAsyncEntries:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         entry = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
             content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
@@ -452,7 +452,7 @@ class TestAsyncEntries:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = (
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
@@ -468,7 +468,7 @@ class TestAsyncEntries:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
             content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
@@ -486,7 +486,7 @@ class TestAsyncEntries:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="",
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
@@ -495,7 +495,7 @@ class TestAsyncEntries:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="",
                 content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
@@ -506,7 +506,7 @@ class TestAsyncEntries:
             ValueError, match=r"Expected a non-empty value for `content_list_entry_identifier` but received ''"
         ):
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.update(
-                "",
+                content_list_entry_identifier="",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 content="QmPZ9gcCEpqKTo6aq61g2nXGUhM4iCL3ewB6LDXZCtioEB",
@@ -516,7 +516,7 @@ class TestAsyncEntries:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         entry = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[EntryListResponse], entry, path=["response"])
@@ -524,7 +524,7 @@ class TestAsyncEntries:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -536,7 +536,7 @@ class TestAsyncEntries:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -551,20 +551,20 @@ class TestAsyncEntries:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.list(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.list(
-                "",
+                identifier="",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         entry = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -574,7 +574,7 @@ class TestAsyncEntries:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = (
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -588,7 +588,7 @@ class TestAsyncEntries:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -604,14 +604,14 @@ class TestAsyncEntries:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="",
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="",
             )
@@ -620,7 +620,7 @@ class TestAsyncEntries:
             ValueError, match=r"Expected a non-empty value for `content_list_entry_identifier` but received ''"
         ):
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.delete(
-                "",
+                content_list_entry_identifier="",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -628,7 +628,7 @@ class TestAsyncEntries:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         entry = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -637,7 +637,7 @@ class TestAsyncEntries:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -650,7 +650,7 @@ class TestAsyncEntries:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -666,14 +666,14 @@ class TestAsyncEntries:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="",
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                content_list_entry_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="",
             )
@@ -682,7 +682,7 @@ class TestAsyncEntries:
             ValueError, match=r"Expected a non-empty value for `content_list_entry_identifier` but received ''"
         ):
             await async_client.web3.hostnames.ipfs_universal_paths.content_lists.entries.with_raw_response.get(
-                "",
+                content_list_entry_identifier="",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )

@@ -191,7 +191,7 @@ class TestProjects:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         project = client.pages.projects.delete(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(object, project, path=["response"])
@@ -199,7 +199,7 @@ class TestProjects:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.pages.projects.with_raw_response.delete(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -211,7 +211,7 @@ class TestProjects:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.pages.projects.with_streaming_response.delete(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -226,20 +226,20 @@ class TestProjects:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pages.projects.with_raw_response.delete(
-                "this-is-my-project-01",
+                project_name="this-is-my-project-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.with_raw_response.delete(
-                "",
+                project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         project = client.pages.projects.edit(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
                 "deployment_configs": {
@@ -263,7 +263,7 @@ class TestProjects:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.pages.projects.with_raw_response.edit(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
                 "deployment_configs": {
@@ -291,7 +291,7 @@ class TestProjects:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.pages.projects.with_streaming_response.edit(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
                 "deployment_configs": {
@@ -322,7 +322,7 @@ class TestProjects:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pages.projects.with_raw_response.edit(
-                "this-is-my-project-01",
+                project_name="this-is-my-project-01",
                 account_id="",
                 body={
                     "deployment_configs": {
@@ -344,7 +344,7 @@ class TestProjects:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.with_raw_response.edit(
-                "",
+                project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={
                     "deployment_configs": {
@@ -367,7 +367,7 @@ class TestProjects:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         project = client.pages.projects.get(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Project, project, path=["response"])
@@ -375,7 +375,7 @@ class TestProjects:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.pages.projects.with_raw_response.get(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -387,7 +387,7 @@ class TestProjects:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.pages.projects.with_streaming_response.get(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -402,20 +402,20 @@ class TestProjects:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pages.projects.with_raw_response.get(
-                "this-is-my-project-01",
+                project_name="this-is-my-project-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.with_raw_response.get(
-                "",
+                project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_purge_build_cache(self, client: Cloudflare) -> None:
         project = client.pages.projects.purge_build_cache(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(object, project, path=["response"])
@@ -423,7 +423,7 @@ class TestProjects:
     @parametrize
     def test_raw_response_purge_build_cache(self, client: Cloudflare) -> None:
         response = client.pages.projects.with_raw_response.purge_build_cache(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -435,7 +435,7 @@ class TestProjects:
     @parametrize
     def test_streaming_response_purge_build_cache(self, client: Cloudflare) -> None:
         with client.pages.projects.with_streaming_response.purge_build_cache(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -450,13 +450,13 @@ class TestProjects:
     def test_path_params_purge_build_cache(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pages.projects.with_raw_response.purge_build_cache(
-                "this-is-my-project-01",
+                project_name="this-is-my-project-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.with_raw_response.purge_build_cache(
-                "",
+                project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -632,7 +632,7 @@ class TestAsyncProjects:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         project = await async_client.pages.projects.delete(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(object, project, path=["response"])
@@ -640,7 +640,7 @@ class TestAsyncProjects:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pages.projects.with_raw_response.delete(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -652,7 +652,7 @@ class TestAsyncProjects:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pages.projects.with_streaming_response.delete(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -667,20 +667,20 @@ class TestAsyncProjects:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pages.projects.with_raw_response.delete(
-                "this-is-my-project-01",
+                project_name="this-is-my-project-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.with_raw_response.delete(
-                "",
+                project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         project = await async_client.pages.projects.edit(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
                 "deployment_configs": {
@@ -704,7 +704,7 @@ class TestAsyncProjects:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pages.projects.with_raw_response.edit(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
                 "deployment_configs": {
@@ -732,7 +732,7 @@ class TestAsyncProjects:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pages.projects.with_streaming_response.edit(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
                 "deployment_configs": {
@@ -763,7 +763,7 @@ class TestAsyncProjects:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pages.projects.with_raw_response.edit(
-                "this-is-my-project-01",
+                project_name="this-is-my-project-01",
                 account_id="",
                 body={
                     "deployment_configs": {
@@ -785,7 +785,7 @@ class TestAsyncProjects:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.with_raw_response.edit(
-                "",
+                project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={
                     "deployment_configs": {
@@ -808,7 +808,7 @@ class TestAsyncProjects:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         project = await async_client.pages.projects.get(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Project, project, path=["response"])
@@ -816,7 +816,7 @@ class TestAsyncProjects:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pages.projects.with_raw_response.get(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -828,7 +828,7 @@ class TestAsyncProjects:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pages.projects.with_streaming_response.get(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -843,20 +843,20 @@ class TestAsyncProjects:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pages.projects.with_raw_response.get(
-                "this-is-my-project-01",
+                project_name="this-is-my-project-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.with_raw_response.get(
-                "",
+                project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_purge_build_cache(self, async_client: AsyncCloudflare) -> None:
         project = await async_client.pages.projects.purge_build_cache(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(object, project, path=["response"])
@@ -864,7 +864,7 @@ class TestAsyncProjects:
     @parametrize
     async def test_raw_response_purge_build_cache(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pages.projects.with_raw_response.purge_build_cache(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -876,7 +876,7 @@ class TestAsyncProjects:
     @parametrize
     async def test_streaming_response_purge_build_cache(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pages.projects.with_streaming_response.purge_build_cache(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -891,12 +891,12 @@ class TestAsyncProjects:
     async def test_path_params_purge_build_cache(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pages.projects.with_raw_response.purge_build_cache(
-                "this-is-my-project-01",
+                project_name="this-is-my-project-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.with_raw_response.purge_build_cache(
-                "",
+                project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

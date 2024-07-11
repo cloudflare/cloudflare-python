@@ -20,7 +20,7 @@ class TestHealth:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         health = client.load_balancers.pools.health.create(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
@@ -29,7 +29,7 @@ class TestHealth:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         health = client.load_balancers.pools.health.create(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
             allow_insecure=True,
@@ -56,7 +56,7 @@ class TestHealth:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.load_balancers.pools.health.with_raw_response.create(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
@@ -69,7 +69,7 @@ class TestHealth:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.load_balancers.pools.health.with_streaming_response.create(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         ) as response:
@@ -85,14 +85,14 @@ class TestHealth:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.load_balancers.pools.health.with_raw_response.create(
-                "17b5962d775c646f3f9725cbc7a53df4",
+                pool_id="17b5962d775c646f3f9725cbc7a53df4",
                 account_id="",
                 expected_codes="2xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             client.load_balancers.pools.health.with_raw_response.create(
-                "",
+                pool_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 expected_codes="2xx",
             )
@@ -100,7 +100,7 @@ class TestHealth:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         health = client.load_balancers.pools.health.get(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(HealthGetResponse, health, path=["response"])
@@ -108,7 +108,7 @@ class TestHealth:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.load_balancers.pools.health.with_raw_response.get(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -120,7 +120,7 @@ class TestHealth:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.load_balancers.pools.health.with_streaming_response.get(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -135,13 +135,13 @@ class TestHealth:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.load_balancers.pools.health.with_raw_response.get(
-                "17b5962d775c646f3f9725cbc7a53df4",
+                pool_id="17b5962d775c646f3f9725cbc7a53df4",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             client.load_balancers.pools.health.with_raw_response.get(
-                "",
+                pool_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -152,7 +152,7 @@ class TestAsyncHealth:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         health = await async_client.load_balancers.pools.health.create(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
@@ -161,7 +161,7 @@ class TestAsyncHealth:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         health = await async_client.load_balancers.pools.health.create(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
             allow_insecure=True,
@@ -188,7 +188,7 @@ class TestAsyncHealth:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.pools.health.with_raw_response.create(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
@@ -201,7 +201,7 @@ class TestAsyncHealth:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.pools.health.with_streaming_response.create(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         ) as response:
@@ -217,14 +217,14 @@ class TestAsyncHealth:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.load_balancers.pools.health.with_raw_response.create(
-                "17b5962d775c646f3f9725cbc7a53df4",
+                pool_id="17b5962d775c646f3f9725cbc7a53df4",
                 account_id="",
                 expected_codes="2xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             await async_client.load_balancers.pools.health.with_raw_response.create(
-                "",
+                pool_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 expected_codes="2xx",
             )
@@ -232,7 +232,7 @@ class TestAsyncHealth:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         health = await async_client.load_balancers.pools.health.get(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(HealthGetResponse, health, path=["response"])
@@ -240,7 +240,7 @@ class TestAsyncHealth:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.pools.health.with_raw_response.get(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -252,7 +252,7 @@ class TestAsyncHealth:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.pools.health.with_streaming_response.get(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -267,12 +267,12 @@ class TestAsyncHealth:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.load_balancers.pools.health.with_raw_response.get(
-                "17b5962d775c646f3f9725cbc7a53df4",
+                pool_id="17b5962d775c646f3f9725cbc7a53df4",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             await async_client.load_balancers.pools.health.with_raw_response.get(
-                "",
+                pool_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

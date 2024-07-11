@@ -90,7 +90,7 @@ class TestPosture:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         posture = client.zero_trust.devices.posture.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="file",
@@ -100,7 +100,7 @@ class TestPosture:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         posture = client.zero_trust.devices.posture.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="file",
@@ -121,7 +121,7 @@ class TestPosture:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.posture.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="file",
@@ -135,7 +135,7 @@ class TestPosture:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.posture.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="file",
@@ -152,7 +152,7 @@ class TestPosture:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.devices.posture.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 name="Admin Serial Numbers",
                 type="file",
@@ -160,7 +160,7 @@ class TestPosture:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.zero_trust.devices.posture.with_raw_response.update(
-                "",
+                rule_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
                 name="Admin Serial Numbers",
                 type="file",
@@ -207,7 +207,7 @@ class TestPosture:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         posture = client.zero_trust.devices.posture.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[PostureDeleteResponse], posture, path=["response"])
@@ -215,7 +215,7 @@ class TestPosture:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.posture.with_raw_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -227,7 +227,7 @@ class TestPosture:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.posture.with_streaming_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -242,20 +242,20 @@ class TestPosture:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.devices.posture.with_raw_response.delete(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.zero_trust.devices.posture.with_raw_response.delete(
-                "",
+                rule_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         posture = client.zero_trust.devices.posture.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[DevicePostureRule], posture, path=["response"])
@@ -263,7 +263,7 @@ class TestPosture:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.posture.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -275,7 +275,7 @@ class TestPosture:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.posture.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -290,13 +290,13 @@ class TestPosture:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.devices.posture.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.zero_trust.devices.posture.with_raw_response.get(
-                "",
+                rule_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
@@ -373,7 +373,7 @@ class TestAsyncPosture:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         posture = await async_client.zero_trust.devices.posture.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="file",
@@ -383,7 +383,7 @@ class TestAsyncPosture:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         posture = await async_client.zero_trust.devices.posture.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="file",
@@ -404,7 +404,7 @@ class TestAsyncPosture:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.posture.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="file",
@@ -418,7 +418,7 @@ class TestAsyncPosture:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.posture.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             type="file",
@@ -435,7 +435,7 @@ class TestAsyncPosture:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.devices.posture.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 name="Admin Serial Numbers",
                 type="file",
@@ -443,7 +443,7 @@ class TestAsyncPosture:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             await async_client.zero_trust.devices.posture.with_raw_response.update(
-                "",
+                rule_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
                 name="Admin Serial Numbers",
                 type="file",
@@ -490,7 +490,7 @@ class TestAsyncPosture:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         posture = await async_client.zero_trust.devices.posture.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[PostureDeleteResponse], posture, path=["response"])
@@ -498,7 +498,7 @@ class TestAsyncPosture:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.posture.with_raw_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -510,7 +510,7 @@ class TestAsyncPosture:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.posture.with_streaming_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -525,20 +525,20 @@ class TestAsyncPosture:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.devices.posture.with_raw_response.delete(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             await async_client.zero_trust.devices.posture.with_raw_response.delete(
-                "",
+                rule_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         posture = await async_client.zero_trust.devices.posture.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[DevicePostureRule], posture, path=["response"])
@@ -546,7 +546,7 @@ class TestAsyncPosture:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.posture.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -558,7 +558,7 @@ class TestAsyncPosture:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.posture.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -573,12 +573,12 @@ class TestAsyncPosture:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.devices.posture.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             await async_client.zero_trust.devices.posture.with_raw_response.get(
-                "",
+                rule_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )

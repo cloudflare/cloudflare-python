@@ -141,7 +141,7 @@ class TestIssues:
     @parametrize
     def test_method_dismiss(self, client: Cloudflare) -> None:
         issue = client.intel.attack_surface_report.issues.dismiss(
-            "string",
+            issue_id="issue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[IssueDismissResponse], issue, path=["response"])
@@ -149,7 +149,7 @@ class TestIssues:
     @parametrize
     def test_method_dismiss_with_all_params(self, client: Cloudflare) -> None:
         issue = client.intel.attack_surface_report.issues.dismiss(
-            "string",
+            issue_id="issue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dismiss=True,
         )
@@ -158,7 +158,7 @@ class TestIssues:
     @parametrize
     def test_raw_response_dismiss(self, client: Cloudflare) -> None:
         response = client.intel.attack_surface_report.issues.with_raw_response.dismiss(
-            "string",
+            issue_id="issue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -170,7 +170,7 @@ class TestIssues:
     @parametrize
     def test_streaming_response_dismiss(self, client: Cloudflare) -> None:
         with client.intel.attack_surface_report.issues.with_streaming_response.dismiss(
-            "string",
+            issue_id="issue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -185,13 +185,13 @@ class TestIssues:
     def test_path_params_dismiss(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.intel.attack_surface_report.issues.with_raw_response.dismiss(
-                "string",
+                issue_id="issue_id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `issue_id` but received ''"):
             client.intel.attack_surface_report.issues.with_raw_response.dismiss(
-                "",
+                issue_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -428,7 +428,7 @@ class TestAsyncIssues:
     @parametrize
     async def test_method_dismiss(self, async_client: AsyncCloudflare) -> None:
         issue = await async_client.intel.attack_surface_report.issues.dismiss(
-            "string",
+            issue_id="issue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[IssueDismissResponse], issue, path=["response"])
@@ -436,7 +436,7 @@ class TestAsyncIssues:
     @parametrize
     async def test_method_dismiss_with_all_params(self, async_client: AsyncCloudflare) -> None:
         issue = await async_client.intel.attack_surface_report.issues.dismiss(
-            "string",
+            issue_id="issue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dismiss=True,
         )
@@ -445,7 +445,7 @@ class TestAsyncIssues:
     @parametrize
     async def test_raw_response_dismiss(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.intel.attack_surface_report.issues.with_raw_response.dismiss(
-            "string",
+            issue_id="issue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -457,7 +457,7 @@ class TestAsyncIssues:
     @parametrize
     async def test_streaming_response_dismiss(self, async_client: AsyncCloudflare) -> None:
         async with async_client.intel.attack_surface_report.issues.with_streaming_response.dismiss(
-            "string",
+            issue_id="issue_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -472,13 +472,13 @@ class TestAsyncIssues:
     async def test_path_params_dismiss(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.intel.attack_surface_report.issues.with_raw_response.dismiss(
-                "string",
+                issue_id="issue_id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `issue_id` but received ''"):
             await async_client.intel.attack_surface_report.issues.with_raw_response.dismiss(
-                "",
+                issue_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 

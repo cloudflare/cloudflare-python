@@ -19,7 +19,7 @@ class TestVtt:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         vtt = client.stream.captions.language.vtt.get(
-            "tr",
+            language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
@@ -28,7 +28,7 @@ class TestVtt:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.stream.captions.language.vtt.with_raw_response.get(
-            "tr",
+            language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
@@ -41,7 +41,7 @@ class TestVtt:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.stream.captions.language.vtt.with_streaming_response.get(
-            "tr",
+            language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         ) as response:
@@ -57,21 +57,21 @@ class TestVtt:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.stream.captions.language.vtt.with_raw_response.get(
-                "tr",
+                language="tr",
                 account_id="",
                 identifier="ea95132c15732412d22c1476fa83f27a",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.stream.captions.language.vtt.with_raw_response.get(
-                "tr",
+                language="tr",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `language` but received ''"):
             client.stream.captions.language.vtt.with_raw_response.get(
-                "",
+                language="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="ea95132c15732412d22c1476fa83f27a",
             )
@@ -83,7 +83,7 @@ class TestAsyncVtt:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         vtt = await async_client.stream.captions.language.vtt.get(
-            "tr",
+            language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
@@ -92,7 +92,7 @@ class TestAsyncVtt:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.captions.language.vtt.with_raw_response.get(
-            "tr",
+            language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
@@ -105,7 +105,7 @@ class TestAsyncVtt:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.captions.language.vtt.with_streaming_response.get(
-            "tr",
+            language="tr",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         ) as response:
@@ -121,21 +121,21 @@ class TestAsyncVtt:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.stream.captions.language.vtt.with_raw_response.get(
-                "tr",
+                language="tr",
                 account_id="",
                 identifier="ea95132c15732412d22c1476fa83f27a",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.stream.captions.language.vtt.with_raw_response.get(
-                "tr",
+                language="tr",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `language` but received ''"):
             await async_client.stream.captions.language.vtt.with_raw_response.get(
-                "",
+                language="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="ea95132c15732412d22c1476fa83f27a",
             )

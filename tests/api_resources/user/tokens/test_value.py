@@ -19,7 +19,7 @@ class TestValue:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         value = client.user.tokens.value.update(
-            {},
+            token_id={},
             body={},
         )
         assert_matches_type(str, value, path=["response"])
@@ -27,7 +27,7 @@ class TestValue:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.user.tokens.value.with_raw_response.update(
-            {},
+            token_id={},
             body={},
         )
 
@@ -39,7 +39,7 @@ class TestValue:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.user.tokens.value.with_streaming_response.update(
-            {},
+            token_id={},
             body={},
         ) as response:
             assert not response.is_closed
@@ -57,7 +57,7 @@ class TestAsyncValue:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         value = await async_client.user.tokens.value.update(
-            {},
+            token_id={},
             body={},
         )
         assert_matches_type(str, value, path=["response"])
@@ -65,7 +65,7 @@ class TestAsyncValue:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.tokens.value.with_raw_response.update(
-            {},
+            token_id={},
             body={},
         )
 
@@ -77,7 +77,7 @@ class TestAsyncValue:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.tokens.value.with_streaming_response.update(
-            {},
+            token_id={},
             body={},
         ) as response:
             assert not response.is_closed

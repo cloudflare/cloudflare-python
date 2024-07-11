@@ -29,11 +29,11 @@ class TestTests:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         test = client.zero_trust.dex.tests.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            colo="string",
+            colo="colo",
             device_id=["string", "string", "string"],
             page=1,
             per_page=1,
-            test_name="string",
+            test_name="testName",
         )
         assert_matches_type(SyncV4PagePagination[TestListResponse], test, path=["response"])
 
@@ -83,11 +83,11 @@ class TestAsyncTests:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         test = await async_client.zero_trust.dex.tests.list(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            colo="string",
+            colo="colo",
             device_id=["string", "string", "string"],
             page=1,
             per_page=1,
-            test_name="string",
+            test_name="testName",
         )
         assert_matches_type(AsyncV4PagePagination[TestListResponse], test, path=["response"])
 

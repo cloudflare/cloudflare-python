@@ -20,7 +20,7 @@ class TestRetention:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         retention = client.logs.control.retention.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             flag=True,
         )
         assert_matches_type(RetentionCreateResponse, retention, path=["response"])
@@ -28,7 +28,7 @@ class TestRetention:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.logs.control.retention.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             flag=True,
         )
 
@@ -40,7 +40,7 @@ class TestRetention:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.logs.control.retention.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             flag=True,
         ) as response:
             assert not response.is_closed
@@ -55,7 +55,7 @@ class TestRetention:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             client.logs.control.retention.with_raw_response.create(
-                "",
+                zone_identifier="",
                 flag=True,
             )
 
@@ -104,7 +104,7 @@ class TestAsyncRetention:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         retention = await async_client.logs.control.retention.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             flag=True,
         )
         assert_matches_type(RetentionCreateResponse, retention, path=["response"])
@@ -112,7 +112,7 @@ class TestAsyncRetention:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logs.control.retention.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             flag=True,
         )
 
@@ -124,7 +124,7 @@ class TestAsyncRetention:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logs.control.retention.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             flag=True,
         ) as response:
             assert not response.is_closed
@@ -139,7 +139,7 @@ class TestAsyncRetention:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             await async_client.logs.control.retention.with_raw_response.create(
-                "",
+                zone_identifier="",
                 flag=True,
             )
 

@@ -26,7 +26,7 @@ class TestApps:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             origin_dns={},
             origin_port=22,
@@ -37,7 +37,7 @@ class TestApps:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
             dns={
                 "name": "ssh.example.com",
                 "type": "CNAME",
@@ -64,7 +64,7 @@ class TestApps:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.spectrum.apps.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             origin_dns={},
             origin_port=22,
@@ -79,7 +79,7 @@ class TestApps:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.spectrum.apps.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             origin_dns={},
             origin_port=22,
@@ -97,7 +97,7 @@ class TestApps:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
             client.spectrum.apps.with_raw_response.create(
-                "",
+                zone="",
                 dns={},
                 origin_dns={},
                 origin_port=22,
@@ -107,7 +107,7 @@ class TestApps:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.update(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             origin_dns={},
@@ -119,7 +119,7 @@ class TestApps:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.update(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
             dns={
                 "name": "ssh.example.com",
@@ -147,7 +147,7 @@ class TestApps:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.spectrum.apps.with_raw_response.update(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             origin_dns={},
@@ -163,7 +163,7 @@ class TestApps:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.spectrum.apps.with_streaming_response.update(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             origin_dns={},
@@ -182,7 +182,7 @@ class TestApps:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
             client.spectrum.apps.with_raw_response.update(
-                "ea95132c15732412d22c1476fa83f27a",
+                app_id="ea95132c15732412d22c1476fa83f27a",
                 zone="",
                 dns={},
                 origin_dns={},
@@ -192,7 +192,7 @@ class TestApps:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.spectrum.apps.with_raw_response.update(
-                "",
+                app_id="",
                 zone="023e105f4ecef8ad9ca31a8372d0c353",
                 dns={},
                 origin_dns={},
@@ -203,14 +203,14 @@ class TestApps:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncV4PagePaginationArray[object], app, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
             direction="desc",
             order="protocol",
             page=1,
@@ -221,7 +221,7 @@ class TestApps:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.spectrum.apps.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -232,7 +232,7 @@ class TestApps:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.spectrum.apps.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -246,13 +246,13 @@ class TestApps:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
             client.spectrum.apps.with_raw_response.list(
-                "",
+                zone="",
             )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.delete(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[AppDeleteResponse], app, path=["response"])
@@ -260,7 +260,7 @@ class TestApps:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.spectrum.apps.with_raw_response.delete(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -272,7 +272,7 @@ class TestApps:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.spectrum.apps.with_streaming_response.delete(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -287,20 +287,20 @@ class TestApps:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
             client.spectrum.apps.with_raw_response.delete(
-                "ea95132c15732412d22c1476fa83f27a",
+                app_id="ea95132c15732412d22c1476fa83f27a",
                 zone="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.spectrum.apps.with_raw_response.delete(
-                "",
+                app_id="",
                 zone="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.get(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AppGetResponse, app, path=["response"])
@@ -308,7 +308,7 @@ class TestApps:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.spectrum.apps.with_raw_response.get(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -320,7 +320,7 @@ class TestApps:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.spectrum.apps.with_streaming_response.get(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -335,13 +335,13 @@ class TestApps:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
             client.spectrum.apps.with_raw_response.get(
-                "ea95132c15732412d22c1476fa83f27a",
+                app_id="ea95132c15732412d22c1476fa83f27a",
                 zone="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.spectrum.apps.with_raw_response.get(
-                "",
+                app_id="",
                 zone="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -352,7 +352,7 @@ class TestAsyncApps:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             origin_dns={},
             origin_port=22,
@@ -363,7 +363,7 @@ class TestAsyncApps:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
             dns={
                 "name": "ssh.example.com",
                 "type": "CNAME",
@@ -390,7 +390,7 @@ class TestAsyncApps:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.spectrum.apps.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             origin_dns={},
             origin_port=22,
@@ -405,7 +405,7 @@ class TestAsyncApps:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.spectrum.apps.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             origin_dns={},
             origin_port=22,
@@ -423,7 +423,7 @@ class TestAsyncApps:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
             await async_client.spectrum.apps.with_raw_response.create(
-                "",
+                zone="",
                 dns={},
                 origin_dns={},
                 origin_port=22,
@@ -433,7 +433,7 @@ class TestAsyncApps:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.update(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             origin_dns={},
@@ -445,7 +445,7 @@ class TestAsyncApps:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.update(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
             dns={
                 "name": "ssh.example.com",
@@ -473,7 +473,7 @@ class TestAsyncApps:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.spectrum.apps.with_raw_response.update(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             origin_dns={},
@@ -489,7 +489,7 @@ class TestAsyncApps:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.spectrum.apps.with_streaming_response.update(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
             dns={},
             origin_dns={},
@@ -508,7 +508,7 @@ class TestAsyncApps:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
             await async_client.spectrum.apps.with_raw_response.update(
-                "ea95132c15732412d22c1476fa83f27a",
+                app_id="ea95132c15732412d22c1476fa83f27a",
                 zone="",
                 dns={},
                 origin_dns={},
@@ -518,7 +518,7 @@ class TestAsyncApps:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.spectrum.apps.with_raw_response.update(
-                "",
+                app_id="",
                 zone="023e105f4ecef8ad9ca31a8372d0c353",
                 dns={},
                 origin_dns={},
@@ -529,14 +529,14 @@ class TestAsyncApps:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncV4PagePaginationArray[object], app, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
             direction="desc",
             order="protocol",
             page=1,
@@ -547,7 +547,7 @@ class TestAsyncApps:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.spectrum.apps.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -558,7 +558,7 @@ class TestAsyncApps:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.spectrum.apps.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -572,13 +572,13 @@ class TestAsyncApps:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
             await async_client.spectrum.apps.with_raw_response.list(
-                "",
+                zone="",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.delete(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[AppDeleteResponse], app, path=["response"])
@@ -586,7 +586,7 @@ class TestAsyncApps:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.spectrum.apps.with_raw_response.delete(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -598,7 +598,7 @@ class TestAsyncApps:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.spectrum.apps.with_streaming_response.delete(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -613,20 +613,20 @@ class TestAsyncApps:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
             await async_client.spectrum.apps.with_raw_response.delete(
-                "ea95132c15732412d22c1476fa83f27a",
+                app_id="ea95132c15732412d22c1476fa83f27a",
                 zone="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.spectrum.apps.with_raw_response.delete(
-                "",
+                app_id="",
                 zone="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.get(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AppGetResponse, app, path=["response"])
@@ -634,7 +634,7 @@ class TestAsyncApps:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.spectrum.apps.with_raw_response.get(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -646,7 +646,7 @@ class TestAsyncApps:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.spectrum.apps.with_streaming_response.get(
-            "ea95132c15732412d22c1476fa83f27a",
+            app_id="ea95132c15732412d22c1476fa83f27a",
             zone="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -661,12 +661,12 @@ class TestAsyncApps:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
             await async_client.spectrum.apps.with_raw_response.get(
-                "ea95132c15732412d22c1476fa83f27a",
+                app_id="ea95132c15732412d22c1476fa83f27a",
                 zone="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.spectrum.apps.with_raw_response.get(
-                "",
+                app_id="",
                 zone="023e105f4ecef8ad9ca31a8372d0c353",
             )

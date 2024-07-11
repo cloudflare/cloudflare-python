@@ -355,7 +355,7 @@ class TestMembers:
     @parametrize
     def test_method_update_overload_1(self, client: Cloudflare) -> None:
         member = client.accounts.members.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
         assert_matches_type(Optional[MemberUpdateResponse], member, path=["response"])
@@ -364,7 +364,7 @@ class TestMembers:
     @parametrize
     def test_method_update_with_all_params_overload_1(self, client: Cloudflare) -> None:
         member = client.accounts.members.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             roles=[
                 {"id": "3536bcfad5faccb999b47003c79917fb"},
@@ -378,7 +378,7 @@ class TestMembers:
     @parametrize
     def test_raw_response_update_overload_1(self, client: Cloudflare) -> None:
         response = client.accounts.members.with_raw_response.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
 
@@ -391,7 +391,7 @@ class TestMembers:
     @parametrize
     def test_streaming_response_update_overload_1(self, client: Cloudflare) -> None:
         with client.accounts.members.with_streaming_response.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         ) as response:
             assert not response.is_closed
@@ -407,13 +407,13 @@ class TestMembers:
     def test_path_params_update_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.accounts.members.with_raw_response.update(
-                "4536bcfad5faccb111b47003c79917fa",
+                member_id="4536bcfad5faccb111b47003c79917fa",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
             client.accounts.members.with_raw_response.update(
-                "",
+                member_id="",
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
             )
 
@@ -421,7 +421,7 @@ class TestMembers:
     @parametrize
     def test_method_update_overload_2(self, client: Cloudflare) -> None:
         member = client.accounts.members.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             policies=[
                 {
@@ -468,7 +468,7 @@ class TestMembers:
     @parametrize
     def test_raw_response_update_overload_2(self, client: Cloudflare) -> None:
         response = client.accounts.members.with_raw_response.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             policies=[
                 {
@@ -519,7 +519,7 @@ class TestMembers:
     @parametrize
     def test_streaming_response_update_overload_2(self, client: Cloudflare) -> None:
         with client.accounts.members.with_streaming_response.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             policies=[
                 {
@@ -573,7 +573,7 @@ class TestMembers:
     def test_path_params_update_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.accounts.members.with_raw_response.update(
-                "4536bcfad5faccb111b47003c79917fa",
+                member_id="4536bcfad5faccb111b47003c79917fa",
                 account_id="",
                 policies=[
                     {
@@ -617,7 +617,7 @@ class TestMembers:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
             client.accounts.members.with_raw_response.update(
-                "",
+                member_id="",
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
                 policies=[
                     {
@@ -713,7 +713,7 @@ class TestMembers:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         member = client.accounts.members.delete(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
         assert_matches_type(Optional[MemberDeleteResponse], member, path=["response"])
@@ -722,7 +722,7 @@ class TestMembers:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.accounts.members.with_raw_response.delete(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
 
@@ -735,7 +735,7 @@ class TestMembers:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.accounts.members.with_streaming_response.delete(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         ) as response:
             assert not response.is_closed
@@ -751,13 +751,13 @@ class TestMembers:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.accounts.members.with_raw_response.delete(
-                "4536bcfad5faccb111b47003c79917fa",
+                member_id="4536bcfad5faccb111b47003c79917fa",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
             client.accounts.members.with_raw_response.delete(
-                "",
+                member_id="",
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
             )
 
@@ -765,7 +765,7 @@ class TestMembers:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         member = client.accounts.members.get(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
         assert_matches_type(Optional[MemberGetResponse], member, path=["response"])
@@ -774,7 +774,7 @@ class TestMembers:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.accounts.members.with_raw_response.get(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
 
@@ -787,7 +787,7 @@ class TestMembers:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.accounts.members.with_streaming_response.get(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         ) as response:
             assert not response.is_closed
@@ -803,13 +803,13 @@ class TestMembers:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.accounts.members.with_raw_response.get(
-                "4536bcfad5faccb111b47003c79917fa",
+                member_id="4536bcfad5faccb111b47003c79917fa",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
             client.accounts.members.with_raw_response.get(
-                "",
+                member_id="",
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
             )
 
@@ -1148,7 +1148,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_method_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
         assert_matches_type(Optional[MemberUpdateResponse], member, path=["response"])
@@ -1157,7 +1157,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_method_update_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             roles=[
                 {"id": "3536bcfad5faccb999b47003c79917fb"},
@@ -1171,7 +1171,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_raw_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.members.with_raw_response.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
 
@@ -1184,7 +1184,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_streaming_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.members.with_streaming_response.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         ) as response:
             assert not response.is_closed
@@ -1200,13 +1200,13 @@ class TestAsyncMembers:
     async def test_path_params_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.accounts.members.with_raw_response.update(
-                "4536bcfad5faccb111b47003c79917fa",
+                member_id="4536bcfad5faccb111b47003c79917fa",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
             await async_client.accounts.members.with_raw_response.update(
-                "",
+                member_id="",
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
             )
 
@@ -1214,7 +1214,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_method_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             policies=[
                 {
@@ -1261,7 +1261,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_raw_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.members.with_raw_response.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             policies=[
                 {
@@ -1312,7 +1312,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_streaming_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.members.with_streaming_response.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             policies=[
                 {
@@ -1366,7 +1366,7 @@ class TestAsyncMembers:
     async def test_path_params_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.accounts.members.with_raw_response.update(
-                "4536bcfad5faccb111b47003c79917fa",
+                member_id="4536bcfad5faccb111b47003c79917fa",
                 account_id="",
                 policies=[
                     {
@@ -1410,7 +1410,7 @@ class TestAsyncMembers:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
             await async_client.accounts.members.with_raw_response.update(
-                "",
+                member_id="",
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
                 policies=[
                     {
@@ -1506,7 +1506,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.delete(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
         assert_matches_type(Optional[MemberDeleteResponse], member, path=["response"])
@@ -1515,7 +1515,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.members.with_raw_response.delete(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
 
@@ -1528,7 +1528,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.members.with_streaming_response.delete(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         ) as response:
             assert not response.is_closed
@@ -1544,13 +1544,13 @@ class TestAsyncMembers:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.accounts.members.with_raw_response.delete(
-                "4536bcfad5faccb111b47003c79917fa",
+                member_id="4536bcfad5faccb111b47003c79917fa",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
             await async_client.accounts.members.with_raw_response.delete(
-                "",
+                member_id="",
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
             )
 
@@ -1558,7 +1558,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         member = await async_client.accounts.members.get(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
         assert_matches_type(Optional[MemberGetResponse], member, path=["response"])
@@ -1567,7 +1567,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.accounts.members.with_raw_response.get(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
 
@@ -1580,7 +1580,7 @@ class TestAsyncMembers:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.accounts.members.with_streaming_response.get(
-            "4536bcfad5faccb111b47003c79917fa",
+            member_id="4536bcfad5faccb111b47003c79917fa",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         ) as response:
             assert not response.is_closed
@@ -1596,12 +1596,12 @@ class TestAsyncMembers:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.accounts.members.with_raw_response.get(
-                "4536bcfad5faccb111b47003c79917fa",
+                member_id="4536bcfad5faccb111b47003c79917fa",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `member_id` but received ''"):
             await async_client.accounts.members.with_raw_response.get(
-                "",
+                member_id="",
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
             )

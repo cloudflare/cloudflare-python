@@ -24,7 +24,7 @@ class TestTags:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         tag = client.workers_for_platforms.dispatch.namespaces.scripts.tags.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             body=["my-tag", "my-tag", "my-tag"],
@@ -34,7 +34,7 @@ class TestTags:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             body=["my-tag", "my-tag", "my-tag"],
@@ -48,7 +48,7 @@ class TestTags:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_streaming_response.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             body=["my-tag", "my-tag", "my-tag"],
@@ -65,7 +65,7 @@ class TestTags:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.update(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
                 body=["my-tag", "my-tag", "my-tag"],
@@ -73,7 +73,7 @@ class TestTags:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.update(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
                 body=["my-tag", "my-tag", "my-tag"],
@@ -81,7 +81,7 @@ class TestTags:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.update(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
                 body=["my-tag", "my-tag", "my-tag"],
@@ -90,7 +90,7 @@ class TestTags:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         tag = client.workers_for_platforms.dispatch.namespaces.scripts.tags.list(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
@@ -99,7 +99,7 @@ class TestTags:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.list(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
@@ -112,7 +112,7 @@ class TestTags:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_streaming_response.list(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         ) as response:
@@ -128,21 +128,21 @@ class TestTags:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.list(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.list(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.list(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
             )
@@ -150,7 +150,7 @@ class TestTags:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         tag = client.workers_for_platforms.dispatch.namespaces.scripts.tags.delete(
-            "my-tag",
+            tag="my-tag",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
@@ -160,7 +160,7 @@ class TestTags:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
-            "my-tag",
+            tag="my-tag",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
@@ -174,7 +174,7 @@ class TestTags:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_streaming_response.delete(
-            "my-tag",
+            tag="my-tag",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
@@ -191,7 +191,7 @@ class TestTags:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
-                "my-tag",
+                tag="my-tag",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
                 script_name="this-is_my_script-01",
@@ -199,7 +199,7 @@ class TestTags:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
-                "my-tag",
+                tag="my-tag",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
                 script_name="this-is_my_script-01",
@@ -207,7 +207,7 @@ class TestTags:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
-                "my-tag",
+                tag="my-tag",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
                 script_name="",
@@ -215,7 +215,7 @@ class TestTags:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tag` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
-                "",
+                tag="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
                 script_name="this-is_my_script-01",
@@ -228,7 +228,7 @@ class TestAsyncTags:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         tag = await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             body=["my-tag", "my-tag", "my-tag"],
@@ -238,7 +238,7 @@ class TestAsyncTags:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             body=["my-tag", "my-tag", "my-tag"],
@@ -252,7 +252,7 @@ class TestAsyncTags:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_streaming_response.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             body=["my-tag", "my-tag", "my-tag"],
@@ -269,7 +269,7 @@ class TestAsyncTags:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.update(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
                 body=["my-tag", "my-tag", "my-tag"],
@@ -277,7 +277,7 @@ class TestAsyncTags:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.update(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
                 body=["my-tag", "my-tag", "my-tag"],
@@ -285,7 +285,7 @@ class TestAsyncTags:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.update(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
                 body=["my-tag", "my-tag", "my-tag"],
@@ -294,7 +294,7 @@ class TestAsyncTags:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         tag = await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.list(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
@@ -303,7 +303,7 @@ class TestAsyncTags:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.list(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
@@ -316,7 +316,7 @@ class TestAsyncTags:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_streaming_response.list(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         ) as response:
@@ -332,21 +332,21 @@ class TestAsyncTags:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.list(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.list(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.list(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
             )
@@ -354,7 +354,7 @@ class TestAsyncTags:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         tag = await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.delete(
-            "my-tag",
+            tag="my-tag",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
@@ -364,7 +364,7 @@ class TestAsyncTags:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
-            "my-tag",
+            tag="my-tag",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
@@ -378,7 +378,7 @@ class TestAsyncTags:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_streaming_response.delete(
-            "my-tag",
+            tag="my-tag",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             script_name="this-is_my_script-01",
@@ -395,7 +395,7 @@ class TestAsyncTags:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
-                "my-tag",
+                tag="my-tag",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
                 script_name="this-is_my_script-01",
@@ -403,7 +403,7 @@ class TestAsyncTags:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
-                "my-tag",
+                tag="my-tag",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
                 script_name="this-is_my_script-01",
@@ -411,7 +411,7 @@ class TestAsyncTags:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
-                "my-tag",
+                tag="my-tag",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
                 script_name="",
@@ -419,7 +419,7 @@ class TestAsyncTags:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tag` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.tags.with_raw_response.delete(
-                "",
+                tag="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
                 script_name="this-is_my_script-01",

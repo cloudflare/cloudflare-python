@@ -30,7 +30,7 @@ class TestDNS:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         dns = client.intel.dns.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            ipv4="string",
+            ipv4="ipv4",
             page=1,
             per_page=20,
             start_end_params={
@@ -86,7 +86,7 @@ class TestAsyncDNS:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         dns = await async_client.intel.dns.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            ipv4="string",
+            ipv4="ipv4",
             page=1,
             per_page=20,
             start_end_params={

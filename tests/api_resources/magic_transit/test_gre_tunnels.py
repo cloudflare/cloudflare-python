@@ -72,7 +72,7 @@ class TestGRETunnels:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         gre_tunnel = client.magic_transit.gre_tunnels.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cloudflare_gre_endpoint="203.0.113.1",
             customer_gre_endpoint="203.0.113.1",
@@ -84,7 +84,7 @@ class TestGRETunnels:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         gre_tunnel = client.magic_transit.gre_tunnels.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cloudflare_gre_endpoint="203.0.113.1",
             customer_gre_endpoint="203.0.113.1",
@@ -106,7 +106,7 @@ class TestGRETunnels:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.magic_transit.gre_tunnels.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cloudflare_gre_endpoint="203.0.113.1",
             customer_gre_endpoint="203.0.113.1",
@@ -122,7 +122,7 @@ class TestGRETunnels:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.magic_transit.gre_tunnels.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cloudflare_gre_endpoint="203.0.113.1",
             customer_gre_endpoint="203.0.113.1",
@@ -141,7 +141,7 @@ class TestGRETunnels:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.gre_tunnels.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 cloudflare_gre_endpoint="203.0.113.1",
                 customer_gre_endpoint="203.0.113.1",
@@ -151,7 +151,7 @@ class TestGRETunnels:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `gre_tunnel_id` but received ''"):
             client.magic_transit.gre_tunnels.with_raw_response.update(
-                "",
+                gre_tunnel_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 cloudflare_gre_endpoint="203.0.113.1",
                 customer_gre_endpoint="203.0.113.1",
@@ -200,7 +200,7 @@ class TestGRETunnels:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         gre_tunnel = client.magic_transit.gre_tunnels.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(GRETunnelDeleteResponse, gre_tunnel, path=["response"])
@@ -208,7 +208,7 @@ class TestGRETunnels:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.magic_transit.gre_tunnels.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -220,7 +220,7 @@ class TestGRETunnels:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.magic_transit.gre_tunnels.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -235,20 +235,20 @@ class TestGRETunnels:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.gre_tunnels.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `gre_tunnel_id` but received ''"):
             client.magic_transit.gre_tunnels.with_raw_response.delete(
-                "",
+                gre_tunnel_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         gre_tunnel = client.magic_transit.gre_tunnels.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(GRETunnelGetResponse, gre_tunnel, path=["response"])
@@ -256,7 +256,7 @@ class TestGRETunnels:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.magic_transit.gre_tunnels.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -268,7 +268,7 @@ class TestGRETunnels:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.magic_transit.gre_tunnels.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -283,13 +283,13 @@ class TestGRETunnels:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.gre_tunnels.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `gre_tunnel_id` but received ''"):
             client.magic_transit.gre_tunnels.with_raw_response.get(
-                "",
+                gre_tunnel_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -346,7 +346,7 @@ class TestAsyncGRETunnels:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         gre_tunnel = await async_client.magic_transit.gre_tunnels.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cloudflare_gre_endpoint="203.0.113.1",
             customer_gre_endpoint="203.0.113.1",
@@ -358,7 +358,7 @@ class TestAsyncGRETunnels:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         gre_tunnel = await async_client.magic_transit.gre_tunnels.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cloudflare_gre_endpoint="203.0.113.1",
             customer_gre_endpoint="203.0.113.1",
@@ -380,7 +380,7 @@ class TestAsyncGRETunnels:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.gre_tunnels.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cloudflare_gre_endpoint="203.0.113.1",
             customer_gre_endpoint="203.0.113.1",
@@ -396,7 +396,7 @@ class TestAsyncGRETunnels:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.gre_tunnels.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cloudflare_gre_endpoint="203.0.113.1",
             customer_gre_endpoint="203.0.113.1",
@@ -415,7 +415,7 @@ class TestAsyncGRETunnels:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.gre_tunnels.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 cloudflare_gre_endpoint="203.0.113.1",
                 customer_gre_endpoint="203.0.113.1",
@@ -425,7 +425,7 @@ class TestAsyncGRETunnels:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `gre_tunnel_id` but received ''"):
             await async_client.magic_transit.gre_tunnels.with_raw_response.update(
-                "",
+                gre_tunnel_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 cloudflare_gre_endpoint="203.0.113.1",
                 customer_gre_endpoint="203.0.113.1",
@@ -474,7 +474,7 @@ class TestAsyncGRETunnels:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         gre_tunnel = await async_client.magic_transit.gre_tunnels.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(GRETunnelDeleteResponse, gre_tunnel, path=["response"])
@@ -482,7 +482,7 @@ class TestAsyncGRETunnels:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.gre_tunnels.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -494,7 +494,7 @@ class TestAsyncGRETunnels:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.gre_tunnels.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -509,20 +509,20 @@ class TestAsyncGRETunnels:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.gre_tunnels.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `gre_tunnel_id` but received ''"):
             await async_client.magic_transit.gre_tunnels.with_raw_response.delete(
-                "",
+                gre_tunnel_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         gre_tunnel = await async_client.magic_transit.gre_tunnels.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(GRETunnelGetResponse, gre_tunnel, path=["response"])
@@ -530,7 +530,7 @@ class TestAsyncGRETunnels:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.gre_tunnels.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -542,7 +542,7 @@ class TestAsyncGRETunnels:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.gre_tunnels.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -557,12 +557,12 @@ class TestAsyncGRETunnels:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.gre_tunnels.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                gre_tunnel_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `gre_tunnel_id` but received ''"):
             await async_client.magic_transit.gre_tunnels.with_raw_response.get(
-                "",
+                gre_tunnel_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

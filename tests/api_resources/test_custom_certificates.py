@@ -135,7 +135,7 @@ class TestCustomCertificates:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         custom_certificate = client.custom_certificates.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CustomCertificateDeleteResponse], custom_certificate, path=["response"])
@@ -143,7 +143,7 @@ class TestCustomCertificates:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.custom_certificates.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -155,7 +155,7 @@ class TestCustomCertificates:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.custom_certificates.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -170,20 +170,20 @@ class TestCustomCertificates:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.custom_certificates.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_certificate_id` but received ''"):
             client.custom_certificates.with_raw_response.delete(
-                "",
+                custom_certificate_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         custom_certificate = client.custom_certificates.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CustomCertificateEditResponse], custom_certificate, path=["response"])
@@ -191,7 +191,7 @@ class TestCustomCertificates:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         custom_certificate = client.custom_certificates.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             bundle_method="ubiquitous",
             certificate="-----BEGIN CERTIFICATE-----\nMIIDtTCCAp2gAwIBAgIJAMHAwfXZ5/PWMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV\nBAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRlMSEwHwYDVQQKExhJbnRlcm5ldCBX\naWRnaXRzIFB0eSBMdGQwHhcNMTYwODI0MTY0MzAxWhcNMTYxMTIyMTY0MzAxWjBF\nMQswCQYDVQQGEwJBVTETMBEGA1UECBMKU29tZS1TdGF0ZTEhMB8GA1UEChMYSW50\nZXJuZXQgV2lkZ2l0cyBQdHkgTHRkMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB\nCgKCAQEAwQHoetcl9+5ikGzV6cMzWtWPJHqXT3wpbEkRU9Yz7lgvddmGdtcGbg/1\nCGZu0jJGkMoppoUo4c3dts3iwqRYmBikUP77wwY2QGmDZw2FvkJCJlKnabIRuGvB\nKwzESIXgKk2016aTP6/dAjEHyo6SeoK8lkIySUvK0fyOVlsiEsCmOpidtnKX/a+5\n0GjB79CJH4ER2lLVZnhePFR/zUOyPxZQQ4naHf7yu/b5jhO0f8fwt+pyFxIXjbEI\ndZliWRkRMtzrHOJIhrmJ2A1J7iOrirbbwillwjjNVUWPf3IJ3M12S9pEewooaeO2\nizNTERcG9HzAacbVRn2Y2SWIyT/18QIDAQABo4GnMIGkMB0GA1UdDgQWBBT/LbE4\n9rWf288N6sJA5BRb6FJIGDB1BgNVHSMEbjBsgBT/LbE49rWf288N6sJA5BRb6FJI\nGKFJpEcwRTELMAkGA1UEBhMCQVUxEzARBgNVBAgTClNvbWUtU3RhdGUxITAfBgNV\nBAoTGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZIIJAMHAwfXZ5/PWMAwGA1UdEwQF\nMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAHHFwl0tH0quUYZYO0dZYt4R7SJ0pCm2\n2satiyzHl4OnXcHDpekAo7/a09c6Lz6AU83cKy/+x3/djYHXWba7HpEu0dR3ugQP\nMlr4zrhd9xKZ0KZKiYmtJH+ak4OM4L3FbT0owUZPyjLSlhMtJVcoRp5CJsjAMBUG\nSvD8RX+T01wzox/Qb+lnnNnOlaWpqu8eoOenybxKp1a9ULzIVvN/LAcc+14vioFq\n2swRWtmocBAs8QR9n4uvbpiYvS8eYueDCWMM4fvFfBhaDZ3N9IbtySh3SpFdQDhw\nYbjM2rxXiyLGxB4Bol7QTv4zHif7Zt89FReT/NBy4rzaskDJY5L6xmY=\n-----END CERTIFICATE-----\n",
@@ -204,7 +204,7 @@ class TestCustomCertificates:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.custom_certificates.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -216,7 +216,7 @@ class TestCustomCertificates:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.custom_certificates.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -231,20 +231,20 @@ class TestCustomCertificates:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.custom_certificates.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_certificate_id` but received ''"):
             client.custom_certificates.with_raw_response.edit(
-                "",
+                custom_certificate_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         custom_certificate = client.custom_certificates.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CustomCertificateGetResponse], custom_certificate, path=["response"])
@@ -252,7 +252,7 @@ class TestCustomCertificates:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.custom_certificates.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -264,7 +264,7 @@ class TestCustomCertificates:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.custom_certificates.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -279,13 +279,13 @@ class TestCustomCertificates:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.custom_certificates.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_certificate_id` but received ''"):
             client.custom_certificates.with_raw_response.get(
-                "",
+                custom_certificate_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -404,7 +404,7 @@ class TestAsyncCustomCertificates:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         custom_certificate = await async_client.custom_certificates.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CustomCertificateDeleteResponse], custom_certificate, path=["response"])
@@ -412,7 +412,7 @@ class TestAsyncCustomCertificates:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_certificates.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -424,7 +424,7 @@ class TestAsyncCustomCertificates:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_certificates.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -439,20 +439,20 @@ class TestAsyncCustomCertificates:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.custom_certificates.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_certificate_id` but received ''"):
             await async_client.custom_certificates.with_raw_response.delete(
-                "",
+                custom_certificate_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         custom_certificate = await async_client.custom_certificates.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CustomCertificateEditResponse], custom_certificate, path=["response"])
@@ -460,7 +460,7 @@ class TestAsyncCustomCertificates:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         custom_certificate = await async_client.custom_certificates.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             bundle_method="ubiquitous",
             certificate="-----BEGIN CERTIFICATE-----\nMIIDtTCCAp2gAwIBAgIJAMHAwfXZ5/PWMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV\nBAYTAkFVMRMwEQYDVQQIEwpTb21lLVN0YXRlMSEwHwYDVQQKExhJbnRlcm5ldCBX\naWRnaXRzIFB0eSBMdGQwHhcNMTYwODI0MTY0MzAxWhcNMTYxMTIyMTY0MzAxWjBF\nMQswCQYDVQQGEwJBVTETMBEGA1UECBMKU29tZS1TdGF0ZTEhMB8GA1UEChMYSW50\nZXJuZXQgV2lkZ2l0cyBQdHkgTHRkMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB\nCgKCAQEAwQHoetcl9+5ikGzV6cMzWtWPJHqXT3wpbEkRU9Yz7lgvddmGdtcGbg/1\nCGZu0jJGkMoppoUo4c3dts3iwqRYmBikUP77wwY2QGmDZw2FvkJCJlKnabIRuGvB\nKwzESIXgKk2016aTP6/dAjEHyo6SeoK8lkIySUvK0fyOVlsiEsCmOpidtnKX/a+5\n0GjB79CJH4ER2lLVZnhePFR/zUOyPxZQQ4naHf7yu/b5jhO0f8fwt+pyFxIXjbEI\ndZliWRkRMtzrHOJIhrmJ2A1J7iOrirbbwillwjjNVUWPf3IJ3M12S9pEewooaeO2\nizNTERcG9HzAacbVRn2Y2SWIyT/18QIDAQABo4GnMIGkMB0GA1UdDgQWBBT/LbE4\n9rWf288N6sJA5BRb6FJIGDB1BgNVHSMEbjBsgBT/LbE49rWf288N6sJA5BRb6FJI\nGKFJpEcwRTELMAkGA1UEBhMCQVUxEzARBgNVBAgTClNvbWUtU3RhdGUxITAfBgNV\nBAoTGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZIIJAMHAwfXZ5/PWMAwGA1UdEwQF\nMAMBAf8wDQYJKoZIhvcNAQELBQADggEBAHHFwl0tH0quUYZYO0dZYt4R7SJ0pCm2\n2satiyzHl4OnXcHDpekAo7/a09c6Lz6AU83cKy/+x3/djYHXWba7HpEu0dR3ugQP\nMlr4zrhd9xKZ0KZKiYmtJH+ak4OM4L3FbT0owUZPyjLSlhMtJVcoRp5CJsjAMBUG\nSvD8RX+T01wzox/Qb+lnnNnOlaWpqu8eoOenybxKp1a9ULzIVvN/LAcc+14vioFq\n2swRWtmocBAs8QR9n4uvbpiYvS8eYueDCWMM4fvFfBhaDZ3N9IbtySh3SpFdQDhw\nYbjM2rxXiyLGxB4Bol7QTv4zHif7Zt89FReT/NBy4rzaskDJY5L6xmY=\n-----END CERTIFICATE-----\n",
@@ -473,7 +473,7 @@ class TestAsyncCustomCertificates:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_certificates.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -485,7 +485,7 @@ class TestAsyncCustomCertificates:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_certificates.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -500,20 +500,20 @@ class TestAsyncCustomCertificates:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.custom_certificates.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_certificate_id` but received ''"):
             await async_client.custom_certificates.with_raw_response.edit(
-                "",
+                custom_certificate_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         custom_certificate = await async_client.custom_certificates.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CustomCertificateGetResponse], custom_certificate, path=["response"])
@@ -521,7 +521,7 @@ class TestAsyncCustomCertificates:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_certificates.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -533,7 +533,7 @@ class TestAsyncCustomCertificates:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_certificates.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -548,12 +548,12 @@ class TestAsyncCustomCertificates:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.custom_certificates.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                custom_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_certificate_id` but received ''"):
             await async_client.custom_certificates.with_raw_response.get(
-                "",
+                custom_certificate_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

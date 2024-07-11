@@ -20,7 +20,7 @@ class TestPredefined:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         predefined = client.zero_trust.dlp.profiles.predefined.update(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PredefinedProfile, predefined, path=["response"])
@@ -28,7 +28,7 @@ class TestPredefined:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         predefined = client.zero_trust.dlp.profiles.predefined.update(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             allowed_match_count=5,
             context_awareness={
@@ -43,7 +43,7 @@ class TestPredefined:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.profiles.predefined.with_raw_response.update(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -55,7 +55,7 @@ class TestPredefined:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.dlp.profiles.predefined.with_streaming_response.update(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -70,20 +70,20 @@ class TestPredefined:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.dlp.profiles.predefined.with_raw_response.update(
-                "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+                profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
             client.zero_trust.dlp.profiles.predefined.with_raw_response.update(
-                "",
+                profile_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         predefined = client.zero_trust.dlp.profiles.predefined.get(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PredefinedProfile, predefined, path=["response"])
@@ -91,7 +91,7 @@ class TestPredefined:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.profiles.predefined.with_raw_response.get(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -103,7 +103,7 @@ class TestPredefined:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.dlp.profiles.predefined.with_streaming_response.get(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -118,13 +118,13 @@ class TestPredefined:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.dlp.profiles.predefined.with_raw_response.get(
-                "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+                profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
             client.zero_trust.dlp.profiles.predefined.with_raw_response.get(
-                "",
+                profile_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -135,7 +135,7 @@ class TestAsyncPredefined:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         predefined = await async_client.zero_trust.dlp.profiles.predefined.update(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PredefinedProfile, predefined, path=["response"])
@@ -143,7 +143,7 @@ class TestAsyncPredefined:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         predefined = await async_client.zero_trust.dlp.profiles.predefined.update(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             allowed_match_count=5,
             context_awareness={
@@ -158,7 +158,7 @@ class TestAsyncPredefined:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dlp.profiles.predefined.with_raw_response.update(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -170,7 +170,7 @@ class TestAsyncPredefined:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dlp.profiles.predefined.with_streaming_response.update(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -185,20 +185,20 @@ class TestAsyncPredefined:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.dlp.profiles.predefined.with_raw_response.update(
-                "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+                profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
             await async_client.zero_trust.dlp.profiles.predefined.with_raw_response.update(
-                "",
+                profile_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         predefined = await async_client.zero_trust.dlp.profiles.predefined.get(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PredefinedProfile, predefined, path=["response"])
@@ -206,7 +206,7 @@ class TestAsyncPredefined:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dlp.profiles.predefined.with_raw_response.get(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -218,7 +218,7 @@ class TestAsyncPredefined:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dlp.profiles.predefined.with_streaming_response.get(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -233,12 +233,12 @@ class TestAsyncPredefined:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.dlp.profiles.predefined.with_raw_response.get(
-                "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+                profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
             await async_client.zero_trust.dlp.profiles.predefined.with_raw_response.get(
-                "",
+                profile_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

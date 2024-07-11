@@ -24,7 +24,7 @@ class TestBookmarks:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         bookmark = client.zero_trust.access.bookmarks.create(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
@@ -33,7 +33,7 @@ class TestBookmarks:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.bookmarks.with_raw_response.create(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
@@ -46,7 +46,7 @@ class TestBookmarks:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.access.bookmarks.with_streaming_response.create(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         ) as response:
@@ -62,14 +62,14 @@ class TestBookmarks:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.bookmarks.with_raw_response.create(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bookmark_id` but received ''"):
             client.zero_trust.access.bookmarks.with_raw_response.create(
-                "",
+                bookmark_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
                 body={},
             )
@@ -77,7 +77,7 @@ class TestBookmarks:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         bookmark = client.zero_trust.access.bookmarks.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
@@ -86,7 +86,7 @@ class TestBookmarks:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.bookmarks.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
@@ -99,7 +99,7 @@ class TestBookmarks:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.access.bookmarks.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         ) as response:
@@ -115,14 +115,14 @@ class TestBookmarks:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.bookmarks.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bookmark_id` but received ''"):
             client.zero_trust.access.bookmarks.with_raw_response.update(
-                "",
+                bookmark_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
                 body={},
             )
@@ -168,7 +168,7 @@ class TestBookmarks:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         bookmark = client.zero_trust.access.bookmarks.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[BookmarkDeleteResponse], bookmark, path=["response"])
@@ -176,7 +176,7 @@ class TestBookmarks:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.bookmarks.with_raw_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -188,7 +188,7 @@ class TestBookmarks:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.access.bookmarks.with_streaming_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -203,20 +203,20 @@ class TestBookmarks:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.bookmarks.with_raw_response.delete(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bookmark_id` but received ''"):
             client.zero_trust.access.bookmarks.with_raw_response.delete(
-                "",
+                bookmark_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         bookmark = client.zero_trust.access.bookmarks.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[Bookmark], bookmark, path=["response"])
@@ -224,7 +224,7 @@ class TestBookmarks:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.bookmarks.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -236,7 +236,7 @@ class TestBookmarks:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.access.bookmarks.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -251,13 +251,13 @@ class TestBookmarks:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.bookmarks.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bookmark_id` but received ''"):
             client.zero_trust.access.bookmarks.with_raw_response.get(
-                "",
+                bookmark_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
@@ -268,7 +268,7 @@ class TestAsyncBookmarks:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         bookmark = await async_client.zero_trust.access.bookmarks.create(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
@@ -277,7 +277,7 @@ class TestAsyncBookmarks:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.bookmarks.with_raw_response.create(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
@@ -290,7 +290,7 @@ class TestAsyncBookmarks:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.bookmarks.with_streaming_response.create(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         ) as response:
@@ -306,14 +306,14 @@ class TestAsyncBookmarks:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.bookmarks.with_raw_response.create(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bookmark_id` but received ''"):
             await async_client.zero_trust.access.bookmarks.with_raw_response.create(
-                "",
+                bookmark_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
                 body={},
             )
@@ -321,7 +321,7 @@ class TestAsyncBookmarks:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         bookmark = await async_client.zero_trust.access.bookmarks.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
@@ -330,7 +330,7 @@ class TestAsyncBookmarks:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.bookmarks.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         )
@@ -343,7 +343,7 @@ class TestAsyncBookmarks:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.bookmarks.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             body={},
         ) as response:
@@ -359,14 +359,14 @@ class TestAsyncBookmarks:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.bookmarks.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bookmark_id` but received ''"):
             await async_client.zero_trust.access.bookmarks.with_raw_response.update(
-                "",
+                bookmark_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
                 body={},
             )
@@ -412,7 +412,7 @@ class TestAsyncBookmarks:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         bookmark = await async_client.zero_trust.access.bookmarks.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[BookmarkDeleteResponse], bookmark, path=["response"])
@@ -420,7 +420,7 @@ class TestAsyncBookmarks:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.bookmarks.with_raw_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -432,7 +432,7 @@ class TestAsyncBookmarks:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.bookmarks.with_streaming_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -447,20 +447,20 @@ class TestAsyncBookmarks:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.bookmarks.with_raw_response.delete(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bookmark_id` but received ''"):
             await async_client.zero_trust.access.bookmarks.with_raw_response.delete(
-                "",
+                bookmark_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         bookmark = await async_client.zero_trust.access.bookmarks.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[Bookmark], bookmark, path=["response"])
@@ -468,7 +468,7 @@ class TestAsyncBookmarks:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.bookmarks.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -480,7 +480,7 @@ class TestAsyncBookmarks:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.bookmarks.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -495,12 +495,12 @@ class TestAsyncBookmarks:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.bookmarks.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                bookmark_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bookmark_id` but received ''"):
             await async_client.zero_trust.access.bookmarks.with_raw_response.get(
-                "",
+                bookmark_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )

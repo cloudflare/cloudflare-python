@@ -131,7 +131,7 @@ class TestTunnels:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         tunnel = client.zero_trust.tunnels.delete(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(TunnelDeleteResponse, tunnel, path=["response"])
@@ -139,7 +139,7 @@ class TestTunnels:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.tunnels.with_raw_response.delete(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -151,7 +151,7 @@ class TestTunnels:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.tunnels.with_streaming_response.delete(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -166,20 +166,20 @@ class TestTunnels:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.tunnels.with_raw_response.delete(
-                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             client.zero_trust.tunnels.with_raw_response.delete(
-                "",
+                tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         tunnel = client.zero_trust.tunnels.edit(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(TunnelEditResponse, tunnel, path=["response"])
@@ -187,7 +187,7 @@ class TestTunnels:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         tunnel = client.zero_trust.tunnels.edit(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
             tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
@@ -197,7 +197,7 @@ class TestTunnels:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.zero_trust.tunnels.with_raw_response.edit(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -209,7 +209,7 @@ class TestTunnels:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.zero_trust.tunnels.with_streaming_response.edit(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -224,20 +224,20 @@ class TestTunnels:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.tunnels.with_raw_response.edit(
-                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             client.zero_trust.tunnels.with_raw_response.edit(
-                "",
+                tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         tunnel = client.zero_trust.tunnels.get(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(TunnelGetResponse, tunnel, path=["response"])
@@ -245,7 +245,7 @@ class TestTunnels:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.tunnels.with_raw_response.get(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -257,7 +257,7 @@ class TestTunnels:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.tunnels.with_streaming_response.get(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -272,13 +272,13 @@ class TestTunnels:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.tunnels.with_raw_response.get(
-                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             client.zero_trust.tunnels.with_raw_response.get(
-                "",
+                tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
@@ -392,7 +392,7 @@ class TestAsyncTunnels:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         tunnel = await async_client.zero_trust.tunnels.delete(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(TunnelDeleteResponse, tunnel, path=["response"])
@@ -400,7 +400,7 @@ class TestAsyncTunnels:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.tunnels.with_raw_response.delete(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -412,7 +412,7 @@ class TestAsyncTunnels:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.tunnels.with_streaming_response.delete(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -427,20 +427,20 @@ class TestAsyncTunnels:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.tunnels.with_raw_response.delete(
-                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             await async_client.zero_trust.tunnels.with_raw_response.delete(
-                "",
+                tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         tunnel = await async_client.zero_trust.tunnels.edit(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(TunnelEditResponse, tunnel, path=["response"])
@@ -448,7 +448,7 @@ class TestAsyncTunnels:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         tunnel = await async_client.zero_trust.tunnels.edit(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="blog",
             tunnel_secret="AQIDBAUGBwgBAgMEBQYHCAECAwQFBgcIAQIDBAUGBwg=",
@@ -458,7 +458,7 @@ class TestAsyncTunnels:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.tunnels.with_raw_response.edit(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -470,7 +470,7 @@ class TestAsyncTunnels:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.tunnels.with_streaming_response.edit(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -485,20 +485,20 @@ class TestAsyncTunnels:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.tunnels.with_raw_response.edit(
-                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             await async_client.zero_trust.tunnels.with_raw_response.edit(
-                "",
+                tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         tunnel = await async_client.zero_trust.tunnels.get(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(TunnelGetResponse, tunnel, path=["response"])
@@ -506,7 +506,7 @@ class TestAsyncTunnels:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.tunnels.with_raw_response.get(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -518,7 +518,7 @@ class TestAsyncTunnels:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.tunnels.with_streaming_response.get(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -533,12 +533,12 @@ class TestAsyncTunnels:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.tunnels.with_raw_response.get(
-                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             await async_client.zero_trust.tunnels.with_raw_response.get(
-                "",
+                tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )

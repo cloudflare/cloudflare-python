@@ -23,7 +23,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_1(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="0rtt",
             value="on",
@@ -33,7 +33,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_1(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="0rtt",
             value="on",
@@ -47,7 +47,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_1(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="0rtt",
             value="on",
@@ -64,7 +64,7 @@ class TestSettings:
     def test_path_params_edit_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="0rtt",
                 value="on",
@@ -72,7 +72,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="0rtt",
                 value="on",
@@ -81,7 +81,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_2(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="advanced_ddos",
             value="on",
@@ -91,7 +91,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_2(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="advanced_ddos",
             value="on",
@@ -105,7 +105,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_2(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="advanced_ddos",
             value="on",
@@ -122,7 +122,7 @@ class TestSettings:
     def test_path_params_edit_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="advanced_ddos",
                 value="on",
@@ -130,7 +130,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="advanced_ddos",
                 value="on",
@@ -139,7 +139,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_3(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="always_online",
             value="on",
@@ -149,7 +149,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_3(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="always_online",
             value="on",
@@ -163,7 +163,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_3(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="always_online",
             value="on",
@@ -180,7 +180,7 @@ class TestSettings:
     def test_path_params_edit_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="always_online",
                 value="on",
@@ -188,7 +188,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="always_online",
                 value="on",
@@ -197,7 +197,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_4(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="always_use_https",
             value="on",
@@ -207,7 +207,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_4(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="always_use_https",
             value="on",
@@ -221,7 +221,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_4(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="always_use_https",
             value="on",
@@ -238,7 +238,7 @@ class TestSettings:
     def test_path_params_edit_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="always_use_https",
                 value="on",
@@ -246,7 +246,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="always_use_https",
                 value="on",
@@ -255,7 +255,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_5(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="automatic_https_rewrites",
             value="on",
@@ -265,7 +265,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_5(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="automatic_https_rewrites",
             value="on",
@@ -279,7 +279,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_5(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="automatic_https_rewrites",
             value="on",
@@ -296,7 +296,7 @@ class TestSettings:
     def test_path_params_edit_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="automatic_https_rewrites",
                 value="on",
@@ -304,7 +304,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="automatic_https_rewrites",
                 value="on",
@@ -313,7 +313,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_6(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="brotli",
             value="on",
@@ -323,7 +323,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_6(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="brotli",
             value="on",
@@ -337,7 +337,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_6(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="brotli",
             value="on",
@@ -354,7 +354,7 @@ class TestSettings:
     def test_path_params_edit_overload_6(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="brotli",
                 value="on",
@@ -362,7 +362,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="brotli",
                 value="on",
@@ -371,7 +371,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_7(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="browser_cache_ttl",
             value=0,
@@ -381,7 +381,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_7(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="browser_cache_ttl",
             value=0,
@@ -395,7 +395,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_7(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="browser_cache_ttl",
             value=0,
@@ -412,7 +412,7 @@ class TestSettings:
     def test_path_params_edit_overload_7(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="browser_cache_ttl",
                 value=0,
@@ -420,7 +420,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="browser_cache_ttl",
                 value=0,
@@ -429,7 +429,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_8(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="browser_check",
             value="on",
@@ -439,7 +439,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_8(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="browser_check",
             value="on",
@@ -453,7 +453,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_8(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="browser_check",
             value="on",
@@ -470,7 +470,7 @@ class TestSettings:
     def test_path_params_edit_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="browser_check",
                 value="on",
@@ -478,7 +478,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="browser_check",
                 value="on",
@@ -487,7 +487,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_9(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="cache_level",
             value="aggressive",
@@ -497,7 +497,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_9(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="cache_level",
             value="aggressive",
@@ -511,7 +511,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_9(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="cache_level",
             value="aggressive",
@@ -528,7 +528,7 @@ class TestSettings:
     def test_path_params_edit_overload_9(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="cache_level",
                 value="aggressive",
@@ -536,7 +536,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="cache_level",
                 value="aggressive",
@@ -545,7 +545,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_10(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="challenge_ttl",
             value=300,
@@ -555,7 +555,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_10(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="challenge_ttl",
             value=300,
@@ -569,7 +569,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_10(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="challenge_ttl",
             value=300,
@@ -586,7 +586,7 @@ class TestSettings:
     def test_path_params_edit_overload_10(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="challenge_ttl",
                 value=300,
@@ -594,7 +594,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="challenge_ttl",
                 value=300,
@@ -603,7 +603,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_11(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ciphers",
             value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
@@ -613,7 +613,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_11(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ciphers",
             value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
@@ -627,7 +627,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_11(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ciphers",
             value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
@@ -644,7 +644,7 @@ class TestSettings:
     def test_path_params_edit_overload_11(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="ciphers",
                 value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
@@ -652,7 +652,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="ciphers",
                 value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
@@ -661,7 +661,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_12(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="cname_flattening",
             value="flatten_at_root",
@@ -671,7 +671,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_12(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="cname_flattening",
             value="flatten_at_root",
@@ -685,7 +685,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_12(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="cname_flattening",
             value="flatten_at_root",
@@ -702,7 +702,7 @@ class TestSettings:
     def test_path_params_edit_overload_12(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="cname_flattening",
                 value="flatten_at_root",
@@ -710,7 +710,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="cname_flattening",
                 value="flatten_at_root",
@@ -719,7 +719,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_13(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="development_mode",
             value="on",
@@ -729,7 +729,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_13(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="development_mode",
             value="on",
@@ -743,7 +743,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_13(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="development_mode",
             value="on",
@@ -760,7 +760,7 @@ class TestSettings:
     def test_path_params_edit_overload_13(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="development_mode",
                 value="on",
@@ -768,7 +768,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="development_mode",
                 value="on",
@@ -777,7 +777,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_14(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="early_hints",
             value="on",
@@ -787,7 +787,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_14(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="early_hints",
             value="on",
@@ -801,7 +801,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_14(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="early_hints",
             value="on",
@@ -818,7 +818,7 @@ class TestSettings:
     def test_path_params_edit_overload_14(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="early_hints",
                 value="on",
@@ -826,7 +826,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="early_hints",
                 value="on",
@@ -835,7 +835,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_15(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="edge_cache_ttl",
             value=30,
@@ -845,7 +845,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_15(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="edge_cache_ttl",
             value=30,
@@ -859,7 +859,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_15(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="edge_cache_ttl",
             value=30,
@@ -876,7 +876,7 @@ class TestSettings:
     def test_path_params_edit_overload_15(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="edge_cache_ttl",
                 value=30,
@@ -884,7 +884,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="edge_cache_ttl",
                 value=30,
@@ -893,7 +893,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_16(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="email_obfuscation",
             value="on",
@@ -903,7 +903,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_16(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="email_obfuscation",
             value="on",
@@ -917,7 +917,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_16(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="email_obfuscation",
             value="on",
@@ -934,7 +934,7 @@ class TestSettings:
     def test_path_params_edit_overload_16(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="email_obfuscation",
                 value="on",
@@ -942,7 +942,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="email_obfuscation",
                 value="on",
@@ -951,7 +951,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_17(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="h2_prioritization",
             value="on",
@@ -961,7 +961,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_17(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="h2_prioritization",
             value="on",
@@ -975,7 +975,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_17(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="h2_prioritization",
             value="on",
@@ -992,7 +992,7 @@ class TestSettings:
     def test_path_params_edit_overload_17(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="h2_prioritization",
                 value="on",
@@ -1000,7 +1000,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="h2_prioritization",
                 value="on",
@@ -1009,7 +1009,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_18(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="hotlink_protection",
             value="on",
@@ -1019,7 +1019,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_18(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="hotlink_protection",
             value="on",
@@ -1033,7 +1033,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_18(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="hotlink_protection",
             value="on",
@@ -1050,7 +1050,7 @@ class TestSettings:
     def test_path_params_edit_overload_18(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="hotlink_protection",
                 value="on",
@@ -1058,7 +1058,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="hotlink_protection",
                 value="on",
@@ -1067,7 +1067,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_19(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="http2",
             value="on",
@@ -1077,7 +1077,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_19(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="http2",
             value="on",
@@ -1091,7 +1091,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_19(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="http2",
             value="on",
@@ -1108,7 +1108,7 @@ class TestSettings:
     def test_path_params_edit_overload_19(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="http2",
                 value="on",
@@ -1116,7 +1116,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="http2",
                 value="on",
@@ -1125,7 +1125,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_20(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="http3",
             value="on",
@@ -1135,7 +1135,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_20(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="http3",
             value="on",
@@ -1149,7 +1149,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_20(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="http3",
             value="on",
@@ -1166,7 +1166,7 @@ class TestSettings:
     def test_path_params_edit_overload_20(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="http3",
                 value="on",
@@ -1174,7 +1174,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="http3",
                 value="on",
@@ -1183,7 +1183,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_21(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="image_resizing",
             value="on",
@@ -1193,7 +1193,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_21(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="image_resizing",
             value="on",
@@ -1207,7 +1207,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_21(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="image_resizing",
             value="on",
@@ -1224,7 +1224,7 @@ class TestSettings:
     def test_path_params_edit_overload_21(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="image_resizing",
                 value="on",
@@ -1232,7 +1232,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="image_resizing",
                 value="on",
@@ -1241,7 +1241,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_22(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ip_geolocation",
             value="on",
@@ -1251,7 +1251,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_22(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ip_geolocation",
             value="on",
@@ -1265,7 +1265,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_22(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ip_geolocation",
             value="on",
@@ -1282,7 +1282,7 @@ class TestSettings:
     def test_path_params_edit_overload_22(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="ip_geolocation",
                 value="on",
@@ -1290,7 +1290,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="ip_geolocation",
                 value="on",
@@ -1299,7 +1299,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_23(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ipv6",
             value="on",
@@ -1309,7 +1309,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_23(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ipv6",
             value="on",
@@ -1323,7 +1323,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_23(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ipv6",
             value="on",
@@ -1340,7 +1340,7 @@ class TestSettings:
     def test_path_params_edit_overload_23(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="ipv6",
                 value="on",
@@ -1348,7 +1348,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="ipv6",
                 value="on",
@@ -1357,7 +1357,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_24(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="max_upload",
             value=100,
@@ -1367,7 +1367,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_24(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="max_upload",
             value=100,
@@ -1381,7 +1381,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_24(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="max_upload",
             value=100,
@@ -1398,7 +1398,7 @@ class TestSettings:
     def test_path_params_edit_overload_24(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="max_upload",
                 value=100,
@@ -1406,7 +1406,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="max_upload",
                 value=100,
@@ -1415,7 +1415,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_25(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="min_tls_version",
             value="1.0",
@@ -1425,7 +1425,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_25(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="min_tls_version",
             value="1.0",
@@ -1439,7 +1439,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_25(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="min_tls_version",
             value="1.0",
@@ -1456,7 +1456,7 @@ class TestSettings:
     def test_path_params_edit_overload_25(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="min_tls_version",
                 value="1.0",
@@ -1464,7 +1464,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="min_tls_version",
                 value="1.0",
@@ -1473,7 +1473,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_26(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="minify",
             value={},
@@ -1483,7 +1483,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_with_all_params_overload_26(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="minify",
             value={
@@ -1497,7 +1497,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_26(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="minify",
             value={},
@@ -1511,7 +1511,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_26(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="minify",
             value={},
@@ -1528,7 +1528,7 @@ class TestSettings:
     def test_path_params_edit_overload_26(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="minify",
                 value={},
@@ -1536,7 +1536,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="minify",
                 value={},
@@ -1545,7 +1545,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_27(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="mirage",
             value="on",
@@ -1555,7 +1555,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_27(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="mirage",
             value="on",
@@ -1569,7 +1569,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_27(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="mirage",
             value="on",
@@ -1586,7 +1586,7 @@ class TestSettings:
     def test_path_params_edit_overload_27(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="mirage",
                 value="on",
@@ -1594,7 +1594,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="mirage",
                 value="on",
@@ -1603,7 +1603,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_28(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="mobile_redirect",
             value={},
@@ -1613,7 +1613,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_with_all_params_overload_28(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="mobile_redirect",
             value={
@@ -1627,7 +1627,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_28(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="mobile_redirect",
             value={},
@@ -1641,7 +1641,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_28(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="mobile_redirect",
             value={},
@@ -1658,7 +1658,7 @@ class TestSettings:
     def test_path_params_edit_overload_28(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="mobile_redirect",
                 value={},
@@ -1666,7 +1666,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="mobile_redirect",
                 value={},
@@ -1675,7 +1675,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_29(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="nel",
             value={},
@@ -1685,7 +1685,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_with_all_params_overload_29(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="nel",
             value={"enabled": False},
@@ -1695,7 +1695,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_29(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="nel",
             value={},
@@ -1709,7 +1709,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_29(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="nel",
             value={},
@@ -1726,7 +1726,7 @@ class TestSettings:
     def test_path_params_edit_overload_29(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="nel",
                 value={},
@@ -1734,7 +1734,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="nel",
                 value={},
@@ -1743,7 +1743,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_30(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="opportunistic_encryption",
             value="on",
@@ -1753,7 +1753,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_30(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="opportunistic_encryption",
             value="on",
@@ -1767,7 +1767,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_30(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="opportunistic_encryption",
             value="on",
@@ -1784,7 +1784,7 @@ class TestSettings:
     def test_path_params_edit_overload_30(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="opportunistic_encryption",
                 value="on",
@@ -1792,7 +1792,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="opportunistic_encryption",
                 value="on",
@@ -1801,7 +1801,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_31(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="opportunistic_onion",
             value="on",
@@ -1811,7 +1811,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_31(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="opportunistic_onion",
             value="on",
@@ -1825,7 +1825,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_31(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="opportunistic_onion",
             value="on",
@@ -1842,7 +1842,7 @@ class TestSettings:
     def test_path_params_edit_overload_31(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="opportunistic_onion",
                 value="on",
@@ -1850,7 +1850,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="opportunistic_onion",
                 value="on",
@@ -1859,7 +1859,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_32(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="orange_to_orange",
             value="on",
@@ -1869,7 +1869,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_32(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="orange_to_orange",
             value="on",
@@ -1883,7 +1883,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_32(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="orange_to_orange",
             value="on",
@@ -1900,7 +1900,7 @@ class TestSettings:
     def test_path_params_edit_overload_32(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="orange_to_orange",
                 value="on",
@@ -1908,7 +1908,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="orange_to_orange",
                 value="on",
@@ -1917,7 +1917,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_33(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="origin_error_page_pass_thru",
             value="on",
@@ -1927,7 +1927,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_33(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="origin_error_page_pass_thru",
             value="on",
@@ -1941,7 +1941,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_33(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="origin_error_page_pass_thru",
             value="on",
@@ -1958,7 +1958,7 @@ class TestSettings:
     def test_path_params_edit_overload_33(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="origin_error_page_pass_thru",
                 value="on",
@@ -1966,7 +1966,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="origin_error_page_pass_thru",
                 value="on",
@@ -1975,7 +1975,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_34(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="polish",
             value="off",
@@ -1985,7 +1985,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_34(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="polish",
             value="off",
@@ -1999,7 +1999,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_34(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="polish",
             value="off",
@@ -2016,7 +2016,7 @@ class TestSettings:
     def test_path_params_edit_overload_34(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="polish",
                 value="off",
@@ -2024,7 +2024,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="polish",
                 value="off",
@@ -2033,7 +2033,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_35(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="prefetch_preload",
             value="on",
@@ -2043,7 +2043,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_35(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="prefetch_preload",
             value="on",
@@ -2057,7 +2057,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_35(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="prefetch_preload",
             value="on",
@@ -2074,7 +2074,7 @@ class TestSettings:
     def test_path_params_edit_overload_35(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="prefetch_preload",
                 value="on",
@@ -2082,7 +2082,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="prefetch_preload",
                 value="on",
@@ -2091,7 +2091,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_36(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="proxy_read_timeout",
             value=0,
@@ -2101,7 +2101,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_36(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="proxy_read_timeout",
             value=0,
@@ -2115,7 +2115,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_36(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="proxy_read_timeout",
             value=0,
@@ -2132,7 +2132,7 @@ class TestSettings:
     def test_path_params_edit_overload_36(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="proxy_read_timeout",
                 value=0,
@@ -2140,7 +2140,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="proxy_read_timeout",
                 value=0,
@@ -2149,7 +2149,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_37(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="pseudo_ipv4",
             value="off",
@@ -2159,7 +2159,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_37(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="pseudo_ipv4",
             value="off",
@@ -2173,7 +2173,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_37(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="pseudo_ipv4",
             value="off",
@@ -2190,7 +2190,7 @@ class TestSettings:
     def test_path_params_edit_overload_37(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="pseudo_ipv4",
                 value="off",
@@ -2198,7 +2198,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="pseudo_ipv4",
                 value="off",
@@ -2207,7 +2207,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_38(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="replace_insecure_js",
             value="on",
@@ -2217,7 +2217,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_38(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="replace_insecure_js",
             value="on",
@@ -2231,7 +2231,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_38(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="replace_insecure_js",
             value="on",
@@ -2248,7 +2248,7 @@ class TestSettings:
     def test_path_params_edit_overload_38(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="replace_insecure_js",
                 value="on",
@@ -2256,7 +2256,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="replace_insecure_js",
                 value="on",
@@ -2265,7 +2265,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_39(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="response_buffering",
             value="on",
@@ -2275,7 +2275,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_39(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="response_buffering",
             value="on",
@@ -2289,7 +2289,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_39(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="response_buffering",
             value="on",
@@ -2306,7 +2306,7 @@ class TestSettings:
     def test_path_params_edit_overload_39(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="response_buffering",
                 value="on",
@@ -2314,7 +2314,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="response_buffering",
                 value="on",
@@ -2323,7 +2323,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_40(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="rocket_loader",
             value="on",
@@ -2333,7 +2333,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_40(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="rocket_loader",
             value="on",
@@ -2347,7 +2347,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_40(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="rocket_loader",
             value="on",
@@ -2364,7 +2364,7 @@ class TestSettings:
     def test_path_params_edit_overload_40(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="rocket_loader",
                 value="on",
@@ -2372,7 +2372,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="rocket_loader",
                 value="on",
@@ -2381,7 +2381,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_41(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="automatic_platform_optimization",
             value={
@@ -2398,7 +2398,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_41(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="automatic_platform_optimization",
             value={
@@ -2419,7 +2419,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_41(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="automatic_platform_optimization",
             value={
@@ -2443,7 +2443,7 @@ class TestSettings:
     def test_path_params_edit_overload_41(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="automatic_platform_optimization",
                 value={
@@ -2458,7 +2458,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="automatic_platform_optimization",
                 value={
@@ -2474,7 +2474,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_42(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="security_header",
             value={},
@@ -2484,7 +2484,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_with_all_params_overload_42(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="security_header",
             value={
@@ -2502,7 +2502,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_42(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="security_header",
             value={},
@@ -2516,7 +2516,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_42(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="security_header",
             value={},
@@ -2533,7 +2533,7 @@ class TestSettings:
     def test_path_params_edit_overload_42(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="security_header",
                 value={},
@@ -2541,7 +2541,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="security_header",
                 value={},
@@ -2550,7 +2550,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_43(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="security_level",
             value="off",
@@ -2560,7 +2560,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_43(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="security_level",
             value="off",
@@ -2574,7 +2574,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_43(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="security_level",
             value="off",
@@ -2591,7 +2591,7 @@ class TestSettings:
     def test_path_params_edit_overload_43(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="security_level",
                 value="off",
@@ -2599,7 +2599,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="security_level",
                 value="off",
@@ -2608,7 +2608,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_44(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="server_side_exclude",
             value="on",
@@ -2618,7 +2618,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_44(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="server_side_exclude",
             value="on",
@@ -2632,7 +2632,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_44(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="server_side_exclude",
             value="on",
@@ -2649,7 +2649,7 @@ class TestSettings:
     def test_path_params_edit_overload_44(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="server_side_exclude",
                 value="on",
@@ -2657,7 +2657,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="server_side_exclude",
                 value="on",
@@ -2666,7 +2666,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_45(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sha1_support",
             value="on",
@@ -2676,7 +2676,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_45(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sha1_support",
             value="on",
@@ -2690,7 +2690,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_45(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sha1_support",
             value="on",
@@ -2707,7 +2707,7 @@ class TestSettings:
     def test_path_params_edit_overload_45(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="sha1_support",
                 value="on",
@@ -2715,7 +2715,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="sha1_support",
                 value="on",
@@ -2724,7 +2724,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_46(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sort_query_string_for_cache",
             value="on",
@@ -2734,7 +2734,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_46(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sort_query_string_for_cache",
             value="on",
@@ -2748,7 +2748,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_46(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sort_query_string_for_cache",
             value="on",
@@ -2765,7 +2765,7 @@ class TestSettings:
     def test_path_params_edit_overload_46(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="sort_query_string_for_cache",
                 value="on",
@@ -2773,7 +2773,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="sort_query_string_for_cache",
                 value="on",
@@ -2782,7 +2782,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_47(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ssl",
             value="off",
@@ -2792,7 +2792,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_47(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ssl",
             value="off",
@@ -2806,7 +2806,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_47(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ssl",
             value="off",
@@ -2823,7 +2823,7 @@ class TestSettings:
     def test_path_params_edit_overload_47(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="ssl",
                 value="off",
@@ -2831,7 +2831,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="ssl",
                 value="off",
@@ -2840,7 +2840,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_48(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
@@ -2848,7 +2848,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_with_all_params_overload_48(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ssl_recommender",
             enabled=True,
@@ -2858,7 +2858,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_48(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -2870,7 +2870,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_48(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -2885,20 +2885,20 @@ class TestSettings:
     def test_path_params_edit_overload_48(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_edit_overload_49(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_2_only",
             value="on",
@@ -2908,7 +2908,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_49(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_2_only",
             value="on",
@@ -2922,7 +2922,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_49(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_2_only",
             value="on",
@@ -2939,7 +2939,7 @@ class TestSettings:
     def test_path_params_edit_overload_49(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="tls_1_2_only",
                 value="on",
@@ -2947,7 +2947,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="tls_1_2_only",
                 value="on",
@@ -2956,7 +2956,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_50(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_3",
             value="on",
@@ -2966,7 +2966,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_50(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_3",
             value="on",
@@ -2980,7 +2980,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_50(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_3",
             value="on",
@@ -2997,7 +2997,7 @@ class TestSettings:
     def test_path_params_edit_overload_50(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="tls_1_3",
                 value="on",
@@ -3005,7 +3005,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="tls_1_3",
                 value="on",
@@ -3014,7 +3014,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_51(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_client_auth",
             value="on",
@@ -3024,7 +3024,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_51(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_client_auth",
             value="on",
@@ -3038,7 +3038,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_51(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_client_auth",
             value="on",
@@ -3055,7 +3055,7 @@ class TestSettings:
     def test_path_params_edit_overload_51(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="tls_client_auth",
                 value="on",
@@ -3063,7 +3063,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="tls_client_auth",
                 value="on",
@@ -3072,7 +3072,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_52(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="true_client_ip_header",
             value="on",
@@ -3082,7 +3082,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_52(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="true_client_ip_header",
             value="on",
@@ -3096,7 +3096,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_52(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="true_client_ip_header",
             value="on",
@@ -3113,7 +3113,7 @@ class TestSettings:
     def test_path_params_edit_overload_52(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="true_client_ip_header",
                 value="on",
@@ -3121,7 +3121,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="true_client_ip_header",
                 value="on",
@@ -3130,7 +3130,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_53(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="waf",
             value="on",
@@ -3140,7 +3140,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_53(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="waf",
             value="on",
@@ -3154,7 +3154,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_53(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="waf",
             value="on",
@@ -3171,7 +3171,7 @@ class TestSettings:
     def test_path_params_edit_overload_53(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="waf",
                 value="on",
@@ -3179,7 +3179,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="waf",
                 value="on",
@@ -3188,7 +3188,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_54(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="webp",
             value="on",
@@ -3198,7 +3198,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_54(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="webp",
             value="on",
@@ -3212,7 +3212,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_54(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="webp",
             value="on",
@@ -3229,7 +3229,7 @@ class TestSettings:
     def test_path_params_edit_overload_54(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="webp",
                 value="on",
@@ -3237,7 +3237,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="webp",
                 value="on",
@@ -3246,7 +3246,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_overload_55(self, client: Cloudflare) -> None:
         setting = client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="websockets",
             value="on",
@@ -3256,7 +3256,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit_overload_55(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="websockets",
             value="on",
@@ -3270,7 +3270,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit_overload_55(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="websockets",
             value="on",
@@ -3287,7 +3287,7 @@ class TestSettings:
     def test_path_params_edit_overload_55(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="websockets",
                 value="on",
@@ -3295,7 +3295,7 @@ class TestSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="websockets",
                 value="on",
@@ -3304,7 +3304,7 @@ class TestSettings:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         setting = client.zones.settings.get(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
@@ -3312,7 +3312,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zones.settings.with_raw_response.get(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -3324,7 +3324,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zones.settings.with_streaming_response.get(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -3339,13 +3339,13 @@ class TestSettings:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zones.settings.with_raw_response.get(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             client.zones.settings.with_raw_response.get(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -3356,7 +3356,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="0rtt",
             value="on",
@@ -3366,7 +3366,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="0rtt",
             value="on",
@@ -3380,7 +3380,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="0rtt",
             value="on",
@@ -3397,7 +3397,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="0rtt",
                 value="on",
@@ -3405,7 +3405,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="0rtt",
                 value="on",
@@ -3414,7 +3414,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="advanced_ddos",
             value="on",
@@ -3424,7 +3424,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="advanced_ddos",
             value="on",
@@ -3438,7 +3438,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="advanced_ddos",
             value="on",
@@ -3455,7 +3455,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="advanced_ddos",
                 value="on",
@@ -3463,7 +3463,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="advanced_ddos",
                 value="on",
@@ -3472,7 +3472,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="always_online",
             value="on",
@@ -3482,7 +3482,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="always_online",
             value="on",
@@ -3496,7 +3496,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="always_online",
             value="on",
@@ -3513,7 +3513,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="always_online",
                 value="on",
@@ -3521,7 +3521,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="always_online",
                 value="on",
@@ -3530,7 +3530,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="always_use_https",
             value="on",
@@ -3540,7 +3540,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="always_use_https",
             value="on",
@@ -3554,7 +3554,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="always_use_https",
             value="on",
@@ -3571,7 +3571,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="always_use_https",
                 value="on",
@@ -3579,7 +3579,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="always_use_https",
                 value="on",
@@ -3588,7 +3588,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_5(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="automatic_https_rewrites",
             value="on",
@@ -3598,7 +3598,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="automatic_https_rewrites",
             value="on",
@@ -3612,7 +3612,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="automatic_https_rewrites",
             value="on",
@@ -3629,7 +3629,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="automatic_https_rewrites",
                 value="on",
@@ -3637,7 +3637,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="automatic_https_rewrites",
                 value="on",
@@ -3646,7 +3646,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_6(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="brotli",
             value="on",
@@ -3656,7 +3656,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_6(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="brotli",
             value="on",
@@ -3670,7 +3670,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_6(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="brotli",
             value="on",
@@ -3687,7 +3687,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_6(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="brotli",
                 value="on",
@@ -3695,7 +3695,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="brotli",
                 value="on",
@@ -3704,7 +3704,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_7(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="browser_cache_ttl",
             value=0,
@@ -3714,7 +3714,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_7(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="browser_cache_ttl",
             value=0,
@@ -3728,7 +3728,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_7(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="browser_cache_ttl",
             value=0,
@@ -3745,7 +3745,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_7(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="browser_cache_ttl",
                 value=0,
@@ -3753,7 +3753,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="browser_cache_ttl",
                 value=0,
@@ -3762,7 +3762,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_8(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="browser_check",
             value="on",
@@ -3772,7 +3772,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_8(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="browser_check",
             value="on",
@@ -3786,7 +3786,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_8(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="browser_check",
             value="on",
@@ -3803,7 +3803,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="browser_check",
                 value="on",
@@ -3811,7 +3811,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="browser_check",
                 value="on",
@@ -3820,7 +3820,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_9(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="cache_level",
             value="aggressive",
@@ -3830,7 +3830,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_9(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="cache_level",
             value="aggressive",
@@ -3844,7 +3844,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_9(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="cache_level",
             value="aggressive",
@@ -3861,7 +3861,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_9(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="cache_level",
                 value="aggressive",
@@ -3869,7 +3869,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="cache_level",
                 value="aggressive",
@@ -3878,7 +3878,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_10(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="challenge_ttl",
             value=300,
@@ -3888,7 +3888,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_10(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="challenge_ttl",
             value=300,
@@ -3902,7 +3902,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_10(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="challenge_ttl",
             value=300,
@@ -3919,7 +3919,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_10(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="challenge_ttl",
                 value=300,
@@ -3927,7 +3927,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="challenge_ttl",
                 value=300,
@@ -3936,7 +3936,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_11(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ciphers",
             value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
@@ -3946,7 +3946,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_11(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ciphers",
             value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
@@ -3960,7 +3960,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_11(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ciphers",
             value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
@@ -3977,7 +3977,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_11(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="ciphers",
                 value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
@@ -3985,7 +3985,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="ciphers",
                 value=["ECDHE-RSA-AES128-GCM-SHA256", "AES128-SHA"],
@@ -3994,7 +3994,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_12(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="cname_flattening",
             value="flatten_at_root",
@@ -4004,7 +4004,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_12(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="cname_flattening",
             value="flatten_at_root",
@@ -4018,7 +4018,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_12(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="cname_flattening",
             value="flatten_at_root",
@@ -4035,7 +4035,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_12(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="cname_flattening",
                 value="flatten_at_root",
@@ -4043,7 +4043,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="cname_flattening",
                 value="flatten_at_root",
@@ -4052,7 +4052,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_13(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="development_mode",
             value="on",
@@ -4062,7 +4062,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_13(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="development_mode",
             value="on",
@@ -4076,7 +4076,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_13(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="development_mode",
             value="on",
@@ -4093,7 +4093,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_13(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="development_mode",
                 value="on",
@@ -4101,7 +4101,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="development_mode",
                 value="on",
@@ -4110,7 +4110,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_14(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="early_hints",
             value="on",
@@ -4120,7 +4120,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_14(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="early_hints",
             value="on",
@@ -4134,7 +4134,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_14(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="early_hints",
             value="on",
@@ -4151,7 +4151,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_14(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="early_hints",
                 value="on",
@@ -4159,7 +4159,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="early_hints",
                 value="on",
@@ -4168,7 +4168,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_15(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="edge_cache_ttl",
             value=30,
@@ -4178,7 +4178,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_15(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="edge_cache_ttl",
             value=30,
@@ -4192,7 +4192,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_15(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="edge_cache_ttl",
             value=30,
@@ -4209,7 +4209,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_15(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="edge_cache_ttl",
                 value=30,
@@ -4217,7 +4217,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="edge_cache_ttl",
                 value=30,
@@ -4226,7 +4226,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_16(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="email_obfuscation",
             value="on",
@@ -4236,7 +4236,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_16(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="email_obfuscation",
             value="on",
@@ -4250,7 +4250,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_16(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="email_obfuscation",
             value="on",
@@ -4267,7 +4267,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_16(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="email_obfuscation",
                 value="on",
@@ -4275,7 +4275,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="email_obfuscation",
                 value="on",
@@ -4284,7 +4284,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_17(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="h2_prioritization",
             value="on",
@@ -4294,7 +4294,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_17(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="h2_prioritization",
             value="on",
@@ -4308,7 +4308,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_17(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="h2_prioritization",
             value="on",
@@ -4325,7 +4325,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_17(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="h2_prioritization",
                 value="on",
@@ -4333,7 +4333,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="h2_prioritization",
                 value="on",
@@ -4342,7 +4342,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="hotlink_protection",
             value="on",
@@ -4352,7 +4352,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="hotlink_protection",
             value="on",
@@ -4366,7 +4366,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="hotlink_protection",
             value="on",
@@ -4383,7 +4383,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_18(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="hotlink_protection",
                 value="on",
@@ -4391,7 +4391,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="hotlink_protection",
                 value="on",
@@ -4400,7 +4400,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="http2",
             value="on",
@@ -4410,7 +4410,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="http2",
             value="on",
@@ -4424,7 +4424,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="http2",
             value="on",
@@ -4441,7 +4441,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_19(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="http2",
                 value="on",
@@ -4449,7 +4449,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="http2",
                 value="on",
@@ -4458,7 +4458,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="http3",
             value="on",
@@ -4468,7 +4468,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="http3",
             value="on",
@@ -4482,7 +4482,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="http3",
             value="on",
@@ -4499,7 +4499,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_20(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="http3",
                 value="on",
@@ -4507,7 +4507,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="http3",
                 value="on",
@@ -4516,7 +4516,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_21(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="image_resizing",
             value="on",
@@ -4526,7 +4526,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_21(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="image_resizing",
             value="on",
@@ -4540,7 +4540,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_21(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="image_resizing",
             value="on",
@@ -4557,7 +4557,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_21(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="image_resizing",
                 value="on",
@@ -4565,7 +4565,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="image_resizing",
                 value="on",
@@ -4574,7 +4574,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_22(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ip_geolocation",
             value="on",
@@ -4584,7 +4584,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_22(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ip_geolocation",
             value="on",
@@ -4598,7 +4598,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_22(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ip_geolocation",
             value="on",
@@ -4615,7 +4615,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_22(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="ip_geolocation",
                 value="on",
@@ -4623,7 +4623,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="ip_geolocation",
                 value="on",
@@ -4632,7 +4632,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_23(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ipv6",
             value="on",
@@ -4642,7 +4642,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_23(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ipv6",
             value="on",
@@ -4656,7 +4656,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_23(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ipv6",
             value="on",
@@ -4673,7 +4673,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_23(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="ipv6",
                 value="on",
@@ -4681,7 +4681,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="ipv6",
                 value="on",
@@ -4690,7 +4690,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_24(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="max_upload",
             value=100,
@@ -4700,7 +4700,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_24(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="max_upload",
             value=100,
@@ -4714,7 +4714,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_24(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="max_upload",
             value=100,
@@ -4731,7 +4731,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_24(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="max_upload",
                 value=100,
@@ -4739,7 +4739,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="max_upload",
                 value=100,
@@ -4748,7 +4748,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_25(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="min_tls_version",
             value="1.0",
@@ -4758,7 +4758,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_25(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="min_tls_version",
             value="1.0",
@@ -4772,7 +4772,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_25(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="min_tls_version",
             value="1.0",
@@ -4789,7 +4789,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_25(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="min_tls_version",
                 value="1.0",
@@ -4797,7 +4797,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="min_tls_version",
                 value="1.0",
@@ -4806,7 +4806,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_26(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="minify",
             value={},
@@ -4816,7 +4816,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_with_all_params_overload_26(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="minify",
             value={
@@ -4830,7 +4830,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_26(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="minify",
             value={},
@@ -4844,7 +4844,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_26(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="minify",
             value={},
@@ -4861,7 +4861,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_26(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="minify",
                 value={},
@@ -4869,7 +4869,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="minify",
                 value={},
@@ -4878,7 +4878,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_27(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="mirage",
             value="on",
@@ -4888,7 +4888,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_27(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="mirage",
             value="on",
@@ -4902,7 +4902,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_27(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="mirage",
             value="on",
@@ -4919,7 +4919,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_27(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="mirage",
                 value="on",
@@ -4927,7 +4927,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="mirage",
                 value="on",
@@ -4936,7 +4936,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_28(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="mobile_redirect",
             value={},
@@ -4946,7 +4946,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_with_all_params_overload_28(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="mobile_redirect",
             value={
@@ -4960,7 +4960,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_28(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="mobile_redirect",
             value={},
@@ -4974,7 +4974,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_28(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="mobile_redirect",
             value={},
@@ -4991,7 +4991,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_28(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="mobile_redirect",
                 value={},
@@ -4999,7 +4999,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="mobile_redirect",
                 value={},
@@ -5008,7 +5008,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_29(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="nel",
             value={},
@@ -5018,7 +5018,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_with_all_params_overload_29(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="nel",
             value={"enabled": False},
@@ -5028,7 +5028,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_29(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="nel",
             value={},
@@ -5042,7 +5042,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_29(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="nel",
             value={},
@@ -5059,7 +5059,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_29(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="nel",
                 value={},
@@ -5067,7 +5067,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="nel",
                 value={},
@@ -5076,7 +5076,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_30(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="opportunistic_encryption",
             value="on",
@@ -5086,7 +5086,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_30(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="opportunistic_encryption",
             value="on",
@@ -5100,7 +5100,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_30(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="opportunistic_encryption",
             value="on",
@@ -5117,7 +5117,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_30(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="opportunistic_encryption",
                 value="on",
@@ -5125,7 +5125,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="opportunistic_encryption",
                 value="on",
@@ -5134,7 +5134,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_31(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="opportunistic_onion",
             value="on",
@@ -5144,7 +5144,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_31(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="opportunistic_onion",
             value="on",
@@ -5158,7 +5158,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_31(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="opportunistic_onion",
             value="on",
@@ -5175,7 +5175,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_31(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="opportunistic_onion",
                 value="on",
@@ -5183,7 +5183,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="opportunistic_onion",
                 value="on",
@@ -5192,7 +5192,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_32(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="orange_to_orange",
             value="on",
@@ -5202,7 +5202,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_32(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="orange_to_orange",
             value="on",
@@ -5216,7 +5216,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_32(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="orange_to_orange",
             value="on",
@@ -5233,7 +5233,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_32(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="orange_to_orange",
                 value="on",
@@ -5241,7 +5241,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="orange_to_orange",
                 value="on",
@@ -5250,7 +5250,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_33(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="origin_error_page_pass_thru",
             value="on",
@@ -5260,7 +5260,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_33(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="origin_error_page_pass_thru",
             value="on",
@@ -5274,7 +5274,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_33(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="origin_error_page_pass_thru",
             value="on",
@@ -5291,7 +5291,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_33(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="origin_error_page_pass_thru",
                 value="on",
@@ -5299,7 +5299,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="origin_error_page_pass_thru",
                 value="on",
@@ -5308,7 +5308,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_34(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="polish",
             value="off",
@@ -5318,7 +5318,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_34(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="polish",
             value="off",
@@ -5332,7 +5332,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_34(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="polish",
             value="off",
@@ -5349,7 +5349,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_34(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="polish",
                 value="off",
@@ -5357,7 +5357,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="polish",
                 value="off",
@@ -5366,7 +5366,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_35(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="prefetch_preload",
             value="on",
@@ -5376,7 +5376,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_35(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="prefetch_preload",
             value="on",
@@ -5390,7 +5390,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_35(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="prefetch_preload",
             value="on",
@@ -5407,7 +5407,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_35(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="prefetch_preload",
                 value="on",
@@ -5415,7 +5415,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="prefetch_preload",
                 value="on",
@@ -5424,7 +5424,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_36(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="proxy_read_timeout",
             value=0,
@@ -5434,7 +5434,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_36(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="proxy_read_timeout",
             value=0,
@@ -5448,7 +5448,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_36(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="proxy_read_timeout",
             value=0,
@@ -5465,7 +5465,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_36(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="proxy_read_timeout",
                 value=0,
@@ -5473,7 +5473,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="proxy_read_timeout",
                 value=0,
@@ -5482,7 +5482,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_37(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="pseudo_ipv4",
             value="off",
@@ -5492,7 +5492,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_37(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="pseudo_ipv4",
             value="off",
@@ -5506,7 +5506,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_37(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="pseudo_ipv4",
             value="off",
@@ -5523,7 +5523,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_37(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="pseudo_ipv4",
                 value="off",
@@ -5531,7 +5531,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="pseudo_ipv4",
                 value="off",
@@ -5540,7 +5540,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_38(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="replace_insecure_js",
             value="on",
@@ -5550,7 +5550,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_38(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="replace_insecure_js",
             value="on",
@@ -5564,7 +5564,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_38(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="replace_insecure_js",
             value="on",
@@ -5581,7 +5581,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_38(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="replace_insecure_js",
                 value="on",
@@ -5589,7 +5589,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="replace_insecure_js",
                 value="on",
@@ -5598,7 +5598,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_39(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="response_buffering",
             value="on",
@@ -5608,7 +5608,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_39(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="response_buffering",
             value="on",
@@ -5622,7 +5622,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_39(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="response_buffering",
             value="on",
@@ -5639,7 +5639,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_39(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="response_buffering",
                 value="on",
@@ -5647,7 +5647,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="response_buffering",
                 value="on",
@@ -5656,7 +5656,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_40(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="rocket_loader",
             value="on",
@@ -5666,7 +5666,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_40(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="rocket_loader",
             value="on",
@@ -5680,7 +5680,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_40(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="rocket_loader",
             value="on",
@@ -5697,7 +5697,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_40(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="rocket_loader",
                 value="on",
@@ -5705,7 +5705,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="rocket_loader",
                 value="on",
@@ -5714,7 +5714,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_41(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="automatic_platform_optimization",
             value={
@@ -5731,7 +5731,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_41(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="automatic_platform_optimization",
             value={
@@ -5752,7 +5752,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_41(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="automatic_platform_optimization",
             value={
@@ -5776,7 +5776,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_41(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="automatic_platform_optimization",
                 value={
@@ -5791,7 +5791,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="automatic_platform_optimization",
                 value={
@@ -5807,7 +5807,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_42(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="security_header",
             value={},
@@ -5817,7 +5817,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_with_all_params_overload_42(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="security_header",
             value={
@@ -5835,7 +5835,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_42(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="security_header",
             value={},
@@ -5849,7 +5849,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_42(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="security_header",
             value={},
@@ -5866,7 +5866,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_42(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="security_header",
                 value={},
@@ -5874,7 +5874,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="security_header",
                 value={},
@@ -5883,7 +5883,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_43(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="security_level",
             value="off",
@@ -5893,7 +5893,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_43(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="security_level",
             value="off",
@@ -5907,7 +5907,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_43(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="security_level",
             value="off",
@@ -5924,7 +5924,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_43(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="security_level",
                 value="off",
@@ -5932,7 +5932,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="security_level",
                 value="off",
@@ -5941,7 +5941,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_44(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="server_side_exclude",
             value="on",
@@ -5951,7 +5951,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_44(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="server_side_exclude",
             value="on",
@@ -5965,7 +5965,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_44(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="server_side_exclude",
             value="on",
@@ -5982,7 +5982,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_44(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="server_side_exclude",
                 value="on",
@@ -5990,7 +5990,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="server_side_exclude",
                 value="on",
@@ -5999,7 +5999,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_45(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sha1_support",
             value="on",
@@ -6009,7 +6009,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_45(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sha1_support",
             value="on",
@@ -6023,7 +6023,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_45(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sha1_support",
             value="on",
@@ -6040,7 +6040,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_45(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="sha1_support",
                 value="on",
@@ -6048,7 +6048,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="sha1_support",
                 value="on",
@@ -6057,7 +6057,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_46(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sort_query_string_for_cache",
             value="on",
@@ -6067,7 +6067,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_46(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sort_query_string_for_cache",
             value="on",
@@ -6081,7 +6081,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_46(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sort_query_string_for_cache",
             value="on",
@@ -6098,7 +6098,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_46(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="sort_query_string_for_cache",
                 value="on",
@@ -6106,7 +6106,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="sort_query_string_for_cache",
                 value="on",
@@ -6115,7 +6115,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_47(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ssl",
             value="off",
@@ -6125,7 +6125,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_47(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ssl",
             value="off",
@@ -6139,7 +6139,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_47(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ssl",
             value="off",
@@ -6156,7 +6156,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_47(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="ssl",
                 value="off",
@@ -6164,7 +6164,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="ssl",
                 value="off",
@@ -6173,7 +6173,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_48(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
@@ -6181,7 +6181,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_with_all_params_overload_48(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ssl_recommender",
             enabled=True,
@@ -6191,7 +6191,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_48(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -6203,7 +6203,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_48(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -6218,20 +6218,20 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_48(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_edit_overload_49(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_2_only",
             value="on",
@@ -6241,7 +6241,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_49(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_2_only",
             value="on",
@@ -6255,7 +6255,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_49(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_2_only",
             value="on",
@@ -6272,7 +6272,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_49(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="tls_1_2_only",
                 value="on",
@@ -6280,7 +6280,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="tls_1_2_only",
                 value="on",
@@ -6289,7 +6289,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_50(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_3",
             value="on",
@@ -6299,7 +6299,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_50(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_3",
             value="on",
@@ -6313,7 +6313,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_50(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_3",
             value="on",
@@ -6330,7 +6330,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_50(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="tls_1_3",
                 value="on",
@@ -6338,7 +6338,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="tls_1_3",
                 value="on",
@@ -6347,7 +6347,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_51(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_client_auth",
             value="on",
@@ -6357,7 +6357,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_51(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_client_auth",
             value="on",
@@ -6371,7 +6371,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_51(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_client_auth",
             value="on",
@@ -6388,7 +6388,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_51(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="tls_client_auth",
                 value="on",
@@ -6396,7 +6396,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="tls_client_auth",
                 value="on",
@@ -6405,7 +6405,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_52(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="true_client_ip_header",
             value="on",
@@ -6415,7 +6415,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_52(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="true_client_ip_header",
             value="on",
@@ -6429,7 +6429,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_52(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="true_client_ip_header",
             value="on",
@@ -6446,7 +6446,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_52(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="true_client_ip_header",
                 value="on",
@@ -6454,7 +6454,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="true_client_ip_header",
                 value="on",
@@ -6463,7 +6463,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_53(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="waf",
             value="on",
@@ -6473,7 +6473,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_53(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="waf",
             value="on",
@@ -6487,7 +6487,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_53(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="waf",
             value="on",
@@ -6504,7 +6504,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_53(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="waf",
                 value="on",
@@ -6512,7 +6512,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="waf",
                 value="on",
@@ -6521,7 +6521,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_54(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="webp",
             value="on",
@@ -6531,7 +6531,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_54(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="webp",
             value="on",
@@ -6545,7 +6545,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_54(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="webp",
             value="on",
@@ -6562,7 +6562,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_54(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="webp",
                 value="on",
@@ -6570,7 +6570,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="webp",
                 value="on",
@@ -6579,7 +6579,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_overload_55(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="websockets",
             value="on",
@@ -6589,7 +6589,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit_overload_55(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="websockets",
             value="on",
@@ -6603,7 +6603,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit_overload_55(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.edit(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="websockets",
             value="on",
@@ -6620,7 +6620,7 @@ class TestAsyncSettings:
     async def test_path_params_edit_overload_55(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
                 id="websockets",
                 value="on",
@@ -6628,7 +6628,7 @@ class TestAsyncSettings:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.edit(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="websockets",
                 value="on",
@@ -6637,7 +6637,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zones.settings.get(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[SettingGetResponse], setting, path=["response"])
@@ -6645,7 +6645,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.settings.with_raw_response.get(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -6657,7 +6657,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.settings.with_streaming_response.get(
-            "always_online",
+            setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -6672,12 +6672,12 @@ class TestAsyncSettings:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zones.settings.with_raw_response.get(
-                "always_online",
+                setting_id="always_online",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
             await async_client.zones.settings.with_raw_response.get(
-                "",
+                setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

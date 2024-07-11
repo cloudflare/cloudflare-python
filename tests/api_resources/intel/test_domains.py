@@ -28,7 +28,7 @@ class TestDomains:
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         domain = client.intel.domains.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            domain="string",
+            domain="domain",
         )
         assert_matches_type(Optional[Domain], domain, path=["response"])
 
@@ -78,7 +78,7 @@ class TestAsyncDomains:
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         domain = await async_client.intel.domains.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            domain="string",
+            domain="domain",
         )
         assert_matches_type(Optional[Domain], domain, path=["response"])
 

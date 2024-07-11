@@ -20,7 +20,7 @@ class TestReferences:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         reference = client.load_balancers.pools.references.get(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ReferenceGetResponse], reference, path=["response"])
@@ -28,7 +28,7 @@ class TestReferences:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.load_balancers.pools.references.with_raw_response.get(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -40,7 +40,7 @@ class TestReferences:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.load_balancers.pools.references.with_streaming_response.get(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -55,13 +55,13 @@ class TestReferences:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.load_balancers.pools.references.with_raw_response.get(
-                "17b5962d775c646f3f9725cbc7a53df4",
+                pool_id="17b5962d775c646f3f9725cbc7a53df4",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             client.load_balancers.pools.references.with_raw_response.get(
-                "",
+                pool_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -72,7 +72,7 @@ class TestAsyncReferences:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         reference = await async_client.load_balancers.pools.references.get(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ReferenceGetResponse], reference, path=["response"])
@@ -80,7 +80,7 @@ class TestAsyncReferences:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.pools.references.with_raw_response.get(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -92,7 +92,7 @@ class TestAsyncReferences:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.pools.references.with_streaming_response.get(
-            "17b5962d775c646f3f9725cbc7a53df4",
+            pool_id="17b5962d775c646f3f9725cbc7a53df4",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -107,12 +107,12 @@ class TestAsyncReferences:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.load_balancers.pools.references.with_raw_response.get(
-                "17b5962d775c646f3f9725cbc7a53df4",
+                pool_id="17b5962d775c646f3f9725cbc7a53df4",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pool_id` but received ''"):
             await async_client.load_balancers.pools.references.with_raw_response.get(
-                "",
+                pool_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

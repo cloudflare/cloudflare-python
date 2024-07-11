@@ -26,7 +26,7 @@ class TestVersions:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         version = client.workers.scripts.versions.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
@@ -35,13 +35,13 @@ class TestVersions:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         version = client.workers.scripts.versions.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
             metadata={
                 "annotations": {
                     "workers_message": "Fixed worker code.",
-                    "workers_tag": "string",
+                    "workers_tag": "workers/tag",
                 },
                 "bindings": [
                     {
@@ -63,7 +63,7 @@ class TestVersions:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.workers.scripts.versions.with_raw_response.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -76,7 +76,7 @@ class TestVersions:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.workers.scripts.versions.with_streaming_response.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -92,20 +92,20 @@ class TestVersions:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.scripts.versions.with_raw_response.create(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.versions.with_raw_response.create(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         version = client.workers.scripts.versions.list(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncV4PagePagination[VersionListResponse], version, path=["response"])
@@ -113,7 +113,7 @@ class TestVersions:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         version = client.workers.scripts.versions.list(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             deployable=True,
             page=0,
@@ -124,7 +124,7 @@ class TestVersions:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.workers.scripts.versions.with_raw_response.list(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -136,7 +136,7 @@ class TestVersions:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.workers.scripts.versions.with_streaming_response.list(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -151,20 +151,20 @@ class TestVersions:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.scripts.versions.with_raw_response.list(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.versions.with_raw_response.list(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         version = client.workers.scripts.versions.get(
-            "bcf48806-b317-4351-9ee7-36e7d557d4de",
+            version_id="bcf48806-b317-4351-9ee7-36e7d557d4de",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         )
@@ -173,7 +173,7 @@ class TestVersions:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.workers.scripts.versions.with_raw_response.get(
-            "bcf48806-b317-4351-9ee7-36e7d557d4de",
+            version_id="bcf48806-b317-4351-9ee7-36e7d557d4de",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         )
@@ -186,7 +186,7 @@ class TestVersions:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.workers.scripts.versions.with_streaming_response.get(
-            "bcf48806-b317-4351-9ee7-36e7d557d4de",
+            version_id="bcf48806-b317-4351-9ee7-36e7d557d4de",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         ) as response:
@@ -202,21 +202,21 @@ class TestVersions:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.scripts.versions.with_raw_response.get(
-                "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                version_id="bcf48806-b317-4351-9ee7-36e7d557d4de",
                 account_id="",
                 script_name="this-is_my_script-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.versions.with_raw_response.get(
-                "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                version_id="bcf48806-b317-4351-9ee7-36e7d557d4de",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 script_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `version_id` but received ''"):
             client.workers.scripts.versions.with_raw_response.get(
-                "",
+                version_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 script_name="this-is_my_script-01",
             )
@@ -229,7 +229,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         version = await async_client.workers.scripts.versions.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[VersionCreateResponse], version, path=["response"])
@@ -238,13 +238,13 @@ class TestAsyncVersions:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         version = await async_client.workers.scripts.versions.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
             metadata={
                 "annotations": {
                     "workers_message": "Fixed worker code.",
-                    "workers_tag": "string",
+                    "workers_tag": "workers/tag",
                 },
                 "bindings": [
                     {
@@ -266,7 +266,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.versions.with_raw_response.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -279,7 +279,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.versions.with_streaming_response.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -295,20 +295,20 @@ class TestAsyncVersions:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.scripts.versions.with_raw_response.create(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.versions.with_raw_response.create(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         version = await async_client.workers.scripts.versions.list(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncV4PagePagination[VersionListResponse], version, path=["response"])
@@ -316,7 +316,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         version = await async_client.workers.scripts.versions.list(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             deployable=True,
             page=0,
@@ -327,7 +327,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.versions.with_raw_response.list(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -339,7 +339,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.versions.with_streaming_response.list(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -354,20 +354,20 @@ class TestAsyncVersions:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.scripts.versions.with_raw_response.list(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.versions.with_raw_response.list(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         version = await async_client.workers.scripts.versions.get(
-            "bcf48806-b317-4351-9ee7-36e7d557d4de",
+            version_id="bcf48806-b317-4351-9ee7-36e7d557d4de",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         )
@@ -376,7 +376,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.versions.with_raw_response.get(
-            "bcf48806-b317-4351-9ee7-36e7d557d4de",
+            version_id="bcf48806-b317-4351-9ee7-36e7d557d4de",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         )
@@ -389,7 +389,7 @@ class TestAsyncVersions:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.versions.with_streaming_response.get(
-            "bcf48806-b317-4351-9ee7-36e7d557d4de",
+            version_id="bcf48806-b317-4351-9ee7-36e7d557d4de",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         ) as response:
@@ -405,21 +405,21 @@ class TestAsyncVersions:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.scripts.versions.with_raw_response.get(
-                "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                version_id="bcf48806-b317-4351-9ee7-36e7d557d4de",
                 account_id="",
                 script_name="this-is_my_script-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.versions.with_raw_response.get(
-                "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                version_id="bcf48806-b317-4351-9ee7-36e7d557d4de",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 script_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `version_id` but received ''"):
             await async_client.workers.scripts.versions.with_raw_response.get(
-                "",
+                version_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 script_name="this-is_my_script-01",
             )

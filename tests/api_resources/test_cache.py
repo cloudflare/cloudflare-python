@@ -20,14 +20,14 @@ class TestCache:
     @parametrize
     def test_method_purge_overload_1(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
     @parametrize
     def test_method_purge_with_all_params_overload_1(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
             tags=["a-cache-tag", "another-cache-tag"],
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
@@ -35,7 +35,7 @@ class TestCache:
     @parametrize
     def test_raw_response_purge_overload_1(self, client: Cloudflare) -> None:
         response = client.cache.with_raw_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -46,7 +46,7 @@ class TestCache:
     @parametrize
     def test_streaming_response_purge_overload_1(self, client: Cloudflare) -> None:
         with client.cache.with_streaming_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -66,14 +66,14 @@ class TestCache:
     @parametrize
     def test_method_purge_overload_2(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
     @parametrize
     def test_method_purge_with_all_params_overload_2(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
             hosts=["www.example.com", "images.example.com"],
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
@@ -81,7 +81,7 @@ class TestCache:
     @parametrize
     def test_raw_response_purge_overload_2(self, client: Cloudflare) -> None:
         response = client.cache.with_raw_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -92,7 +92,7 @@ class TestCache:
     @parametrize
     def test_streaming_response_purge_overload_2(self, client: Cloudflare) -> None:
         with client.cache.with_streaming_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -112,14 +112,14 @@ class TestCache:
     @parametrize
     def test_method_purge_overload_3(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
     @parametrize
     def test_method_purge_with_all_params_overload_3(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
             prefixes=["www.example.com/foo", "images.example.com/bar/baz"],
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
@@ -127,7 +127,7 @@ class TestCache:
     @parametrize
     def test_raw_response_purge_overload_3(self, client: Cloudflare) -> None:
         response = client.cache.with_raw_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -138,7 +138,7 @@ class TestCache:
     @parametrize
     def test_streaming_response_purge_overload_3(self, client: Cloudflare) -> None:
         with client.cache.with_streaming_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -158,14 +158,14 @@ class TestCache:
     @parametrize
     def test_method_purge_overload_4(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
     @parametrize
     def test_method_purge_with_all_params_overload_4(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
             purge_everything=True,
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
@@ -173,7 +173,7 @@ class TestCache:
     @parametrize
     def test_raw_response_purge_overload_4(self, client: Cloudflare) -> None:
         response = client.cache.with_raw_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -184,7 +184,7 @@ class TestCache:
     @parametrize
     def test_streaming_response_purge_overload_4(self, client: Cloudflare) -> None:
         with client.cache.with_streaming_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -204,14 +204,14 @@ class TestCache:
     @parametrize
     def test_method_purge_overload_5(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
     @parametrize
     def test_method_purge_with_all_params_overload_5(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
             files=["http://www.example.com/css/styles.css", "http://www.example.com/js/index.js"],
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
@@ -219,7 +219,7 @@ class TestCache:
     @parametrize
     def test_raw_response_purge_overload_5(self, client: Cloudflare) -> None:
         response = client.cache.with_raw_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -230,7 +230,7 @@ class TestCache:
     @parametrize
     def test_streaming_response_purge_overload_5(self, client: Cloudflare) -> None:
         with client.cache.with_streaming_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -250,14 +250,14 @@ class TestCache:
     @parametrize
     def test_method_purge_overload_6(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
     @parametrize
     def test_method_purge_with_all_params_overload_6(self, client: Cloudflare) -> None:
         cache = client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
             files=[
                 {
                     "headers": {
@@ -282,7 +282,7 @@ class TestCache:
     @parametrize
     def test_raw_response_purge_overload_6(self, client: Cloudflare) -> None:
         response = client.cache.with_raw_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -293,7 +293,7 @@ class TestCache:
     @parametrize
     def test_streaming_response_purge_overload_6(self, client: Cloudflare) -> None:
         with client.cache.with_streaming_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -317,14 +317,14 @@ class TestAsyncCache:
     @parametrize
     async def test_method_purge_overload_1(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
     @parametrize
     async def test_method_purge_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
             tags=["a-cache-tag", "another-cache-tag"],
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
@@ -332,7 +332,7 @@ class TestAsyncCache:
     @parametrize
     async def test_raw_response_purge_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.with_raw_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -343,7 +343,7 @@ class TestAsyncCache:
     @parametrize
     async def test_streaming_response_purge_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.with_streaming_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -363,14 +363,14 @@ class TestAsyncCache:
     @parametrize
     async def test_method_purge_overload_2(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
     @parametrize
     async def test_method_purge_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
             hosts=["www.example.com", "images.example.com"],
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
@@ -378,7 +378,7 @@ class TestAsyncCache:
     @parametrize
     async def test_raw_response_purge_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.with_raw_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -389,7 +389,7 @@ class TestAsyncCache:
     @parametrize
     async def test_streaming_response_purge_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.with_streaming_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -409,14 +409,14 @@ class TestAsyncCache:
     @parametrize
     async def test_method_purge_overload_3(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
     @parametrize
     async def test_method_purge_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
             prefixes=["www.example.com/foo", "images.example.com/bar/baz"],
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
@@ -424,7 +424,7 @@ class TestAsyncCache:
     @parametrize
     async def test_raw_response_purge_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.with_raw_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -435,7 +435,7 @@ class TestAsyncCache:
     @parametrize
     async def test_streaming_response_purge_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.with_streaming_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -455,14 +455,14 @@ class TestAsyncCache:
     @parametrize
     async def test_method_purge_overload_4(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
     @parametrize
     async def test_method_purge_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
             purge_everything=True,
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
@@ -470,7 +470,7 @@ class TestAsyncCache:
     @parametrize
     async def test_raw_response_purge_overload_4(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.with_raw_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -481,7 +481,7 @@ class TestAsyncCache:
     @parametrize
     async def test_streaming_response_purge_overload_4(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.with_streaming_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -501,14 +501,14 @@ class TestAsyncCache:
     @parametrize
     async def test_method_purge_overload_5(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
     @parametrize
     async def test_method_purge_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
             files=["http://www.example.com/css/styles.css", "http://www.example.com/js/index.js"],
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
@@ -516,7 +516,7 @@ class TestAsyncCache:
     @parametrize
     async def test_raw_response_purge_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.with_raw_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -527,7 +527,7 @@ class TestAsyncCache:
     @parametrize
     async def test_streaming_response_purge_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.with_streaming_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -547,14 +547,14 @@ class TestAsyncCache:
     @parametrize
     async def test_method_purge_overload_6(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
         assert_matches_type(Optional[CachePurgeResponse], cache, path=["response"])
 
     @parametrize
     async def test_method_purge_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
         cache = await async_client.cache.purge(
-            zone_id="string",
+            zone_id="zone_id",
             files=[
                 {
                     "headers": {
@@ -579,7 +579,7 @@ class TestAsyncCache:
     @parametrize
     async def test_raw_response_purge_overload_6(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.cache.with_raw_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         )
 
         assert response.is_closed is True
@@ -590,7 +590,7 @@ class TestAsyncCache:
     @parametrize
     async def test_streaming_response_purge_overload_6(self, async_client: AsyncCloudflare) -> None:
         async with async_client.cache.with_streaming_response.purge(
-            zone_id="string",
+            zone_id="zone_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

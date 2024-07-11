@@ -110,7 +110,7 @@ class TestCertificates:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         certificate = client.origin_tls_client_auth.hostnames.certificates.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CertificateDeleteResponse], certificate, path=["response"])
@@ -118,7 +118,7 @@ class TestCertificates:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.origin_tls_client_auth.hostnames.certificates.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -130,7 +130,7 @@ class TestCertificates:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.origin_tls_client_auth.hostnames.certificates.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -145,20 +145,20 @@ class TestCertificates:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.origin_tls_client_auth.hostnames.certificates.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_id` but received ''"):
             client.origin_tls_client_auth.hostnames.certificates.with_raw_response.delete(
-                "",
+                certificate_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         certificate = client.origin_tls_client_auth.hostnames.certificates.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CertificateGetResponse], certificate, path=["response"])
@@ -166,7 +166,7 @@ class TestCertificates:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.origin_tls_client_auth.hostnames.certificates.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -178,7 +178,7 @@ class TestCertificates:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.origin_tls_client_auth.hostnames.certificates.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -193,13 +193,13 @@ class TestCertificates:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.origin_tls_client_auth.hostnames.certificates.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_id` but received ''"):
             client.origin_tls_client_auth.hostnames.certificates.with_raw_response.get(
-                "",
+                certificate_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -294,7 +294,7 @@ class TestAsyncCertificates:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         certificate = await async_client.origin_tls_client_auth.hostnames.certificates.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CertificateDeleteResponse], certificate, path=["response"])
@@ -302,7 +302,7 @@ class TestAsyncCertificates:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.origin_tls_client_auth.hostnames.certificates.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -314,7 +314,7 @@ class TestAsyncCertificates:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.origin_tls_client_auth.hostnames.certificates.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -329,20 +329,20 @@ class TestAsyncCertificates:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.origin_tls_client_auth.hostnames.certificates.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_id` but received ''"):
             await async_client.origin_tls_client_auth.hostnames.certificates.with_raw_response.delete(
-                "",
+                certificate_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         certificate = await async_client.origin_tls_client_auth.hostnames.certificates.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CertificateGetResponse], certificate, path=["response"])
@@ -350,7 +350,7 @@ class TestAsyncCertificates:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.origin_tls_client_auth.hostnames.certificates.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -362,7 +362,7 @@ class TestAsyncCertificates:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.origin_tls_client_auth.hostnames.certificates.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -377,12 +377,12 @@ class TestAsyncCertificates:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.origin_tls_client_auth.hostnames.certificates.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_id` but received ''"):
             await async_client.origin_tls_client_auth.hostnames.certificates.with_raw_response.get(
-                "",
+                certificate_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

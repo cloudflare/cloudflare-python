@@ -21,9 +21,9 @@ class TestPhases:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         phase = client.rulesets.phases.update(
-            "http_request_firewall_custom",
+            ruleset_phase="http_request_firewall_custom",
             rules=[{}, {}, {}],
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
 
@@ -31,7 +31,7 @@ class TestPhases:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         phase = client.rulesets.phases.update(
-            "http_request_firewall_custom",
+            ruleset_phase="http_request_firewall_custom",
             rules=[
                 {
                     "action": "block",
@@ -82,7 +82,7 @@ class TestPhases:
                     "ref": "my_ref",
                 },
             ],
-            account_id="string",
+            account_id="account_id",
             description="My ruleset to execute managed rulesets",
             name="My ruleset",
         )
@@ -92,9 +92,9 @@ class TestPhases:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.rulesets.phases.with_raw_response.update(
-            "http_request_firewall_custom",
+            ruleset_phase="http_request_firewall_custom",
             rules=[{}, {}, {}],
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -106,9 +106,9 @@ class TestPhases:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.rulesets.phases.with_streaming_response.update(
-            "http_request_firewall_custom",
+            ruleset_phase="http_request_firewall_custom",
             rules=[{}, {}, {}],
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -123,24 +123,24 @@ class TestPhases:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.phases.with_raw_response.update(
-                "http_request_firewall_custom",
+                ruleset_phase="http_request_firewall_custom",
                 rules=[{}, {}, {}],
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.phases.with_raw_response.update(
-                "http_request_firewall_custom",
+                ruleset_phase="http_request_firewall_custom",
                 rules=[{}, {}, {}],
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         phase = client.rulesets.phases.get(
-            "http_request_firewall_custom",
-            account_id="string",
+            ruleset_phase="http_request_firewall_custom",
+            account_id="account_id",
         )
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
 
@@ -148,8 +148,8 @@ class TestPhases:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         phase = client.rulesets.phases.get(
-            "http_request_firewall_custom",
-            account_id="string",
+            ruleset_phase="http_request_firewall_custom",
+            account_id="account_id",
         )
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
 
@@ -157,8 +157,8 @@ class TestPhases:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.rulesets.phases.with_raw_response.get(
-            "http_request_firewall_custom",
-            account_id="string",
+            ruleset_phase="http_request_firewall_custom",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -170,8 +170,8 @@ class TestPhases:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.rulesets.phases.with_streaming_response.get(
-            "http_request_firewall_custom",
-            account_id="string",
+            ruleset_phase="http_request_firewall_custom",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -186,14 +186,14 @@ class TestPhases:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.phases.with_raw_response.get(
-                "http_request_firewall_custom",
+                ruleset_phase="http_request_firewall_custom",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.phases.with_raw_response.get(
-                "http_request_firewall_custom",
-                account_id="string",
+                ruleset_phase="http_request_firewall_custom",
+                account_id="account_id",
             )
 
 
@@ -204,9 +204,9 @@ class TestAsyncPhases:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         phase = await async_client.rulesets.phases.update(
-            "http_request_firewall_custom",
+            ruleset_phase="http_request_firewall_custom",
             rules=[{}, {}, {}],
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(PhaseUpdateResponse, phase, path=["response"])
 
@@ -214,7 +214,7 @@ class TestAsyncPhases:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         phase = await async_client.rulesets.phases.update(
-            "http_request_firewall_custom",
+            ruleset_phase="http_request_firewall_custom",
             rules=[
                 {
                     "action": "block",
@@ -265,7 +265,7 @@ class TestAsyncPhases:
                     "ref": "my_ref",
                 },
             ],
-            account_id="string",
+            account_id="account_id",
             description="My ruleset to execute managed rulesets",
             name="My ruleset",
         )
@@ -275,9 +275,9 @@ class TestAsyncPhases:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.phases.with_raw_response.update(
-            "http_request_firewall_custom",
+            ruleset_phase="http_request_firewall_custom",
             rules=[{}, {}, {}],
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -289,9 +289,9 @@ class TestAsyncPhases:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.phases.with_streaming_response.update(
-            "http_request_firewall_custom",
+            ruleset_phase="http_request_firewall_custom",
             rules=[{}, {}, {}],
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -306,24 +306,24 @@ class TestAsyncPhases:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.phases.with_raw_response.update(
-                "http_request_firewall_custom",
+                ruleset_phase="http_request_firewall_custom",
                 rules=[{}, {}, {}],
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.phases.with_raw_response.update(
-                "http_request_firewall_custom",
+                ruleset_phase="http_request_firewall_custom",
                 rules=[{}, {}, {}],
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         phase = await async_client.rulesets.phases.get(
-            "http_request_firewall_custom",
-            account_id="string",
+            ruleset_phase="http_request_firewall_custom",
+            account_id="account_id",
         )
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
 
@@ -331,8 +331,8 @@ class TestAsyncPhases:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         phase = await async_client.rulesets.phases.get(
-            "http_request_firewall_custom",
-            account_id="string",
+            ruleset_phase="http_request_firewall_custom",
+            account_id="account_id",
         )
         assert_matches_type(PhaseGetResponse, phase, path=["response"])
 
@@ -340,8 +340,8 @@ class TestAsyncPhases:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.phases.with_raw_response.get(
-            "http_request_firewall_custom",
-            account_id="string",
+            ruleset_phase="http_request_firewall_custom",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -353,8 +353,8 @@ class TestAsyncPhases:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.phases.with_streaming_response.get(
-            "http_request_firewall_custom",
-            account_id="string",
+            ruleset_phase="http_request_firewall_custom",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -369,12 +369,12 @@ class TestAsyncPhases:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.phases.with_raw_response.get(
-                "http_request_firewall_custom",
+                ruleset_phase="http_request_firewall_custom",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.phases.with_raw_response.get(
-                "http_request_firewall_custom",
-                account_id="string",
+                ruleset_phase="http_request_firewall_custom",
+                account_id="account_id",
             )

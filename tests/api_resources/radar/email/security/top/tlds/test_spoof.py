@@ -21,14 +21,14 @@ class TestSpoof:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         spoof = client.radar.email.security.top.tlds.spoof.get(
-            "SPOOF",
+            spoof="SPOOF",
         )
         assert_matches_type(SpoofGetResponse, spoof, path=["response"])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         spoof = client.radar.email.security.top.tlds.spoof.get(
-            "SPOOF",
+            spoof="SPOOF",
             arc=["PASS", "NONE", "FAIL"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -55,7 +55,7 @@ class TestSpoof:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.radar.email.security.top.tlds.spoof.with_raw_response.get(
-            "SPOOF",
+            spoof="SPOOF",
         )
 
         assert response.is_closed is True
@@ -66,7 +66,7 @@ class TestSpoof:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.radar.email.security.top.tlds.spoof.with_streaming_response.get(
-            "SPOOF",
+            spoof="SPOOF",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -83,14 +83,14 @@ class TestAsyncSpoof:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         spoof = await async_client.radar.email.security.top.tlds.spoof.get(
-            "SPOOF",
+            spoof="SPOOF",
         )
         assert_matches_type(SpoofGetResponse, spoof, path=["response"])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         spoof = await async_client.radar.email.security.top.tlds.spoof.get(
-            "SPOOF",
+            spoof="SPOOF",
             arc=["PASS", "NONE", "FAIL"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -117,7 +117,7 @@ class TestAsyncSpoof:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.top.tlds.spoof.with_raw_response.get(
-            "SPOOF",
+            spoof="SPOOF",
         )
 
         assert response.is_closed is True
@@ -128,7 +128,7 @@ class TestAsyncSpoof:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.top.tlds.spoof.with_streaming_response.get(
-            "SPOOF",
+            spoof="SPOOF",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

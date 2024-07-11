@@ -71,7 +71,7 @@ class TestCertificatePacks:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         certificate_pack = client.ssl.certificate_packs.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CertificatePackDeleteResponse], certificate_pack, path=["response"])
@@ -79,7 +79,7 @@ class TestCertificatePacks:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.ssl.certificate_packs.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -91,7 +91,7 @@ class TestCertificatePacks:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.ssl.certificate_packs.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -106,20 +106,20 @@ class TestCertificatePacks:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.ssl.certificate_packs.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_pack_id` but received ''"):
             client.ssl.certificate_packs.with_raw_response.delete(
-                "",
+                certificate_pack_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         certificate_pack = client.ssl.certificate_packs.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
@@ -128,7 +128,7 @@ class TestCertificatePacks:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.ssl.certificate_packs.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
@@ -141,7 +141,7 @@ class TestCertificatePacks:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.ssl.certificate_packs.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         ) as response:
@@ -157,14 +157,14 @@ class TestCertificatePacks:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.ssl.certificate_packs.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
                 body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_pack_id` but received ''"):
             client.ssl.certificate_packs.with_raw_response.edit(
-                "",
+                certificate_pack_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             )
@@ -172,7 +172,7 @@ class TestCertificatePacks:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         certificate_pack = client.ssl.certificate_packs.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CertificatePackGetResponse], certificate_pack, path=["response"])
@@ -180,7 +180,7 @@ class TestCertificatePacks:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.ssl.certificate_packs.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -192,7 +192,7 @@ class TestCertificatePacks:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.ssl.certificate_packs.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -207,13 +207,13 @@ class TestCertificatePacks:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.ssl.certificate_packs.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_pack_id` but received ''"):
             client.ssl.certificate_packs.with_raw_response.get(
-                "",
+                certificate_pack_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -270,7 +270,7 @@ class TestAsyncCertificatePacks:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         certificate_pack = await async_client.ssl.certificate_packs.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CertificatePackDeleteResponse], certificate_pack, path=["response"])
@@ -278,7 +278,7 @@ class TestAsyncCertificatePacks:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ssl.certificate_packs.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -290,7 +290,7 @@ class TestAsyncCertificatePacks:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ssl.certificate_packs.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -305,20 +305,20 @@ class TestAsyncCertificatePacks:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.ssl.certificate_packs.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_pack_id` but received ''"):
             await async_client.ssl.certificate_packs.with_raw_response.delete(
-                "",
+                certificate_pack_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         certificate_pack = await async_client.ssl.certificate_packs.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
@@ -327,7 +327,7 @@ class TestAsyncCertificatePacks:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ssl.certificate_packs.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
@@ -340,7 +340,7 @@ class TestAsyncCertificatePacks:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ssl.certificate_packs.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         ) as response:
@@ -356,14 +356,14 @@ class TestAsyncCertificatePacks:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.ssl.certificate_packs.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
                 body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_pack_id` but received ''"):
             await async_client.ssl.certificate_packs.with_raw_response.edit(
-                "",
+                certificate_pack_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             )
@@ -371,7 +371,7 @@ class TestAsyncCertificatePacks:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         certificate_pack = await async_client.ssl.certificate_packs.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CertificatePackGetResponse], certificate_pack, path=["response"])
@@ -379,7 +379,7 @@ class TestAsyncCertificatePacks:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ssl.certificate_packs.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -391,7 +391,7 @@ class TestAsyncCertificatePacks:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ssl.certificate_packs.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -406,12 +406,12 @@ class TestAsyncCertificatePacks:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.ssl.certificate_packs.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                certificate_pack_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_pack_id` but received ''"):
             await async_client.ssl.certificate_packs.with_raw_response.get(
-                "",
+                certificate_pack_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

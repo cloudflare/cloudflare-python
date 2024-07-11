@@ -21,7 +21,7 @@ class TestReports:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         report = client.dns.firewall.analytics.reports.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            dns_firewall_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Report], report, path=["response"])
@@ -29,7 +29,7 @@ class TestReports:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         report = client.dns.firewall.analytics.reports.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            dns_firewall_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dimensions="queryType",
             filters="responseCode==NOERROR,queryType==A",
@@ -44,7 +44,7 @@ class TestReports:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.dns.firewall.analytics.reports.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            dns_firewall_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -56,7 +56,7 @@ class TestReports:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.dns.firewall.analytics.reports.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            dns_firewall_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -71,13 +71,13 @@ class TestReports:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.dns.firewall.analytics.reports.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                dns_firewall_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_firewall_id` but received ''"):
             client.dns.firewall.analytics.reports.with_raw_response.get(
-                "",
+                dns_firewall_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -88,7 +88,7 @@ class TestAsyncReports:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         report = await async_client.dns.firewall.analytics.reports.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            dns_firewall_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Report], report, path=["response"])
@@ -96,7 +96,7 @@ class TestAsyncReports:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         report = await async_client.dns.firewall.analytics.reports.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            dns_firewall_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dimensions="queryType",
             filters="responseCode==NOERROR,queryType==A",
@@ -111,7 +111,7 @@ class TestAsyncReports:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.firewall.analytics.reports.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            dns_firewall_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -123,7 +123,7 @@ class TestAsyncReports:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.firewall.analytics.reports.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            dns_firewall_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -138,12 +138,12 @@ class TestAsyncReports:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.dns.firewall.analytics.reports.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                dns_firewall_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_firewall_id` but received ''"):
             await async_client.dns.firewall.analytics.reports.with_raw_response.get(
-                "",
+                dns_firewall_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

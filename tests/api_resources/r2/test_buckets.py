@@ -81,7 +81,7 @@ class TestBuckets:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         bucket = client.r2.buckets.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cursor="string",
+            cursor="cursor",
             direction="desc",
             name_contains="my-bucket",
             order="name",
@@ -124,7 +124,7 @@ class TestBuckets:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         bucket = client.r2.buckets.delete(
-            "example-bucket",
+            bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(object, bucket, path=["response"])
@@ -132,7 +132,7 @@ class TestBuckets:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.r2.buckets.with_raw_response.delete(
-            "example-bucket",
+            bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -144,7 +144,7 @@ class TestBuckets:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.r2.buckets.with_streaming_response.delete(
-            "example-bucket",
+            bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -159,20 +159,20 @@ class TestBuckets:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.r2.buckets.with_raw_response.delete(
-                "example-bucket",
+                bucket_name="example-bucket",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
             client.r2.buckets.with_raw_response.delete(
-                "",
+                bucket_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         bucket = client.r2.buckets.get(
-            "example-bucket",
+            bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Bucket, bucket, path=["response"])
@@ -180,7 +180,7 @@ class TestBuckets:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.r2.buckets.with_raw_response.get(
-            "example-bucket",
+            bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -192,7 +192,7 @@ class TestBuckets:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.r2.buckets.with_streaming_response.get(
-            "example-bucket",
+            bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -207,13 +207,13 @@ class TestBuckets:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.r2.buckets.with_raw_response.get(
-                "example-bucket",
+                bucket_name="example-bucket",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
             client.r2.buckets.with_raw_response.get(
-                "",
+                bucket_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -284,7 +284,7 @@ class TestAsyncBuckets:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         bucket = await async_client.r2.buckets.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            cursor="string",
+            cursor="cursor",
             direction="desc",
             name_contains="my-bucket",
             order="name",
@@ -327,7 +327,7 @@ class TestAsyncBuckets:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         bucket = await async_client.r2.buckets.delete(
-            "example-bucket",
+            bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(object, bucket, path=["response"])
@@ -335,7 +335,7 @@ class TestAsyncBuckets:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.r2.buckets.with_raw_response.delete(
-            "example-bucket",
+            bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -347,7 +347,7 @@ class TestAsyncBuckets:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.r2.buckets.with_streaming_response.delete(
-            "example-bucket",
+            bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -362,20 +362,20 @@ class TestAsyncBuckets:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.r2.buckets.with_raw_response.delete(
-                "example-bucket",
+                bucket_name="example-bucket",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
             await async_client.r2.buckets.with_raw_response.delete(
-                "",
+                bucket_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         bucket = await async_client.r2.buckets.get(
-            "example-bucket",
+            bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Bucket, bucket, path=["response"])
@@ -383,7 +383,7 @@ class TestAsyncBuckets:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.r2.buckets.with_raw_response.get(
-            "example-bucket",
+            bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -395,7 +395,7 @@ class TestAsyncBuckets:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.r2.buckets.with_streaming_response.get(
-            "example-bucket",
+            bucket_name="example-bucket",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -410,12 +410,12 @@ class TestAsyncBuckets:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.r2.buckets.with_raw_response.get(
-                "example-bucket",
+                bucket_name="example-bucket",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
             await async_client.r2.buckets.with_raw_response.get(
-                "",
+                bucket_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
