@@ -25,15 +25,15 @@ class TestSubscriptions:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         subscription = client.user.subscriptions.update(
-            "506e3185e9c882d175a2d0cb0093d9f2",
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         )
         assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         subscription = client.user.subscriptions.update(
-            "506e3185e9c882d175a2d0cb0093d9f2",
-            app={"install_id": "string"},
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
+            app={"install_id": "install_id"},
             component_values=[
                 {
                     "default": 5,
@@ -71,7 +71,7 @@ class TestSubscriptions:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.user.subscriptions.with_raw_response.update(
-            "506e3185e9c882d175a2d0cb0093d9f2",
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         )
 
         assert response.is_closed is True
@@ -82,7 +82,7 @@ class TestSubscriptions:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.user.subscriptions.with_streaming_response.update(
-            "506e3185e9c882d175a2d0cb0093d9f2",
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -96,7 +96,7 @@ class TestSubscriptions:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.user.subscriptions.with_raw_response.update(
-                "",
+                identifier="",
             )
 
     @parametrize
@@ -140,15 +140,15 @@ class TestSubscriptions:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         subscription = client.user.subscriptions.edit(
-            "506e3185e9c882d175a2d0cb0093d9f2",
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         )
         assert_matches_type(SubscriptionEditResponse, subscription, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         subscription = client.user.subscriptions.edit(
-            "506e3185e9c882d175a2d0cb0093d9f2",
-            app={"install_id": "string"},
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
+            app={"install_id": "install_id"},
             component_values=[
                 {
                     "default": 5,
@@ -186,7 +186,7 @@ class TestSubscriptions:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.user.subscriptions.with_raw_response.edit(
-            "506e3185e9c882d175a2d0cb0093d9f2",
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         )
 
         assert response.is_closed is True
@@ -197,7 +197,7 @@ class TestSubscriptions:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.user.subscriptions.with_streaming_response.edit(
-            "506e3185e9c882d175a2d0cb0093d9f2",
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -211,7 +211,7 @@ class TestSubscriptions:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.user.subscriptions.with_raw_response.edit(
-                "",
+                identifier="",
             )
 
     @parametrize
@@ -246,15 +246,15 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         subscription = await async_client.user.subscriptions.update(
-            "506e3185e9c882d175a2d0cb0093d9f2",
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         )
         assert_matches_type(SubscriptionUpdateResponse, subscription, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         subscription = await async_client.user.subscriptions.update(
-            "506e3185e9c882d175a2d0cb0093d9f2",
-            app={"install_id": "string"},
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
+            app={"install_id": "install_id"},
             component_values=[
                 {
                     "default": 5,
@@ -292,7 +292,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.subscriptions.with_raw_response.update(
-            "506e3185e9c882d175a2d0cb0093d9f2",
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         )
 
         assert response.is_closed is True
@@ -303,7 +303,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.subscriptions.with_streaming_response.update(
-            "506e3185e9c882d175a2d0cb0093d9f2",
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -317,7 +317,7 @@ class TestAsyncSubscriptions:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.user.subscriptions.with_raw_response.update(
-                "",
+                identifier="",
             )
 
     @parametrize
@@ -361,15 +361,15 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         subscription = await async_client.user.subscriptions.edit(
-            "506e3185e9c882d175a2d0cb0093d9f2",
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         )
         assert_matches_type(SubscriptionEditResponse, subscription, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         subscription = await async_client.user.subscriptions.edit(
-            "506e3185e9c882d175a2d0cb0093d9f2",
-            app={"install_id": "string"},
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
+            app={"install_id": "install_id"},
             component_values=[
                 {
                     "default": 5,
@@ -407,7 +407,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.subscriptions.with_raw_response.edit(
-            "506e3185e9c882d175a2d0cb0093d9f2",
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         )
 
         assert response.is_closed is True
@@ -418,7 +418,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.subscriptions.with_streaming_response.edit(
-            "506e3185e9c882d175a2d0cb0093d9f2",
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -432,7 +432,7 @@ class TestAsyncSubscriptions:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.user.subscriptions.with_raw_response.edit(
-                "",
+                identifier="",
             )
 
     @parametrize

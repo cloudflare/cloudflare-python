@@ -24,7 +24,7 @@ class TestCfInterconnects:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         cf_interconnect = client.magic_transit.cf_interconnects.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(CfInterconnectUpdateResponse, cf_interconnect, path=["response"])
@@ -32,7 +32,7 @@ class TestCfInterconnects:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         cf_interconnect = client.magic_transit.cf_interconnects.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="Tunnel for Interconnect to ORD",
             gre={"cloudflare_endpoint": "203.0.113.1"},
@@ -50,7 +50,7 @@ class TestCfInterconnects:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.magic_transit.cf_interconnects.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -62,7 +62,7 @@ class TestCfInterconnects:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.magic_transit.cf_interconnects.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -77,13 +77,13 @@ class TestCfInterconnects:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.cf_interconnects.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cf_interconnect_id` but received ''"):
             client.magic_transit.cf_interconnects.with_raw_response.update(
-                "",
+                cf_interconnect_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -128,7 +128,7 @@ class TestCfInterconnects:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         cf_interconnect = client.magic_transit.cf_interconnects.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(CfInterconnectGetResponse, cf_interconnect, path=["response"])
@@ -136,7 +136,7 @@ class TestCfInterconnects:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.magic_transit.cf_interconnects.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -148,7 +148,7 @@ class TestCfInterconnects:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.magic_transit.cf_interconnects.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -163,13 +163,13 @@ class TestCfInterconnects:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.cf_interconnects.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cf_interconnect_id` but received ''"):
             client.magic_transit.cf_interconnects.with_raw_response.get(
-                "",
+                cf_interconnect_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -180,7 +180,7 @@ class TestAsyncCfInterconnects:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         cf_interconnect = await async_client.magic_transit.cf_interconnects.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(CfInterconnectUpdateResponse, cf_interconnect, path=["response"])
@@ -188,7 +188,7 @@ class TestAsyncCfInterconnects:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         cf_interconnect = await async_client.magic_transit.cf_interconnects.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="Tunnel for Interconnect to ORD",
             gre={"cloudflare_endpoint": "203.0.113.1"},
@@ -206,7 +206,7 @@ class TestAsyncCfInterconnects:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.cf_interconnects.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -218,7 +218,7 @@ class TestAsyncCfInterconnects:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.cf_interconnects.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -233,13 +233,13 @@ class TestAsyncCfInterconnects:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.cf_interconnects.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cf_interconnect_id` but received ''"):
             await async_client.magic_transit.cf_interconnects.with_raw_response.update(
-                "",
+                cf_interconnect_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -284,7 +284,7 @@ class TestAsyncCfInterconnects:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         cf_interconnect = await async_client.magic_transit.cf_interconnects.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(CfInterconnectGetResponse, cf_interconnect, path=["response"])
@@ -292,7 +292,7 @@ class TestAsyncCfInterconnects:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.cf_interconnects.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -304,7 +304,7 @@ class TestAsyncCfInterconnects:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.cf_interconnects.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -319,12 +319,12 @@ class TestAsyncCfInterconnects:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.cf_interconnects.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                cf_interconnect_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cf_interconnect_id` but received ''"):
             await async_client.magic_transit.cf_interconnects.with_raw_response.get(
-                "",
+                cf_interconnect_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

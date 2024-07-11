@@ -67,7 +67,7 @@ class TestPeers:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         peer = client.secondary_dns.peers.update(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
             name="my-peer-1",
         )
@@ -76,7 +76,7 @@ class TestPeers:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         peer = client.secondary_dns.peers.update(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
             name="my-peer-1",
             ip="192.0.2.53",
@@ -89,7 +89,7 @@ class TestPeers:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.secondary_dns.peers.with_raw_response.update(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
             name="my-peer-1",
         )
@@ -102,7 +102,7 @@ class TestPeers:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.secondary_dns.peers.with_streaming_response.update(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
             name="my-peer-1",
         ) as response:
@@ -118,14 +118,14 @@ class TestPeers:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.secondary_dns.peers.with_raw_response.update(
-                "23ff594956f20c2a721606e94745a8aa",
+                peer_id="23ff594956f20c2a721606e94745a8aa",
                 account_id="",
                 name="my-peer-1",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `peer_id` but received ''"):
             client.secondary_dns.peers.with_raw_response.update(
-                "",
+                peer_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 name="my-peer-1",
             )
@@ -171,7 +171,7 @@ class TestPeers:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         peer = client.secondary_dns.peers.delete(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(Optional[PeerDeleteResponse], peer, path=["response"])
@@ -179,7 +179,7 @@ class TestPeers:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.secondary_dns.peers.with_raw_response.delete(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
@@ -191,7 +191,7 @@ class TestPeers:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.secondary_dns.peers.with_streaming_response.delete(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
@@ -206,20 +206,20 @@ class TestPeers:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.secondary_dns.peers.with_raw_response.delete(
-                "23ff594956f20c2a721606e94745a8aa",
+                peer_id="23ff594956f20c2a721606e94745a8aa",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `peer_id` but received ''"):
             client.secondary_dns.peers.with_raw_response.delete(
-                "",
+                peer_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         peer = client.secondary_dns.peers.get(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(Optional[Peer], peer, path=["response"])
@@ -227,7 +227,7 @@ class TestPeers:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.secondary_dns.peers.with_raw_response.get(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
@@ -239,7 +239,7 @@ class TestPeers:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.secondary_dns.peers.with_streaming_response.get(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
@@ -254,13 +254,13 @@ class TestPeers:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.secondary_dns.peers.with_raw_response.get(
-                "23ff594956f20c2a721606e94745a8aa",
+                peer_id="23ff594956f20c2a721606e94745a8aa",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `peer_id` but received ''"):
             client.secondary_dns.peers.with_raw_response.get(
-                "",
+                peer_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
             )
 
@@ -317,7 +317,7 @@ class TestAsyncPeers:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         peer = await async_client.secondary_dns.peers.update(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
             name="my-peer-1",
         )
@@ -326,7 +326,7 @@ class TestAsyncPeers:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         peer = await async_client.secondary_dns.peers.update(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
             name="my-peer-1",
             ip="192.0.2.53",
@@ -339,7 +339,7 @@ class TestAsyncPeers:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.peers.with_raw_response.update(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
             name="my-peer-1",
         )
@@ -352,7 +352,7 @@ class TestAsyncPeers:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.peers.with_streaming_response.update(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
             name="my-peer-1",
         ) as response:
@@ -368,14 +368,14 @@ class TestAsyncPeers:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.secondary_dns.peers.with_raw_response.update(
-                "23ff594956f20c2a721606e94745a8aa",
+                peer_id="23ff594956f20c2a721606e94745a8aa",
                 account_id="",
                 name="my-peer-1",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `peer_id` but received ''"):
             await async_client.secondary_dns.peers.with_raw_response.update(
-                "",
+                peer_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 name="my-peer-1",
             )
@@ -421,7 +421,7 @@ class TestAsyncPeers:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         peer = await async_client.secondary_dns.peers.delete(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(Optional[PeerDeleteResponse], peer, path=["response"])
@@ -429,7 +429,7 @@ class TestAsyncPeers:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.peers.with_raw_response.delete(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
@@ -441,7 +441,7 @@ class TestAsyncPeers:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.peers.with_streaming_response.delete(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
@@ -456,20 +456,20 @@ class TestAsyncPeers:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.secondary_dns.peers.with_raw_response.delete(
-                "23ff594956f20c2a721606e94745a8aa",
+                peer_id="23ff594956f20c2a721606e94745a8aa",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `peer_id` but received ''"):
             await async_client.secondary_dns.peers.with_raw_response.delete(
-                "",
+                peer_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         peer = await async_client.secondary_dns.peers.get(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(Optional[Peer], peer, path=["response"])
@@ -477,7 +477,7 @@ class TestAsyncPeers:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.peers.with_raw_response.get(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
@@ -489,7 +489,7 @@ class TestAsyncPeers:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.peers.with_streaming_response.get(
-            "23ff594956f20c2a721606e94745a8aa",
+            peer_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
@@ -504,12 +504,12 @@ class TestAsyncPeers:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.secondary_dns.peers.with_raw_response.get(
-                "23ff594956f20c2a721606e94745a8aa",
+                peer_id="23ff594956f20c2a721606e94745a8aa",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `peer_id` but received ''"):
             await async_client.secondary_dns.peers.with_raw_response.get(
-                "",
+                peer_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
             )

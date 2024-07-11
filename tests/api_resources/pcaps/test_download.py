@@ -30,7 +30,7 @@ class TestDownload:
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/pcaps/023e105f4ecef8ad9ca31a8372d0c353/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         download = client.pcaps.download.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert download.is_closed
@@ -46,7 +46,7 @@ class TestDownload:
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         download = client.pcaps.download.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -62,7 +62,7 @@ class TestDownload:
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/pcaps/023e105f4ecef8ad9ca31a8372d0c353/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         with client.pcaps.download.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as download:
             assert not download.is_closed
@@ -79,13 +79,13 @@ class TestDownload:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pcaps.download.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pcap_id` but received ''"):
             client.pcaps.download.with_raw_response.get(
-                "",
+                pcap_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -100,7 +100,7 @@ class TestAsyncDownload:
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/pcaps/023e105f4ecef8ad9ca31a8372d0c353/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         download = await async_client.pcaps.download.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert download.is_closed
@@ -116,7 +116,7 @@ class TestAsyncDownload:
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         download = await async_client.pcaps.download.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -132,7 +132,7 @@ class TestAsyncDownload:
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/pcaps/023e105f4ecef8ad9ca31a8372d0c353/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         async with async_client.pcaps.download.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as download:
             assert not download.is_closed
@@ -149,12 +149,12 @@ class TestAsyncDownload:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pcaps.download.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pcap_id` but received ''"):
             await async_client.pcaps.download.with_raw_response.get(
-                "",
+                pcap_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

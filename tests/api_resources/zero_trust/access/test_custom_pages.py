@@ -28,7 +28,7 @@ class TestCustomPages:
         custom_page = client.zero_trust.access.custom_pages.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="string",
+            name="name",
             type="identity_denied",
         )
         assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
@@ -38,7 +38,7 @@ class TestCustomPages:
         custom_page = client.zero_trust.access.custom_pages.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="string",
+            name="name",
             type="identity_denied",
             app_count=0,
             created_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
@@ -52,7 +52,7 @@ class TestCustomPages:
         response = client.zero_trust.access.custom_pages.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="string",
+            name="name",
             type="identity_denied",
         )
 
@@ -66,7 +66,7 @@ class TestCustomPages:
         with client.zero_trust.access.custom_pages.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="string",
+            name="name",
             type="identity_denied",
         ) as response:
             assert not response.is_closed
@@ -83,17 +83,17 @@ class TestCustomPages:
             client.zero_trust.access.custom_pages.with_raw_response.create(
                 account_id="",
                 custom_html="<html><body><h1>Access Denied</h1></body></html>",
-                name="string",
+                name="name",
                 type="identity_denied",
             )
 
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         custom_page = client.zero_trust.access.custom_pages.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="string",
+            name="name",
             type="identity_denied",
         )
         assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
@@ -101,10 +101,10 @@ class TestCustomPages:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         custom_page = client.zero_trust.access.custom_pages.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="string",
+            name="name",
             type="identity_denied",
             app_count=0,
             created_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
@@ -116,10 +116,10 @@ class TestCustomPages:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.custom_pages.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="string",
+            name="name",
             type="identity_denied",
         )
 
@@ -131,10 +131,10 @@ class TestCustomPages:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.access.custom_pages.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="string",
+            name="name",
             type="identity_denied",
         ) as response:
             assert not response.is_closed
@@ -149,19 +149,19 @@ class TestCustomPages:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.custom_pages.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 custom_html="<html><body><h1>Access Denied</h1></body></html>",
-                name="string",
+                name="name",
                 type="identity_denied",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_page_id` but received ''"):
             client.zero_trust.access.custom_pages.with_raw_response.update(
-                "",
+                custom_page_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 custom_html="<html><body><h1>Access Denied</h1></body></html>",
-                name="string",
+                name="name",
                 type="identity_denied",
             )
 
@@ -206,7 +206,7 @@ class TestCustomPages:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         custom_page = client.zero_trust.access.custom_pages.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CustomPageDeleteResponse], custom_page, path=["response"])
@@ -214,7 +214,7 @@ class TestCustomPages:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.custom_pages.with_raw_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -226,7 +226,7 @@ class TestCustomPages:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.access.custom_pages.with_streaming_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -241,20 +241,20 @@ class TestCustomPages:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.custom_pages.with_raw_response.delete(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_page_id` but received ''"):
             client.zero_trust.access.custom_pages.with_raw_response.delete(
-                "",
+                custom_page_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         custom_page = client.zero_trust.access.custom_pages.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CustomPage], custom_page, path=["response"])
@@ -262,7 +262,7 @@ class TestCustomPages:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.custom_pages.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -274,7 +274,7 @@ class TestCustomPages:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.access.custom_pages.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -289,13 +289,13 @@ class TestCustomPages:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.custom_pages.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_page_id` but received ''"):
             client.zero_trust.access.custom_pages.with_raw_response.get(
-                "",
+                custom_page_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -308,7 +308,7 @@ class TestAsyncCustomPages:
         custom_page = await async_client.zero_trust.access.custom_pages.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="string",
+            name="name",
             type="identity_denied",
         )
         assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
@@ -318,7 +318,7 @@ class TestAsyncCustomPages:
         custom_page = await async_client.zero_trust.access.custom_pages.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="string",
+            name="name",
             type="identity_denied",
             app_count=0,
             created_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
@@ -332,7 +332,7 @@ class TestAsyncCustomPages:
         response = await async_client.zero_trust.access.custom_pages.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="string",
+            name="name",
             type="identity_denied",
         )
 
@@ -346,7 +346,7 @@ class TestAsyncCustomPages:
         async with async_client.zero_trust.access.custom_pages.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="string",
+            name="name",
             type="identity_denied",
         ) as response:
             assert not response.is_closed
@@ -363,17 +363,17 @@ class TestAsyncCustomPages:
             await async_client.zero_trust.access.custom_pages.with_raw_response.create(
                 account_id="",
                 custom_html="<html><body><h1>Access Denied</h1></body></html>",
-                name="string",
+                name="name",
                 type="identity_denied",
             )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         custom_page = await async_client.zero_trust.access.custom_pages.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="string",
+            name="name",
             type="identity_denied",
         )
         assert_matches_type(Optional[CustomPageWithoutHTML], custom_page, path=["response"])
@@ -381,10 +381,10 @@ class TestAsyncCustomPages:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         custom_page = await async_client.zero_trust.access.custom_pages.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="string",
+            name="name",
             type="identity_denied",
             app_count=0,
             created_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
@@ -396,10 +396,10 @@ class TestAsyncCustomPages:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.custom_pages.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="string",
+            name="name",
             type="identity_denied",
         )
 
@@ -411,10 +411,10 @@ class TestAsyncCustomPages:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.custom_pages.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             custom_html="<html><body><h1>Access Denied</h1></body></html>",
-            name="string",
+            name="name",
             type="identity_denied",
         ) as response:
             assert not response.is_closed
@@ -429,19 +429,19 @@ class TestAsyncCustomPages:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.custom_pages.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 custom_html="<html><body><h1>Access Denied</h1></body></html>",
-                name="string",
+                name="name",
                 type="identity_denied",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_page_id` but received ''"):
             await async_client.zero_trust.access.custom_pages.with_raw_response.update(
-                "",
+                custom_page_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 custom_html="<html><body><h1>Access Denied</h1></body></html>",
-                name="string",
+                name="name",
                 type="identity_denied",
             )
 
@@ -486,7 +486,7 @@ class TestAsyncCustomPages:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         custom_page = await async_client.zero_trust.access.custom_pages.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CustomPageDeleteResponse], custom_page, path=["response"])
@@ -494,7 +494,7 @@ class TestAsyncCustomPages:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.custom_pages.with_raw_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -506,7 +506,7 @@ class TestAsyncCustomPages:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.custom_pages.with_streaming_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -521,20 +521,20 @@ class TestAsyncCustomPages:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.custom_pages.with_raw_response.delete(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_page_id` but received ''"):
             await async_client.zero_trust.access.custom_pages.with_raw_response.delete(
-                "",
+                custom_page_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         custom_page = await async_client.zero_trust.access.custom_pages.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CustomPage], custom_page, path=["response"])
@@ -542,7 +542,7 @@ class TestAsyncCustomPages:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.custom_pages.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -554,7 +554,7 @@ class TestAsyncCustomPages:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.custom_pages.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -569,12 +569,12 @@ class TestAsyncCustomPages:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.custom_pages.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                custom_page_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_page_id` but received ''"):
             await async_client.zero_trust.access.custom_pages.with_raw_response.get(
-                "",
+                custom_page_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

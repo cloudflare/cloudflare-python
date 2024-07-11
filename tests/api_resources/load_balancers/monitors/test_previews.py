@@ -20,7 +20,7 @@ class TestPreviews:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         preview = client.load_balancers.monitors.previews.create(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
@@ -29,7 +29,7 @@ class TestPreviews:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         preview = client.load_balancers.monitors.previews.create(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
             allow_insecure=True,
@@ -56,7 +56,7 @@ class TestPreviews:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.load_balancers.monitors.previews.with_raw_response.create(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
@@ -69,7 +69,7 @@ class TestPreviews:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.load_balancers.monitors.previews.with_streaming_response.create(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         ) as response:
@@ -85,14 +85,14 @@ class TestPreviews:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.load_balancers.monitors.previews.with_raw_response.create(
-                "f1aba936b94213e5b8dca0c0dbf1f9cc",
+                monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
                 expected_codes="2xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             client.load_balancers.monitors.previews.with_raw_response.create(
-                "",
+                monitor_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 expected_codes="2xx",
             )
@@ -104,7 +104,7 @@ class TestAsyncPreviews:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         preview = await async_client.load_balancers.monitors.previews.create(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
@@ -113,7 +113,7 @@ class TestAsyncPreviews:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         preview = await async_client.load_balancers.monitors.previews.create(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
             allow_insecure=True,
@@ -140,7 +140,7 @@ class TestAsyncPreviews:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.monitors.previews.with_raw_response.create(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
@@ -153,7 +153,7 @@ class TestAsyncPreviews:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.monitors.previews.with_streaming_response.create(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         ) as response:
@@ -169,14 +169,14 @@ class TestAsyncPreviews:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.load_balancers.monitors.previews.with_raw_response.create(
-                "f1aba936b94213e5b8dca0c0dbf1f9cc",
+                monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
                 expected_codes="2xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             await async_client.load_balancers.monitors.previews.with_raw_response.create(
-                "",
+                monitor_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 expected_codes="2xx",
             )

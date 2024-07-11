@@ -26,7 +26,7 @@ class TestMemberships:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         membership = client.memberships.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            membership_id="4536bcfad5faccb111b47003c79917fa",
             status="accepted",
         )
         assert_matches_type(Optional[MembershipUpdateResponse], membership, path=["response"])
@@ -34,7 +34,7 @@ class TestMemberships:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.memberships.with_raw_response.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            membership_id="4536bcfad5faccb111b47003c79917fa",
             status="accepted",
         )
 
@@ -46,7 +46,7 @@ class TestMemberships:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.memberships.with_streaming_response.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            membership_id="4536bcfad5faccb111b47003c79917fa",
             status="accepted",
         ) as response:
             assert not response.is_closed
@@ -61,7 +61,7 @@ class TestMemberships:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `membership_id` but received ''"):
             client.memberships.with_raw_response.update(
-                "",
+                membership_id="",
                 status="accepted",
             )
 
@@ -186,7 +186,7 @@ class TestAsyncMemberships:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         membership = await async_client.memberships.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            membership_id="4536bcfad5faccb111b47003c79917fa",
             status="accepted",
         )
         assert_matches_type(Optional[MembershipUpdateResponse], membership, path=["response"])
@@ -194,7 +194,7 @@ class TestAsyncMemberships:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.memberships.with_raw_response.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            membership_id="4536bcfad5faccb111b47003c79917fa",
             status="accepted",
         )
 
@@ -206,7 +206,7 @@ class TestAsyncMemberships:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.memberships.with_streaming_response.update(
-            "4536bcfad5faccb111b47003c79917fa",
+            membership_id="4536bcfad5faccb111b47003c79917fa",
             status="accepted",
         ) as response:
             assert not response.is_closed
@@ -221,7 +221,7 @@ class TestAsyncMemberships:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `membership_id` but received ''"):
             await async_client.memberships.with_raw_response.update(
-                "",
+                membership_id="",
                 status="accepted",
             )
 

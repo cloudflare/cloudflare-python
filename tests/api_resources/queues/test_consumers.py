@@ -25,7 +25,7 @@ class TestConsumers:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         consumer = client.queues.consumers.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
                 "dead_letter_queue": "example-dlq",
@@ -44,7 +44,7 @@ class TestConsumers:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.queues.consumers.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
                 "dead_letter_queue": "example-dlq",
@@ -67,7 +67,7 @@ class TestConsumers:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.queues.consumers.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
                 "dead_letter_queue": "example-dlq",
@@ -93,7 +93,7 @@ class TestConsumers:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.queues.consumers.with_raw_response.create(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 body={
                     "dead_letter_queue": "example-dlq",
@@ -110,7 +110,7 @@ class TestConsumers:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
             client.queues.consumers.with_raw_response.create(
-                "",
+                queue_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={
                     "dead_letter_queue": "example-dlq",
@@ -128,7 +128,7 @@ class TestConsumers:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         consumer = client.queues.consumers.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
@@ -143,7 +143,7 @@ class TestConsumers:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.queues.consumers.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
@@ -162,7 +162,7 @@ class TestConsumers:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.queues.consumers.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
@@ -184,7 +184,7 @@ class TestConsumers:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.queues.consumers.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 queue_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={
@@ -197,7 +197,7 @@ class TestConsumers:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
             client.queues.consumers.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 queue_id="",
                 body={
@@ -210,7 +210,7 @@ class TestConsumers:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `consumer_id` but received ''"):
             client.queues.consumers.with_raw_response.update(
-                "",
+                consumer_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 queue_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={
@@ -224,7 +224,7 @@ class TestConsumers:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         consumer = client.queues.consumers.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -233,7 +233,7 @@ class TestConsumers:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.queues.consumers.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -246,7 +246,7 @@ class TestConsumers:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.queues.consumers.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -262,21 +262,21 @@ class TestConsumers:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.queues.consumers.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
             client.queues.consumers.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 queue_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `consumer_id` but received ''"):
             client.queues.consumers.with_raw_response.delete(
-                "",
+                consumer_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -284,7 +284,7 @@ class TestConsumers:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         consumer = client.queues.consumers.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ConsumerGetResponse], consumer, path=["response"])
@@ -292,7 +292,7 @@ class TestConsumers:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.queues.consumers.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -304,7 +304,7 @@ class TestConsumers:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.queues.consumers.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -319,13 +319,13 @@ class TestConsumers:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.queues.consumers.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
             client.queues.consumers.with_raw_response.get(
-                "",
+                queue_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -336,7 +336,7 @@ class TestAsyncConsumers:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         consumer = await async_client.queues.consumers.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
                 "dead_letter_queue": "example-dlq",
@@ -355,7 +355,7 @@ class TestAsyncConsumers:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.queues.consumers.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
                 "dead_letter_queue": "example-dlq",
@@ -378,7 +378,7 @@ class TestAsyncConsumers:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.queues.consumers.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
                 "dead_letter_queue": "example-dlq",
@@ -404,7 +404,7 @@ class TestAsyncConsumers:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.queues.consumers.with_raw_response.create(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 body={
                     "dead_letter_queue": "example-dlq",
@@ -421,7 +421,7 @@ class TestAsyncConsumers:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
             await async_client.queues.consumers.with_raw_response.create(
-                "",
+                queue_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={
                     "dead_letter_queue": "example-dlq",
@@ -439,7 +439,7 @@ class TestAsyncConsumers:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         consumer = await async_client.queues.consumers.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
@@ -454,7 +454,7 @@ class TestAsyncConsumers:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.queues.consumers.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
@@ -473,7 +473,7 @@ class TestAsyncConsumers:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.queues.consumers.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={
@@ -495,7 +495,7 @@ class TestAsyncConsumers:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.queues.consumers.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 queue_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={
@@ -508,7 +508,7 @@ class TestAsyncConsumers:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
             await async_client.queues.consumers.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 queue_id="",
                 body={
@@ -521,7 +521,7 @@ class TestAsyncConsumers:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `consumer_id` but received ''"):
             await async_client.queues.consumers.with_raw_response.update(
-                "",
+                consumer_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 queue_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={
@@ -535,7 +535,7 @@ class TestAsyncConsumers:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         consumer = await async_client.queues.consumers.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -544,7 +544,7 @@ class TestAsyncConsumers:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.queues.consumers.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -557,7 +557,7 @@ class TestAsyncConsumers:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.queues.consumers.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             queue_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -573,21 +573,21 @@ class TestAsyncConsumers:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.queues.consumers.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
             await async_client.queues.consumers.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                consumer_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 queue_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `consumer_id` but received ''"):
             await async_client.queues.consumers.with_raw_response.delete(
-                "",
+                consumer_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -595,7 +595,7 @@ class TestAsyncConsumers:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         consumer = await async_client.queues.consumers.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ConsumerGetResponse], consumer, path=["response"])
@@ -603,7 +603,7 @@ class TestAsyncConsumers:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.queues.consumers.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -615,7 +615,7 @@ class TestAsyncConsumers:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.queues.consumers.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            queue_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -630,12 +630,12 @@ class TestAsyncConsumers:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.queues.consumers.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                queue_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `queue_id` but received ''"):
             await async_client.queues.consumers.with_raw_response.get(
-                "",
+                queue_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

@@ -28,7 +28,7 @@ class TestWhois:
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         whois = client.intel.whois.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            domain="string",
+            domain="domain",
         )
         assert_matches_type(Optional[WhoisGetResponse], whois, path=["response"])
 
@@ -78,7 +78,7 @@ class TestAsyncWhois:
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         whois = await async_client.intel.whois.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            domain="string",
+            domain="domain",
         )
         assert_matches_type(Optional[WhoisGetResponse], whois, path=["response"])
 

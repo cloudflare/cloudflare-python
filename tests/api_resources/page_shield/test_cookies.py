@@ -80,7 +80,7 @@ class TestCookies:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         cookie = client.page_shield.cookies.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cookie_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CookieGetResponse], cookie, path=["response"])
@@ -88,7 +88,7 @@ class TestCookies:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.page_shield.cookies.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cookie_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -100,7 +100,7 @@ class TestCookies:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.page_shield.cookies.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cookie_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -115,13 +115,13 @@ class TestCookies:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.page_shield.cookies.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                cookie_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cookie_id` but received ''"):
             client.page_shield.cookies.with_raw_response.get(
-                "",
+                cookie_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -191,7 +191,7 @@ class TestAsyncCookies:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         cookie = await async_client.page_shield.cookies.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cookie_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CookieGetResponse], cookie, path=["response"])
@@ -199,7 +199,7 @@ class TestAsyncCookies:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.page_shield.cookies.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cookie_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -211,7 +211,7 @@ class TestAsyncCookies:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.page_shield.cookies.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            cookie_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -226,12 +226,12 @@ class TestAsyncCookies:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.page_shield.cookies.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                cookie_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cookie_id` but received ''"):
             await async_client.page_shield.cookies.with_raw_response.get(
-                "",
+                cookie_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

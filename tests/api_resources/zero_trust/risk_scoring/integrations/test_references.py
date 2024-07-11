@@ -20,16 +20,16 @@ class TestReferences:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         reference = client.zero_trust.risk_scoring.integrations.references.get(
-            "string",
-            account_id="string",
+            reference_id="reference_id",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ReferenceGetResponse], reference, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.risk_scoring.integrations.references.with_raw_response.get(
-            "string",
-            account_id="string",
+            reference_id="reference_id",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -40,8 +40,8 @@ class TestReferences:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.risk_scoring.integrations.references.with_streaming_response.get(
-            "string",
-            account_id="string",
+            reference_id="reference_id",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -55,14 +55,14 @@ class TestReferences:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.risk_scoring.integrations.references.with_raw_response.get(
-                "string",
+                reference_id="reference_id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `reference_id` but received ''"):
             client.zero_trust.risk_scoring.integrations.references.with_raw_response.get(
-                "",
-                account_id="string",
+                reference_id="",
+                account_id="account_id",
             )
 
 
@@ -72,16 +72,16 @@ class TestAsyncReferences:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         reference = await async_client.zero_trust.risk_scoring.integrations.references.get(
-            "string",
-            account_id="string",
+            reference_id="reference_id",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ReferenceGetResponse], reference, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.risk_scoring.integrations.references.with_raw_response.get(
-            "string",
-            account_id="string",
+            reference_id="reference_id",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -92,8 +92,8 @@ class TestAsyncReferences:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.risk_scoring.integrations.references.with_streaming_response.get(
-            "string",
-            account_id="string",
+            reference_id="reference_id",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -107,12 +107,12 @@ class TestAsyncReferences:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.risk_scoring.integrations.references.with_raw_response.get(
-                "string",
+                reference_id="reference_id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `reference_id` but received ''"):
             await async_client.zero_trust.risk_scoring.integrations.references.with_raw_response.get(
-                "",
-                account_id="string",
+                reference_id="",
+                account_id="account_id",
             )

@@ -109,7 +109,7 @@ class TestNamespaces:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         namespace = client.workers_for_platforms.dispatch.namespaces.delete(
-            "my-dispatch-namespace",
+            dispatch_namespace="my-dispatch-namespace",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(object, namespace, path=["response"])
@@ -117,7 +117,7 @@ class TestNamespaces:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.workers_for_platforms.dispatch.namespaces.with_raw_response.delete(
-            "my-dispatch-namespace",
+            dispatch_namespace="my-dispatch-namespace",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -129,7 +129,7 @@ class TestNamespaces:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.workers_for_platforms.dispatch.namespaces.with_streaming_response.delete(
-            "my-dispatch-namespace",
+            dispatch_namespace="my-dispatch-namespace",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -144,20 +144,20 @@ class TestNamespaces:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.with_raw_response.delete(
-                "my-dispatch-namespace",
+                dispatch_namespace="my-dispatch-namespace",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.with_raw_response.delete(
-                "",
+                dispatch_namespace="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         namespace = client.workers_for_platforms.dispatch.namespaces.get(
-            "my-dispatch-namespace",
+            dispatch_namespace="my-dispatch-namespace",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[NamespaceGetResponse], namespace, path=["response"])
@@ -165,7 +165,7 @@ class TestNamespaces:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.workers_for_platforms.dispatch.namespaces.with_raw_response.get(
-            "my-dispatch-namespace",
+            dispatch_namespace="my-dispatch-namespace",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -177,7 +177,7 @@ class TestNamespaces:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.workers_for_platforms.dispatch.namespaces.with_streaming_response.get(
-            "my-dispatch-namespace",
+            dispatch_namespace="my-dispatch-namespace",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -192,13 +192,13 @@ class TestNamespaces:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.with_raw_response.get(
-                "my-dispatch-namespace",
+                dispatch_namespace="my-dispatch-namespace",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.with_raw_response.get(
-                "",
+                dispatch_namespace="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -293,7 +293,7 @@ class TestAsyncNamespaces:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         namespace = await async_client.workers_for_platforms.dispatch.namespaces.delete(
-            "my-dispatch-namespace",
+            dispatch_namespace="my-dispatch-namespace",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(object, namespace, path=["response"])
@@ -301,7 +301,7 @@ class TestAsyncNamespaces:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers_for_platforms.dispatch.namespaces.with_raw_response.delete(
-            "my-dispatch-namespace",
+            dispatch_namespace="my-dispatch-namespace",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -313,7 +313,7 @@ class TestAsyncNamespaces:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers_for_platforms.dispatch.namespaces.with_streaming_response.delete(
-            "my-dispatch-namespace",
+            dispatch_namespace="my-dispatch-namespace",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -328,20 +328,20 @@ class TestAsyncNamespaces:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.with_raw_response.delete(
-                "my-dispatch-namespace",
+                dispatch_namespace="my-dispatch-namespace",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.with_raw_response.delete(
-                "",
+                dispatch_namespace="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         namespace = await async_client.workers_for_platforms.dispatch.namespaces.get(
-            "my-dispatch-namespace",
+            dispatch_namespace="my-dispatch-namespace",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[NamespaceGetResponse], namespace, path=["response"])
@@ -349,7 +349,7 @@ class TestAsyncNamespaces:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers_for_platforms.dispatch.namespaces.with_raw_response.get(
-            "my-dispatch-namespace",
+            dispatch_namespace="my-dispatch-namespace",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -361,7 +361,7 @@ class TestAsyncNamespaces:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers_for_platforms.dispatch.namespaces.with_streaming_response.get(
-            "my-dispatch-namespace",
+            dispatch_namespace="my-dispatch-namespace",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -376,12 +376,12 @@ class TestAsyncNamespaces:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.with_raw_response.get(
-                "my-dispatch-namespace",
+                dispatch_namespace="my-dispatch-namespace",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.with_raw_response.get(
-                "",
+                dispatch_namespace="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

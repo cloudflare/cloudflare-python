@@ -29,7 +29,7 @@ class TestContent:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         content = client.workers.scripts.content.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Script], content, path=["response"])
@@ -38,15 +38,15 @@ class TestContent:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         content = client.workers.scripts.content.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
             metadata={
                 "body_part": "worker.js",
                 "main_module": "worker.js",
             },
-            cf_worker_body_part="string",
-            cf_worker_main_module_part="string",
+            cf_worker_body_part="CF-WORKER-BODY-PART",
+            cf_worker_main_module_part="CF-WORKER-MAIN-MODULE-PART",
         )
         assert_matches_type(Optional[Script], content, path=["response"])
 
@@ -54,7 +54,7 @@ class TestContent:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.workers.scripts.content.with_raw_response.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -67,7 +67,7 @@ class TestContent:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.workers.scripts.content.with_streaming_response.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -83,13 +83,13 @@ class TestContent:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.scripts.content.with_raw_response.update(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.content.with_raw_response.update(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -100,7 +100,7 @@ class TestContent:
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/workers/scripts/this-is_my_script-01/content/v2"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         content = client.workers.scripts.content.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert content.is_closed
@@ -116,7 +116,7 @@ class TestContent:
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         content = client.workers.scripts.content.with_raw_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -132,7 +132,7 @@ class TestContent:
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/workers/scripts/this-is_my_script-01/content/v2"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         with client.workers.scripts.content.with_streaming_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as content:
             assert not content.is_closed
@@ -149,13 +149,13 @@ class TestContent:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.scripts.content.with_raw_response.get(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.content.with_raw_response.get(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -167,7 +167,7 @@ class TestAsyncContent:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         content = await async_client.workers.scripts.content.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Script], content, path=["response"])
@@ -176,15 +176,15 @@ class TestAsyncContent:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         content = await async_client.workers.scripts.content.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             any_part_name=[b"raw file contents", b"raw file contents", b"raw file contents"],
             metadata={
                 "body_part": "worker.js",
                 "main_module": "worker.js",
             },
-            cf_worker_body_part="string",
-            cf_worker_main_module_part="string",
+            cf_worker_body_part="CF-WORKER-BODY-PART",
+            cf_worker_main_module_part="CF-WORKER-MAIN-MODULE-PART",
         )
         assert_matches_type(Optional[Script], content, path=["response"])
 
@@ -192,7 +192,7 @@ class TestAsyncContent:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.content.with_raw_response.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -205,7 +205,7 @@ class TestAsyncContent:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.content.with_streaming_response.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -221,13 +221,13 @@ class TestAsyncContent:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.scripts.content.with_raw_response.update(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.content.with_raw_response.update(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -238,7 +238,7 @@ class TestAsyncContent:
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/workers/scripts/this-is_my_script-01/content/v2"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         content = await async_client.workers.scripts.content.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert content.is_closed
@@ -254,7 +254,7 @@ class TestAsyncContent:
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         content = await async_client.workers.scripts.content.with_raw_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -270,7 +270,7 @@ class TestAsyncContent:
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/workers/scripts/this-is_my_script-01/content/v2"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         async with async_client.workers.scripts.content.with_streaming_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as content:
             assert not content.is_closed
@@ -287,12 +287,12 @@ class TestAsyncContent:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.scripts.content.with_raw_response.get(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.content.with_raw_response.get(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

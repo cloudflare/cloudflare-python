@@ -20,7 +20,7 @@ class TestSettings:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         setting = client.workers.scripts.settings.edit(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ScriptSetting], setting, path=["response"])
@@ -28,7 +28,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         setting = client.workers.scripts.settings.edit(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             logpush=False,
             tail_consumers=[
@@ -54,7 +54,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.workers.scripts.settings.with_raw_response.edit(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -66,7 +66,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.workers.scripts.settings.with_streaming_response.edit(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -81,20 +81,20 @@ class TestSettings:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.scripts.settings.with_raw_response.edit(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.settings.with_raw_response.edit(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         setting = client.workers.scripts.settings.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ScriptSetting], setting, path=["response"])
@@ -102,7 +102,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.workers.scripts.settings.with_raw_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -114,7 +114,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.workers.scripts.settings.with_streaming_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -129,13 +129,13 @@ class TestSettings:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.scripts.settings.with_raw_response.get(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.settings.with_raw_response.get(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -146,7 +146,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.workers.scripts.settings.edit(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ScriptSetting], setting, path=["response"])
@@ -154,7 +154,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.workers.scripts.settings.edit(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             logpush=False,
             tail_consumers=[
@@ -180,7 +180,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.settings.with_raw_response.edit(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -192,7 +192,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.settings.with_streaming_response.edit(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -207,20 +207,20 @@ class TestAsyncSettings:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.scripts.settings.with_raw_response.edit(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.settings.with_raw_response.edit(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.workers.scripts.settings.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ScriptSetting], setting, path=["response"])
@@ -228,7 +228,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.settings.with_raw_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -240,7 +240,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.settings.with_streaming_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -255,12 +255,12 @@ class TestAsyncSettings:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.scripts.settings.with_raw_response.get(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.settings.with_raw_response.get(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

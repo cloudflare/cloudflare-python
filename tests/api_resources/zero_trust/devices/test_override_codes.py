@@ -20,7 +20,7 @@ class TestOverrideCodes:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         override_code = client.zero_trust.devices.override_codes.list(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[OverrideCodeListResponse], override_code, path=["response"])
@@ -28,7 +28,7 @@ class TestOverrideCodes:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.override_codes.with_raw_response.list(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -40,7 +40,7 @@ class TestOverrideCodes:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.override_codes.with_streaming_response.list(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -55,13 +55,13 @@ class TestOverrideCodes:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.devices.override_codes.with_raw_response.list(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `device_id` but received ''"):
             client.zero_trust.devices.override_codes.with_raw_response.list(
-                "",
+                device_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
@@ -72,7 +72,7 @@ class TestAsyncOverrideCodes:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         override_code = await async_client.zero_trust.devices.override_codes.list(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[OverrideCodeListResponse], override_code, path=["response"])
@@ -80,7 +80,7 @@ class TestAsyncOverrideCodes:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.override_codes.with_raw_response.list(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -92,7 +92,7 @@ class TestAsyncOverrideCodes:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.override_codes.with_streaming_response.list(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -107,12 +107,12 @@ class TestAsyncOverrideCodes:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.devices.override_codes.with_raw_response.list(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `device_id` but received ''"):
             await async_client.zero_trust.devices.override_codes.with_raw_response.list(
-                "",
+                device_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )

@@ -71,7 +71,7 @@ class TestTSIGs:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         tsig = client.secondary_dns.tsigs.update(
-            "69cd1e104af3e6ed3cb344f263fd0d5a",
+            tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
             algo="hmac-sha512.",
             name="tsig.customer.cf.",
@@ -82,7 +82,7 @@ class TestTSIGs:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.secondary_dns.tsigs.with_raw_response.update(
-            "69cd1e104af3e6ed3cb344f263fd0d5a",
+            tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
             algo="hmac-sha512.",
             name="tsig.customer.cf.",
@@ -97,7 +97,7 @@ class TestTSIGs:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.secondary_dns.tsigs.with_streaming_response.update(
-            "69cd1e104af3e6ed3cb344f263fd0d5a",
+            tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
             algo="hmac-sha512.",
             name="tsig.customer.cf.",
@@ -115,7 +115,7 @@ class TestTSIGs:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.secondary_dns.tsigs.with_raw_response.update(
-                "69cd1e104af3e6ed3cb344f263fd0d5a",
+                tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
                 account_id="",
                 algo="hmac-sha512.",
                 name="tsig.customer.cf.",
@@ -124,7 +124,7 @@ class TestTSIGs:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tsig_id` but received ''"):
             client.secondary_dns.tsigs.with_raw_response.update(
-                "",
+                tsig_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 algo="hmac-sha512.",
                 name="tsig.customer.cf.",
@@ -172,7 +172,7 @@ class TestTSIGs:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         tsig = client.secondary_dns.tsigs.delete(
-            "69cd1e104af3e6ed3cb344f263fd0d5a",
+            tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(Optional[TSIGDeleteResponse], tsig, path=["response"])
@@ -180,7 +180,7 @@ class TestTSIGs:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.secondary_dns.tsigs.with_raw_response.delete(
-            "69cd1e104af3e6ed3cb344f263fd0d5a",
+            tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
@@ -192,7 +192,7 @@ class TestTSIGs:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.secondary_dns.tsigs.with_streaming_response.delete(
-            "69cd1e104af3e6ed3cb344f263fd0d5a",
+            tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
@@ -207,20 +207,20 @@ class TestTSIGs:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.secondary_dns.tsigs.with_raw_response.delete(
-                "69cd1e104af3e6ed3cb344f263fd0d5a",
+                tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tsig_id` but received ''"):
             client.secondary_dns.tsigs.with_raw_response.delete(
-                "",
+                tsig_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         tsig = client.secondary_dns.tsigs.get(
-            "69cd1e104af3e6ed3cb344f263fd0d5a",
+            tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(Optional[TSIG], tsig, path=["response"])
@@ -228,7 +228,7 @@ class TestTSIGs:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.secondary_dns.tsigs.with_raw_response.get(
-            "69cd1e104af3e6ed3cb344f263fd0d5a",
+            tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
@@ -240,7 +240,7 @@ class TestTSIGs:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.secondary_dns.tsigs.with_streaming_response.get(
-            "69cd1e104af3e6ed3cb344f263fd0d5a",
+            tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
@@ -255,13 +255,13 @@ class TestTSIGs:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.secondary_dns.tsigs.with_raw_response.get(
-                "69cd1e104af3e6ed3cb344f263fd0d5a",
+                tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tsig_id` but received ''"):
             client.secondary_dns.tsigs.with_raw_response.get(
-                "",
+                tsig_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
             )
 
@@ -322,7 +322,7 @@ class TestAsyncTSIGs:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         tsig = await async_client.secondary_dns.tsigs.update(
-            "69cd1e104af3e6ed3cb344f263fd0d5a",
+            tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
             algo="hmac-sha512.",
             name="tsig.customer.cf.",
@@ -333,7 +333,7 @@ class TestAsyncTSIGs:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.tsigs.with_raw_response.update(
-            "69cd1e104af3e6ed3cb344f263fd0d5a",
+            tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
             algo="hmac-sha512.",
             name="tsig.customer.cf.",
@@ -348,7 +348,7 @@ class TestAsyncTSIGs:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.tsigs.with_streaming_response.update(
-            "69cd1e104af3e6ed3cb344f263fd0d5a",
+            tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
             algo="hmac-sha512.",
             name="tsig.customer.cf.",
@@ -366,7 +366,7 @@ class TestAsyncTSIGs:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.secondary_dns.tsigs.with_raw_response.update(
-                "69cd1e104af3e6ed3cb344f263fd0d5a",
+                tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
                 account_id="",
                 algo="hmac-sha512.",
                 name="tsig.customer.cf.",
@@ -375,7 +375,7 @@ class TestAsyncTSIGs:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tsig_id` but received ''"):
             await async_client.secondary_dns.tsigs.with_raw_response.update(
-                "",
+                tsig_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 algo="hmac-sha512.",
                 name="tsig.customer.cf.",
@@ -423,7 +423,7 @@ class TestAsyncTSIGs:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         tsig = await async_client.secondary_dns.tsigs.delete(
-            "69cd1e104af3e6ed3cb344f263fd0d5a",
+            tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(Optional[TSIGDeleteResponse], tsig, path=["response"])
@@ -431,7 +431,7 @@ class TestAsyncTSIGs:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.tsigs.with_raw_response.delete(
-            "69cd1e104af3e6ed3cb344f263fd0d5a",
+            tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
@@ -443,7 +443,7 @@ class TestAsyncTSIGs:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.tsigs.with_streaming_response.delete(
-            "69cd1e104af3e6ed3cb344f263fd0d5a",
+            tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
@@ -458,20 +458,20 @@ class TestAsyncTSIGs:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.secondary_dns.tsigs.with_raw_response.delete(
-                "69cd1e104af3e6ed3cb344f263fd0d5a",
+                tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tsig_id` but received ''"):
             await async_client.secondary_dns.tsigs.with_raw_response.delete(
-                "",
+                tsig_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         tsig = await async_client.secondary_dns.tsigs.get(
-            "69cd1e104af3e6ed3cb344f263fd0d5a",
+            tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(Optional[TSIG], tsig, path=["response"])
@@ -479,7 +479,7 @@ class TestAsyncTSIGs:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.tsigs.with_raw_response.get(
-            "69cd1e104af3e6ed3cb344f263fd0d5a",
+            tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
@@ -491,7 +491,7 @@ class TestAsyncTSIGs:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.tsigs.with_streaming_response.get(
-            "69cd1e104af3e6ed3cb344f263fd0d5a",
+            tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
             account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
@@ -506,12 +506,12 @@ class TestAsyncTSIGs:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.secondary_dns.tsigs.with_raw_response.get(
-                "69cd1e104af3e6ed3cb344f263fd0d5a",
+                tsig_id="69cd1e104af3e6ed3cb344f263fd0d5a",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tsig_id` but received ''"):
             await async_client.secondary_dns.tsigs.with_raw_response.get(
-                "",
+                tsig_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
             )

@@ -21,14 +21,14 @@ class TestBytimes:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         bytime = client.spectrum.analytics.events.bytimes.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[BytimeGetResponse], bytime, path=["response"])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         bytime = client.spectrum.analytics.events.bytimes.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
             dimensions=["event", "appID"],
             filters="event==disconnect%20AND%20coloName!=SFO",
             metrics=["count", "bytesIngress"],
@@ -42,7 +42,7 @@ class TestBytimes:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.spectrum.analytics.events.bytimes.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -53,7 +53,7 @@ class TestBytimes:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.spectrum.analytics.events.bytimes.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -67,7 +67,7 @@ class TestBytimes:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
             client.spectrum.analytics.events.bytimes.with_raw_response.get(
-                "",
+                zone="",
             )
 
 
@@ -77,14 +77,14 @@ class TestAsyncBytimes:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         bytime = await async_client.spectrum.analytics.events.bytimes.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[BytimeGetResponse], bytime, path=["response"])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         bytime = await async_client.spectrum.analytics.events.bytimes.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
             dimensions=["event", "appID"],
             filters="event==disconnect%20AND%20coloName!=SFO",
             metrics=["count", "bytesIngress"],
@@ -98,7 +98,7 @@ class TestAsyncBytimes:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.spectrum.analytics.events.bytimes.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -109,7 +109,7 @@ class TestAsyncBytimes:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.spectrum.analytics.events.bytimes.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -123,5 +123,5 @@ class TestAsyncBytimes:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone` but received ''"):
             await async_client.spectrum.analytics.events.bytimes.with_raw_response.get(
-                "",
+                zone="",
             )

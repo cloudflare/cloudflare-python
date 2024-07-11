@@ -20,7 +20,7 @@ class TestSubnets:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         subnet = client.intel.asn.subnets.get(
-            0,
+            asn=0,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SubnetGetResponse, subnet, path=["response"])
@@ -28,7 +28,7 @@ class TestSubnets:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.intel.asn.subnets.with_raw_response.get(
-            0,
+            asn=0,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -40,7 +40,7 @@ class TestSubnets:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.intel.asn.subnets.with_streaming_response.get(
-            0,
+            asn=0,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -55,7 +55,7 @@ class TestSubnets:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.intel.asn.subnets.with_raw_response.get(
-                0,
+                asn=0,
                 account_id="",
             )
 
@@ -66,7 +66,7 @@ class TestAsyncSubnets:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         subnet = await async_client.intel.asn.subnets.get(
-            0,
+            asn=0,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SubnetGetResponse, subnet, path=["response"])
@@ -74,7 +74,7 @@ class TestAsyncSubnets:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.intel.asn.subnets.with_raw_response.get(
-            0,
+            asn=0,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -86,7 +86,7 @@ class TestAsyncSubnets:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.intel.asn.subnets.with_streaming_response.get(
-            0,
+            asn=0,
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -101,6 +101,6 @@ class TestAsyncSubnets:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.intel.asn.subnets.with_raw_response.get(
-                0,
+                asn=0,
                 account_id="",
             )

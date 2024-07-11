@@ -20,7 +20,7 @@ class TestLastSeenIdentity:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         last_seen_identity = client.zero_trust.access.users.last_seen_identity.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            user_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Identity], last_seen_identity, path=["response"])
@@ -28,7 +28,7 @@ class TestLastSeenIdentity:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.users.last_seen_identity.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            user_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -40,7 +40,7 @@ class TestLastSeenIdentity:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.access.users.last_seen_identity.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            user_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -55,13 +55,13 @@ class TestLastSeenIdentity:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.users.last_seen_identity.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                user_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
             client.zero_trust.access.users.last_seen_identity.with_raw_response.get(
-                "",
+                user_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -72,7 +72,7 @@ class TestAsyncLastSeenIdentity:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         last_seen_identity = await async_client.zero_trust.access.users.last_seen_identity.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            user_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Identity], last_seen_identity, path=["response"])
@@ -80,7 +80,7 @@ class TestAsyncLastSeenIdentity:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.users.last_seen_identity.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            user_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -92,7 +92,7 @@ class TestAsyncLastSeenIdentity:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.users.last_seen_identity.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            user_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -107,12 +107,12 @@ class TestAsyncLastSeenIdentity:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.users.last_seen_identity.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                user_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
             await async_client.zero_trust.access.users.last_seen_identity.with_raw_response.get(
-                "",
+                user_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

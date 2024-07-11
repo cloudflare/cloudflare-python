@@ -25,7 +25,7 @@ class TestOwnership:
     def test_method_create(self, client: Cloudflare) -> None:
         ownership = client.logpush.ownership.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=["response"])
 
@@ -34,7 +34,7 @@ class TestOwnership:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         ownership = client.logpush.ownership.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=["response"])
 
@@ -43,7 +43,7 @@ class TestOwnership:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.logpush.ownership.with_raw_response.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -56,7 +56,7 @@ class TestOwnership:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.logpush.ownership.with_streaming_response.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -78,7 +78,7 @@ class TestOwnership:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.logpush.ownership.with_raw_response.create(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -87,7 +87,7 @@ class TestOwnership:
         ownership = client.logpush.ownership.validate(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
 
@@ -97,7 +97,7 @@ class TestOwnership:
         ownership = client.logpush.ownership.validate(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
 
@@ -107,7 +107,7 @@ class TestOwnership:
         response = client.logpush.ownership.with_raw_response.validate(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -121,7 +121,7 @@ class TestOwnership:
         with client.logpush.ownership.with_streaming_response.validate(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -145,7 +145,7 @@ class TestOwnership:
             client.logpush.ownership.with_raw_response.validate(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 ownership_challenge="00000000000000000000",
-                account_id="string",
+                account_id="account_id",
             )
 
 
@@ -157,7 +157,7 @@ class TestAsyncOwnership:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         ownership = await async_client.logpush.ownership.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=["response"])
 
@@ -166,7 +166,7 @@ class TestAsyncOwnership:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ownership = await async_client.logpush.ownership.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[OwnershipCreateResponse], ownership, path=["response"])
 
@@ -175,7 +175,7 @@ class TestAsyncOwnership:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logpush.ownership.with_raw_response.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -188,7 +188,7 @@ class TestAsyncOwnership:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.ownership.with_streaming_response.create(
             destination_conf="s3://mybucket/logs?region=us-west-2",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -210,7 +210,7 @@ class TestAsyncOwnership:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.logpush.ownership.with_raw_response.create(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -219,7 +219,7 @@ class TestAsyncOwnership:
         ownership = await async_client.logpush.ownership.validate(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
 
@@ -229,7 +229,7 @@ class TestAsyncOwnership:
         ownership = await async_client.logpush.ownership.validate(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[OwnershipValidation], ownership, path=["response"])
 
@@ -239,7 +239,7 @@ class TestAsyncOwnership:
         response = await async_client.logpush.ownership.with_raw_response.validate(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -253,7 +253,7 @@ class TestAsyncOwnership:
         async with async_client.logpush.ownership.with_streaming_response.validate(
             destination_conf="s3://mybucket/logs?region=us-west-2",
             ownership_challenge="00000000000000000000",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -277,5 +277,5 @@ class TestAsyncOwnership:
             await async_client.logpush.ownership.with_raw_response.validate(
                 destination_conf="s3://mybucket/logs?region=us-west-2",
                 ownership_challenge="00000000000000000000",
-                account_id="string",
+                account_id="account_id",
             )

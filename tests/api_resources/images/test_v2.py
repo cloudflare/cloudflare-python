@@ -28,7 +28,7 @@ class TestV2:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         v2 = client.images.v2.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            continuation_token="string",
+            continuation_token="continuation_token",
             per_page=10,
             sort_order="asc",
         )
@@ -80,7 +80,7 @@ class TestAsyncV2:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         v2 = await async_client.images.v2.list(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            continuation_token="string",
+            continuation_token="continuation_token",
             per_page=10,
             sort_order="asc",
         )

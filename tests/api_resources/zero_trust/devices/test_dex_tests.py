@@ -48,18 +48,18 @@ class TestDEXTests:
             target_policies=[
                 {
                     "default": True,
-                    "id": "string",
-                    "name": "string",
+                    "id": "id",
+                    "name": "name",
                 },
                 {
                     "default": True,
-                    "id": "string",
-                    "name": "string",
+                    "id": "id",
+                    "name": "name",
                 },
                 {
                     "default": True,
-                    "id": "string",
-                    "name": "string",
+                    "id": "id",
+                    "name": "name",
                 },
             ],
             targeted=True,
@@ -112,7 +112,7 @@ class TestDEXTests:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         dex_test = client.zero_trust.devices.dex_tests.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             data={},
             enabled=True,
@@ -124,7 +124,7 @@ class TestDEXTests:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         dex_test = client.zero_trust.devices.dex_tests.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             data={
                 "host": "https://dash.cloudflare.com",
@@ -138,18 +138,18 @@ class TestDEXTests:
             target_policies=[
                 {
                     "default": True,
-                    "id": "string",
-                    "name": "string",
+                    "id": "id",
+                    "name": "name",
                 },
                 {
                     "default": True,
-                    "id": "string",
-                    "name": "string",
+                    "id": "id",
+                    "name": "name",
                 },
                 {
                     "default": True,
-                    "id": "string",
-                    "name": "string",
+                    "id": "id",
+                    "name": "name",
                 },
             ],
             targeted=True,
@@ -159,7 +159,7 @@ class TestDEXTests:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.dex_tests.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             data={},
             enabled=True,
@@ -175,7 +175,7 @@ class TestDEXTests:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.dex_tests.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             data={},
             enabled=True,
@@ -194,7 +194,7 @@ class TestDEXTests:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.devices.dex_tests.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 data={},
                 enabled=True,
@@ -204,7 +204,7 @@ class TestDEXTests:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dex_test_id` but received ''"):
             client.zero_trust.devices.dex_tests.with_raw_response.update(
-                "",
+                dex_test_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
                 data={},
                 enabled=True,
@@ -253,7 +253,7 @@ class TestDEXTests:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         dex_test = client.zero_trust.devices.dex_tests.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[DEXTestDeleteResponse], dex_test, path=["response"])
@@ -261,7 +261,7 @@ class TestDEXTests:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.dex_tests.with_raw_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -273,7 +273,7 @@ class TestDEXTests:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.dex_tests.with_streaming_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -288,20 +288,20 @@ class TestDEXTests:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.devices.dex_tests.with_raw_response.delete(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dex_test_id` but received ''"):
             client.zero_trust.devices.dex_tests.with_raw_response.delete(
-                "",
+                dex_test_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         dex_test = client.zero_trust.devices.dex_tests.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
@@ -309,7 +309,7 @@ class TestDEXTests:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.dex_tests.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -321,7 +321,7 @@ class TestDEXTests:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.dex_tests.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -336,13 +336,13 @@ class TestDEXTests:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.devices.dex_tests.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dex_test_id` but received ''"):
             client.zero_trust.devices.dex_tests.with_raw_response.get(
-                "",
+                dex_test_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
@@ -377,18 +377,18 @@ class TestAsyncDEXTests:
             target_policies=[
                 {
                     "default": True,
-                    "id": "string",
-                    "name": "string",
+                    "id": "id",
+                    "name": "name",
                 },
                 {
                     "default": True,
-                    "id": "string",
-                    "name": "string",
+                    "id": "id",
+                    "name": "name",
                 },
                 {
                     "default": True,
-                    "id": "string",
-                    "name": "string",
+                    "id": "id",
+                    "name": "name",
                 },
             ],
             targeted=True,
@@ -441,7 +441,7 @@ class TestAsyncDEXTests:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         dex_test = await async_client.zero_trust.devices.dex_tests.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             data={},
             enabled=True,
@@ -453,7 +453,7 @@ class TestAsyncDEXTests:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         dex_test = await async_client.zero_trust.devices.dex_tests.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             data={
                 "host": "https://dash.cloudflare.com",
@@ -467,18 +467,18 @@ class TestAsyncDEXTests:
             target_policies=[
                 {
                     "default": True,
-                    "id": "string",
-                    "name": "string",
+                    "id": "id",
+                    "name": "name",
                 },
                 {
                     "default": True,
-                    "id": "string",
-                    "name": "string",
+                    "id": "id",
+                    "name": "name",
                 },
                 {
                     "default": True,
-                    "id": "string",
-                    "name": "string",
+                    "id": "id",
+                    "name": "name",
                 },
             ],
             targeted=True,
@@ -488,7 +488,7 @@ class TestAsyncDEXTests:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.dex_tests.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             data={},
             enabled=True,
@@ -504,7 +504,7 @@ class TestAsyncDEXTests:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.dex_tests.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             data={},
             enabled=True,
@@ -523,7 +523,7 @@ class TestAsyncDEXTests:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.devices.dex_tests.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 data={},
                 enabled=True,
@@ -533,7 +533,7 @@ class TestAsyncDEXTests:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dex_test_id` but received ''"):
             await async_client.zero_trust.devices.dex_tests.with_raw_response.update(
-                "",
+                dex_test_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
                 data={},
                 enabled=True,
@@ -582,7 +582,7 @@ class TestAsyncDEXTests:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         dex_test = await async_client.zero_trust.devices.dex_tests.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[DEXTestDeleteResponse], dex_test, path=["response"])
@@ -590,7 +590,7 @@ class TestAsyncDEXTests:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.dex_tests.with_raw_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -602,7 +602,7 @@ class TestAsyncDEXTests:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.dex_tests.with_streaming_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -617,20 +617,20 @@ class TestAsyncDEXTests:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.devices.dex_tests.with_raw_response.delete(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dex_test_id` but received ''"):
             await async_client.zero_trust.devices.dex_tests.with_raw_response.delete(
-                "",
+                dex_test_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         dex_test = await async_client.zero_trust.devices.dex_tests.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[SchemaHTTP], dex_test, path=["response"])
@@ -638,7 +638,7 @@ class TestAsyncDEXTests:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.dex_tests.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -650,7 +650,7 @@ class TestAsyncDEXTests:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.dex_tests.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -665,12 +665,12 @@ class TestAsyncDEXTests:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.devices.dex_tests.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                dex_test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dex_test_id` but received ''"):
             await async_client.zero_trust.devices.dex_tests.with_raw_response.get(
-                "",
+                dex_test_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )

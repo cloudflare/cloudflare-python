@@ -74,7 +74,7 @@ class TestTags:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         tag = client.zero_trust.access.tags.update(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="engineers",
         )
@@ -83,7 +83,7 @@ class TestTags:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         tag = client.zero_trust.access.tags.update(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="engineers",
             created_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
@@ -94,7 +94,7 @@ class TestTags:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.tags.with_raw_response.update(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="engineers",
         )
@@ -107,7 +107,7 @@ class TestTags:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.access.tags.with_streaming_response.update(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="engineers",
         ) as response:
@@ -123,14 +123,14 @@ class TestTags:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.tags.with_raw_response.update(
-                "engineers",
+                tag_name="engineers",
                 account_id="",
                 name="engineers",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tag_name` but received ''"):
             client.zero_trust.access.tags.with_raw_response.update(
-                "",
+                tag_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 name="engineers",
             )
@@ -176,7 +176,7 @@ class TestTags:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         tag = client.zero_trust.access.tags.delete(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[TagDeleteResponse], tag, path=["response"])
@@ -184,7 +184,7 @@ class TestTags:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.tags.with_raw_response.delete(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -196,7 +196,7 @@ class TestTags:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.access.tags.with_streaming_response.delete(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -211,20 +211,20 @@ class TestTags:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.tags.with_raw_response.delete(
-                "engineers",
+                tag_name="engineers",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tag_name` but received ''"):
             client.zero_trust.access.tags.with_raw_response.delete(
-                "",
+                tag_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         tag = client.zero_trust.access.tags.get(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Tag], tag, path=["response"])
@@ -232,7 +232,7 @@ class TestTags:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.tags.with_raw_response.get(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -244,7 +244,7 @@ class TestTags:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.access.tags.with_streaming_response.get(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -259,13 +259,13 @@ class TestTags:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.tags.with_raw_response.get(
-                "engineers",
+                tag_name="engineers",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tag_name` but received ''"):
             client.zero_trust.access.tags.with_raw_response.get(
-                "",
+                tag_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -328,7 +328,7 @@ class TestAsyncTags:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         tag = await async_client.zero_trust.access.tags.update(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="engineers",
         )
@@ -337,7 +337,7 @@ class TestAsyncTags:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         tag = await async_client.zero_trust.access.tags.update(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="engineers",
             created_at=parse_datetime("2014-01-01T05:20:00.12345Z"),
@@ -348,7 +348,7 @@ class TestAsyncTags:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.tags.with_raw_response.update(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="engineers",
         )
@@ -361,7 +361,7 @@ class TestAsyncTags:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.tags.with_streaming_response.update(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="engineers",
         ) as response:
@@ -377,14 +377,14 @@ class TestAsyncTags:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.tags.with_raw_response.update(
-                "engineers",
+                tag_name="engineers",
                 account_id="",
                 name="engineers",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tag_name` but received ''"):
             await async_client.zero_trust.access.tags.with_raw_response.update(
-                "",
+                tag_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 name="engineers",
             )
@@ -430,7 +430,7 @@ class TestAsyncTags:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         tag = await async_client.zero_trust.access.tags.delete(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[TagDeleteResponse], tag, path=["response"])
@@ -438,7 +438,7 @@ class TestAsyncTags:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.tags.with_raw_response.delete(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -450,7 +450,7 @@ class TestAsyncTags:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.tags.with_streaming_response.delete(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -465,20 +465,20 @@ class TestAsyncTags:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.tags.with_raw_response.delete(
-                "engineers",
+                tag_name="engineers",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tag_name` but received ''"):
             await async_client.zero_trust.access.tags.with_raw_response.delete(
-                "",
+                tag_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         tag = await async_client.zero_trust.access.tags.get(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Tag], tag, path=["response"])
@@ -486,7 +486,7 @@ class TestAsyncTags:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.tags.with_raw_response.get(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -498,7 +498,7 @@ class TestAsyncTags:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.tags.with_streaming_response.get(
-            "engineers",
+            tag_name="engineers",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -513,12 +513,12 @@ class TestAsyncTags:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.tags.with_raw_response.get(
-                "engineers",
+                tag_name="engineers",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tag_name` but received ''"):
             await async_client.zero_trust.access.tags.with_raw_response.get(
-                "",
+                tag_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

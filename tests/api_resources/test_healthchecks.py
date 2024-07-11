@@ -105,7 +105,7 @@ class TestHealthchecks:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         healthcheck = client.healthchecks.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
@@ -115,7 +115,7 @@ class TestHealthchecks:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         healthcheck = client.healthchecks.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
@@ -151,7 +151,7 @@ class TestHealthchecks:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.healthchecks.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
@@ -165,7 +165,7 @@ class TestHealthchecks:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.healthchecks.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
@@ -182,7 +182,7 @@ class TestHealthchecks:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.healthchecks.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
                 address="www.example.com",
                 name="server-1",
@@ -190,7 +190,7 @@ class TestHealthchecks:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `healthcheck_id` but received ''"):
             client.healthchecks.with_raw_response.update(
-                "",
+                healthcheck_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 address="www.example.com",
                 name="server-1",
@@ -246,7 +246,7 @@ class TestHealthchecks:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         healthcheck = client.healthchecks.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(HealthcheckDeleteResponse, healthcheck, path=["response"])
@@ -254,7 +254,7 @@ class TestHealthchecks:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.healthchecks.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -266,7 +266,7 @@ class TestHealthchecks:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.healthchecks.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -281,20 +281,20 @@ class TestHealthchecks:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.healthchecks.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `healthcheck_id` but received ''"):
             client.healthchecks.with_raw_response.delete(
-                "",
+                healthcheck_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         healthcheck = client.healthchecks.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
@@ -304,7 +304,7 @@ class TestHealthchecks:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         healthcheck = client.healthchecks.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
@@ -340,7 +340,7 @@ class TestHealthchecks:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.healthchecks.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
@@ -354,7 +354,7 @@ class TestHealthchecks:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.healthchecks.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
@@ -371,7 +371,7 @@ class TestHealthchecks:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.healthchecks.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
                 address="www.example.com",
                 name="server-1",
@@ -379,7 +379,7 @@ class TestHealthchecks:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `healthcheck_id` but received ''"):
             client.healthchecks.with_raw_response.edit(
-                "",
+                healthcheck_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 address="www.example.com",
                 name="server-1",
@@ -388,7 +388,7 @@ class TestHealthchecks:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         healthcheck = client.healthchecks.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Healthcheck, healthcheck, path=["response"])
@@ -396,7 +396,7 @@ class TestHealthchecks:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.healthchecks.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -408,7 +408,7 @@ class TestHealthchecks:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.healthchecks.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -423,13 +423,13 @@ class TestHealthchecks:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.healthchecks.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `healthcheck_id` but received ''"):
             client.healthchecks.with_raw_response.get(
-                "",
+                healthcheck_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -521,7 +521,7 @@ class TestAsyncHealthchecks:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         healthcheck = await async_client.healthchecks.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
@@ -531,7 +531,7 @@ class TestAsyncHealthchecks:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         healthcheck = await async_client.healthchecks.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
@@ -567,7 +567,7 @@ class TestAsyncHealthchecks:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.healthchecks.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
@@ -581,7 +581,7 @@ class TestAsyncHealthchecks:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.healthchecks.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
@@ -598,7 +598,7 @@ class TestAsyncHealthchecks:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.healthchecks.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
                 address="www.example.com",
                 name="server-1",
@@ -606,7 +606,7 @@ class TestAsyncHealthchecks:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `healthcheck_id` but received ''"):
             await async_client.healthchecks.with_raw_response.update(
-                "",
+                healthcheck_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 address="www.example.com",
                 name="server-1",
@@ -662,7 +662,7 @@ class TestAsyncHealthchecks:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         healthcheck = await async_client.healthchecks.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(HealthcheckDeleteResponse, healthcheck, path=["response"])
@@ -670,7 +670,7 @@ class TestAsyncHealthchecks:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.healthchecks.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -682,7 +682,7 @@ class TestAsyncHealthchecks:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.healthchecks.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -697,20 +697,20 @@ class TestAsyncHealthchecks:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.healthchecks.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `healthcheck_id` but received ''"):
             await async_client.healthchecks.with_raw_response.delete(
-                "",
+                healthcheck_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         healthcheck = await async_client.healthchecks.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
@@ -720,7 +720,7 @@ class TestAsyncHealthchecks:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         healthcheck = await async_client.healthchecks.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
@@ -756,7 +756,7 @@ class TestAsyncHealthchecks:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.healthchecks.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
@@ -770,7 +770,7 @@ class TestAsyncHealthchecks:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.healthchecks.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             address="www.example.com",
             name="server-1",
@@ -787,7 +787,7 @@ class TestAsyncHealthchecks:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.healthchecks.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
                 address="www.example.com",
                 name="server-1",
@@ -795,7 +795,7 @@ class TestAsyncHealthchecks:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `healthcheck_id` but received ''"):
             await async_client.healthchecks.with_raw_response.edit(
-                "",
+                healthcheck_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 address="www.example.com",
                 name="server-1",
@@ -804,7 +804,7 @@ class TestAsyncHealthchecks:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         healthcheck = await async_client.healthchecks.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Healthcheck, healthcheck, path=["response"])
@@ -812,7 +812,7 @@ class TestAsyncHealthchecks:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.healthchecks.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -824,7 +824,7 @@ class TestAsyncHealthchecks:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.healthchecks.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -839,12 +839,12 @@ class TestAsyncHealthchecks:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.healthchecks.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                healthcheck_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `healthcheck_id` but received ''"):
             await async_client.healthchecks.with_raw_response.get(
-                "",
+                healthcheck_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

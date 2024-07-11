@@ -59,7 +59,7 @@ class TestProfiles:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         profile = client.zero_trust.dlp.profiles.get(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ProfileGetResponse, profile, path=["response"])
@@ -67,7 +67,7 @@ class TestProfiles:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.profiles.with_raw_response.get(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -79,7 +79,7 @@ class TestProfiles:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.dlp.profiles.with_streaming_response.get(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -94,13 +94,13 @@ class TestProfiles:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.dlp.profiles.with_raw_response.get(
-                "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+                profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
             client.zero_trust.dlp.profiles.with_raw_response.get(
-                "",
+                profile_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -149,7 +149,7 @@ class TestAsyncProfiles:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         profile = await async_client.zero_trust.dlp.profiles.get(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ProfileGetResponse, profile, path=["response"])
@@ -157,7 +157,7 @@ class TestAsyncProfiles:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dlp.profiles.with_raw_response.get(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -169,7 +169,7 @@ class TestAsyncProfiles:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dlp.profiles.with_streaming_response.get(
-            "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+            profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -184,12 +184,12 @@ class TestAsyncProfiles:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.dlp.profiles.with_raw_response.get(
-                "384e129d-25bd-403c-8019-bc19eb7a8a5f",
+                profile_id="384e129d-25bd-403c-8019-bc19eb7a8a5f",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `profile_id` but received ''"):
             await async_client.zero_trust.dlp.profiles.with_raw_response.get(
-                "",
+                profile_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

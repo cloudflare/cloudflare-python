@@ -67,7 +67,7 @@ class TestNamespaces:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         namespace = client.kv.namespaces.update(
-            "0f2ac74b498b48028cb68387c421e279",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             title="My Own Namespace",
         )
@@ -76,7 +76,7 @@ class TestNamespaces:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.kv.namespaces.with_raw_response.update(
-            "0f2ac74b498b48028cb68387c421e279",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             title="My Own Namespace",
         )
@@ -89,7 +89,7 @@ class TestNamespaces:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.kv.namespaces.with_streaming_response.update(
-            "0f2ac74b498b48028cb68387c421e279",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             title="My Own Namespace",
         ) as response:
@@ -105,14 +105,14 @@ class TestNamespaces:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.kv.namespaces.with_raw_response.update(
-                "0f2ac74b498b48028cb68387c421e279",
+                namespace_id="0f2ac74b498b48028cb68387c421e279",
                 account_id="",
                 title="My Own Namespace",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             client.kv.namespaces.with_raw_response.update(
-                "",
+                namespace_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 title="My Own Namespace",
             )
@@ -169,7 +169,7 @@ class TestNamespaces:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         namespace = client.kv.namespaces.delete(
-            "0f2ac74b498b48028cb68387c421e279",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[NamespaceDeleteResponse], namespace, path=["response"])
@@ -177,7 +177,7 @@ class TestNamespaces:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.kv.namespaces.with_raw_response.delete(
-            "0f2ac74b498b48028cb68387c421e279",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -189,7 +189,7 @@ class TestNamespaces:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.kv.namespaces.with_streaming_response.delete(
-            "0f2ac74b498b48028cb68387c421e279",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -204,20 +204,20 @@ class TestNamespaces:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.kv.namespaces.with_raw_response.delete(
-                "0f2ac74b498b48028cb68387c421e279",
+                namespace_id="0f2ac74b498b48028cb68387c421e279",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             client.kv.namespaces.with_raw_response.delete(
-                "",
+                namespace_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         namespace = client.kv.namespaces.get(
-            "0f2ac74b498b48028cb68387c421e279",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Namespace], namespace, path=["response"])
@@ -225,7 +225,7 @@ class TestNamespaces:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.kv.namespaces.with_raw_response.get(
-            "0f2ac74b498b48028cb68387c421e279",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -237,7 +237,7 @@ class TestNamespaces:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.kv.namespaces.with_streaming_response.get(
-            "0f2ac74b498b48028cb68387c421e279",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -252,13 +252,13 @@ class TestNamespaces:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.kv.namespaces.with_raw_response.get(
-                "0f2ac74b498b48028cb68387c421e279",
+                namespace_id="0f2ac74b498b48028cb68387c421e279",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             client.kv.namespaces.with_raw_response.get(
-                "",
+                namespace_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -311,7 +311,7 @@ class TestAsyncNamespaces:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         namespace = await async_client.kv.namespaces.update(
-            "0f2ac74b498b48028cb68387c421e279",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             title="My Own Namespace",
         )
@@ -320,7 +320,7 @@ class TestAsyncNamespaces:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.kv.namespaces.with_raw_response.update(
-            "0f2ac74b498b48028cb68387c421e279",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             title="My Own Namespace",
         )
@@ -333,7 +333,7 @@ class TestAsyncNamespaces:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.kv.namespaces.with_streaming_response.update(
-            "0f2ac74b498b48028cb68387c421e279",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             title="My Own Namespace",
         ) as response:
@@ -349,14 +349,14 @@ class TestAsyncNamespaces:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.kv.namespaces.with_raw_response.update(
-                "0f2ac74b498b48028cb68387c421e279",
+                namespace_id="0f2ac74b498b48028cb68387c421e279",
                 account_id="",
                 title="My Own Namespace",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             await async_client.kv.namespaces.with_raw_response.update(
-                "",
+                namespace_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 title="My Own Namespace",
             )
@@ -413,7 +413,7 @@ class TestAsyncNamespaces:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         namespace = await async_client.kv.namespaces.delete(
-            "0f2ac74b498b48028cb68387c421e279",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[NamespaceDeleteResponse], namespace, path=["response"])
@@ -421,7 +421,7 @@ class TestAsyncNamespaces:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.kv.namespaces.with_raw_response.delete(
-            "0f2ac74b498b48028cb68387c421e279",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -433,7 +433,7 @@ class TestAsyncNamespaces:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.kv.namespaces.with_streaming_response.delete(
-            "0f2ac74b498b48028cb68387c421e279",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -448,20 +448,20 @@ class TestAsyncNamespaces:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.kv.namespaces.with_raw_response.delete(
-                "0f2ac74b498b48028cb68387c421e279",
+                namespace_id="0f2ac74b498b48028cb68387c421e279",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             await async_client.kv.namespaces.with_raw_response.delete(
-                "",
+                namespace_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         namespace = await async_client.kv.namespaces.get(
-            "0f2ac74b498b48028cb68387c421e279",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Namespace], namespace, path=["response"])
@@ -469,7 +469,7 @@ class TestAsyncNamespaces:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.kv.namespaces.with_raw_response.get(
-            "0f2ac74b498b48028cb68387c421e279",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -481,7 +481,7 @@ class TestAsyncNamespaces:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.kv.namespaces.with_streaming_response.get(
-            "0f2ac74b498b48028cb68387c421e279",
+            namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -496,12 +496,12 @@ class TestAsyncNamespaces:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.kv.namespaces.with_raw_response.get(
-                "0f2ac74b498b48028cb68387c421e279",
+                namespace_id="0f2ac74b498b48028cb68387c421e279",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             await async_client.kv.namespaces.with_raw_response.get(
-                "",
+                namespace_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

@@ -24,7 +24,7 @@ class TestSchemaValidation:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         schema_validation = client.api_gateway.operations.schema_validation.update(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SchemaValidationUpdateResponse, schema_validation, path=["response"])
@@ -32,7 +32,7 @@ class TestSchemaValidation:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         schema_validation = client.api_gateway.operations.schema_validation.update(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             mitigation_action="block",
         )
@@ -41,7 +41,7 @@ class TestSchemaValidation:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.api_gateway.operations.schema_validation.with_raw_response.update(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -53,7 +53,7 @@ class TestSchemaValidation:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.api_gateway.operations.schema_validation.with_streaming_response.update(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -68,13 +68,13 @@ class TestSchemaValidation:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.api_gateway.operations.schema_validation.with_raw_response.update(
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `operation_id` but received ''"):
             client.api_gateway.operations.schema_validation.with_raw_response.update(
-                "",
+                operation_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -135,7 +135,7 @@ class TestSchemaValidation:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         schema_validation = client.api_gateway.operations.schema_validation.get(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SchemaValidationGetResponse, schema_validation, path=["response"])
@@ -143,7 +143,7 @@ class TestSchemaValidation:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.api_gateway.operations.schema_validation.with_raw_response.get(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -155,7 +155,7 @@ class TestSchemaValidation:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.api_gateway.operations.schema_validation.with_streaming_response.get(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -170,13 +170,13 @@ class TestSchemaValidation:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.api_gateway.operations.schema_validation.with_raw_response.get(
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `operation_id` but received ''"):
             client.api_gateway.operations.schema_validation.with_raw_response.get(
-                "",
+                operation_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -187,7 +187,7 @@ class TestAsyncSchemaValidation:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         schema_validation = await async_client.api_gateway.operations.schema_validation.update(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SchemaValidationUpdateResponse, schema_validation, path=["response"])
@@ -195,7 +195,7 @@ class TestAsyncSchemaValidation:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         schema_validation = await async_client.api_gateway.operations.schema_validation.update(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             mitigation_action="block",
         )
@@ -204,7 +204,7 @@ class TestAsyncSchemaValidation:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.api_gateway.operations.schema_validation.with_raw_response.update(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -216,7 +216,7 @@ class TestAsyncSchemaValidation:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.api_gateway.operations.schema_validation.with_streaming_response.update(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -231,13 +231,13 @@ class TestAsyncSchemaValidation:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.api_gateway.operations.schema_validation.with_raw_response.update(
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `operation_id` but received ''"):
             await async_client.api_gateway.operations.schema_validation.with_raw_response.update(
-                "",
+                operation_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -298,7 +298,7 @@ class TestAsyncSchemaValidation:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         schema_validation = await async_client.api_gateway.operations.schema_validation.get(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SchemaValidationGetResponse, schema_validation, path=["response"])
@@ -306,7 +306,7 @@ class TestAsyncSchemaValidation:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.api_gateway.operations.schema_validation.with_raw_response.get(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -318,7 +318,7 @@ class TestAsyncSchemaValidation:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.api_gateway.operations.schema_validation.with_streaming_response.get(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -333,12 +333,12 @@ class TestAsyncSchemaValidation:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.api_gateway.operations.schema_validation.with_raw_response.get(
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `operation_id` but received ''"):
             await async_client.api_gateway.operations.schema_validation.with_raw_response.get(
-                "",
+                operation_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

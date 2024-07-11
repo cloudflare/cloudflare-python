@@ -26,7 +26,7 @@ class TestConnectors:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         connector = client.magic_transit.connectors.update(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ConnectorUpdateResponse, connector, path=["response"])
@@ -34,20 +34,20 @@ class TestConnectors:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         connector = client.magic_transit.connectors.update(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             activated=True,
             interrupt_window_duration_hours=0,
             interrupt_window_hour_of_day=0,
-            notes="string",
-            timezone="string",
+            notes="notes",
+            timezone="timezone",
         )
         assert_matches_type(ConnectorUpdateResponse, connector, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.magic_transit.connectors.with_raw_response.update(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -59,7 +59,7 @@ class TestConnectors:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.magic_transit.connectors.with_streaming_response.update(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -74,13 +74,13 @@ class TestConnectors:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.connectors.with_raw_response.update(
-                "string",
+                connector_id="connector_id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_id` but received ''"):
             client.magic_transit.connectors.with_raw_response.update(
-                "",
+                connector_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -125,7 +125,7 @@ class TestConnectors:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         connector = client.magic_transit.connectors.edit(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ConnectorEditResponse, connector, path=["response"])
@@ -133,20 +133,20 @@ class TestConnectors:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         connector = client.magic_transit.connectors.edit(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             activated=True,
             interrupt_window_duration_hours=0,
             interrupt_window_hour_of_day=0,
-            notes="string",
-            timezone="string",
+            notes="notes",
+            timezone="timezone",
         )
         assert_matches_type(ConnectorEditResponse, connector, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.magic_transit.connectors.with_raw_response.edit(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -158,7 +158,7 @@ class TestConnectors:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.magic_transit.connectors.with_streaming_response.edit(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -173,20 +173,20 @@ class TestConnectors:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.connectors.with_raw_response.edit(
-                "string",
+                connector_id="connector_id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_id` but received ''"):
             client.magic_transit.connectors.with_raw_response.edit(
-                "",
+                connector_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         connector = client.magic_transit.connectors.get(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ConnectorGetResponse, connector, path=["response"])
@@ -194,7 +194,7 @@ class TestConnectors:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.magic_transit.connectors.with_raw_response.get(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -206,7 +206,7 @@ class TestConnectors:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.magic_transit.connectors.with_streaming_response.get(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -221,13 +221,13 @@ class TestConnectors:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.connectors.with_raw_response.get(
-                "string",
+                connector_id="connector_id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_id` but received ''"):
             client.magic_transit.connectors.with_raw_response.get(
-                "",
+                connector_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -238,7 +238,7 @@ class TestAsyncConnectors:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         connector = await async_client.magic_transit.connectors.update(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ConnectorUpdateResponse, connector, path=["response"])
@@ -246,20 +246,20 @@ class TestAsyncConnectors:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         connector = await async_client.magic_transit.connectors.update(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             activated=True,
             interrupt_window_duration_hours=0,
             interrupt_window_hour_of_day=0,
-            notes="string",
-            timezone="string",
+            notes="notes",
+            timezone="timezone",
         )
         assert_matches_type(ConnectorUpdateResponse, connector, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.connectors.with_raw_response.update(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -271,7 +271,7 @@ class TestAsyncConnectors:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.connectors.with_streaming_response.update(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -286,13 +286,13 @@ class TestAsyncConnectors:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.connectors.with_raw_response.update(
-                "string",
+                connector_id="connector_id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_id` but received ''"):
             await async_client.magic_transit.connectors.with_raw_response.update(
-                "",
+                connector_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -337,7 +337,7 @@ class TestAsyncConnectors:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         connector = await async_client.magic_transit.connectors.edit(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ConnectorEditResponse, connector, path=["response"])
@@ -345,20 +345,20 @@ class TestAsyncConnectors:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         connector = await async_client.magic_transit.connectors.edit(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             activated=True,
             interrupt_window_duration_hours=0,
             interrupt_window_hour_of_day=0,
-            notes="string",
-            timezone="string",
+            notes="notes",
+            timezone="timezone",
         )
         assert_matches_type(ConnectorEditResponse, connector, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.connectors.with_raw_response.edit(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -370,7 +370,7 @@ class TestAsyncConnectors:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.connectors.with_streaming_response.edit(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -385,20 +385,20 @@ class TestAsyncConnectors:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.connectors.with_raw_response.edit(
-                "string",
+                connector_id="connector_id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_id` but received ''"):
             await async_client.magic_transit.connectors.with_raw_response.edit(
-                "",
+                connector_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         connector = await async_client.magic_transit.connectors.get(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ConnectorGetResponse, connector, path=["response"])
@@ -406,7 +406,7 @@ class TestAsyncConnectors:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.connectors.with_raw_response.get(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -418,7 +418,7 @@ class TestAsyncConnectors:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.connectors.with_streaming_response.get(
-            "string",
+            connector_id="connector_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -433,12 +433,12 @@ class TestAsyncConnectors:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.connectors.with_raw_response.get(
-                "string",
+                connector_id="connector_id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `connector_id` but received ''"):
             await async_client.magic_transit.connectors.with_raw_response.get(
-                "",
+                connector_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

@@ -20,7 +20,7 @@ class TestNetworkPath:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         network_path = client.zero_trust.dex.traceroute_test_results.network_path.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_result_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(Optional[NetworkPathGetResponse], network_path, path=["response"])
@@ -28,7 +28,7 @@ class TestNetworkPath:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.dex.traceroute_test_results.network_path.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_result_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
@@ -40,7 +40,7 @@ class TestNetworkPath:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.dex.traceroute_test_results.network_path.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_result_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
@@ -55,13 +55,13 @@ class TestNetworkPath:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.dex.traceroute_test_results.network_path.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                test_result_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_result_id` but received ''"):
             client.zero_trust.dex.traceroute_test_results.network_path.with_raw_response.get(
-                "",
+                test_result_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
             )
 
@@ -72,7 +72,7 @@ class TestAsyncNetworkPath:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         network_path = await async_client.zero_trust.dex.traceroute_test_results.network_path.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_result_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(Optional[NetworkPathGetResponse], network_path, path=["response"])
@@ -80,7 +80,7 @@ class TestAsyncNetworkPath:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dex.traceroute_test_results.network_path.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_result_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
@@ -92,7 +92,7 @@ class TestAsyncNetworkPath:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dex.traceroute_test_results.network_path.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_result_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
@@ -107,12 +107,12 @@ class TestAsyncNetworkPath:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.dex.traceroute_test_results.network_path.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                test_result_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_result_id` but received ''"):
             await async_client.zero_trust.dex.traceroute_test_results.network_path.with_raw_response.get(
-                "",
+                test_result_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
             )
