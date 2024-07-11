@@ -128,14 +128,6 @@ from .traffic_anomalies import (
     TrafficAnomaliesResourceWithStreamingResponse,
     AsyncTrafficAnomaliesResourceWithStreamingResponse,
 )
-from .connection_tampering import (
-    ConnectionTamperingResource,
-    AsyncConnectionTamperingResource,
-    ConnectionTamperingResourceWithRawResponse,
-    AsyncConnectionTamperingResourceWithRawResponse,
-    ConnectionTamperingResourceWithStreamingResponse,
-    AsyncConnectionTamperingResourceWithStreamingResponse,
-)
 
 __all__ = [
     "AnnotationsResource",
@@ -186,12 +178,6 @@ __all__ = [
     "AsyncAS112ResourceWithRawResponse",
     "AS112ResourceWithStreamingResponse",
     "AsyncAS112ResourceWithStreamingResponse",
-    "ConnectionTamperingResource",
-    "AsyncConnectionTamperingResource",
-    "ConnectionTamperingResourceWithRawResponse",
-    "AsyncConnectionTamperingResourceWithRawResponse",
-    "ConnectionTamperingResourceWithStreamingResponse",
-    "AsyncConnectionTamperingResourceWithStreamingResponse",
     "EmailResource",
     "AsyncEmailResource",
     "EmailResourceWithRawResponse",
