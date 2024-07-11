@@ -38,9 +38,7 @@ from .cache_reserve import (
     CacheReserveResourceWithStreamingResponse,
     AsyncCacheReserveResourceWithStreamingResponse,
 )
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from .smart_tiered_cache import (
     SmartTieredCacheResource,
     AsyncSmartTieredCacheResource,

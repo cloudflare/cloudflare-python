@@ -21,10 +21,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.secondary_dns import acl_create_params, acl_update_params
 from ...types.secondary_dns.acl import ACL
 from ...types.secondary_dns.acl_delete_response import ACLDeleteResponse

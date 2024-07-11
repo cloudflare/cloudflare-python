@@ -23,10 +23,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncCursorPagination, AsyncCursorPagination
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.r2.bucket import Bucket
 
 __all__ = ["BucketsResource", "AsyncBucketsResource"]

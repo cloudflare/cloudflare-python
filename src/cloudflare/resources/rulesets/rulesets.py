@@ -46,10 +46,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from .phases.phases import PhasesResource, AsyncPhasesResource
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.rulesets import Kind, Phase, ruleset_create_params, ruleset_update_params
 from .versions.versions import VersionsResource, AsyncVersionsResource
 from ...types.rulesets.kind import Kind

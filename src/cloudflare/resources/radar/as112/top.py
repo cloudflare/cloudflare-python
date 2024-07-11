@@ -22,9 +22,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.radar.as112 import top_edns_params, top_dnssec_params, top_locations_params, top_ip_version_params
 from ....types.radar.as112.top_edns_response import TopEdnsResponse
 from ....types.radar.as112.top_dnssec_response import TopDNSSECResponse

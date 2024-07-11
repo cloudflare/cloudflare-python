@@ -19,10 +19,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from .....pagination import SyncV4PagePagination, AsyncV4PagePagination
-from ....._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.radar.bgp.leaks import event_list_params
 from .....types.radar.bgp.leaks.event_list_response import EventListResponse
 

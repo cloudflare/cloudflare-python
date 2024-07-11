@@ -21,9 +21,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.radar.bgp import route_ases_params, route_moas_params, route_stats_params, route_pfx2as_params
 from ....types.radar.bgp.route_ases_response import RouteAsesResponse
 from ....types.radar.bgp.route_moas_response import RouteMoasResponse

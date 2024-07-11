@@ -29,9 +29,7 @@ from ..._response import (
     async_to_custom_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.url_scanner import scan_get_params, scan_create_params, scan_screenshot_params
 from ...types.url_scanner.scan_get_response import ScanGetResponse
 from ...types.url_scanner.scan_har_response import ScanHarResponse

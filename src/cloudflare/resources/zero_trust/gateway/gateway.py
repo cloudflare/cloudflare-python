@@ -81,9 +81,7 @@ from .configurations import (
     ConfigurationsResourceWithStreamingResponse,
     AsyncConfigurationsResourceWithStreamingResponse,
 )
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from .proxy_endpoints import (
     ProxyEndpointsResource,
     AsyncProxyEndpointsResource,

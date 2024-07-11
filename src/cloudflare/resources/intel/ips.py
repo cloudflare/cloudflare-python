@@ -21,9 +21,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.intel import ip_get_params
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.intel.ip_get_response import IPGetResponse
 
 __all__ = ["IPsResource", "AsyncIPsResource"]

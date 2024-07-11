@@ -34,10 +34,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ....._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.firewall.waf import package_list_params
 from .....types.firewall.waf.package_get_response import PackageGetResponse
 from .....types.firewall.waf.package_list_response import PackageListResponse

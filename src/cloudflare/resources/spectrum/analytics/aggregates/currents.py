@@ -20,9 +20,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
-from ....._base_client import (
-    make_request_options,
-)
+from ....._base_client import make_request_options
 from .....types.spectrum.analytics.aggregates import current_get_params
 from .....types.spectrum.analytics.aggregates.current_get_response import CurrentGetResponse
 

@@ -20,9 +20,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
-from ....._base_client import (
-    make_request_options,
-)
+from ....._base_client import make_request_options
 from .....types.zero_trust.access.certificates import setting_update_params
 from .....types.zero_trust.access.certificates.setting_get_response import SettingGetResponse
 from .....types.zero_trust.access.certificates.setting_update_response import SettingUpdateResponse

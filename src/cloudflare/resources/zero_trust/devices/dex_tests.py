@@ -21,10 +21,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.devices import dex_test_create_params, dex_test_update_params
 from ....types.zero_trust.devices.schema_http import SchemaHTTP
 from ....types.zero_trust.devices.schema_data_param import SchemaDataParam

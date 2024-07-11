@@ -22,9 +22,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.radar.verified_bots import top_bots_params, top_categories_params
 from ....types.radar.verified_bots.top_bots_response import TopBotsResponse
 from ....types.radar.verified_bots.top_categories_response import TopCategoriesResponse

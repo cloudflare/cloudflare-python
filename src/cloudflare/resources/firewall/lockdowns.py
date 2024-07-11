@@ -22,10 +22,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.firewall import lockdown_list_params, lockdown_create_params, lockdown_update_params
 from ...types.firewall.lockdown import Lockdown
 from ...types.firewall.lockdown_delete_response import LockdownDeleteResponse

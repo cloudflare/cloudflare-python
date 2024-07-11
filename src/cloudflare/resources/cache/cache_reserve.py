@@ -22,9 +22,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.cache import cache_reserve_edit_params, cache_reserve_clear_params
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.cache.cache_reserve_get_response import CacheReserveGetResponse
 from ...types.cache.cache_reserve_edit_response import CacheReserveEditResponse
 from ...types.cache.cache_reserve_clear_response import CacheReserveClearResponse

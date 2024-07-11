@@ -65,9 +65,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....types.radar import bgp_timeseries_params
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from .hijacks.hijacks import HijacksResource, AsyncHijacksResource
 from ....types.radar.bgp_timeseries_response import BGPTimeseriesResponse
 

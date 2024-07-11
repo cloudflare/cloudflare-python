@@ -21,10 +21,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.secondary_dns import tsig_create_params, tsig_update_params
 from ...types.secondary_dns.tsig import TSIG
 from ...types.secondary_dns.tsig_delete_response import TSIGDeleteResponse

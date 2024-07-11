@@ -37,10 +37,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.queues import queue_create_params, queue_update_params
 from ...types.queues.queue import Queue
 from ...types.queues.queue_created import QueueCreated

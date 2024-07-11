@@ -16,9 +16,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.load_balancers.pools.reference_get_response import ReferenceGetResponse
 
 __all__ = ["ReferencesResource", "AsyncReferencesResource"]

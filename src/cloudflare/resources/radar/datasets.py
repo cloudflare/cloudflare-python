@@ -22,9 +22,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.radar import dataset_list_params, dataset_download_params
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.radar.dataset_list_response import DatasetListResponse
 from ...types.radar.dataset_download_response import DatasetDownloadResponse
 

@@ -23,10 +23,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...types.rum import site_info_list_params, site_info_create_params, site_info_update_params
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.rum.site import Site
 from ...types.rum.site_info_delete_response import SiteInfoDeleteResponse
 

@@ -21,9 +21,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.pcaps import ownership_create_params, ownership_validate_params
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.pcaps.ownership import Ownership
 from ...types.pcaps.ownership_get_response import OwnershipGetResponse
 

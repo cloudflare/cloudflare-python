@@ -13,9 +13,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.shared.asn import ASN
 from ....types.intel.asn.subnet_get_response import SubnetGetResponse
 

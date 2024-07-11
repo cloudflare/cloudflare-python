@@ -20,9 +20,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.healthchecks import preview_create_params
 from ...types.healthchecks.healthcheck import Healthcheck
 from ...types.healthchecks.check_region import CheckRegion

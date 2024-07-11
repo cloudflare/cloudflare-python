@@ -20,10 +20,7 @@ from ..._response import (
 )
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...types.user import audit_log_list_params
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.shared.audit_log import AuditLog
 
 __all__ = ["AuditLogsResource", "AsyncAuditLogsResource"]

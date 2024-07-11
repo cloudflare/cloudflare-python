@@ -38,9 +38,7 @@ from ......_response import (
     async_to_streamed_response_wrapper,
 )
 from ......_wrappers import ResultWrapper
-from ......_base_client import (
-    make_request_options,
-)
+from ......_base_client import make_request_options
 from ......types.radar.attacks.layer7 import top_attacks_params, top_industry_params, top_vertical_params
 from ......types.radar.attacks.layer7.top_attacks_response import TopAttacksResponse
 from ......types.radar.attacks.layer7.top_industry_response import TopIndustryResponse

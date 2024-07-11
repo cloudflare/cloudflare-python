@@ -30,10 +30,7 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
-from ....._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.devices import posture_create_params, posture_update_params
 from .....types.zero_trust.devices.device_input_param import DeviceInputParam
 from .....types.zero_trust.devices.device_match_param import DeviceMatchParam

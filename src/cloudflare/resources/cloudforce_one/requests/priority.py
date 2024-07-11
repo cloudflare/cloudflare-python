@@ -21,9 +21,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.cloudforce_one.item import Item
 from ....types.cloudforce_one.quota import Quota
 from ....types.cloudforce_one.requests import priority_create_params, priority_update_params

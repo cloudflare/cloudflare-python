@@ -22,10 +22,7 @@ from ......_response import (
 )
 from ......_wrappers import ResultWrapper
 from ......pagination import SyncSinglePage, AsyncSinglePage
-from ......_base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ......_base_client import AsyncPaginator, make_request_options
 from ......types.workers_for_platforms.dispatch.namespaces.scripts import secret_update_params
 from ......types.workers_for_platforms.dispatch.namespaces.scripts.secret_list_response import SecretListResponse
 from ......types.workers_for_platforms.dispatch.namespaces.scripts.secret_update_response import SecretUpdateResponse

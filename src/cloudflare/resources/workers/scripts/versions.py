@@ -23,10 +23,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePagination, AsyncV4PagePagination
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.workers.scripts import version_list_params, version_create_params
 from ....types.workers.scripts.version_get_response import VersionGetResponse
 from ....types.workers.scripts.version_list_response import VersionListResponse

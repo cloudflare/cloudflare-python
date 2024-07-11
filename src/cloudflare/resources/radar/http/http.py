@@ -56,9 +56,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....types.radar import http_timeseries_params
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from .timeseries_groups import (
     TimeseriesGroupsResource,
     AsyncTimeseriesGroupsResource,
