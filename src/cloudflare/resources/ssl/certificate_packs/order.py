@@ -21,9 +21,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.ssl.host import Host
 from ....types.ssl.certificate_packs import order_create_params
 from ....types.ssl.certificate_packs.order_create_response import OrderCreateResponse

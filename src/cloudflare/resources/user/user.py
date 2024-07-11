@@ -70,9 +70,7 @@ from .subscriptions import (
     AsyncSubscriptionsResourceWithStreamingResponse,
 )
 from .tokens.tokens import TokensResource, AsyncTokensResource
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from .billing.billing import BillingResource, AsyncBillingResource
 
 __all__ = ["UserResource", "AsyncUserResource"]

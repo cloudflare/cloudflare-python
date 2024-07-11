@@ -29,10 +29,7 @@ from .advertisements import (
     AdvertisementsResourceWithStreamingResponse,
     AsyncAdvertisementsResourceWithStreamingResponse,
 )
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.magic_network_monitoring import rule_edit_params, rule_create_params, rule_update_params
 from ....types.magic_network_monitoring.magic_network_monitoring_rule import MagicNetworkMonitoringRule
 

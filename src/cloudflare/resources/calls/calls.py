@@ -31,10 +31,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ...types.calls import call_create_params, call_update_params
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.calls.calls_app import CallsApp
 from ...types.calls.call_list_response import CallListResponse
 from ...types.calls.calls_app_with_secret import CallsAppWithSecret

@@ -18,10 +18,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.api_gateway.user_schemas import operation_list_params
 from ....types.api_gateway.user_schemas.operation_list_response import OperationListResponse
 

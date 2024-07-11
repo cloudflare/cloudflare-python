@@ -21,10 +21,7 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
-from ....._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.access import Decision
 from .....types.zero_trust.access.decision import Decision
 from .....types.zero_trust.access_rule_param import AccessRuleParam

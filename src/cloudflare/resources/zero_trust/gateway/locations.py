@@ -21,10 +21,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.gateway import location_create_params, location_update_params
 from ....types.zero_trust.gateway.location import Location
 from ....types.zero_trust.gateway.location_network_param import LocationNetworkParam

@@ -29,9 +29,7 @@ from .direct_uploads import (
     DirectUploadsResourceWithStreamingResponse,
     AsyncDirectUploadsResourceWithStreamingResponse,
 )
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.images import v2_list_params
 from ....types.images.v2_list_response import V2ListResponse
 

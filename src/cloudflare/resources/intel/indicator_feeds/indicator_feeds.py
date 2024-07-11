@@ -38,10 +38,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ....types.intel import indicator_feed_create_params, indicator_feed_update_params
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.intel.indicator_feed_get_response import IndicatorFeedGetResponse
 from ....types.intel.indicator_feed_list_response import IndicatorFeedListResponse
 from ....types.intel.indicator_feed_create_response import IndicatorFeedCreateResponse

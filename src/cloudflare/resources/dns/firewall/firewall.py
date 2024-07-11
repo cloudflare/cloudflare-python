@@ -30,10 +30,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....types.dns import firewall_edit_params, firewall_list_params, firewall_create_params
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from .analytics.analytics import AnalyticsResource, AsyncAnalyticsResource
 from ....types.dns.firewall.firewall import Firewall
 from ....types.dns.firewall_ips_param import FirewallIPsParam

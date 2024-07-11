@@ -23,10 +23,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...types.d1.d1 import D1
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.d1.database_raw_response import DatabaseRawResponse
 from ...types.d1.database_list_response import DatabaseListResponse
 from ...types.d1.database_query_response import DatabaseQueryResponse

@@ -21,9 +21,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.intel import whois_get_params
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.intel.whois_get_response import WhoisGetResponse
 
 __all__ = ["WhoisResource", "AsyncWhoisResource"]

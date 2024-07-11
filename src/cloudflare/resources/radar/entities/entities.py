@@ -38,9 +38,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....types.radar import entity_get_params
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.radar.entity_get_response import EntityGetResponse
 
 __all__ = ["EntitiesResource", "AsyncEntitiesResource"]

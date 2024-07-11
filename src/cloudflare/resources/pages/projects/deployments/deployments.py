@@ -31,10 +31,7 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from .history.history import HistoryResource, AsyncHistoryResource
-from ....._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.pages.projects import (
     deployment_list_params,
     deployment_retry_params,

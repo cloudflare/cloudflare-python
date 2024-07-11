@@ -21,9 +21,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.api_gateway import configuration_get_params, configuration_update_params
 from ...types.api_gateway.configuration import Configuration
 from ...types.api_gateway.configuration_update_response import ConfigurationUpdateResponse

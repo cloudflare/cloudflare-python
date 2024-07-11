@@ -21,10 +21,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePagination, AsyncV4PagePagination
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.intel.attack_surface_report import (
     issue_list_params,
     issue_type_params,

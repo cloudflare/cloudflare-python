@@ -22,10 +22,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.api_gateway.discovery import operation_edit_params, operation_list_params
 from ....types.api_gateway.discovery_operation import DiscoveryOperation
 from ....types.api_gateway.discovery.operation_edit_response import OperationEditResponse

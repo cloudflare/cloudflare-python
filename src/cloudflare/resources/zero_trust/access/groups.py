@@ -21,10 +21,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.access import group_create_params, group_update_params
 from ....types.zero_trust.access_rule_param import AccessRuleParam
 from ....types.zero_trust.access.zero_trust_group import ZeroTrustGroup

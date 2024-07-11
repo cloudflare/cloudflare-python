@@ -25,10 +25,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.rulesets.version_get_response import VersionGetResponse
 from ....types.rulesets.version_list_response import VersionListResponse
 

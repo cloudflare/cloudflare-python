@@ -17,10 +17,7 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
-from ....._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.access.applications.ca import CA
 from .....types.zero_trust.access.applications.ca_get_response import CAGetResponse
 from .....types.zero_trust.access.applications.ca_create_response import CACreateResponse

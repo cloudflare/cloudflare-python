@@ -16,9 +16,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.intel.attack_surface_report.issue_type_get_response import IssueTypeGetResponse
 
 __all__ = ["IssueTypesResource", "AsyncIssueTypesResource"]

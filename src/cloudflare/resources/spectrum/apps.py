@@ -22,10 +22,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.spectrum import app_list_params, app_create_params, app_update_params
 from ...types.spectrum.dns_param import DNSParam
 from ...types.spectrum.edge_ips_param import EdgeIPsParam

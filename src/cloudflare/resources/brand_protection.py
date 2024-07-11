@@ -20,9 +20,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._wrappers import ResultWrapper
-from .._base_client import (
-    make_request_options,
-)
+from .._base_client import make_request_options
 from ..types.brand_protection import brand_protection_submit_params, brand_protection_url_info_params
 from ..types.brand_protection.info import Info
 from ..types.brand_protection.submit import Submit

@@ -22,9 +22,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
-from ....._base_client import (
-    make_request_options,
-)
+from ....._base_client import make_request_options
 from .....types.radar.http.locations import device_type_get_params
 from .....types.radar.http.locations.device_type_get_response import DeviceTypeGetResponse
 

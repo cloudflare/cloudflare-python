@@ -21,9 +21,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.dns import setting_edit_params
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.dns.dns_setting_param import DNSSettingParam
 from ...types.dns.setting_get_response import SettingGetResponse
 from ...types.dns.setting_edit_response import SettingEditResponse

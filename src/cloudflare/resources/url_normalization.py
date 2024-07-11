@@ -17,9 +17,7 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from .._base_client import (
-    make_request_options,
-)
+from .._base_client import make_request_options
 from ..types.url_normalization import url_normalization_update_params
 from ..types.url_normalization.url_normalization_get_response import URLNormalizationGetResponse
 from ..types.url_normalization.url_normalization_update_response import URLNormalizationUpdateResponse

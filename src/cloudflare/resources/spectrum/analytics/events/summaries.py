@@ -22,9 +22,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
-from ....._base_client import (
-    make_request_options,
-)
+from ....._base_client import make_request_options
 from .....types.spectrum.analytics.events import summary_get_params
 from .....types.spectrum.analytics.dimension import Dimension
 from .....types.spectrum.analytics.events.summary_get_response import SummaryGetResponse

@@ -31,10 +31,7 @@ from ...types.dns import (
     record_update_params,
 )
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.dns.record import Record
 from ...types.dns.ttl_param import TTLParam
 from ...types.dns.record_tags import RecordTags

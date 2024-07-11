@@ -22,10 +22,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.firewall import access_rule_edit_params, access_rule_list_params, access_rule_create_params
 from ...types.firewall.access_rule_get_response import AccessRuleGetResponse
 from ...types.firewall.access_rule_edit_response import AccessRuleEditResponse

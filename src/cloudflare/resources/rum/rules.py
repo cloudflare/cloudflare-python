@@ -21,9 +21,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.rum import rule_create_params, rule_update_params
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.rum.rum_rule import RUMRule
 from ...types.rum.rule_list_response import RuleListResponse
 from ...types.rum.rule_delete_response import RuleDeleteResponse

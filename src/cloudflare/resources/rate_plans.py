@@ -16,9 +16,7 @@ from .._response import (
     async_to_streamed_response_wrapper,
 )
 from .._wrappers import ResultWrapper
-from .._base_client import (
-    make_request_options,
-)
+from .._base_client import make_request_options
 from ..types.rate_plans.rate_plan_get_response import RatePlanGetResponse
 
 __all__ = ["RatePlansResource", "AsyncRatePlansResource"]

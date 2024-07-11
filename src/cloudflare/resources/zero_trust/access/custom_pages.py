@@ -23,10 +23,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.access import custom_page_create_params, custom_page_update_params
 from ....types.zero_trust.access.custom_page import CustomPage
 from ....types.zero_trust.access.custom_page_without_html import CustomPageWithoutHTML

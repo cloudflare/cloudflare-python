@@ -20,9 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.logs.control import retention_create_params
 from ....types.logs.control.retention_get_response import RetentionGetResponse
 from ....types.logs.control.retention_create_response import RetentionCreateResponse

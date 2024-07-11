@@ -30,10 +30,7 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from .scripts.scripts import ScriptsResource, AsyncScriptsResource
-from ....._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.workers_for_platforms.dispatch import namespace_create_params
 from .....types.workers_for_platforms.dispatch.namespace_get_response import NamespaceGetResponse
 from .....types.workers_for_platforms.dispatch.namespace_list_response import NamespaceListResponse

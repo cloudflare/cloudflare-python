@@ -21,10 +21,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.registrar import domain_update_params
 from ...types.registrar.domain import Domain
 from ...types.registrar.domain_get_response import DomainGetResponse

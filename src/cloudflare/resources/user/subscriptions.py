@@ -22,9 +22,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.user import subscription_edit_params, subscription_update_params
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.user.rate_plan_param import RatePlanParam
 from ...types.user.subscription_zone_param import SubscriptionZoneParam
 from ...types.user.subscription_get_response import SubscriptionGetResponse

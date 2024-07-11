@@ -21,10 +21,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.magic_transit.sites import wan_edit_params, wan_create_params, wan_update_params
 from ....types.magic_transit.sites.wan import WAN
 from ....types.magic_transit.sites.wan_create_response import WANCreateResponse

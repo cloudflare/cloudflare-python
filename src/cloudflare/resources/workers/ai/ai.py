@@ -30,9 +30,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from .models.models import ModelsResource, AsyncModelsResource
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.workers import ai_run_params
 from ....types.workers.ai_run_response import AIRunResponse
 

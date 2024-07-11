@@ -30,10 +30,7 @@ from .active_sessions import (
     ActiveSessionsResourceWithStreamingResponse,
     AsyncActiveSessionsResourceWithStreamingResponse,
 )
-from ....._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....._base_client import AsyncPaginator, make_request_options
 from .last_seen_identity import (
     LastSeenIdentityResource,
     AsyncLastSeenIdentityResource,
