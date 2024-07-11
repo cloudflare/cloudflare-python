@@ -6125,22 +6125,6 @@ Methods:
 - <code title="get /radar/as112/top/locations/ip_version/{ip_version}">client.radar.as112.top.<a href="./src/cloudflare/resources/radar/as112/top.py">ip_version</a>(ip_version, \*\*<a href="src/cloudflare/types/radar/as112/top_ip_version_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/as112/top_ip_version_response.py">TopIPVersionResponse</a></code>
 - <code title="get /radar/as112/top/locations">client.radar.as112.top.<a href="./src/cloudflare/resources/radar/as112/top.py">locations</a>(\*\*<a href="src/cloudflare/types/radar/as112/top_locations_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/as112/top_locations_response.py">TopLocationsResponse</a></code>
 
-## ConnectionTampering
-
-Types:
-
-```python
-from cloudflare.types.radar import (
-    ConnectionTamperingSummaryResponse,
-    ConnectionTamperingTimeseriesGroupsResponse,
-)
-```
-
-Methods:
-
-- <code title="get /radar/connection_tampering/summary">client.radar.connection_tampering.<a href="./src/cloudflare/resources/radar/connection_tampering.py">summary</a>(\*\*<a href="src/cloudflare/types/radar/connection_tampering_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/connection_tampering_summary_response.py">ConnectionTamperingSummaryResponse</a></code>
-- <code title="get /radar/connection_tampering/timeseries_groups">client.radar.connection_tampering.<a href="./src/cloudflare/resources/radar/connection_tampering.py">timeseries_groups</a>(\*\*<a href="src/cloudflare/types/radar/connection_tampering_timeseries_groups_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/connection_tampering_timeseries_groups_response.py">ConnectionTamperingTimeseriesGroupsResponse</a></code>
-
 ## Email
 
 Types:

@@ -27,13 +27,3 @@ from .netflow_timeseries_response import NetflowTimeseriesResponse as NetflowTim
 from .traffic_anomaly_get_response import TrafficAnomalyGetResponse as TrafficAnomalyGetResponse
 from .ranking_timeseries_groups_params import RankingTimeseriesGroupsParams as RankingTimeseriesGroupsParams
 from .ranking_timeseries_groups_response import RankingTimeseriesGroupsResponse as RankingTimeseriesGroupsResponse
-from .connection_tampering_summary_params import ConnectionTamperingSummaryParams as ConnectionTamperingSummaryParams
-from .connection_tampering_summary_response import (
-    ConnectionTamperingSummaryResponse as ConnectionTamperingSummaryResponse,
-)
-from .connection_tampering_timeseries_groups_params import (
-    ConnectionTamperingTimeseriesGroupsParams as ConnectionTamperingTimeseriesGroupsParams,
-)
-from .connection_tampering_timeseries_groups_response import (
-    ConnectionTamperingTimeseriesGroupsResponse as ConnectionTamperingTimeseriesGroupsResponse,
-)
