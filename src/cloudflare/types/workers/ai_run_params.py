@@ -42,7 +42,11 @@ class TextToImage(TypedDict, total=False):
 
     guidance: float
 
+    height: int
+
     image: Iterable[float]
+
+    image_b64: str
 
     lora_weights: Iterable[float]
 
@@ -50,9 +54,15 @@ class TextToImage(TypedDict, total=False):
 
     mask: Iterable[float]
 
+    negative_prompt: str
+
     num_steps: int
 
+    seed: int
+
     strength: float
+
+    width: int
 
 
 class TextEmbeddings(TypedDict, total=False):

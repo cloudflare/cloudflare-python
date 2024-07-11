@@ -139,12 +139,17 @@ class TestAI:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
             guidance=0,
+            height=0,
             image=[0, 0, 0],
+            image_b64="image_b64",
             lora_weights=[0, 0, 0],
             loras=["string", "string", "string"],
             mask=[0, 0, 0],
+            negative_prompt="negative_prompt",
             num_steps=0,
+            seed=0,
             strength=0,
+            width=0,
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
@@ -821,12 +826,17 @@ class TestAsyncAI:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prompt="x",
             guidance=0,
+            height=0,
             image=[0, 0, 0],
+            image_b64="image_b64",
             lora_weights=[0, 0, 0],
             loras=["string", "string", "string"],
             mask=[0, 0, 0],
+            negative_prompt="negative_prompt",
             num_steps=0,
+            seed=0,
             strength=0,
+            width=0,
         )
         assert_matches_type(Optional[AIRunResponse], ai, path=["response"])
 
