@@ -134,6 +134,14 @@ from .traffic_anomalies import (
     TrafficAnomaliesResourceWithStreamingResponse,
     AsyncTrafficAnomaliesResourceWithStreamingResponse,
 )
+from .tcp_resets_timeouts import (
+    TCPResetsTimeoutsResource,
+    AsyncTCPResetsTimeoutsResource,
+    TCPResetsTimeoutsResourceWithRawResponse,
+    AsyncTCPResetsTimeoutsResourceWithRawResponse,
+    TCPResetsTimeoutsResourceWithStreamingResponse,
+    AsyncTCPResetsTimeoutsResourceWithStreamingResponse,
+)
 from .annotations.annotations import AnnotationsResource, AsyncAnnotationsResource
 from .verified_bots.verified_bots import VerifiedBotsResource, AsyncVerifiedBotsResource
 from .traffic_anomalies.traffic_anomalies import TrafficAnomaliesResource, AsyncTrafficAnomaliesResource
@@ -201,6 +209,10 @@ class RadarResource(SyncAPIResource):
     @cached_property
     def traffic_anomalies(self) -> TrafficAnomaliesResource:
         return TrafficAnomaliesResource(self._client)
+
+    @cached_property
+    def tcp_resets_timeouts(self) -> TCPResetsTimeoutsResource:
+        return TCPResetsTimeoutsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> RadarResourceWithRawResponse:
@@ -271,6 +283,10 @@ class AsyncRadarResource(AsyncAPIResource):
     @cached_property
     def traffic_anomalies(self) -> AsyncTrafficAnomaliesResource:
         return AsyncTrafficAnomaliesResource(self._client)
+
+    @cached_property
+    def tcp_resets_timeouts(self) -> AsyncTCPResetsTimeoutsResource:
+        return AsyncTCPResetsTimeoutsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncRadarResourceWithRawResponse:
@@ -345,6 +361,10 @@ class RadarResourceWithRawResponse:
     def traffic_anomalies(self) -> TrafficAnomaliesResourceWithRawResponse:
         return TrafficAnomaliesResourceWithRawResponse(self._radar.traffic_anomalies)
 
+    @cached_property
+    def tcp_resets_timeouts(self) -> TCPResetsTimeoutsResourceWithRawResponse:
+        return TCPResetsTimeoutsResourceWithRawResponse(self._radar.tcp_resets_timeouts)
+
 
 class AsyncRadarResourceWithRawResponse:
     def __init__(self, radar: AsyncRadarResource) -> None:
@@ -409,6 +429,10 @@ class AsyncRadarResourceWithRawResponse:
     @cached_property
     def traffic_anomalies(self) -> AsyncTrafficAnomaliesResourceWithRawResponse:
         return AsyncTrafficAnomaliesResourceWithRawResponse(self._radar.traffic_anomalies)
+
+    @cached_property
+    def tcp_resets_timeouts(self) -> AsyncTCPResetsTimeoutsResourceWithRawResponse:
+        return AsyncTCPResetsTimeoutsResourceWithRawResponse(self._radar.tcp_resets_timeouts)
 
 
 class RadarResourceWithStreamingResponse:
@@ -475,6 +499,10 @@ class RadarResourceWithStreamingResponse:
     def traffic_anomalies(self) -> TrafficAnomaliesResourceWithStreamingResponse:
         return TrafficAnomaliesResourceWithStreamingResponse(self._radar.traffic_anomalies)
 
+    @cached_property
+    def tcp_resets_timeouts(self) -> TCPResetsTimeoutsResourceWithStreamingResponse:
+        return TCPResetsTimeoutsResourceWithStreamingResponse(self._radar.tcp_resets_timeouts)
+
 
 class AsyncRadarResourceWithStreamingResponse:
     def __init__(self, radar: AsyncRadarResource) -> None:
@@ -539,3 +567,7 @@ class AsyncRadarResourceWithStreamingResponse:
     @cached_property
     def traffic_anomalies(self) -> AsyncTrafficAnomaliesResourceWithStreamingResponse:
         return AsyncTrafficAnomaliesResourceWithStreamingResponse(self._radar.traffic_anomalies)
+
+    @cached_property
+    def tcp_resets_timeouts(self) -> AsyncTCPResetsTimeoutsResourceWithStreamingResponse:
+        return AsyncTCPResetsTimeoutsResourceWithStreamingResponse(self._radar.tcp_resets_timeouts)
