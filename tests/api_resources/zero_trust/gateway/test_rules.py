@@ -120,8 +120,8 @@ class TestRules:
                 },
                 "notification_settings": {
                     "enabled": True,
-                    "msg": "string",
-                    "support_url": "string",
+                    "msg": "msg",
+                    "support_url": "support_url",
                 },
                 "override_host": "example.com",
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
@@ -183,7 +183,7 @@ class TestRules:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         rule = client.zero_trust.gateway.rules.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             action="allow",
             name="block bad websites",
@@ -193,7 +193,7 @@ class TestRules:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         rule = client.zero_trust.gateway.rules.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             action="allow",
             name="block bad websites",
@@ -281,8 +281,8 @@ class TestRules:
                 },
                 "notification_settings": {
                     "enabled": True,
-                    "msg": "string",
-                    "support_url": "string",
+                    "msg": "msg",
+                    "support_url": "support_url",
                 },
                 "override_host": "example.com",
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
@@ -307,7 +307,7 @@ class TestRules:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.rules.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             action="allow",
             name="block bad websites",
@@ -321,7 +321,7 @@ class TestRules:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.rules.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             action="allow",
             name="block bad websites",
@@ -338,7 +338,7 @@ class TestRules:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.gateway.rules.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 action="allow",
                 name="block bad websites",
@@ -346,7 +346,7 @@ class TestRules:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.zero_trust.gateway.rules.with_raw_response.update(
-                "",
+                rule_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
                 action="allow",
                 name="block bad websites",
@@ -393,7 +393,7 @@ class TestRules:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         rule = client.zero_trust.gateway.rules.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
@@ -401,7 +401,7 @@ class TestRules:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.rules.with_raw_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -413,7 +413,7 @@ class TestRules:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.rules.with_streaming_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -428,20 +428,20 @@ class TestRules:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.gateway.rules.with_raw_response.delete(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.zero_trust.gateway.rules.with_raw_response.delete(
-                "",
+                rule_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         rule = client.zero_trust.gateway.rules.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[GatewayRule], rule, path=["response"])
@@ -449,7 +449,7 @@ class TestRules:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.rules.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -461,7 +461,7 @@ class TestRules:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.rules.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -476,13 +476,13 @@ class TestRules:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.gateway.rules.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.zero_trust.gateway.rules.with_raw_response.get(
-                "",
+                rule_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
@@ -589,8 +589,8 @@ class TestAsyncRules:
                 },
                 "notification_settings": {
                     "enabled": True,
-                    "msg": "string",
-                    "support_url": "string",
+                    "msg": "msg",
+                    "support_url": "support_url",
                 },
                 "override_host": "example.com",
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
@@ -652,7 +652,7 @@ class TestAsyncRules:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.zero_trust.gateway.rules.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             action="allow",
             name="block bad websites",
@@ -662,7 +662,7 @@ class TestAsyncRules:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.zero_trust.gateway.rules.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             action="allow",
             name="block bad websites",
@@ -750,8 +750,8 @@ class TestAsyncRules:
                 },
                 "notification_settings": {
                     "enabled": True,
-                    "msg": "string",
-                    "support_url": "string",
+                    "msg": "msg",
+                    "support_url": "support_url",
                 },
                 "override_host": "example.com",
                 "override_ips": ["1.1.1.1", "2.2.2.2"],
@@ -776,7 +776,7 @@ class TestAsyncRules:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.rules.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             action="allow",
             name="block bad websites",
@@ -790,7 +790,7 @@ class TestAsyncRules:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.rules.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             action="allow",
             name="block bad websites",
@@ -807,7 +807,7 @@ class TestAsyncRules:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.gateway.rules.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 action="allow",
                 name="block bad websites",
@@ -815,7 +815,7 @@ class TestAsyncRules:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             await async_client.zero_trust.gateway.rules.with_raw_response.update(
-                "",
+                rule_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
                 action="allow",
                 name="block bad websites",
@@ -862,7 +862,7 @@ class TestAsyncRules:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.zero_trust.gateway.rules.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[RuleDeleteResponse], rule, path=["response"])
@@ -870,7 +870,7 @@ class TestAsyncRules:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.rules.with_raw_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -882,7 +882,7 @@ class TestAsyncRules:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.rules.with_streaming_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -897,20 +897,20 @@ class TestAsyncRules:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.gateway.rules.with_raw_response.delete(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             await async_client.zero_trust.gateway.rules.with_raw_response.delete(
-                "",
+                rule_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.zero_trust.gateway.rules.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[GatewayRule], rule, path=["response"])
@@ -918,7 +918,7 @@ class TestAsyncRules:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.rules.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -930,7 +930,7 @@ class TestAsyncRules:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.rules.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -945,12 +945,12 @@ class TestAsyncRules:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.gateway.rules.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                rule_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             await async_client.zero_trust.gateway.rules.with_raw_response.get(
-                "",
+                rule_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )

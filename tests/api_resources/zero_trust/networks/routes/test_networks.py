@@ -20,7 +20,7 @@ class TestNetworks:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         network = client.zero_trust.networks.routes.networks.create(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Route, network, path=["response"])
@@ -28,7 +28,7 @@ class TestNetworks:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         network = client.zero_trust.networks.routes.networks.create(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
             comment="Example comment for this route.",
             virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
@@ -38,7 +38,7 @@ class TestNetworks:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.networks.routes.networks.with_raw_response.create(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -50,7 +50,7 @@ class TestNetworks:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.networks.routes.networks.with_streaming_response.create(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -65,20 +65,20 @@ class TestNetworks:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.networks.routes.networks.with_raw_response.create(
-                "172.16.0.0%2F16",
+                ip_network_encoded="172.16.0.0%2F16",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ip_network_encoded` but received ''"):
             client.zero_trust.networks.routes.networks.with_raw_response.create(
-                "",
+                ip_network_encoded="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         network = client.zero_trust.networks.routes.networks.delete(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Route, network, path=["response"])
@@ -86,7 +86,7 @@ class TestNetworks:
     @parametrize
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
         network = client.zero_trust.networks.routes.networks.delete(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
             tun_type="cfd_tunnel",
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
@@ -97,7 +97,7 @@ class TestNetworks:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.networks.routes.networks.with_raw_response.delete(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -109,7 +109,7 @@ class TestNetworks:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.networks.routes.networks.with_streaming_response.delete(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -124,20 +124,20 @@ class TestNetworks:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.networks.routes.networks.with_raw_response.delete(
-                "172.16.0.0%2F16",
+                ip_network_encoded="172.16.0.0%2F16",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ip_network_encoded` but received ''"):
             client.zero_trust.networks.routes.networks.with_raw_response.delete(
-                "",
+                ip_network_encoded="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         network = client.zero_trust.networks.routes.networks.edit(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Route, network, path=["response"])
@@ -145,7 +145,7 @@ class TestNetworks:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.zero_trust.networks.routes.networks.with_raw_response.edit(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -157,7 +157,7 @@ class TestNetworks:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.zero_trust.networks.routes.networks.with_streaming_response.edit(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -172,13 +172,13 @@ class TestNetworks:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.networks.routes.networks.with_raw_response.edit(
-                "172.16.0.0%2F16",
+                ip_network_encoded="172.16.0.0%2F16",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ip_network_encoded` but received ''"):
             client.zero_trust.networks.routes.networks.with_raw_response.edit(
-                "",
+                ip_network_encoded="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
@@ -189,7 +189,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         network = await async_client.zero_trust.networks.routes.networks.create(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Route, network, path=["response"])
@@ -197,7 +197,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         network = await async_client.zero_trust.networks.routes.networks.create(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
             comment="Example comment for this route.",
             virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
@@ -207,7 +207,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.networks.routes.networks.with_raw_response.create(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -219,7 +219,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.networks.routes.networks.with_streaming_response.create(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -234,20 +234,20 @@ class TestAsyncNetworks:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.networks.routes.networks.with_raw_response.create(
-                "172.16.0.0%2F16",
+                ip_network_encoded="172.16.0.0%2F16",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ip_network_encoded` but received ''"):
             await async_client.zero_trust.networks.routes.networks.with_raw_response.create(
-                "",
+                ip_network_encoded="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         network = await async_client.zero_trust.networks.routes.networks.delete(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Route, network, path=["response"])
@@ -255,7 +255,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
         network = await async_client.zero_trust.networks.routes.networks.delete(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
             tun_type="cfd_tunnel",
             tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
@@ -266,7 +266,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.networks.routes.networks.with_raw_response.delete(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -278,7 +278,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.networks.routes.networks.with_streaming_response.delete(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -293,20 +293,20 @@ class TestAsyncNetworks:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.networks.routes.networks.with_raw_response.delete(
-                "172.16.0.0%2F16",
+                ip_network_encoded="172.16.0.0%2F16",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ip_network_encoded` but received ''"):
             await async_client.zero_trust.networks.routes.networks.with_raw_response.delete(
-                "",
+                ip_network_encoded="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         network = await async_client.zero_trust.networks.routes.networks.edit(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Route, network, path=["response"])
@@ -314,7 +314,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.networks.routes.networks.with_raw_response.edit(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -326,7 +326,7 @@ class TestAsyncNetworks:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.networks.routes.networks.with_streaming_response.edit(
-            "172.16.0.0%2F16",
+            ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -341,12 +341,12 @@ class TestAsyncNetworks:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.networks.routes.networks.with_raw_response.edit(
-                "172.16.0.0%2F16",
+                ip_network_encoded="172.16.0.0%2F16",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ip_network_encoded` but received ''"):
             await async_client.zero_trust.networks.routes.networks.with_raw_response.edit(
-                "",
+                ip_network_encoded="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )

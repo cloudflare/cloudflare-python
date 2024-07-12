@@ -20,7 +20,7 @@ class TestIPs:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         ip = client.zero_trust.networks.routes.ips.get(
-            "10.1.0.137",
+            ip="10.1.0.137",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Teamnet, ip, path=["response"])
@@ -28,7 +28,7 @@ class TestIPs:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         ip = client.zero_trust.networks.routes.ips.get(
-            "10.1.0.137",
+            ip="10.1.0.137",
             account_id="699d98642c564d2e855e9661899b7252",
             virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
@@ -37,7 +37,7 @@ class TestIPs:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.networks.routes.ips.with_raw_response.get(
-            "10.1.0.137",
+            ip="10.1.0.137",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -49,7 +49,7 @@ class TestIPs:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.networks.routes.ips.with_streaming_response.get(
-            "10.1.0.137",
+            ip="10.1.0.137",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -64,13 +64,13 @@ class TestIPs:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.networks.routes.ips.with_raw_response.get(
-                "10.1.0.137",
+                ip="10.1.0.137",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ip` but received ''"):
             client.zero_trust.networks.routes.ips.with_raw_response.get(
-                "",
+                ip="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
@@ -81,7 +81,7 @@ class TestAsyncIPs:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         ip = await async_client.zero_trust.networks.routes.ips.get(
-            "10.1.0.137",
+            ip="10.1.0.137",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Teamnet, ip, path=["response"])
@@ -89,7 +89,7 @@ class TestAsyncIPs:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ip = await async_client.zero_trust.networks.routes.ips.get(
-            "10.1.0.137",
+            ip="10.1.0.137",
             account_id="699d98642c564d2e855e9661899b7252",
             virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
@@ -98,7 +98,7 @@ class TestAsyncIPs:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.networks.routes.ips.with_raw_response.get(
-            "10.1.0.137",
+            ip="10.1.0.137",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -110,7 +110,7 @@ class TestAsyncIPs:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.networks.routes.ips.with_streaming_response.get(
-            "10.1.0.137",
+            ip="10.1.0.137",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -125,12 +125,12 @@ class TestAsyncIPs:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.networks.routes.ips.with_raw_response.get(
-                "10.1.0.137",
+                ip="10.1.0.137",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ip` but received ''"):
             await async_client.zero_trust.networks.routes.ips.with_raw_response.get(
-                "",
+                ip="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )

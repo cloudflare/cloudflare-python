@@ -67,7 +67,7 @@ class TestACLs:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         acl = client.secondary_dns.acls.update(
-            "23ff594956f20c2a721606e94745a8aa",
+            acl_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
             ip_range="192.0.2.53/28",
             name="my-acl-1",
@@ -77,7 +77,7 @@ class TestACLs:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.secondary_dns.acls.with_raw_response.update(
-            "23ff594956f20c2a721606e94745a8aa",
+            acl_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
             ip_range="192.0.2.53/28",
             name="my-acl-1",
@@ -91,7 +91,7 @@ class TestACLs:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.secondary_dns.acls.with_streaming_response.update(
-            "23ff594956f20c2a721606e94745a8aa",
+            acl_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
             ip_range="192.0.2.53/28",
             name="my-acl-1",
@@ -108,7 +108,7 @@ class TestACLs:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.secondary_dns.acls.with_raw_response.update(
-                "23ff594956f20c2a721606e94745a8aa",
+                acl_id="23ff594956f20c2a721606e94745a8aa",
                 account_id="",
                 ip_range="192.0.2.53/28",
                 name="my-acl-1",
@@ -116,7 +116,7 @@ class TestACLs:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             client.secondary_dns.acls.with_raw_response.update(
-                "",
+                acl_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 ip_range="192.0.2.53/28",
                 name="my-acl-1",
@@ -163,7 +163,7 @@ class TestACLs:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         acl = client.secondary_dns.acls.delete(
-            "23ff594956f20c2a721606e94745a8aa",
+            acl_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(Optional[ACLDeleteResponse], acl, path=["response"])
@@ -171,7 +171,7 @@ class TestACLs:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.secondary_dns.acls.with_raw_response.delete(
-            "23ff594956f20c2a721606e94745a8aa",
+            acl_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
@@ -183,7 +183,7 @@ class TestACLs:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.secondary_dns.acls.with_streaming_response.delete(
-            "23ff594956f20c2a721606e94745a8aa",
+            acl_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
@@ -198,20 +198,20 @@ class TestACLs:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.secondary_dns.acls.with_raw_response.delete(
-                "23ff594956f20c2a721606e94745a8aa",
+                acl_id="23ff594956f20c2a721606e94745a8aa",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             client.secondary_dns.acls.with_raw_response.delete(
-                "",
+                acl_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         acl = client.secondary_dns.acls.get(
-            "23ff594956f20c2a721606e94745a8aa",
+            acl_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(Optional[ACL], acl, path=["response"])
@@ -219,7 +219,7 @@ class TestACLs:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.secondary_dns.acls.with_raw_response.get(
-            "23ff594956f20c2a721606e94745a8aa",
+            acl_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
@@ -231,7 +231,7 @@ class TestACLs:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.secondary_dns.acls.with_streaming_response.get(
-            "23ff594956f20c2a721606e94745a8aa",
+            acl_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
@@ -246,13 +246,13 @@ class TestACLs:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.secondary_dns.acls.with_raw_response.get(
-                "23ff594956f20c2a721606e94745a8aa",
+                acl_id="23ff594956f20c2a721606e94745a8aa",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             client.secondary_dns.acls.with_raw_response.get(
-                "",
+                acl_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
             )
 
@@ -309,7 +309,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.secondary_dns.acls.update(
-            "23ff594956f20c2a721606e94745a8aa",
+            acl_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
             ip_range="192.0.2.53/28",
             name="my-acl-1",
@@ -319,7 +319,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.acls.with_raw_response.update(
-            "23ff594956f20c2a721606e94745a8aa",
+            acl_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
             ip_range="192.0.2.53/28",
             name="my-acl-1",
@@ -333,7 +333,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.acls.with_streaming_response.update(
-            "23ff594956f20c2a721606e94745a8aa",
+            acl_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
             ip_range="192.0.2.53/28",
             name="my-acl-1",
@@ -350,7 +350,7 @@ class TestAsyncACLs:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.secondary_dns.acls.with_raw_response.update(
-                "23ff594956f20c2a721606e94745a8aa",
+                acl_id="23ff594956f20c2a721606e94745a8aa",
                 account_id="",
                 ip_range="192.0.2.53/28",
                 name="my-acl-1",
@@ -358,7 +358,7 @@ class TestAsyncACLs:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             await async_client.secondary_dns.acls.with_raw_response.update(
-                "",
+                acl_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 ip_range="192.0.2.53/28",
                 name="my-acl-1",
@@ -405,7 +405,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.secondary_dns.acls.delete(
-            "23ff594956f20c2a721606e94745a8aa",
+            acl_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(Optional[ACLDeleteResponse], acl, path=["response"])
@@ -413,7 +413,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.acls.with_raw_response.delete(
-            "23ff594956f20c2a721606e94745a8aa",
+            acl_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
@@ -425,7 +425,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.acls.with_streaming_response.delete(
-            "23ff594956f20c2a721606e94745a8aa",
+            acl_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
@@ -440,20 +440,20 @@ class TestAsyncACLs:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.secondary_dns.acls.with_raw_response.delete(
-                "23ff594956f20c2a721606e94745a8aa",
+                acl_id="23ff594956f20c2a721606e94745a8aa",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             await async_client.secondary_dns.acls.with_raw_response.delete(
-                "",
+                acl_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.secondary_dns.acls.get(
-            "23ff594956f20c2a721606e94745a8aa",
+            acl_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
         assert_matches_type(Optional[ACL], acl, path=["response"])
@@ -461,7 +461,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.acls.with_raw_response.get(
-            "23ff594956f20c2a721606e94745a8aa",
+            acl_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         )
 
@@ -473,7 +473,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.acls.with_streaming_response.get(
-            "23ff594956f20c2a721606e94745a8aa",
+            acl_id="23ff594956f20c2a721606e94745a8aa",
             account_id="01a7362d577a6c3019a474fd6f485823",
         ) as response:
             assert not response.is_closed
@@ -488,12 +488,12 @@ class TestAsyncACLs:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.secondary_dns.acls.with_raw_response.get(
-                "23ff594956f20c2a721606e94745a8aa",
+                acl_id="23ff594956f20c2a721606e94745a8aa",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             await async_client.secondary_dns.acls.with_raw_response.get(
-                "",
+                acl_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
             )

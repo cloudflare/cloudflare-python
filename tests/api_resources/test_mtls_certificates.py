@@ -119,7 +119,7 @@ class TestMTLSCertificates:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         mtls_certificate = client.mtls_certificates.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[MTLSCertificate], mtls_certificate, path=["response"])
@@ -127,7 +127,7 @@ class TestMTLSCertificates:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.mtls_certificates.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -139,7 +139,7 @@ class TestMTLSCertificates:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.mtls_certificates.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -154,20 +154,20 @@ class TestMTLSCertificates:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.mtls_certificates.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `mtls_certificate_id` but received ''"):
             client.mtls_certificates.with_raw_response.delete(
-                "",
+                mtls_certificate_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         mtls_certificate = client.mtls_certificates.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[MTLSCertificate], mtls_certificate, path=["response"])
@@ -175,7 +175,7 @@ class TestMTLSCertificates:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.mtls_certificates.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -187,7 +187,7 @@ class TestMTLSCertificates:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.mtls_certificates.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -202,13 +202,13 @@ class TestMTLSCertificates:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.mtls_certificates.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `mtls_certificate_id` but received ''"):
             client.mtls_certificates.with_raw_response.get(
-                "",
+                mtls_certificate_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -314,7 +314,7 @@ class TestAsyncMTLSCertificates:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         mtls_certificate = await async_client.mtls_certificates.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[MTLSCertificate], mtls_certificate, path=["response"])
@@ -322,7 +322,7 @@ class TestAsyncMTLSCertificates:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.mtls_certificates.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -334,7 +334,7 @@ class TestAsyncMTLSCertificates:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.mtls_certificates.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -349,20 +349,20 @@ class TestAsyncMTLSCertificates:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.mtls_certificates.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `mtls_certificate_id` but received ''"):
             await async_client.mtls_certificates.with_raw_response.delete(
-                "",
+                mtls_certificate_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         mtls_certificate = await async_client.mtls_certificates.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[MTLSCertificate], mtls_certificate, path=["response"])
@@ -370,7 +370,7 @@ class TestAsyncMTLSCertificates:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.mtls_certificates.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -382,7 +382,7 @@ class TestAsyncMTLSCertificates:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.mtls_certificates.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -397,12 +397,12 @@ class TestAsyncMTLSCertificates:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.mtls_certificates.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                mtls_certificate_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `mtls_certificate_id` but received ''"):
             await async_client.mtls_certificates.with_raw_response.get(
-                "",
+                mtls_certificate_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

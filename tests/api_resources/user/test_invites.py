@@ -46,7 +46,7 @@ class TestInvites:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         invite = client.user.invites.edit(
-            "4f5f0c14a2a41d5063dd301b2f829f04",
+            invite_id="4f5f0c14a2a41d5063dd301b2f829f04",
             status="accepted",
         )
         assert_matches_type(object, invite, path=["response"])
@@ -54,7 +54,7 @@ class TestInvites:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.user.invites.with_raw_response.edit(
-            "4f5f0c14a2a41d5063dd301b2f829f04",
+            invite_id="4f5f0c14a2a41d5063dd301b2f829f04",
             status="accepted",
         )
 
@@ -66,7 +66,7 @@ class TestInvites:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.user.invites.with_streaming_response.edit(
-            "4f5f0c14a2a41d5063dd301b2f829f04",
+            invite_id="4f5f0c14a2a41d5063dd301b2f829f04",
             status="accepted",
         ) as response:
             assert not response.is_closed
@@ -81,7 +81,7 @@ class TestInvites:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `invite_id` but received ''"):
             client.user.invites.with_raw_response.edit(
-                "",
+                invite_id="",
                 status="accepted",
             )
 
@@ -155,7 +155,7 @@ class TestAsyncInvites:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         invite = await async_client.user.invites.edit(
-            "4f5f0c14a2a41d5063dd301b2f829f04",
+            invite_id="4f5f0c14a2a41d5063dd301b2f829f04",
             status="accepted",
         )
         assert_matches_type(object, invite, path=["response"])
@@ -163,7 +163,7 @@ class TestAsyncInvites:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.invites.with_raw_response.edit(
-            "4f5f0c14a2a41d5063dd301b2f829f04",
+            invite_id="4f5f0c14a2a41d5063dd301b2f829f04",
             status="accepted",
         )
 
@@ -175,7 +175,7 @@ class TestAsyncInvites:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.invites.with_streaming_response.edit(
-            "4f5f0c14a2a41d5063dd301b2f829f04",
+            invite_id="4f5f0c14a2a41d5063dd301b2f829f04",
             status="accepted",
         ) as response:
             assert not response.is_closed
@@ -190,7 +190,7 @@ class TestAsyncInvites:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `invite_id` but received ''"):
             await async_client.user.invites.with_raw_response.edit(
-                "",
+                invite_id="",
                 status="accepted",
             )
 

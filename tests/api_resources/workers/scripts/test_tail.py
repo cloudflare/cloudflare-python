@@ -20,7 +20,7 @@ class TestTail:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         tail = client.workers.scripts.tail.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
@@ -29,7 +29,7 @@ class TestTail:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.workers.scripts.tail.with_raw_response.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
@@ -42,7 +42,7 @@ class TestTail:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.workers.scripts.tail.with_streaming_response.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         ) as response:
@@ -58,14 +58,14 @@ class TestTail:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.scripts.tail.with_raw_response.create(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
                 body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.tail.with_raw_response.create(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             )
@@ -73,7 +73,7 @@ class TestTail:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         tail = client.workers.scripts.tail.delete(
-            "03dc9f77817b488fb26c5861ec18f791",
+            id="03dc9f77817b488fb26c5861ec18f791",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         )
@@ -82,7 +82,7 @@ class TestTail:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.workers.scripts.tail.with_raw_response.delete(
-            "03dc9f77817b488fb26c5861ec18f791",
+            id="03dc9f77817b488fb26c5861ec18f791",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         )
@@ -95,7 +95,7 @@ class TestTail:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.workers.scripts.tail.with_streaming_response.delete(
-            "03dc9f77817b488fb26c5861ec18f791",
+            id="03dc9f77817b488fb26c5861ec18f791",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         ) as response:
@@ -111,21 +111,21 @@ class TestTail:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.scripts.tail.with_raw_response.delete(
-                "03dc9f77817b488fb26c5861ec18f791",
+                id="03dc9f77817b488fb26c5861ec18f791",
                 account_id="",
                 script_name="this-is_my_script-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.tail.with_raw_response.delete(
-                "03dc9f77817b488fb26c5861ec18f791",
+                id="03dc9f77817b488fb26c5861ec18f791",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 script_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.workers.scripts.tail.with_raw_response.delete(
-                "",
+                id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 script_name="this-is_my_script-01",
             )
@@ -133,7 +133,7 @@ class TestTail:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         tail = client.workers.scripts.tail.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[TailGetResponse], tail, path=["response"])
@@ -141,7 +141,7 @@ class TestTail:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.workers.scripts.tail.with_raw_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -153,7 +153,7 @@ class TestTail:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.workers.scripts.tail.with_streaming_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -168,13 +168,13 @@ class TestTail:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.scripts.tail.with_raw_response.get(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.tail.with_raw_response.get(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -185,7 +185,7 @@ class TestAsyncTail:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         tail = await async_client.workers.scripts.tail.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
@@ -194,7 +194,7 @@ class TestAsyncTail:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.tail.with_raw_response.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
@@ -207,7 +207,7 @@ class TestAsyncTail:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.tail.with_streaming_response.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         ) as response:
@@ -223,14 +223,14 @@ class TestAsyncTail:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.scripts.tail.with_raw_response.create(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
                 body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.tail.with_raw_response.create(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             )
@@ -238,7 +238,7 @@ class TestAsyncTail:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         tail = await async_client.workers.scripts.tail.delete(
-            "03dc9f77817b488fb26c5861ec18f791",
+            id="03dc9f77817b488fb26c5861ec18f791",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         )
@@ -247,7 +247,7 @@ class TestAsyncTail:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.tail.with_raw_response.delete(
-            "03dc9f77817b488fb26c5861ec18f791",
+            id="03dc9f77817b488fb26c5861ec18f791",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         )
@@ -260,7 +260,7 @@ class TestAsyncTail:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.tail.with_streaming_response.delete(
-            "03dc9f77817b488fb26c5861ec18f791",
+            id="03dc9f77817b488fb26c5861ec18f791",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             script_name="this-is_my_script-01",
         ) as response:
@@ -276,21 +276,21 @@ class TestAsyncTail:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.scripts.tail.with_raw_response.delete(
-                "03dc9f77817b488fb26c5861ec18f791",
+                id="03dc9f77817b488fb26c5861ec18f791",
                 account_id="",
                 script_name="this-is_my_script-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.tail.with_raw_response.delete(
-                "03dc9f77817b488fb26c5861ec18f791",
+                id="03dc9f77817b488fb26c5861ec18f791",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 script_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.workers.scripts.tail.with_raw_response.delete(
-                "",
+                id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 script_name="this-is_my_script-01",
             )
@@ -298,7 +298,7 @@ class TestAsyncTail:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         tail = await async_client.workers.scripts.tail.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[TailGetResponse], tail, path=["response"])
@@ -306,7 +306,7 @@ class TestAsyncTail:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.tail.with_raw_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -318,7 +318,7 @@ class TestAsyncTail:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.tail.with_streaming_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -333,12 +333,12 @@ class TestAsyncTail:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.scripts.tail.with_raw_response.get(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.tail.with_raw_response.get(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

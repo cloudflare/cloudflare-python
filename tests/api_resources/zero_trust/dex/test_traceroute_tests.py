@@ -24,7 +24,7 @@ class TestTracerouteTests:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         traceroute_test = client.zero_trust.dex.traceroute_tests.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="1689520412000",
             interval="minute",
@@ -35,12 +35,12 @@ class TestTracerouteTests:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         traceroute_test = client.zero_trust.dex.traceroute_tests.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="1689520412000",
             interval="minute",
             to="1689606812000",
-            colo="string",
+            colo="colo",
             device_id=["string", "string", "string"],
         )
         assert_matches_type(Optional[Traceroute], traceroute_test, path=["response"])
@@ -48,7 +48,7 @@ class TestTracerouteTests:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.dex.traceroute_tests.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="1689520412000",
             interval="minute",
@@ -63,7 +63,7 @@ class TestTracerouteTests:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.dex.traceroute_tests.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="1689520412000",
             interval="minute",
@@ -81,7 +81,7 @@ class TestTracerouteTests:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.dex.traceroute_tests.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 from_="1689520412000",
                 interval="minute",
@@ -90,7 +90,7 @@ class TestTracerouteTests:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
             client.zero_trust.dex.traceroute_tests.with_raw_response.get(
-                "",
+                test_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 from_="1689520412000",
                 interval="minute",
@@ -100,9 +100,9 @@ class TestTracerouteTests:
     @parametrize
     def test_method_network_path(self, client: Cloudflare) -> None:
         traceroute_test = client.zero_trust.dex.traceroute_tests.network_path(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            device_id="string",
+            device_id="deviceId",
             from_="1689520412000",
             interval="minute",
             to="1689606812000",
@@ -112,9 +112,9 @@ class TestTracerouteTests:
     @parametrize
     def test_raw_response_network_path(self, client: Cloudflare) -> None:
         response = client.zero_trust.dex.traceroute_tests.with_raw_response.network_path(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            device_id="string",
+            device_id="deviceId",
             from_="1689520412000",
             interval="minute",
             to="1689606812000",
@@ -128,9 +128,9 @@ class TestTracerouteTests:
     @parametrize
     def test_streaming_response_network_path(self, client: Cloudflare) -> None:
         with client.zero_trust.dex.traceroute_tests.with_streaming_response.network_path(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            device_id="string",
+            device_id="deviceId",
             from_="1689520412000",
             interval="minute",
             to="1689606812000",
@@ -147,9 +147,9 @@ class TestTracerouteTests:
     def test_path_params_network_path(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.dex.traceroute_tests.with_raw_response.network_path(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                device_id="string",
+                device_id="deviceId",
                 from_="1689520412000",
                 interval="minute",
                 to="1689606812000",
@@ -157,9 +157,9 @@ class TestTracerouteTests:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
             client.zero_trust.dex.traceroute_tests.with_raw_response.network_path(
-                "",
+                test_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
-                device_id="string",
+                device_id="deviceId",
                 from_="1689520412000",
                 interval="minute",
                 to="1689606812000",
@@ -168,7 +168,7 @@ class TestTracerouteTests:
     @parametrize
     def test_method_percentiles(self, client: Cloudflare) -> None:
         traceroute_test = client.zero_trust.dex.traceroute_tests.percentiles(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-09-20T17:00:00Z",
             to="2023-09-20T17:00:00Z",
@@ -178,11 +178,11 @@ class TestTracerouteTests:
     @parametrize
     def test_method_percentiles_with_all_params(self, client: Cloudflare) -> None:
         traceroute_test = client.zero_trust.dex.traceroute_tests.percentiles(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-09-20T17:00:00Z",
             to="2023-09-20T17:00:00Z",
-            colo="string",
+            colo="colo",
             device_id=["string", "string", "string"],
         )
         assert_matches_type(Optional[TracerouteTestPercentilesResponse], traceroute_test, path=["response"])
@@ -190,7 +190,7 @@ class TestTracerouteTests:
     @parametrize
     def test_raw_response_percentiles(self, client: Cloudflare) -> None:
         response = client.zero_trust.dex.traceroute_tests.with_raw_response.percentiles(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-09-20T17:00:00Z",
             to="2023-09-20T17:00:00Z",
@@ -204,7 +204,7 @@ class TestTracerouteTests:
     @parametrize
     def test_streaming_response_percentiles(self, client: Cloudflare) -> None:
         with client.zero_trust.dex.traceroute_tests.with_streaming_response.percentiles(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-09-20T17:00:00Z",
             to="2023-09-20T17:00:00Z",
@@ -221,7 +221,7 @@ class TestTracerouteTests:
     def test_path_params_percentiles(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.dex.traceroute_tests.with_raw_response.percentiles(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 from_="2023-09-20T17:00:00Z",
                 to="2023-09-20T17:00:00Z",
@@ -229,7 +229,7 @@ class TestTracerouteTests:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
             client.zero_trust.dex.traceroute_tests.with_raw_response.percentiles(
-                "",
+                test_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 from_="2023-09-20T17:00:00Z",
                 to="2023-09-20T17:00:00Z",
@@ -242,7 +242,7 @@ class TestAsyncTracerouteTests:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         traceroute_test = await async_client.zero_trust.dex.traceroute_tests.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="1689520412000",
             interval="minute",
@@ -253,12 +253,12 @@ class TestAsyncTracerouteTests:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         traceroute_test = await async_client.zero_trust.dex.traceroute_tests.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="1689520412000",
             interval="minute",
             to="1689606812000",
-            colo="string",
+            colo="colo",
             device_id=["string", "string", "string"],
         )
         assert_matches_type(Optional[Traceroute], traceroute_test, path=["response"])
@@ -266,7 +266,7 @@ class TestAsyncTracerouteTests:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dex.traceroute_tests.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="1689520412000",
             interval="minute",
@@ -281,7 +281,7 @@ class TestAsyncTracerouteTests:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dex.traceroute_tests.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="1689520412000",
             interval="minute",
@@ -299,7 +299,7 @@ class TestAsyncTracerouteTests:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.dex.traceroute_tests.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 from_="1689520412000",
                 interval="minute",
@@ -308,7 +308,7 @@ class TestAsyncTracerouteTests:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
             await async_client.zero_trust.dex.traceroute_tests.with_raw_response.get(
-                "",
+                test_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 from_="1689520412000",
                 interval="minute",
@@ -318,9 +318,9 @@ class TestAsyncTracerouteTests:
     @parametrize
     async def test_method_network_path(self, async_client: AsyncCloudflare) -> None:
         traceroute_test = await async_client.zero_trust.dex.traceroute_tests.network_path(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            device_id="string",
+            device_id="deviceId",
             from_="1689520412000",
             interval="minute",
             to="1689606812000",
@@ -330,9 +330,9 @@ class TestAsyncTracerouteTests:
     @parametrize
     async def test_raw_response_network_path(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dex.traceroute_tests.with_raw_response.network_path(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            device_id="string",
+            device_id="deviceId",
             from_="1689520412000",
             interval="minute",
             to="1689606812000",
@@ -346,9 +346,9 @@ class TestAsyncTracerouteTests:
     @parametrize
     async def test_streaming_response_network_path(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dex.traceroute_tests.with_streaming_response.network_path(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
-            device_id="string",
+            device_id="deviceId",
             from_="1689520412000",
             interval="minute",
             to="1689606812000",
@@ -365,9 +365,9 @@ class TestAsyncTracerouteTests:
     async def test_path_params_network_path(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.dex.traceroute_tests.with_raw_response.network_path(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
-                device_id="string",
+                device_id="deviceId",
                 from_="1689520412000",
                 interval="minute",
                 to="1689606812000",
@@ -375,9 +375,9 @@ class TestAsyncTracerouteTests:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
             await async_client.zero_trust.dex.traceroute_tests.with_raw_response.network_path(
-                "",
+                test_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
-                device_id="string",
+                device_id="deviceId",
                 from_="1689520412000",
                 interval="minute",
                 to="1689606812000",
@@ -386,7 +386,7 @@ class TestAsyncTracerouteTests:
     @parametrize
     async def test_method_percentiles(self, async_client: AsyncCloudflare) -> None:
         traceroute_test = await async_client.zero_trust.dex.traceroute_tests.percentiles(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-09-20T17:00:00Z",
             to="2023-09-20T17:00:00Z",
@@ -396,11 +396,11 @@ class TestAsyncTracerouteTests:
     @parametrize
     async def test_method_percentiles_with_all_params(self, async_client: AsyncCloudflare) -> None:
         traceroute_test = await async_client.zero_trust.dex.traceroute_tests.percentiles(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-09-20T17:00:00Z",
             to="2023-09-20T17:00:00Z",
-            colo="string",
+            colo="colo",
             device_id=["string", "string", "string"],
         )
         assert_matches_type(Optional[TracerouteTestPercentilesResponse], traceroute_test, path=["response"])
@@ -408,7 +408,7 @@ class TestAsyncTracerouteTests:
     @parametrize
     async def test_raw_response_percentiles(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dex.traceroute_tests.with_raw_response.percentiles(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-09-20T17:00:00Z",
             to="2023-09-20T17:00:00Z",
@@ -422,7 +422,7 @@ class TestAsyncTracerouteTests:
     @parametrize
     async def test_streaming_response_percentiles(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dex.traceroute_tests.with_streaming_response.percentiles(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="01a7362d577a6c3019a474fd6f485823",
             from_="2023-09-20T17:00:00Z",
             to="2023-09-20T17:00:00Z",
@@ -439,7 +439,7 @@ class TestAsyncTracerouteTests:
     async def test_path_params_percentiles(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.dex.traceroute_tests.with_raw_response.percentiles(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                test_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 from_="2023-09-20T17:00:00Z",
                 to="2023-09-20T17:00:00Z",
@@ -447,7 +447,7 @@ class TestAsyncTracerouteTests:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `test_id` but received ''"):
             await async_client.zero_trust.dex.traceroute_tests.with_raw_response.percentiles(
-                "",
+                test_id="",
                 account_id="01a7362d577a6c3019a474fd6f485823",
                 from_="2023-09-20T17:00:00Z",
                 to="2023-09-20T17:00:00Z",

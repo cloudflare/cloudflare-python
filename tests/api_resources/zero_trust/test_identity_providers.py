@@ -29,7 +29,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -49,13 +49,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -68,7 +68,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -83,7 +83,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -109,7 +109,7 @@ class TestIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -119,7 +119,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -137,13 +137,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -156,7 +156,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -171,7 +171,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -197,7 +197,7 @@ class TestIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -207,7 +207,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -221,13 +221,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -240,7 +240,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -255,7 +255,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -281,7 +281,7 @@ class TestIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -291,7 +291,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -305,13 +305,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -324,7 +324,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -339,7 +339,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -365,7 +365,7 @@ class TestIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -375,7 +375,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -391,13 +391,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -410,7 +410,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -425,7 +425,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -451,7 +451,7 @@ class TestIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -461,7 +461,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -478,13 +478,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -497,7 +497,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -512,7 +512,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -538,7 +538,7 @@ class TestIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -548,7 +548,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -562,13 +562,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -581,7 +581,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -596,7 +596,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -622,7 +622,7 @@ class TestIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -632,7 +632,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -652,13 +652,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -671,7 +671,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -686,7 +686,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -712,7 +712,7 @@ class TestIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -722,7 +722,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -740,13 +740,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -759,7 +759,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -774,7 +774,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -800,7 +800,7 @@ class TestIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -810,7 +810,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -827,13 +827,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -846,7 +846,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -861,7 +861,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -887,7 +887,7 @@ class TestIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -897,7 +897,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -914,13 +914,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -933,7 +933,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -948,7 +948,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -974,7 +974,7 @@ class TestIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -984,7 +984,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -997,16 +997,16 @@ class TestIdentityProviders:
                 "email_attribute_name": "Email",
                 "header_attributes": [
                     {
-                        "attribute_name": "string",
-                        "header_name": "string",
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
                     },
                     {
-                        "attribute_name": "string",
-                        "header_name": "string",
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
                     },
                     {
-                        "attribute_name": "string",
-                        "header_name": "string",
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
                     },
                 ],
                 "idp_public_certs": ["string", "string", "string"],
@@ -1016,13 +1016,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -1035,7 +1035,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -1050,7 +1050,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1076,7 +1076,7 @@ class TestIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -1086,7 +1086,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1100,13 +1100,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -1119,7 +1119,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -1134,7 +1134,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1160,7 +1160,7 @@ class TestIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -1170,7 +1170,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1181,13 +1181,13 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -1200,7 +1200,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -1215,7 +1215,7 @@ class TestIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1241,18 +1241,18 @@ class TestIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_1(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1260,7 +1260,7 @@ class TestIdentityProviders:
     @parametrize
     def test_method_update_with_all_params_overload_1(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -1273,13 +1273,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -1289,11 +1289,11 @@ class TestIdentityProviders:
     @parametrize
     def test_raw_response_update_overload_1(self, client: Cloudflare) -> None:
         response = client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -1305,11 +1305,11 @@ class TestIdentityProviders:
     @parametrize
     def test_streaming_response_update_overload_1(self, client: Cloudflare) -> None:
         with client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1324,16 +1324,16 @@ class TestIdentityProviders:
     def test_path_params_update_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -1342,22 +1342,22 @@ class TestIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_2(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1365,7 +1365,7 @@ class TestIdentityProviders:
     @parametrize
     def test_method_update_with_all_params_overload_2(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -1376,13 +1376,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -1392,11 +1392,11 @@ class TestIdentityProviders:
     @parametrize
     def test_raw_response_update_overload_2(self, client: Cloudflare) -> None:
         response = client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -1408,11 +1408,11 @@ class TestIdentityProviders:
     @parametrize
     def test_streaming_response_update_overload_2(self, client: Cloudflare) -> None:
         with client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1427,16 +1427,16 @@ class TestIdentityProviders:
     def test_path_params_update_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -1445,22 +1445,22 @@ class TestIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_3(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1468,20 +1468,20 @@ class TestIdentityProviders:
     @parametrize
     def test_method_update_with_all_params_overload_3(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -1491,11 +1491,11 @@ class TestIdentityProviders:
     @parametrize
     def test_raw_response_update_overload_3(self, client: Cloudflare) -> None:
         response = client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -1507,11 +1507,11 @@ class TestIdentityProviders:
     @parametrize
     def test_streaming_response_update_overload_3(self, client: Cloudflare) -> None:
         with client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1526,16 +1526,16 @@ class TestIdentityProviders:
     def test_path_params_update_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -1544,22 +1544,22 @@ class TestIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_4(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1567,20 +1567,20 @@ class TestIdentityProviders:
     @parametrize
     def test_method_update_with_all_params_overload_4(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -1590,11 +1590,11 @@ class TestIdentityProviders:
     @parametrize
     def test_raw_response_update_overload_4(self, client: Cloudflare) -> None:
         response = client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -1606,11 +1606,11 @@ class TestIdentityProviders:
     @parametrize
     def test_streaming_response_update_overload_4(self, client: Cloudflare) -> None:
         with client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1625,16 +1625,16 @@ class TestIdentityProviders:
     def test_path_params_update_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -1643,22 +1643,22 @@ class TestIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_5(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1666,7 +1666,7 @@ class TestIdentityProviders:
     @parametrize
     def test_method_update_with_all_params_overload_5(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -1675,13 +1675,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -1691,11 +1691,11 @@ class TestIdentityProviders:
     @parametrize
     def test_raw_response_update_overload_5(self, client: Cloudflare) -> None:
         response = client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -1707,11 +1707,11 @@ class TestIdentityProviders:
     @parametrize
     def test_streaming_response_update_overload_5(self, client: Cloudflare) -> None:
         with client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1726,16 +1726,16 @@ class TestIdentityProviders:
     def test_path_params_update_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -1744,22 +1744,22 @@ class TestIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_6(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1767,7 +1767,7 @@ class TestIdentityProviders:
     @parametrize
     def test_method_update_with_all_params_overload_6(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -1777,13 +1777,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -1793,11 +1793,11 @@ class TestIdentityProviders:
     @parametrize
     def test_raw_response_update_overload_6(self, client: Cloudflare) -> None:
         response = client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -1809,11 +1809,11 @@ class TestIdentityProviders:
     @parametrize
     def test_streaming_response_update_overload_6(self, client: Cloudflare) -> None:
         with client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1828,16 +1828,16 @@ class TestIdentityProviders:
     def test_path_params_update_overload_6(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -1846,22 +1846,22 @@ class TestIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_7(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1869,20 +1869,20 @@ class TestIdentityProviders:
     @parametrize
     def test_method_update_with_all_params_overload_7(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -1892,11 +1892,11 @@ class TestIdentityProviders:
     @parametrize
     def test_raw_response_update_overload_7(self, client: Cloudflare) -> None:
         response = client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -1908,11 +1908,11 @@ class TestIdentityProviders:
     @parametrize
     def test_streaming_response_update_overload_7(self, client: Cloudflare) -> None:
         with client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1927,16 +1927,16 @@ class TestIdentityProviders:
     def test_path_params_update_overload_7(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -1945,22 +1945,22 @@ class TestIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_8(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -1968,7 +1968,7 @@ class TestIdentityProviders:
     @parametrize
     def test_method_update_with_all_params_overload_8(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -1981,13 +1981,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -1997,11 +1997,11 @@ class TestIdentityProviders:
     @parametrize
     def test_raw_response_update_overload_8(self, client: Cloudflare) -> None:
         response = client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2013,11 +2013,11 @@ class TestIdentityProviders:
     @parametrize
     def test_streaming_response_update_overload_8(self, client: Cloudflare) -> None:
         with client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2032,16 +2032,16 @@ class TestIdentityProviders:
     def test_path_params_update_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -2050,22 +2050,22 @@ class TestIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_9(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2073,7 +2073,7 @@ class TestIdentityProviders:
     @parametrize
     def test_method_update_with_all_params_overload_9(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -2084,13 +2084,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -2100,11 +2100,11 @@ class TestIdentityProviders:
     @parametrize
     def test_raw_response_update_overload_9(self, client: Cloudflare) -> None:
         response = client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2116,11 +2116,11 @@ class TestIdentityProviders:
     @parametrize
     def test_streaming_response_update_overload_9(self, client: Cloudflare) -> None:
         with client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2135,16 +2135,16 @@ class TestIdentityProviders:
     def test_path_params_update_overload_9(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -2153,22 +2153,22 @@ class TestIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_10(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2176,7 +2176,7 @@ class TestIdentityProviders:
     @parametrize
     def test_method_update_with_all_params_overload_10(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -2186,13 +2186,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -2202,11 +2202,11 @@ class TestIdentityProviders:
     @parametrize
     def test_raw_response_update_overload_10(self, client: Cloudflare) -> None:
         response = client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2218,11 +2218,11 @@ class TestIdentityProviders:
     @parametrize
     def test_streaming_response_update_overload_10(self, client: Cloudflare) -> None:
         with client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2237,16 +2237,16 @@ class TestIdentityProviders:
     def test_path_params_update_overload_10(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -2255,22 +2255,22 @@ class TestIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_11(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2278,7 +2278,7 @@ class TestIdentityProviders:
     @parametrize
     def test_method_update_with_all_params_overload_11(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -2288,13 +2288,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -2304,11 +2304,11 @@ class TestIdentityProviders:
     @parametrize
     def test_raw_response_update_overload_11(self, client: Cloudflare) -> None:
         response = client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2320,11 +2320,11 @@ class TestIdentityProviders:
     @parametrize
     def test_streaming_response_update_overload_11(self, client: Cloudflare) -> None:
         with client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2339,16 +2339,16 @@ class TestIdentityProviders:
     def test_path_params_update_overload_11(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -2357,22 +2357,22 @@ class TestIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_12(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2380,22 +2380,22 @@ class TestIdentityProviders:
     @parametrize
     def test_method_update_with_all_params_overload_12(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "attributes": ["group", "department_code", "divison"],
                 "email_attribute_name": "Email",
                 "header_attributes": [
                     {
-                        "attribute_name": "string",
-                        "header_name": "string",
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
                     },
                     {
-                        "attribute_name": "string",
-                        "header_name": "string",
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
                     },
                     {
-                        "attribute_name": "string",
-                        "header_name": "string",
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
                     },
                 ],
                 "idp_public_certs": ["string", "string", "string"],
@@ -2405,13 +2405,13 @@ class TestIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -2421,11 +2421,11 @@ class TestIdentityProviders:
     @parametrize
     def test_raw_response_update_overload_12(self, client: Cloudflare) -> None:
         response = client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2437,11 +2437,11 @@ class TestIdentityProviders:
     @parametrize
     def test_streaming_response_update_overload_12(self, client: Cloudflare) -> None:
         with client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2456,16 +2456,16 @@ class TestIdentityProviders:
     def test_path_params_update_overload_12(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -2474,22 +2474,22 @@ class TestIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_13(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2497,20 +2497,20 @@ class TestIdentityProviders:
     @parametrize
     def test_method_update_with_all_params_overload_13(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -2520,11 +2520,11 @@ class TestIdentityProviders:
     @parametrize
     def test_raw_response_update_overload_13(self, client: Cloudflare) -> None:
         response = client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2536,11 +2536,11 @@ class TestIdentityProviders:
     @parametrize
     def test_streaming_response_update_overload_13(self, client: Cloudflare) -> None:
         with client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2555,16 +2555,16 @@ class TestIdentityProviders:
     def test_path_params_update_overload_13(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -2573,22 +2573,22 @@ class TestIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_14(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2596,17 +2596,17 @@ class TestIdentityProviders:
     @parametrize
     def test_method_update_with_all_params_overload_14(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -2616,11 +2616,11 @@ class TestIdentityProviders:
     @parametrize
     def test_raw_response_update_overload_14(self, client: Cloudflare) -> None:
         response = client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2632,11 +2632,11 @@ class TestIdentityProviders:
     @parametrize
     def test_streaming_response_update_overload_14(self, client: Cloudflare) -> None:
         with client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2651,16 +2651,16 @@ class TestIdentityProviders:
     def test_path_params_update_overload_14(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -2669,18 +2669,18 @@ class TestIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.list(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(SyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
 
@@ -2688,7 +2688,7 @@ class TestIdentityProviders:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.list(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(SyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
 
@@ -2696,7 +2696,7 @@ class TestIdentityProviders:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.identity_providers.with_raw_response.list(
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2708,7 +2708,7 @@ class TestIdentityProviders:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.identity_providers.with_streaming_response.list(
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2728,15 +2728,15 @@ class TestIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.list(
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
@@ -2744,8 +2744,8 @@ class TestIdentityProviders:
     @parametrize
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
@@ -2753,8 +2753,8 @@ class TestIdentityProviders:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.identity_providers.with_raw_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2766,8 +2766,8 @@ class TestIdentityProviders:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.identity_providers.with_streaming_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2782,28 +2782,28 @@ class TestIdentityProviders:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.delete(
-                "",
-                account_id="string",
+                identity_provider_id="",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.delete(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.delete(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_id="string",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2811,8 +2811,8 @@ class TestIdentityProviders:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         identity_provider = client.zero_trust.identity_providers.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2820,8 +2820,8 @@ class TestIdentityProviders:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.identity_providers.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2833,8 +2833,8 @@ class TestIdentityProviders:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.identity_providers.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2849,20 +2849,20 @@ class TestIdentityProviders:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.get(
-                "",
-                account_id="string",
+                identity_provider_id="",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.identity_providers.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_id="string",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="account_id",
             )
 
 
@@ -2876,7 +2876,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2896,13 +2896,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -2915,7 +2915,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2930,7 +2930,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2956,7 +2956,7 @@ class TestAsyncIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -2966,7 +2966,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -2984,13 +2984,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -3003,7 +3003,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -3018,7 +3018,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3044,7 +3044,7 @@ class TestAsyncIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3054,7 +3054,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3068,13 +3068,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -3087,7 +3087,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -3102,7 +3102,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3128,7 +3128,7 @@ class TestAsyncIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3138,7 +3138,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3152,13 +3152,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -3171,7 +3171,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -3186,7 +3186,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3212,7 +3212,7 @@ class TestAsyncIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3222,7 +3222,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3238,13 +3238,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -3257,7 +3257,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -3272,7 +3272,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3298,7 +3298,7 @@ class TestAsyncIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3308,7 +3308,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3325,13 +3325,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -3344,7 +3344,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -3359,7 +3359,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3385,7 +3385,7 @@ class TestAsyncIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3395,7 +3395,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3409,13 +3409,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -3428,7 +3428,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -3443,7 +3443,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3469,7 +3469,7 @@ class TestAsyncIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3479,7 +3479,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3499,13 +3499,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -3518,7 +3518,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -3533,7 +3533,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3559,7 +3559,7 @@ class TestAsyncIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3569,7 +3569,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3587,13 +3587,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -3606,7 +3606,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -3621,7 +3621,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3647,7 +3647,7 @@ class TestAsyncIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3657,7 +3657,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3674,13 +3674,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -3693,7 +3693,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -3708,7 +3708,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3734,7 +3734,7 @@ class TestAsyncIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3744,7 +3744,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3761,13 +3761,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -3780,7 +3780,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -3795,7 +3795,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3821,7 +3821,7 @@ class TestAsyncIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3831,7 +3831,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3844,16 +3844,16 @@ class TestAsyncIdentityProviders:
                 "email_attribute_name": "Email",
                 "header_attributes": [
                     {
-                        "attribute_name": "string",
-                        "header_name": "string",
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
                     },
                     {
-                        "attribute_name": "string",
-                        "header_name": "string",
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
                     },
                     {
-                        "attribute_name": "string",
-                        "header_name": "string",
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
                     },
                 ],
                 "idp_public_certs": ["string", "string", "string"],
@@ -3863,13 +3863,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -3882,7 +3882,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -3897,7 +3897,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3923,7 +3923,7 @@ class TestAsyncIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3933,7 +3933,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -3947,13 +3947,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -3966,7 +3966,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -3981,7 +3981,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4007,7 +4007,7 @@ class TestAsyncIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -4017,7 +4017,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4028,13 +4028,13 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -4047,7 +4047,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -4062,7 +4062,7 @@ class TestAsyncIdentityProviders:
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4088,18 +4088,18 @@ class TestAsyncIdentityProviders:
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4107,7 +4107,7 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_update_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -4120,13 +4120,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -4136,11 +4136,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_raw_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -4152,11 +4152,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_streaming_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4171,16 +4171,16 @@ class TestAsyncIdentityProviders:
     async def test_path_params_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -4189,22 +4189,22 @@ class TestAsyncIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4212,7 +4212,7 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_update_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -4223,13 +4223,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -4239,11 +4239,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_raw_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -4255,11 +4255,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_streaming_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4274,16 +4274,16 @@ class TestAsyncIdentityProviders:
     async def test_path_params_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -4292,22 +4292,22 @@ class TestAsyncIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4315,20 +4315,20 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_update_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -4338,11 +4338,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_raw_response_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -4354,11 +4354,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_streaming_response_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4373,16 +4373,16 @@ class TestAsyncIdentityProviders:
     async def test_path_params_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -4391,22 +4391,22 @@ class TestAsyncIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4414,20 +4414,20 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_update_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -4437,11 +4437,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_raw_response_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -4453,11 +4453,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_streaming_response_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4472,16 +4472,16 @@ class TestAsyncIdentityProviders:
     async def test_path_params_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -4490,22 +4490,22 @@ class TestAsyncIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4513,7 +4513,7 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_update_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -4522,13 +4522,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -4538,11 +4538,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_raw_response_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -4554,11 +4554,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_streaming_response_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4573,16 +4573,16 @@ class TestAsyncIdentityProviders:
     async def test_path_params_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -4591,22 +4591,22 @@ class TestAsyncIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4614,7 +4614,7 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_update_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -4624,13 +4624,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -4640,11 +4640,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_raw_response_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -4656,11 +4656,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_streaming_response_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4675,16 +4675,16 @@ class TestAsyncIdentityProviders:
     async def test_path_params_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -4693,22 +4693,22 @@ class TestAsyncIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4716,20 +4716,20 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_update_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -4739,11 +4739,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_raw_response_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -4755,11 +4755,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_streaming_response_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4774,16 +4774,16 @@ class TestAsyncIdentityProviders:
     async def test_path_params_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -4792,22 +4792,22 @@ class TestAsyncIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4815,7 +4815,7 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_update_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -4828,13 +4828,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -4844,11 +4844,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_raw_response_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -4860,11 +4860,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_streaming_response_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4879,16 +4879,16 @@ class TestAsyncIdentityProviders:
     async def test_path_params_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -4897,22 +4897,22 @@ class TestAsyncIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_9(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -4920,7 +4920,7 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_update_with_all_params_overload_9(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -4931,13 +4931,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -4947,11 +4947,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_raw_response_update_overload_9(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -4963,11 +4963,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_streaming_response_update_overload_9(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4982,16 +4982,16 @@ class TestAsyncIdentityProviders:
     async def test_path_params_update_overload_9(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -5000,22 +5000,22 @@ class TestAsyncIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_10(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -5023,7 +5023,7 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_update_with_all_params_overload_10(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -5033,13 +5033,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -5049,11 +5049,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_raw_response_update_overload_10(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -5065,11 +5065,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_streaming_response_update_overload_10(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5084,16 +5084,16 @@ class TestAsyncIdentityProviders:
     async def test_path_params_update_overload_10(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -5102,22 +5102,22 @@ class TestAsyncIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_11(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -5125,7 +5125,7 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_update_with_all_params_overload_11(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
@@ -5135,13 +5135,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -5151,11 +5151,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_raw_response_update_overload_11(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -5167,11 +5167,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_streaming_response_update_overload_11(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5186,16 +5186,16 @@ class TestAsyncIdentityProviders:
     async def test_path_params_update_overload_11(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -5204,22 +5204,22 @@ class TestAsyncIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_12(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -5227,22 +5227,22 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_update_with_all_params_overload_12(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "attributes": ["group", "department_code", "divison"],
                 "email_attribute_name": "Email",
                 "header_attributes": [
                     {
-                        "attribute_name": "string",
-                        "header_name": "string",
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
                     },
                     {
-                        "attribute_name": "string",
-                        "header_name": "string",
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
                     },
                     {
-                        "attribute_name": "string",
-                        "header_name": "string",
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
                     },
                 ],
                 "idp_public_certs": ["string", "string", "string"],
@@ -5252,13 +5252,13 @@ class TestAsyncIdentityProviders:
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -5268,11 +5268,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_raw_response_update_overload_12(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -5284,11 +5284,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_streaming_response_update_overload_12(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5303,16 +5303,16 @@ class TestAsyncIdentityProviders:
     async def test_path_params_update_overload_12(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -5321,22 +5321,22 @@ class TestAsyncIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_13(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -5344,20 +5344,20 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_update_with_all_params_overload_13(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={
                 "client_id": "<your client id>",
                 "client_secret": "<your client secret>",
             },
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -5367,11 +5367,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_raw_response_update_overload_13(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -5383,11 +5383,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_streaming_response_update_overload_13(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5402,16 +5402,16 @@ class TestAsyncIdentityProviders:
     async def test_path_params_update_overload_13(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -5420,22 +5420,22 @@ class TestAsyncIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_14(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -5443,17 +5443,17 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_update_with_all_params_overload_14(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
             id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             scim_config={
                 "enabled": True,
                 "group_member_deprovision": True,
                 "seat_deprovision": True,
-                "secret": "string",
+                "secret": "secret",
                 "user_deprovision": True,
             },
         )
@@ -5463,11 +5463,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_raw_response_update_overload_14(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -5479,11 +5479,11 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_streaming_response_update_overload_14(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.identity_providers.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
             name="Widget Corps IDP",
             type="onetimepin",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5498,16 +5498,16 @@ class TestAsyncIdentityProviders:
     async def test_path_params_update_overload_14(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "",
+                identity_provider_id="",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
@@ -5516,18 +5516,18 @@ class TestAsyncIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 config={},
                 name="Widget Corps IDP",
                 type="onetimepin",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.list(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(AsyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
 
@@ -5535,7 +5535,7 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.list(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(AsyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
 
@@ -5543,7 +5543,7 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.identity_providers.with_raw_response.list(
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -5555,7 +5555,7 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.identity_providers.with_streaming_response.list(
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5575,15 +5575,15 @@ class TestAsyncIdentityProviders:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.list(
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
@@ -5591,8 +5591,8 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
@@ -5600,8 +5600,8 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.identity_providers.with_raw_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -5613,8 +5613,8 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.identity_providers.with_streaming_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5629,28 +5629,28 @@ class TestAsyncIdentityProviders:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.delete(
-                "",
-                account_id="string",
+                identity_provider_id="",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.delete(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.delete(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_id="string",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -5658,8 +5658,8 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         identity_provider = await async_client.zero_trust.identity_providers.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="account_id",
         )
         assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
@@ -5667,8 +5667,8 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.identity_providers.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -5680,8 +5680,8 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.identity_providers.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-            account_id="string",
+            identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5696,18 +5696,18 @@ class TestAsyncIdentityProviders:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.get(
-                "",
-                account_id="string",
+                identity_provider_id="",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.identity_providers.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-                account_id="string",
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="account_id",
             )

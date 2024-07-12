@@ -31,7 +31,7 @@ class TestRulesets:
             name="My ruleset",
             phase="http_request_firewall_custom",
             rules=[{}, {}, {}],
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
@@ -92,7 +92,7 @@ class TestRulesets:
                     "ref": "my_ref",
                 },
             ],
-            account_id="string",
+            account_id="account_id",
             description="My ruleset to execute managed rulesets",
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
@@ -105,7 +105,7 @@ class TestRulesets:
             name="My ruleset",
             phase="http_request_firewall_custom",
             rules=[{}, {}, {}],
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -121,7 +121,7 @@ class TestRulesets:
             name="My ruleset",
             phase="http_request_firewall_custom",
             rules=[{}, {}, {}],
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -149,16 +149,16 @@ class TestRulesets:
                 name="My ruleset",
                 phase="http_request_firewall_custom",
                 rules=[{}, {}, {}],
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.update(
-            "2f2feab2026849078ba485f918791bdc",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
@@ -166,7 +166,7 @@ class TestRulesets:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.update(
-            "2f2feab2026849078ba485f918791bdc",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             rules=[
                 {
                     "action": "block",
@@ -217,7 +217,7 @@ class TestRulesets:
                     "ref": "my_ref",
                 },
             ],
-            account_id="string",
+            account_id="account_id",
             description="My ruleset to execute managed rulesets",
             kind="root",
             name="My ruleset",
@@ -229,9 +229,9 @@ class TestRulesets:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.rulesets.with_raw_response.update(
-            "2f2feab2026849078ba485f918791bdc",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -243,9 +243,9 @@ class TestRulesets:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.rulesets.with_streaming_response.update(
-            "2f2feab2026849078ba485f918791bdc",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -260,30 +260,30 @@ class TestRulesets:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             client.rulesets.with_raw_response.update(
-                "",
+                ruleset_id="",
                 rules=[{}, {}, {}],
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.with_raw_response.update(
-                "2f2feab2026849078ba485f918791bdc",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
                 rules=[{}, {}, {}],
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.with_raw_response.update(
-                "2f2feab2026849078ba485f918791bdc",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
                 rules=[{}, {}, {}],
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.list(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(SyncSinglePage[RulesetListResponse], ruleset, path=["response"])
 
@@ -291,7 +291,7 @@ class TestRulesets:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.list(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(SyncSinglePage[RulesetListResponse], ruleset, path=["response"])
 
@@ -299,7 +299,7 @@ class TestRulesets:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.rulesets.with_raw_response.list(
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -311,7 +311,7 @@ class TestRulesets:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.rulesets.with_streaming_response.list(
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -331,15 +331,15 @@ class TestRulesets:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.with_raw_response.list(
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.delete(
-            "2f2feab2026849078ba485f918791bdc",
-            account_id="string",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
         )
         assert ruleset is None
 
@@ -347,8 +347,8 @@ class TestRulesets:
     @parametrize
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.delete(
-            "2f2feab2026849078ba485f918791bdc",
-            account_id="string",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
         )
         assert ruleset is None
 
@@ -356,8 +356,8 @@ class TestRulesets:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.rulesets.with_raw_response.delete(
-            "2f2feab2026849078ba485f918791bdc",
-            account_id="string",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -369,8 +369,8 @@ class TestRulesets:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.rulesets.with_streaming_response.delete(
-            "2f2feab2026849078ba485f918791bdc",
-            account_id="string",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -385,28 +385,28 @@ class TestRulesets:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             client.rulesets.with_raw_response.delete(
-                "",
-                account_id="string",
+                ruleset_id="",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.with_raw_response.delete(
-                "2f2feab2026849078ba485f918791bdc",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.with_raw_response.delete(
-                "2f2feab2026849078ba485f918791bdc",
-                account_id="string",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.get(
-            "2f2feab2026849078ba485f918791bdc",
-            account_id="string",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
         )
         assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
@@ -414,8 +414,8 @@ class TestRulesets:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.get(
-            "2f2feab2026849078ba485f918791bdc",
-            account_id="string",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
         )
         assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
@@ -423,8 +423,8 @@ class TestRulesets:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.rulesets.with_raw_response.get(
-            "2f2feab2026849078ba485f918791bdc",
-            account_id="string",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -436,8 +436,8 @@ class TestRulesets:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.rulesets.with_streaming_response.get(
-            "2f2feab2026849078ba485f918791bdc",
-            account_id="string",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -452,20 +452,20 @@ class TestRulesets:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             client.rulesets.with_raw_response.get(
-                "",
-                account_id="string",
+                ruleset_id="",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.with_raw_response.get(
-                "2f2feab2026849078ba485f918791bdc",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.rulesets.with_raw_response.get(
-                "2f2feab2026849078ba485f918791bdc",
-                account_id="string",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
             )
 
 
@@ -480,7 +480,7 @@ class TestAsyncRulesets:
             name="My ruleset",
             phase="http_request_firewall_custom",
             rules=[{}, {}, {}],
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
@@ -541,7 +541,7 @@ class TestAsyncRulesets:
                     "ref": "my_ref",
                 },
             ],
-            account_id="string",
+            account_id="account_id",
             description="My ruleset to execute managed rulesets",
         )
         assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
@@ -554,7 +554,7 @@ class TestAsyncRulesets:
             name="My ruleset",
             phase="http_request_firewall_custom",
             rules=[{}, {}, {}],
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -570,7 +570,7 @@ class TestAsyncRulesets:
             name="My ruleset",
             phase="http_request_firewall_custom",
             rules=[{}, {}, {}],
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -598,16 +598,16 @@ class TestAsyncRulesets:
                 name="My ruleset",
                 phase="http_request_firewall_custom",
                 rules=[{}, {}, {}],
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.update(
-            "2f2feab2026849078ba485f918791bdc",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
@@ -615,7 +615,7 @@ class TestAsyncRulesets:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.update(
-            "2f2feab2026849078ba485f918791bdc",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             rules=[
                 {
                     "action": "block",
@@ -666,7 +666,7 @@ class TestAsyncRulesets:
                     "ref": "my_ref",
                 },
             ],
-            account_id="string",
+            account_id="account_id",
             description="My ruleset to execute managed rulesets",
             kind="root",
             name="My ruleset",
@@ -678,9 +678,9 @@ class TestAsyncRulesets:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.with_raw_response.update(
-            "2f2feab2026849078ba485f918791bdc",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -692,9 +692,9 @@ class TestAsyncRulesets:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.with_streaming_response.update(
-            "2f2feab2026849078ba485f918791bdc",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -709,30 +709,30 @@ class TestAsyncRulesets:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             await async_client.rulesets.with_raw_response.update(
-                "",
+                ruleset_id="",
                 rules=[{}, {}, {}],
-                account_id="string",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.with_raw_response.update(
-                "2f2feab2026849078ba485f918791bdc",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
                 rules=[{}, {}, {}],
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.with_raw_response.update(
-                "2f2feab2026849078ba485f918791bdc",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
                 rules=[{}, {}, {}],
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.list(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(AsyncSinglePage[RulesetListResponse], ruleset, path=["response"])
 
@@ -740,7 +740,7 @@ class TestAsyncRulesets:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.list(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(AsyncSinglePage[RulesetListResponse], ruleset, path=["response"])
 
@@ -748,7 +748,7 @@ class TestAsyncRulesets:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.with_raw_response.list(
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -760,7 +760,7 @@ class TestAsyncRulesets:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.with_streaming_response.list(
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -780,15 +780,15 @@ class TestAsyncRulesets:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.with_raw_response.list(
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.delete(
-            "2f2feab2026849078ba485f918791bdc",
-            account_id="string",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
         )
         assert ruleset is None
 
@@ -796,8 +796,8 @@ class TestAsyncRulesets:
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.delete(
-            "2f2feab2026849078ba485f918791bdc",
-            account_id="string",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
         )
         assert ruleset is None
 
@@ -805,8 +805,8 @@ class TestAsyncRulesets:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.with_raw_response.delete(
-            "2f2feab2026849078ba485f918791bdc",
-            account_id="string",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -818,8 +818,8 @@ class TestAsyncRulesets:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.with_streaming_response.delete(
-            "2f2feab2026849078ba485f918791bdc",
-            account_id="string",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -834,28 +834,28 @@ class TestAsyncRulesets:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             await async_client.rulesets.with_raw_response.delete(
-                "",
-                account_id="string",
+                ruleset_id="",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.with_raw_response.delete(
-                "2f2feab2026849078ba485f918791bdc",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.with_raw_response.delete(
-                "2f2feab2026849078ba485f918791bdc",
-                account_id="string",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.get(
-            "2f2feab2026849078ba485f918791bdc",
-            account_id="string",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
         )
         assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
@@ -863,8 +863,8 @@ class TestAsyncRulesets:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.get(
-            "2f2feab2026849078ba485f918791bdc",
-            account_id="string",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
         )
         assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
@@ -872,8 +872,8 @@ class TestAsyncRulesets:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.with_raw_response.get(
-            "2f2feab2026849078ba485f918791bdc",
-            account_id="string",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -885,8 +885,8 @@ class TestAsyncRulesets:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.with_streaming_response.get(
-            "2f2feab2026849078ba485f918791bdc",
-            account_id="string",
+            ruleset_id="2f2feab2026849078ba485f918791bdc",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -901,18 +901,18 @@ class TestAsyncRulesets:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             await async_client.rulesets.with_raw_response.get(
-                "",
-                account_id="string",
+                ruleset_id="",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.with_raw_response.get(
-                "2f2feab2026849078ba485f918791bdc",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.rulesets.with_raw_response.get(
-                "2f2feab2026849078ba485f918791bdc",
-                account_id="string",
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
             )

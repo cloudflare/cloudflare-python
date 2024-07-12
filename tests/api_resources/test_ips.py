@@ -25,7 +25,7 @@ class TestIPs:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         ip = client.ips.list(
-            networks="string",
+            networks="networks",
         )
         assert_matches_type(Optional[IPListResponse], ip, path=["response"])
 
@@ -61,7 +61,7 @@ class TestAsyncIPs:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ip = await async_client.ips.list(
-            networks="string",
+            networks="networks",
         )
         assert_matches_type(Optional[IPListResponse], ip, path=["response"])
 

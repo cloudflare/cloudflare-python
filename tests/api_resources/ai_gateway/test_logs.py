@@ -22,7 +22,7 @@ class TestLogs:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         log = client.ai_gateway.logs.list(
-            "my-gateway",
+            id="my-gateway",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
         )
         assert_matches_type(SyncV4PagePaginationArray[LogListResponse], log, path=["response"])
@@ -30,7 +30,7 @@ class TestLogs:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         log = client.ai_gateway.logs.list(
-            "my-gateway",
+            id="my-gateway",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
             cached=True,
             direction="asc",
@@ -38,7 +38,7 @@ class TestLogs:
             order_by="created_at",
             page=1,
             per_page=5,
-            search="string",
+            search="search",
             start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             success=True,
         )
@@ -47,7 +47,7 @@ class TestLogs:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.ai_gateway.logs.with_raw_response.list(
-            "my-gateway",
+            id="my-gateway",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
         )
 
@@ -59,7 +59,7 @@ class TestLogs:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.ai_gateway.logs.with_streaming_response.list(
-            "my-gateway",
+            id="my-gateway",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
         ) as response:
             assert not response.is_closed
@@ -74,13 +74,13 @@ class TestLogs:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai_gateway.logs.with_raw_response.list(
-                "my-gateway",
+                id="my-gateway",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.ai_gateway.logs.with_raw_response.list(
-                "",
+                id="",
                 account_id="0d37909e38d3e99c29fa2cd343ac421a",
             )
 
@@ -91,7 +91,7 @@ class TestAsyncLogs:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         log = await async_client.ai_gateway.logs.list(
-            "my-gateway",
+            id="my-gateway",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
         )
         assert_matches_type(AsyncV4PagePaginationArray[LogListResponse], log, path=["response"])
@@ -99,7 +99,7 @@ class TestAsyncLogs:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         log = await async_client.ai_gateway.logs.list(
-            "my-gateway",
+            id="my-gateway",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
             cached=True,
             direction="asc",
@@ -107,7 +107,7 @@ class TestAsyncLogs:
             order_by="created_at",
             page=1,
             per_page=5,
-            search="string",
+            search="search",
             start_date=parse_datetime("2019-12-27T18:11:19.117Z"),
             success=True,
         )
@@ -116,7 +116,7 @@ class TestAsyncLogs:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai_gateway.logs.with_raw_response.list(
-            "my-gateway",
+            id="my-gateway",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
         )
 
@@ -128,7 +128,7 @@ class TestAsyncLogs:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai_gateway.logs.with_streaming_response.list(
-            "my-gateway",
+            id="my-gateway",
             account_id="0d37909e38d3e99c29fa2cd343ac421a",
         ) as response:
             assert not response.is_closed
@@ -143,12 +143,12 @@ class TestAsyncLogs:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai_gateway.logs.with_raw_response.list(
-                "my-gateway",
+                id="my-gateway",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.ai_gateway.logs.with_raw_response.list(
-                "",
+                id="",
                 account_id="0d37909e38d3e99c29fa2cd343ac421a",
             )

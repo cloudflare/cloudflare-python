@@ -127,7 +127,7 @@ class TestVirtualNetworks:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         virtual_network = client.zero_trust.networks.virtual_networks.delete(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(VirtualNetworkDeleteResponse, virtual_network, path=["response"])
@@ -135,7 +135,7 @@ class TestVirtualNetworks:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.networks.virtual_networks.with_raw_response.delete(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -147,7 +147,7 @@ class TestVirtualNetworks:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.networks.virtual_networks.with_streaming_response.delete(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -162,20 +162,20 @@ class TestVirtualNetworks:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.networks.virtual_networks.with_raw_response.delete(
-                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `virtual_network_id` but received ''"):
             client.zero_trust.networks.virtual_networks.with_raw_response.delete(
-                "",
+                virtual_network_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         virtual_network = client.zero_trust.networks.virtual_networks.edit(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(VirtualNetworkEditResponse, virtual_network, path=["response"])
@@ -183,7 +183,7 @@ class TestVirtualNetworks:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         virtual_network = client.zero_trust.networks.virtual_networks.edit(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             comment="Staging VPC for data science",
             is_default_network=True,
@@ -194,7 +194,7 @@ class TestVirtualNetworks:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.zero_trust.networks.virtual_networks.with_raw_response.edit(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -206,7 +206,7 @@ class TestVirtualNetworks:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.zero_trust.networks.virtual_networks.with_streaming_response.edit(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -221,13 +221,13 @@ class TestVirtualNetworks:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.networks.virtual_networks.with_raw_response.edit(
-                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `virtual_network_id` but received ''"):
             client.zero_trust.networks.virtual_networks.with_raw_response.edit(
-                "",
+                virtual_network_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
@@ -339,7 +339,7 @@ class TestAsyncVirtualNetworks:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         virtual_network = await async_client.zero_trust.networks.virtual_networks.delete(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(VirtualNetworkDeleteResponse, virtual_network, path=["response"])
@@ -347,7 +347,7 @@ class TestAsyncVirtualNetworks:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.networks.virtual_networks.with_raw_response.delete(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -359,7 +359,7 @@ class TestAsyncVirtualNetworks:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.networks.virtual_networks.with_streaming_response.delete(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -374,20 +374,20 @@ class TestAsyncVirtualNetworks:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.networks.virtual_networks.with_raw_response.delete(
-                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `virtual_network_id` but received ''"):
             await async_client.zero_trust.networks.virtual_networks.with_raw_response.delete(
-                "",
+                virtual_network_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         virtual_network = await async_client.zero_trust.networks.virtual_networks.edit(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(VirtualNetworkEditResponse, virtual_network, path=["response"])
@@ -395,7 +395,7 @@ class TestAsyncVirtualNetworks:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         virtual_network = await async_client.zero_trust.networks.virtual_networks.edit(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             comment="Staging VPC for data science",
             is_default_network=True,
@@ -406,7 +406,7 @@ class TestAsyncVirtualNetworks:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.networks.virtual_networks.with_raw_response.edit(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -418,7 +418,7 @@ class TestAsyncVirtualNetworks:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.networks.virtual_networks.with_streaming_response.edit(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -433,12 +433,12 @@ class TestAsyncVirtualNetworks:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.networks.virtual_networks.with_raw_response.edit(
-                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `virtual_network_id` but received ''"):
             await async_client.zero_trust.networks.virtual_networks.with_raw_response.edit(
-                "",
+                virtual_network_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )

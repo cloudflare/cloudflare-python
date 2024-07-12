@@ -24,7 +24,7 @@ class TestWANs:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         wan = client.magic_transit.sites.wans.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             physport=1,
             vlan_tag=0,
@@ -34,11 +34,11 @@ class TestWANs:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         wan = client.magic_transit.sites.wans.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             physport=1,
             vlan_tag=0,
-            name="string",
+            name="name",
             priority=0,
             static_addressing={
                 "address": "192.0.2.0/24",
@@ -51,7 +51,7 @@ class TestWANs:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.wans.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             physport=1,
             vlan_tag=0,
@@ -65,7 +65,7 @@ class TestWANs:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.wans.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             physport=1,
             vlan_tag=0,
@@ -82,7 +82,7 @@ class TestWANs:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.sites.wans.with_raw_response.create(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                site_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 physport=1,
                 vlan_tag=0,
@@ -90,7 +90,7 @@ class TestWANs:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             client.magic_transit.sites.wans.with_raw_response.create(
-                "",
+                site_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 physport=1,
                 vlan_tag=0,
@@ -99,7 +99,7 @@ class TestWANs:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         wan = client.magic_transit.sites.wans.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -108,10 +108,10 @@ class TestWANs:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         wan = client.magic_transit.sites.wans.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="string",
+            name="name",
             physport=1,
             priority=0,
             static_addressing={
@@ -126,7 +126,7 @@ class TestWANs:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.wans.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -139,7 +139,7 @@ class TestWANs:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.wans.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -155,21 +155,21 @@ class TestWANs:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.sites.wans.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                wan_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             client.magic_transit.sites.wans.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                wan_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `wan_id` but received ''"):
             client.magic_transit.sites.wans.with_raw_response.update(
-                "",
+                wan_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -177,7 +177,7 @@ class TestWANs:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         wan = client.magic_transit.sites.wans.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncSinglePage[WAN], wan, path=["response"])
@@ -185,7 +185,7 @@ class TestWANs:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.wans.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -197,7 +197,7 @@ class TestWANs:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.wans.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -212,20 +212,20 @@ class TestWANs:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.sites.wans.with_raw_response.list(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                site_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             client.magic_transit.sites.wans.with_raw_response.list(
-                "",
+                site_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         wan = client.magic_transit.sites.wans.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -234,7 +234,7 @@ class TestWANs:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.wans.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -247,7 +247,7 @@ class TestWANs:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.wans.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -263,21 +263,21 @@ class TestWANs:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.sites.wans.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                wan_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             client.magic_transit.sites.wans.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                wan_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `wan_id` but received ''"):
             client.magic_transit.sites.wans.with_raw_response.delete(
-                "",
+                wan_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -285,7 +285,7 @@ class TestWANs:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         wan = client.magic_transit.sites.wans.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -294,10 +294,10 @@ class TestWANs:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         wan = client.magic_transit.sites.wans.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="string",
+            name="name",
             physport=1,
             priority=0,
             static_addressing={
@@ -312,7 +312,7 @@ class TestWANs:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.wans.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -325,7 +325,7 @@ class TestWANs:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.wans.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -341,21 +341,21 @@ class TestWANs:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.sites.wans.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                wan_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             client.magic_transit.sites.wans.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                wan_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `wan_id` but received ''"):
             client.magic_transit.sites.wans.with_raw_response.edit(
-                "",
+                wan_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -363,7 +363,7 @@ class TestWANs:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         wan = client.magic_transit.sites.wans.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -372,7 +372,7 @@ class TestWANs:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.wans.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -385,7 +385,7 @@ class TestWANs:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.wans.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -401,21 +401,21 @@ class TestWANs:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.sites.wans.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                wan_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             client.magic_transit.sites.wans.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                wan_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `wan_id` but received ''"):
             client.magic_transit.sites.wans.with_raw_response.get(
-                "",
+                wan_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -427,7 +427,7 @@ class TestAsyncWANs:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         wan = await async_client.magic_transit.sites.wans.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             physport=1,
             vlan_tag=0,
@@ -437,11 +437,11 @@ class TestAsyncWANs:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         wan = await async_client.magic_transit.sites.wans.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             physport=1,
             vlan_tag=0,
-            name="string",
+            name="name",
             priority=0,
             static_addressing={
                 "address": "192.0.2.0/24",
@@ -454,7 +454,7 @@ class TestAsyncWANs:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.wans.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             physport=1,
             vlan_tag=0,
@@ -468,7 +468,7 @@ class TestAsyncWANs:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.wans.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             physport=1,
             vlan_tag=0,
@@ -485,7 +485,7 @@ class TestAsyncWANs:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.sites.wans.with_raw_response.create(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                site_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 physport=1,
                 vlan_tag=0,
@@ -493,7 +493,7 @@ class TestAsyncWANs:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             await async_client.magic_transit.sites.wans.with_raw_response.create(
-                "",
+                site_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 physport=1,
                 vlan_tag=0,
@@ -502,7 +502,7 @@ class TestAsyncWANs:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         wan = await async_client.magic_transit.sites.wans.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -511,10 +511,10 @@ class TestAsyncWANs:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         wan = await async_client.magic_transit.sites.wans.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="string",
+            name="name",
             physport=1,
             priority=0,
             static_addressing={
@@ -529,7 +529,7 @@ class TestAsyncWANs:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.wans.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -542,7 +542,7 @@ class TestAsyncWANs:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.wans.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -558,21 +558,21 @@ class TestAsyncWANs:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.sites.wans.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                wan_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             await async_client.magic_transit.sites.wans.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                wan_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `wan_id` but received ''"):
             await async_client.magic_transit.sites.wans.with_raw_response.update(
-                "",
+                wan_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -580,7 +580,7 @@ class TestAsyncWANs:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         wan = await async_client.magic_transit.sites.wans.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncSinglePage[WAN], wan, path=["response"])
@@ -588,7 +588,7 @@ class TestAsyncWANs:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.wans.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -600,7 +600,7 @@ class TestAsyncWANs:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.wans.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -615,20 +615,20 @@ class TestAsyncWANs:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.sites.wans.with_raw_response.list(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                site_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             await async_client.magic_transit.sites.wans.with_raw_response.list(
-                "",
+                site_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         wan = await async_client.magic_transit.sites.wans.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -637,7 +637,7 @@ class TestAsyncWANs:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.wans.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -650,7 +650,7 @@ class TestAsyncWANs:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.wans.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -666,21 +666,21 @@ class TestAsyncWANs:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.sites.wans.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                wan_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             await async_client.magic_transit.sites.wans.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                wan_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `wan_id` but received ''"):
             await async_client.magic_transit.sites.wans.with_raw_response.delete(
-                "",
+                wan_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -688,7 +688,7 @@ class TestAsyncWANs:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         wan = await async_client.magic_transit.sites.wans.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -697,10 +697,10 @@ class TestAsyncWANs:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         wan = await async_client.magic_transit.sites.wans.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
-            name="string",
+            name="name",
             physport=1,
             priority=0,
             static_addressing={
@@ -715,7 +715,7 @@ class TestAsyncWANs:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.wans.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -728,7 +728,7 @@ class TestAsyncWANs:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.wans.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -744,21 +744,21 @@ class TestAsyncWANs:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.sites.wans.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                wan_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             await async_client.magic_transit.sites.wans.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                wan_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `wan_id` but received ''"):
             await async_client.magic_transit.sites.wans.with_raw_response.edit(
-                "",
+                wan_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -766,7 +766,7 @@ class TestAsyncWANs:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         wan = await async_client.magic_transit.sites.wans.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -775,7 +775,7 @@ class TestAsyncWANs:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.wans.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -788,7 +788,7 @@ class TestAsyncWANs:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.wans.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            wan_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -804,21 +804,21 @@ class TestAsyncWANs:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.sites.wans.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                wan_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             await async_client.magic_transit.sites.wans.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                wan_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `wan_id` but received ''"):
             await async_client.magic_transit.sites.wans.with_raw_response.get(
-                "",
+                wan_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

@@ -21,7 +21,7 @@ class TestDomains:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         domain = client.registrar.domains.update(
-            "cloudflare.com",
+            domain_name="cloudflare.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[DomainUpdateResponse], domain, path=["response"])
@@ -29,7 +29,7 @@ class TestDomains:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         domain = client.registrar.domains.update(
-            "cloudflare.com",
+            domain_name="cloudflare.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             auto_renew=True,
             locked=False,
@@ -40,7 +40,7 @@ class TestDomains:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.registrar.domains.with_raw_response.update(
-            "cloudflare.com",
+            domain_name="cloudflare.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -52,7 +52,7 @@ class TestDomains:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.registrar.domains.with_streaming_response.update(
-            "cloudflare.com",
+            domain_name="cloudflare.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -67,13 +67,13 @@ class TestDomains:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.registrar.domains.with_raw_response.update(
-                "cloudflare.com",
+                domain_name="cloudflare.com",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
             client.registrar.domains.with_raw_response.update(
-                "",
+                domain_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -118,7 +118,7 @@ class TestDomains:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         domain = client.registrar.domains.get(
-            "cloudflare.com",
+            domain_name="cloudflare.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[DomainGetResponse], domain, path=["response"])
@@ -126,7 +126,7 @@ class TestDomains:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.registrar.domains.with_raw_response.get(
-            "cloudflare.com",
+            domain_name="cloudflare.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -138,7 +138,7 @@ class TestDomains:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.registrar.domains.with_streaming_response.get(
-            "cloudflare.com",
+            domain_name="cloudflare.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -153,13 +153,13 @@ class TestDomains:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.registrar.domains.with_raw_response.get(
-                "cloudflare.com",
+                domain_name="cloudflare.com",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
             client.registrar.domains.with_raw_response.get(
-                "",
+                domain_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -170,7 +170,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         domain = await async_client.registrar.domains.update(
-            "cloudflare.com",
+            domain_name="cloudflare.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[DomainUpdateResponse], domain, path=["response"])
@@ -178,7 +178,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         domain = await async_client.registrar.domains.update(
-            "cloudflare.com",
+            domain_name="cloudflare.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             auto_renew=True,
             locked=False,
@@ -189,7 +189,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.registrar.domains.with_raw_response.update(
-            "cloudflare.com",
+            domain_name="cloudflare.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -201,7 +201,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.registrar.domains.with_streaming_response.update(
-            "cloudflare.com",
+            domain_name="cloudflare.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -216,13 +216,13 @@ class TestAsyncDomains:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.registrar.domains.with_raw_response.update(
-                "cloudflare.com",
+                domain_name="cloudflare.com",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
             await async_client.registrar.domains.with_raw_response.update(
-                "",
+                domain_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -267,7 +267,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         domain = await async_client.registrar.domains.get(
-            "cloudflare.com",
+            domain_name="cloudflare.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[DomainGetResponse], domain, path=["response"])
@@ -275,7 +275,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.registrar.domains.with_raw_response.get(
-            "cloudflare.com",
+            domain_name="cloudflare.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -287,7 +287,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.registrar.domains.with_streaming_response.get(
-            "cloudflare.com",
+            domain_name="cloudflare.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -302,12 +302,12 @@ class TestAsyncDomains:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.registrar.domains.with_raw_response.get(
-                "cloudflare.com",
+                domain_name="cloudflare.com",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
             await async_client.registrar.domains.with_raw_response.get(
-                "",
+                domain_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

@@ -40,12 +40,12 @@ class TestConfigurations:
                     "fail_closed": False,
                     "notification_settings": {
                         "enabled": True,
-                        "msg": "string",
-                        "support_url": "string",
+                        "msg": "msg",
+                        "support_url": "support_url",
                     },
                 },
                 "block_page": {
-                    "background_color": "string",
+                    "background_color": "background_color",
                     "enabled": True,
                     "footer_text": "--footer--",
                     "header_text": "--header--",
@@ -123,12 +123,12 @@ class TestConfigurations:
                     "fail_closed": False,
                     "notification_settings": {
                         "enabled": True,
-                        "msg": "string",
-                        "support_url": "string",
+                        "msg": "msg",
+                        "support_url": "support_url",
                     },
                 },
                 "block_page": {
-                    "background_color": "string",
+                    "background_color": "background_color",
                     "enabled": True,
                     "footer_text": "--footer--",
                     "header_text": "--header--",
@@ -248,12 +248,12 @@ class TestAsyncConfigurations:
                     "fail_closed": False,
                     "notification_settings": {
                         "enabled": True,
-                        "msg": "string",
-                        "support_url": "string",
+                        "msg": "msg",
+                        "support_url": "support_url",
                     },
                 },
                 "block_page": {
-                    "background_color": "string",
+                    "background_color": "background_color",
                     "enabled": True,
                     "footer_text": "--footer--",
                     "header_text": "--header--",
@@ -331,12 +331,12 @@ class TestAsyncConfigurations:
                     "fail_closed": False,
                     "notification_settings": {
                         "enabled": True,
-                        "msg": "string",
-                        "support_url": "string",
+                        "msg": "msg",
+                        "support_url": "support_url",
                     },
                 },
                 "block_page": {
-                    "background_color": "string",
+                    "background_color": "background_color",
                     "enabled": True,
                     "footer_text": "--footer--",
                     "header_text": "--header--",

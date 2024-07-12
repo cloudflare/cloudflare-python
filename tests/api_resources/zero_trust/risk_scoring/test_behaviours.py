@@ -23,14 +23,14 @@ class TestBehaviours:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         behaviour = client.zero_trust.risk_scoring.behaviours.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(BehaviourUpdateResponse, behaviour, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         behaviour = client.zero_trust.risk_scoring.behaviours.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             behaviors={
                 "foo": {
                     "enabled": True,
@@ -43,7 +43,7 @@ class TestBehaviours:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.risk_scoring.behaviours.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -54,7 +54,7 @@ class TestBehaviours:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.risk_scoring.behaviours.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -68,7 +68,7 @@ class TestBehaviours:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
             client.zero_trust.risk_scoring.behaviours.with_raw_response.update(
-                "",
+                account_identifier="",
             )
 
     @parametrize
@@ -116,14 +116,14 @@ class TestAsyncBehaviours:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         behaviour = await async_client.zero_trust.risk_scoring.behaviours.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(BehaviourUpdateResponse, behaviour, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         behaviour = await async_client.zero_trust.risk_scoring.behaviours.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             behaviors={
                 "foo": {
                     "enabled": True,
@@ -136,7 +136,7 @@ class TestAsyncBehaviours:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.risk_scoring.behaviours.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -147,7 +147,7 @@ class TestAsyncBehaviours:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.risk_scoring.behaviours.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -161,7 +161,7 @@ class TestAsyncBehaviours:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
             await async_client.zero_trust.risk_scoring.behaviours.with_raw_response.update(
-                "",
+                account_identifier="",
             )
 
     @parametrize

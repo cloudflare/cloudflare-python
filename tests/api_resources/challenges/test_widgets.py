@@ -92,7 +92,7 @@ class TestWidgets:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         widget = client.challenges.widgets.update(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
             mode="invisible",
@@ -103,7 +103,7 @@ class TestWidgets:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         widget = client.challenges.widgets.update(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
             mode="invisible",
@@ -117,7 +117,7 @@ class TestWidgets:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.challenges.widgets.with_raw_response.update(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
             mode="invisible",
@@ -132,7 +132,7 @@ class TestWidgets:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.challenges.widgets.with_streaming_response.update(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
             mode="invisible",
@@ -150,7 +150,7 @@ class TestWidgets:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.challenges.widgets.with_raw_response.update(
-                "0x4AAF00AAAABn0R22HWm-YUc",
+                sitekey="0x4AAF00AAAABn0R22HWm-YUc",
                 account_id="",
                 domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
                 mode="invisible",
@@ -159,7 +159,7 @@ class TestWidgets:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sitekey` but received ''"):
             client.challenges.widgets.with_raw_response.update(
-                "",
+                sitekey="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
                 mode="invisible",
@@ -218,7 +218,7 @@ class TestWidgets:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         widget = client.challenges.widgets.delete(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
@@ -226,7 +226,7 @@ class TestWidgets:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.challenges.widgets.with_raw_response.delete(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -238,7 +238,7 @@ class TestWidgets:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.challenges.widgets.with_streaming_response.delete(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -253,20 +253,20 @@ class TestWidgets:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.challenges.widgets.with_raw_response.delete(
-                "0x4AAF00AAAABn0R22HWm-YUc",
+                sitekey="0x4AAF00AAAABn0R22HWm-YUc",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sitekey` but received ''"):
             client.challenges.widgets.with_raw_response.delete(
-                "",
+                sitekey="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         widget = client.challenges.widgets.get(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
@@ -274,7 +274,7 @@ class TestWidgets:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.challenges.widgets.with_raw_response.get(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -286,7 +286,7 @@ class TestWidgets:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.challenges.widgets.with_streaming_response.get(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -301,20 +301,20 @@ class TestWidgets:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.challenges.widgets.with_raw_response.get(
-                "0x4AAF00AAAABn0R22HWm-YUc",
+                sitekey="0x4AAF00AAAABn0R22HWm-YUc",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sitekey` but received ''"):
             client.challenges.widgets.with_raw_response.get(
-                "",
+                sitekey="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_rotate_secret(self, client: Cloudflare) -> None:
         widget = client.challenges.widgets.rotate_secret(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
@@ -322,7 +322,7 @@ class TestWidgets:
     @parametrize
     def test_method_rotate_secret_with_all_params(self, client: Cloudflare) -> None:
         widget = client.challenges.widgets.rotate_secret(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             invalidate_immediately=True,
         )
@@ -331,7 +331,7 @@ class TestWidgets:
     @parametrize
     def test_raw_response_rotate_secret(self, client: Cloudflare) -> None:
         response = client.challenges.widgets.with_raw_response.rotate_secret(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -343,7 +343,7 @@ class TestWidgets:
     @parametrize
     def test_streaming_response_rotate_secret(self, client: Cloudflare) -> None:
         with client.challenges.widgets.with_streaming_response.rotate_secret(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -358,13 +358,13 @@ class TestWidgets:
     def test_path_params_rotate_secret(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.challenges.widgets.with_raw_response.rotate_secret(
-                "0x4AAF00AAAABn0R22HWm-YUc",
+                sitekey="0x4AAF00AAAABn0R22HWm-YUc",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sitekey` but received ''"):
             client.challenges.widgets.with_raw_response.rotate_secret(
-                "",
+                sitekey="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -443,7 +443,7 @@ class TestAsyncWidgets:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         widget = await async_client.challenges.widgets.update(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
             mode="invisible",
@@ -454,7 +454,7 @@ class TestAsyncWidgets:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         widget = await async_client.challenges.widgets.update(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
             mode="invisible",
@@ -468,7 +468,7 @@ class TestAsyncWidgets:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.challenges.widgets.with_raw_response.update(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
             mode="invisible",
@@ -483,7 +483,7 @@ class TestAsyncWidgets:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.challenges.widgets.with_streaming_response.update(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
             mode="invisible",
@@ -501,7 +501,7 @@ class TestAsyncWidgets:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.challenges.widgets.with_raw_response.update(
-                "0x4AAF00AAAABn0R22HWm-YUc",
+                sitekey="0x4AAF00AAAABn0R22HWm-YUc",
                 account_id="",
                 domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
                 mode="invisible",
@@ -510,7 +510,7 @@ class TestAsyncWidgets:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sitekey` but received ''"):
             await async_client.challenges.widgets.with_raw_response.update(
-                "",
+                sitekey="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
                 mode="invisible",
@@ -569,7 +569,7 @@ class TestAsyncWidgets:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         widget = await async_client.challenges.widgets.delete(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
@@ -577,7 +577,7 @@ class TestAsyncWidgets:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.challenges.widgets.with_raw_response.delete(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -589,7 +589,7 @@ class TestAsyncWidgets:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.challenges.widgets.with_streaming_response.delete(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -604,20 +604,20 @@ class TestAsyncWidgets:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.challenges.widgets.with_raw_response.delete(
-                "0x4AAF00AAAABn0R22HWm-YUc",
+                sitekey="0x4AAF00AAAABn0R22HWm-YUc",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sitekey` but received ''"):
             await async_client.challenges.widgets.with_raw_response.delete(
-                "",
+                sitekey="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         widget = await async_client.challenges.widgets.get(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
@@ -625,7 +625,7 @@ class TestAsyncWidgets:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.challenges.widgets.with_raw_response.get(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -637,7 +637,7 @@ class TestAsyncWidgets:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.challenges.widgets.with_streaming_response.get(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -652,20 +652,20 @@ class TestAsyncWidgets:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.challenges.widgets.with_raw_response.get(
-                "0x4AAF00AAAABn0R22HWm-YUc",
+                sitekey="0x4AAF00AAAABn0R22HWm-YUc",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sitekey` but received ''"):
             await async_client.challenges.widgets.with_raw_response.get(
-                "",
+                sitekey="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_rotate_secret(self, async_client: AsyncCloudflare) -> None:
         widget = await async_client.challenges.widgets.rotate_secret(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
@@ -673,7 +673,7 @@ class TestAsyncWidgets:
     @parametrize
     async def test_method_rotate_secret_with_all_params(self, async_client: AsyncCloudflare) -> None:
         widget = await async_client.challenges.widgets.rotate_secret(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             invalidate_immediately=True,
         )
@@ -682,7 +682,7 @@ class TestAsyncWidgets:
     @parametrize
     async def test_raw_response_rotate_secret(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.challenges.widgets.with_raw_response.rotate_secret(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -694,7 +694,7 @@ class TestAsyncWidgets:
     @parametrize
     async def test_streaming_response_rotate_secret(self, async_client: AsyncCloudflare) -> None:
         async with async_client.challenges.widgets.with_streaming_response.rotate_secret(
-            "0x4AAF00AAAABn0R22HWm-YUc",
+            sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -709,12 +709,12 @@ class TestAsyncWidgets:
     async def test_path_params_rotate_secret(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.challenges.widgets.with_raw_response.rotate_secret(
-                "0x4AAF00AAAABn0R22HWm-YUc",
+                sitekey="0x4AAF00AAAABn0R22HWm-YUc",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `sitekey` but received ''"):
             await async_client.challenges.widgets.with_raw_response.rotate_secret(
-                "",
+                sitekey="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

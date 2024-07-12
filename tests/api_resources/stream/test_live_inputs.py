@@ -31,7 +31,7 @@ class TestLiveInputs:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         live_input = client.stream.live_inputs.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            default_creator="string",
+            default_creator="defaultCreator",
             delete_recording_after_days=45,
             meta={"name": "test stream 1"},
             recording={
@@ -77,7 +77,7 @@ class TestLiveInputs:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         live_input = client.stream.live_inputs.update(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
@@ -85,9 +85,9 @@ class TestLiveInputs:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         live_input = client.stream.live_inputs.update(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            default_creator="string",
+            default_creator="defaultCreator",
             delete_recording_after_days=45,
             meta={"name": "test stream 1"},
             recording={
@@ -102,7 +102,7 @@ class TestLiveInputs:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.stream.live_inputs.with_raw_response.update(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -114,7 +114,7 @@ class TestLiveInputs:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.stream.live_inputs.with_streaming_response.update(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -129,13 +129,13 @@ class TestLiveInputs:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.stream.live_inputs.with_raw_response.update(
-                "66be4bf738797e01e1fca35a7bdecdcd",
+                live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `live_input_identifier` but received ''"):
             client.stream.live_inputs.with_raw_response.update(
-                "",
+                live_input_identifier="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -188,7 +188,7 @@ class TestLiveInputs:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         live_input = client.stream.live_inputs.delete(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert live_input is None
@@ -196,7 +196,7 @@ class TestLiveInputs:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.stream.live_inputs.with_raw_response.delete(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -208,7 +208,7 @@ class TestLiveInputs:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.stream.live_inputs.with_streaming_response.delete(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -223,20 +223,20 @@ class TestLiveInputs:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.stream.live_inputs.with_raw_response.delete(
-                "66be4bf738797e01e1fca35a7bdecdcd",
+                live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `live_input_identifier` but received ''"):
             client.stream.live_inputs.with_raw_response.delete(
-                "",
+                live_input_identifier="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         live_input = client.stream.live_inputs.get(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
@@ -244,7 +244,7 @@ class TestLiveInputs:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.stream.live_inputs.with_raw_response.get(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -256,7 +256,7 @@ class TestLiveInputs:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.stream.live_inputs.with_streaming_response.get(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -271,13 +271,13 @@ class TestLiveInputs:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.stream.live_inputs.with_raw_response.get(
-                "66be4bf738797e01e1fca35a7bdecdcd",
+                live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `live_input_identifier` but received ''"):
             client.stream.live_inputs.with_raw_response.get(
-                "",
+                live_input_identifier="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -296,7 +296,7 @@ class TestAsyncLiveInputs:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         live_input = await async_client.stream.live_inputs.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            default_creator="string",
+            default_creator="defaultCreator",
             delete_recording_after_days=45,
             meta={"name": "test stream 1"},
             recording={
@@ -342,7 +342,7 @@ class TestAsyncLiveInputs:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         live_input = await async_client.stream.live_inputs.update(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
@@ -350,9 +350,9 @@ class TestAsyncLiveInputs:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         live_input = await async_client.stream.live_inputs.update(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            default_creator="string",
+            default_creator="defaultCreator",
             delete_recording_after_days=45,
             meta={"name": "test stream 1"},
             recording={
@@ -367,7 +367,7 @@ class TestAsyncLiveInputs:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.live_inputs.with_raw_response.update(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -379,7 +379,7 @@ class TestAsyncLiveInputs:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.live_inputs.with_streaming_response.update(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -394,13 +394,13 @@ class TestAsyncLiveInputs:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.stream.live_inputs.with_raw_response.update(
-                "66be4bf738797e01e1fca35a7bdecdcd",
+                live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `live_input_identifier` but received ''"):
             await async_client.stream.live_inputs.with_raw_response.update(
-                "",
+                live_input_identifier="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -453,7 +453,7 @@ class TestAsyncLiveInputs:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         live_input = await async_client.stream.live_inputs.delete(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert live_input is None
@@ -461,7 +461,7 @@ class TestAsyncLiveInputs:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.live_inputs.with_raw_response.delete(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -473,7 +473,7 @@ class TestAsyncLiveInputs:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.live_inputs.with_streaming_response.delete(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -488,20 +488,20 @@ class TestAsyncLiveInputs:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.stream.live_inputs.with_raw_response.delete(
-                "66be4bf738797e01e1fca35a7bdecdcd",
+                live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `live_input_identifier` but received ''"):
             await async_client.stream.live_inputs.with_raw_response.delete(
-                "",
+                live_input_identifier="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         live_input = await async_client.stream.live_inputs.get(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[LiveInput], live_input, path=["response"])
@@ -509,7 +509,7 @@ class TestAsyncLiveInputs:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.live_inputs.with_raw_response.get(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -521,7 +521,7 @@ class TestAsyncLiveInputs:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.live_inputs.with_streaming_response.get(
-            "66be4bf738797e01e1fca35a7bdecdcd",
+            live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -536,12 +536,12 @@ class TestAsyncLiveInputs:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.stream.live_inputs.with_raw_response.get(
-                "66be4bf738797e01e1fca35a7bdecdcd",
+                live_input_identifier="66be4bf738797e01e1fca35a7bdecdcd",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `live_input_identifier` but received ''"):
             await async_client.stream.live_inputs.with_raw_response.get(
-                "",
+                live_input_identifier="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

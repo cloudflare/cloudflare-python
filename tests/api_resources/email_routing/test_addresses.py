@@ -21,7 +21,7 @@ class TestAddresses:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         address = client.email_routing.addresses.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
         )
         assert_matches_type(Optional[Address], address, path=["response"])
@@ -29,7 +29,7 @@ class TestAddresses:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.email_routing.addresses.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
         )
 
@@ -41,7 +41,7 @@ class TestAddresses:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.email_routing.addresses.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
         ) as response:
             assert not response.is_closed
@@ -56,21 +56,21 @@ class TestAddresses:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
             client.email_routing.addresses.with_raw_response.create(
-                "",
+                account_identifier="",
                 email="user@example.com",
             )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         address = client.email_routing.addresses.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncV4PagePaginationArray[Address], address, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         address = client.email_routing.addresses.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             direction="asc",
             page=1,
             per_page=5,
@@ -81,7 +81,7 @@ class TestAddresses:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.email_routing.addresses.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -92,7 +92,7 @@ class TestAddresses:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.email_routing.addresses.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -106,13 +106,13 @@ class TestAddresses:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
             client.email_routing.addresses.with_raw_response.list(
-                "",
+                account_identifier="",
             )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         address = client.email_routing.addresses.delete(
-            "ea95132c15732412d22c1476fa83f27a",
+            destination_address_identifier="ea95132c15732412d22c1476fa83f27a",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Address], address, path=["response"])
@@ -120,7 +120,7 @@ class TestAddresses:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.email_routing.addresses.with_raw_response.delete(
-            "ea95132c15732412d22c1476fa83f27a",
+            destination_address_identifier="ea95132c15732412d22c1476fa83f27a",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -132,7 +132,7 @@ class TestAddresses:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.email_routing.addresses.with_streaming_response.delete(
-            "ea95132c15732412d22c1476fa83f27a",
+            destination_address_identifier="ea95132c15732412d22c1476fa83f27a",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -147,7 +147,7 @@ class TestAddresses:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
             client.email_routing.addresses.with_raw_response.delete(
-                "ea95132c15732412d22c1476fa83f27a",
+                destination_address_identifier="ea95132c15732412d22c1476fa83f27a",
                 account_identifier="",
             )
 
@@ -155,14 +155,14 @@ class TestAddresses:
             ValueError, match=r"Expected a non-empty value for `destination_address_identifier` but received ''"
         ):
             client.email_routing.addresses.with_raw_response.delete(
-                "",
+                destination_address_identifier="",
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         address = client.email_routing.addresses.get(
-            "ea95132c15732412d22c1476fa83f27a",
+            destination_address_identifier="ea95132c15732412d22c1476fa83f27a",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Address], address, path=["response"])
@@ -170,7 +170,7 @@ class TestAddresses:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.email_routing.addresses.with_raw_response.get(
-            "ea95132c15732412d22c1476fa83f27a",
+            destination_address_identifier="ea95132c15732412d22c1476fa83f27a",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -182,7 +182,7 @@ class TestAddresses:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.email_routing.addresses.with_streaming_response.get(
-            "ea95132c15732412d22c1476fa83f27a",
+            destination_address_identifier="ea95132c15732412d22c1476fa83f27a",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -197,7 +197,7 @@ class TestAddresses:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
             client.email_routing.addresses.with_raw_response.get(
-                "ea95132c15732412d22c1476fa83f27a",
+                destination_address_identifier="ea95132c15732412d22c1476fa83f27a",
                 account_identifier="",
             )
 
@@ -205,7 +205,7 @@ class TestAddresses:
             ValueError, match=r"Expected a non-empty value for `destination_address_identifier` but received ''"
         ):
             client.email_routing.addresses.with_raw_response.get(
-                "",
+                destination_address_identifier="",
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -216,7 +216,7 @@ class TestAsyncAddresses:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         address = await async_client.email_routing.addresses.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
         )
         assert_matches_type(Optional[Address], address, path=["response"])
@@ -224,7 +224,7 @@ class TestAsyncAddresses:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_routing.addresses.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
         )
 
@@ -236,7 +236,7 @@ class TestAsyncAddresses:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_routing.addresses.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             email="user@example.com",
         ) as response:
             assert not response.is_closed
@@ -251,21 +251,21 @@ class TestAsyncAddresses:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
             await async_client.email_routing.addresses.with_raw_response.create(
-                "",
+                account_identifier="",
                 email="user@example.com",
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         address = await async_client.email_routing.addresses.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncV4PagePaginationArray[Address], address, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         address = await async_client.email_routing.addresses.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             direction="asc",
             page=1,
             per_page=5,
@@ -276,7 +276,7 @@ class TestAsyncAddresses:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_routing.addresses.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
@@ -287,7 +287,7 @@ class TestAsyncAddresses:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_routing.addresses.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -301,13 +301,13 @@ class TestAsyncAddresses:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
             await async_client.email_routing.addresses.with_raw_response.list(
-                "",
+                account_identifier="",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         address = await async_client.email_routing.addresses.delete(
-            "ea95132c15732412d22c1476fa83f27a",
+            destination_address_identifier="ea95132c15732412d22c1476fa83f27a",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Address], address, path=["response"])
@@ -315,7 +315,7 @@ class TestAsyncAddresses:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_routing.addresses.with_raw_response.delete(
-            "ea95132c15732412d22c1476fa83f27a",
+            destination_address_identifier="ea95132c15732412d22c1476fa83f27a",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -327,7 +327,7 @@ class TestAsyncAddresses:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_routing.addresses.with_streaming_response.delete(
-            "ea95132c15732412d22c1476fa83f27a",
+            destination_address_identifier="ea95132c15732412d22c1476fa83f27a",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -342,7 +342,7 @@ class TestAsyncAddresses:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
             await async_client.email_routing.addresses.with_raw_response.delete(
-                "ea95132c15732412d22c1476fa83f27a",
+                destination_address_identifier="ea95132c15732412d22c1476fa83f27a",
                 account_identifier="",
             )
 
@@ -350,14 +350,14 @@ class TestAsyncAddresses:
             ValueError, match=r"Expected a non-empty value for `destination_address_identifier` but received ''"
         ):
             await async_client.email_routing.addresses.with_raw_response.delete(
-                "",
+                destination_address_identifier="",
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         address = await async_client.email_routing.addresses.get(
-            "ea95132c15732412d22c1476fa83f27a",
+            destination_address_identifier="ea95132c15732412d22c1476fa83f27a",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Address], address, path=["response"])
@@ -365,7 +365,7 @@ class TestAsyncAddresses:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_routing.addresses.with_raw_response.get(
-            "ea95132c15732412d22c1476fa83f27a",
+            destination_address_identifier="ea95132c15732412d22c1476fa83f27a",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -377,7 +377,7 @@ class TestAsyncAddresses:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_routing.addresses.with_streaming_response.get(
-            "ea95132c15732412d22c1476fa83f27a",
+            destination_address_identifier="ea95132c15732412d22c1476fa83f27a",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -392,7 +392,7 @@ class TestAsyncAddresses:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
             await async_client.email_routing.addresses.with_raw_response.get(
-                "ea95132c15732412d22c1476fa83f27a",
+                destination_address_identifier="ea95132c15732412d22c1476fa83f27a",
                 account_identifier="",
             )
 
@@ -400,6 +400,6 @@ class TestAsyncAddresses:
             ValueError, match=r"Expected a non-empty value for `destination_address_identifier` but received ''"
         ):
             await async_client.email_routing.addresses.with_raw_response.get(
-                "",
+                destination_address_identifier="",
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )

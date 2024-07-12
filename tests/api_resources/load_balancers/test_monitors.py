@@ -92,7 +92,7 @@ class TestMonitors:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         monitor = client.load_balancers.monitors.update(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
@@ -101,7 +101,7 @@ class TestMonitors:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         monitor = client.load_balancers.monitors.update(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
             allow_insecure=True,
@@ -128,7 +128,7 @@ class TestMonitors:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.load_balancers.monitors.with_raw_response.update(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
@@ -141,7 +141,7 @@ class TestMonitors:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.load_balancers.monitors.with_streaming_response.update(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         ) as response:
@@ -157,14 +157,14 @@ class TestMonitors:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.load_balancers.monitors.with_raw_response.update(
-                "f1aba936b94213e5b8dca0c0dbf1f9cc",
+                monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
                 expected_codes="2xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             client.load_balancers.monitors.with_raw_response.update(
-                "",
+                monitor_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 expected_codes="2xx",
             )
@@ -210,7 +210,7 @@ class TestMonitors:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         monitor = client.load_balancers.monitors.delete(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(MonitorDeleteResponse, monitor, path=["response"])
@@ -218,7 +218,7 @@ class TestMonitors:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.load_balancers.monitors.with_raw_response.delete(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -230,7 +230,7 @@ class TestMonitors:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.load_balancers.monitors.with_streaming_response.delete(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -245,20 +245,20 @@ class TestMonitors:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.load_balancers.monitors.with_raw_response.delete(
-                "f1aba936b94213e5b8dca0c0dbf1f9cc",
+                monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             client.load_balancers.monitors.with_raw_response.delete(
-                "",
+                monitor_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         monitor = client.load_balancers.monitors.edit(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
@@ -267,7 +267,7 @@ class TestMonitors:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         monitor = client.load_balancers.monitors.edit(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
             allow_insecure=True,
@@ -294,7 +294,7 @@ class TestMonitors:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.load_balancers.monitors.with_raw_response.edit(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
@@ -307,7 +307,7 @@ class TestMonitors:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.load_balancers.monitors.with_streaming_response.edit(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         ) as response:
@@ -323,14 +323,14 @@ class TestMonitors:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.load_balancers.monitors.with_raw_response.edit(
-                "f1aba936b94213e5b8dca0c0dbf1f9cc",
+                monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
                 expected_codes="2xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             client.load_balancers.monitors.with_raw_response.edit(
-                "",
+                monitor_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 expected_codes="2xx",
             )
@@ -338,7 +338,7 @@ class TestMonitors:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         monitor = client.load_balancers.monitors.get(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Monitor, monitor, path=["response"])
@@ -346,7 +346,7 @@ class TestMonitors:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.load_balancers.monitors.with_raw_response.get(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -358,7 +358,7 @@ class TestMonitors:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.load_balancers.monitors.with_streaming_response.get(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -373,13 +373,13 @@ class TestMonitors:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.load_balancers.monitors.with_raw_response.get(
-                "f1aba936b94213e5b8dca0c0dbf1f9cc",
+                monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             client.load_balancers.monitors.with_raw_response.get(
-                "",
+                monitor_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -458,7 +458,7 @@ class TestAsyncMonitors:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         monitor = await async_client.load_balancers.monitors.update(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
@@ -467,7 +467,7 @@ class TestAsyncMonitors:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         monitor = await async_client.load_balancers.monitors.update(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
             allow_insecure=True,
@@ -494,7 +494,7 @@ class TestAsyncMonitors:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.monitors.with_raw_response.update(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
@@ -507,7 +507,7 @@ class TestAsyncMonitors:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.monitors.with_streaming_response.update(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         ) as response:
@@ -523,14 +523,14 @@ class TestAsyncMonitors:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.load_balancers.monitors.with_raw_response.update(
-                "f1aba936b94213e5b8dca0c0dbf1f9cc",
+                monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
                 expected_codes="2xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             await async_client.load_balancers.monitors.with_raw_response.update(
-                "",
+                monitor_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 expected_codes="2xx",
             )
@@ -576,7 +576,7 @@ class TestAsyncMonitors:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         monitor = await async_client.load_balancers.monitors.delete(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(MonitorDeleteResponse, monitor, path=["response"])
@@ -584,7 +584,7 @@ class TestAsyncMonitors:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.monitors.with_raw_response.delete(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -596,7 +596,7 @@ class TestAsyncMonitors:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.monitors.with_streaming_response.delete(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -611,20 +611,20 @@ class TestAsyncMonitors:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.load_balancers.monitors.with_raw_response.delete(
-                "f1aba936b94213e5b8dca0c0dbf1f9cc",
+                monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             await async_client.load_balancers.monitors.with_raw_response.delete(
-                "",
+                monitor_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         monitor = await async_client.load_balancers.monitors.edit(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
@@ -633,7 +633,7 @@ class TestAsyncMonitors:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         monitor = await async_client.load_balancers.monitors.edit(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
             allow_insecure=True,
@@ -660,7 +660,7 @@ class TestAsyncMonitors:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.monitors.with_raw_response.edit(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         )
@@ -673,7 +673,7 @@ class TestAsyncMonitors:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.monitors.with_streaming_response.edit(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             expected_codes="2xx",
         ) as response:
@@ -689,14 +689,14 @@ class TestAsyncMonitors:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.load_balancers.monitors.with_raw_response.edit(
-                "f1aba936b94213e5b8dca0c0dbf1f9cc",
+                monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
                 expected_codes="2xx",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             await async_client.load_balancers.monitors.with_raw_response.edit(
-                "",
+                monitor_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 expected_codes="2xx",
             )
@@ -704,7 +704,7 @@ class TestAsyncMonitors:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         monitor = await async_client.load_balancers.monitors.get(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Monitor, monitor, path=["response"])
@@ -712,7 +712,7 @@ class TestAsyncMonitors:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.load_balancers.monitors.with_raw_response.get(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -724,7 +724,7 @@ class TestAsyncMonitors:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.load_balancers.monitors.with_streaming_response.get(
-            "f1aba936b94213e5b8dca0c0dbf1f9cc",
+            monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -739,12 +739,12 @@ class TestAsyncMonitors:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.load_balancers.monitors.with_raw_response.get(
-                "f1aba936b94213e5b8dca0c0dbf1f9cc",
+                monitor_id="f1aba936b94213e5b8dca0c0dbf1f9cc",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `monitor_id` but received ''"):
             await async_client.load_balancers.monitors.with_raw_response.get(
-                "",
+                monitor_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

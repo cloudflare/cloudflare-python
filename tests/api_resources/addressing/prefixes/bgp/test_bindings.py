@@ -21,7 +21,7 @@ class TestBindings:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         binding = client.addressing.prefixes.bgp.bindings.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ServiceBinding], binding, path=["response"])
@@ -29,7 +29,7 @@ class TestBindings:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         binding = client.addressing.prefixes.bgp.bindings.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cidr="192.0.2.0/24",
             service_id="2db684ee7ca04e159946fd05b99e1bcd",
@@ -39,7 +39,7 @@ class TestBindings:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.addressing.prefixes.bgp.bindings.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -51,7 +51,7 @@ class TestBindings:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.addressing.prefixes.bgp.bindings.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -66,20 +66,20 @@ class TestBindings:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.addressing.prefixes.bgp.bindings.with_raw_response.create(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
             client.addressing.prefixes.bgp.bindings.with_raw_response.create(
-                "",
+                prefix_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         binding = client.addressing.prefixes.bgp.bindings.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncSinglePage[ServiceBinding], binding, path=["response"])
@@ -87,7 +87,7 @@ class TestBindings:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.addressing.prefixes.bgp.bindings.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -99,7 +99,7 @@ class TestBindings:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.addressing.prefixes.bgp.bindings.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -114,20 +114,20 @@ class TestBindings:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.addressing.prefixes.bgp.bindings.with_raw_response.list(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
             client.addressing.prefixes.bgp.bindings.with_raw_response.list(
-                "",
+                prefix_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         binding = client.addressing.prefixes.bgp.bindings.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            binding_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -136,7 +136,7 @@ class TestBindings:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.addressing.prefixes.bgp.bindings.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            binding_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -149,7 +149,7 @@ class TestBindings:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.addressing.prefixes.bgp.bindings.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            binding_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -165,21 +165,21 @@ class TestBindings:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.addressing.prefixes.bgp.bindings.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                binding_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
             client.addressing.prefixes.bgp.bindings.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                binding_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `binding_id` but received ''"):
             client.addressing.prefixes.bgp.bindings.with_raw_response.delete(
-                "",
+                binding_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -187,7 +187,7 @@ class TestBindings:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         binding = client.addressing.prefixes.bgp.bindings.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            binding_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -196,7 +196,7 @@ class TestBindings:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.addressing.prefixes.bgp.bindings.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            binding_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -209,7 +209,7 @@ class TestBindings:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.addressing.prefixes.bgp.bindings.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            binding_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -225,21 +225,21 @@ class TestBindings:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.addressing.prefixes.bgp.bindings.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                binding_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
             client.addressing.prefixes.bgp.bindings.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                binding_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `binding_id` but received ''"):
             client.addressing.prefixes.bgp.bindings.with_raw_response.get(
-                "",
+                binding_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -251,7 +251,7 @@ class TestAsyncBindings:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         binding = await async_client.addressing.prefixes.bgp.bindings.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ServiceBinding], binding, path=["response"])
@@ -259,7 +259,7 @@ class TestAsyncBindings:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         binding = await async_client.addressing.prefixes.bgp.bindings.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cidr="192.0.2.0/24",
             service_id="2db684ee7ca04e159946fd05b99e1bcd",
@@ -269,7 +269,7 @@ class TestAsyncBindings:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.prefixes.bgp.bindings.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -281,7 +281,7 @@ class TestAsyncBindings:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.prefixes.bgp.bindings.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -296,20 +296,20 @@ class TestAsyncBindings:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.addressing.prefixes.bgp.bindings.with_raw_response.create(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
             await async_client.addressing.prefixes.bgp.bindings.with_raw_response.create(
-                "",
+                prefix_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         binding = await async_client.addressing.prefixes.bgp.bindings.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncSinglePage[ServiceBinding], binding, path=["response"])
@@ -317,7 +317,7 @@ class TestAsyncBindings:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.prefixes.bgp.bindings.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -329,7 +329,7 @@ class TestAsyncBindings:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.prefixes.bgp.bindings.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -344,20 +344,20 @@ class TestAsyncBindings:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.addressing.prefixes.bgp.bindings.with_raw_response.list(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
             await async_client.addressing.prefixes.bgp.bindings.with_raw_response.list(
-                "",
+                prefix_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         binding = await async_client.addressing.prefixes.bgp.bindings.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            binding_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -366,7 +366,7 @@ class TestAsyncBindings:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.prefixes.bgp.bindings.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            binding_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -379,7 +379,7 @@ class TestAsyncBindings:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.prefixes.bgp.bindings.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            binding_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -395,21 +395,21 @@ class TestAsyncBindings:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.addressing.prefixes.bgp.bindings.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                binding_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
             await async_client.addressing.prefixes.bgp.bindings.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                binding_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `binding_id` but received ''"):
             await async_client.addressing.prefixes.bgp.bindings.with_raw_response.delete(
-                "",
+                binding_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -417,7 +417,7 @@ class TestAsyncBindings:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         binding = await async_client.addressing.prefixes.bgp.bindings.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            binding_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -426,7 +426,7 @@ class TestAsyncBindings:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.prefixes.bgp.bindings.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            binding_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -439,7 +439,7 @@ class TestAsyncBindings:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.prefixes.bgp.bindings.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            binding_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -455,21 +455,21 @@ class TestAsyncBindings:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.addressing.prefixes.bgp.bindings.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                binding_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
             await async_client.addressing.prefixes.bgp.bindings.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                binding_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `binding_id` but received ''"):
             await async_client.addressing.prefixes.bgp.bindings.with_raw_response.get(
-                "",
+                binding_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

@@ -34,7 +34,7 @@ class TestMiscategorizations:
             ip={},
             security_adds=[117, 131],
             security_removes=[83],
-            url="string",
+            url="url",
         )
         assert_matches_type(Optional[MiscategorizationCreateResponse], miscategorization, path=["response"])
 
@@ -90,7 +90,7 @@ class TestAsyncMiscategorizations:
             ip={},
             security_adds=[117, 131],
             security_removes=[83],
-            url="string",
+            url="url",
         )
         assert_matches_type(Optional[MiscategorizationCreateResponse], miscategorization, path=["response"])
 

@@ -24,7 +24,7 @@ class TestSchedule:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         schedule = client.speed.schedule.create(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ScheduleCreateResponse], schedule, path=["response"])
@@ -32,7 +32,7 @@ class TestSchedule:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         schedule = client.speed.schedule.create(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             region="us-central1",
         )
@@ -41,7 +41,7 @@ class TestSchedule:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.speed.schedule.with_raw_response.create(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -53,7 +53,7 @@ class TestSchedule:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.speed.schedule.with_streaming_response.create(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -68,20 +68,20 @@ class TestSchedule:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.speed.schedule.with_raw_response.create(
-                "example.com",
+                url="example.com",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `url` but received ''"):
             client.speed.schedule.with_raw_response.create(
-                "",
+                url="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         schedule = client.speed.schedule.delete(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ScheduleDeleteResponse], schedule, path=["response"])
@@ -89,7 +89,7 @@ class TestSchedule:
     @parametrize
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
         schedule = client.speed.schedule.delete(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             region="us-central1",
         )
@@ -98,7 +98,7 @@ class TestSchedule:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.speed.schedule.with_raw_response.delete(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -110,7 +110,7 @@ class TestSchedule:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.speed.schedule.with_streaming_response.delete(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -125,20 +125,20 @@ class TestSchedule:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.speed.schedule.with_raw_response.delete(
-                "example.com",
+                url="example.com",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `url` but received ''"):
             client.speed.schedule.with_raw_response.delete(
-                "",
+                url="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         schedule = client.speed.schedule.get(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Schedule], schedule, path=["response"])
@@ -146,7 +146,7 @@ class TestSchedule:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         schedule = client.speed.schedule.get(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             region="us-central1",
         )
@@ -155,7 +155,7 @@ class TestSchedule:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.speed.schedule.with_raw_response.get(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -167,7 +167,7 @@ class TestSchedule:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.speed.schedule.with_streaming_response.get(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -182,13 +182,13 @@ class TestSchedule:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.speed.schedule.with_raw_response.get(
-                "example.com",
+                url="example.com",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `url` but received ''"):
             client.speed.schedule.with_raw_response.get(
-                "",
+                url="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -199,7 +199,7 @@ class TestAsyncSchedule:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         schedule = await async_client.speed.schedule.create(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ScheduleCreateResponse], schedule, path=["response"])
@@ -207,7 +207,7 @@ class TestAsyncSchedule:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         schedule = await async_client.speed.schedule.create(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             region="us-central1",
         )
@@ -216,7 +216,7 @@ class TestAsyncSchedule:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.speed.schedule.with_raw_response.create(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -228,7 +228,7 @@ class TestAsyncSchedule:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.speed.schedule.with_streaming_response.create(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -243,20 +243,20 @@ class TestAsyncSchedule:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.speed.schedule.with_raw_response.create(
-                "example.com",
+                url="example.com",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `url` but received ''"):
             await async_client.speed.schedule.with_raw_response.create(
-                "",
+                url="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         schedule = await async_client.speed.schedule.delete(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ScheduleDeleteResponse], schedule, path=["response"])
@@ -264,7 +264,7 @@ class TestAsyncSchedule:
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
         schedule = await async_client.speed.schedule.delete(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             region="us-central1",
         )
@@ -273,7 +273,7 @@ class TestAsyncSchedule:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.speed.schedule.with_raw_response.delete(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -285,7 +285,7 @@ class TestAsyncSchedule:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.speed.schedule.with_streaming_response.delete(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -300,20 +300,20 @@ class TestAsyncSchedule:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.speed.schedule.with_raw_response.delete(
-                "example.com",
+                url="example.com",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `url` but received ''"):
             await async_client.speed.schedule.with_raw_response.delete(
-                "",
+                url="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         schedule = await async_client.speed.schedule.get(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Schedule], schedule, path=["response"])
@@ -321,7 +321,7 @@ class TestAsyncSchedule:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         schedule = await async_client.speed.schedule.get(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             region="us-central1",
         )
@@ -330,7 +330,7 @@ class TestAsyncSchedule:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.speed.schedule.with_raw_response.get(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -342,7 +342,7 @@ class TestAsyncSchedule:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.speed.schedule.with_streaming_response.get(
-            "example.com",
+            url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -357,12 +357,12 @@ class TestAsyncSchedule:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.speed.schedule.with_raw_response.get(
-                "example.com",
+                url="example.com",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `url` but received ''"):
             await async_client.speed.schedule.with_raw_response.get(
-                "",
+                url="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

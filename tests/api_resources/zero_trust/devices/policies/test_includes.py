@@ -157,7 +157,7 @@ class TestIncludes:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         include = client.zero_trust.devices.policies.includes.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[IncludeGetResponse], include, path=["response"])
@@ -165,7 +165,7 @@ class TestIncludes:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.policies.includes.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -177,7 +177,7 @@ class TestIncludes:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.policies.includes.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -192,13 +192,13 @@ class TestIncludes:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.devices.policies.includes.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
             client.zero_trust.devices.policies.includes.with_raw_response.get(
-                "",
+                policy_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
@@ -341,7 +341,7 @@ class TestAsyncIncludes:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         include = await async_client.zero_trust.devices.policies.includes.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[IncludeGetResponse], include, path=["response"])
@@ -349,7 +349,7 @@ class TestAsyncIncludes:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.policies.includes.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -361,7 +361,7 @@ class TestAsyncIncludes:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.policies.includes.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -376,12 +376,12 @@ class TestAsyncIncludes:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.devices.policies.includes.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
             await async_client.zero_trust.devices.policies.includes.with_raw_response.get(
-                "",
+                policy_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )

@@ -83,7 +83,7 @@ class TestLists:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         list_ = client.rules.lists.update(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ListsList], list_, path=["response"])
@@ -92,7 +92,7 @@ class TestLists:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         list_ = client.rules.lists.update(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="This is a note",
         )
@@ -102,7 +102,7 @@ class TestLists:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.rules.lists.with_raw_response.update(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -115,7 +115,7 @@ class TestLists:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.rules.lists.with_streaming_response.update(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -131,13 +131,13 @@ class TestLists:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rules.lists.with_raw_response.update(
-                "2c0fc9fa937b11eaa1b71c4d701ab86e",
+                list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             client.rules.lists.with_raw_response.update(
-                "",
+                list_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -182,7 +182,7 @@ class TestLists:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         list_ = client.rules.lists.delete(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
@@ -190,7 +190,7 @@ class TestLists:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.rules.lists.with_raw_response.delete(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -202,7 +202,7 @@ class TestLists:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.rules.lists.with_streaming_response.delete(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -217,13 +217,13 @@ class TestLists:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rules.lists.with_raw_response.delete(
-                "2c0fc9fa937b11eaa1b71c4d701ab86e",
+                list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             client.rules.lists.with_raw_response.delete(
-                "",
+                list_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -231,7 +231,7 @@ class TestLists:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         list_ = client.rules.lists.get(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ListsList], list_, path=["response"])
@@ -240,7 +240,7 @@ class TestLists:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.rules.lists.with_raw_response.get(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -253,7 +253,7 @@ class TestLists:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.rules.lists.with_streaming_response.get(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -269,13 +269,13 @@ class TestLists:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rules.lists.with_raw_response.get(
-                "2c0fc9fa937b11eaa1b71c4d701ab86e",
+                list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             client.rules.lists.with_raw_response.get(
-                "",
+                list_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -348,7 +348,7 @@ class TestAsyncLists:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         list_ = await async_client.rules.lists.update(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ListsList], list_, path=["response"])
@@ -357,7 +357,7 @@ class TestAsyncLists:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         list_ = await async_client.rules.lists.update(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="This is a note",
         )
@@ -367,7 +367,7 @@ class TestAsyncLists:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rules.lists.with_raw_response.update(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -380,7 +380,7 @@ class TestAsyncLists:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rules.lists.with_streaming_response.update(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -396,13 +396,13 @@ class TestAsyncLists:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rules.lists.with_raw_response.update(
-                "2c0fc9fa937b11eaa1b71c4d701ab86e",
+                list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             await async_client.rules.lists.with_raw_response.update(
-                "",
+                list_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -447,7 +447,7 @@ class TestAsyncLists:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         list_ = await async_client.rules.lists.delete(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
@@ -455,7 +455,7 @@ class TestAsyncLists:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rules.lists.with_raw_response.delete(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -467,7 +467,7 @@ class TestAsyncLists:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rules.lists.with_streaming_response.delete(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -482,13 +482,13 @@ class TestAsyncLists:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rules.lists.with_raw_response.delete(
-                "2c0fc9fa937b11eaa1b71c4d701ab86e",
+                list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             await async_client.rules.lists.with_raw_response.delete(
-                "",
+                list_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -496,7 +496,7 @@ class TestAsyncLists:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         list_ = await async_client.rules.lists.get(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ListsList], list_, path=["response"])
@@ -505,7 +505,7 @@ class TestAsyncLists:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rules.lists.with_raw_response.get(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -518,7 +518,7 @@ class TestAsyncLists:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rules.lists.with_streaming_response.get(
-            "2c0fc9fa937b11eaa1b71c4d701ab86e",
+            list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -534,12 +534,12 @@ class TestAsyncLists:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rules.lists.with_raw_response.get(
-                "2c0fc9fa937b11eaa1b71c4d701ab86e",
+                list_id="2c0fc9fa937b11eaa1b71c4d701ab86e",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             await async_client.rules.lists.with_raw_response.get(
-                "",
+                list_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

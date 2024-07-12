@@ -21,7 +21,7 @@ class TestObjects:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         object_ = client.durable_objects.namespaces.objects.list(
-            "5fd1cafff895419c8bcc647fc64ab8f0",
+            id="5fd1cafff895419c8bcc647fc64ab8f0",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncCursorLimitPagination[DurableObject], object_, path=["response"])
@@ -29,7 +29,7 @@ class TestObjects:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         object_ = client.durable_objects.namespaces.objects.list(
-            "5fd1cafff895419c8bcc647fc64ab8f0",
+            id="5fd1cafff895419c8bcc647fc64ab8f0",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cursor="AAAAANuhDN7SjacTnSVsDu3WW1Lvst6dxJGTjRY5BhxPXdf6L6uTcpd_NVtjhn11OUYRsVEykxoUwF-JQU4dn6QylZSKTOJuG0indrdn_MlHpMRtsxgXjs-RPdHYIVm3odE_uvEQ_dTQGFm8oikZMohns34DLBgrQpc",
             limit=10,
@@ -39,7 +39,7 @@ class TestObjects:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.durable_objects.namespaces.objects.with_raw_response.list(
-            "5fd1cafff895419c8bcc647fc64ab8f0",
+            id="5fd1cafff895419c8bcc647fc64ab8f0",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -51,7 +51,7 @@ class TestObjects:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.durable_objects.namespaces.objects.with_streaming_response.list(
-            "5fd1cafff895419c8bcc647fc64ab8f0",
+            id="5fd1cafff895419c8bcc647fc64ab8f0",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -66,13 +66,13 @@ class TestObjects:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.durable_objects.namespaces.objects.with_raw_response.list(
-                "5fd1cafff895419c8bcc647fc64ab8f0",
+                id="5fd1cafff895419c8bcc647fc64ab8f0",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.durable_objects.namespaces.objects.with_raw_response.list(
-                "",
+                id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -83,7 +83,7 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         object_ = await async_client.durable_objects.namespaces.objects.list(
-            "5fd1cafff895419c8bcc647fc64ab8f0",
+            id="5fd1cafff895419c8bcc647fc64ab8f0",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncCursorLimitPagination[DurableObject], object_, path=["response"])
@@ -91,7 +91,7 @@ class TestAsyncObjects:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         object_ = await async_client.durable_objects.namespaces.objects.list(
-            "5fd1cafff895419c8bcc647fc64ab8f0",
+            id="5fd1cafff895419c8bcc647fc64ab8f0",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             cursor="AAAAANuhDN7SjacTnSVsDu3WW1Lvst6dxJGTjRY5BhxPXdf6L6uTcpd_NVtjhn11OUYRsVEykxoUwF-JQU4dn6QylZSKTOJuG0indrdn_MlHpMRtsxgXjs-RPdHYIVm3odE_uvEQ_dTQGFm8oikZMohns34DLBgrQpc",
             limit=10,
@@ -101,7 +101,7 @@ class TestAsyncObjects:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.durable_objects.namespaces.objects.with_raw_response.list(
-            "5fd1cafff895419c8bcc647fc64ab8f0",
+            id="5fd1cafff895419c8bcc647fc64ab8f0",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -113,7 +113,7 @@ class TestAsyncObjects:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.durable_objects.namespaces.objects.with_streaming_response.list(
-            "5fd1cafff895419c8bcc647fc64ab8f0",
+            id="5fd1cafff895419c8bcc647fc64ab8f0",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -128,12 +128,12 @@ class TestAsyncObjects:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.durable_objects.namespaces.objects.with_raw_response.list(
-                "5fd1cafff895419c8bcc647fc64ab8f0",
+                id="5fd1cafff895419c8bcc647fc64ab8f0",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.durable_objects.namespaces.objects.with_raw_response.list(
-                "",
+                id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

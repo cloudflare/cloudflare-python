@@ -111,7 +111,7 @@ class TestRegionalHostnames:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         regional_hostname = client.addressing.regional_hostnames.delete(
-            "foo.example.com",
+            hostname="foo.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(RegionalHostnameDeleteResponse, regional_hostname, path=["response"])
@@ -119,7 +119,7 @@ class TestRegionalHostnames:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.addressing.regional_hostnames.with_raw_response.delete(
-            "foo.example.com",
+            hostname="foo.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -131,7 +131,7 @@ class TestRegionalHostnames:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.addressing.regional_hostnames.with_streaming_response.delete(
-            "foo.example.com",
+            hostname="foo.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -146,20 +146,20 @@ class TestRegionalHostnames:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.addressing.regional_hostnames.with_raw_response.delete(
-                "foo.example.com",
+                hostname="foo.example.com",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `hostname` but received ''"):
             client.addressing.regional_hostnames.with_raw_response.delete(
-                "",
+                hostname="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         regional_hostname = client.addressing.regional_hostnames.edit(
-            "foo.example.com",
+            hostname="foo.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             region_key="ca",
         )
@@ -168,7 +168,7 @@ class TestRegionalHostnames:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.addressing.regional_hostnames.with_raw_response.edit(
-            "foo.example.com",
+            hostname="foo.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             region_key="ca",
         )
@@ -181,7 +181,7 @@ class TestRegionalHostnames:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.addressing.regional_hostnames.with_streaming_response.edit(
-            "foo.example.com",
+            hostname="foo.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             region_key="ca",
         ) as response:
@@ -197,14 +197,14 @@ class TestRegionalHostnames:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.addressing.regional_hostnames.with_raw_response.edit(
-                "foo.example.com",
+                hostname="foo.example.com",
                 zone_id="",
                 region_key="ca",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `hostname` but received ''"):
             client.addressing.regional_hostnames.with_raw_response.edit(
-                "",
+                hostname="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 region_key="ca",
             )
@@ -212,7 +212,7 @@ class TestRegionalHostnames:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         regional_hostname = client.addressing.regional_hostnames.get(
-            "foo.example.com",
+            hostname="foo.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[RegionalHostnameGetResponse], regional_hostname, path=["response"])
@@ -220,7 +220,7 @@ class TestRegionalHostnames:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.addressing.regional_hostnames.with_raw_response.get(
-            "foo.example.com",
+            hostname="foo.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -232,7 +232,7 @@ class TestRegionalHostnames:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.addressing.regional_hostnames.with_streaming_response.get(
-            "foo.example.com",
+            hostname="foo.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -247,13 +247,13 @@ class TestRegionalHostnames:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.addressing.regional_hostnames.with_raw_response.get(
-                "foo.example.com",
+                hostname="foo.example.com",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `hostname` but received ''"):
             client.addressing.regional_hostnames.with_raw_response.get(
-                "",
+                hostname="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -348,7 +348,7 @@ class TestAsyncRegionalHostnames:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         regional_hostname = await async_client.addressing.regional_hostnames.delete(
-            "foo.example.com",
+            hostname="foo.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(RegionalHostnameDeleteResponse, regional_hostname, path=["response"])
@@ -356,7 +356,7 @@ class TestAsyncRegionalHostnames:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.regional_hostnames.with_raw_response.delete(
-            "foo.example.com",
+            hostname="foo.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -368,7 +368,7 @@ class TestAsyncRegionalHostnames:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.regional_hostnames.with_streaming_response.delete(
-            "foo.example.com",
+            hostname="foo.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -383,20 +383,20 @@ class TestAsyncRegionalHostnames:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.addressing.regional_hostnames.with_raw_response.delete(
-                "foo.example.com",
+                hostname="foo.example.com",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `hostname` but received ''"):
             await async_client.addressing.regional_hostnames.with_raw_response.delete(
-                "",
+                hostname="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         regional_hostname = await async_client.addressing.regional_hostnames.edit(
-            "foo.example.com",
+            hostname="foo.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             region_key="ca",
         )
@@ -405,7 +405,7 @@ class TestAsyncRegionalHostnames:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.regional_hostnames.with_raw_response.edit(
-            "foo.example.com",
+            hostname="foo.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             region_key="ca",
         )
@@ -418,7 +418,7 @@ class TestAsyncRegionalHostnames:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.regional_hostnames.with_streaming_response.edit(
-            "foo.example.com",
+            hostname="foo.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             region_key="ca",
         ) as response:
@@ -434,14 +434,14 @@ class TestAsyncRegionalHostnames:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.addressing.regional_hostnames.with_raw_response.edit(
-                "foo.example.com",
+                hostname="foo.example.com",
                 zone_id="",
                 region_key="ca",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `hostname` but received ''"):
             await async_client.addressing.regional_hostnames.with_raw_response.edit(
-                "",
+                hostname="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 region_key="ca",
             )
@@ -449,7 +449,7 @@ class TestAsyncRegionalHostnames:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         regional_hostname = await async_client.addressing.regional_hostnames.get(
-            "foo.example.com",
+            hostname="foo.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[RegionalHostnameGetResponse], regional_hostname, path=["response"])
@@ -457,7 +457,7 @@ class TestAsyncRegionalHostnames:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.regional_hostnames.with_raw_response.get(
-            "foo.example.com",
+            hostname="foo.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -469,7 +469,7 @@ class TestAsyncRegionalHostnames:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.regional_hostnames.with_streaming_response.get(
-            "foo.example.com",
+            hostname="foo.example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -484,12 +484,12 @@ class TestAsyncRegionalHostnames:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.addressing.regional_hostnames.with_raw_response.get(
-                "foo.example.com",
+                hostname="foo.example.com",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `hostname` but received ''"):
             await async_client.addressing.regional_hostnames.with_raw_response.get(
-                "",
+                hostname="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

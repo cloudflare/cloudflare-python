@@ -20,7 +20,7 @@ class TestEmailRouting:
     @parametrize
     def test_method_disable(self, client: Cloudflare) -> None:
         email_routing = client.email_routing.disable(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
         assert_matches_type(Optional[Settings], email_routing, path=["response"])
@@ -28,7 +28,7 @@ class TestEmailRouting:
     @parametrize
     def test_raw_response_disable(self, client: Cloudflare) -> None:
         response = client.email_routing.with_raw_response.disable(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
 
@@ -40,7 +40,7 @@ class TestEmailRouting:
     @parametrize
     def test_streaming_response_disable(self, client: Cloudflare) -> None:
         with client.email_routing.with_streaming_response.disable(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         ) as response:
             assert not response.is_closed
@@ -55,14 +55,14 @@ class TestEmailRouting:
     def test_path_params_disable(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             client.email_routing.with_raw_response.disable(
-                "",
+                zone_identifier="",
                 body={},
             )
 
     @parametrize
     def test_method_enable(self, client: Cloudflare) -> None:
         email_routing = client.email_routing.enable(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
         assert_matches_type(Optional[Settings], email_routing, path=["response"])
@@ -70,7 +70,7 @@ class TestEmailRouting:
     @parametrize
     def test_raw_response_enable(self, client: Cloudflare) -> None:
         response = client.email_routing.with_raw_response.enable(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
 
@@ -82,7 +82,7 @@ class TestEmailRouting:
     @parametrize
     def test_streaming_response_enable(self, client: Cloudflare) -> None:
         with client.email_routing.with_streaming_response.enable(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         ) as response:
             assert not response.is_closed
@@ -97,7 +97,7 @@ class TestEmailRouting:
     def test_path_params_enable(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             client.email_routing.with_raw_response.enable(
-                "",
+                zone_identifier="",
                 body={},
             )
 
@@ -146,7 +146,7 @@ class TestAsyncEmailRouting:
     @parametrize
     async def test_method_disable(self, async_client: AsyncCloudflare) -> None:
         email_routing = await async_client.email_routing.disable(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
         assert_matches_type(Optional[Settings], email_routing, path=["response"])
@@ -154,7 +154,7 @@ class TestAsyncEmailRouting:
     @parametrize
     async def test_raw_response_disable(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_routing.with_raw_response.disable(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
 
@@ -166,7 +166,7 @@ class TestAsyncEmailRouting:
     @parametrize
     async def test_streaming_response_disable(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_routing.with_streaming_response.disable(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         ) as response:
             assert not response.is_closed
@@ -181,14 +181,14 @@ class TestAsyncEmailRouting:
     async def test_path_params_disable(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             await async_client.email_routing.with_raw_response.disable(
-                "",
+                zone_identifier="",
                 body={},
             )
 
     @parametrize
     async def test_method_enable(self, async_client: AsyncCloudflare) -> None:
         email_routing = await async_client.email_routing.enable(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
         assert_matches_type(Optional[Settings], email_routing, path=["response"])
@@ -196,7 +196,7 @@ class TestAsyncEmailRouting:
     @parametrize
     async def test_raw_response_enable(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_routing.with_raw_response.enable(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         )
 
@@ -208,7 +208,7 @@ class TestAsyncEmailRouting:
     @parametrize
     async def test_streaming_response_enable(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_routing.with_streaming_response.enable(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
         ) as response:
             assert not response.is_closed
@@ -223,7 +223,7 @@ class TestAsyncEmailRouting:
     async def test_path_params_enable(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             await async_client.email_routing.with_raw_response.enable(
-                "",
+                zone_identifier="",
                 body={},
             )
 

@@ -24,7 +24,7 @@ class TestSettings:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         setting = client.workers_for_platforms.dispatch.namespaces.scripts.settings.edit(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
@@ -34,7 +34,7 @@ class TestSettings:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         setting = client.workers_for_platforms.dispatch.namespaces.scripts.settings.edit(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             settings={
@@ -54,33 +54,33 @@ class TestSettings:
                     "new_classes": ["string", "string", "string"],
                     "renamed_classes": [
                         {
-                            "from": "string",
-                            "to": "string",
+                            "from": "from",
+                            "to": "to",
                         },
                         {
-                            "from": "string",
-                            "to": "string",
+                            "from": "from",
+                            "to": "to",
                         },
                         {
-                            "from": "string",
-                            "to": "string",
+                            "from": "from",
+                            "to": "to",
                         },
                     ],
                     "transferred_classes": [
                         {
-                            "from": "string",
-                            "from_script": "string",
-                            "to": "string",
+                            "from": "from",
+                            "from_script": "from_script",
+                            "to": "to",
                         },
                         {
-                            "from": "string",
-                            "from_script": "string",
-                            "to": "string",
+                            "from": "from",
+                            "from_script": "from_script",
+                            "to": "to",
                         },
                         {
-                            "from": "string",
-                            "from_script": "string",
-                            "to": "string",
+                            "from": "from",
+                            "from_script": "from_script",
+                            "to": "to",
                         },
                     ],
                 },
@@ -112,7 +112,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_raw_response.edit(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
@@ -126,7 +126,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_streaming_response.edit(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         ) as response:
@@ -143,21 +143,21 @@ class TestSettings:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_raw_response.edit(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_raw_response.edit(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_raw_response.edit(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
             )
@@ -165,7 +165,7 @@ class TestSettings:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         setting = client.workers_for_platforms.dispatch.namespaces.scripts.settings.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
@@ -174,7 +174,7 @@ class TestSettings:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_raw_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
@@ -187,7 +187,7 @@ class TestSettings:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_streaming_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         ) as response:
@@ -203,21 +203,21 @@ class TestSettings:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_raw_response.get(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_raw_response.get(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_raw_response.get(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
             )
@@ -230,7 +230,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.workers_for_platforms.dispatch.namespaces.scripts.settings.edit(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
@@ -240,7 +240,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.workers_for_platforms.dispatch.namespaces.scripts.settings.edit(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
             settings={
@@ -260,33 +260,33 @@ class TestAsyncSettings:
                     "new_classes": ["string", "string", "string"],
                     "renamed_classes": [
                         {
-                            "from": "string",
-                            "to": "string",
+                            "from": "from",
+                            "to": "to",
                         },
                         {
-                            "from": "string",
-                            "to": "string",
+                            "from": "from",
+                            "to": "to",
                         },
                         {
-                            "from": "string",
-                            "to": "string",
+                            "from": "from",
+                            "to": "to",
                         },
                     ],
                     "transferred_classes": [
                         {
-                            "from": "string",
-                            "from_script": "string",
-                            "to": "string",
+                            "from": "from",
+                            "from_script": "from_script",
+                            "to": "to",
                         },
                         {
-                            "from": "string",
-                            "from_script": "string",
-                            "to": "string",
+                            "from": "from",
+                            "from_script": "from_script",
+                            "to": "to",
                         },
                         {
-                            "from": "string",
-                            "from_script": "string",
-                            "to": "string",
+                            "from": "from",
+                            "from_script": "from_script",
+                            "to": "to",
                         },
                     ],
                 },
@@ -318,7 +318,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_raw_response.edit(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
@@ -332,7 +332,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_streaming_response.edit(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         ) as response:
@@ -349,21 +349,21 @@ class TestAsyncSettings:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_raw_response.edit(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_raw_response.edit(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_raw_response.edit(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
             )
@@ -371,7 +371,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.workers_for_platforms.dispatch.namespaces.scripts.settings.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
@@ -380,7 +380,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_raw_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         )
@@ -393,7 +393,7 @@ class TestAsyncSettings:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_streaming_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             dispatch_namespace="my-dispatch-namespace",
         ) as response:
@@ -409,21 +409,21 @@ class TestAsyncSettings:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_raw_response.get(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
                 dispatch_namespace="my-dispatch-namespace",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dispatch_namespace` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_raw_response.get(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers_for_platforms.dispatch.namespaces.scripts.settings.with_raw_response.get(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 dispatch_namespace="my-dispatch-namespace",
             )

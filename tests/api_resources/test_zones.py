@@ -73,12 +73,12 @@ class TestZones:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         zone = client.zones.list(
             account={
-                "id": "string",
-                "name": "string",
+                "id": "id",
+                "name": "name",
             },
             direction="desc",
             match="any",
-            name="string",
+            name="name",
             order="status",
             page=1,
             per_page=5,
@@ -290,12 +290,12 @@ class TestAsyncZones:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         zone = await async_client.zones.list(
             account={
-                "id": "string",
-                "name": "string",
+                "id": "id",
+                "name": "name",
             },
             direction="desc",
             match="any",
-            name="string",
+            name="name",
             order="status",
             page=1,
             per_page=5,

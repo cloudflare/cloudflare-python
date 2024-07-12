@@ -20,7 +20,7 @@ class TestSchedules:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         schedule = client.workers.scripts.schedules.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="[{'cron': '*/30 * * * *'}]",
         )
@@ -29,7 +29,7 @@ class TestSchedules:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.workers.scripts.schedules.with_raw_response.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="[{'cron': '*/30 * * * *'}]",
         )
@@ -42,7 +42,7 @@ class TestSchedules:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.workers.scripts.schedules.with_streaming_response.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="[{'cron': '*/30 * * * *'}]",
         ) as response:
@@ -58,14 +58,14 @@ class TestSchedules:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.scripts.schedules.with_raw_response.update(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
                 body="[{'cron': '*/30 * * * *'}]",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.schedules.with_raw_response.update(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body="[{'cron': '*/30 * * * *'}]",
             )
@@ -73,7 +73,7 @@ class TestSchedules:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         schedule = client.workers.scripts.schedules.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ScheduleGetResponse], schedule, path=["response"])
@@ -81,7 +81,7 @@ class TestSchedules:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.workers.scripts.schedules.with_raw_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -93,7 +93,7 @@ class TestSchedules:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.workers.scripts.schedules.with_streaming_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -108,13 +108,13 @@ class TestSchedules:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.scripts.schedules.with_raw_response.get(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.schedules.with_raw_response.get(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -125,7 +125,7 @@ class TestAsyncSchedules:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         schedule = await async_client.workers.scripts.schedules.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="[{'cron': '*/30 * * * *'}]",
         )
@@ -134,7 +134,7 @@ class TestAsyncSchedules:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.schedules.with_raw_response.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="[{'cron': '*/30 * * * *'}]",
         )
@@ -147,7 +147,7 @@ class TestAsyncSchedules:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.schedules.with_streaming_response.update(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="[{'cron': '*/30 * * * *'}]",
         ) as response:
@@ -163,14 +163,14 @@ class TestAsyncSchedules:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.scripts.schedules.with_raw_response.update(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
                 body="[{'cron': '*/30 * * * *'}]",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.schedules.with_raw_response.update(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body="[{'cron': '*/30 * * * *'}]",
             )
@@ -178,7 +178,7 @@ class TestAsyncSchedules:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         schedule = await async_client.workers.scripts.schedules.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[ScheduleGetResponse], schedule, path=["response"])
@@ -186,7 +186,7 @@ class TestAsyncSchedules:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.schedules.with_raw_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -198,7 +198,7 @@ class TestAsyncSchedules:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.schedules.with_streaming_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -213,12 +213,12 @@ class TestAsyncSchedules:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.scripts.schedules.with_raw_response.get(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.schedules.with_raw_response.get(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

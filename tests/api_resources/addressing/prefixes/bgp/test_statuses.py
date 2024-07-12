@@ -20,7 +20,7 @@ class TestStatuses:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         status = client.addressing.prefixes.bgp.statuses.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             advertised=True,
         )
@@ -29,7 +29,7 @@ class TestStatuses:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.addressing.prefixes.bgp.statuses.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             advertised=True,
         )
@@ -42,7 +42,7 @@ class TestStatuses:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.addressing.prefixes.bgp.statuses.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             advertised=True,
         ) as response:
@@ -58,14 +58,14 @@ class TestStatuses:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.addressing.prefixes.bgp.statuses.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 advertised=True,
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
             client.addressing.prefixes.bgp.statuses.with_raw_response.edit(
-                "",
+                prefix_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 advertised=True,
             )
@@ -73,7 +73,7 @@ class TestStatuses:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         status = client.addressing.prefixes.bgp.statuses.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[StatusGetResponse], status, path=["response"])
@@ -81,7 +81,7 @@ class TestStatuses:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.addressing.prefixes.bgp.statuses.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -93,7 +93,7 @@ class TestStatuses:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.addressing.prefixes.bgp.statuses.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -108,13 +108,13 @@ class TestStatuses:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.addressing.prefixes.bgp.statuses.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
             client.addressing.prefixes.bgp.statuses.with_raw_response.get(
-                "",
+                prefix_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -125,7 +125,7 @@ class TestAsyncStatuses:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         status = await async_client.addressing.prefixes.bgp.statuses.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             advertised=True,
         )
@@ -134,7 +134,7 @@ class TestAsyncStatuses:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.prefixes.bgp.statuses.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             advertised=True,
         )
@@ -147,7 +147,7 @@ class TestAsyncStatuses:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.prefixes.bgp.statuses.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             advertised=True,
         ) as response:
@@ -163,14 +163,14 @@ class TestAsyncStatuses:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.addressing.prefixes.bgp.statuses.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 advertised=True,
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
             await async_client.addressing.prefixes.bgp.statuses.with_raw_response.edit(
-                "",
+                prefix_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 advertised=True,
             )
@@ -178,7 +178,7 @@ class TestAsyncStatuses:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         status = await async_client.addressing.prefixes.bgp.statuses.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[StatusGetResponse], status, path=["response"])
@@ -186,7 +186,7 @@ class TestAsyncStatuses:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.prefixes.bgp.statuses.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -198,7 +198,7 @@ class TestAsyncStatuses:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.prefixes.bgp.statuses.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -213,12 +213,12 @@ class TestAsyncStatuses:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.addressing.prefixes.bgp.statuses.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `prefix_id` but received ''"):
             await async_client.addressing.prefixes.bgp.statuses.with_raw_response.get(
-                "",
+                prefix_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

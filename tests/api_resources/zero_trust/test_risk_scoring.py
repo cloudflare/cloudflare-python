@@ -20,7 +20,7 @@ class TestRiskScoring:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         risk_scoring = client.zero_trust.risk_scoring.get(
-            "f2108713-1206-4e84-8b80-0e71a6a1c67b",
+            user_id="f2108713-1206-4e84-8b80-0e71a6a1c67b",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(RiskScoringGetResponse, risk_scoring, path=["response"])
@@ -28,7 +28,7 @@ class TestRiskScoring:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         risk_scoring = client.zero_trust.risk_scoring.get(
-            "f2108713-1206-4e84-8b80-0e71a6a1c67b",
+            user_id="f2108713-1206-4e84-8b80-0e71a6a1c67b",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             direction="desc",
             order_by="timestamp",
@@ -40,7 +40,7 @@ class TestRiskScoring:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.risk_scoring.with_raw_response.get(
-            "f2108713-1206-4e84-8b80-0e71a6a1c67b",
+            user_id="f2108713-1206-4e84-8b80-0e71a6a1c67b",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -52,7 +52,7 @@ class TestRiskScoring:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.risk_scoring.with_streaming_response.get(
-            "f2108713-1206-4e84-8b80-0e71a6a1c67b",
+            user_id="f2108713-1206-4e84-8b80-0e71a6a1c67b",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -67,20 +67,20 @@ class TestRiskScoring:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
             client.zero_trust.risk_scoring.with_raw_response.get(
-                "f2108713-1206-4e84-8b80-0e71a6a1c67b",
+                user_id="f2108713-1206-4e84-8b80-0e71a6a1c67b",
                 account_identifier="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
             client.zero_trust.risk_scoring.with_raw_response.get(
-                "",
+                user_id="",
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_reset(self, client: Cloudflare) -> None:
         risk_scoring = client.zero_trust.risk_scoring.reset(
-            "f2108713-1206-4e84-8b80-0e71a6a1c67b",
+            user_id="f2108713-1206-4e84-8b80-0e71a6a1c67b",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(RiskScoringResetResponse, risk_scoring, path=["response"])
@@ -88,7 +88,7 @@ class TestRiskScoring:
     @parametrize
     def test_raw_response_reset(self, client: Cloudflare) -> None:
         response = client.zero_trust.risk_scoring.with_raw_response.reset(
-            "f2108713-1206-4e84-8b80-0e71a6a1c67b",
+            user_id="f2108713-1206-4e84-8b80-0e71a6a1c67b",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -100,7 +100,7 @@ class TestRiskScoring:
     @parametrize
     def test_streaming_response_reset(self, client: Cloudflare) -> None:
         with client.zero_trust.risk_scoring.with_streaming_response.reset(
-            "f2108713-1206-4e84-8b80-0e71a6a1c67b",
+            user_id="f2108713-1206-4e84-8b80-0e71a6a1c67b",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -115,13 +115,13 @@ class TestRiskScoring:
     def test_path_params_reset(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
             client.zero_trust.risk_scoring.with_raw_response.reset(
-                "f2108713-1206-4e84-8b80-0e71a6a1c67b",
+                user_id="f2108713-1206-4e84-8b80-0e71a6a1c67b",
                 account_identifier="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
             client.zero_trust.risk_scoring.with_raw_response.reset(
-                "",
+                user_id="",
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -132,7 +132,7 @@ class TestAsyncRiskScoring:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         risk_scoring = await async_client.zero_trust.risk_scoring.get(
-            "f2108713-1206-4e84-8b80-0e71a6a1c67b",
+            user_id="f2108713-1206-4e84-8b80-0e71a6a1c67b",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(RiskScoringGetResponse, risk_scoring, path=["response"])
@@ -140,7 +140,7 @@ class TestAsyncRiskScoring:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         risk_scoring = await async_client.zero_trust.risk_scoring.get(
-            "f2108713-1206-4e84-8b80-0e71a6a1c67b",
+            user_id="f2108713-1206-4e84-8b80-0e71a6a1c67b",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             direction="desc",
             order_by="timestamp",
@@ -152,7 +152,7 @@ class TestAsyncRiskScoring:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.risk_scoring.with_raw_response.get(
-            "f2108713-1206-4e84-8b80-0e71a6a1c67b",
+            user_id="f2108713-1206-4e84-8b80-0e71a6a1c67b",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -164,7 +164,7 @@ class TestAsyncRiskScoring:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.risk_scoring.with_streaming_response.get(
-            "f2108713-1206-4e84-8b80-0e71a6a1c67b",
+            user_id="f2108713-1206-4e84-8b80-0e71a6a1c67b",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -179,20 +179,20 @@ class TestAsyncRiskScoring:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
             await async_client.zero_trust.risk_scoring.with_raw_response.get(
-                "f2108713-1206-4e84-8b80-0e71a6a1c67b",
+                user_id="f2108713-1206-4e84-8b80-0e71a6a1c67b",
                 account_identifier="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
             await async_client.zero_trust.risk_scoring.with_raw_response.get(
-                "",
+                user_id="",
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_reset(self, async_client: AsyncCloudflare) -> None:
         risk_scoring = await async_client.zero_trust.risk_scoring.reset(
-            "f2108713-1206-4e84-8b80-0e71a6a1c67b",
+            user_id="f2108713-1206-4e84-8b80-0e71a6a1c67b",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(RiskScoringResetResponse, risk_scoring, path=["response"])
@@ -200,7 +200,7 @@ class TestAsyncRiskScoring:
     @parametrize
     async def test_raw_response_reset(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.risk_scoring.with_raw_response.reset(
-            "f2108713-1206-4e84-8b80-0e71a6a1c67b",
+            user_id="f2108713-1206-4e84-8b80-0e71a6a1c67b",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -212,7 +212,7 @@ class TestAsyncRiskScoring:
     @parametrize
     async def test_streaming_response_reset(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.risk_scoring.with_streaming_response.reset(
-            "f2108713-1206-4e84-8b80-0e71a6a1c67b",
+            user_id="f2108713-1206-4e84-8b80-0e71a6a1c67b",
             account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -227,12 +227,12 @@ class TestAsyncRiskScoring:
     async def test_path_params_reset(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_identifier` but received ''"):
             await async_client.zero_trust.risk_scoring.with_raw_response.reset(
-                "f2108713-1206-4e84-8b80-0e71a6a1c67b",
+                user_id="f2108713-1206-4e84-8b80-0e71a6a1c67b",
                 account_identifier="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `user_id` but received ''"):
             await async_client.zero_trust.risk_scoring.with_raw_response.reset(
-                "",
+                user_id="",
                 account_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )

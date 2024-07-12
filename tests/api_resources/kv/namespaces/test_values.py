@@ -29,7 +29,7 @@ class TestValues:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         value = client.kv.namespaces.values.update(
-            "My-Key",
+            key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             metadata='{"someMetadataKey": "someMetadataValue"}',
@@ -41,7 +41,7 @@ class TestValues:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.kv.namespaces.values.with_raw_response.update(
-            "My-Key",
+            key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             metadata='{"someMetadataKey": "someMetadataValue"}',
@@ -57,7 +57,7 @@ class TestValues:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.kv.namespaces.values.with_streaming_response.update(
-            "My-Key",
+            key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             metadata='{"someMetadataKey": "someMetadataValue"}',
@@ -76,7 +76,7 @@ class TestValues:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.kv.namespaces.values.with_raw_response.update(
-                "My-Key",
+                key_name="My-Key",
                 account_id="",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
                 metadata='{"someMetadataKey": "someMetadataValue"}',
@@ -85,7 +85,7 @@ class TestValues:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             client.kv.namespaces.values.with_raw_response.update(
-                "My-Key",
+                key_name="My-Key",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="",
                 metadata='{"someMetadataKey": "someMetadataValue"}',
@@ -94,7 +94,7 @@ class TestValues:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_name` but received ''"):
             client.kv.namespaces.values.with_raw_response.update(
-                "",
+                key_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
                 metadata='{"someMetadataKey": "someMetadataValue"}',
@@ -104,7 +104,7 @@ class TestValues:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         value = client.kv.namespaces.values.delete(
-            "My-Key",
+            key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
         )
@@ -113,7 +113,7 @@ class TestValues:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.kv.namespaces.values.with_raw_response.delete(
-            "My-Key",
+            key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
         )
@@ -126,7 +126,7 @@ class TestValues:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.kv.namespaces.values.with_streaming_response.delete(
-            "My-Key",
+            key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
         ) as response:
@@ -142,21 +142,21 @@ class TestValues:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.kv.namespaces.values.with_raw_response.delete(
-                "My-Key",
+                key_name="My-Key",
                 account_id="",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             client.kv.namespaces.values.with_raw_response.delete(
-                "My-Key",
+                key_name="My-Key",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_name` but received ''"):
             client.kv.namespaces.values.with_raw_response.delete(
-                "",
+                key_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
             )
@@ -169,7 +169,7 @@ class TestValues:
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/storage/kv/namespaces/0f2ac74b498b48028cb68387c421e279/values/My-Key"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         value = client.kv.namespaces.values.get(
-            "My-Key",
+            key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
         )
@@ -187,7 +187,7 @@ class TestValues:
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         value = client.kv.namespaces.values.with_raw_response.get(
-            "My-Key",
+            key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
         )
@@ -205,7 +205,7 @@ class TestValues:
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/storage/kv/namespaces/0f2ac74b498b48028cb68387c421e279/values/My-Key"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         with client.kv.namespaces.values.with_streaming_response.get(
-            "My-Key",
+            key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
         ) as value:
@@ -224,21 +224,21 @@ class TestValues:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.kv.namespaces.values.with_raw_response.get(
-                "My-Key",
+                key_name="My-Key",
                 account_id="",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             client.kv.namespaces.values.with_raw_response.get(
-                "My-Key",
+                key_name="My-Key",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_name` but received ''"):
             client.kv.namespaces.values.with_raw_response.get(
-                "",
+                key_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
             )
@@ -251,7 +251,7 @@ class TestAsyncValues:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         value = await async_client.kv.namespaces.values.update(
-            "My-Key",
+            key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             metadata='{"someMetadataKey": "someMetadataValue"}',
@@ -263,7 +263,7 @@ class TestAsyncValues:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.kv.namespaces.values.with_raw_response.update(
-            "My-Key",
+            key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             metadata='{"someMetadataKey": "someMetadataValue"}',
@@ -279,7 +279,7 @@ class TestAsyncValues:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.kv.namespaces.values.with_streaming_response.update(
-            "My-Key",
+            key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             metadata='{"someMetadataKey": "someMetadataValue"}',
@@ -298,7 +298,7 @@ class TestAsyncValues:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.kv.namespaces.values.with_raw_response.update(
-                "My-Key",
+                key_name="My-Key",
                 account_id="",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
                 metadata='{"someMetadataKey": "someMetadataValue"}',
@@ -307,7 +307,7 @@ class TestAsyncValues:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             await async_client.kv.namespaces.values.with_raw_response.update(
-                "My-Key",
+                key_name="My-Key",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="",
                 metadata='{"someMetadataKey": "someMetadataValue"}',
@@ -316,7 +316,7 @@ class TestAsyncValues:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_name` but received ''"):
             await async_client.kv.namespaces.values.with_raw_response.update(
-                "",
+                key_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
                 metadata='{"someMetadataKey": "someMetadataValue"}',
@@ -326,7 +326,7 @@ class TestAsyncValues:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         value = await async_client.kv.namespaces.values.delete(
-            "My-Key",
+            key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
         )
@@ -335,7 +335,7 @@ class TestAsyncValues:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.kv.namespaces.values.with_raw_response.delete(
-            "My-Key",
+            key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
         )
@@ -348,7 +348,7 @@ class TestAsyncValues:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.kv.namespaces.values.with_streaming_response.delete(
-            "My-Key",
+            key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
         ) as response:
@@ -364,21 +364,21 @@ class TestAsyncValues:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.kv.namespaces.values.with_raw_response.delete(
-                "My-Key",
+                key_name="My-Key",
                 account_id="",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             await async_client.kv.namespaces.values.with_raw_response.delete(
-                "My-Key",
+                key_name="My-Key",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_name` but received ''"):
             await async_client.kv.namespaces.values.with_raw_response.delete(
-                "",
+                key_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
             )
@@ -391,7 +391,7 @@ class TestAsyncValues:
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/storage/kv/namespaces/0f2ac74b498b48028cb68387c421e279/values/My-Key"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         value = await async_client.kv.namespaces.values.get(
-            "My-Key",
+            key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
         )
@@ -409,7 +409,7 @@ class TestAsyncValues:
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         value = await async_client.kv.namespaces.values.with_raw_response.get(
-            "My-Key",
+            key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
         )
@@ -427,7 +427,7 @@ class TestAsyncValues:
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/storage/kv/namespaces/0f2ac74b498b48028cb68387c421e279/values/My-Key"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         async with async_client.kv.namespaces.values.with_streaming_response.get(
-            "My-Key",
+            key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
         ) as value:
@@ -446,21 +446,21 @@ class TestAsyncValues:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.kv.namespaces.values.with_raw_response.get(
-                "My-Key",
+                key_name="My-Key",
                 account_id="",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
             await async_client.kv.namespaces.values.with_raw_response.get(
-                "My-Key",
+                key_name="My-Key",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_name` but received ''"):
             await async_client.kv.namespaces.values.with_raw_response.get(
-                "",
+                key_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 namespace_id="0f2ac74b498b48028cb68387c421e279",
             )

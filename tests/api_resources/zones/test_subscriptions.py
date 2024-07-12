@@ -22,15 +22,15 @@ class TestSubscriptions:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         subscription = client.zones.subscriptions.create(
-            "506e3185e9c882d175a2d0cb0093d9f2",
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         )
         assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         subscription = client.zones.subscriptions.create(
-            "506e3185e9c882d175a2d0cb0093d9f2",
-            app={"install_id": "string"},
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
+            app={"install_id": "install_id"},
             component_values=[
                 {
                     "default": 5,
@@ -68,7 +68,7 @@ class TestSubscriptions:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zones.subscriptions.with_raw_response.create(
-            "506e3185e9c882d175a2d0cb0093d9f2",
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         )
 
         assert response.is_closed is True
@@ -79,7 +79,7 @@ class TestSubscriptions:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zones.subscriptions.with_streaming_response.create(
-            "506e3185e9c882d175a2d0cb0093d9f2",
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -93,7 +93,7 @@ class TestSubscriptions:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.zones.subscriptions.with_raw_response.create(
-                "",
+                identifier="",
             )
 
     @parametrize
@@ -179,15 +179,15 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         subscription = await async_client.zones.subscriptions.create(
-            "506e3185e9c882d175a2d0cb0093d9f2",
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         )
         assert_matches_type(SubscriptionCreateResponse, subscription, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         subscription = await async_client.zones.subscriptions.create(
-            "506e3185e9c882d175a2d0cb0093d9f2",
-            app={"install_id": "string"},
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
+            app={"install_id": "install_id"},
             component_values=[
                 {
                     "default": 5,
@@ -225,7 +225,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zones.subscriptions.with_raw_response.create(
-            "506e3185e9c882d175a2d0cb0093d9f2",
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         )
 
         assert response.is_closed is True
@@ -236,7 +236,7 @@ class TestAsyncSubscriptions:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zones.subscriptions.with_streaming_response.create(
-            "506e3185e9c882d175a2d0cb0093d9f2",
+            identifier="506e3185e9c882d175a2d0cb0093d9f2",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -250,7 +250,7 @@ class TestAsyncSubscriptions:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.zones.subscriptions.with_raw_response.create(
-                "",
+                identifier="",
             )
 
     @parametrize

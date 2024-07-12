@@ -74,7 +74,7 @@ class TestHolds:
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
         hold = client.zones.holds.delete(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            hold_after="string",
+            hold_after="hold_after",
         )
         assert_matches_type(Optional[ZoneHold], hold, path=["response"])
 
@@ -208,7 +208,7 @@ class TestAsyncHolds:
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
         hold = await async_client.zones.holds.delete(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            hold_after="string",
+            hold_after="hold_after",
         )
         assert_matches_type(Optional[ZoneHold], hold, path=["response"])
 

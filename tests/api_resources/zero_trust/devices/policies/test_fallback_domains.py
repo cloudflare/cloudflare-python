@@ -25,7 +25,7 @@ class TestFallbackDomains:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         fallback_domain = client.zero_trust.devices.policies.fallback_domains.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             body=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
         )
@@ -34,7 +34,7 @@ class TestFallbackDomains:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.policies.fallback_domains.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             body=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
         )
@@ -47,7 +47,7 @@ class TestFallbackDomains:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.policies.fallback_domains.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             body=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
         ) as response:
@@ -63,14 +63,14 @@ class TestFallbackDomains:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.devices.policies.fallback_domains.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 body=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
             client.zero_trust.devices.policies.fallback_domains.with_raw_response.update(
-                "",
+                policy_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
                 body=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
             )
@@ -116,7 +116,7 @@ class TestFallbackDomains:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         fallback_domain = client.zero_trust.devices.policies.fallback_domains.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[FallbackDomainGetResponse], fallback_domain, path=["response"])
@@ -124,7 +124,7 @@ class TestFallbackDomains:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.devices.policies.fallback_domains.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -136,7 +136,7 @@ class TestFallbackDomains:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.devices.policies.fallback_domains.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -151,13 +151,13 @@ class TestFallbackDomains:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.devices.policies.fallback_domains.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
             client.zero_trust.devices.policies.fallback_domains.with_raw_response.get(
-                "",
+                policy_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
@@ -168,7 +168,7 @@ class TestAsyncFallbackDomains:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         fallback_domain = await async_client.zero_trust.devices.policies.fallback_domains.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             body=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
         )
@@ -177,7 +177,7 @@ class TestAsyncFallbackDomains:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.policies.fallback_domains.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             body=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
         )
@@ -190,7 +190,7 @@ class TestAsyncFallbackDomains:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.policies.fallback_domains.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             body=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
         ) as response:
@@ -206,14 +206,14 @@ class TestAsyncFallbackDomains:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.devices.policies.fallback_domains.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 body=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
             await async_client.zero_trust.devices.policies.fallback_domains.with_raw_response.update(
-                "",
+                policy_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
                 body=[{"suffix": "example.com"}, {"suffix": "example.com"}, {"suffix": "example.com"}],
             )
@@ -259,7 +259,7 @@ class TestAsyncFallbackDomains:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         fallback_domain = await async_client.zero_trust.devices.policies.fallback_domains.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[FallbackDomainGetResponse], fallback_domain, path=["response"])
@@ -267,7 +267,7 @@ class TestAsyncFallbackDomains:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.devices.policies.fallback_domains.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -279,7 +279,7 @@ class TestAsyncFallbackDomains:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.devices.policies.fallback_domains.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -294,12 +294,12 @@ class TestAsyncFallbackDomains:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.devices.policies.fallback_domains.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                policy_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `policy_id` but received ''"):
             await async_client.zero_trust.devices.policies.fallback_domains.with_raw_response.get(
-                "",
+                policy_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )

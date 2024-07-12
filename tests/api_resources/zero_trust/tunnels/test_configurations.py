@@ -23,7 +23,7 @@ class TestConfigurations:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         configuration = client.zero_trust.tunnels.configurations.update(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
@@ -31,7 +31,7 @@ class TestConfigurations:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         configuration = client.zero_trust.tunnels.configurations.update(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "ingress": [
@@ -41,19 +41,19 @@ class TestConfigurations:
                             "access": {
                                 "aud_tag": ["string", "string", "string"],
                                 "required": True,
-                                "team_name": "string",
+                                "team_name": "teamName",
                             },
-                            "ca_pool": "string",
+                            "ca_pool": "caPool",
                             "connect_timeout": 0,
                             "disable_chunked_encoding": True,
                             "http2_origin": True,
-                            "http_host_header": "string",
+                            "http_host_header": "httpHostHeader",
                             "keep_alive_connections": 0,
                             "keep_alive_timeout": 0,
                             "no_happy_eyeballs": True,
                             "no_tls_verify": True,
-                            "origin_server_name": "string",
-                            "proxy_type": "string",
+                            "origin_server_name": "originServerName",
+                            "proxy_type": "proxyType",
                             "tcp_keep_alive": 0,
                             "tls_timeout": 0,
                         },
@@ -66,19 +66,19 @@ class TestConfigurations:
                             "access": {
                                 "aud_tag": ["string", "string", "string"],
                                 "required": True,
-                                "team_name": "string",
+                                "team_name": "teamName",
                             },
-                            "ca_pool": "string",
+                            "ca_pool": "caPool",
                             "connect_timeout": 0,
                             "disable_chunked_encoding": True,
                             "http2_origin": True,
-                            "http_host_header": "string",
+                            "http_host_header": "httpHostHeader",
                             "keep_alive_connections": 0,
                             "keep_alive_timeout": 0,
                             "no_happy_eyeballs": True,
                             "no_tls_verify": True,
-                            "origin_server_name": "string",
-                            "proxy_type": "string",
+                            "origin_server_name": "originServerName",
+                            "proxy_type": "proxyType",
                             "tcp_keep_alive": 0,
                             "tls_timeout": 0,
                         },
@@ -91,19 +91,19 @@ class TestConfigurations:
                             "access": {
                                 "aud_tag": ["string", "string", "string"],
                                 "required": True,
-                                "team_name": "string",
+                                "team_name": "teamName",
                             },
-                            "ca_pool": "string",
+                            "ca_pool": "caPool",
                             "connect_timeout": 0,
                             "disable_chunked_encoding": True,
                             "http2_origin": True,
-                            "http_host_header": "string",
+                            "http_host_header": "httpHostHeader",
                             "keep_alive_connections": 0,
                             "keep_alive_timeout": 0,
                             "no_happy_eyeballs": True,
                             "no_tls_verify": True,
-                            "origin_server_name": "string",
-                            "proxy_type": "string",
+                            "origin_server_name": "originServerName",
+                            "proxy_type": "proxyType",
                             "tcp_keep_alive": 0,
                             "tls_timeout": 0,
                         },
@@ -115,19 +115,19 @@ class TestConfigurations:
                     "access": {
                         "aud_tag": ["string", "string", "string"],
                         "required": True,
-                        "team_name": "string",
+                        "team_name": "teamName",
                     },
-                    "ca_pool": "string",
+                    "ca_pool": "caPool",
                     "connect_timeout": 0,
                     "disable_chunked_encoding": True,
                     "http2_origin": True,
-                    "http_host_header": "string",
+                    "http_host_header": "httpHostHeader",
                     "keep_alive_connections": 0,
                     "keep_alive_timeout": 0,
                     "no_happy_eyeballs": True,
                     "no_tls_verify": True,
-                    "origin_server_name": "string",
-                    "proxy_type": "string",
+                    "origin_server_name": "originServerName",
+                    "proxy_type": "proxyType",
                     "tcp_keep_alive": 0,
                     "tls_timeout": 0,
                 },
@@ -139,7 +139,7 @@ class TestConfigurations:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.tunnels.configurations.with_raw_response.update(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -151,7 +151,7 @@ class TestConfigurations:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.tunnels.configurations.with_streaming_response.update(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -166,20 +166,20 @@ class TestConfigurations:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.tunnels.configurations.with_raw_response.update(
-                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             client.zero_trust.tunnels.configurations.with_raw_response.update(
-                "",
+                tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         configuration = client.zero_trust.tunnels.configurations.get(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
@@ -187,7 +187,7 @@ class TestConfigurations:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.tunnels.configurations.with_raw_response.get(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -199,7 +199,7 @@ class TestConfigurations:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.tunnels.configurations.with_streaming_response.get(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -214,13 +214,13 @@ class TestConfigurations:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.tunnels.configurations.with_raw_response.get(
-                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             client.zero_trust.tunnels.configurations.with_raw_response.get(
-                "",
+                tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
@@ -231,7 +231,7 @@ class TestAsyncConfigurations:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         configuration = await async_client.zero_trust.tunnels.configurations.update(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(ConfigurationUpdateResponse, configuration, path=["response"])
@@ -239,7 +239,7 @@ class TestAsyncConfigurations:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         configuration = await async_client.zero_trust.tunnels.configurations.update(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             config={
                 "ingress": [
@@ -249,19 +249,19 @@ class TestAsyncConfigurations:
                             "access": {
                                 "aud_tag": ["string", "string", "string"],
                                 "required": True,
-                                "team_name": "string",
+                                "team_name": "teamName",
                             },
-                            "ca_pool": "string",
+                            "ca_pool": "caPool",
                             "connect_timeout": 0,
                             "disable_chunked_encoding": True,
                             "http2_origin": True,
-                            "http_host_header": "string",
+                            "http_host_header": "httpHostHeader",
                             "keep_alive_connections": 0,
                             "keep_alive_timeout": 0,
                             "no_happy_eyeballs": True,
                             "no_tls_verify": True,
-                            "origin_server_name": "string",
-                            "proxy_type": "string",
+                            "origin_server_name": "originServerName",
+                            "proxy_type": "proxyType",
                             "tcp_keep_alive": 0,
                             "tls_timeout": 0,
                         },
@@ -274,19 +274,19 @@ class TestAsyncConfigurations:
                             "access": {
                                 "aud_tag": ["string", "string", "string"],
                                 "required": True,
-                                "team_name": "string",
+                                "team_name": "teamName",
                             },
-                            "ca_pool": "string",
+                            "ca_pool": "caPool",
                             "connect_timeout": 0,
                             "disable_chunked_encoding": True,
                             "http2_origin": True,
-                            "http_host_header": "string",
+                            "http_host_header": "httpHostHeader",
                             "keep_alive_connections": 0,
                             "keep_alive_timeout": 0,
                             "no_happy_eyeballs": True,
                             "no_tls_verify": True,
-                            "origin_server_name": "string",
-                            "proxy_type": "string",
+                            "origin_server_name": "originServerName",
+                            "proxy_type": "proxyType",
                             "tcp_keep_alive": 0,
                             "tls_timeout": 0,
                         },
@@ -299,19 +299,19 @@ class TestAsyncConfigurations:
                             "access": {
                                 "aud_tag": ["string", "string", "string"],
                                 "required": True,
-                                "team_name": "string",
+                                "team_name": "teamName",
                             },
-                            "ca_pool": "string",
+                            "ca_pool": "caPool",
                             "connect_timeout": 0,
                             "disable_chunked_encoding": True,
                             "http2_origin": True,
-                            "http_host_header": "string",
+                            "http_host_header": "httpHostHeader",
                             "keep_alive_connections": 0,
                             "keep_alive_timeout": 0,
                             "no_happy_eyeballs": True,
                             "no_tls_verify": True,
-                            "origin_server_name": "string",
-                            "proxy_type": "string",
+                            "origin_server_name": "originServerName",
+                            "proxy_type": "proxyType",
                             "tcp_keep_alive": 0,
                             "tls_timeout": 0,
                         },
@@ -323,19 +323,19 @@ class TestAsyncConfigurations:
                     "access": {
                         "aud_tag": ["string", "string", "string"],
                         "required": True,
-                        "team_name": "string",
+                        "team_name": "teamName",
                     },
-                    "ca_pool": "string",
+                    "ca_pool": "caPool",
                     "connect_timeout": 0,
                     "disable_chunked_encoding": True,
                     "http2_origin": True,
-                    "http_host_header": "string",
+                    "http_host_header": "httpHostHeader",
                     "keep_alive_connections": 0,
                     "keep_alive_timeout": 0,
                     "no_happy_eyeballs": True,
                     "no_tls_verify": True,
-                    "origin_server_name": "string",
-                    "proxy_type": "string",
+                    "origin_server_name": "originServerName",
+                    "proxy_type": "proxyType",
                     "tcp_keep_alive": 0,
                     "tls_timeout": 0,
                 },
@@ -347,7 +347,7 @@ class TestAsyncConfigurations:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.tunnels.configurations.with_raw_response.update(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -359,7 +359,7 @@ class TestAsyncConfigurations:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.tunnels.configurations.with_streaming_response.update(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -374,20 +374,20 @@ class TestAsyncConfigurations:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.tunnels.configurations.with_raw_response.update(
-                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             await async_client.zero_trust.tunnels.configurations.with_raw_response.update(
-                "",
+                tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         configuration = await async_client.zero_trust.tunnels.configurations.get(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
@@ -395,7 +395,7 @@ class TestAsyncConfigurations:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.tunnels.configurations.with_raw_response.get(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -407,7 +407,7 @@ class TestAsyncConfigurations:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.tunnels.configurations.with_streaming_response.get(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -422,12 +422,12 @@ class TestAsyncConfigurations:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.tunnels.configurations.with_raw_response.get(
-                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             await async_client.zero_trust.tunnels.configurations.with_raw_response.get(
-                "",
+                tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )

@@ -25,7 +25,7 @@ class TestDomains:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         domain = client.pages.projects.domains.create(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={"name": "example.com"},
         )
@@ -34,7 +34,7 @@ class TestDomains:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.pages.projects.domains.with_raw_response.create(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={"name": "example.com"},
         )
@@ -47,7 +47,7 @@ class TestDomains:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.pages.projects.domains.with_streaming_response.create(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={"name": "example.com"},
         ) as response:
@@ -63,14 +63,14 @@ class TestDomains:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pages.projects.domains.with_raw_response.create(
-                "this-is-my-project-01",
+                project_name="this-is-my-project-01",
                 account_id="",
                 body={"name": "example.com"},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.domains.with_raw_response.create(
-                "",
+                project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={"name": "example.com"},
             )
@@ -78,7 +78,7 @@ class TestDomains:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         domain = client.pages.projects.domains.list(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncSinglePage[object], domain, path=["response"])
@@ -86,7 +86,7 @@ class TestDomains:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.pages.projects.domains.with_raw_response.list(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -98,7 +98,7 @@ class TestDomains:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.pages.projects.domains.with_streaming_response.list(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -113,20 +113,20 @@ class TestDomains:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pages.projects.domains.with_raw_response.list(
-                "this-is-my-project-01",
+                project_name="this-is-my-project-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.domains.with_raw_response.list(
-                "",
+                project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         domain = client.pages.projects.domains.delete(
-            "this-is-my-domain-01.com",
+            domain_name="this-is-my-domain-01.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -135,7 +135,7 @@ class TestDomains:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.pages.projects.domains.with_raw_response.delete(
-            "this-is-my-domain-01.com",
+            domain_name="this-is-my-domain-01.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -148,7 +148,7 @@ class TestDomains:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.pages.projects.domains.with_streaming_response.delete(
-            "this-is-my-domain-01.com",
+            domain_name="this-is-my-domain-01.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         ) as response:
@@ -164,21 +164,21 @@ class TestDomains:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pages.projects.domains.with_raw_response.delete(
-                "this-is-my-domain-01.com",
+                domain_name="this-is-my-domain-01.com",
                 account_id="",
                 project_name="this-is-my-project-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.domains.with_raw_response.delete(
-                "this-is-my-domain-01.com",
+                domain_name="this-is-my-domain-01.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
             client.pages.projects.domains.with_raw_response.delete(
-                "",
+                domain_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
             )
@@ -186,7 +186,7 @@ class TestDomains:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         domain = client.pages.projects.domains.edit(
-            "this-is-my-domain-01.com",
+            domain_name="this-is-my-domain-01.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             body={},
@@ -196,7 +196,7 @@ class TestDomains:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.pages.projects.domains.with_raw_response.edit(
-            "this-is-my-domain-01.com",
+            domain_name="this-is-my-domain-01.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             body={},
@@ -210,7 +210,7 @@ class TestDomains:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.pages.projects.domains.with_streaming_response.edit(
-            "this-is-my-domain-01.com",
+            domain_name="this-is-my-domain-01.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             body={},
@@ -227,7 +227,7 @@ class TestDomains:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pages.projects.domains.with_raw_response.edit(
-                "this-is-my-domain-01.com",
+                domain_name="this-is-my-domain-01.com",
                 account_id="",
                 project_name="this-is-my-project-01",
                 body={},
@@ -235,7 +235,7 @@ class TestDomains:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.domains.with_raw_response.edit(
-                "this-is-my-domain-01.com",
+                domain_name="this-is-my-domain-01.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
                 body={},
@@ -243,7 +243,7 @@ class TestDomains:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
             client.pages.projects.domains.with_raw_response.edit(
-                "",
+                domain_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
                 body={},
@@ -252,7 +252,7 @@ class TestDomains:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         domain = client.pages.projects.domains.get(
-            "this-is-my-domain-01.com",
+            domain_name="this-is-my-domain-01.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -261,7 +261,7 @@ class TestDomains:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.pages.projects.domains.with_raw_response.get(
-            "this-is-my-domain-01.com",
+            domain_name="this-is-my-domain-01.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -274,7 +274,7 @@ class TestDomains:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.pages.projects.domains.with_streaming_response.get(
-            "this-is-my-domain-01.com",
+            domain_name="this-is-my-domain-01.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         ) as response:
@@ -290,21 +290,21 @@ class TestDomains:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pages.projects.domains.with_raw_response.get(
-                "this-is-my-domain-01.com",
+                domain_name="this-is-my-domain-01.com",
                 account_id="",
                 project_name="this-is-my-project-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.domains.with_raw_response.get(
-                "this-is-my-domain-01.com",
+                domain_name="this-is-my-domain-01.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
             client.pages.projects.domains.with_raw_response.get(
-                "",
+                domain_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
             )
@@ -316,7 +316,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         domain = await async_client.pages.projects.domains.create(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={"name": "example.com"},
         )
@@ -325,7 +325,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pages.projects.domains.with_raw_response.create(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={"name": "example.com"},
         )
@@ -338,7 +338,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pages.projects.domains.with_streaming_response.create(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={"name": "example.com"},
         ) as response:
@@ -354,14 +354,14 @@ class TestAsyncDomains:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pages.projects.domains.with_raw_response.create(
-                "this-is-my-project-01",
+                project_name="this-is-my-project-01",
                 account_id="",
                 body={"name": "example.com"},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.domains.with_raw_response.create(
-                "",
+                project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={"name": "example.com"},
             )
@@ -369,7 +369,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         domain = await async_client.pages.projects.domains.list(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncSinglePage[object], domain, path=["response"])
@@ -377,7 +377,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pages.projects.domains.with_raw_response.list(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -389,7 +389,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pages.projects.domains.with_streaming_response.list(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -404,20 +404,20 @@ class TestAsyncDomains:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pages.projects.domains.with_raw_response.list(
-                "this-is-my-project-01",
+                project_name="this-is-my-project-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.domains.with_raw_response.list(
-                "",
+                project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         domain = await async_client.pages.projects.domains.delete(
-            "this-is-my-domain-01.com",
+            domain_name="this-is-my-domain-01.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -426,7 +426,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pages.projects.domains.with_raw_response.delete(
-            "this-is-my-domain-01.com",
+            domain_name="this-is-my-domain-01.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -439,7 +439,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pages.projects.domains.with_streaming_response.delete(
-            "this-is-my-domain-01.com",
+            domain_name="this-is-my-domain-01.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         ) as response:
@@ -455,21 +455,21 @@ class TestAsyncDomains:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pages.projects.domains.with_raw_response.delete(
-                "this-is-my-domain-01.com",
+                domain_name="this-is-my-domain-01.com",
                 account_id="",
                 project_name="this-is-my-project-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.domains.with_raw_response.delete(
-                "this-is-my-domain-01.com",
+                domain_name="this-is-my-domain-01.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
             await async_client.pages.projects.domains.with_raw_response.delete(
-                "",
+                domain_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
             )
@@ -477,7 +477,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         domain = await async_client.pages.projects.domains.edit(
-            "this-is-my-domain-01.com",
+            domain_name="this-is-my-domain-01.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             body={},
@@ -487,7 +487,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pages.projects.domains.with_raw_response.edit(
-            "this-is-my-domain-01.com",
+            domain_name="this-is-my-domain-01.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             body={},
@@ -501,7 +501,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pages.projects.domains.with_streaming_response.edit(
-            "this-is-my-domain-01.com",
+            domain_name="this-is-my-domain-01.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             body={},
@@ -518,7 +518,7 @@ class TestAsyncDomains:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pages.projects.domains.with_raw_response.edit(
-                "this-is-my-domain-01.com",
+                domain_name="this-is-my-domain-01.com",
                 account_id="",
                 project_name="this-is-my-project-01",
                 body={},
@@ -526,7 +526,7 @@ class TestAsyncDomains:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.domains.with_raw_response.edit(
-                "this-is-my-domain-01.com",
+                domain_name="this-is-my-domain-01.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
                 body={},
@@ -534,7 +534,7 @@ class TestAsyncDomains:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
             await async_client.pages.projects.domains.with_raw_response.edit(
-                "",
+                domain_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
                 body={},
@@ -543,7 +543,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         domain = await async_client.pages.projects.domains.get(
-            "this-is-my-domain-01.com",
+            domain_name="this-is-my-domain-01.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -552,7 +552,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pages.projects.domains.with_raw_response.get(
-            "this-is-my-domain-01.com",
+            domain_name="this-is-my-domain-01.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -565,7 +565,7 @@ class TestAsyncDomains:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pages.projects.domains.with_streaming_response.get(
-            "this-is-my-domain-01.com",
+            domain_name="this-is-my-domain-01.com",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         ) as response:
@@ -581,21 +581,21 @@ class TestAsyncDomains:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pages.projects.domains.with_raw_response.get(
-                "this-is-my-domain-01.com",
+                domain_name="this-is-my-domain-01.com",
                 account_id="",
                 project_name="this-is-my-project-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.domains.with_raw_response.get(
-                "this-is-my-domain-01.com",
+                domain_name="this-is-my-domain-01.com",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `domain_name` but received ''"):
             await async_client.pages.projects.domains.with_raw_response.get(
-                "",
+                domain_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
             )
