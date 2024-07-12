@@ -6935,6 +6935,22 @@ Methods:
 
 - <code title="get /radar/traffic_anomalies/locations">client.radar.traffic_anomalies.locations.<a href="./src/cloudflare/resources/radar/traffic_anomalies/locations.py">get</a>(\*\*<a href="src/cloudflare/types/radar/traffic_anomalies/location_get_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/traffic_anomalies/location_get_response.py">LocationGetResponse</a></code>
 
+## TCPResetsTimeouts
+
+Types:
+
+```python
+from cloudflare.types.radar import (
+    TCPResetsTimeoutSummaryResponse,
+    TCPResetsTimeoutTimeseriesGroupsResponse,
+)
+```
+
+Methods:
+
+- <code title="get /radar/tcp_resets_timeouts/summary">client.radar.tcp_resets_timeouts.<a href="./src/cloudflare/resources/radar/tcp_resets_timeouts.py">summary</a>(\*\*<a href="src/cloudflare/types/radar/tcp_resets_timeout_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/tcp_resets_timeout_summary_response.py">TCPResetsTimeoutSummaryResponse</a></code>
+- <code title="get /radar/tcp_resets_timeouts/timeseries_groups">client.radar.tcp_resets_timeouts.<a href="./src/cloudflare/resources/radar/tcp_resets_timeouts.py">timeseries_groups</a>(\*\*<a href="src/cloudflare/types/radar/tcp_resets_timeout_timeseries_groups_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/tcp_resets_timeout_timeseries_groups_response.py">TCPResetsTimeoutTimeseriesGroupsResponse</a></code>
+
 # BotManagement
 
 Types:
@@ -7312,3 +7328,18 @@ Methods:
 - <code title="get /accounts/{account_id}/iam/resource_groups">client.iam.resource_groups.<a href="./src/cloudflare/resources/iam/resource_groups.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/iam/resource_group_list_params.py">params</a>) -> <a href="./src/cloudflare/types/iam/resource_group_list_response.py">SyncV4PagePaginationArray[object]</a></code>
 - <code title="delete /accounts/{account_id}/iam/resource_groups/{resource_group_id}">client.iam.resource_groups.<a href="./src/cloudflare/resources/iam/resource_groups.py">delete</a>(resource_group_id, \*, account_id) -> <a href="./src/cloudflare/types/iam/resource_group_delete_response.py">Optional</a></code>
 - <code title="get /accounts/{account_id}/iam/resource_groups/{resource_group_id}">client.iam.resource_groups.<a href="./src/cloudflare/resources/iam/resource_groups.py">get</a>(resource_group_id, \*, account_id) -> <a href="./src/cloudflare/types/iam/resource_group_get_response.py">ResourceGroupGetResponse</a></code>
+
+# CloudConnector
+
+## Rules
+
+Types:
+
+```python
+from cloudflare.types.cloud_connector import RuleUpdateResponse, RuleListResponse
+```
+
+Methods:
+
+- <code title="put /zones/{zone_id}/cloud_connector/rules">client.cloud_connector.rules.<a href="./src/cloudflare/resources/cloud_connector/rules.py">update</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/cloud_connector/rule_update_params.py">params</a>) -> <a href="./src/cloudflare/types/cloud_connector/rule_update_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/cloud_connector/rules">client.cloud_connector.rules.<a href="./src/cloudflare/resources/cloud_connector/rules.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/cloud_connector/rule_list_response.py">SyncSinglePage[RuleListResponse]</a></code>

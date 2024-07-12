@@ -128,6 +128,14 @@ from .traffic_anomalies import (
     TrafficAnomaliesResourceWithStreamingResponse,
     AsyncTrafficAnomaliesResourceWithStreamingResponse,
 )
+from .tcp_resets_timeouts import (
+    TCPResetsTimeoutsResource,
+    AsyncTCPResetsTimeoutsResource,
+    TCPResetsTimeoutsResourceWithRawResponse,
+    AsyncTCPResetsTimeoutsResourceWithRawResponse,
+    TCPResetsTimeoutsResourceWithStreamingResponse,
+    AsyncTCPResetsTimeoutsResourceWithStreamingResponse,
+)
 
 __all__ = [
     "AnnotationsResource",
@@ -220,6 +228,12 @@ __all__ = [
     "AsyncTrafficAnomaliesResourceWithRawResponse",
     "TrafficAnomaliesResourceWithStreamingResponse",
     "AsyncTrafficAnomaliesResourceWithStreamingResponse",
+    "TCPResetsTimeoutsResource",
+    "AsyncTCPResetsTimeoutsResource",
+    "TCPResetsTimeoutsResourceWithRawResponse",
+    "AsyncTCPResetsTimeoutsResourceWithRawResponse",
+    "TCPResetsTimeoutsResourceWithStreamingResponse",
+    "AsyncTCPResetsTimeoutsResourceWithStreamingResponse",
     "RadarResource",
     "AsyncRadarResource",
     "RadarResourceWithRawResponse",
