@@ -8,10 +8,10 @@ from ...._models import BaseModel
 __all__ = [
     "Location",
     "Endpoints",
-    "EndpointsDoh",
-    "EndpointsDohNetwork",
-    "EndpointsDot",
-    "EndpointsDotNetwork",
+    "EndpointsDOH",
+    "EndpointsDOHNetwork",
+    "EndpointsDOT",
+    "EndpointsDOTNetwork",
     "EndpointsIPV4",
     "EndpointsIPV6",
     "EndpointsIPV6Network",
@@ -19,16 +19,16 @@ __all__ = [
 ]
 
 
-class EndpointsDohNetwork(BaseModel):
+class EndpointsDOHNetwork(BaseModel):
     network: str
     """The IP address or IP CIDR."""
 
 
-class EndpointsDoh(BaseModel):
+class EndpointsDOH(BaseModel):
     enabled: Optional[bool] = None
     """True if the endpoint is enabled for this location."""
 
-    networks: Optional[List[EndpointsDohNetwork]] = None
+    networks: Optional[List[EndpointsDOHNetwork]] = None
     """A list of allowed source IP network ranges for this endpoint.
 
     When empty, all source IPs are allowed. A non-empty list is only effective if
@@ -43,16 +43,16 @@ class EndpointsDoh(BaseModel):
     """
 
 
-class EndpointsDotNetwork(BaseModel):
+class EndpointsDOTNetwork(BaseModel):
     network: str
     """The IP address or IP CIDR."""
 
 
-class EndpointsDot(BaseModel):
+class EndpointsDOT(BaseModel):
     enabled: Optional[bool] = None
     """True if the endpoint is enabled for this location."""
 
-    networks: Optional[List[EndpointsDotNetwork]] = None
+    networks: Optional[List[EndpointsDOTNetwork]] = None
     """A list of allowed source IP network ranges for this endpoint.
 
     When empty, all source IPs are allowed. A non-empty list is only effective if
@@ -83,9 +83,9 @@ class EndpointsIPV6(BaseModel):
 
 
 class Endpoints(BaseModel):
-    doh: Optional[EndpointsDoh] = None
+    doh: Optional[EndpointsDOH] = None
 
-    dot: Optional[EndpointsDot] = None
+    dot: Optional[EndpointsDOT] = None
 
     ipv4: Optional[EndpointsIPV4] = None
 
