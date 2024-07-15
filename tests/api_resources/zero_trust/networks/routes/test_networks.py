@@ -22,6 +22,7 @@ class TestNetworks:
         network = client.zero_trust.networks.routes.networks.create(
             ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(Route, network, path=["response"])
 
@@ -30,6 +31,7 @@ class TestNetworks:
         network = client.zero_trust.networks.routes.networks.create(
             ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             comment="Example comment for this route.",
             virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
@@ -40,6 +42,7 @@ class TestNetworks:
         response = client.zero_trust.networks.routes.networks.with_raw_response.create(
             ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
 
         assert response.is_closed is True
@@ -52,6 +55,7 @@ class TestNetworks:
         with client.zero_trust.networks.routes.networks.with_streaming_response.create(
             ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -67,12 +71,14 @@ class TestNetworks:
             client.zero_trust.networks.routes.networks.with_raw_response.create(
                 ip_network_encoded="172.16.0.0%2F16",
                 account_id="",
+                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ip_network_encoded` but received ''"):
             client.zero_trust.networks.routes.networks.with_raw_response.create(
                 ip_network_encoded="",
                 account_id="699d98642c564d2e855e9661899b7252",
+                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             )
 
     @parametrize
@@ -191,6 +197,7 @@ class TestAsyncNetworks:
         network = await async_client.zero_trust.networks.routes.networks.create(
             ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(Route, network, path=["response"])
 
@@ -199,6 +206,7 @@ class TestAsyncNetworks:
         network = await async_client.zero_trust.networks.routes.networks.create(
             ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             comment="Example comment for this route.",
             virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
@@ -209,6 +217,7 @@ class TestAsyncNetworks:
         response = await async_client.zero_trust.networks.routes.networks.with_raw_response.create(
             ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
 
         assert response.is_closed is True
@@ -221,6 +230,7 @@ class TestAsyncNetworks:
         async with async_client.zero_trust.networks.routes.networks.with_streaming_response.create(
             ip_network_encoded="172.16.0.0%2F16",
             account_id="699d98642c564d2e855e9661899b7252",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -236,12 +246,14 @@ class TestAsyncNetworks:
             await async_client.zero_trust.networks.routes.networks.with_raw_response.create(
                 ip_network_encoded="172.16.0.0%2F16",
                 account_id="",
+                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ip_network_encoded` but received ''"):
             await async_client.zero_trust.networks.routes.networks.with_raw_response.create(
                 ip_network_encoded="",
                 account_id="699d98642c564d2e855e9661899b7252",
+                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             )
 
     @parametrize

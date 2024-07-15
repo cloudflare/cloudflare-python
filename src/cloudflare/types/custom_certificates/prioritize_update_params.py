@@ -17,6 +17,9 @@ class PrioritizeUpdateParams(TypedDict, total=False):
 
 
 class Certificate(TypedDict, total=False):
+    id: str
+    """Identifier"""
+
     priority: float
     """The order/priority in which the certificate will be used in a request.
 

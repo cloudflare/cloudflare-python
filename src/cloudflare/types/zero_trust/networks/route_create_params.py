@@ -14,6 +14,9 @@ class RouteCreateParams(TypedDict, total=False):
     network: Required[str]
     """The private IPv4 or IPv6 range connected by the route, in CIDR notation."""
 
+    tunnel_id: Required[str]
+    """UUID of the tunnel."""
+
     comment: str
     """Optional remark describing the route."""
 
