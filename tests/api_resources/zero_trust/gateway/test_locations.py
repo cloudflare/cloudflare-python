@@ -35,6 +35,7 @@ class TestLocations:
             account_id="699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
             client_default=False,
+            dns_destination_ips_id="0e4a32c6-6fb8-4858-9296-98f51631e8e6",
             ecs_support=False,
             networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
         )
@@ -90,6 +91,7 @@ class TestLocations:
             account_id="699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
             client_default=False,
+            dns_destination_ips_id="0e4a32c6-6fb8-4858-9296-98f51631e8e6",
             ecs_support=False,
             networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
         )
@@ -291,6 +293,7 @@ class TestAsyncLocations:
             account_id="699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
             client_default=False,
+            dns_destination_ips_id="0e4a32c6-6fb8-4858-9296-98f51631e8e6",
             ecs_support=False,
             networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
         )
@@ -346,6 +349,7 @@ class TestAsyncLocations:
             account_id="699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
             client_default=False,
+            dns_destination_ips_id="0e4a32c6-6fb8-4858-9296-98f51631e8e6",
             ecs_support=False,
             networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
         )
