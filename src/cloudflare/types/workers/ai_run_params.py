@@ -7,31 +7,24 @@ from typing_extensions import Required, TypedDict
 
 __all__ = [
     "AIRunParams",
-    "DumbPipe",
     "TextClassification",
     "TextToImage",
     "TextEmbeddings",
     "AutomaticSpeechRecognition",
     "ImageClassification",
     "ObjectDetection",
+    "Variant6",
     "Variant7",
-    "Variant8",
-    "Variant8Message",
-    "Variant8Tool",
-    "Variant8ToolFunction",
-    "Variant8ToolFunctionParameters",
-    "Variant8ToolFunctionParametersProperties",
+    "Variant7Message",
+    "Variant7Tool",
+    "Variant7ToolFunction",
+    "Variant7ToolFunctionParameters",
+    "Variant7ToolFunctionParametersProperties",
     "Translation",
     "Summarization",
     "ImageToText",
     "ImageToTextMessage",
 ]
-
-
-class DumbPipe(TypedDict, total=False):
-    account_id: Required[str]
-
-    body: Required[object]
 
 
 class TextClassification(TypedDict, total=False):
@@ -94,7 +87,7 @@ class ObjectDetection(TypedDict, total=False):
     image: Iterable[float]
 
 
-class Variant7(TypedDict, total=False):
+class Variant6(TypedDict, total=False):
     account_id: Required[str]
 
     prompt: Required[str]
@@ -122,10 +115,10 @@ class Variant7(TypedDict, total=False):
     top_p: float
 
 
-class Variant8(TypedDict, total=False):
+class Variant7(TypedDict, total=False):
     account_id: Required[str]
 
-    messages: Required[Iterable[Variant8Message]]
+    messages: Required[Iterable[Variant7Message]]
 
     frequency_penalty: float
 
@@ -141,43 +134,43 @@ class Variant8(TypedDict, total=False):
 
     temperature: float
 
-    tools: Iterable[Variant8Tool]
+    tools: Iterable[Variant7Tool]
 
     top_k: int
 
     top_p: float
 
 
-class Variant8Message(TypedDict, total=False):
+class Variant7Message(TypedDict, total=False):
     content: Required[str]
 
     role: Required[str]
 
 
-class Variant8ToolFunctionParametersProperties(TypedDict, total=False):
+class Variant7ToolFunctionParametersProperties(TypedDict, total=False):
     description: str
 
     type: str
 
 
-class Variant8ToolFunctionParameters(TypedDict, total=False):
-    properties: Dict[str, Variant8ToolFunctionParametersProperties]
+class Variant7ToolFunctionParameters(TypedDict, total=False):
+    properties: Dict[str, Variant7ToolFunctionParametersProperties]
 
     required: List[str]
 
     type: str
 
 
-class Variant8ToolFunction(TypedDict, total=False):
+class Variant7ToolFunction(TypedDict, total=False):
     description: str
 
     name: str
 
-    parameters: Variant8ToolFunctionParameters
+    parameters: Variant7ToolFunctionParameters
 
 
-class Variant8Tool(TypedDict, total=False):
-    function: Variant8ToolFunction
+class Variant7Tool(TypedDict, total=False):
+    function: Variant7ToolFunction
 
     type: str
 
@@ -223,15 +216,14 @@ class ImageToTextMessage(TypedDict, total=False):
 
 
 AIRunParams = Union[
-    DumbPipe,
     TextClassification,
     TextToImage,
     TextEmbeddings,
     AutomaticSpeechRecognition,
     ImageClassification,
     ObjectDetection,
+    Variant6,
     Variant7,
-    Variant8,
     Translation,
     Summarization,
     ImageToText,

@@ -111,5 +111,4 @@ AIRunResponse = Union[
     Translation,
     Summarization,
     ImageToText,
-    object,
 ]
