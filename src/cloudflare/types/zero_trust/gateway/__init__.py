@@ -20,7 +20,6 @@ from .logging_setting import LoggingSetting as LoggingSetting
 from .gateway_settings import GatewaySettings as GatewaySettings
 from .list_edit_params import ListEditParams as ListEditParams
 from .list_list_params import ListListParams as ListListParams
-from .location_network import LocationNetwork as LocationNetwork
 from .gateway_item_param import GatewayItemParam as GatewayItemParam
 from .list_create_params import ListCreateParams as ListCreateParams
 from .list_update_params import ListUpdateParams as ListUpdateParams
@@ -40,7 +39,6 @@ from .logging_update_params import LoggingUpdateParams as LoggingUpdateParams
 from .notification_settings import NotificationSettings as NotificationSettings
 from .body_scanning_settings import BodyScanningSettings as BodyScanningSettings
 from .location_create_params import LocationCreateParams as LocationCreateParams
-from .location_network_param import LocationNetworkParam as LocationNetworkParam
 from .location_update_params import LocationUpdateParams as LocationUpdateParams
 from .extended_email_matching import ExtendedEmailMatching as ExtendedEmailMatching
 from .certificate_get_response import CertificateGetResponse as CertificateGetResponse
