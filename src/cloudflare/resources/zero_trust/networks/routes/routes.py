@@ -68,6 +68,7 @@ class RoutesResource(SyncAPIResource):
         *,
         account_id: str,
         network: str,
+        tunnel_id: str,
         comment: str | NotGiven = NOT_GIVEN,
         virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -84,6 +85,8 @@ class RoutesResource(SyncAPIResource):
           account_id: Cloudflare account ID
 
           network: The private IPv4 or IPv6 range connected by the route, in CIDR notation.
+
+          tunnel_id: UUID of the tunnel.
 
           comment: Optional remark describing the route.
 
@@ -104,6 +107,7 @@ class RoutesResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "network": network,
+                    "tunnel_id": tunnel_id,
                     "comment": comment,
                     "virtual_network_id": virtual_network_id,
                 },
@@ -260,6 +264,7 @@ class RoutesResource(SyncAPIResource):
         account_id: str,
         comment: str | NotGiven = NOT_GIVEN,
         network: str | NotGiven = NOT_GIVEN,
+        tunnel_id: str | NotGiven = NOT_GIVEN,
         virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -282,6 +287,8 @@ class RoutesResource(SyncAPIResource):
 
           network: The private IPv4 or IPv6 range connected by the route, in CIDR notation.
 
+          tunnel_id: UUID of the tunnel.
+
           virtual_network_id: UUID of the virtual network.
 
           extra_headers: Send extra headers
@@ -302,6 +309,7 @@ class RoutesResource(SyncAPIResource):
                 {
                     "comment": comment,
                     "network": network,
+                    "tunnel_id": tunnel_id,
                     "virtual_network_id": virtual_network_id,
                 },
                 route_edit_params.RouteEditParams,
@@ -339,6 +347,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         *,
         account_id: str,
         network: str,
+        tunnel_id: str,
         comment: str | NotGiven = NOT_GIVEN,
         virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -355,6 +364,8 @@ class AsyncRoutesResource(AsyncAPIResource):
           account_id: Cloudflare account ID
 
           network: The private IPv4 or IPv6 range connected by the route, in CIDR notation.
+
+          tunnel_id: UUID of the tunnel.
 
           comment: Optional remark describing the route.
 
@@ -375,6 +386,7 @@ class AsyncRoutesResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "network": network,
+                    "tunnel_id": tunnel_id,
                     "comment": comment,
                     "virtual_network_id": virtual_network_id,
                 },
@@ -531,6 +543,7 @@ class AsyncRoutesResource(AsyncAPIResource):
         account_id: str,
         comment: str | NotGiven = NOT_GIVEN,
         network: str | NotGiven = NOT_GIVEN,
+        tunnel_id: str | NotGiven = NOT_GIVEN,
         virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -553,6 +566,8 @@ class AsyncRoutesResource(AsyncAPIResource):
 
           network: The private IPv4 or IPv6 range connected by the route, in CIDR notation.
 
+          tunnel_id: UUID of the tunnel.
+
           virtual_network_id: UUID of the virtual network.
 
           extra_headers: Send extra headers
@@ -573,6 +588,7 @@ class AsyncRoutesResource(AsyncAPIResource):
                 {
                     "comment": comment,
                     "network": network,
+                    "tunnel_id": tunnel_id,
                     "virtual_network_id": virtual_network_id,
                 },
                 route_edit_params.RouteEditParams,

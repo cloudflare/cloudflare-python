@@ -27,6 +27,7 @@ class TestRoutes:
         route = client.zero_trust.networks.routes.create(
             account_id="699d98642c564d2e855e9661899b7252",
             network="172.16.0.0/16",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(Route, route, path=["response"])
 
@@ -35,6 +36,7 @@ class TestRoutes:
         route = client.zero_trust.networks.routes.create(
             account_id="699d98642c564d2e855e9661899b7252",
             network="172.16.0.0/16",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             comment="Example comment for this route.",
             virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
@@ -45,6 +47,7 @@ class TestRoutes:
         response = client.zero_trust.networks.routes.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             network="172.16.0.0/16",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
 
         assert response.is_closed is True
@@ -57,6 +60,7 @@ class TestRoutes:
         with client.zero_trust.networks.routes.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             network="172.16.0.0/16",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -72,6 +76,7 @@ class TestRoutes:
             client.zero_trust.networks.routes.with_raw_response.create(
                 account_id="",
                 network="172.16.0.0/16",
+                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             )
 
     @parametrize
@@ -193,6 +198,7 @@ class TestRoutes:
             account_id="699d98642c564d2e855e9661899b7252",
             comment="Example comment for this route.",
             network="172.16.0.0/16",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(Route, route, path=["response"])
@@ -246,6 +252,7 @@ class TestAsyncRoutes:
         route = await async_client.zero_trust.networks.routes.create(
             account_id="699d98642c564d2e855e9661899b7252",
             network="172.16.0.0/16",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(Route, route, path=["response"])
 
@@ -254,6 +261,7 @@ class TestAsyncRoutes:
         route = await async_client.zero_trust.networks.routes.create(
             account_id="699d98642c564d2e855e9661899b7252",
             network="172.16.0.0/16",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             comment="Example comment for this route.",
             virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
@@ -264,6 +272,7 @@ class TestAsyncRoutes:
         response = await async_client.zero_trust.networks.routes.with_raw_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             network="172.16.0.0/16",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
 
         assert response.is_closed is True
@@ -276,6 +285,7 @@ class TestAsyncRoutes:
         async with async_client.zero_trust.networks.routes.with_streaming_response.create(
             account_id="699d98642c564d2e855e9661899b7252",
             network="172.16.0.0/16",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -291,6 +301,7 @@ class TestAsyncRoutes:
             await async_client.zero_trust.networks.routes.with_raw_response.create(
                 account_id="",
                 network="172.16.0.0/16",
+                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             )
 
     @parametrize
@@ -412,6 +423,7 @@ class TestAsyncRoutes:
             account_id="699d98642c564d2e855e9661899b7252",
             comment="Example comment for this route.",
             network="172.16.0.0/16",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
         )
         assert_matches_type(Route, route, path=["response"])

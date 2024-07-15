@@ -42,6 +42,7 @@ class NetworksResource(SyncAPIResource):
         ip_network_encoded: str,
         *,
         account_id: str,
+        tunnel_id: str,
         comment: str | NotGiven = NOT_GIVEN,
         virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -60,6 +61,8 @@ class NetworksResource(SyncAPIResource):
           account_id: Cloudflare account ID
 
           ip_network_encoded: IP/CIDR range in URL-encoded format
+
+          tunnel_id: UUID of the tunnel.
 
           comment: Optional remark describing the route.
 
@@ -81,6 +84,7 @@ class NetworksResource(SyncAPIResource):
             f"/accounts/{account_id}/teamnet/routes/network/{ip_network_encoded}",
             body=maybe_transform(
                 {
+                    "tunnel_id": tunnel_id,
                     "comment": comment,
                     "virtual_network_id": virtual_network_id,
                 },
@@ -225,6 +229,7 @@ class AsyncNetworksResource(AsyncAPIResource):
         ip_network_encoded: str,
         *,
         account_id: str,
+        tunnel_id: str,
         comment: str | NotGiven = NOT_GIVEN,
         virtual_network_id: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -243,6 +248,8 @@ class AsyncNetworksResource(AsyncAPIResource):
           account_id: Cloudflare account ID
 
           ip_network_encoded: IP/CIDR range in URL-encoded format
+
+          tunnel_id: UUID of the tunnel.
 
           comment: Optional remark describing the route.
 
@@ -264,6 +271,7 @@ class AsyncNetworksResource(AsyncAPIResource):
             f"/accounts/{account_id}/teamnet/routes/network/{ip_network_encoded}",
             body=await async_maybe_transform(
                 {
+                    "tunnel_id": tunnel_id,
                     "comment": comment,
                     "virtual_network_id": virtual_network_id,
                 },

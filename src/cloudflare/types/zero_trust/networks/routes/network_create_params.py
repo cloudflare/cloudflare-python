@@ -11,6 +11,9 @@ class NetworkCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Cloudflare account ID"""
 
+    tunnel_id: Required[str]
+    """UUID of the tunnel."""
+
     comment: str
     """Optional remark describing the route."""
 
