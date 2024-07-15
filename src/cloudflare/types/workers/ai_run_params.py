@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Dict, List, Union, Iterable
 from typing_extensions import Required, TypedDict
 
 __all__ = [
@@ -14,8 +14,13 @@ __all__ = [
     "AutomaticSpeechRecognition",
     "ImageClassification",
     "ObjectDetection",
-    "TextGeneration",
-    "TextGenerationMessage",
+    "Variant7",
+    "Variant8",
+    "Variant8Message",
+    "Variant8Tool",
+    "Variant8ToolFunction",
+    "Variant8ToolFunctionParameters",
+    "Variant8ToolFunctionParametersProperties",
     "Translation",
     "Summarization",
     "ImageToText",
@@ -89,26 +94,92 @@ class ObjectDetection(TypedDict, total=False):
     image: Iterable[float]
 
 
-class TextGeneration(TypedDict, total=False):
+class Variant7(TypedDict, total=False):
     account_id: Required[str]
+
+    prompt: Required[str]
+
+    frequency_penalty: float
 
     lora: str
 
     max_tokens: int
 
-    messages: Iterable[TextGenerationMessage]
-
-    prompt: str
+    presence_penalty: float
 
     raw: bool
 
+    repetition_penalty: float
+
+    seed: int
+
     stream: bool
 
+    temperature: float
 
-class TextGenerationMessage(TypedDict, total=False):
+    top_k: int
+
+    top_p: float
+
+
+class Variant8(TypedDict, total=False):
+    account_id: Required[str]
+
+    messages: Required[Iterable[Variant8Message]]
+
+    frequency_penalty: float
+
+    max_tokens: int
+
+    presence_penalty: float
+
+    repetition_penalty: float
+
+    seed: int
+
+    stream: bool
+
+    temperature: float
+
+    tools: Iterable[Variant8Tool]
+
+    top_k: int
+
+    top_p: float
+
+
+class Variant8Message(TypedDict, total=False):
     content: Required[str]
 
     role: Required[str]
+
+
+class Variant8ToolFunctionParametersProperties(TypedDict, total=False):
+    description: str
+
+    type: str
+
+
+class Variant8ToolFunctionParameters(TypedDict, total=False):
+    properties: Dict[str, Variant8ToolFunctionParametersProperties]
+
+    required: List[str]
+
+    type: str
+
+
+class Variant8ToolFunction(TypedDict, total=False):
+    description: str
+
+    name: str
+
+    parameters: Variant8ToolFunctionParameters
+
+
+class Variant8Tool(TypedDict, total=False):
+    function: Variant8ToolFunction
+
+    type: str
 
 
 class Translation(TypedDict, total=False):
@@ -159,7 +230,8 @@ AIRunParams = Union[
     AutomaticSpeechRecognition,
     ImageClassification,
     ObjectDetection,
-    TextGeneration,
+    Variant7,
+    Variant8,
     Translation,
     Summarization,
     ImageToText,
