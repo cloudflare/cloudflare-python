@@ -5496,7 +5496,7 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.gateway import Location, LocationNetwork, LocationDeleteResponse
+from cloudflare.types.zero_trust.gateway import Location, LocationDeleteResponse
 ```
 
 Methods:
