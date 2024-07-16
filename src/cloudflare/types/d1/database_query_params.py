@@ -13,5 +13,10 @@ class DatabaseQueryParams(TypedDict, total=False):
     """Account identifier tag."""
 
     sql: Required[str]
+    """Your SQL query.
+
+    Supports multiple statements, joined by semicolons, which will be executed as a
+    batch.
+    """
 
     params: List[str]

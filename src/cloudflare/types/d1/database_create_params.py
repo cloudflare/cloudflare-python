@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["DatabaseCreateParams"]
 
@@ -12,3 +12,10 @@ class DatabaseCreateParams(TypedDict, total=False):
     """Account identifier tag."""
 
     name: Required[str]
+
+    primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"]
+    """Specify the region to create the D1 primary, if available.
+
+    If this option is omitted, the D1 will be created as close as possible to the
+    current user.
+    """
