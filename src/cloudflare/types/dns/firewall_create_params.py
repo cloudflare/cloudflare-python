@@ -30,13 +30,27 @@ class FirewallCreateParams(TypedDict, total=False):
     """Forward client IP (resolver) subnet if no EDNS Client Subnet is sent."""
 
     maximum_cache_ttl: float
-    """Maximum DNS Cache TTL."""
+    """Maximum DNS cache TTL.
+
+    This setting sets an upper bound on DNS TTLs for purposes of caching between DNS
+    Firewall and the upstream servers. Higher TTLs will be decreased to the maximum
+    defined here for caching purposes.
+    """
 
     minimum_cache_ttl: float
-    """Minimum DNS Cache TTL."""
+    """Minimum DNS cache TTL.
+
+    This setting sets a lower bound on DNS TTLs for purposes of caching between DNS
+    Firewall and the upstream servers. Lower TTLs will be increased to the minimum
+    defined here for caching purposes.
+    """
 
     negative_cache_ttl: Optional[float]
-    """Negative DNS Cache TTL."""
+    """Negative DNS cache TTL.
+
+    This setting controls how long DNS Firewall should cache negative responses
+    (e.g., NXDOMAIN) from the upstream servers.
+    """
 
     ratelimit: Optional[float]
     """
