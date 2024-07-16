@@ -89,11 +89,16 @@ class FirewallResource(SyncAPIResource):
 
           ecs_fallback: Forward client IP (resolver) subnet if no EDNS Client Subnet is sent.
 
-          maximum_cache_ttl: Maximum DNS Cache TTL.
+          maximum_cache_ttl: Maximum DNS cache TTL. This setting sets an upper bound on DNS TTLs for purposes
+              of caching between DNS Firewall and the upstream servers. Higher TTLs will be
+              decreased to the maximum defined here for caching purposes.
 
-          minimum_cache_ttl: Minimum DNS Cache TTL.
+          minimum_cache_ttl: Minimum DNS cache TTL. This setting sets a lower bound on DNS TTLs for purposes
+              of caching between DNS Firewall and the upstream servers. Lower TTLs will be
+              increased to the minimum defined here for caching purposes.
 
-          negative_cache_ttl: Negative DNS Cache TTL.
+          negative_cache_ttl: Negative DNS cache TTL. This setting controls how long DNS Firewall should cache
+              negative responses (e.g., NXDOMAIN) from the upstream servers.
 
           ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
               the upstream nameservers configured on the cluster).
@@ -272,15 +277,20 @@ class FirewallResource(SyncAPIResource):
 
           ecs_fallback: Forward client IP (resolver) subnet if no EDNS Client Subnet is sent.
 
-          maximum_cache_ttl: Maximum DNS Cache TTL.
+          maximum_cache_ttl: Maximum DNS cache TTL. This setting sets an upper bound on DNS TTLs for purposes
+              of caching between DNS Firewall and the upstream servers. Higher TTLs will be
+              decreased to the maximum defined here for caching purposes.
 
-          minimum_cache_ttl: Minimum DNS Cache TTL.
+          minimum_cache_ttl: Minimum DNS cache TTL. This setting sets a lower bound on DNS TTLs for purposes
+              of caching between DNS Firewall and the upstream servers. Lower TTLs will be
+              increased to the minimum defined here for caching purposes.
 
           name: DNS Firewall Cluster Name.
 
           attack_mitigation: Attack mitigation settings.
 
-          negative_cache_ttl: Negative DNS Cache TTL.
+          negative_cache_ttl: Negative DNS cache TTL. This setting controls how long DNS Firewall should cache
+              negative responses (e.g., NXDOMAIN) from the upstream servers.
 
           ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
               the upstream nameservers configured on the cluster).
@@ -422,11 +432,16 @@ class AsyncFirewallResource(AsyncAPIResource):
 
           ecs_fallback: Forward client IP (resolver) subnet if no EDNS Client Subnet is sent.
 
-          maximum_cache_ttl: Maximum DNS Cache TTL.
+          maximum_cache_ttl: Maximum DNS cache TTL. This setting sets an upper bound on DNS TTLs for purposes
+              of caching between DNS Firewall and the upstream servers. Higher TTLs will be
+              decreased to the maximum defined here for caching purposes.
 
-          minimum_cache_ttl: Minimum DNS Cache TTL.
+          minimum_cache_ttl: Minimum DNS cache TTL. This setting sets a lower bound on DNS TTLs for purposes
+              of caching between DNS Firewall and the upstream servers. Lower TTLs will be
+              increased to the minimum defined here for caching purposes.
 
-          negative_cache_ttl: Negative DNS Cache TTL.
+          negative_cache_ttl: Negative DNS cache TTL. This setting controls how long DNS Firewall should cache
+              negative responses (e.g., NXDOMAIN) from the upstream servers.
 
           ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
               the upstream nameservers configured on the cluster).
@@ -605,15 +620,20 @@ class AsyncFirewallResource(AsyncAPIResource):
 
           ecs_fallback: Forward client IP (resolver) subnet if no EDNS Client Subnet is sent.
 
-          maximum_cache_ttl: Maximum DNS Cache TTL.
+          maximum_cache_ttl: Maximum DNS cache TTL. This setting sets an upper bound on DNS TTLs for purposes
+              of caching between DNS Firewall and the upstream servers. Higher TTLs will be
+              decreased to the maximum defined here for caching purposes.
 
-          minimum_cache_ttl: Minimum DNS Cache TTL.
+          minimum_cache_ttl: Minimum DNS cache TTL. This setting sets a lower bound on DNS TTLs for purposes
+              of caching between DNS Firewall and the upstream servers. Lower TTLs will be
+              increased to the minimum defined here for caching purposes.
 
           name: DNS Firewall Cluster Name.
 
           attack_mitigation: Attack mitigation settings.
 
-          negative_cache_ttl: Negative DNS Cache TTL.
+          negative_cache_ttl: Negative DNS cache TTL. This setting controls how long DNS Firewall should cache
+              negative responses (e.g., NXDOMAIN) from the upstream servers.
 
           ratelimit: Ratelimit in queries per second per datacenter (applies to DNS queries sent to
               the upstream nameservers configured on the cluster).
