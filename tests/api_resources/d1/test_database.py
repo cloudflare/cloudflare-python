@@ -34,6 +34,15 @@ class TestDatabase:
         assert_matches_type(DatabaseCreateResponse, database, path=["response"])
 
     @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        database = client.d1.database.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="my-database",
+            primary_location_hint="wnam",
+        )
+        assert_matches_type(DatabaseCreateResponse, database, path=["response"])
+
+    @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.d1.database.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -346,6 +355,15 @@ class TestAsyncDatabase:
         database = await async_client.d1.database.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="my-database",
+        )
+        assert_matches_type(DatabaseCreateResponse, database, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        database = await async_client.d1.database.create(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            name="my-database",
+            primary_location_hint="wnam",
         )
         assert_matches_type(DatabaseCreateResponse, database, path=["response"])
 
