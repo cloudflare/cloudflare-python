@@ -14,14 +14,11 @@ class ConfigurationParam(TypedDict, total=False):
     host: Required[str]
     """The host (hostname or IP) of your origin database."""
 
+    port: Required[int]
+    """The port (default: 5432 for Postgres) of your origin database."""
+
     scheme: Required[Literal["postgres", "postgresql", "mysql"]]
     """Specifies the URL scheme used to connect to your origin database."""
 
     user: Required[str]
     """The user of your origin database."""
-
-    access_client_id: str
-    """The Client ID of the Access token to use when connecting to the origin database"""
-
-    port: int
-    """The port (default: 5432 for Postgres) of your origin database."""
