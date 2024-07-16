@@ -57,6 +57,7 @@ class URLScannerResource(SyncAPIResource):
         asn: str | NotGiven = NOT_GIVEN,
         date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
         date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        hash: str | NotGiven = NOT_GIVEN,
         hostname: str | NotGiven = NOT_GIVEN,
         ip: str | NotGiven = NOT_GIVEN,
         is_malicious: bool | NotGiven = NOT_GIVEN,
@@ -96,6 +97,8 @@ class URLScannerResource(SyncAPIResource):
           date_end: Filter scans requested before date (inclusive).
 
           date_start: Filter scans requested after date (inclusive).
+
+          hash: Filter scans by hash of any html/js/css request made by the webpage.
 
           hostname: Filter scans by hostname of _any_ request made by the webpage.
 
@@ -146,6 +149,7 @@ class URLScannerResource(SyncAPIResource):
                         "asn": asn,
                         "date_end": date_end,
                         "date_start": date_start,
+                        "hash": hash,
                         "hostname": hostname,
                         "ip": ip,
                         "is_malicious": is_malicious,
@@ -189,6 +193,7 @@ class AsyncURLScannerResource(AsyncAPIResource):
         asn: str | NotGiven = NOT_GIVEN,
         date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
         date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        hash: str | NotGiven = NOT_GIVEN,
         hostname: str | NotGiven = NOT_GIVEN,
         ip: str | NotGiven = NOT_GIVEN,
         is_malicious: bool | NotGiven = NOT_GIVEN,
@@ -228,6 +233,8 @@ class AsyncURLScannerResource(AsyncAPIResource):
           date_end: Filter scans requested before date (inclusive).
 
           date_start: Filter scans requested after date (inclusive).
+
+          hash: Filter scans by hash of any html/js/css request made by the webpage.
 
           hostname: Filter scans by hostname of _any_ request made by the webpage.
 
@@ -278,6 +285,7 @@ class AsyncURLScannerResource(AsyncAPIResource):
                         "asn": asn,
                         "date_end": date_end,
                         "date_start": date_start,
+                        "hash": hash,
                         "hostname": hostname,
                         "ip": ip,
                         "is_malicious": is_malicious,
