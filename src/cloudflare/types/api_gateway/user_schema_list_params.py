@@ -14,10 +14,10 @@ class UserSchemaListParams(TypedDict, total=False):
     omit_source: bool
     """Omit the source-files of schemas and only retrieve their meta-data."""
 
-    page: object
+    page: int
     """Page number of paginated results."""
 
-    per_page: object
+    per_page: int
     """Maximum number of results per page."""
 
     validation_enabled: bool

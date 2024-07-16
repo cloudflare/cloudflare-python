@@ -17,7 +17,7 @@ class ConfigurationUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    auth_id_characteristics: Iterable[AuthIDCharacteristic]
+    auth_id_characteristics: Required[Iterable[AuthIDCharacteristic]]
 
 
 class AuthIDCharacteristicAPIShieldAuthIDCharacteristic(TypedDict, total=False):

@@ -63,6 +63,8 @@ class SchemaValidationResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          operation_id: UUID
+
           mitigation_action: When set, this applies a mitigation action to this operation
 
               - `log` log request when request does not conform to schema for this operation
@@ -154,6 +156,8 @@ class SchemaValidationResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          operation_id: UUID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -202,6 +206,8 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
 
         Args:
           zone_id: Identifier
+
+          operation_id: UUID
 
           mitigation_action: When set, this applies a mitigation action to this operation
 
@@ -295,6 +301,8 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
 
         Args:
           zone_id: Identifier
+
+          operation_id: UUID
 
           extra_headers: Send extra headers
 
