@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.api_gateway import (
     PublicSchema,
     SchemaUpload,
@@ -84,18 +84,18 @@ class TestUserSchemas:
         user_schema = client.api_gateway.user_schemas.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[PublicSchema], user_schema, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[PublicSchema], user_schema, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         user_schema = client.api_gateway.user_schemas.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             omit_source=True,
-            page={},
-            per_page={},
+            page=1,
+            per_page=5,
             validation_enabled=True,
         )
-        assert_matches_type(SyncSinglePage[PublicSchema], user_schema, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[PublicSchema], user_schema, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -106,7 +106,7 @@ class TestUserSchemas:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user_schema = response.parse()
-        assert_matches_type(SyncSinglePage[PublicSchema], user_schema, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[PublicSchema], user_schema, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -117,7 +117,7 @@ class TestUserSchemas:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user_schema = response.parse()
-            assert_matches_type(SyncSinglePage[PublicSchema], user_schema, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[PublicSchema], user_schema, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -134,7 +134,7 @@ class TestUserSchemas:
             schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(UserSchemaDeleteResponse, user_schema, path=["response"])
+        assert_matches_type(Optional[UserSchemaDeleteResponse], user_schema, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -146,7 +146,7 @@ class TestUserSchemas:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user_schema = response.parse()
-        assert_matches_type(UserSchemaDeleteResponse, user_schema, path=["response"])
+        assert_matches_type(Optional[UserSchemaDeleteResponse], user_schema, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -158,7 +158,7 @@ class TestUserSchemas:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user_schema = response.parse()
-            assert_matches_type(UserSchemaDeleteResponse, user_schema, path=["response"])
+            assert_matches_type(Optional[UserSchemaDeleteResponse], user_schema, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -356,18 +356,18 @@ class TestAsyncUserSchemas:
         user_schema = await async_client.api_gateway.user_schemas.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[PublicSchema], user_schema, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[PublicSchema], user_schema, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         user_schema = await async_client.api_gateway.user_schemas.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             omit_source=True,
-            page={},
-            per_page={},
+            page=1,
+            per_page=5,
             validation_enabled=True,
         )
-        assert_matches_type(AsyncSinglePage[PublicSchema], user_schema, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[PublicSchema], user_schema, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -378,7 +378,7 @@ class TestAsyncUserSchemas:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user_schema = await response.parse()
-        assert_matches_type(AsyncSinglePage[PublicSchema], user_schema, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[PublicSchema], user_schema, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -389,7 +389,7 @@ class TestAsyncUserSchemas:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user_schema = await response.parse()
-            assert_matches_type(AsyncSinglePage[PublicSchema], user_schema, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[PublicSchema], user_schema, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -406,7 +406,7 @@ class TestAsyncUserSchemas:
             schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(UserSchemaDeleteResponse, user_schema, path=["response"])
+        assert_matches_type(Optional[UserSchemaDeleteResponse], user_schema, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -418,7 +418,7 @@ class TestAsyncUserSchemas:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user_schema = await response.parse()
-        assert_matches_type(UserSchemaDeleteResponse, user_schema, path=["response"])
+        assert_matches_type(Optional[UserSchemaDeleteResponse], user_schema, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -430,7 +430,7 @@ class TestAsyncUserSchemas:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user_schema = await response.parse()
-            assert_matches_type(UserSchemaDeleteResponse, user_schema, path=["response"])
+            assert_matches_type(Optional[UserSchemaDeleteResponse], user_schema, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

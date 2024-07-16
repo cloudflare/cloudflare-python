@@ -3,15 +3,16 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.api_gateway import (
-    APIShield,
+    OperationGetResponse,
+    OperationListResponse,
     OperationCreateResponse,
     OperationDeleteResponse,
 )
@@ -44,7 +45,7 @@ class TestOperations:
                 },
             ],
         )
-        assert_matches_type(Optional[OperationCreateResponse], operation, path=["response"])
+        assert_matches_type(OperationCreateResponse, operation, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -72,7 +73,7 @@ class TestOperations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         operation = response.parse()
-        assert_matches_type(Optional[OperationCreateResponse], operation, path=["response"])
+        assert_matches_type(OperationCreateResponse, operation, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -100,7 +101,7 @@ class TestOperations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             operation = response.parse()
-            assert_matches_type(Optional[OperationCreateResponse], operation, path=["response"])
+            assert_matches_type(OperationCreateResponse, operation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -133,7 +134,7 @@ class TestOperations:
         operation = client.api_gateway.operations.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[APIShield], operation, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[OperationListResponse], operation, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
@@ -145,10 +146,10 @@ class TestOperations:
             host=["api.cloudflare.com"],
             method=["GET"],
             order="method",
-            page={},
+            page=1,
             per_page=5,
         )
-        assert_matches_type(SyncSinglePage[APIShield], operation, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[OperationListResponse], operation, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -159,7 +160,7 @@ class TestOperations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         operation = response.parse()
-        assert_matches_type(SyncSinglePage[APIShield], operation, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[OperationListResponse], operation, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -170,7 +171,7 @@ class TestOperations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             operation = response.parse()
-            assert_matches_type(SyncSinglePage[APIShield], operation, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[OperationListResponse], operation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -235,7 +236,7 @@ class TestOperations:
             operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(APIShield, operation, path=["response"])
+        assert_matches_type(OperationGetResponse, operation, path=["response"])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
@@ -244,7 +245,7 @@ class TestOperations:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             feature=["thresholds"],
         )
-        assert_matches_type(APIShield, operation, path=["response"])
+        assert_matches_type(OperationGetResponse, operation, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -256,7 +257,7 @@ class TestOperations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         operation = response.parse()
-        assert_matches_type(APIShield, operation, path=["response"])
+        assert_matches_type(OperationGetResponse, operation, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -268,7 +269,7 @@ class TestOperations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             operation = response.parse()
-            assert_matches_type(APIShield, operation, path=["response"])
+            assert_matches_type(OperationGetResponse, operation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -312,7 +313,7 @@ class TestAsyncOperations:
                 },
             ],
         )
-        assert_matches_type(Optional[OperationCreateResponse], operation, path=["response"])
+        assert_matches_type(OperationCreateResponse, operation, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -340,7 +341,7 @@ class TestAsyncOperations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         operation = await response.parse()
-        assert_matches_type(Optional[OperationCreateResponse], operation, path=["response"])
+        assert_matches_type(OperationCreateResponse, operation, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -368,7 +369,7 @@ class TestAsyncOperations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             operation = await response.parse()
-            assert_matches_type(Optional[OperationCreateResponse], operation, path=["response"])
+            assert_matches_type(OperationCreateResponse, operation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -401,7 +402,7 @@ class TestAsyncOperations:
         operation = await async_client.api_gateway.operations.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[APIShield], operation, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[OperationListResponse], operation, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -413,10 +414,10 @@ class TestAsyncOperations:
             host=["api.cloudflare.com"],
             method=["GET"],
             order="method",
-            page={},
+            page=1,
             per_page=5,
         )
-        assert_matches_type(AsyncSinglePage[APIShield], operation, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[OperationListResponse], operation, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -427,7 +428,7 @@ class TestAsyncOperations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         operation = await response.parse()
-        assert_matches_type(AsyncSinglePage[APIShield], operation, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[OperationListResponse], operation, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -438,7 +439,7 @@ class TestAsyncOperations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             operation = await response.parse()
-            assert_matches_type(AsyncSinglePage[APIShield], operation, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[OperationListResponse], operation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -503,7 +504,7 @@ class TestAsyncOperations:
             operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(APIShield, operation, path=["response"])
+        assert_matches_type(OperationGetResponse, operation, path=["response"])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -512,7 +513,7 @@ class TestAsyncOperations:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             feature=["thresholds"],
         )
-        assert_matches_type(APIShield, operation, path=["response"])
+        assert_matches_type(OperationGetResponse, operation, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -524,7 +525,7 @@ class TestAsyncOperations:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         operation = await response.parse()
-        assert_matches_type(APIShield, operation, path=["response"])
+        assert_matches_type(OperationGetResponse, operation, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -536,7 +537,7 @@ class TestAsyncOperations:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             operation = await response.parse()
-            assert_matches_type(APIShield, operation, path=["response"])
+            assert_matches_type(OperationGetResponse, operation, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
