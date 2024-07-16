@@ -19,7 +19,7 @@ class PublicSchema(BaseModel):
     """Name of the schema"""
 
     schema_id: str
-    """UUID identifier"""
+    """UUID"""
 
     source: Optional[str] = None
     """Source of the schema"""

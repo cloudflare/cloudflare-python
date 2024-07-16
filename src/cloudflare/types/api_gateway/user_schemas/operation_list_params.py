@@ -37,8 +37,8 @@ class OperationListParams(TypedDict, total=False):
     schema that already exist in API Shield Endpoint Management.
     """
 
-    page: object
+    page: int
     """Page number of paginated results."""
 
-    per_page: object
+    per_page: int
     """Maximum number of results per page."""

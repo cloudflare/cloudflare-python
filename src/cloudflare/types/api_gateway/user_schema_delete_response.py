@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union, Optional
+from typing import Union
 
 __all__ = ["UserSchemaDeleteResponse"]
 
-UserSchemaDeleteResponse = Union[Optional[str], Optional[object]]
+UserSchemaDeleteResponse = Union[str, object]
