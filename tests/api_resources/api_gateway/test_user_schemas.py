@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.api_gateway import (
     PublicSchema,
     SchemaUpload,
@@ -84,18 +84,18 @@ class TestUserSchemas:
         user_schema = client.api_gateway.user_schemas.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[PublicSchema], user_schema, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[PublicSchema], user_schema, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         user_schema = client.api_gateway.user_schemas.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             omit_source=True,
-            page={},
-            per_page={},
+            page=1,
+            per_page=5,
             validation_enabled=True,
         )
-        assert_matches_type(SyncSinglePage[PublicSchema], user_schema, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[PublicSchema], user_schema, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -106,7 +106,7 @@ class TestUserSchemas:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user_schema = response.parse()
-        assert_matches_type(SyncSinglePage[PublicSchema], user_schema, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[PublicSchema], user_schema, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -117,7 +117,7 @@ class TestUserSchemas:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user_schema = response.parse()
-            assert_matches_type(SyncSinglePage[PublicSchema], user_schema, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[PublicSchema], user_schema, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -131,34 +131,34 @@ class TestUserSchemas:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         user_schema = client.api_gateway.user_schemas.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(UserSchemaDeleteResponse, user_schema, path=["response"])
+        assert_matches_type(Optional[UserSchemaDeleteResponse], user_schema, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.api_gateway.user_schemas.with_raw_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user_schema = response.parse()
-        assert_matches_type(UserSchemaDeleteResponse, user_schema, path=["response"])
+        assert_matches_type(Optional[UserSchemaDeleteResponse], user_schema, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.api_gateway.user_schemas.with_streaming_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user_schema = response.parse()
-            assert_matches_type(UserSchemaDeleteResponse, user_schema, path=["response"])
+            assert_matches_type(Optional[UserSchemaDeleteResponse], user_schema, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -166,20 +166,20 @@ class TestUserSchemas:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.api_gateway.user_schemas.with_raw_response.delete(
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `schema_id` but received ''"):
             client.api_gateway.user_schemas.with_raw_response.delete(
-                "",
+                schema_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         user_schema = client.api_gateway.user_schemas.edit(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PublicSchema, user_schema, path=["response"])
@@ -187,7 +187,7 @@ class TestUserSchemas:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         user_schema = client.api_gateway.user_schemas.edit(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             validation_enabled=True,
         )
@@ -196,7 +196,7 @@ class TestUserSchemas:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.api_gateway.user_schemas.with_raw_response.edit(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -208,7 +208,7 @@ class TestUserSchemas:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.api_gateway.user_schemas.with_streaming_response.edit(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -223,20 +223,20 @@ class TestUserSchemas:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.api_gateway.user_schemas.with_raw_response.edit(
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `schema_id` but received ''"):
             client.api_gateway.user_schemas.with_raw_response.edit(
-                "",
+                schema_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         user_schema = client.api_gateway.user_schemas.get(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PublicSchema, user_schema, path=["response"])
@@ -244,7 +244,7 @@ class TestUserSchemas:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         user_schema = client.api_gateway.user_schemas.get(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             omit_source=True,
         )
@@ -253,7 +253,7 @@ class TestUserSchemas:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.api_gateway.user_schemas.with_raw_response.get(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -265,7 +265,7 @@ class TestUserSchemas:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.api_gateway.user_schemas.with_streaming_response.get(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -280,13 +280,13 @@ class TestUserSchemas:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.api_gateway.user_schemas.with_raw_response.get(
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `schema_id` but received ''"):
             client.api_gateway.user_schemas.with_raw_response.get(
-                "",
+                schema_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -356,18 +356,18 @@ class TestAsyncUserSchemas:
         user_schema = await async_client.api_gateway.user_schemas.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[PublicSchema], user_schema, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[PublicSchema], user_schema, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         user_schema = await async_client.api_gateway.user_schemas.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             omit_source=True,
-            page={},
-            per_page={},
+            page=1,
+            per_page=5,
             validation_enabled=True,
         )
-        assert_matches_type(AsyncSinglePage[PublicSchema], user_schema, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[PublicSchema], user_schema, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -378,7 +378,7 @@ class TestAsyncUserSchemas:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user_schema = await response.parse()
-        assert_matches_type(AsyncSinglePage[PublicSchema], user_schema, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[PublicSchema], user_schema, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -389,7 +389,7 @@ class TestAsyncUserSchemas:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user_schema = await response.parse()
-            assert_matches_type(AsyncSinglePage[PublicSchema], user_schema, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[PublicSchema], user_schema, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -403,34 +403,34 @@ class TestAsyncUserSchemas:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         user_schema = await async_client.api_gateway.user_schemas.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(UserSchemaDeleteResponse, user_schema, path=["response"])
+        assert_matches_type(Optional[UserSchemaDeleteResponse], user_schema, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.api_gateway.user_schemas.with_raw_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         user_schema = await response.parse()
-        assert_matches_type(UserSchemaDeleteResponse, user_schema, path=["response"])
+        assert_matches_type(Optional[UserSchemaDeleteResponse], user_schema, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.api_gateway.user_schemas.with_streaming_response.delete(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             user_schema = await response.parse()
-            assert_matches_type(UserSchemaDeleteResponse, user_schema, path=["response"])
+            assert_matches_type(Optional[UserSchemaDeleteResponse], user_schema, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -438,20 +438,20 @@ class TestAsyncUserSchemas:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.api_gateway.user_schemas.with_raw_response.delete(
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `schema_id` but received ''"):
             await async_client.api_gateway.user_schemas.with_raw_response.delete(
-                "",
+                schema_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         user_schema = await async_client.api_gateway.user_schemas.edit(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PublicSchema, user_schema, path=["response"])
@@ -459,7 +459,7 @@ class TestAsyncUserSchemas:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         user_schema = await async_client.api_gateway.user_schemas.edit(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             validation_enabled=True,
         )
@@ -468,7 +468,7 @@ class TestAsyncUserSchemas:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.api_gateway.user_schemas.with_raw_response.edit(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -480,7 +480,7 @@ class TestAsyncUserSchemas:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.api_gateway.user_schemas.with_streaming_response.edit(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -495,20 +495,20 @@ class TestAsyncUserSchemas:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.api_gateway.user_schemas.with_raw_response.edit(
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `schema_id` but received ''"):
             await async_client.api_gateway.user_schemas.with_raw_response.edit(
-                "",
+                schema_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         user_schema = await async_client.api_gateway.user_schemas.get(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PublicSchema, user_schema, path=["response"])
@@ -516,7 +516,7 @@ class TestAsyncUserSchemas:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         user_schema = await async_client.api_gateway.user_schemas.get(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             omit_source=True,
         )
@@ -525,7 +525,7 @@ class TestAsyncUserSchemas:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.api_gateway.user_schemas.with_raw_response.get(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -537,7 +537,7 @@ class TestAsyncUserSchemas:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.api_gateway.user_schemas.with_streaming_response.get(
-            "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+            schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -552,12 +552,12 @@ class TestAsyncUserSchemas:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.api_gateway.user_schemas.with_raw_response.get(
-                "182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
+                schema_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `schema_id` but received ''"):
             await async_client.api_gateway.user_schemas.with_raw_response.get(
-                "",
+                schema_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

@@ -73,7 +73,7 @@ class TestRoutes:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         route = client.magic_transit.routes.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             nexthop="203.0.113.1",
             prefix="192.0.2.0/24",
@@ -84,7 +84,7 @@ class TestRoutes:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         route = client.magic_transit.routes.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             nexthop="203.0.113.1",
             prefix="192.0.2.0/24",
@@ -101,7 +101,7 @@ class TestRoutes:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.magic_transit.routes.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             nexthop="203.0.113.1",
             prefix="192.0.2.0/24",
@@ -116,7 +116,7 @@ class TestRoutes:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.magic_transit.routes.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             nexthop="203.0.113.1",
             prefix="192.0.2.0/24",
@@ -134,7 +134,7 @@ class TestRoutes:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.routes.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                route_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 nexthop="203.0.113.1",
                 prefix="192.0.2.0/24",
@@ -143,7 +143,7 @@ class TestRoutes:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_id` but received ''"):
             client.magic_transit.routes.with_raw_response.update(
-                "",
+                route_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 nexthop="203.0.113.1",
                 prefix="192.0.2.0/24",
@@ -191,7 +191,7 @@ class TestRoutes:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         route = client.magic_transit.routes.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(RouteDeleteResponse, route, path=["response"])
@@ -199,7 +199,7 @@ class TestRoutes:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.magic_transit.routes.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -211,7 +211,7 @@ class TestRoutes:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.magic_transit.routes.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -226,13 +226,13 @@ class TestRoutes:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.routes.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                route_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_id` but received ''"):
             client.magic_transit.routes.with_raw_response.delete(
-                "",
+                route_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -277,7 +277,7 @@ class TestRoutes:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         route = client.magic_transit.routes.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(RouteGetResponse, route, path=["response"])
@@ -285,7 +285,7 @@ class TestRoutes:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.magic_transit.routes.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -297,7 +297,7 @@ class TestRoutes:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.magic_transit.routes.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -312,13 +312,13 @@ class TestRoutes:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.routes.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                route_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_id` but received ''"):
             client.magic_transit.routes.with_raw_response.get(
-                "",
+                route_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -375,7 +375,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.magic_transit.routes.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             nexthop="203.0.113.1",
             prefix="192.0.2.0/24",
@@ -386,7 +386,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.magic_transit.routes.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             nexthop="203.0.113.1",
             prefix="192.0.2.0/24",
@@ -403,7 +403,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.routes.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             nexthop="203.0.113.1",
             prefix="192.0.2.0/24",
@@ -418,7 +418,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.routes.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             nexthop="203.0.113.1",
             prefix="192.0.2.0/24",
@@ -436,7 +436,7 @@ class TestAsyncRoutes:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.routes.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                route_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 nexthop="203.0.113.1",
                 prefix="192.0.2.0/24",
@@ -445,7 +445,7 @@ class TestAsyncRoutes:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_id` but received ''"):
             await async_client.magic_transit.routes.with_raw_response.update(
-                "",
+                route_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 nexthop="203.0.113.1",
                 prefix="192.0.2.0/24",
@@ -493,7 +493,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.magic_transit.routes.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(RouteDeleteResponse, route, path=["response"])
@@ -501,7 +501,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.routes.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -513,7 +513,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.routes.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -528,13 +528,13 @@ class TestAsyncRoutes:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.routes.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                route_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_id` but received ''"):
             await async_client.magic_transit.routes.with_raw_response.delete(
-                "",
+                route_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -579,7 +579,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         route = await async_client.magic_transit.routes.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(RouteGetResponse, route, path=["response"])
@@ -587,7 +587,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.routes.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -599,7 +599,7 @@ class TestAsyncRoutes:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.routes.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            route_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -614,12 +614,12 @@ class TestAsyncRoutes:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.routes.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                route_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `route_id` but received ''"):
             await async_client.magic_transit.routes.with_raw_response.get(
-                "",
+                route_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

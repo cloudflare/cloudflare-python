@@ -23,10 +23,7 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ...types.user import invite_edit_params
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.user.invite import Invite
 
 __all__ = ["InvitesResource", "AsyncInvitesResource"]

@@ -38,10 +38,7 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ....types.pages import Deployment, project_edit_params, project_create_params
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.pages.project import Project
 from .deployments.deployments import DeploymentsResource, AsyncDeploymentsResource
 from ....types.pages.deployment import Deployment

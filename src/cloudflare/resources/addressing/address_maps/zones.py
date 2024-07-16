@@ -20,9 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.addressing.address_maps import zone_update_params
 from ....types.addressing.address_maps.zone_delete_response import ZoneDeleteResponse
 from ....types.addressing.address_maps.zone_update_response import ZoneUpdateResponse

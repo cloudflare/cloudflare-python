@@ -20,7 +20,7 @@ class TestZones:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         zone = client.addressing.address_maps.zones.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
@@ -30,7 +30,7 @@ class TestZones:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.addressing.address_maps.zones.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
@@ -44,7 +44,7 @@ class TestZones:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.addressing.address_maps.zones.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
@@ -61,7 +61,7 @@ class TestZones:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.addressing.address_maps.zones.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
@@ -69,7 +69,7 @@ class TestZones:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.addressing.address_maps.zones.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 body={},
@@ -77,7 +77,7 @@ class TestZones:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
             client.addressing.address_maps.zones.with_raw_response.update(
-                "",
+                address_map_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
@@ -86,7 +86,7 @@ class TestZones:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         zone = client.addressing.address_maps.zones.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -95,7 +95,7 @@ class TestZones:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.addressing.address_maps.zones.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -108,7 +108,7 @@ class TestZones:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.addressing.address_maps.zones.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -124,21 +124,21 @@ class TestZones:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.addressing.address_maps.zones.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.addressing.address_maps.zones.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
             client.addressing.address_maps.zones.with_raw_response.delete(
-                "",
+                address_map_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -150,7 +150,7 @@ class TestAsyncZones:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         zone = await async_client.addressing.address_maps.zones.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
@@ -160,7 +160,7 @@ class TestAsyncZones:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.address_maps.zones.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
@@ -174,7 +174,7 @@ class TestAsyncZones:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.address_maps.zones.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body={},
@@ -191,7 +191,7 @@ class TestAsyncZones:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.addressing.address_maps.zones.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
@@ -199,7 +199,7 @@ class TestAsyncZones:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.addressing.address_maps.zones.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 body={},
@@ -207,7 +207,7 @@ class TestAsyncZones:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
             await async_client.addressing.address_maps.zones.with_raw_response.update(
-                "",
+                address_map_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
@@ -216,7 +216,7 @@ class TestAsyncZones:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         zone = await async_client.addressing.address_maps.zones.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -225,7 +225,7 @@ class TestAsyncZones:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.addressing.address_maps.zones.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -238,7 +238,7 @@ class TestAsyncZones:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.addressing.address_maps.zones.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -254,21 +254,21 @@ class TestAsyncZones:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.addressing.address_maps.zones.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.addressing.address_maps.zones.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                address_map_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `address_map_id` but received ''"):
             await async_client.addressing.address_maps.zones.with_raw_response.delete(
-                "",
+                address_map_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

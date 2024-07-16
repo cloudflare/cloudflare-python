@@ -20,7 +20,7 @@ class TestToken:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         token = client.stream.token.create(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[TokenCreateResponse], token, path=["response"])
@@ -28,7 +28,7 @@ class TestToken:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         token = client.stream.token.create(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ab0d4ef71g4425f8dcba9041231813000",
             access_rules=[
@@ -61,7 +61,7 @@ class TestToken:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.stream.token.with_raw_response.create(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -73,7 +73,7 @@ class TestToken:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.stream.token.with_streaming_response.create(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -88,13 +88,13 @@ class TestToken:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.stream.token.with_raw_response.create(
-                "ea95132c15732412d22c1476fa83f27a",
+                identifier="ea95132c15732412d22c1476fa83f27a",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.stream.token.with_raw_response.create(
-                "",
+                identifier="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -105,7 +105,7 @@ class TestAsyncToken:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.stream.token.create(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[TokenCreateResponse], token, path=["response"])
@@ -113,7 +113,7 @@ class TestAsyncToken:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.stream.token.create(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ab0d4ef71g4425f8dcba9041231813000",
             access_rules=[
@@ -146,7 +146,7 @@ class TestAsyncToken:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.token.with_raw_response.create(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -158,7 +158,7 @@ class TestAsyncToken:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.token.with_streaming_response.create(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -173,12 +173,12 @@ class TestAsyncToken:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.stream.token.with_raw_response.create(
-                "ea95132c15732412d22c1476fa83f27a",
+                identifier="ea95132c15732412d22c1476fa83f27a",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.stream.token.with_raw_response.create(
-                "",
+                identifier="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

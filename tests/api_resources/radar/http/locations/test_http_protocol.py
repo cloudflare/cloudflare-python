@@ -21,14 +21,14 @@ class TestHTTPProtocol:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         http_protocol = client.radar.http.locations.http_protocol.get(
-            "HTTP",
+            http_protocol="HTTP",
         )
         assert_matches_type(HTTPProtocolGetResponse, http_protocol, path=["response"])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         http_protocol = client.radar.http.locations.http_protocol.get(
-            "HTTP",
+            http_protocol="HTTP",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
             browser_family=["CHROME", "EDGE", "FIREFOX"],
@@ -38,7 +38,7 @@ class TestHTTPProtocol:
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -58,7 +58,7 @@ class TestHTTPProtocol:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.radar.http.locations.http_protocol.with_raw_response.get(
-            "HTTP",
+            http_protocol="HTTP",
         )
 
         assert response.is_closed is True
@@ -69,7 +69,7 @@ class TestHTTPProtocol:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.radar.http.locations.http_protocol.with_streaming_response.get(
-            "HTTP",
+            http_protocol="HTTP",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -86,14 +86,14 @@ class TestAsyncHTTPProtocol:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         http_protocol = await async_client.radar.http.locations.http_protocol.get(
-            "HTTP",
+            http_protocol="HTTP",
         )
         assert_matches_type(HTTPProtocolGetResponse, http_protocol, path=["response"])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         http_protocol = await async_client.radar.http.locations.http_protocol.get(
-            "HTTP",
+            http_protocol="HTTP",
             asn=["string", "string", "string"],
             bot_class=["LIKELY_AUTOMATED", "LIKELY_HUMAN"],
             browser_family=["CHROME", "EDGE", "FIREFOX"],
@@ -103,7 +103,7 @@ class TestAsyncHTTPProtocol:
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -123,7 +123,7 @@ class TestAsyncHTTPProtocol:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.http.locations.http_protocol.with_raw_response.get(
-            "HTTP",
+            http_protocol="HTTP",
         )
 
         assert response.is_closed is True
@@ -134,7 +134,7 @@ class TestAsyncHTTPProtocol:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.http.locations.http_protocol.with_streaming_response.get(
-            "HTTP",
+            http_protocol="HTTP",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

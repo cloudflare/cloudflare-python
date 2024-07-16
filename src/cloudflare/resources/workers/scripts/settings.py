@@ -20,9 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.workers.scripts import setting_edit_params
 from ....types.workers.script_setting import ScriptSetting
 from ....types.workers.scripts.consumer_script_param import ConsumerScriptParam

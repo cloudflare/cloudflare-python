@@ -30,9 +30,7 @@ from ......_response import (
     async_to_streamed_response_wrapper,
 )
 from ......_wrappers import ResultWrapper
-from ......_base_client import (
-    make_request_options,
-)
+from ......_base_client import make_request_options
 from ......types.radar.attacks.layer3 import top_attacks_params, top_industry_params, top_vertical_params
 from ......types.radar.attacks.layer3.top_attacks_response import TopAttacksResponse
 from ......types.radar.attacks.layer3.top_industry_response import TopIndustryResponse
@@ -59,26 +57,7 @@ class TopResource(SyncAPIResource):
         *,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
-            Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
@@ -183,26 +162,7 @@ class TopResource(SyncAPIResource):
         *,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
-            Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
@@ -287,26 +247,7 @@ class TopResource(SyncAPIResource):
         *,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
-            Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
@@ -405,26 +346,7 @@ class AsyncTopResource(AsyncAPIResource):
         *,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
-            Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
@@ -529,26 +451,7 @@ class AsyncTopResource(AsyncAPIResource):
         *,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
-            Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
@@ -633,26 +536,7 @@ class AsyncTopResource(AsyncAPIResource):
         *,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
-            Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,

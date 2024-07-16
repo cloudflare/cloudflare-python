@@ -21,10 +21,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.access import service_token_create_params, service_token_update_params
 from ....types.zero_trust.access.service_token import ServiceToken
 from ....types.zero_trust.access.service_token_create_response import ServiceTokenCreateResponse

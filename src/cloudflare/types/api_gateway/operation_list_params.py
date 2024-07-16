@@ -39,8 +39,8 @@ class OperationListParams(TypedDict, total=False):
     e.g., `thresholds.suggested_threshold`.
     """
 
-    page: object
+    page: int
     """Page number of paginated results."""
 
-    per_page: float
-    """Number of results to return per page"""
+    per_page: int
+    """Maximum number of results per page."""

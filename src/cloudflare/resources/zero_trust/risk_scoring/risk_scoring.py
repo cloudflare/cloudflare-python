@@ -45,9 +45,7 @@ from .integrations import (
     IntegrationsResourceWithStreamingResponse,
     AsyncIntegrationsResourceWithStreamingResponse,
 )
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.zero_trust import risk_scoring_get_params
 from .integrations.integrations import IntegrationsResource, AsyncIntegrationsResource
 from ....types.zero_trust.risk_scoring_get_response import RiskScoringGetResponse

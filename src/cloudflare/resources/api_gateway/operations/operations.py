@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Iterable, Optional, cast
+from typing import List, Type, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
@@ -21,11 +21,8 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ...._base_client import AsyncPaginator, make_request_options
 from .schema_validation import (
     SchemaValidationResource,
     AsyncSchemaValidationResource,
@@ -35,7 +32,8 @@ from .schema_validation import (
     AsyncSchemaValidationResourceWithStreamingResponse,
 )
 from ....types.api_gateway import operation_get_params, operation_list_params, operation_create_params
-from ....types.api_gateway.api_shield import APIShield
+from ....types.api_gateway.operation_get_response import OperationGetResponse
+from ....types.api_gateway.operation_list_response import OperationListResponse
 from ....types.api_gateway.operation_create_response import OperationCreateResponse
 from ....types.api_gateway.operation_delete_response import OperationDeleteResponse
 
@@ -66,7 +64,7 @@ class OperationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OperationCreateResponse]:
+    ) -> OperationCreateResponse:
         """Add one or more operations to a zone.
 
         Endpoints can contain path variables.
@@ -96,9 +94,9 @@ class OperationsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[OperationCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[OperationCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[OperationCreateResponse]], ResultWrapper[OperationCreateResponse]),
+            cast_to=cast(Type[OperationCreateResponse], ResultWrapper[OperationCreateResponse]),
         )
 
     def list(
@@ -111,15 +109,15 @@ class OperationsResource(SyncAPIResource):
         host: List[str] | NotGiven = NOT_GIVEN,
         method: List[str] | NotGiven = NOT_GIVEN,
         order: Literal["method", "host", "endpoint", "thresholds.$key"] | NotGiven = NOT_GIVEN,
-        page: object | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[APIShield]:
+    ) -> SyncV4PagePaginationArray[OperationListResponse]:
         """
         Retrieve information about all operations on a zone
 
@@ -143,7 +141,7 @@ class OperationsResource(SyncAPIResource):
 
           page: Page number of paginated results.
 
-          per_page: Number of results to return per page
+          per_page: Maximum number of results per page.
 
           extra_headers: Send extra headers
 
@@ -157,7 +155,7 @@ class OperationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/operations",
-            page=SyncSinglePage[APIShield],
+            page=SyncV4PagePaginationArray[OperationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -177,7 +175,7 @@ class OperationsResource(SyncAPIResource):
                     operation_list_params.OperationListParams,
                 ),
             ),
-            model=APIShield,
+            model=OperationListResponse,
         )
 
     def delete(
@@ -198,6 +196,8 @@ class OperationsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          operation_id: UUID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -210,21 +210,12 @@ class OperationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
-        return cast(
-            OperationDeleteResponse,
-            self._delete(
-                f"/zones/{zone_id}/api_gateway/operations/{operation_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[OperationDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[OperationDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/zones/{zone_id}/api_gateway/operations/{operation_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=OperationDeleteResponse,
         )
 
     def get(
@@ -239,12 +230,14 @@ class OperationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> APIShield:
+    ) -> OperationGetResponse:
         """
         Retrieve information about an operation
 
         Args:
           zone_id: Identifier
+
+          operation_id: UUID
 
           feature: Add feature(s) to the results. The feature name that is given here corresponds
               to the resulting feature object. Have a look at the top-level object description
@@ -270,9 +263,9 @@ class OperationsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"feature": feature}, operation_get_params.OperationGetParams),
-                post_parser=ResultWrapper[APIShield]._unwrapper,
+                post_parser=ResultWrapper[OperationGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[APIShield], ResultWrapper[APIShield]),
+            cast_to=cast(Type[OperationGetResponse], ResultWrapper[OperationGetResponse]),
         )
 
 
@@ -300,7 +293,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OperationCreateResponse]:
+    ) -> OperationCreateResponse:
         """Add one or more operations to a zone.
 
         Endpoints can contain path variables.
@@ -330,9 +323,9 @@ class AsyncOperationsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[OperationCreateResponse]]._unwrapper,
+                post_parser=ResultWrapper[OperationCreateResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[OperationCreateResponse]], ResultWrapper[OperationCreateResponse]),
+            cast_to=cast(Type[OperationCreateResponse], ResultWrapper[OperationCreateResponse]),
         )
 
     def list(
@@ -345,15 +338,15 @@ class AsyncOperationsResource(AsyncAPIResource):
         host: List[str] | NotGiven = NOT_GIVEN,
         method: List[str] | NotGiven = NOT_GIVEN,
         order: Literal["method", "host", "endpoint", "thresholds.$key"] | NotGiven = NOT_GIVEN,
-        page: object | NotGiven = NOT_GIVEN,
-        per_page: float | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[APIShield, AsyncSinglePage[APIShield]]:
+    ) -> AsyncPaginator[OperationListResponse, AsyncV4PagePaginationArray[OperationListResponse]]:
         """
         Retrieve information about all operations on a zone
 
@@ -377,7 +370,7 @@ class AsyncOperationsResource(AsyncAPIResource):
 
           page: Page number of paginated results.
 
-          per_page: Number of results to return per page
+          per_page: Maximum number of results per page.
 
           extra_headers: Send extra headers
 
@@ -391,7 +384,7 @@ class AsyncOperationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/operations",
-            page=AsyncSinglePage[APIShield],
+            page=AsyncV4PagePaginationArray[OperationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -411,7 +404,7 @@ class AsyncOperationsResource(AsyncAPIResource):
                     operation_list_params.OperationListParams,
                 ),
             ),
-            model=APIShield,
+            model=OperationListResponse,
         )
 
     async def delete(
@@ -432,6 +425,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
+          operation_id: UUID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -444,21 +439,12 @@ class AsyncOperationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not operation_id:
             raise ValueError(f"Expected a non-empty value for `operation_id` but received {operation_id!r}")
-        return cast(
-            OperationDeleteResponse,
-            await self._delete(
-                f"/zones/{zone_id}/api_gateway/operations/{operation_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[OperationDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[OperationDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/zones/{zone_id}/api_gateway/operations/{operation_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=OperationDeleteResponse,
         )
 
     async def get(
@@ -473,12 +459,14 @@ class AsyncOperationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> APIShield:
+    ) -> OperationGetResponse:
         """
         Retrieve information about an operation
 
         Args:
           zone_id: Identifier
+
+          operation_id: UUID
 
           feature: Add feature(s) to the results. The feature name that is given here corresponds
               to the resulting feature object. Have a look at the top-level object description
@@ -504,9 +492,9 @@ class AsyncOperationsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform({"feature": feature}, operation_get_params.OperationGetParams),
-                post_parser=ResultWrapper[APIShield]._unwrapper,
+                post_parser=ResultWrapper[OperationGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[APIShield], ResultWrapper[APIShield]),
+            cast_to=cast(Type[OperationGetResponse], ResultWrapper[OperationGetResponse]),
         )
 
 

@@ -30,10 +30,7 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
-from ....._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.risk_scoring import integration_create_params, integration_update_params
 from .....types.zero_trust.risk_scoring.integration_get_response import IntegrationGetResponse
 from .....types.zero_trust.risk_scoring.integration_list_response import IntegrationListResponse

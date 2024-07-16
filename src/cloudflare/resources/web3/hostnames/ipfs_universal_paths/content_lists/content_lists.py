@@ -29,9 +29,7 @@ from ......_response import (
     async_to_streamed_response_wrapper,
 )
 from ......_wrappers import ResultWrapper
-from ......_base_client import (
-    make_request_options,
-)
+from ......_base_client import make_request_options
 from ......types.web3.hostnames.ipfs_universal_paths import content_list_update_params
 from ......types.web3.hostnames.ipfs_universal_paths.content_list import ContentList
 

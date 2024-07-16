@@ -22,7 +22,7 @@ class TestDeployments:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         deployment = client.pages.projects.deployments.create(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Deployment, deployment, path=["response"])
@@ -31,7 +31,7 @@ class TestDeployments:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         deployment = client.pages.projects.deployments.create(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             branch="staging",
         )
@@ -41,7 +41,7 @@ class TestDeployments:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.pages.projects.deployments.with_raw_response.create(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -54,7 +54,7 @@ class TestDeployments:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.pages.projects.deployments.with_streaming_response.create(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -70,20 +70,20 @@ class TestDeployments:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pages.projects.deployments.with_raw_response.create(
-                "this-is-my-project-01",
+                project_name="this-is-my-project-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.deployments.with_raw_response.create(
-                "",
+                project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         deployment = client.pages.projects.deployments.list(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncSinglePage[Deployment], deployment, path=["response"])
@@ -91,7 +91,7 @@ class TestDeployments:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         deployment = client.pages.projects.deployments.list(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             env="preview",
         )
@@ -100,7 +100,7 @@ class TestDeployments:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.pages.projects.deployments.with_raw_response.list(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -112,7 +112,7 @@ class TestDeployments:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.pages.projects.deployments.with_streaming_response.list(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -127,20 +127,20 @@ class TestDeployments:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pages.projects.deployments.with_raw_response.list(
-                "this-is-my-project-01",
+                project_name="this-is-my-project-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.deployments.with_raw_response.list(
-                "",
+                project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         deployment = client.pages.projects.deployments.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -149,7 +149,7 @@ class TestDeployments:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.pages.projects.deployments.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -162,7 +162,7 @@ class TestDeployments:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.pages.projects.deployments.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         ) as response:
@@ -178,21 +178,21 @@ class TestDeployments:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pages.projects.deployments.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 project_name="this-is-my-project-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.deployments.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
             client.pages.projects.deployments.with_raw_response.delete(
-                "",
+                deployment_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
             )
@@ -200,7 +200,7 @@ class TestDeployments:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         deployment = client.pages.projects.deployments.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -209,7 +209,7 @@ class TestDeployments:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.pages.projects.deployments.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -222,7 +222,7 @@ class TestDeployments:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.pages.projects.deployments.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         ) as response:
@@ -238,21 +238,21 @@ class TestDeployments:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pages.projects.deployments.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 project_name="this-is-my-project-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.deployments.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
             client.pages.projects.deployments.with_raw_response.get(
-                "",
+                deployment_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
             )
@@ -260,7 +260,7 @@ class TestDeployments:
     @parametrize
     def test_method_retry(self, client: Cloudflare) -> None:
         deployment = client.pages.projects.deployments.retry(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             body={},
@@ -270,7 +270,7 @@ class TestDeployments:
     @parametrize
     def test_raw_response_retry(self, client: Cloudflare) -> None:
         response = client.pages.projects.deployments.with_raw_response.retry(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             body={},
@@ -284,7 +284,7 @@ class TestDeployments:
     @parametrize
     def test_streaming_response_retry(self, client: Cloudflare) -> None:
         with client.pages.projects.deployments.with_streaming_response.retry(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             body={},
@@ -301,7 +301,7 @@ class TestDeployments:
     def test_path_params_retry(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pages.projects.deployments.with_raw_response.retry(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 project_name="this-is-my-project-01",
                 body={},
@@ -309,7 +309,7 @@ class TestDeployments:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.deployments.with_raw_response.retry(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
                 body={},
@@ -317,7 +317,7 @@ class TestDeployments:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
             client.pages.projects.deployments.with_raw_response.retry(
-                "",
+                deployment_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
                 body={},
@@ -326,7 +326,7 @@ class TestDeployments:
     @parametrize
     def test_method_rollback(self, client: Cloudflare) -> None:
         deployment = client.pages.projects.deployments.rollback(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             body={},
@@ -336,7 +336,7 @@ class TestDeployments:
     @parametrize
     def test_raw_response_rollback(self, client: Cloudflare) -> None:
         response = client.pages.projects.deployments.with_raw_response.rollback(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             body={},
@@ -350,7 +350,7 @@ class TestDeployments:
     @parametrize
     def test_streaming_response_rollback(self, client: Cloudflare) -> None:
         with client.pages.projects.deployments.with_streaming_response.rollback(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             body={},
@@ -367,7 +367,7 @@ class TestDeployments:
     def test_path_params_rollback(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pages.projects.deployments.with_raw_response.rollback(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 project_name="this-is-my-project-01",
                 body={},
@@ -375,7 +375,7 @@ class TestDeployments:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.deployments.with_raw_response.rollback(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
                 body={},
@@ -383,7 +383,7 @@ class TestDeployments:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
             client.pages.projects.deployments.with_raw_response.rollback(
-                "",
+                deployment_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
                 body={},
@@ -397,7 +397,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         deployment = await async_client.pages.projects.deployments.create(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Deployment, deployment, path=["response"])
@@ -406,7 +406,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         deployment = await async_client.pages.projects.deployments.create(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             branch="staging",
         )
@@ -416,7 +416,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pages.projects.deployments.with_raw_response.create(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -429,7 +429,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pages.projects.deployments.with_streaming_response.create(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -445,20 +445,20 @@ class TestAsyncDeployments:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pages.projects.deployments.with_raw_response.create(
-                "this-is-my-project-01",
+                project_name="this-is-my-project-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.deployments.with_raw_response.create(
-                "",
+                project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         deployment = await async_client.pages.projects.deployments.list(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncSinglePage[Deployment], deployment, path=["response"])
@@ -466,7 +466,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         deployment = await async_client.pages.projects.deployments.list(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             env="preview",
         )
@@ -475,7 +475,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pages.projects.deployments.with_raw_response.list(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -487,7 +487,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pages.projects.deployments.with_streaming_response.list(
-            "this-is-my-project-01",
+            project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -502,20 +502,20 @@ class TestAsyncDeployments:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pages.projects.deployments.with_raw_response.list(
-                "this-is-my-project-01",
+                project_name="this-is-my-project-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.deployments.with_raw_response.list(
-                "",
+                project_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         deployment = await async_client.pages.projects.deployments.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -524,7 +524,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pages.projects.deployments.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -537,7 +537,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pages.projects.deployments.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         ) as response:
@@ -553,21 +553,21 @@ class TestAsyncDeployments:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pages.projects.deployments.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 project_name="this-is-my-project-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.deployments.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
             await async_client.pages.projects.deployments.with_raw_response.delete(
-                "",
+                deployment_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
             )
@@ -575,7 +575,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         deployment = await async_client.pages.projects.deployments.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -584,7 +584,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pages.projects.deployments.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -597,7 +597,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pages.projects.deployments.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         ) as response:
@@ -613,21 +613,21 @@ class TestAsyncDeployments:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pages.projects.deployments.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 project_name="this-is-my-project-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.deployments.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
             await async_client.pages.projects.deployments.with_raw_response.get(
-                "",
+                deployment_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
             )
@@ -635,7 +635,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_method_retry(self, async_client: AsyncCloudflare) -> None:
         deployment = await async_client.pages.projects.deployments.retry(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             body={},
@@ -645,7 +645,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_raw_response_retry(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pages.projects.deployments.with_raw_response.retry(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             body={},
@@ -659,7 +659,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_streaming_response_retry(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pages.projects.deployments.with_streaming_response.retry(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             body={},
@@ -676,7 +676,7 @@ class TestAsyncDeployments:
     async def test_path_params_retry(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pages.projects.deployments.with_raw_response.retry(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 project_name="this-is-my-project-01",
                 body={},
@@ -684,7 +684,7 @@ class TestAsyncDeployments:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.deployments.with_raw_response.retry(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
                 body={},
@@ -692,7 +692,7 @@ class TestAsyncDeployments:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
             await async_client.pages.projects.deployments.with_raw_response.retry(
-                "",
+                deployment_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
                 body={},
@@ -701,7 +701,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_method_rollback(self, async_client: AsyncCloudflare) -> None:
         deployment = await async_client.pages.projects.deployments.rollback(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             body={},
@@ -711,7 +711,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_raw_response_rollback(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pages.projects.deployments.with_raw_response.rollback(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             body={},
@@ -725,7 +725,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_streaming_response_rollback(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pages.projects.deployments.with_streaming_response.rollback(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
             body={},
@@ -742,7 +742,7 @@ class TestAsyncDeployments:
     async def test_path_params_rollback(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pages.projects.deployments.with_raw_response.rollback(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 project_name="this-is-my-project-01",
                 body={},
@@ -750,7 +750,7 @@ class TestAsyncDeployments:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.deployments.with_raw_response.rollback(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
                 body={},
@@ -758,7 +758,7 @@ class TestAsyncDeployments:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
             await async_client.pages.projects.deployments.with_raw_response.rollback(
-                "",
+                deployment_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
                 body={},

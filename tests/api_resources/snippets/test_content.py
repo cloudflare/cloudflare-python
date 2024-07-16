@@ -31,7 +31,7 @@ class TestContent:
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         content = client.snippets.content.get(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert content.is_closed
@@ -48,7 +48,7 @@ class TestContent:
         )
 
         content = client.snippets.content.with_raw_response.get(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -65,7 +65,7 @@ class TestContent:
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         with client.snippets.content.with_streaming_response.get(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as content:
             assert not content.is_closed
@@ -83,13 +83,13 @@ class TestContent:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.snippets.content.with_raw_response.get(
-                "snippet_name_01",
+                snippet_name="snippet_name_01",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `snippet_name` but received ''"):
             client.snippets.content.with_raw_response.get(
-                "",
+                snippet_name="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -105,7 +105,7 @@ class TestAsyncContent:
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         content = await async_client.snippets.content.get(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert content.is_closed
@@ -122,7 +122,7 @@ class TestAsyncContent:
         )
 
         content = await async_client.snippets.content.with_raw_response.get(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -139,7 +139,7 @@ class TestAsyncContent:
             return_value=httpx.Response(200, json={"foo": "bar"})
         )
         async with async_client.snippets.content.with_streaming_response.get(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as content:
             assert not content.is_closed
@@ -157,12 +157,12 @@ class TestAsyncContent:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.snippets.content.with_raw_response.get(
-                "snippet_name_01",
+                snippet_name="snippet_name_01",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `snippet_name` but received ''"):
             await async_client.snippets.content.with_raw_response.get(
-                "",
+                snippet_name="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

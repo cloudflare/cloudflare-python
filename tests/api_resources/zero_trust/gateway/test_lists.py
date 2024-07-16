@@ -99,7 +99,7 @@ class TestLists:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         list_ = client.zero_trust.gateway.lists.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
         )
@@ -108,7 +108,7 @@ class TestLists:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         list_ = client.zero_trust.gateway.lists.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             description="The serial numbers for administrators",
@@ -118,7 +118,7 @@ class TestLists:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.lists.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
         )
@@ -131,7 +131,7 @@ class TestLists:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.lists.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
         ) as response:
@@ -147,14 +147,14 @@ class TestLists:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.gateway.lists.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 name="Admin Serial Numbers",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             client.zero_trust.gateway.lists.with_raw_response.update(
-                "",
+                list_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
                 name="Admin Serial Numbers",
             )
@@ -208,7 +208,7 @@ class TestLists:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         list_ = client.zero_trust.gateway.lists.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
@@ -216,7 +216,7 @@ class TestLists:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.lists.with_raw_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -228,7 +228,7 @@ class TestLists:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.lists.with_streaming_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -243,20 +243,20 @@ class TestLists:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.gateway.lists.with_raw_response.delete(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             client.zero_trust.gateway.lists.with_raw_response.delete(
-                "",
+                list_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         list_ = client.zero_trust.gateway.lists.edit(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[GatewayList], list_, path=["response"])
@@ -264,7 +264,7 @@ class TestLists:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         list_ = client.zero_trust.gateway.lists.edit(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             append=[
                 {
@@ -290,7 +290,7 @@ class TestLists:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.lists.with_raw_response.edit(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -302,7 +302,7 @@ class TestLists:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.lists.with_streaming_response.edit(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -317,20 +317,20 @@ class TestLists:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.gateway.lists.with_raw_response.edit(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             client.zero_trust.gateway.lists.with_raw_response.edit(
-                "",
+                list_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         list_ = client.zero_trust.gateway.lists.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[GatewayList], list_, path=["response"])
@@ -338,7 +338,7 @@ class TestLists:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.lists.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -350,7 +350,7 @@ class TestLists:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.lists.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -365,13 +365,13 @@ class TestLists:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.gateway.lists.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             client.zero_trust.gateway.lists.with_raw_response.get(
-                "",
+                list_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
@@ -455,7 +455,7 @@ class TestAsyncLists:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         list_ = await async_client.zero_trust.gateway.lists.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
         )
@@ -464,7 +464,7 @@ class TestAsyncLists:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         list_ = await async_client.zero_trust.gateway.lists.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
             description="The serial numbers for administrators",
@@ -474,7 +474,7 @@ class TestAsyncLists:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.lists.with_raw_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
         )
@@ -487,7 +487,7 @@ class TestAsyncLists:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.lists.with_streaming_response.update(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Admin Serial Numbers",
         ) as response:
@@ -503,14 +503,14 @@ class TestAsyncLists:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.gateway.lists.with_raw_response.update(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 name="Admin Serial Numbers",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             await async_client.zero_trust.gateway.lists.with_raw_response.update(
-                "",
+                list_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
                 name="Admin Serial Numbers",
             )
@@ -564,7 +564,7 @@ class TestAsyncLists:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         list_ = await async_client.zero_trust.gateway.lists.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[ListDeleteResponse], list_, path=["response"])
@@ -572,7 +572,7 @@ class TestAsyncLists:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.lists.with_raw_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -584,7 +584,7 @@ class TestAsyncLists:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.lists.with_streaming_response.delete(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -599,20 +599,20 @@ class TestAsyncLists:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.gateway.lists.with_raw_response.delete(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             await async_client.zero_trust.gateway.lists.with_raw_response.delete(
-                "",
+                list_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         list_ = await async_client.zero_trust.gateway.lists.edit(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[GatewayList], list_, path=["response"])
@@ -620,7 +620,7 @@ class TestAsyncLists:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         list_ = await async_client.zero_trust.gateway.lists.edit(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             append=[
                 {
@@ -646,7 +646,7 @@ class TestAsyncLists:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.lists.with_raw_response.edit(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -658,7 +658,7 @@ class TestAsyncLists:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.lists.with_streaming_response.edit(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -673,20 +673,20 @@ class TestAsyncLists:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.gateway.lists.with_raw_response.edit(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             await async_client.zero_trust.gateway.lists.with_raw_response.edit(
-                "",
+                list_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         list_ = await async_client.zero_trust.gateway.lists.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[GatewayList], list_, path=["response"])
@@ -694,7 +694,7 @@ class TestAsyncLists:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.lists.with_raw_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -706,7 +706,7 @@ class TestAsyncLists:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.lists.with_streaming_response.get(
-            "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+            list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -721,12 +721,12 @@ class TestAsyncLists:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.gateway.lists.with_raw_response.get(
-                "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                list_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `list_id` but received ''"):
             await async_client.zero_trust.gateway.lists.with_raw_response.get(
-                "",
+                list_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )

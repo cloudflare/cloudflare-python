@@ -20,7 +20,7 @@ class TestLogs:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         log = client.pages.projects.deployments.history.logs.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -29,7 +29,7 @@ class TestLogs:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.pages.projects.deployments.history.logs.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -42,7 +42,7 @@ class TestLogs:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.pages.projects.deployments.history.logs.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         ) as response:
@@ -58,21 +58,21 @@ class TestLogs:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pages.projects.deployments.history.logs.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 project_name="this-is-my-project-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             client.pages.projects.deployments.history.logs.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
             client.pages.projects.deployments.history.logs.with_raw_response.get(
-                "",
+                deployment_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
             )
@@ -84,7 +84,7 @@ class TestAsyncLogs:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         log = await async_client.pages.projects.deployments.history.logs.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -93,7 +93,7 @@ class TestAsyncLogs:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pages.projects.deployments.history.logs.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         )
@@ -106,7 +106,7 @@ class TestAsyncLogs:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pages.projects.deployments.history.logs.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             project_name="this-is-my-project-01",
         ) as response:
@@ -122,21 +122,21 @@ class TestAsyncLogs:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pages.projects.deployments.history.logs.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 project_name="this-is-my-project-01",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `project_name` but received ''"):
             await async_client.pages.projects.deployments.history.logs.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                deployment_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `deployment_id` but received ''"):
             await async_client.pages.projects.deployments.history.logs.with_raw_response.get(
-                "",
+                deployment_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 project_name="this-is-my-project-01",
             )

@@ -21,10 +21,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.secondary_dns import peer_create_params, peer_update_params
 from ...types.secondary_dns.peer import Peer
 from ...types.secondary_dns.peer_delete_response import PeerDeleteResponse

@@ -23,7 +23,7 @@ class TestDeployments:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         deployment = client.workers.scripts.deployments.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[DeploymentCreateResponse], deployment, path=["response"])
@@ -31,17 +31,17 @@ class TestDeployments:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         deployment = client.workers.scripts.deployments.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             annotations={"workers_message": "Deploy bug fix."},
-            strategy="string",
+            strategy="strategy",
         )
         assert_matches_type(Optional[DeploymentCreateResponse], deployment, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.workers.scripts.deployments.with_raw_response.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -53,7 +53,7 @@ class TestDeployments:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.workers.scripts.deployments.with_streaming_response.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -68,20 +68,20 @@ class TestDeployments:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.scripts.deployments.with_raw_response.create(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.deployments.with_raw_response.create(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         deployment = client.workers.scripts.deployments.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[DeploymentGetResponse], deployment, path=["response"])
@@ -89,7 +89,7 @@ class TestDeployments:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.workers.scripts.deployments.with_raw_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -101,7 +101,7 @@ class TestDeployments:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.workers.scripts.deployments.with_streaming_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -116,13 +116,13 @@ class TestDeployments:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.scripts.deployments.with_raw_response.get(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.deployments.with_raw_response.get(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -133,7 +133,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         deployment = await async_client.workers.scripts.deployments.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[DeploymentCreateResponse], deployment, path=["response"])
@@ -141,17 +141,17 @@ class TestAsyncDeployments:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         deployment = await async_client.workers.scripts.deployments.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             annotations={"workers_message": "Deploy bug fix."},
-            strategy="string",
+            strategy="strategy",
         )
         assert_matches_type(Optional[DeploymentCreateResponse], deployment, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.deployments.with_raw_response.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -163,7 +163,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.deployments.with_streaming_response.create(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -178,20 +178,20 @@ class TestAsyncDeployments:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.scripts.deployments.with_raw_response.create(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.deployments.with_raw_response.create(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         deployment = await async_client.workers.scripts.deployments.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[DeploymentGetResponse], deployment, path=["response"])
@@ -199,7 +199,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.scripts.deployments.with_raw_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -211,7 +211,7 @@ class TestAsyncDeployments:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.scripts.deployments.with_streaming_response.get(
-            "this-is_my_script-01",
+            script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -226,12 +226,12 @@ class TestAsyncDeployments:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.scripts.deployments.with_raw_response.get(
-                "this-is_my_script-01",
+                script_name="this-is_my_script-01",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.deployments.with_raw_response.get(
-                "",
+                script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

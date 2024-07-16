@@ -128,10 +128,7 @@ from .direct_upload import (
     DirectUploadResourceWithStreamingResponse,
     AsyncDirectUploadResourceWithStreamingResponse,
 )
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.stream import stream_list_params, stream_create_params
 from .captions.captions import CaptionsResource, AsyncCaptionsResource
 from ...types.stream.video import Video

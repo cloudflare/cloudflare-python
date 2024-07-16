@@ -22,9 +22,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.stream import direct_upload_create_params
 from ...types.stream.allowed_origins import AllowedOrigins
 from ...types.stream.direct_upload_create_response import DirectUploadCreateResponse

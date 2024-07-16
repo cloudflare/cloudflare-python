@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Union, Optional, cast
+from datetime import datetime
 
 import httpx
 
@@ -21,10 +22,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.access import tag_create_params, tag_update_params
 from ....types.zero_trust.access.tag import Tag
 from ....types.zero_trust.access.tag_delete_response import TagDeleteResponse
@@ -46,6 +44,8 @@ class TagsResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
+        created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -73,7 +73,14 @@ class TagsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/access/tags",
-            body=maybe_transform({"name": name}, tag_create_params.TagCreateParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "created_at": created_at,
+                    "updated_at": updated_at,
+                },
+                tag_create_params.TagCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -90,6 +97,8 @@ class TagsResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
+        created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -121,7 +130,14 @@ class TagsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `tag_name` but received {tag_name!r}")
         return self._put(
             f"/accounts/{account_id}/access/tags/{tag_name}",
-            body=maybe_transform({"name": name}, tag_update_params.TagUpdateParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "created_at": created_at,
+                    "updated_at": updated_at,
+                },
+                tag_update_params.TagUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -271,6 +287,8 @@ class AsyncTagsResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
+        created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -298,7 +316,14 @@ class AsyncTagsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/access/tags",
-            body=await async_maybe_transform({"name": name}, tag_create_params.TagCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "created_at": created_at,
+                    "updated_at": updated_at,
+                },
+                tag_create_params.TagCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -315,6 +340,8 @@ class AsyncTagsResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
+        created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -346,7 +373,14 @@ class AsyncTagsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `tag_name` but received {tag_name!r}")
         return await self._put(
             f"/accounts/{account_id}/access/tags/{tag_name}",
-            body=await async_maybe_transform({"name": name}, tag_update_params.TagUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "created_at": created_at,
+                    "updated_at": updated_at,
+                },
+                tag_update_params.TagUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

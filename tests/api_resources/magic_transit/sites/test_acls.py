@@ -23,10 +23,10 @@ class TestACLs:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         acl = client.magic_transit.sites.acls.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            lan_1={"lan_id": "string"},
-            lan_2={"lan_id": "string"},
+            lan_1={"lan_id": "lan_id"},
+            lan_2={"lan_id": "lan_id"},
             name="PIN Pad - Cash Register",
         )
         assert_matches_type(ACL, acl, path=["response"])
@@ -34,17 +34,17 @@ class TestACLs:
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         acl = client.magic_transit.sites.acls.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             lan_1={
-                "lan_id": "string",
-                "lan_name": "string",
+                "lan_id": "lan_id",
+                "lan_name": "lan_name",
                 "ports": [1, 1, 1],
                 "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
             },
             lan_2={
-                "lan_id": "string",
-                "lan_name": "string",
+                "lan_id": "lan_id",
+                "lan_name": "lan_name",
                 "ports": [1, 1, 1],
                 "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
             },
@@ -58,10 +58,10 @@ class TestACLs:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.acls.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            lan_1={"lan_id": "string"},
-            lan_2={"lan_id": "string"},
+            lan_1={"lan_id": "lan_id"},
+            lan_2={"lan_id": "lan_id"},
             name="PIN Pad - Cash Register",
         )
 
@@ -73,10 +73,10 @@ class TestACLs:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.acls.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            lan_1={"lan_id": "string"},
-            lan_2={"lan_id": "string"},
+            lan_1={"lan_id": "lan_id"},
+            lan_2={"lan_id": "lan_id"},
             name="PIN Pad - Cash Register",
         ) as response:
             assert not response.is_closed
@@ -91,26 +91,26 @@ class TestACLs:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.create(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                site_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                lan_1={"lan_id": "string"},
-                lan_2={"lan_id": "string"},
+                lan_1={"lan_id": "lan_id"},
+                lan_2={"lan_id": "lan_id"},
                 name="PIN Pad - Cash Register",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.create(
-                "",
+                site_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                lan_1={"lan_id": "string"},
-                lan_2={"lan_id": "string"},
+                lan_1={"lan_id": "lan_id"},
+                lan_2={"lan_id": "lan_id"},
                 name="PIN Pad - Cash Register",
             )
 
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         acl = client.magic_transit.sites.acls.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -119,20 +119,20 @@ class TestACLs:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         acl = client.magic_transit.sites.acls.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="Allows local traffic between PIN pads and cash register.",
             forward_locally=True,
             lan_1={
-                "lan_id": "string",
-                "lan_name": "string",
+                "lan_id": "lan_id",
+                "lan_name": "lan_name",
                 "ports": [1, 1, 1],
                 "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
             },
             lan_2={
-                "lan_id": "string",
-                "lan_name": "string",
+                "lan_id": "lan_id",
+                "lan_name": "lan_name",
                 "ports": [1, 1, 1],
                 "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
             },
@@ -144,7 +144,7 @@ class TestACLs:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.acls.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -157,7 +157,7 @@ class TestACLs:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.acls.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -173,21 +173,21 @@ class TestACLs:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                acl_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                acl_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.update(
-                "",
+                acl_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -195,7 +195,7 @@ class TestACLs:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         acl = client.magic_transit.sites.acls.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SyncSinglePage[ACL], acl, path=["response"])
@@ -203,7 +203,7 @@ class TestACLs:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.acls.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -215,7 +215,7 @@ class TestACLs:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.acls.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -230,20 +230,20 @@ class TestACLs:
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.list(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                site_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.list(
-                "",
+                site_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         acl = client.magic_transit.sites.acls.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -252,7 +252,7 @@ class TestACLs:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.acls.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -265,7 +265,7 @@ class TestACLs:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.acls.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -281,21 +281,21 @@ class TestACLs:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                acl_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                acl_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.delete(
-                "",
+                acl_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -303,7 +303,7 @@ class TestACLs:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         acl = client.magic_transit.sites.acls.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -312,20 +312,20 @@ class TestACLs:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         acl = client.magic_transit.sites.acls.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="Allows local traffic between PIN pads and cash register.",
             forward_locally=True,
             lan_1={
-                "lan_id": "string",
-                "lan_name": "string",
+                "lan_id": "lan_id",
+                "lan_name": "lan_name",
                 "ports": [1, 1, 1],
                 "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
             },
             lan_2={
-                "lan_id": "string",
-                "lan_name": "string",
+                "lan_id": "lan_id",
+                "lan_name": "lan_name",
                 "ports": [1, 1, 1],
                 "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
             },
@@ -337,7 +337,7 @@ class TestACLs:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.acls.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -350,7 +350,7 @@ class TestACLs:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.acls.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -366,21 +366,21 @@ class TestACLs:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                acl_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                acl_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.edit(
-                "",
+                acl_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -388,7 +388,7 @@ class TestACLs:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         acl = client.magic_transit.sites.acls.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -397,7 +397,7 @@ class TestACLs:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.magic_transit.sites.acls.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -410,7 +410,7 @@ class TestACLs:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.magic_transit.sites.acls.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -426,21 +426,21 @@ class TestACLs:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                acl_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                acl_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             client.magic_transit.sites.acls.with_raw_response.get(
-                "",
+                acl_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -452,10 +452,10 @@ class TestAsyncACLs:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.magic_transit.sites.acls.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            lan_1={"lan_id": "string"},
-            lan_2={"lan_id": "string"},
+            lan_1={"lan_id": "lan_id"},
+            lan_2={"lan_id": "lan_id"},
             name="PIN Pad - Cash Register",
         )
         assert_matches_type(ACL, acl, path=["response"])
@@ -463,17 +463,17 @@ class TestAsyncACLs:
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.magic_transit.sites.acls.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             lan_1={
-                "lan_id": "string",
-                "lan_name": "string",
+                "lan_id": "lan_id",
+                "lan_name": "lan_name",
                 "ports": [1, 1, 1],
                 "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
             },
             lan_2={
-                "lan_id": "string",
-                "lan_name": "string",
+                "lan_id": "lan_id",
+                "lan_name": "lan_name",
                 "ports": [1, 1, 1],
                 "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
             },
@@ -487,10 +487,10 @@ class TestAsyncACLs:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.acls.with_raw_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            lan_1={"lan_id": "string"},
-            lan_2={"lan_id": "string"},
+            lan_1={"lan_id": "lan_id"},
+            lan_2={"lan_id": "lan_id"},
             name="PIN Pad - Cash Register",
         )
 
@@ -502,10 +502,10 @@ class TestAsyncACLs:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.acls.with_streaming_response.create(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            lan_1={"lan_id": "string"},
-            lan_2={"lan_id": "string"},
+            lan_1={"lan_id": "lan_id"},
+            lan_2={"lan_id": "lan_id"},
             name="PIN Pad - Cash Register",
         ) as response:
             assert not response.is_closed
@@ -520,26 +520,26 @@ class TestAsyncACLs:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.create(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                site_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
-                lan_1={"lan_id": "string"},
-                lan_2={"lan_id": "string"},
+                lan_1={"lan_id": "lan_id"},
+                lan_2={"lan_id": "lan_id"},
                 name="PIN Pad - Cash Register",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.create(
-                "",
+                site_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                lan_1={"lan_id": "string"},
-                lan_2={"lan_id": "string"},
+                lan_1={"lan_id": "lan_id"},
+                lan_2={"lan_id": "lan_id"},
                 name="PIN Pad - Cash Register",
             )
 
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.magic_transit.sites.acls.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -548,20 +548,20 @@ class TestAsyncACLs:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.magic_transit.sites.acls.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="Allows local traffic between PIN pads and cash register.",
             forward_locally=True,
             lan_1={
-                "lan_id": "string",
-                "lan_name": "string",
+                "lan_id": "lan_id",
+                "lan_name": "lan_name",
                 "ports": [1, 1, 1],
                 "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
             },
             lan_2={
-                "lan_id": "string",
-                "lan_name": "string",
+                "lan_id": "lan_id",
+                "lan_name": "lan_name",
                 "ports": [1, 1, 1],
                 "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
             },
@@ -573,7 +573,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.acls.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -586,7 +586,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.acls.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -602,21 +602,21 @@ class TestAsyncACLs:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                acl_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                acl_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.update(
-                "",
+                acl_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -624,7 +624,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.magic_transit.sites.acls.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(AsyncSinglePage[ACL], acl, path=["response"])
@@ -632,7 +632,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.acls.with_raw_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -644,7 +644,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.acls.with_streaming_response.list(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -659,20 +659,20 @@ class TestAsyncACLs:
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.list(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                site_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.list(
-                "",
+                site_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.magic_transit.sites.acls.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -681,7 +681,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.acls.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -694,7 +694,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.acls.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -710,21 +710,21 @@ class TestAsyncACLs:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                acl_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                acl_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.delete(
-                "",
+                acl_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -732,7 +732,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.magic_transit.sites.acls.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -741,20 +741,20 @@ class TestAsyncACLs:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.magic_transit.sites.acls.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="Allows local traffic between PIN pads and cash register.",
             forward_locally=True,
             lan_1={
-                "lan_id": "string",
-                "lan_name": "string",
+                "lan_id": "lan_id",
+                "lan_name": "lan_name",
                 "ports": [1, 1, 1],
                 "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
             },
             lan_2={
-                "lan_id": "string",
-                "lan_name": "string",
+                "lan_id": "lan_id",
+                "lan_name": "lan_name",
                 "ports": [1, 1, 1],
                 "subnets": ["192.0.2.1", "192.0.2.1", "192.0.2.1"],
             },
@@ -766,7 +766,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.acls.with_raw_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -779,7 +779,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.acls.with_streaming_response.edit(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -795,21 +795,21 @@ class TestAsyncACLs:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                acl_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                acl_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.edit(
-                "",
+                acl_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
@@ -817,7 +817,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         acl = await async_client.magic_transit.sites.acls.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -826,7 +826,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_transit.sites.acls.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
@@ -839,7 +839,7 @@ class TestAsyncACLs:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_transit.sites.acls.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            acl_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             site_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
@@ -855,21 +855,21 @@ class TestAsyncACLs:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                acl_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                acl_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `acl_id` but received ''"):
             await async_client.magic_transit.sites.acls.with_raw_response.get(
-                "",
+                acl_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 site_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

@@ -26,7 +26,7 @@ class TestOrganizations:
         organization = client.zero_trust.organizations.create(
             auth_domain="test.cloudflareaccess.com",
             name="Widget Corps Internal Applications",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[Organization], organization, path=["response"])
 
@@ -36,7 +36,7 @@ class TestOrganizations:
         organization = client.zero_trust.organizations.create(
             auth_domain="test.cloudflareaccess.com",
             name="Widget Corps Internal Applications",
-            account_id="string",
+            account_id="account_id",
             allow_authenticate_via_warp=True,
             auto_redirect_to_identity=True,
             is_ui_read_only=True,
@@ -60,7 +60,7 @@ class TestOrganizations:
         response = client.zero_trust.organizations.with_raw_response.create(
             auth_domain="test.cloudflareaccess.com",
             name="Widget Corps Internal Applications",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -74,7 +74,7 @@ class TestOrganizations:
         with client.zero_trust.organizations.with_streaming_response.create(
             auth_domain="test.cloudflareaccess.com",
             name="Widget Corps Internal Applications",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -98,14 +98,14 @@ class TestOrganizations:
             client.zero_trust.organizations.with_raw_response.create(
                 auth_domain="test.cloudflareaccess.com",
                 name="Widget Corps Internal Applications",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         organization = client.zero_trust.organizations.update(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[Organization], organization, path=["response"])
 
@@ -113,7 +113,7 @@ class TestOrganizations:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         organization = client.zero_trust.organizations.update(
-            account_id="string",
+            account_id="account_id",
             allow_authenticate_via_warp=True,
             auth_domain="test.cloudflareaccess.com",
             auto_redirect_to_identity=True,
@@ -141,7 +141,7 @@ class TestOrganizations:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.organizations.with_raw_response.update(
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -153,7 +153,7 @@ class TestOrganizations:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.organizations.with_streaming_response.update(
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -173,14 +173,14 @@ class TestOrganizations:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.organizations.with_raw_response.update(
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         organization = client.zero_trust.organizations.list(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[Organization], organization, path=["response"])
 
@@ -188,7 +188,7 @@ class TestOrganizations:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         organization = client.zero_trust.organizations.list(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[Organization], organization, path=["response"])
 
@@ -196,7 +196,7 @@ class TestOrganizations:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.organizations.with_raw_response.list(
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -208,7 +208,7 @@ class TestOrganizations:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.organizations.with_streaming_response.list(
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -228,7 +228,7 @@ class TestOrganizations:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.organizations.with_raw_response.list(
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -236,7 +236,7 @@ class TestOrganizations:
     def test_method_revoke_users(self, client: Cloudflare) -> None:
         organization = client.zero_trust.organizations.revoke_users(
             email="test@example.com",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[OrganizationRevokeUsersResponse], organization, path=["response"])
 
@@ -245,7 +245,7 @@ class TestOrganizations:
     def test_method_revoke_users_with_all_params(self, client: Cloudflare) -> None:
         organization = client.zero_trust.organizations.revoke_users(
             email="test@example.com",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[OrganizationRevokeUsersResponse], organization, path=["response"])
 
@@ -254,7 +254,7 @@ class TestOrganizations:
     def test_raw_response_revoke_users(self, client: Cloudflare) -> None:
         response = client.zero_trust.organizations.with_raw_response.revoke_users(
             email="test@example.com",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -267,7 +267,7 @@ class TestOrganizations:
     def test_streaming_response_revoke_users(self, client: Cloudflare) -> None:
         with client.zero_trust.organizations.with_streaming_response.revoke_users(
             email="test@example.com",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -289,7 +289,7 @@ class TestOrganizations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.organizations.with_raw_response.revoke_users(
                 email="test@example.com",
-                account_id="string",
+                account_id="account_id",
             )
 
 
@@ -302,7 +302,7 @@ class TestAsyncOrganizations:
         organization = await async_client.zero_trust.organizations.create(
             auth_domain="test.cloudflareaccess.com",
             name="Widget Corps Internal Applications",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[Organization], organization, path=["response"])
 
@@ -312,7 +312,7 @@ class TestAsyncOrganizations:
         organization = await async_client.zero_trust.organizations.create(
             auth_domain="test.cloudflareaccess.com",
             name="Widget Corps Internal Applications",
-            account_id="string",
+            account_id="account_id",
             allow_authenticate_via_warp=True,
             auto_redirect_to_identity=True,
             is_ui_read_only=True,
@@ -336,7 +336,7 @@ class TestAsyncOrganizations:
         response = await async_client.zero_trust.organizations.with_raw_response.create(
             auth_domain="test.cloudflareaccess.com",
             name="Widget Corps Internal Applications",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -350,7 +350,7 @@ class TestAsyncOrganizations:
         async with async_client.zero_trust.organizations.with_streaming_response.create(
             auth_domain="test.cloudflareaccess.com",
             name="Widget Corps Internal Applications",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -374,14 +374,14 @@ class TestAsyncOrganizations:
             await async_client.zero_trust.organizations.with_raw_response.create(
                 auth_domain="test.cloudflareaccess.com",
                 name="Widget Corps Internal Applications",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         organization = await async_client.zero_trust.organizations.update(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[Organization], organization, path=["response"])
 
@@ -389,7 +389,7 @@ class TestAsyncOrganizations:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         organization = await async_client.zero_trust.organizations.update(
-            account_id="string",
+            account_id="account_id",
             allow_authenticate_via_warp=True,
             auth_domain="test.cloudflareaccess.com",
             auto_redirect_to_identity=True,
@@ -417,7 +417,7 @@ class TestAsyncOrganizations:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.organizations.with_raw_response.update(
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -429,7 +429,7 @@ class TestAsyncOrganizations:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.organizations.with_streaming_response.update(
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -449,14 +449,14 @@ class TestAsyncOrganizations:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.organizations.with_raw_response.update(
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         organization = await async_client.zero_trust.organizations.list(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[Organization], organization, path=["response"])
 
@@ -464,7 +464,7 @@ class TestAsyncOrganizations:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         organization = await async_client.zero_trust.organizations.list(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[Organization], organization, path=["response"])
 
@@ -472,7 +472,7 @@ class TestAsyncOrganizations:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.organizations.with_raw_response.list(
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -484,7 +484,7 @@ class TestAsyncOrganizations:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.organizations.with_streaming_response.list(
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -504,7 +504,7 @@ class TestAsyncOrganizations:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.organizations.with_raw_response.list(
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -512,7 +512,7 @@ class TestAsyncOrganizations:
     async def test_method_revoke_users(self, async_client: AsyncCloudflare) -> None:
         organization = await async_client.zero_trust.organizations.revoke_users(
             email="test@example.com",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[OrganizationRevokeUsersResponse], organization, path=["response"])
 
@@ -521,7 +521,7 @@ class TestAsyncOrganizations:
     async def test_method_revoke_users_with_all_params(self, async_client: AsyncCloudflare) -> None:
         organization = await async_client.zero_trust.organizations.revoke_users(
             email="test@example.com",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[OrganizationRevokeUsersResponse], organization, path=["response"])
 
@@ -530,7 +530,7 @@ class TestAsyncOrganizations:
     async def test_raw_response_revoke_users(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.organizations.with_raw_response.revoke_users(
             email="test@example.com",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -543,7 +543,7 @@ class TestAsyncOrganizations:
     async def test_streaming_response_revoke_users(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.organizations.with_streaming_response.revoke_users(
             email="test@example.com",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -565,5 +565,5 @@ class TestAsyncOrganizations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.organizations.with_raw_response.revoke_users(
                 email="test@example.com",
-                account_id="string",
+                account_id="account_id",
             )

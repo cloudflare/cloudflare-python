@@ -20,7 +20,7 @@ class TestCatchAlls:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         catch_all = client.email_routing.rules.catch_alls.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{"type": "forward"}, {"type": "forward"}, {"type": "forward"}],
             matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
         )
@@ -29,7 +29,7 @@ class TestCatchAlls:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         catch_all = client.email_routing.rules.catch_alls.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
                     "type": "forward",
@@ -65,7 +65,7 @@ class TestCatchAlls:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.email_routing.rules.catch_alls.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{"type": "forward"}, {"type": "forward"}, {"type": "forward"}],
             matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
         )
@@ -78,7 +78,7 @@ class TestCatchAlls:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.email_routing.rules.catch_alls.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{"type": "forward"}, {"type": "forward"}, {"type": "forward"}],
             matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
         ) as response:
@@ -94,7 +94,7 @@ class TestCatchAlls:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             client.email_routing.rules.catch_alls.with_raw_response.update(
-                "",
+                zone_identifier="",
                 actions=[{"type": "forward"}, {"type": "forward"}, {"type": "forward"}],
                 matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
             )
@@ -144,7 +144,7 @@ class TestAsyncCatchAlls:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         catch_all = await async_client.email_routing.rules.catch_alls.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{"type": "forward"}, {"type": "forward"}, {"type": "forward"}],
             matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
         )
@@ -153,7 +153,7 @@ class TestAsyncCatchAlls:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         catch_all = await async_client.email_routing.rules.catch_alls.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[
                 {
                     "type": "forward",
@@ -189,7 +189,7 @@ class TestAsyncCatchAlls:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.email_routing.rules.catch_alls.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{"type": "forward"}, {"type": "forward"}, {"type": "forward"}],
             matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
         )
@@ -202,7 +202,7 @@ class TestAsyncCatchAlls:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.email_routing.rules.catch_alls.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             actions=[{"type": "forward"}, {"type": "forward"}, {"type": "forward"}],
             matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
         ) as response:
@@ -218,7 +218,7 @@ class TestAsyncCatchAlls:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             await async_client.email_routing.rules.catch_alls.with_raw_response.update(
-                "",
+                zone_identifier="",
                 actions=[{"type": "forward"}, {"type": "forward"}, {"type": "forward"}],
                 matchers=[{"type": "all"}, {"type": "all"}, {"type": "all"}],
             )

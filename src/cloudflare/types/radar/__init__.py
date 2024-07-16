@@ -26,14 +26,12 @@ from .traffic_anomaly_get_params import TrafficAnomalyGetParams as TrafficAnomal
 from .netflow_timeseries_response import NetflowTimeseriesResponse as NetflowTimeseriesResponse
 from .traffic_anomaly_get_response import TrafficAnomalyGetResponse as TrafficAnomalyGetResponse
 from .ranking_timeseries_groups_params import RankingTimeseriesGroupsParams as RankingTimeseriesGroupsParams
+from .tcp_resets_timeout_summary_params import TCPResetsTimeoutSummaryParams as TCPResetsTimeoutSummaryParams
 from .ranking_timeseries_groups_response import RankingTimeseriesGroupsResponse as RankingTimeseriesGroupsResponse
-from .connection_tampering_summary_params import ConnectionTamperingSummaryParams as ConnectionTamperingSummaryParams
-from .connection_tampering_summary_response import (
-    ConnectionTamperingSummaryResponse as ConnectionTamperingSummaryResponse,
+from .tcp_resets_timeout_summary_response import TCPResetsTimeoutSummaryResponse as TCPResetsTimeoutSummaryResponse
+from .tcp_resets_timeout_timeseries_groups_params import (
+    TCPResetsTimeoutTimeseriesGroupsParams as TCPResetsTimeoutTimeseriesGroupsParams,
 )
-from .connection_tampering_timeseries_groups_params import (
-    ConnectionTamperingTimeseriesGroupsParams as ConnectionTamperingTimeseriesGroupsParams,
-)
-from .connection_tampering_timeseries_groups_response import (
-    ConnectionTamperingTimeseriesGroupsResponse as ConnectionTamperingTimeseriesGroupsResponse,
+from .tcp_resets_timeout_timeseries_groups_response import (
+    TCPResetsTimeoutTimeseriesGroupsResponse as TCPResetsTimeoutTimeseriesGroupsResponse,
 )

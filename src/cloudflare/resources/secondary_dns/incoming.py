@@ -20,9 +20,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.secondary_dns import incoming_create_params, incoming_update_params
 from ...types.secondary_dns.incoming_get_response import IncomingGetResponse
 from ...types.secondary_dns.incoming_create_response import IncomingCreateResponse

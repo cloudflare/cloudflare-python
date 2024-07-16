@@ -22,7 +22,7 @@ class TestSnippets:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         snippet = client.snippets.update(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Snippet], snippet, path=["response"])
@@ -31,7 +31,7 @@ class TestSnippets:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         snippet = client.snippets.update(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             files="export { async function fetch(request, env) {return new Response('some_response') } }",
             metadata={"main_module": "main.js"},
@@ -42,7 +42,7 @@ class TestSnippets:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.snippets.with_raw_response.update(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -55,7 +55,7 @@ class TestSnippets:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.snippets.with_streaming_response.update(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -71,13 +71,13 @@ class TestSnippets:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.snippets.with_raw_response.update(
-                "snippet_name_01",
+                snippet_name="snippet_name_01",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `snippet_name` but received ''"):
             client.snippets.with_raw_response.update(
-                "",
+                snippet_name="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -122,7 +122,7 @@ class TestSnippets:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         snippet = client.snippets.delete(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SnippetDeleteResponse, snippet, path=["response"])
@@ -130,7 +130,7 @@ class TestSnippets:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.snippets.with_raw_response.delete(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -142,7 +142,7 @@ class TestSnippets:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.snippets.with_streaming_response.delete(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -157,20 +157,20 @@ class TestSnippets:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.snippets.with_raw_response.delete(
-                "snippet_name_01",
+                snippet_name="snippet_name_01",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `snippet_name` but received ''"):
             client.snippets.with_raw_response.delete(
-                "",
+                snippet_name="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         snippet = client.snippets.get(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Snippet], snippet, path=["response"])
@@ -178,7 +178,7 @@ class TestSnippets:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.snippets.with_raw_response.get(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -190,7 +190,7 @@ class TestSnippets:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.snippets.with_streaming_response.get(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -205,13 +205,13 @@ class TestSnippets:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.snippets.with_raw_response.get(
-                "snippet_name_01",
+                snippet_name="snippet_name_01",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `snippet_name` but received ''"):
             client.snippets.with_raw_response.get(
-                "",
+                snippet_name="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -223,7 +223,7 @@ class TestAsyncSnippets:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         snippet = await async_client.snippets.update(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Snippet], snippet, path=["response"])
@@ -232,7 +232,7 @@ class TestAsyncSnippets:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         snippet = await async_client.snippets.update(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             files="export { async function fetch(request, env) {return new Response('some_response') } }",
             metadata={"main_module": "main.js"},
@@ -243,7 +243,7 @@ class TestAsyncSnippets:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.snippets.with_raw_response.update(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -256,7 +256,7 @@ class TestAsyncSnippets:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.snippets.with_streaming_response.update(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -272,13 +272,13 @@ class TestAsyncSnippets:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.snippets.with_raw_response.update(
-                "snippet_name_01",
+                snippet_name="snippet_name_01",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `snippet_name` but received ''"):
             await async_client.snippets.with_raw_response.update(
-                "",
+                snippet_name="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -323,7 +323,7 @@ class TestAsyncSnippets:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         snippet = await async_client.snippets.delete(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(SnippetDeleteResponse, snippet, path=["response"])
@@ -331,7 +331,7 @@ class TestAsyncSnippets:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.snippets.with_raw_response.delete(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -343,7 +343,7 @@ class TestAsyncSnippets:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.snippets.with_streaming_response.delete(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -358,20 +358,20 @@ class TestAsyncSnippets:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.snippets.with_raw_response.delete(
-                "snippet_name_01",
+                snippet_name="snippet_name_01",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `snippet_name` but received ''"):
             await async_client.snippets.with_raw_response.delete(
-                "",
+                snippet_name="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         snippet = await async_client.snippets.get(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Snippet], snippet, path=["response"])
@@ -379,7 +379,7 @@ class TestAsyncSnippets:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.snippets.with_raw_response.get(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -391,7 +391,7 @@ class TestAsyncSnippets:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.snippets.with_streaming_response.get(
-            "snippet_name_01",
+            snippet_name="snippet_name_01",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -406,12 +406,12 @@ class TestAsyncSnippets:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.snippets.with_raw_response.get(
-                "snippet_name_01",
+                snippet_name="snippet_name_01",
                 zone_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `snippet_name` but received ''"):
             await async_client.snippets.with_raw_response.get(
-                "",
+                snippet_name="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

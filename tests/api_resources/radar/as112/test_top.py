@@ -26,14 +26,14 @@ class TestTop:
     @parametrize
     def test_method_dnssec(self, client: Cloudflare) -> None:
         top = client.radar.as112.top.dnssec(
-            "SUPPORTED",
+            dnssec="SUPPORTED",
         )
         assert_matches_type(TopDNSSECResponse, top, path=["response"])
 
     @parametrize
     def test_method_dnssec_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.as112.top.dnssec(
-            "SUPPORTED",
+            dnssec="SUPPORTED",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -41,7 +41,7 @@ class TestTop:
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -57,7 +57,7 @@ class TestTop:
     @parametrize
     def test_raw_response_dnssec(self, client: Cloudflare) -> None:
         response = client.radar.as112.top.with_raw_response.dnssec(
-            "SUPPORTED",
+            dnssec="SUPPORTED",
         )
 
         assert response.is_closed is True
@@ -68,7 +68,7 @@ class TestTop:
     @parametrize
     def test_streaming_response_dnssec(self, client: Cloudflare) -> None:
         with client.radar.as112.top.with_streaming_response.dnssec(
-            "SUPPORTED",
+            dnssec="SUPPORTED",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -81,14 +81,14 @@ class TestTop:
     @parametrize
     def test_method_edns(self, client: Cloudflare) -> None:
         top = client.radar.as112.top.edns(
-            "SUPPORTED",
+            edns="SUPPORTED",
         )
         assert_matches_type(TopEdnsResponse, top, path=["response"])
 
     @parametrize
     def test_method_edns_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.as112.top.edns(
-            "SUPPORTED",
+            edns="SUPPORTED",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -96,7 +96,7 @@ class TestTop:
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -112,7 +112,7 @@ class TestTop:
     @parametrize
     def test_raw_response_edns(self, client: Cloudflare) -> None:
         response = client.radar.as112.top.with_raw_response.edns(
-            "SUPPORTED",
+            edns="SUPPORTED",
         )
 
         assert response.is_closed is True
@@ -123,7 +123,7 @@ class TestTop:
     @parametrize
     def test_streaming_response_edns(self, client: Cloudflare) -> None:
         with client.radar.as112.top.with_streaming_response.edns(
-            "SUPPORTED",
+            edns="SUPPORTED",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -136,14 +136,14 @@ class TestTop:
     @parametrize
     def test_method_ip_version(self, client: Cloudflare) -> None:
         top = client.radar.as112.top.ip_version(
-            "IPv4",
+            ip_version="IPv4",
         )
         assert_matches_type(TopIPVersionResponse, top, path=["response"])
 
     @parametrize
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
         top = client.radar.as112.top.ip_version(
-            "IPv4",
+            ip_version="IPv4",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -151,7 +151,7 @@ class TestTop:
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -167,7 +167,7 @@ class TestTop:
     @parametrize
     def test_raw_response_ip_version(self, client: Cloudflare) -> None:
         response = client.radar.as112.top.with_raw_response.ip_version(
-            "IPv4",
+            ip_version="IPv4",
         )
 
         assert response.is_closed is True
@@ -178,7 +178,7 @@ class TestTop:
     @parametrize
     def test_streaming_response_ip_version(self, client: Cloudflare) -> None:
         with client.radar.as112.top.with_streaming_response.ip_version(
-            "IPv4",
+            ip_version="IPv4",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -203,7 +203,7 @@ class TestTop:
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -243,14 +243,14 @@ class TestAsyncTop:
     @parametrize
     async def test_method_dnssec(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.as112.top.dnssec(
-            "SUPPORTED",
+            dnssec="SUPPORTED",
         )
         assert_matches_type(TopDNSSECResponse, top, path=["response"])
 
     @parametrize
     async def test_method_dnssec_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.as112.top.dnssec(
-            "SUPPORTED",
+            dnssec="SUPPORTED",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -258,7 +258,7 @@ class TestAsyncTop:
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -274,7 +274,7 @@ class TestAsyncTop:
     @parametrize
     async def test_raw_response_dnssec(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.as112.top.with_raw_response.dnssec(
-            "SUPPORTED",
+            dnssec="SUPPORTED",
         )
 
         assert response.is_closed is True
@@ -285,7 +285,7 @@ class TestAsyncTop:
     @parametrize
     async def test_streaming_response_dnssec(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.as112.top.with_streaming_response.dnssec(
-            "SUPPORTED",
+            dnssec="SUPPORTED",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -298,14 +298,14 @@ class TestAsyncTop:
     @parametrize
     async def test_method_edns(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.as112.top.edns(
-            "SUPPORTED",
+            edns="SUPPORTED",
         )
         assert_matches_type(TopEdnsResponse, top, path=["response"])
 
     @parametrize
     async def test_method_edns_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.as112.top.edns(
-            "SUPPORTED",
+            edns="SUPPORTED",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -313,7 +313,7 @@ class TestAsyncTop:
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -329,7 +329,7 @@ class TestAsyncTop:
     @parametrize
     async def test_raw_response_edns(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.as112.top.with_raw_response.edns(
-            "SUPPORTED",
+            edns="SUPPORTED",
         )
 
         assert response.is_closed is True
@@ -340,7 +340,7 @@ class TestAsyncTop:
     @parametrize
     async def test_streaming_response_edns(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.as112.top.with_streaming_response.edns(
-            "SUPPORTED",
+            edns="SUPPORTED",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -353,14 +353,14 @@ class TestAsyncTop:
     @parametrize
     async def test_method_ip_version(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.as112.top.ip_version(
-            "IPv4",
+            ip_version="IPv4",
         )
         assert_matches_type(TopIPVersionResponse, top, path=["response"])
 
     @parametrize
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         top = await async_client.radar.as112.top.ip_version(
-            "IPv4",
+            ip_version="IPv4",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -368,7 +368,7 @@ class TestAsyncTop:
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -384,7 +384,7 @@ class TestAsyncTop:
     @parametrize
     async def test_raw_response_ip_version(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.as112.top.with_raw_response.ip_version(
-            "IPv4",
+            ip_version="IPv4",
         )
 
         assert response.is_closed is True
@@ -395,7 +395,7 @@ class TestAsyncTop:
     @parametrize
     async def test_streaming_response_ip_version(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.as112.top.with_streaming_response.ip_version(
-            "IPv4",
+            ip_version="IPv4",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -420,7 +420,7 @@ class TestAsyncTop:
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),

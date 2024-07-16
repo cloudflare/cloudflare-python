@@ -22,10 +22,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.logpush import job_create_params, job_update_params
 from ...types.logpush.logpush_job import LogpushJob
 from ...types.logpush.output_options_param import OutputOptionsParam

@@ -210,7 +210,7 @@ class TestPCAPs:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         pcap = client.pcaps.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PCAPGetResponse, pcap, path=["response"])
@@ -218,7 +218,7 @@ class TestPCAPs:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.pcaps.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -230,7 +230,7 @@ class TestPCAPs:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.pcaps.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -245,13 +245,13 @@ class TestPCAPs:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.pcaps.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pcap_id` but received ''"):
             client.pcaps.with_raw_response.get(
-                "",
+                pcap_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -451,7 +451,7 @@ class TestAsyncPCAPs:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         pcap = await async_client.pcaps.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(PCAPGetResponse, pcap, path=["response"])
@@ -459,7 +459,7 @@ class TestAsyncPCAPs:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.pcaps.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -471,7 +471,7 @@ class TestAsyncPCAPs:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.pcaps.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -486,12 +486,12 @@ class TestAsyncPCAPs:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.pcaps.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pcap_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `pcap_id` but received ''"):
             await async_client.pcaps.with_raw_response.get(
-                "",
+                pcap_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

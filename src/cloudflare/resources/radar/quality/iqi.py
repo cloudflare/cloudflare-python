@@ -22,9 +22,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.radar.quality import iqi_summary_params, iqi_timeseries_groups_params
 from ....types.radar.quality.iqi_summary_response import IQISummaryResponse
 from ....types.radar.quality.iqi_timeseries_groups_response import IQITimeseriesGroupsResponse
@@ -48,26 +46,7 @@ class IQIResource(SyncAPIResource):
         asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
-            Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
@@ -152,26 +131,7 @@ class IQIResource(SyncAPIResource):
         asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
-            Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         interpolation: bool | NotGiven = NOT_GIVEN,
@@ -274,26 +234,7 @@ class AsyncIQIResource(AsyncAPIResource):
         asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
-            Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
@@ -378,26 +319,7 @@ class AsyncIQIResource(AsyncAPIResource):
         asn: List[str] | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
-            Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         interpolation: bool | NotGiven = NOT_GIVEN,

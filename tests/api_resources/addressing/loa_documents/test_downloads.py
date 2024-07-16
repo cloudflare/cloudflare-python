@@ -33,7 +33,7 @@ class TestDownloads:
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/addressing/loa_documents/d933b1530bc56c9953cf8ce166da8004/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         download = client.addressing.loa_documents.downloads.get(
-            "d933b1530bc56c9953cf8ce166da8004",
+            loa_document_id="d933b1530bc56c9953cf8ce166da8004",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert download.is_closed
@@ -52,7 +52,7 @@ class TestDownloads:
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         download = client.addressing.loa_documents.downloads.with_raw_response.get(
-            "d933b1530bc56c9953cf8ce166da8004",
+            loa_document_id="d933b1530bc56c9953cf8ce166da8004",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -71,7 +71,7 @@ class TestDownloads:
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/addressing/loa_documents/d933b1530bc56c9953cf8ce166da8004/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         with client.addressing.loa_documents.downloads.with_streaming_response.get(
-            "d933b1530bc56c9953cf8ce166da8004",
+            loa_document_id="d933b1530bc56c9953cf8ce166da8004",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as download:
             assert not download.is_closed
@@ -91,13 +91,13 @@ class TestDownloads:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.addressing.loa_documents.downloads.with_raw_response.get(
-                "d933b1530bc56c9953cf8ce166da8004",
+                loa_document_id="d933b1530bc56c9953cf8ce166da8004",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `loa_document_id` but received ''"):
             client.addressing.loa_documents.downloads.with_raw_response.get(
-                "",
+                loa_document_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -115,7 +115,7 @@ class TestAsyncDownloads:
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/addressing/loa_documents/d933b1530bc56c9953cf8ce166da8004/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         download = await async_client.addressing.loa_documents.downloads.get(
-            "d933b1530bc56c9953cf8ce166da8004",
+            loa_document_id="d933b1530bc56c9953cf8ce166da8004",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert download.is_closed
@@ -134,7 +134,7 @@ class TestAsyncDownloads:
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         download = await async_client.addressing.loa_documents.downloads.with_raw_response.get(
-            "d933b1530bc56c9953cf8ce166da8004",
+            loa_document_id="d933b1530bc56c9953cf8ce166da8004",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -153,7 +153,7 @@ class TestAsyncDownloads:
             "/accounts/023e105f4ecef8ad9ca31a8372d0c353/addressing/loa_documents/d933b1530bc56c9953cf8ce166da8004/download"
         ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         async with async_client.addressing.loa_documents.downloads.with_streaming_response.get(
-            "d933b1530bc56c9953cf8ce166da8004",
+            loa_document_id="d933b1530bc56c9953cf8ce166da8004",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as download:
             assert not download.is_closed
@@ -173,12 +173,12 @@ class TestAsyncDownloads:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.addressing.loa_documents.downloads.with_raw_response.get(
-                "d933b1530bc56c9953cf8ce166da8004",
+                loa_document_id="d933b1530bc56c9953cf8ce166da8004",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `loa_document_id` but received ''"):
             await async_client.addressing.loa_documents.downloads.with_raw_response.get(
-                "",
+                loa_document_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

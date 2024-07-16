@@ -21,9 +21,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.intel import domain_history_get_params
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.intel.domain_history_get_response import DomainHistoryGetResponse
 
 __all__ = ["DomainHistoryResource", "AsyncDomainHistoryResource"]

@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Union, Optional, cast
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
@@ -22,10 +23,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.access import custom_page_create_params, custom_page_update_params
 from ....types.zero_trust.access.custom_page import CustomPage
 from ....types.zero_trust.access.custom_page_without_html import CustomPageWithoutHTML
@@ -51,6 +49,9 @@ class CustomPagesResource(SyncAPIResource):
         name: str,
         type: Literal["identity_denied", "forbidden"],
         app_count: int | NotGiven = NOT_GIVEN,
+        created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        uid: str | NotGiven = NOT_GIVEN,
+        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -72,6 +73,8 @@ class CustomPagesResource(SyncAPIResource):
 
           app_count: Number of apps the custom page is assigned to.
 
+          uid: UUID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -90,6 +93,9 @@ class CustomPagesResource(SyncAPIResource):
                     "name": name,
                     "type": type,
                     "app_count": app_count,
+                    "created_at": created_at,
+                    "uid": uid,
+                    "updated_at": updated_at,
                 },
                 custom_page_create_params.CustomPageCreateParams,
             ),
@@ -112,6 +118,9 @@ class CustomPagesResource(SyncAPIResource):
         name: str,
         type: Literal["identity_denied", "forbidden"],
         app_count: int | NotGiven = NOT_GIVEN,
+        created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        uid: str | NotGiven = NOT_GIVEN,
+        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -135,6 +144,8 @@ class CustomPagesResource(SyncAPIResource):
 
           app_count: Number of apps the custom page is assigned to.
 
+          uid: UUID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -155,6 +166,9 @@ class CustomPagesResource(SyncAPIResource):
                     "name": name,
                     "type": type,
                     "app_count": app_count,
+                    "created_at": created_at,
+                    "uid": uid,
+                    "updated_at": updated_at,
                 },
                 custom_page_update_params.CustomPageUpdateParams,
             ),
@@ -310,6 +324,9 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         name: str,
         type: Literal["identity_denied", "forbidden"],
         app_count: int | NotGiven = NOT_GIVEN,
+        created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        uid: str | NotGiven = NOT_GIVEN,
+        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -331,6 +348,8 @@ class AsyncCustomPagesResource(AsyncAPIResource):
 
           app_count: Number of apps the custom page is assigned to.
 
+          uid: UUID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -349,6 +368,9 @@ class AsyncCustomPagesResource(AsyncAPIResource):
                     "name": name,
                     "type": type,
                     "app_count": app_count,
+                    "created_at": created_at,
+                    "uid": uid,
+                    "updated_at": updated_at,
                 },
                 custom_page_create_params.CustomPageCreateParams,
             ),
@@ -371,6 +393,9 @@ class AsyncCustomPagesResource(AsyncAPIResource):
         name: str,
         type: Literal["identity_denied", "forbidden"],
         app_count: int | NotGiven = NOT_GIVEN,
+        created_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        uid: str | NotGiven = NOT_GIVEN,
+        updated_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -394,6 +419,8 @@ class AsyncCustomPagesResource(AsyncAPIResource):
 
           app_count: Number of apps the custom page is assigned to.
 
+          uid: UUID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -414,6 +441,9 @@ class AsyncCustomPagesResource(AsyncAPIResource):
                     "name": name,
                     "type": type,
                     "app_count": app_count,
+                    "created_at": created_at,
+                    "uid": uid,
+                    "updated_at": updated_at,
                 },
                 custom_page_update_params.CustomPageUpdateParams,
             ),

@@ -47,10 +47,7 @@ from .subscriptions import (
     SubscriptionsResourceWithStreamingResponse,
     AsyncSubscriptionsResourceWithStreamingResponse,
 )
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from .activation_check import (
     ActivationCheckResource,
     AsyncActivationCheckResource,
@@ -59,7 +56,6 @@ from .activation_check import (
     ActivationCheckResourceWithStreamingResponse,
     AsyncActivationCheckResourceWithStreamingResponse,
 )
-from .settings.settings import SettingsResource, AsyncSettingsResource
 from ...types.zones.type import Type as ZonesType
 from ...types.zones.zone import Zone
 from .custom_nameservers import (

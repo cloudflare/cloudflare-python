@@ -31,9 +31,7 @@ from ...._response import (
     async_to_custom_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.workers.script import Script
 from ....types.workers.scripts import content_update_params
 from ....types.workers.worker_metadata_param import WorkerMetadataParam
@@ -111,11 +109,10 @@ class ContentResource(SyncAPIResource):
             }
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["<any part name>", "<array>"]])
-        if files:
-            # It should be noted that the actual Content-Type header that will be
-            # sent to the server will contain a `boundary` parameter, e.g.
-            # multipart/form-data; boundary=---abc--
-            extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
             f"/accounts/{account_id}/workers/scripts/{script_name}/content",
             body=maybe_transform(body, content_update_params.ContentUpdateParams),
@@ -242,11 +239,10 @@ class AsyncContentResource(AsyncAPIResource):
             }
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["<any part name>", "<array>"]])
-        if files:
-            # It should be noted that the actual Content-Type header that will be
-            # sent to the server will contain a `boundary` parameter, e.g.
-            # multipart/form-data; boundary=---abc--
-            extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
             f"/accounts/{account_id}/workers/scripts/{script_name}/content",
             body=await async_maybe_transform(body, content_update_params.ContentUpdateParams),

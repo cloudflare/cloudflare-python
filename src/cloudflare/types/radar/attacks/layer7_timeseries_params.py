@@ -29,7 +29,7 @@ class Layer7TimeseriesParams(TypedDict, total=False):
     attack: List[
         Literal["DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"]
     ]
-    """Array of L7 attack types."""
+    """This field is deprecated, please use the new `mitigationProduct`."""
 
     continent: List[str]
     """Array of comma separated list of continents (alpha-2 continent codes).
@@ -41,28 +41,7 @@ class Layer7TimeseriesParams(TypedDict, total=False):
     date_end: Annotated[List[Union[str, datetime]], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
 
-    date_range: Annotated[
-        List[
-            Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
-            ]
-        ],
-        PropertyInfo(alias="dateRange"),
-    ]
+    date_range: Annotated[List[str], PropertyInfo(alias="dateRange")]
     """
     For example, use `7d` and `7dControl` to compare this week with the previous
     week. Use this parameter or set specific start and end dates (`dateStart` and
@@ -75,12 +54,83 @@ class Layer7TimeseriesParams(TypedDict, total=False):
     format: Literal["JSON", "CSV"]
     """Format results are returned in."""
 
+    http_method: Annotated[
+        List[
+            Literal[
+                "GET",
+                "POST",
+                "DELETE",
+                "PUT",
+                "HEAD",
+                "PURGE",
+                "OPTIONS",
+                "PROPFIND",
+                "MKCOL",
+                "PATCH",
+                "ACL",
+                "BCOPY",
+                "BDELETE",
+                "BMOVE",
+                "BPROPFIND",
+                "BPROPPATCH",
+                "CHECKIN",
+                "CHECKOUT",
+                "CONNECT",
+                "COPY",
+                "LABEL",
+                "LOCK",
+                "MERGE",
+                "MKACTIVITY",
+                "MKWORKSPACE",
+                "MOVE",
+                "NOTIFY",
+                "ORDERPATCH",
+                "POLL",
+                "PROPPATCH",
+                "REPORT",
+                "SEARCH",
+                "SUBSCRIBE",
+                "TRACE",
+                "UNCHECKOUT",
+                "UNLOCK",
+                "UNSUBSCRIBE",
+                "UPDATE",
+                "VERSIONCONTROL",
+                "BASELINECONTROL",
+                "XMSENUMATTS",
+                "RPC_OUT_DATA",
+                "RPC_IN_DATA",
+                "JSON",
+                "COOK",
+                "TRACK",
+            ]
+        ],
+        PropertyInfo(alias="httpMethod"),
+    ]
+    """Filter for http method."""
+
+    http_version: Annotated[List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]], PropertyInfo(alias="httpVersion")]
+    """Filter for http version."""
+
+    ip_version: Annotated[List[Literal["IPv4", "IPv6"]], PropertyInfo(alias="ipVersion")]
+    """Filter for ip version."""
+
     location: List[str]
     """Array of comma separated list of locations (alpha-2 country codes).
 
     Start with `-` to exclude from results. For example, `-US,PT` excludes results
     from the US, but includes results from PT.
     """
+
+    mitigation_product: Annotated[
+        List[
+            Literal[
+                "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
+            ]
+        ],
+        PropertyInfo(alias="mitigationProduct"),
+    ]
+    """Array of L7 mitigation products."""
 
     name: List[str]
     """Array of names that will be used to name the series in responses."""

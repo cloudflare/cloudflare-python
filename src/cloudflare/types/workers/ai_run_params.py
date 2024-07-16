@@ -2,20 +2,24 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Dict, List, Union, Iterable
 from typing_extensions import Required, TypedDict
 
 __all__ = [
     "AIRunParams",
     "TextClassification",
     "TextToImage",
-    "SentenceSimilarity",
     "TextEmbeddings",
-    "SpeechRecognition",
+    "AutomaticSpeechRecognition",
     "ImageClassification",
     "ObjectDetection",
-    "TextGeneration",
-    "TextGenerationMessage",
+    "Variant6",
+    "Variant7",
+    "Variant7Message",
+    "Variant7Tool",
+    "Variant7ToolFunction",
+    "Variant7ToolFunctionParameters",
+    "Variant7ToolFunctionParametersProperties",
     "Translation",
     "Summarization",
     "ImageToText",
@@ -36,21 +40,27 @@ class TextToImage(TypedDict, total=False):
 
     guidance: float
 
+    height: int
+
     image: Iterable[float]
+
+    image_b64: str
+
+    lora_weights: Iterable[float]
+
+    loras: List[str]
 
     mask: Iterable[float]
 
+    negative_prompt: str
+
     num_steps: int
+
+    seed: int
 
     strength: float
 
-
-class SentenceSimilarity(TypedDict, total=False):
-    account_id: Required[str]
-
-    sentences: Required[List[str]]
-
-    source: Required[str]
+    width: int
 
 
 class TextEmbeddings(TypedDict, total=False):
@@ -59,7 +69,7 @@ class TextEmbeddings(TypedDict, total=False):
     text: Required[Union[str, List[str]]]
 
 
-class SpeechRecognition(TypedDict, total=False):
+class AutomaticSpeechRecognition(TypedDict, total=False):
     account_id: Required[str]
 
     audio: Required[Iterable[float]]
@@ -77,26 +87,92 @@ class ObjectDetection(TypedDict, total=False):
     image: Iterable[float]
 
 
-class TextGeneration(TypedDict, total=False):
+class Variant6(TypedDict, total=False):
     account_id: Required[str]
+
+    prompt: Required[str]
+
+    frequency_penalty: float
 
     lora: str
 
     max_tokens: int
 
-    messages: Iterable[TextGenerationMessage]
-
-    prompt: str
+    presence_penalty: float
 
     raw: bool
 
+    repetition_penalty: float
+
+    seed: int
+
     stream: bool
 
+    temperature: float
 
-class TextGenerationMessage(TypedDict, total=False):
+    top_k: int
+
+    top_p: float
+
+
+class Variant7(TypedDict, total=False):
+    account_id: Required[str]
+
+    messages: Required[Iterable[Variant7Message]]
+
+    frequency_penalty: float
+
+    max_tokens: int
+
+    presence_penalty: float
+
+    repetition_penalty: float
+
+    seed: int
+
+    stream: bool
+
+    temperature: float
+
+    tools: Iterable[Variant7Tool]
+
+    top_k: int
+
+    top_p: float
+
+
+class Variant7Message(TypedDict, total=False):
     content: Required[str]
 
     role: Required[str]
+
+
+class Variant7ToolFunctionParametersProperties(TypedDict, total=False):
+    description: str
+
+    type: str
+
+
+class Variant7ToolFunctionParameters(TypedDict, total=False):
+    properties: Dict[str, Variant7ToolFunctionParametersProperties]
+
+    required: List[str]
+
+    type: str
+
+
+class Variant7ToolFunction(TypedDict, total=False):
+    description: str
+
+    name: str
+
+    parameters: Variant7ToolFunctionParameters
+
+
+class Variant7Tool(TypedDict, total=False):
+    function: Variant7ToolFunction
+
+    type: str
 
 
 class Translation(TypedDict, total=False):
@@ -142,12 +218,12 @@ class ImageToTextMessage(TypedDict, total=False):
 AIRunParams = Union[
     TextClassification,
     TextToImage,
-    SentenceSimilarity,
     TextEmbeddings,
-    SpeechRecognition,
+    AutomaticSpeechRecognition,
     ImageClassification,
     ObjectDetection,
-    TextGeneration,
+    Variant6,
+    Variant7,
     Translation,
     Summarization,
     ImageToText,

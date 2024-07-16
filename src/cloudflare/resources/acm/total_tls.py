@@ -21,9 +21,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.acm import CertificateAuthority, total_tls_create_params
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.acm.certificate_authority import CertificateAuthority
 from ...types.acm.total_tls_get_response import TotalTLSGetResponse
 from ...types.acm.total_tls_create_response import TotalTLSCreateResponse

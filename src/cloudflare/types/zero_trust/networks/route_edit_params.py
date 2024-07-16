@@ -17,5 +17,8 @@ class RouteEditParams(TypedDict, total=False):
     network: str
     """The private IPv4 or IPv6 range connected by the route, in CIDR notation."""
 
+    tunnel_id: str
+    """UUID of the tunnel."""
+
     virtual_network_id: str
     """UUID of the virtual network."""

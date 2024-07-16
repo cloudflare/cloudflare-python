@@ -20,7 +20,7 @@ class TestConfiguration:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         configuration = client.event_notifications.r2.configuration.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
@@ -28,7 +28,7 @@ class TestConfiguration:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.event_notifications.r2.configuration.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -40,7 +40,7 @@ class TestConfiguration:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.event_notifications.r2.configuration.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -55,13 +55,13 @@ class TestConfiguration:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.event_notifications.r2.configuration.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                bucket_name="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
             client.event_notifications.r2.configuration.with_raw_response.get(
-                "",
+                bucket_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -72,7 +72,7 @@ class TestAsyncConfiguration:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         configuration = await async_client.event_notifications.r2.configuration.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(ConfigurationGetResponse, configuration, path=["response"])
@@ -80,7 +80,7 @@ class TestAsyncConfiguration:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.event_notifications.r2.configuration.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -92,7 +92,7 @@ class TestAsyncConfiguration:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.event_notifications.r2.configuration.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            bucket_name="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -107,12 +107,12 @@ class TestAsyncConfiguration:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.event_notifications.r2.configuration.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                bucket_name="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `bucket_name` but received ''"):
             await async_client.event_notifications.r2.configuration.with_raw_response.get(
-                "",
+                bucket_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

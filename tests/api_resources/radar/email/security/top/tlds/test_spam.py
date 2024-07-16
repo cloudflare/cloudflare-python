@@ -21,21 +21,21 @@ class TestSpam:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         spam = client.radar.email.security.top.tlds.spam.get(
-            "SPAM",
+            spam="SPAM",
         )
         assert_matches_type(SpamGetResponse, spam, path=["response"])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         spam = client.radar.email.security.top.tlds.spam.get(
-            "SPAM",
+            spam="SPAM",
             arc=["PASS", "NONE", "FAIL"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -55,7 +55,7 @@ class TestSpam:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.radar.email.security.top.tlds.spam.with_raw_response.get(
-            "SPAM",
+            spam="SPAM",
         )
 
         assert response.is_closed is True
@@ -66,7 +66,7 @@ class TestSpam:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.radar.email.security.top.tlds.spam.with_streaming_response.get(
-            "SPAM",
+            spam="SPAM",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -83,21 +83,21 @@ class TestAsyncSpam:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         spam = await async_client.radar.email.security.top.tlds.spam.get(
-            "SPAM",
+            spam="SPAM",
         )
         assert_matches_type(SpamGetResponse, spam, path=["response"])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         spam = await async_client.radar.email.security.top.tlds.spam.get(
-            "SPAM",
+            spam="SPAM",
             arc=["PASS", "NONE", "FAIL"],
             date_end=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -117,7 +117,7 @@ class TestAsyncSpam:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.email.security.top.tlds.spam.with_raw_response.get(
-            "SPAM",
+            spam="SPAM",
         )
 
         assert response.is_closed is True
@@ -128,7 +128,7 @@ class TestAsyncSpam:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.email.security.top.tlds.spam.with_streaming_response.get(
-            "SPAM",
+            spam="SPAM",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

@@ -20,7 +20,7 @@ class TestByTag:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         by_tag = client.rulesets.versions.by_tag.get(
-            "directory-traversal",
+            rule_tag="directory-traversal",
             account_id="abf9b32d38c5f572afde3336ec0ce302",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             ruleset_version="1",
@@ -30,7 +30,7 @@ class TestByTag:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.rulesets.versions.by_tag.with_raw_response.get(
-            "directory-traversal",
+            rule_tag="directory-traversal",
             account_id="abf9b32d38c5f572afde3336ec0ce302",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             ruleset_version="1",
@@ -44,7 +44,7 @@ class TestByTag:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.rulesets.versions.by_tag.with_streaming_response.get(
-            "directory-traversal",
+            rule_tag="directory-traversal",
             account_id="abf9b32d38c5f572afde3336ec0ce302",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             ruleset_version="1",
@@ -61,7 +61,7 @@ class TestByTag:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rulesets.versions.by_tag.with_raw_response.get(
-                "directory-traversal",
+                rule_tag="directory-traversal",
                 account_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 ruleset_version="1",
@@ -69,7 +69,7 @@ class TestByTag:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             client.rulesets.versions.by_tag.with_raw_response.get(
-                "directory-traversal",
+                rule_tag="directory-traversal",
                 account_id="abf9b32d38c5f572afde3336ec0ce302",
                 ruleset_id="",
                 ruleset_version="1",
@@ -77,7 +77,7 @@ class TestByTag:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_version` but received ''"):
             client.rulesets.versions.by_tag.with_raw_response.get(
-                "directory-traversal",
+                rule_tag="directory-traversal",
                 account_id="abf9b32d38c5f572afde3336ec0ce302",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 ruleset_version="",
@@ -85,7 +85,7 @@ class TestByTag:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_tag` but received ''"):
             client.rulesets.versions.by_tag.with_raw_response.get(
-                "",
+                rule_tag="",
                 account_id="abf9b32d38c5f572afde3336ec0ce302",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 ruleset_version="1",
@@ -98,7 +98,7 @@ class TestAsyncByTag:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         by_tag = await async_client.rulesets.versions.by_tag.get(
-            "directory-traversal",
+            rule_tag="directory-traversal",
             account_id="abf9b32d38c5f572afde3336ec0ce302",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             ruleset_version="1",
@@ -108,7 +108,7 @@ class TestAsyncByTag:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rulesets.versions.by_tag.with_raw_response.get(
-            "directory-traversal",
+            rule_tag="directory-traversal",
             account_id="abf9b32d38c5f572afde3336ec0ce302",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             ruleset_version="1",
@@ -122,7 +122,7 @@ class TestAsyncByTag:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.versions.by_tag.with_streaming_response.get(
-            "directory-traversal",
+            rule_tag="directory-traversal",
             account_id="abf9b32d38c5f572afde3336ec0ce302",
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             ruleset_version="1",
@@ -139,7 +139,7 @@ class TestAsyncByTag:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rulesets.versions.by_tag.with_raw_response.get(
-                "directory-traversal",
+                rule_tag="directory-traversal",
                 account_id="",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 ruleset_version="1",
@@ -147,7 +147,7 @@ class TestAsyncByTag:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
             await async_client.rulesets.versions.by_tag.with_raw_response.get(
-                "directory-traversal",
+                rule_tag="directory-traversal",
                 account_id="abf9b32d38c5f572afde3336ec0ce302",
                 ruleset_id="",
                 ruleset_version="1",
@@ -155,7 +155,7 @@ class TestAsyncByTag:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_version` but received ''"):
             await async_client.rulesets.versions.by_tag.with_raw_response.get(
-                "directory-traversal",
+                rule_tag="directory-traversal",
                 account_id="abf9b32d38c5f572afde3336ec0ce302",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 ruleset_version="",
@@ -163,7 +163,7 @@ class TestAsyncByTag:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_tag` but received ''"):
             await async_client.rulesets.versions.by_tag.with_raw_response.get(
-                "",
+                rule_tag="",
                 account_id="abf9b32d38c5f572afde3336ec0ce302",
                 ruleset_id="2f2feab2026849078ba485f918791bdc",
                 ruleset_version="1",

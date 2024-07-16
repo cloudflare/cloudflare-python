@@ -131,6 +131,7 @@ class Cloudflare(SyncAPIClient):
     event_notifications: resources.EventNotificationsResource
     ai_gateway: resources.AIGatewayResource
     iam: resources.IAMResource
+    cloud_connector: resources.CloudConnectorResource
     with_raw_response: CloudflareWithRawResponse
     with_streaming_response: CloudflareWithStreamedResponse
 
@@ -290,13 +291,14 @@ class Cloudflare(SyncAPIClient):
         self.event_notifications = resources.EventNotificationsResource(self)
         self.ai_gateway = resources.AIGatewayResource(self)
         self.iam = resources.IAMResource(self)
+        self.cloud_connector = resources.CloudConnectorResource(self)
         self.with_raw_response = CloudflareWithRawResponse(self)
         self.with_streaming_response = CloudflareWithStreamedResponse(self)
 
     @property
     @override
     def qs(self) -> Querystring:
-        return Querystring(array_format="repeat")
+        return Querystring(nested_format="dots", array_format="repeat")
 
     @property
     @override
@@ -552,6 +554,7 @@ class AsyncCloudflare(AsyncAPIClient):
     event_notifications: resources.AsyncEventNotificationsResource
     ai_gateway: resources.AsyncAIGatewayResource
     iam: resources.AsyncIAMResource
+    cloud_connector: resources.AsyncCloudConnectorResource
     with_raw_response: AsyncCloudflareWithRawResponse
     with_streaming_response: AsyncCloudflareWithStreamedResponse
 
@@ -711,13 +714,14 @@ class AsyncCloudflare(AsyncAPIClient):
         self.event_notifications = resources.AsyncEventNotificationsResource(self)
         self.ai_gateway = resources.AsyncAIGatewayResource(self)
         self.iam = resources.AsyncIAMResource(self)
+        self.cloud_connector = resources.AsyncCloudConnectorResource(self)
         self.with_raw_response = AsyncCloudflareWithRawResponse(self)
         self.with_streaming_response = AsyncCloudflareWithStreamedResponse(self)
 
     @property
     @override
     def qs(self) -> Querystring:
-        return Querystring(array_format="repeat")
+        return Querystring(nested_format="dots", array_format="repeat")
 
     @property
     @override
@@ -984,6 +988,7 @@ class CloudflareWithRawResponse:
         self.event_notifications = resources.EventNotificationsResourceWithRawResponse(client.event_notifications)
         self.ai_gateway = resources.AIGatewayResourceWithRawResponse(client.ai_gateway)
         self.iam = resources.IAMResourceWithRawResponse(client.iam)
+        self.cloud_connector = resources.CloudConnectorResourceWithRawResponse(client.cloud_connector)
 
 
 class AsyncCloudflareWithRawResponse:
@@ -1086,6 +1091,7 @@ class AsyncCloudflareWithRawResponse:
         self.event_notifications = resources.AsyncEventNotificationsResourceWithRawResponse(client.event_notifications)
         self.ai_gateway = resources.AsyncAIGatewayResourceWithRawResponse(client.ai_gateway)
         self.iam = resources.AsyncIAMResourceWithRawResponse(client.iam)
+        self.cloud_connector = resources.AsyncCloudConnectorResourceWithRawResponse(client.cloud_connector)
 
 
 class CloudflareWithStreamedResponse:
@@ -1188,6 +1194,7 @@ class CloudflareWithStreamedResponse:
         self.event_notifications = resources.EventNotificationsResourceWithStreamingResponse(client.event_notifications)
         self.ai_gateway = resources.AIGatewayResourceWithStreamingResponse(client.ai_gateway)
         self.iam = resources.IAMResourceWithStreamingResponse(client.iam)
+        self.cloud_connector = resources.CloudConnectorResourceWithStreamingResponse(client.cloud_connector)
 
 
 class AsyncCloudflareWithStreamedResponse:
@@ -1298,6 +1305,7 @@ class AsyncCloudflareWithStreamedResponse:
         )
         self.ai_gateway = resources.AsyncAIGatewayResourceWithStreamingResponse(client.ai_gateway)
         self.iam = resources.AsyncIAMResourceWithStreamingResponse(client.iam)
+        self.cloud_connector = resources.AsyncCloudConnectorResourceWithStreamingResponse(client.cloud_connector)
 
 
 Client = Cloudflare

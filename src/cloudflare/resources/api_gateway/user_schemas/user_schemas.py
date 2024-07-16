@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Mapping, cast
+from typing import Any, Type, Mapping, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -31,11 +31,8 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.api_gateway import (
     user_schema_get_params,
     user_schema_edit_params,
@@ -110,11 +107,10 @@ class UserSchemasResource(SyncAPIResource):
             }
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
-        if files:
-            # It should be noted that the actual Content-Type header that will be
-            # sent to the server will contain a `boundary` parameter, e.g.
-            # multipart/form-data; boundary=---abc--
-            extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._post(
             f"/zones/{zone_id}/api_gateway/user_schemas",
             body=maybe_transform(body, user_schema_create_params.UserSchemaCreateParams),
@@ -134,8 +130,8 @@ class UserSchemasResource(SyncAPIResource):
         *,
         zone_id: str,
         omit_source: bool | NotGiven = NOT_GIVEN,
-        page: object | NotGiven = NOT_GIVEN,
-        per_page: object | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         validation_enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -143,7 +139,7 @@ class UserSchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[PublicSchema]:
+    ) -> SyncV4PagePaginationArray[PublicSchema]:
         """
         Retrieve information about all schemas on a zone
 
@@ -170,7 +166,7 @@ class UserSchemasResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/user_schemas",
-            page=SyncSinglePage[PublicSchema],
+            page=SyncV4PagePaginationArray[PublicSchema],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -200,7 +196,7 @@ class UserSchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserSchemaDeleteResponse:
+    ) -> Optional[UserSchemaDeleteResponse]:
         """
         Delete a schema
 
@@ -220,7 +216,7 @@ class UserSchemasResource(SyncAPIResource):
         if not schema_id:
             raise ValueError(f"Expected a non-empty value for `schema_id` but received {schema_id!r}")
         return cast(
-            UserSchemaDeleteResponse,
+            Optional[UserSchemaDeleteResponse],
             self._delete(
                 f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}",
                 options=make_request_options(
@@ -228,7 +224,7 @@ class UserSchemasResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[UserSchemaDeleteResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[UserSchemaDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[UserSchemaDeleteResponse]
@@ -392,11 +388,10 @@ class AsyncUserSchemasResource(AsyncAPIResource):
             }
         )
         files = extract_files(cast(Mapping[str, object], body), paths=[["file"]])
-        if files:
-            # It should be noted that the actual Content-Type header that will be
-            # sent to the server will contain a `boundary` parameter, e.g.
-            # multipart/form-data; boundary=---abc--
-            extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._post(
             f"/zones/{zone_id}/api_gateway/user_schemas",
             body=await async_maybe_transform(body, user_schema_create_params.UserSchemaCreateParams),
@@ -416,8 +411,8 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         *,
         zone_id: str,
         omit_source: bool | NotGiven = NOT_GIVEN,
-        page: object | NotGiven = NOT_GIVEN,
-        per_page: object | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         validation_enabled: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -425,7 +420,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[PublicSchema, AsyncSinglePage[PublicSchema]]:
+    ) -> AsyncPaginator[PublicSchema, AsyncV4PagePaginationArray[PublicSchema]]:
         """
         Retrieve information about all schemas on a zone
 
@@ -452,7 +447,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/user_schemas",
-            page=AsyncSinglePage[PublicSchema],
+            page=AsyncV4PagePaginationArray[PublicSchema],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -482,7 +477,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> UserSchemaDeleteResponse:
+    ) -> Optional[UserSchemaDeleteResponse]:
         """
         Delete a schema
 
@@ -502,7 +497,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         if not schema_id:
             raise ValueError(f"Expected a non-empty value for `schema_id` but received {schema_id!r}")
         return cast(
-            UserSchemaDeleteResponse,
+            Optional[UserSchemaDeleteResponse],
             await self._delete(
                 f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}",
                 options=make_request_options(
@@ -510,7 +505,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[UserSchemaDeleteResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[UserSchemaDeleteResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[UserSchemaDeleteResponse]

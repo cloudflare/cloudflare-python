@@ -53,7 +53,7 @@ class IssueListResponse(BaseModel):
 
     messages: List[ResponseInfo]
 
-    result: Result
-
     success: Literal[True]
     """Whether the API call was successful"""
+
+    result: Optional[Result] = None

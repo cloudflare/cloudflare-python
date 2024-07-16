@@ -21,13 +21,9 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.gateway import location_create_params, location_update_params
 from ....types.zero_trust.gateway.location import Location
-from ....types.zero_trust.gateway.location_network_param import LocationNetworkParam
 from ....types.zero_trust.gateway.location_delete_response import LocationDeleteResponse
 
 __all__ = ["LocationsResource", "AsyncLocationsResource"]
@@ -48,8 +44,9 @@ class LocationsResource(SyncAPIResource):
         account_id: str,
         name: str,
         client_default: bool | NotGiven = NOT_GIVEN,
+        dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
-        networks: Iterable[LocationNetworkParam] | NotGiven = NOT_GIVEN,
+        networks: Iterable[location_create_params.Network] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -65,9 +62,17 @@ class LocationsResource(SyncAPIResource):
 
           client_default: True if the location is the default location.
 
+          dns_destination_ips_id: The identifier of the pair of IPv4 addresses assigned to this location. When
+              creating a location, if this field is absent or set with null, the pair of
+              shared IPv4 addresses (0e4a32c6-6fb8-4858-9296-98f51631e8e6) is auto-assigned.
+              When updating a location, if the field is absent or set with null, the
+              pre-assigned pair remains unchanged.
+
           ecs_support: True if the location needs to resolve EDNS queries.
 
           networks: A list of network ranges that requests from this location would originate from.
+              A non-empty list is only effective if the ipv4 endpoint is enabled for this
+              location.
 
           extra_headers: Send extra headers
 
@@ -85,6 +90,7 @@ class LocationsResource(SyncAPIResource):
                 {
                     "name": name,
                     "client_default": client_default,
+                    "dns_destination_ips_id": dns_destination_ips_id,
                     "ecs_support": ecs_support,
                     "networks": networks,
                 },
@@ -107,8 +113,9 @@ class LocationsResource(SyncAPIResource):
         account_id: str,
         name: str,
         client_default: bool | NotGiven = NOT_GIVEN,
+        dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
-        networks: Iterable[LocationNetworkParam] | NotGiven = NOT_GIVEN,
+        networks: Iterable[location_update_params.Network] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -124,9 +131,17 @@ class LocationsResource(SyncAPIResource):
 
           client_default: True if the location is the default location.
 
+          dns_destination_ips_id: The identifier of the pair of IPv4 addresses assigned to this location. When
+              creating a location, if this field is absent or set with null, the pair of
+              shared IPv4 addresses (0e4a32c6-6fb8-4858-9296-98f51631e8e6) is auto-assigned.
+              When updating a location, if the field is absent or set with null, the
+              pre-assigned pair remains unchanged.
+
           ecs_support: True if the location needs to resolve EDNS queries.
 
           networks: A list of network ranges that requests from this location would originate from.
+              A non-empty list is only effective if the ipv4 endpoint is enabled for this
+              location.
 
           extra_headers: Send extra headers
 
@@ -146,6 +161,7 @@ class LocationsResource(SyncAPIResource):
                 {
                     "name": name,
                     "client_default": client_default,
+                    "dns_destination_ips_id": dns_destination_ips_id,
                     "ecs_support": ecs_support,
                     "networks": networks,
                 },
@@ -296,8 +312,9 @@ class AsyncLocationsResource(AsyncAPIResource):
         account_id: str,
         name: str,
         client_default: bool | NotGiven = NOT_GIVEN,
+        dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
-        networks: Iterable[LocationNetworkParam] | NotGiven = NOT_GIVEN,
+        networks: Iterable[location_create_params.Network] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -313,9 +330,17 @@ class AsyncLocationsResource(AsyncAPIResource):
 
           client_default: True if the location is the default location.
 
+          dns_destination_ips_id: The identifier of the pair of IPv4 addresses assigned to this location. When
+              creating a location, if this field is absent or set with null, the pair of
+              shared IPv4 addresses (0e4a32c6-6fb8-4858-9296-98f51631e8e6) is auto-assigned.
+              When updating a location, if the field is absent or set with null, the
+              pre-assigned pair remains unchanged.
+
           ecs_support: True if the location needs to resolve EDNS queries.
 
           networks: A list of network ranges that requests from this location would originate from.
+              A non-empty list is only effective if the ipv4 endpoint is enabled for this
+              location.
 
           extra_headers: Send extra headers
 
@@ -333,6 +358,7 @@ class AsyncLocationsResource(AsyncAPIResource):
                 {
                     "name": name,
                     "client_default": client_default,
+                    "dns_destination_ips_id": dns_destination_ips_id,
                     "ecs_support": ecs_support,
                     "networks": networks,
                 },
@@ -355,8 +381,9 @@ class AsyncLocationsResource(AsyncAPIResource):
         account_id: str,
         name: str,
         client_default: bool | NotGiven = NOT_GIVEN,
+        dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
-        networks: Iterable[LocationNetworkParam] | NotGiven = NOT_GIVEN,
+        networks: Iterable[location_update_params.Network] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -372,9 +399,17 @@ class AsyncLocationsResource(AsyncAPIResource):
 
           client_default: True if the location is the default location.
 
+          dns_destination_ips_id: The identifier of the pair of IPv4 addresses assigned to this location. When
+              creating a location, if this field is absent or set with null, the pair of
+              shared IPv4 addresses (0e4a32c6-6fb8-4858-9296-98f51631e8e6) is auto-assigned.
+              When updating a location, if the field is absent or set with null, the
+              pre-assigned pair remains unchanged.
+
           ecs_support: True if the location needs to resolve EDNS queries.
 
           networks: A list of network ranges that requests from this location would originate from.
+              A non-empty list is only effective if the ipv4 endpoint is enabled for this
+              location.
 
           extra_headers: Send extra headers
 
@@ -394,6 +429,7 @@ class AsyncLocationsResource(AsyncAPIResource):
                 {
                     "name": name,
                     "client_default": client_default,
+                    "dns_destination_ips_id": dns_destination_ips_id,
                     "ecs_support": ecs_support,
                     "networks": networks,
                 },

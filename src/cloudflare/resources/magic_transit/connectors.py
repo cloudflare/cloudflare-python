@@ -21,10 +21,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.magic_transit import connector_edit_params, connector_update_params
 from ...types.magic_transit.connector_get_response import ConnectorGetResponse
 from ...types.magic_transit.connector_edit_response import ConnectorEditResponse

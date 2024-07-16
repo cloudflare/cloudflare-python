@@ -17,11 +17,8 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.api_gateway.user_schemas import operation_list_params
 from ....types.api_gateway.user_schemas.operation_list_response import OperationListResponse
 
@@ -47,15 +44,15 @@ class OperationsResource(SyncAPIResource):
         host: List[str] | NotGiven = NOT_GIVEN,
         method: List[str] | NotGiven = NOT_GIVEN,
         operation_status: Literal["new", "existing"] | NotGiven = NOT_GIVEN,
-        page: object | NotGiven = NOT_GIVEN,
-        per_page: object | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[OperationListResponse]:
+    ) -> SyncV4PagePaginationArray[OperationListResponse]:
         """Retrieves all operations from the schema.
 
         Operations that already exist in API
@@ -97,7 +94,7 @@ class OperationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `schema_id` but received {schema_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}/operations",
-            page=SyncSinglePage[OperationListResponse],
+            page=SyncV4PagePaginationArray[OperationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -139,15 +136,15 @@ class AsyncOperationsResource(AsyncAPIResource):
         host: List[str] | NotGiven = NOT_GIVEN,
         method: List[str] | NotGiven = NOT_GIVEN,
         operation_status: Literal["new", "existing"] | NotGiven = NOT_GIVEN,
-        page: object | NotGiven = NOT_GIVEN,
-        per_page: object | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[OperationListResponse, AsyncSinglePage[OperationListResponse]]:
+    ) -> AsyncPaginator[OperationListResponse, AsyncV4PagePaginationArray[OperationListResponse]]:
         """Retrieves all operations from the schema.
 
         Operations that already exist in API
@@ -189,7 +186,7 @@ class AsyncOperationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `schema_id` but received {schema_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}/operations",
-            page=AsyncSinglePage[OperationListResponse],
+            page=AsyncV4PagePaginationArray[OperationListResponse],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

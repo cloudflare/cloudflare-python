@@ -37,10 +37,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.snippets import snippet_update_params
 from ...types.snippets.snippet import Snippet
 from ...types.snippets.snippet_delete_response import SnippetDeleteResponse
@@ -101,6 +98,10 @@ class SnippetsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not snippet_name:
             raise ValueError(f"Expected a non-empty value for `snippet_name` but received {snippet_name!r}")
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
             f"/zones/{zone_id}/snippets/{snippet_name}",
             body=maybe_transform(
@@ -294,6 +295,10 @@ class AsyncSnippetsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not snippet_name:
             raise ValueError(f"Expected a non-empty value for `snippet_name` but received {snippet_name!r}")
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
             f"/zones/{zone_id}/snippets/{snippet_name}",
             body=await async_maybe_transform(

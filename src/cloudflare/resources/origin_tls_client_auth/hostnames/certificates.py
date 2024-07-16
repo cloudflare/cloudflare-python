@@ -21,10 +21,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.origin_tls_client_auth.hostnames import certificate_create_params
 from ....types.origin_tls_client_auth.authenticated_origin_pull import AuthenticatedOriginPull
 from ....types.origin_tls_client_auth.hostnames.certificate_get_response import CertificateGetResponse

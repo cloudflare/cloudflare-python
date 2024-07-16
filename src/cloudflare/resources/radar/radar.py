@@ -134,13 +134,13 @@ from .traffic_anomalies import (
     TrafficAnomaliesResourceWithStreamingResponse,
     AsyncTrafficAnomaliesResourceWithStreamingResponse,
 )
-from .connection_tampering import (
-    ConnectionTamperingResource,
-    AsyncConnectionTamperingResource,
-    ConnectionTamperingResourceWithRawResponse,
-    AsyncConnectionTamperingResourceWithRawResponse,
-    ConnectionTamperingResourceWithStreamingResponse,
-    AsyncConnectionTamperingResourceWithStreamingResponse,
+from .tcp_resets_timeouts import (
+    TCPResetsTimeoutsResource,
+    AsyncTCPResetsTimeoutsResource,
+    TCPResetsTimeoutsResourceWithRawResponse,
+    AsyncTCPResetsTimeoutsResourceWithRawResponse,
+    TCPResetsTimeoutsResourceWithStreamingResponse,
+    AsyncTCPResetsTimeoutsResourceWithStreamingResponse,
 )
 from .annotations.annotations import AnnotationsResource, AsyncAnnotationsResource
 from .verified_bots.verified_bots import VerifiedBotsResource, AsyncVerifiedBotsResource
@@ -183,10 +183,6 @@ class RadarResource(SyncAPIResource):
         return AS112Resource(self._client)
 
     @cached_property
-    def connection_tampering(self) -> ConnectionTamperingResource:
-        return ConnectionTamperingResource(self._client)
-
-    @cached_property
     def email(self) -> EmailResource:
         return EmailResource(self._client)
 
@@ -213,6 +209,10 @@ class RadarResource(SyncAPIResource):
     @cached_property
     def traffic_anomalies(self) -> TrafficAnomaliesResource:
         return TrafficAnomaliesResource(self._client)
+
+    @cached_property
+    def tcp_resets_timeouts(self) -> TCPResetsTimeoutsResource:
+        return TCPResetsTimeoutsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> RadarResourceWithRawResponse:
@@ -257,10 +257,6 @@ class AsyncRadarResource(AsyncAPIResource):
         return AsyncAS112Resource(self._client)
 
     @cached_property
-    def connection_tampering(self) -> AsyncConnectionTamperingResource:
-        return AsyncConnectionTamperingResource(self._client)
-
-    @cached_property
     def email(self) -> AsyncEmailResource:
         return AsyncEmailResource(self._client)
 
@@ -287,6 +283,10 @@ class AsyncRadarResource(AsyncAPIResource):
     @cached_property
     def traffic_anomalies(self) -> AsyncTrafficAnomaliesResource:
         return AsyncTrafficAnomaliesResource(self._client)
+
+    @cached_property
+    def tcp_resets_timeouts(self) -> AsyncTCPResetsTimeoutsResource:
+        return AsyncTCPResetsTimeoutsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncRadarResourceWithRawResponse:
@@ -334,10 +334,6 @@ class RadarResourceWithRawResponse:
         return AS112ResourceWithRawResponse(self._radar.as112)
 
     @cached_property
-    def connection_tampering(self) -> ConnectionTamperingResourceWithRawResponse:
-        return ConnectionTamperingResourceWithRawResponse(self._radar.connection_tampering)
-
-    @cached_property
     def email(self) -> EmailResourceWithRawResponse:
         return EmailResourceWithRawResponse(self._radar.email)
 
@@ -364,6 +360,10 @@ class RadarResourceWithRawResponse:
     @cached_property
     def traffic_anomalies(self) -> TrafficAnomaliesResourceWithRawResponse:
         return TrafficAnomaliesResourceWithRawResponse(self._radar.traffic_anomalies)
+
+    @cached_property
+    def tcp_resets_timeouts(self) -> TCPResetsTimeoutsResourceWithRawResponse:
+        return TCPResetsTimeoutsResourceWithRawResponse(self._radar.tcp_resets_timeouts)
 
 
 class AsyncRadarResourceWithRawResponse:
@@ -403,10 +403,6 @@ class AsyncRadarResourceWithRawResponse:
         return AsyncAS112ResourceWithRawResponse(self._radar.as112)
 
     @cached_property
-    def connection_tampering(self) -> AsyncConnectionTamperingResourceWithRawResponse:
-        return AsyncConnectionTamperingResourceWithRawResponse(self._radar.connection_tampering)
-
-    @cached_property
     def email(self) -> AsyncEmailResourceWithRawResponse:
         return AsyncEmailResourceWithRawResponse(self._radar.email)
 
@@ -433,6 +429,10 @@ class AsyncRadarResourceWithRawResponse:
     @cached_property
     def traffic_anomalies(self) -> AsyncTrafficAnomaliesResourceWithRawResponse:
         return AsyncTrafficAnomaliesResourceWithRawResponse(self._radar.traffic_anomalies)
+
+    @cached_property
+    def tcp_resets_timeouts(self) -> AsyncTCPResetsTimeoutsResourceWithRawResponse:
+        return AsyncTCPResetsTimeoutsResourceWithRawResponse(self._radar.tcp_resets_timeouts)
 
 
 class RadarResourceWithStreamingResponse:
@@ -472,10 +472,6 @@ class RadarResourceWithStreamingResponse:
         return AS112ResourceWithStreamingResponse(self._radar.as112)
 
     @cached_property
-    def connection_tampering(self) -> ConnectionTamperingResourceWithStreamingResponse:
-        return ConnectionTamperingResourceWithStreamingResponse(self._radar.connection_tampering)
-
-    @cached_property
     def email(self) -> EmailResourceWithStreamingResponse:
         return EmailResourceWithStreamingResponse(self._radar.email)
 
@@ -502,6 +498,10 @@ class RadarResourceWithStreamingResponse:
     @cached_property
     def traffic_anomalies(self) -> TrafficAnomaliesResourceWithStreamingResponse:
         return TrafficAnomaliesResourceWithStreamingResponse(self._radar.traffic_anomalies)
+
+    @cached_property
+    def tcp_resets_timeouts(self) -> TCPResetsTimeoutsResourceWithStreamingResponse:
+        return TCPResetsTimeoutsResourceWithStreamingResponse(self._radar.tcp_resets_timeouts)
 
 
 class AsyncRadarResourceWithStreamingResponse:
@@ -541,10 +541,6 @@ class AsyncRadarResourceWithStreamingResponse:
         return AsyncAS112ResourceWithStreamingResponse(self._radar.as112)
 
     @cached_property
-    def connection_tampering(self) -> AsyncConnectionTamperingResourceWithStreamingResponse:
-        return AsyncConnectionTamperingResourceWithStreamingResponse(self._radar.connection_tampering)
-
-    @cached_property
     def email(self) -> AsyncEmailResourceWithStreamingResponse:
         return AsyncEmailResourceWithStreamingResponse(self._radar.email)
 
@@ -571,3 +567,7 @@ class AsyncRadarResourceWithStreamingResponse:
     @cached_property
     def traffic_anomalies(self) -> AsyncTrafficAnomaliesResourceWithStreamingResponse:
         return AsyncTrafficAnomaliesResourceWithStreamingResponse(self._radar.traffic_anomalies)
+
+    @cached_property
+    def tcp_resets_timeouts(self) -> AsyncTCPResetsTimeoutsResourceWithStreamingResponse:
+        return AsyncTCPResetsTimeoutsResourceWithStreamingResponse(self._radar.tcp_resets_timeouts)

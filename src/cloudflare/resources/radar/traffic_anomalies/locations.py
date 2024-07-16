@@ -22,9 +22,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.radar.traffic_anomalies import location_get_params
 from ....types.radar.traffic_anomalies.location_get_response import LocationGetResponse
 
@@ -44,24 +42,7 @@ class LocationsResource(SyncAPIResource):
         self,
         *,
         date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_range: Literal[
-            "1d",
-            "2d",
-            "7d",
-            "14d",
-            "28d",
-            "12w",
-            "24w",
-            "52w",
-            "1dControl",
-            "2dControl",
-            "7dControl",
-            "14dControl",
-            "28dControl",
-            "12wControl",
-            "24wControl",
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: str | NotGiven = NOT_GIVEN,
         date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -135,24 +116,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         self,
         *,
         date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_range: Literal[
-            "1d",
-            "2d",
-            "7d",
-            "14d",
-            "28d",
-            "12w",
-            "24w",
-            "52w",
-            "1dControl",
-            "2dControl",
-            "7dControl",
-            "14dControl",
-            "28dControl",
-            "12wControl",
-            "24wControl",
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: str | NotGiven = NOT_GIVEN,
         date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,

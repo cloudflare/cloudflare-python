@@ -39,9 +39,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
-from ....._base_client import (
-    make_request_options,
-)
+from ....._base_client import make_request_options
 from .timeseries_groups import (
     TimeseriesGroupsResource,
     AsyncTimeseriesGroupsResource,
@@ -90,29 +88,69 @@ class Layer7Resource(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_method: List[
             Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
+                "GET",
+                "POST",
+                "DELETE",
+                "PUT",
+                "HEAD",
+                "PURGE",
+                "OPTIONS",
+                "PROPFIND",
+                "MKCOL",
+                "PATCH",
+                "ACL",
+                "BCOPY",
+                "BDELETE",
+                "BMOVE",
+                "BPROPFIND",
+                "BPROPPATCH",
+                "CHECKIN",
+                "CHECKOUT",
+                "CONNECT",
+                "COPY",
+                "LABEL",
+                "LOCK",
+                "MERGE",
+                "MKACTIVITY",
+                "MKWORKSPACE",
+                "MOVE",
+                "NOTIFY",
+                "ORDERPATCH",
+                "POLL",
+                "PROPPATCH",
+                "REPORT",
+                "SEARCH",
+                "SUBSCRIBE",
+                "TRACE",
+                "UNCHECKOUT",
+                "UNLOCK",
+                "UNSUBSCRIBE",
+                "UPDATE",
+                "VERSIONCONTROL",
+                "BASELINECONTROL",
+                "XMSENUMATTS",
+                "RPC_OUT_DATA",
+                "RPC_IN_DATA",
+                "JSON",
+                "COOK",
+                "TRACK",
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
+        mitigation_product: List[
+            Literal[
+                "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -136,7 +174,7 @@ class Layer7Resource(SyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
-          attack: Array of L7 attack types.
+          attack: This field is deprecated, please use the new `mitigationProduct`.
 
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start
               with `-` to exclude from results. For example, `-EU,NA` excludes results from
@@ -152,9 +190,17 @@ class Layer7Resource(SyncAPIResource):
 
           format: Format results are returned in.
 
+          http_method: Filter for http method.
+
+          http_version: Filter for http version.
+
+          ip_version: Filter for ip version.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
+
+          mitigation_product: Array of L7 mitigation products.
 
           name: Array of names that will be used to name the series in responses.
 
@@ -186,7 +232,11 @@ class Layer7Resource(SyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "http_method": http_method,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
                         "location": location,
+                        "mitigation_product": mitigation_product,
                         "name": name,
                         "normalization": normalization,
                     },
@@ -232,29 +282,69 @@ class AsyncLayer7Resource(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         continent: List[str] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_method: List[
             Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
+                "GET",
+                "POST",
+                "DELETE",
+                "PUT",
+                "HEAD",
+                "PURGE",
+                "OPTIONS",
+                "PROPFIND",
+                "MKCOL",
+                "PATCH",
+                "ACL",
+                "BCOPY",
+                "BDELETE",
+                "BMOVE",
+                "BPROPFIND",
+                "BPROPPATCH",
+                "CHECKIN",
+                "CHECKOUT",
+                "CONNECT",
+                "COPY",
+                "LABEL",
+                "LOCK",
+                "MERGE",
+                "MKACTIVITY",
+                "MKWORKSPACE",
+                "MOVE",
+                "NOTIFY",
+                "ORDERPATCH",
+                "POLL",
+                "PROPPATCH",
+                "REPORT",
+                "SEARCH",
+                "SUBSCRIBE",
+                "TRACE",
+                "UNCHECKOUT",
+                "UNLOCK",
+                "UNSUBSCRIBE",
+                "UPDATE",
+                "VERSIONCONTROL",
+                "BASELINECONTROL",
+                "XMSENUMATTS",
+                "RPC_OUT_DATA",
+                "RPC_IN_DATA",
+                "JSON",
+                "COOK",
+                "TRACK",
             ]
         ]
         | NotGiven = NOT_GIVEN,
-        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        http_version: List[Literal["HTTPv1", "HTTPv2", "HTTPv3"]] | NotGiven = NOT_GIVEN,
+        ip_version: List[Literal["IPv4", "IPv6"]] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
+        mitigation_product: List[
+            Literal[
+                "DDOS", "WAF", "BOT_MANAGEMENT", "ACCESS_RULES", "IP_REPUTATION", "API_SHIELD", "DATA_LOSS_PREVENTION"
+            ]
+        ]
+        | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
         normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -278,7 +368,7 @@ class AsyncLayer7Resource(AsyncAPIResource):
               For example, `-174, 3356` excludes results from AS174, but includes results from
               AS3356.
 
-          attack: Array of L7 attack types.
+          attack: This field is deprecated, please use the new `mitigationProduct`.
 
           continent: Array of comma separated list of continents (alpha-2 continent codes). Start
               with `-` to exclude from results. For example, `-EU,NA` excludes results from
@@ -294,9 +384,17 @@ class AsyncLayer7Resource(AsyncAPIResource):
 
           format: Format results are returned in.
 
+          http_method: Filter for http method.
+
+          http_version: Filter for http version.
+
+          ip_version: Filter for ip version.
+
           location: Array of comma separated list of locations (alpha-2 country codes). Start with
               `-` to exclude from results. For example, `-US,PT` excludes results from the US,
               but includes results from PT.
+
+          mitigation_product: Array of L7 mitigation products.
 
           name: Array of names that will be used to name the series in responses.
 
@@ -328,7 +426,11 @@ class AsyncLayer7Resource(AsyncAPIResource):
                         "date_range": date_range,
                         "date_start": date_start,
                         "format": format,
+                        "http_method": http_method,
+                        "http_version": http_version,
+                        "ip_version": ip_version,
                         "location": location,
+                        "mitigation_product": mitigation_product,
                         "name": name,
                         "normalization": normalization,
                     },

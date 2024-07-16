@@ -31,9 +31,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....types.radar import ranking_top_params, ranking_timeseries_groups_params
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.radar.ranking_top_response import RankingTopResponse
 from ....types.radar.ranking_timeseries_groups_response import RankingTimeseriesGroupsResponse
 
@@ -57,26 +55,7 @@ class RankingResource(SyncAPIResource):
         self,
         *,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
-            Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         domains: List[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
@@ -235,26 +214,7 @@ class AsyncRankingResource(AsyncAPIResource):
         self,
         *,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
-            Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         domains: List[str] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,

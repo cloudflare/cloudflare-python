@@ -27,7 +27,7 @@ class TestAIGateway:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         ai_gateway = client.ai_gateway.create(
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             id="my-gateway",
             cache_invalidate_on_update=True,
             cache_ttl=0,
@@ -41,7 +41,7 @@ class TestAIGateway:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.ai_gateway.with_raw_response.create(
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             id="my-gateway",
             cache_invalidate_on_update=True,
             cache_ttl=0,
@@ -59,7 +59,7 @@ class TestAIGateway:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.ai_gateway.with_streaming_response.create(
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             id="my-gateway",
             cache_invalidate_on_update=True,
             cache_ttl=0,
@@ -93,8 +93,8 @@ class TestAIGateway:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         ai_gateway = client.ai_gateway.update(
-            "my-gateway",
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            id="my-gateway",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             cache_invalidate_on_update=True,
             cache_ttl=0,
             collect_logs=True,
@@ -107,8 +107,8 @@ class TestAIGateway:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.ai_gateway.with_raw_response.update(
-            "my-gateway",
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            id="my-gateway",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             cache_invalidate_on_update=True,
             cache_ttl=0,
             collect_logs=True,
@@ -125,8 +125,8 @@ class TestAIGateway:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.ai_gateway.with_streaming_response.update(
-            "my-gateway",
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            id="my-gateway",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             cache_invalidate_on_update=True,
             cache_ttl=0,
             collect_logs=True,
@@ -146,7 +146,7 @@ class TestAIGateway:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai_gateway.with_raw_response.update(
-                "my-gateway",
+                id="my-gateway",
                 account_id="",
                 cache_invalidate_on_update=True,
                 cache_ttl=0,
@@ -158,8 +158,8 @@ class TestAIGateway:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.ai_gateway.with_raw_response.update(
-                "",
-                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                id="",
+                account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
                 cache_invalidate_on_update=True,
                 cache_ttl=0,
                 collect_logs=True,
@@ -171,16 +171,16 @@ class TestAIGateway:
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         ai_gateway = client.ai_gateway.list(
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
         assert_matches_type(SyncV4PagePaginationArray[AIGatewayListResponse], ai_gateway, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         ai_gateway = client.ai_gateway.list(
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             id="my-gateway",
-            order_by="string",
+            order_by="order_by",
             page=1,
             per_page=5,
         )
@@ -189,7 +189,7 @@ class TestAIGateway:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.ai_gateway.with_raw_response.list(
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
 
         assert response.is_closed is True
@@ -200,7 +200,7 @@ class TestAIGateway:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.ai_gateway.with_streaming_response.list(
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -220,16 +220,16 @@ class TestAIGateway:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         ai_gateway = client.ai_gateway.delete(
-            "string",
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            id="id",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
         assert_matches_type(AIGatewayDeleteResponse, ai_gateway, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.ai_gateway.with_raw_response.delete(
-            "string",
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            id="id",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
 
         assert response.is_closed is True
@@ -240,8 +240,8 @@ class TestAIGateway:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.ai_gateway.with_streaming_response.delete(
-            "string",
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            id="id",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -255,29 +255,29 @@ class TestAIGateway:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai_gateway.with_raw_response.delete(
-                "string",
+                id="id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.ai_gateway.with_raw_response.delete(
-                "",
-                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                id="",
+                account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         ai_gateway = client.ai_gateway.get(
-            "my-gateway",
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            id="my-gateway",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
         assert_matches_type(AIGatewayGetResponse, ai_gateway, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.ai_gateway.with_raw_response.get(
-            "my-gateway",
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            id="my-gateway",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
 
         assert response.is_closed is True
@@ -288,8 +288,8 @@ class TestAIGateway:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.ai_gateway.with_streaming_response.get(
-            "my-gateway",
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            id="my-gateway",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -303,14 +303,14 @@ class TestAIGateway:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.ai_gateway.with_raw_response.get(
-                "my-gateway",
+                id="my-gateway",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.ai_gateway.with_raw_response.get(
-                "",
-                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                id="",
+                account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             )
 
 
@@ -320,7 +320,7 @@ class TestAsyncAIGateway:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         ai_gateway = await async_client.ai_gateway.create(
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             id="my-gateway",
             cache_invalidate_on_update=True,
             cache_ttl=0,
@@ -334,7 +334,7 @@ class TestAsyncAIGateway:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai_gateway.with_raw_response.create(
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             id="my-gateway",
             cache_invalidate_on_update=True,
             cache_ttl=0,
@@ -352,7 +352,7 @@ class TestAsyncAIGateway:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai_gateway.with_streaming_response.create(
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             id="my-gateway",
             cache_invalidate_on_update=True,
             cache_ttl=0,
@@ -386,8 +386,8 @@ class TestAsyncAIGateway:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         ai_gateway = await async_client.ai_gateway.update(
-            "my-gateway",
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            id="my-gateway",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             cache_invalidate_on_update=True,
             cache_ttl=0,
             collect_logs=True,
@@ -400,8 +400,8 @@ class TestAsyncAIGateway:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai_gateway.with_raw_response.update(
-            "my-gateway",
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            id="my-gateway",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             cache_invalidate_on_update=True,
             cache_ttl=0,
             collect_logs=True,
@@ -418,8 +418,8 @@ class TestAsyncAIGateway:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai_gateway.with_streaming_response.update(
-            "my-gateway",
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            id="my-gateway",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             cache_invalidate_on_update=True,
             cache_ttl=0,
             collect_logs=True,
@@ -439,7 +439,7 @@ class TestAsyncAIGateway:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai_gateway.with_raw_response.update(
-                "my-gateway",
+                id="my-gateway",
                 account_id="",
                 cache_invalidate_on_update=True,
                 cache_ttl=0,
@@ -451,8 +451,8 @@ class TestAsyncAIGateway:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.ai_gateway.with_raw_response.update(
-                "",
-                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                id="",
+                account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
                 cache_invalidate_on_update=True,
                 cache_ttl=0,
                 collect_logs=True,
@@ -464,16 +464,16 @@ class TestAsyncAIGateway:
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         ai_gateway = await async_client.ai_gateway.list(
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
         assert_matches_type(AsyncV4PagePaginationArray[AIGatewayListResponse], ai_gateway, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ai_gateway = await async_client.ai_gateway.list(
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             id="my-gateway",
-            order_by="string",
+            order_by="order_by",
             page=1,
             per_page=5,
         )
@@ -482,7 +482,7 @@ class TestAsyncAIGateway:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai_gateway.with_raw_response.list(
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
 
         assert response.is_closed is True
@@ -493,7 +493,7 @@ class TestAsyncAIGateway:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai_gateway.with_streaming_response.list(
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -513,16 +513,16 @@ class TestAsyncAIGateway:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         ai_gateway = await async_client.ai_gateway.delete(
-            "string",
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            id="id",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
         assert_matches_type(AIGatewayDeleteResponse, ai_gateway, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai_gateway.with_raw_response.delete(
-            "string",
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            id="id",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
 
         assert response.is_closed is True
@@ -533,8 +533,8 @@ class TestAsyncAIGateway:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai_gateway.with_streaming_response.delete(
-            "string",
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            id="id",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -548,29 +548,29 @@ class TestAsyncAIGateway:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai_gateway.with_raw_response.delete(
-                "string",
+                id="id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.ai_gateway.with_raw_response.delete(
-                "",
-                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                id="",
+                account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         ai_gateway = await async_client.ai_gateway.get(
-            "my-gateway",
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            id="my-gateway",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
         assert_matches_type(AIGatewayGetResponse, ai_gateway, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ai_gateway.with_raw_response.get(
-            "my-gateway",
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            id="my-gateway",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         )
 
         assert response.is_closed is True
@@ -581,8 +581,8 @@ class TestAsyncAIGateway:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ai_gateway.with_streaming_response.get(
-            "my-gateway",
-            account_id="0d37909e38d3e99c29fa2cd343ac421a",
+            id="my-gateway",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -596,12 +596,12 @@ class TestAsyncAIGateway:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.ai_gateway.with_raw_response.get(
-                "my-gateway",
+                id="my-gateway",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.ai_gateway.with_raw_response.get(
-                "",
-                account_id="0d37909e38d3e99c29fa2cd343ac421a",
+                id="",
+                account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
             )

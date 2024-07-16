@@ -19,10 +19,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from .....pagination import SyncV4PagePagination, AsyncV4PagePagination
-from ....._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....._base_client import AsyncPaginator, make_request_options
 from .....types.radar.bgp.leaks import event_list_params
 from .....types.radar.bgp.leaks.event_list_response import EventListResponse
 
@@ -42,24 +39,7 @@ class EventsResource(SyncAPIResource):
         self,
         *,
         date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_range: Literal[
-            "1d",
-            "2d",
-            "7d",
-            "14d",
-            "28d",
-            "12w",
-            "24w",
-            "52w",
-            "1dControl",
-            "2dControl",
-            "7dControl",
-            "14dControl",
-            "28dControl",
-            "12wControl",
-            "24wControl",
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: str | NotGiven = NOT_GIVEN,
         date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
         event_id: int | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
@@ -157,24 +137,7 @@ class AsyncEventsResource(AsyncAPIResource):
         self,
         *,
         date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_range: Literal[
-            "1d",
-            "2d",
-            "7d",
-            "14d",
-            "28d",
-            "12w",
-            "24w",
-            "52w",
-            "1dControl",
-            "2dControl",
-            "7dControl",
-            "14dControl",
-            "28dControl",
-            "12wControl",
-            "24wControl",
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: str | NotGiven = NOT_GIVEN,
         date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
         event_id: int | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,

@@ -9,6 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
+from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.access import (
     ApplicationGetResponse,
@@ -30,7 +31,7 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
             type="self_hosted",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -40,7 +41,7 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
             type="self_hosted",
-            account_id="string",
+            account_id="account_id",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -59,9 +60,9 @@ class TestApplications:
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
             },
-            custom_deny_message="string",
-            custom_deny_url="string",
-            custom_non_identity_deny_url="string",
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -90,13 +91,13 @@ class TestApplications:
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -132,7 +133,7 @@ class TestApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -148,7 +149,7 @@ class TestApplications:
         response = client.zero_trust.access.applications.with_raw_response.create(
             domain="test.example.com/admin",
             type="self_hosted",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -162,7 +163,7 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.create(
             domain="test.example.com/admin",
             type="self_hosted",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -186,14 +187,14 @@ class TestApplications:
             client.zero_trust.access.applications.with_raw_response.create(
                 domain="test.example.com/admin",
                 type="self_hosted",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_2(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -201,7 +202,7 @@ class TestApplications:
     @parametrize
     def test_method_create_with_all_params_overload_2(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
-            account_id="string",
+            account_id="account_id",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -233,6 +234,7 @@ class TestApplications:
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
+                "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                 "custom_attributes": {
                     "friendly_name": "Last Name",
                     "name": "family_name",
@@ -254,16 +256,17 @@ class TestApplications:
                 "saml_attribute_transform_jsonata": "$ ~>| groups | {'group_name': name} |",
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
+                "updated_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
             },
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -299,7 +302,7 @@ class TestApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             tags=["engineers", "engineers", "engineers"],
             type="saas",
@@ -310,7 +313,7 @@ class TestApplications:
     @parametrize
     def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.create(
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -322,7 +325,7 @@ class TestApplications:
     @parametrize
     def test_streaming_response_create_overload_2(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.create(
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -342,7 +345,7 @@ class TestApplications:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.create(
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -351,7 +354,7 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
             type="ssh",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -361,7 +364,7 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
             type="ssh",
-            account_id="string",
+            account_id="account_id",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -380,9 +383,9 @@ class TestApplications:
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
             },
-            custom_deny_message="string",
-            custom_deny_url="string",
-            custom_non_identity_deny_url="string",
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -411,13 +414,13 @@ class TestApplications:
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -453,7 +456,7 @@ class TestApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -469,7 +472,7 @@ class TestApplications:
         response = client.zero_trust.access.applications.with_raw_response.create(
             domain="test.example.com/admin",
             type="ssh",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -483,7 +486,7 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.create(
             domain="test.example.com/admin",
             type="ssh",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -507,7 +510,7 @@ class TestApplications:
             client.zero_trust.access.applications.with_raw_response.create(
                 domain="test.example.com/admin",
                 type="ssh",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -516,7 +519,7 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
             type="vnc",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -526,7 +529,7 @@ class TestApplications:
         application = client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
             type="vnc",
-            account_id="string",
+            account_id="account_id",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -545,9 +548,9 @@ class TestApplications:
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
             },
-            custom_deny_message="string",
-            custom_deny_url="string",
-            custom_non_identity_deny_url="string",
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -576,13 +579,13 @@ class TestApplications:
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -618,7 +621,7 @@ class TestApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -634,7 +637,7 @@ class TestApplications:
         response = client.zero_trust.access.applications.with_raw_response.create(
             domain="test.example.com/admin",
             type="vnc",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -648,7 +651,7 @@ class TestApplications:
         with client.zero_trust.access.applications.with_streaming_response.create(
             domain="test.example.com/admin",
             type="vnc",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -672,7 +675,7 @@ class TestApplications:
             client.zero_trust.access.applications.with_raw_response.create(
                 domain="test.example.com/admin",
                 type="vnc",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -680,7 +683,7 @@ class TestApplications:
     def test_method_create_overload_5(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             type="app_launcher",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -689,7 +692,7 @@ class TestApplications:
     def test_method_create_with_all_params_overload_5(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             type="app_launcher",
-            account_id="string",
+            account_id="account_id",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -712,13 +715,13 @@ class TestApplications:
             ],
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -754,7 +757,7 @@ class TestApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             session_duration="24h",
         )
@@ -765,7 +768,7 @@ class TestApplications:
     def test_raw_response_create_overload_5(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.create(
             type="app_launcher",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -778,7 +781,7 @@ class TestApplications:
     def test_streaming_response_create_overload_5(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.create(
             type="app_launcher",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -800,7 +803,7 @@ class TestApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.create(
                 type="app_launcher",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -808,7 +811,7 @@ class TestApplications:
     def test_method_create_overload_6(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             type="warp",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -817,7 +820,7 @@ class TestApplications:
     def test_method_create_with_all_params_overload_6(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             type="warp",
-            account_id="string",
+            account_id="account_id",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -840,13 +843,13 @@ class TestApplications:
             ],
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -882,7 +885,7 @@ class TestApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             session_duration="24h",
         )
@@ -893,7 +896,7 @@ class TestApplications:
     def test_raw_response_create_overload_6(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.create(
             type="warp",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -906,7 +909,7 @@ class TestApplications:
     def test_streaming_response_create_overload_6(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.create(
             type="warp",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -928,7 +931,7 @@ class TestApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.create(
                 type="warp",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -936,7 +939,7 @@ class TestApplications:
     def test_method_create_overload_7(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             type="biso",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -945,7 +948,7 @@ class TestApplications:
     def test_method_create_with_all_params_overload_7(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
             type="biso",
-            account_id="string",
+            account_id="account_id",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -968,13 +971,13 @@ class TestApplications:
             ],
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -1010,7 +1013,7 @@ class TestApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             session_duration="24h",
         )
@@ -1021,7 +1024,7 @@ class TestApplications:
     def test_raw_response_create_overload_7(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.create(
             type="biso",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -1034,7 +1037,7 @@ class TestApplications:
     def test_streaming_response_create_overload_7(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.create(
             type="biso",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1056,14 +1059,14 @@ class TestApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.create(
                 type="biso",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_create_overload_8(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -1071,20 +1074,20 @@ class TestApplications:
     @parametrize
     def test_method_create_with_all_params_overload_8(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.create(
-            account_id="string",
+            account_id="account_id",
             app_launcher_visible=True,
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -1120,7 +1123,7 @@ class TestApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
@@ -1131,7 +1134,7 @@ class TestApplications:
     @parametrize
     def test_raw_response_create_overload_8(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.create(
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -1143,7 +1146,7 @@ class TestApplications:
     @parametrize
     def test_streaming_response_create_overload_8(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.create(
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1163,17 +1166,17 @@ class TestApplications:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.create(
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_1(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="self_hosted",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -1181,10 +1184,10 @@ class TestApplications:
     @parametrize
     def test_method_update_with_all_params_overload_1(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="self_hosted",
-            account_id="string",
+            account_id="account_id",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -1203,9 +1206,9 @@ class TestApplications:
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
             },
-            custom_deny_message="string",
-            custom_deny_url="string",
-            custom_non_identity_deny_url="string",
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -1234,13 +1237,13 @@ class TestApplications:
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -1276,7 +1279,7 @@ class TestApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -1290,10 +1293,10 @@ class TestApplications:
     @parametrize
     def test_raw_response_update_overload_1(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="self_hosted",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -1305,10 +1308,10 @@ class TestApplications:
     @parametrize
     def test_streaming_response_update_overload_1(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="self_hosted",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1323,7 +1326,7 @@ class TestApplications:
     def test_path_params_update_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
                 type="self_hosted",
                 account_id="",
@@ -1331,18 +1334,18 @@ class TestApplications:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
                 type="self_hosted",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_2(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -1350,8 +1353,8 @@ class TestApplications:
     @parametrize
     def test_method_update_with_all_params_overload_2(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -1383,6 +1386,7 @@ class TestApplications:
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
+                "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                 "custom_attributes": {
                     "friendly_name": "Last Name",
                     "name": "family_name",
@@ -1404,16 +1408,17 @@ class TestApplications:
                 "saml_attribute_transform_jsonata": "$ ~>| groups | {'group_name': name} |",
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
+                "updated_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
             },
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -1449,7 +1454,7 @@ class TestApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             tags=["engineers", "engineers", "engineers"],
             type="saas",
@@ -1460,8 +1465,8 @@ class TestApplications:
     @parametrize
     def test_raw_response_update_overload_2(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -1473,8 +1478,8 @@ class TestApplications:
     @parametrize
     def test_streaming_response_update_overload_2(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1489,24 +1494,24 @@ class TestApplications:
     def test_path_params_update_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="string",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_3(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="ssh",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -1514,10 +1519,10 @@ class TestApplications:
     @parametrize
     def test_method_update_with_all_params_overload_3(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="ssh",
-            account_id="string",
+            account_id="account_id",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -1536,9 +1541,9 @@ class TestApplications:
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
             },
-            custom_deny_message="string",
-            custom_deny_url="string",
-            custom_non_identity_deny_url="string",
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -1567,13 +1572,13 @@ class TestApplications:
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -1609,7 +1614,7 @@ class TestApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -1623,10 +1628,10 @@ class TestApplications:
     @parametrize
     def test_raw_response_update_overload_3(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="ssh",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -1638,10 +1643,10 @@ class TestApplications:
     @parametrize
     def test_streaming_response_update_overload_3(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="ssh",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1656,7 +1661,7 @@ class TestApplications:
     def test_path_params_update_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
                 type="ssh",
                 account_id="",
@@ -1664,20 +1669,20 @@ class TestApplications:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
                 type="ssh",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_4(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="vnc",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -1685,10 +1690,10 @@ class TestApplications:
     @parametrize
     def test_method_update_with_all_params_overload_4(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="vnc",
-            account_id="string",
+            account_id="account_id",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -1707,9 +1712,9 @@ class TestApplications:
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
             },
-            custom_deny_message="string",
-            custom_deny_url="string",
-            custom_non_identity_deny_url="string",
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -1738,13 +1743,13 @@ class TestApplications:
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -1780,7 +1785,7 @@ class TestApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -1794,10 +1799,10 @@ class TestApplications:
     @parametrize
     def test_raw_response_update_overload_4(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="vnc",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -1809,10 +1814,10 @@ class TestApplications:
     @parametrize
     def test_streaming_response_update_overload_4(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="vnc",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1827,7 +1832,7 @@ class TestApplications:
     def test_path_params_update_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
                 type="vnc",
                 account_id="",
@@ -1835,19 +1840,19 @@ class TestApplications:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
                 type="vnc",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_5(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="app_launcher",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -1855,9 +1860,9 @@ class TestApplications:
     @parametrize
     def test_method_update_with_all_params_overload_5(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="app_launcher",
-            account_id="string",
+            account_id="account_id",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -1880,13 +1885,13 @@ class TestApplications:
             ],
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -1922,7 +1927,7 @@ class TestApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             session_duration="24h",
         )
@@ -1932,9 +1937,9 @@ class TestApplications:
     @parametrize
     def test_raw_response_update_overload_5(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="app_launcher",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -1946,9 +1951,9 @@ class TestApplications:
     @parametrize
     def test_streaming_response_update_overload_5(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="app_launcher",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1963,25 +1968,25 @@ class TestApplications:
     def test_path_params_update_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 type="app_launcher",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 type="app_launcher",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_6(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="warp",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -1989,9 +1994,9 @@ class TestApplications:
     @parametrize
     def test_method_update_with_all_params_overload_6(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="warp",
-            account_id="string",
+            account_id="account_id",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -2014,13 +2019,13 @@ class TestApplications:
             ],
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -2056,7 +2061,7 @@ class TestApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             session_duration="24h",
         )
@@ -2066,9 +2071,9 @@ class TestApplications:
     @parametrize
     def test_raw_response_update_overload_6(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="warp",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2080,9 +2085,9 @@ class TestApplications:
     @parametrize
     def test_streaming_response_update_overload_6(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="warp",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2097,25 +2102,25 @@ class TestApplications:
     def test_path_params_update_overload_6(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 type="warp",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 type="warp",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_7(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="biso",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -2123,9 +2128,9 @@ class TestApplications:
     @parametrize
     def test_method_update_with_all_params_overload_7(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="biso",
-            account_id="string",
+            account_id="account_id",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -2148,13 +2153,13 @@ class TestApplications:
             ],
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -2190,7 +2195,7 @@ class TestApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             session_duration="24h",
         )
@@ -2200,9 +2205,9 @@ class TestApplications:
     @parametrize
     def test_raw_response_update_overload_7(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="biso",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2214,9 +2219,9 @@ class TestApplications:
     @parametrize
     def test_streaming_response_update_overload_7(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="biso",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2231,24 +2236,24 @@ class TestApplications:
     def test_path_params_update_overload_7(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 type="biso",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 type="biso",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_overload_8(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -2256,21 +2261,21 @@ class TestApplications:
     @parametrize
     def test_method_update_with_all_params_overload_8(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
             app_launcher_visible=True,
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -2306,7 +2311,7 @@ class TestApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
@@ -2317,8 +2322,8 @@ class TestApplications:
     @parametrize
     def test_raw_response_update_overload_8(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2330,8 +2335,8 @@ class TestApplications:
     @parametrize
     def test_streaming_response_update_overload_8(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2346,21 +2351,21 @@ class TestApplications:
     def test_path_params_update_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="string",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_list(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.list(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(SyncSinglePage[ApplicationListResponse], application, path=["response"])
 
@@ -2368,7 +2373,7 @@ class TestApplications:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.list(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(SyncSinglePage[ApplicationListResponse], application, path=["response"])
 
@@ -2376,7 +2381,7 @@ class TestApplications:
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.list(
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2388,7 +2393,7 @@ class TestApplications:
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.list(
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2408,15 +2413,15 @@ class TestApplications:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.list(
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
 
@@ -2424,8 +2429,8 @@ class TestApplications:
     @parametrize
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
 
@@ -2433,8 +2438,8 @@ class TestApplications:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2446,8 +2451,8 @@ class TestApplications:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2462,22 +2467,22 @@ class TestApplications:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="string",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationGetResponse], application, path=["response"])
 
@@ -2485,8 +2490,8 @@ class TestApplications:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationGetResponse], application, path=["response"])
 
@@ -2494,8 +2499,8 @@ class TestApplications:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2507,8 +2512,8 @@ class TestApplications:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2523,22 +2528,22 @@ class TestApplications:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="string",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_revoke_tokens(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.revoke_tokens(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
         assert_matches_type(object, application, path=["response"])
 
@@ -2546,8 +2551,8 @@ class TestApplications:
     @parametrize
     def test_method_revoke_tokens_with_all_params(self, client: Cloudflare) -> None:
         application = client.zero_trust.access.applications.revoke_tokens(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
         assert_matches_type(object, application, path=["response"])
 
@@ -2555,8 +2560,8 @@ class TestApplications:
     @parametrize
     def test_raw_response_revoke_tokens(self, client: Cloudflare) -> None:
         response = client.zero_trust.access.applications.with_raw_response.revoke_tokens(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2568,8 +2573,8 @@ class TestApplications:
     @parametrize
     def test_streaming_response_revoke_tokens(self, client: Cloudflare) -> None:
         with client.zero_trust.access.applications.with_streaming_response.revoke_tokens(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2584,14 +2589,14 @@ class TestApplications:
     def test_path_params_revoke_tokens(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.revoke_tokens(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.revoke_tokens(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="string",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
             )
 
 
@@ -2604,7 +2609,7 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
             type="self_hosted",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -2614,7 +2619,7 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
             type="self_hosted",
-            account_id="string",
+            account_id="account_id",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -2633,9 +2638,9 @@ class TestAsyncApplications:
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
             },
-            custom_deny_message="string",
-            custom_deny_url="string",
-            custom_non_identity_deny_url="string",
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -2664,13 +2669,13 @@ class TestAsyncApplications:
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -2706,7 +2711,7 @@ class TestAsyncApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -2722,7 +2727,7 @@ class TestAsyncApplications:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             domain="test.example.com/admin",
             type="self_hosted",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2736,7 +2741,7 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             domain="test.example.com/admin",
             type="self_hosted",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2760,14 +2765,14 @@ class TestAsyncApplications:
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 domain="test.example.com/admin",
                 type="self_hosted",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -2775,7 +2780,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_create_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
-            account_id="string",
+            account_id="account_id",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -2807,6 +2812,7 @@ class TestAsyncApplications:
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
+                "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                 "custom_attributes": {
                     "friendly_name": "Last Name",
                     "name": "family_name",
@@ -2828,16 +2834,17 @@ class TestAsyncApplications:
                 "saml_attribute_transform_jsonata": "$ ~>| groups | {'group_name': name} |",
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
+                "updated_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
             },
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -2873,7 +2880,7 @@ class TestAsyncApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             tags=["engineers", "engineers", "engineers"],
             type="saas",
@@ -2884,7 +2891,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -2896,7 +2903,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2916,7 +2923,7 @@ class TestAsyncApplications:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -2925,7 +2932,7 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
             type="ssh",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -2935,7 +2942,7 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
             type="ssh",
-            account_id="string",
+            account_id="account_id",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -2954,9 +2961,9 @@ class TestAsyncApplications:
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
             },
-            custom_deny_message="string",
-            custom_deny_url="string",
-            custom_non_identity_deny_url="string",
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -2985,13 +2992,13 @@ class TestAsyncApplications:
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -3027,7 +3034,7 @@ class TestAsyncApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -3043,7 +3050,7 @@ class TestAsyncApplications:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             domain="test.example.com/admin",
             type="ssh",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -3057,7 +3064,7 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             domain="test.example.com/admin",
             type="ssh",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3081,7 +3088,7 @@ class TestAsyncApplications:
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 domain="test.example.com/admin",
                 type="ssh",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3090,7 +3097,7 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
             type="vnc",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -3100,7 +3107,7 @@ class TestAsyncApplications:
         application = await async_client.zero_trust.access.applications.create(
             domain="test.example.com/admin",
             type="vnc",
-            account_id="string",
+            account_id="account_id",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -3119,9 +3126,9 @@ class TestAsyncApplications:
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
             },
-            custom_deny_message="string",
-            custom_deny_url="string",
-            custom_non_identity_deny_url="string",
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -3150,13 +3157,13 @@ class TestAsyncApplications:
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -3192,7 +3199,7 @@ class TestAsyncApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -3208,7 +3215,7 @@ class TestAsyncApplications:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             domain="test.example.com/admin",
             type="vnc",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -3222,7 +3229,7 @@ class TestAsyncApplications:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             domain="test.example.com/admin",
             type="vnc",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3246,7 +3253,7 @@ class TestAsyncApplications:
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 domain="test.example.com/admin",
                 type="vnc",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3254,7 +3261,7 @@ class TestAsyncApplications:
     async def test_method_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             type="app_launcher",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -3263,7 +3270,7 @@ class TestAsyncApplications:
     async def test_method_create_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             type="app_launcher",
-            account_id="string",
+            account_id="account_id",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -3286,13 +3293,13 @@ class TestAsyncApplications:
             ],
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -3328,7 +3335,7 @@ class TestAsyncApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             session_duration="24h",
         )
@@ -3339,7 +3346,7 @@ class TestAsyncApplications:
     async def test_raw_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             type="app_launcher",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -3352,7 +3359,7 @@ class TestAsyncApplications:
     async def test_streaming_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             type="app_launcher",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3374,7 +3381,7 @@ class TestAsyncApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 type="app_launcher",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3382,7 +3389,7 @@ class TestAsyncApplications:
     async def test_method_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             type="warp",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -3391,7 +3398,7 @@ class TestAsyncApplications:
     async def test_method_create_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             type="warp",
-            account_id="string",
+            account_id="account_id",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -3414,13 +3421,13 @@ class TestAsyncApplications:
             ],
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -3456,7 +3463,7 @@ class TestAsyncApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             session_duration="24h",
         )
@@ -3467,7 +3474,7 @@ class TestAsyncApplications:
     async def test_raw_response_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             type="warp",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -3480,7 +3487,7 @@ class TestAsyncApplications:
     async def test_streaming_response_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             type="warp",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3502,7 +3509,7 @@ class TestAsyncApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 type="warp",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -3510,7 +3517,7 @@ class TestAsyncApplications:
     async def test_method_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             type="biso",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -3519,7 +3526,7 @@ class TestAsyncApplications:
     async def test_method_create_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
             type="biso",
-            account_id="string",
+            account_id="account_id",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -3542,13 +3549,13 @@ class TestAsyncApplications:
             ],
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -3584,7 +3591,7 @@ class TestAsyncApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             session_duration="24h",
         )
@@ -3595,7 +3602,7 @@ class TestAsyncApplications:
     async def test_raw_response_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
             type="biso",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -3608,7 +3615,7 @@ class TestAsyncApplications:
     async def test_streaming_response_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
             type="biso",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3630,14 +3637,14 @@ class TestAsyncApplications:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
                 type="biso",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -3645,20 +3652,20 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_create_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.create(
-            account_id="string",
+            account_id="account_id",
             app_launcher_visible=True,
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -3694,7 +3701,7 @@ class TestAsyncApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
@@ -3705,7 +3712,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.create(
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -3717,7 +3724,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.create(
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3737,17 +3744,17 @@ class TestAsyncApplications:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.create(
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="self_hosted",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -3755,10 +3762,10 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_update_with_all_params_overload_1(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="self_hosted",
-            account_id="string",
+            account_id="account_id",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -3777,9 +3784,9 @@ class TestAsyncApplications:
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
             },
-            custom_deny_message="string",
-            custom_deny_url="string",
-            custom_non_identity_deny_url="string",
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -3808,13 +3815,13 @@ class TestAsyncApplications:
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -3850,7 +3857,7 @@ class TestAsyncApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -3864,10 +3871,10 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="self_hosted",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -3879,10 +3886,10 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="self_hosted",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3897,7 +3904,7 @@ class TestAsyncApplications:
     async def test_path_params_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
                 type="self_hosted",
                 account_id="",
@@ -3905,18 +3912,18 @@ class TestAsyncApplications:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
                 type="self_hosted",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -3924,8 +3931,8 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_update_with_all_params_overload_2(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -3957,6 +3964,7 @@ class TestAsyncApplications:
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
+                "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                 "custom_attributes": {
                     "friendly_name": "Last Name",
                     "name": "family_name",
@@ -3978,16 +3986,17 @@ class TestAsyncApplications:
                 "saml_attribute_transform_jsonata": "$ ~>| groups | {'group_name': name} |",
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
+                "updated_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
             },
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -4023,7 +4032,7 @@ class TestAsyncApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             tags=["engineers", "engineers", "engineers"],
             type="saas",
@@ -4034,8 +4043,8 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -4047,8 +4056,8 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4063,24 +4072,24 @@ class TestAsyncApplications:
     async def test_path_params_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="string",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="ssh",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -4088,10 +4097,10 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_update_with_all_params_overload_3(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="ssh",
-            account_id="string",
+            account_id="account_id",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -4110,9 +4119,9 @@ class TestAsyncApplications:
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
             },
-            custom_deny_message="string",
-            custom_deny_url="string",
-            custom_non_identity_deny_url="string",
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -4141,13 +4150,13 @@ class TestAsyncApplications:
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -4183,7 +4192,7 @@ class TestAsyncApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -4197,10 +4206,10 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="ssh",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -4212,10 +4221,10 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="ssh",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4230,7 +4239,7 @@ class TestAsyncApplications:
     async def test_path_params_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
                 type="ssh",
                 account_id="",
@@ -4238,20 +4247,20 @@ class TestAsyncApplications:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
                 type="ssh",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="vnc",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -4259,10 +4268,10 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_update_with_all_params_overload_4(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="vnc",
-            account_id="string",
+            account_id="account_id",
             allow_authenticate_via_warp=True,
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
@@ -4281,9 +4290,9 @@ class TestAsyncApplications:
                 "allowed_origins": ["https://example.com"],
                 "max_age": -1,
             },
-            custom_deny_message="string",
-            custom_deny_url="string",
-            custom_non_identity_deny_url="string",
+            custom_deny_message="custom_deny_message",
+            custom_deny_url="custom_deny_url",
+            custom_non_identity_deny_url="custom_non_identity_deny_url",
             custom_pages=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -4312,13 +4321,13 @@ class TestAsyncApplications:
             same_site_cookie_attribute="strict",
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -4354,7 +4363,7 @@ class TestAsyncApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             self_hosted_domains=["test.example.com/admin", "test.anotherexample.com/staff"],
             service_auth_401_redirect=True,
@@ -4368,10 +4377,10 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="vnc",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -4383,10 +4392,10 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             domain="test.example.com/admin",
             type="vnc",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4401,7 +4410,7 @@ class TestAsyncApplications:
     async def test_path_params_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
                 type="vnc",
                 account_id="",
@@ -4409,19 +4418,19 @@ class TestAsyncApplications:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domain="test.example.com/admin",
                 type="vnc",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="app_launcher",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -4429,9 +4438,9 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_update_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="app_launcher",
-            account_id="string",
+            account_id="account_id",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -4454,13 +4463,13 @@ class TestAsyncApplications:
             ],
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -4496,7 +4505,7 @@ class TestAsyncApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             session_duration="24h",
         )
@@ -4506,9 +4515,9 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="app_launcher",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -4520,9 +4529,9 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="app_launcher",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4537,25 +4546,25 @@ class TestAsyncApplications:
     async def test_path_params_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 type="app_launcher",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 type="app_launcher",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="warp",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -4563,9 +4572,9 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_update_with_all_params_overload_6(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="warp",
-            account_id="string",
+            account_id="account_id",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -4588,13 +4597,13 @@ class TestAsyncApplications:
             ],
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -4630,7 +4639,7 @@ class TestAsyncApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             session_duration="24h",
         )
@@ -4640,9 +4649,9 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="warp",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -4654,9 +4663,9 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="warp",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4671,25 +4680,25 @@ class TestAsyncApplications:
     async def test_path_params_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 type="warp",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 type="warp",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="biso",
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -4697,9 +4706,9 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_update_with_all_params_overload_7(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="biso",
-            account_id="string",
+            account_id="account_id",
             allowed_idps=[
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
@@ -4722,13 +4731,13 @@ class TestAsyncApplications:
             ],
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -4764,7 +4773,7 @@ class TestAsyncApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             session_duration="24h",
         )
@@ -4774,9 +4783,9 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="biso",
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -4788,9 +4797,9 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
             type="biso",
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4805,24 +4814,24 @@ class TestAsyncApplications:
     async def test_path_params_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 type="biso",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 type="biso",
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -4830,21 +4839,21 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_update_with_all_params_overload_8(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
             app_launcher_visible=True,
             domain="https://mybookmark.com",
             logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             name="Admin Site",
             scim_config={
                 "authentication": {
-                    "password": "string",
+                    "password": "password",
                     "scheme": "httpbasic",
-                    "user": "string",
+                    "user": "user",
                 },
                 "deactivate_on_delete": True,
                 "enabled": True,
-                "idp_uid": "string",
+                "idp_uid": "idp_uid",
                 "mappings": [
                     {
                         "enabled": True,
@@ -4880,7 +4889,7 @@ class TestAsyncApplications:
                         "transform_jsonata": "$merge([$, {'userName': $substringBefore($.userName, '@') & '+test@' & $substringAfter($.userName, '@')}])",
                     },
                 ],
-                "remote_uri": "string",
+                "remote_uri": "remote_uri",
             },
             tags=["engineers", "engineers", "engineers"],
             type="bookmark",
@@ -4891,8 +4900,8 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -4904,8 +4913,8 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4920,21 +4929,21 @@ class TestAsyncApplications:
     async def test_path_params_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="string",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.list(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(AsyncSinglePage[ApplicationListResponse], application, path=["response"])
 
@@ -4942,7 +4951,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.list(
-            account_id="string",
+            account_id="account_id",
         )
         assert_matches_type(AsyncSinglePage[ApplicationListResponse], application, path=["response"])
 
@@ -4950,7 +4959,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.list(
-            account_id="string",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -4962,7 +4971,7 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.list(
-            account_id="string",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4982,15 +4991,15 @@ class TestAsyncApplications:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.list(
-                account_id="string",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
 
@@ -4998,8 +5007,8 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationDeleteResponse], application, path=["response"])
 
@@ -5007,8 +5016,8 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -5020,8 +5029,8 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5036,22 +5045,22 @@ class TestAsyncApplications:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="string",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationGetResponse], application, path=["response"])
 
@@ -5059,8 +5068,8 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
         assert_matches_type(Optional[ApplicationGetResponse], application, path=["response"])
 
@@ -5068,8 +5077,8 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -5081,8 +5090,8 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5097,22 +5106,22 @@ class TestAsyncApplications:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="string",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_revoke_tokens(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.revoke_tokens(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
         assert_matches_type(object, application, path=["response"])
 
@@ -5120,8 +5129,8 @@ class TestAsyncApplications:
     @parametrize
     async def test_method_revoke_tokens_with_all_params(self, async_client: AsyncCloudflare) -> None:
         application = await async_client.zero_trust.access.applications.revoke_tokens(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
         assert_matches_type(object, application, path=["response"])
 
@@ -5129,8 +5138,8 @@ class TestAsyncApplications:
     @parametrize
     async def test_raw_response_revoke_tokens(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.access.applications.with_raw_response.revoke_tokens(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -5142,8 +5151,8 @@ class TestAsyncApplications:
     @parametrize
     async def test_streaming_response_revoke_tokens(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.access.applications.with_streaming_response.revoke_tokens(
-            "023e105f4ecef8ad9ca31a8372d0c353",
-            account_id="string",
+            app_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -5158,12 +5167,12 @@ class TestAsyncApplications:
     async def test_path_params_revoke_tokens(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.revoke_tokens(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.revoke_tokens(
-                "023e105f4ecef8ad9ca31a8372d0c353",
-                account_id="string",
+                app_id="023e105f4ecef8ad9ca31a8372d0c353",
+                account_id="account_id",
             )

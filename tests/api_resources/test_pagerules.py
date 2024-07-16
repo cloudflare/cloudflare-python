@@ -156,7 +156,7 @@ class TestPagerules:
     def test_method_update(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             pagerule = client.pagerules.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[{}, {}, {}],
                 targets=[
@@ -176,7 +176,7 @@ class TestPagerules:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             pagerule = client.pagerules.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[
                     {
@@ -220,7 +220,7 @@ class TestPagerules:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.pagerules.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[{}, {}, {}],
                 targets=[
@@ -243,7 +243,7 @@ class TestPagerules:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.pagerules.with_streaming_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[{}, {}, {}],
                 targets=[
@@ -269,7 +269,7 @@ class TestPagerules:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.pagerules.with_raw_response.update(
-                    "023e105f4ecef8ad9ca31a8372d0c353",
+                    pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                     zone_id="",
                     actions=[{}, {}, {}],
                     targets=[
@@ -285,7 +285,7 @@ class TestPagerules:
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
                 client.pagerules.with_raw_response.update(
-                    "",
+                    pagerule_id="",
                     zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                     actions=[{}, {}, {}],
                     targets=[
@@ -359,7 +359,7 @@ class TestPagerules:
     def test_method_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             pagerule = client.pagerules.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -369,7 +369,7 @@ class TestPagerules:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.pagerules.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -382,7 +382,7 @@ class TestPagerules:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.pagerules.with_streaming_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
@@ -398,13 +398,13 @@ class TestPagerules:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.pagerules.with_raw_response.delete(
-                    "023e105f4ecef8ad9ca31a8372d0c353",
+                    pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                     zone_id="",
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
                 client.pagerules.with_raw_response.delete(
-                    "",
+                    pagerule_id="",
                     zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 )
 
@@ -412,7 +412,7 @@ class TestPagerules:
     def test_method_edit(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             pagerule = client.pagerules.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -422,7 +422,7 @@ class TestPagerules:
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             pagerule = client.pagerules.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[
                     {
@@ -466,7 +466,7 @@ class TestPagerules:
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.pagerules.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -479,7 +479,7 @@ class TestPagerules:
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.pagerules.with_streaming_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
@@ -495,13 +495,13 @@ class TestPagerules:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.pagerules.with_raw_response.edit(
-                    "023e105f4ecef8ad9ca31a8372d0c353",
+                    pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                     zone_id="",
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
                 client.pagerules.with_raw_response.edit(
-                    "",
+                    pagerule_id="",
                     zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 )
 
@@ -509,7 +509,7 @@ class TestPagerules:
     def test_method_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             pagerule = client.pagerules.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -519,7 +519,7 @@ class TestPagerules:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.pagerules.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -532,7 +532,7 @@ class TestPagerules:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.pagerules.with_streaming_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
@@ -548,13 +548,13 @@ class TestPagerules:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 client.pagerules.with_raw_response.get(
-                    "023e105f4ecef8ad9ca31a8372d0c353",
+                    pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                     zone_id="",
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
                 client.pagerules.with_raw_response.get(
-                    "",
+                    pagerule_id="",
                     zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 )
 
@@ -692,7 +692,7 @@ class TestAsyncPagerules:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             pagerule = await async_client.pagerules.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[{}, {}, {}],
                 targets=[
@@ -712,7 +712,7 @@ class TestAsyncPagerules:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             pagerule = await async_client.pagerules.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[
                     {
@@ -756,7 +756,7 @@ class TestAsyncPagerules:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.pagerules.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[{}, {}, {}],
                 targets=[
@@ -779,7 +779,7 @@ class TestAsyncPagerules:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.pagerules.with_streaming_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[{}, {}, {}],
                 targets=[
@@ -805,7 +805,7 @@ class TestAsyncPagerules:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.pagerules.with_raw_response.update(
-                    "023e105f4ecef8ad9ca31a8372d0c353",
+                    pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                     zone_id="",
                     actions=[{}, {}, {}],
                     targets=[
@@ -821,7 +821,7 @@ class TestAsyncPagerules:
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
                 await async_client.pagerules.with_raw_response.update(
-                    "",
+                    pagerule_id="",
                     zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                     actions=[{}, {}, {}],
                     targets=[
@@ -895,7 +895,7 @@ class TestAsyncPagerules:
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             pagerule = await async_client.pagerules.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -905,7 +905,7 @@ class TestAsyncPagerules:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.pagerules.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -918,7 +918,7 @@ class TestAsyncPagerules:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.pagerules.with_streaming_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
@@ -934,13 +934,13 @@ class TestAsyncPagerules:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.pagerules.with_raw_response.delete(
-                    "023e105f4ecef8ad9ca31a8372d0c353",
+                    pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                     zone_id="",
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
                 await async_client.pagerules.with_raw_response.delete(
-                    "",
+                    pagerule_id="",
                     zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 )
 
@@ -948,7 +948,7 @@ class TestAsyncPagerules:
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             pagerule = await async_client.pagerules.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -958,7 +958,7 @@ class TestAsyncPagerules:
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             pagerule = await async_client.pagerules.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 actions=[
                     {
@@ -1002,7 +1002,7 @@ class TestAsyncPagerules:
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.pagerules.with_raw_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -1015,7 +1015,7 @@ class TestAsyncPagerules:
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.pagerules.with_streaming_response.edit(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
@@ -1031,13 +1031,13 @@ class TestAsyncPagerules:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.pagerules.with_raw_response.edit(
-                    "023e105f4ecef8ad9ca31a8372d0c353",
+                    pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                     zone_id="",
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
                 await async_client.pagerules.with_raw_response.edit(
-                    "",
+                    pagerule_id="",
                     zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 )
 
@@ -1045,7 +1045,7 @@ class TestAsyncPagerules:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             pagerule = await async_client.pagerules.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -1055,7 +1055,7 @@ class TestAsyncPagerules:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.pagerules.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -1068,7 +1068,7 @@ class TestAsyncPagerules:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.pagerules.with_streaming_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
@@ -1084,12 +1084,12 @@ class TestAsyncPagerules:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
                 await async_client.pagerules.with_raw_response.get(
-                    "023e105f4ecef8ad9ca31a8372d0c353",
+                    pagerule_id="023e105f4ecef8ad9ca31a8372d0c353",
                     zone_id="",
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `pagerule_id` but received ''"):
                 await async_client.pagerules.with_raw_response.get(
-                    "",
+                    pagerule_id="",
                     zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 )

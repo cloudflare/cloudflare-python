@@ -30,9 +30,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
-from ....._base_client import (
-    make_request_options,
-)
+from ....._base_client import make_request_options
 from .....types.radar.quality import speed_summary_params, speed_histogram_params
 from .....types.radar.quality.speed_summary_response import SpeedSummaryResponse
 from .....types.radar.quality.speed_histogram_response import SpeedHistogramResponse

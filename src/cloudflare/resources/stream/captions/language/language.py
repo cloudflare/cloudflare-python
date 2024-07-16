@@ -28,9 +28,7 @@ from ....._response import (
     async_to_streamed_response_wrapper,
 )
 from ....._wrappers import ResultWrapper
-from ....._base_client import (
-    make_request_options,
-)
+from ....._base_client import make_request_options
 from .....types.stream.caption import Caption
 from .....types.stream.captions import language_update_params
 from .....types.stream.captions.language_delete_response import LanguageDeleteResponse
@@ -141,6 +139,10 @@ class LanguageResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not language:
             raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
             f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
             body=maybe_transform({"file": file}, language_update_params.LanguageUpdateParams),
@@ -356,6 +358,10 @@ class AsyncLanguageResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not language:
             raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
             f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
             body=await async_maybe_transform({"file": file}, language_update_params.LanguageUpdateParams),

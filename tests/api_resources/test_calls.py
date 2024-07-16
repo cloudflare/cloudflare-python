@@ -71,7 +71,7 @@ class TestCalls:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         call = client.calls.update(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CallsApp], call, path=["response"])
@@ -79,7 +79,7 @@ class TestCalls:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         call = client.calls.update(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="production-realtime-app",
         )
@@ -88,7 +88,7 @@ class TestCalls:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.calls.with_raw_response.update(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -100,7 +100,7 @@ class TestCalls:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.calls.with_streaming_response.update(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -115,13 +115,13 @@ class TestCalls:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.calls.with_raw_response.update(
-                "2a95132c15732412d22c1476fa83f27a",
+                app_id="2a95132c15732412d22c1476fa83f27a",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.calls.with_raw_response.update(
-                "",
+                app_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -166,7 +166,7 @@ class TestCalls:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         call = client.calls.delete(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CallsApp], call, path=["response"])
@@ -174,7 +174,7 @@ class TestCalls:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.calls.with_raw_response.delete(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -186,7 +186,7 @@ class TestCalls:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.calls.with_streaming_response.delete(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -201,20 +201,20 @@ class TestCalls:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.calls.with_raw_response.delete(
-                "2a95132c15732412d22c1476fa83f27a",
+                app_id="2a95132c15732412d22c1476fa83f27a",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.calls.with_raw_response.delete(
-                "",
+                app_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         call = client.calls.get(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CallsApp], call, path=["response"])
@@ -222,7 +222,7 @@ class TestCalls:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.calls.with_raw_response.get(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -234,7 +234,7 @@ class TestCalls:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.calls.with_streaming_response.get(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -249,13 +249,13 @@ class TestCalls:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.calls.with_raw_response.get(
-                "2a95132c15732412d22c1476fa83f27a",
+                app_id="2a95132c15732412d22c1476fa83f27a",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             client.calls.with_raw_response.get(
-                "",
+                app_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -312,7 +312,7 @@ class TestAsyncCalls:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         call = await async_client.calls.update(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CallsApp], call, path=["response"])
@@ -320,7 +320,7 @@ class TestAsyncCalls:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         call = await async_client.calls.update(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="production-realtime-app",
         )
@@ -329,7 +329,7 @@ class TestAsyncCalls:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.calls.with_raw_response.update(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -341,7 +341,7 @@ class TestAsyncCalls:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.calls.with_streaming_response.update(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -356,13 +356,13 @@ class TestAsyncCalls:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.calls.with_raw_response.update(
-                "2a95132c15732412d22c1476fa83f27a",
+                app_id="2a95132c15732412d22c1476fa83f27a",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.calls.with_raw_response.update(
-                "",
+                app_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -407,7 +407,7 @@ class TestAsyncCalls:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         call = await async_client.calls.delete(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CallsApp], call, path=["response"])
@@ -415,7 +415,7 @@ class TestAsyncCalls:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.calls.with_raw_response.delete(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -427,7 +427,7 @@ class TestAsyncCalls:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.calls.with_streaming_response.delete(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -442,20 +442,20 @@ class TestAsyncCalls:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.calls.with_raw_response.delete(
-                "2a95132c15732412d22c1476fa83f27a",
+                app_id="2a95132c15732412d22c1476fa83f27a",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.calls.with_raw_response.delete(
-                "",
+                app_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         call = await async_client.calls.get(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[CallsApp], call, path=["response"])
@@ -463,7 +463,7 @@ class TestAsyncCalls:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.calls.with_raw_response.get(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -475,7 +475,7 @@ class TestAsyncCalls:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.calls.with_streaming_response.get(
-            "2a95132c15732412d22c1476fa83f27a",
+            app_id="2a95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -490,12 +490,12 @@ class TestAsyncCalls:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.calls.with_raw_response.get(
-                "2a95132c15732412d22c1476fa83f27a",
+                app_id="2a95132c15732412d22c1476fa83f27a",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
             await async_client.calls.with_raw_response.get(
-                "",
+                app_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

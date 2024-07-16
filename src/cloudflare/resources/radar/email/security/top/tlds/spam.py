@@ -22,9 +22,7 @@ from ......._response import (
     async_to_streamed_response_wrapper,
 )
 from ......._wrappers import ResultWrapper
-from ......._base_client import (
-    make_request_options,
-)
+from ......._base_client import make_request_options
 from .......types.radar.email.security.top.tlds import spam_get_params
 from .......types.radar.email.security.top.tlds.spam_get_response import SpamGetResponse
 
@@ -46,26 +44,7 @@ class SpamResource(SyncAPIResource):
         *,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
-            Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
@@ -169,26 +148,7 @@ class AsyncSpamResource(AsyncAPIResource):
         *,
         arc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-        date_range: List[
-            Literal[
-                "1d",
-                "2d",
-                "7d",
-                "14d",
-                "28d",
-                "12w",
-                "24w",
-                "52w",
-                "1dControl",
-                "2dControl",
-                "7dControl",
-                "14dControl",
-                "28dControl",
-                "12wControl",
-                "24wControl",
-            ]
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
         date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
         dkim: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,
         dmarc: List[Literal["PASS", "NONE", "FAIL"]] | NotGiven = NOT_GIVEN,

@@ -20,9 +20,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.intel.indicator_feeds import permission_create_params, permission_delete_params
 from ....types.intel.indicator_feeds.permission_list_response import PermissionListResponse
 from ....types.intel.indicator_feeds.permission_create_response import PermissionCreateResponse

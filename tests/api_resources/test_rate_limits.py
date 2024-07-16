@@ -31,7 +31,7 @@ class TestRateLimits:
     def test_method_create(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = client.rate_limits.create(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             )
 
@@ -42,7 +42,7 @@ class TestRateLimits:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.rate_limits.with_raw_response.create(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             )
 
@@ -56,7 +56,7 @@ class TestRateLimits:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.rate_limits.with_streaming_response.create(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             ) as response:
                 assert not response.is_closed
@@ -73,7 +73,7 @@ class TestRateLimits:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 client.rate_limits.with_raw_response.create(
-                    "",
+                    zone_identifier="",
                     body={},
                 )
 
@@ -81,7 +81,7 @@ class TestRateLimits:
     def test_method_list(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = client.rate_limits.list(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(SyncV4PagePaginationArray[RateLimit], rate_limit, path=["response"])
@@ -90,7 +90,7 @@ class TestRateLimits:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = client.rate_limits.list(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 page=1,
                 per_page=1,
             )
@@ -101,7 +101,7 @@ class TestRateLimits:
     def test_raw_response_list(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.rate_limits.with_raw_response.list(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -113,7 +113,7 @@ class TestRateLimits:
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.rate_limits.with_streaming_response.list(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -128,14 +128,14 @@ class TestRateLimits:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 client.rate_limits.with_raw_response.list(
-                    "",
+                    zone_identifier="",
                 )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = client.rate_limits.delete(
-                "372e67954025e0ba6aaa6d586b9e0b59",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -145,7 +145,7 @@ class TestRateLimits:
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.rate_limits.with_raw_response.delete(
-                "372e67954025e0ba6aaa6d586b9e0b59",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -158,7 +158,7 @@ class TestRateLimits:
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.rate_limits.with_streaming_response.delete(
-                "372e67954025e0ba6aaa6d586b9e0b59",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
@@ -174,13 +174,13 @@ class TestRateLimits:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 client.rate_limits.with_raw_response.delete(
-                    "372e67954025e0ba6aaa6d586b9e0b59",
+                    id="372e67954025e0ba6aaa6d586b9e0b59",
                     zone_identifier="",
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
                 client.rate_limits.with_raw_response.delete(
-                    "",
+                    id="",
                     zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 )
 
@@ -189,7 +189,7 @@ class TestRateLimits:
     def test_method_edit(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = client.rate_limits.edit(
-                "372e67954025e0ba6aaa6d586b9e0b59",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             )
@@ -201,7 +201,7 @@ class TestRateLimits:
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.rate_limits.with_raw_response.edit(
-                "372e67954025e0ba6aaa6d586b9e0b59",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             )
@@ -216,7 +216,7 @@ class TestRateLimits:
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.rate_limits.with_streaming_response.edit(
-                "372e67954025e0ba6aaa6d586b9e0b59",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             ) as response:
@@ -234,14 +234,14 @@ class TestRateLimits:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 client.rate_limits.with_raw_response.edit(
-                    "372e67954025e0ba6aaa6d586b9e0b59",
+                    id="372e67954025e0ba6aaa6d586b9e0b59",
                     zone_identifier="",
                     body={},
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
                 client.rate_limits.with_raw_response.edit(
-                    "",
+                    id="",
                     zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                     body={},
                 )
@@ -250,7 +250,7 @@ class TestRateLimits:
     def test_method_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = client.rate_limits.get(
-                "372e67954025e0ba6aaa6d586b9e0b59",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -260,7 +260,7 @@ class TestRateLimits:
     def test_raw_response_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = client.rate_limits.with_raw_response.get(
-                "372e67954025e0ba6aaa6d586b9e0b59",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -273,7 +273,7 @@ class TestRateLimits:
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             with client.rate_limits.with_streaming_response.get(
-                "372e67954025e0ba6aaa6d586b9e0b59",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
@@ -289,13 +289,13 @@ class TestRateLimits:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 client.rate_limits.with_raw_response.get(
-                    "372e67954025e0ba6aaa6d586b9e0b59",
+                    id="372e67954025e0ba6aaa6d586b9e0b59",
                     zone_identifier="",
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
                 client.rate_limits.with_raw_response.get(
-                    "",
+                    id="",
                     zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 )
 
@@ -308,7 +308,7 @@ class TestAsyncRateLimits:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = await async_client.rate_limits.create(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             )
 
@@ -319,7 +319,7 @@ class TestAsyncRateLimits:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.rate_limits.with_raw_response.create(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             )
 
@@ -333,7 +333,7 @@ class TestAsyncRateLimits:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.rate_limits.with_streaming_response.create(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             ) as response:
                 assert not response.is_closed
@@ -350,7 +350,7 @@ class TestAsyncRateLimits:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 await async_client.rate_limits.with_raw_response.create(
-                    "",
+                    zone_identifier="",
                     body={},
                 )
 
@@ -358,7 +358,7 @@ class TestAsyncRateLimits:
     async def test_method_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = await async_client.rate_limits.list(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert_matches_type(AsyncV4PagePaginationArray[RateLimit], rate_limit, path=["response"])
@@ -367,7 +367,7 @@ class TestAsyncRateLimits:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = await async_client.rate_limits.list(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 page=1,
                 per_page=1,
             )
@@ -378,7 +378,7 @@ class TestAsyncRateLimits:
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.rate_limits.with_raw_response.list(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
         assert response.is_closed is True
@@ -390,7 +390,7 @@ class TestAsyncRateLimits:
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.rate_limits.with_streaming_response.list(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -405,14 +405,14 @@ class TestAsyncRateLimits:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 await async_client.rate_limits.with_raw_response.list(
-                    "",
+                    zone_identifier="",
                 )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = await async_client.rate_limits.delete(
-                "372e67954025e0ba6aaa6d586b9e0b59",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -422,7 +422,7 @@ class TestAsyncRateLimits:
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.rate_limits.with_raw_response.delete(
-                "372e67954025e0ba6aaa6d586b9e0b59",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -435,7 +435,7 @@ class TestAsyncRateLimits:
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.rate_limits.with_streaming_response.delete(
-                "372e67954025e0ba6aaa6d586b9e0b59",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
@@ -451,13 +451,13 @@ class TestAsyncRateLimits:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 await async_client.rate_limits.with_raw_response.delete(
-                    "372e67954025e0ba6aaa6d586b9e0b59",
+                    id="372e67954025e0ba6aaa6d586b9e0b59",
                     zone_identifier="",
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
                 await async_client.rate_limits.with_raw_response.delete(
-                    "",
+                    id="",
                     zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 )
 
@@ -466,7 +466,7 @@ class TestAsyncRateLimits:
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = await async_client.rate_limits.edit(
-                "372e67954025e0ba6aaa6d586b9e0b59",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             )
@@ -478,7 +478,7 @@ class TestAsyncRateLimits:
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.rate_limits.with_raw_response.edit(
-                "372e67954025e0ba6aaa6d586b9e0b59",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             )
@@ -493,7 +493,7 @@ class TestAsyncRateLimits:
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.rate_limits.with_streaming_response.edit(
-                "372e67954025e0ba6aaa6d586b9e0b59",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 body={},
             ) as response:
@@ -511,14 +511,14 @@ class TestAsyncRateLimits:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 await async_client.rate_limits.with_raw_response.edit(
-                    "372e67954025e0ba6aaa6d586b9e0b59",
+                    id="372e67954025e0ba6aaa6d586b9e0b59",
                     zone_identifier="",
                     body={},
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
                 await async_client.rate_limits.with_raw_response.edit(
-                    "",
+                    id="",
                     zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                     body={},
                 )
@@ -527,7 +527,7 @@ class TestAsyncRateLimits:
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             rate_limit = await async_client.rate_limits.get(
-                "372e67954025e0ba6aaa6d586b9e0b59",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -537,7 +537,7 @@ class TestAsyncRateLimits:
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             response = await async_client.rate_limits.with_raw_response.get(
-                "372e67954025e0ba6aaa6d586b9e0b59",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -550,7 +550,7 @@ class TestAsyncRateLimits:
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.warns(DeprecationWarning):
             async with async_client.rate_limits.with_streaming_response.get(
-                "372e67954025e0ba6aaa6d586b9e0b59",
+                id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             ) as response:
                 assert not response.is_closed
@@ -566,12 +566,12 @@ class TestAsyncRateLimits:
         with pytest.warns(DeprecationWarning):
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 await async_client.rate_limits.with_raw_response.get(
-                    "372e67954025e0ba6aaa6d586b9e0b59",
+                    id="372e67954025e0ba6aaa6d586b9e0b59",
                     zone_identifier="",
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
                 await async_client.rate_limits.with_raw_response.get(
-                    "",
+                    id="",
                     zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 )

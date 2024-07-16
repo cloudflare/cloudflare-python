@@ -220,7 +220,7 @@ class TestTokens:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         token = client.user.tokens.update(
-            {},
+            token_id={},
             name="readonly token",
             policies=[
                 {
@@ -256,7 +256,7 @@ class TestTokens:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         token = client.user.tokens.update(
-            {},
+            token_id={},
             name="readonly token",
             policies=[
                 {
@@ -339,7 +339,7 @@ class TestTokens:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.user.tokens.with_raw_response.update(
-            {},
+            token_id={},
             name="readonly token",
             policies=[
                 {
@@ -379,7 +379,7 @@ class TestTokens:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.user.tokens.with_streaming_response.update(
-            {},
+            token_id={},
             name="readonly token",
             policies=[
                 {
@@ -739,7 +739,7 @@ class TestAsyncTokens:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.user.tokens.update(
-            {},
+            token_id={},
             name="readonly token",
             policies=[
                 {
@@ -775,7 +775,7 @@ class TestAsyncTokens:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.user.tokens.update(
-            {},
+            token_id={},
             name="readonly token",
             policies=[
                 {
@@ -858,7 +858,7 @@ class TestAsyncTokens:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.user.tokens.with_raw_response.update(
-            {},
+            token_id={},
             name="readonly token",
             policies=[
                 {
@@ -898,7 +898,7 @@ class TestAsyncTokens:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.user.tokens.with_streaming_response.update(
-            {},
+            token_id={},
             name="readonly token",
             policies=[
                 {

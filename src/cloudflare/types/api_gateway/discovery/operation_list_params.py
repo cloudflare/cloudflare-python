@@ -43,10 +43,10 @@ class OperationListParams(TypedDict, total=False):
       Identifier API Discovery
     """
 
-    page: object
+    page: int
     """Page number of paginated results."""
 
-    per_page: object
+    per_page: int
     """Maximum number of results per page."""
 
     state: Literal["review", "saved", "ignored"]

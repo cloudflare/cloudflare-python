@@ -145,7 +145,7 @@ class TestRules:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         rule = client.magic_network_monitoring.rules.delete(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
@@ -153,7 +153,7 @@ class TestRules:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.magic_network_monitoring.rules.with_raw_response.delete(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
 
@@ -165,7 +165,7 @@ class TestRules:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.magic_network_monitoring.rules.with_streaming_response.delete(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         ) as response:
             assert not response.is_closed
@@ -180,20 +180,20 @@ class TestRules:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_network_monitoring.rules.with_raw_response.delete(
-                "2890e6fa406311ed9b5a23f70f6fb8cf",
+                rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.magic_network_monitoring.rules.with_raw_response.delete(
-                "",
+                rule_id="",
                 account_id="6f91088a406011ed95aed352566e8d4c",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         rule = client.magic_network_monitoring.rules.edit(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
             body={},
         )
@@ -202,7 +202,7 @@ class TestRules:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.magic_network_monitoring.rules.with_raw_response.edit(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
             body={},
         )
@@ -215,7 +215,7 @@ class TestRules:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.magic_network_monitoring.rules.with_streaming_response.edit(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
             body={},
         ) as response:
@@ -231,14 +231,14 @@ class TestRules:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_network_monitoring.rules.with_raw_response.edit(
-                "2890e6fa406311ed9b5a23f70f6fb8cf",
+                rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
                 account_id="",
                 body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.magic_network_monitoring.rules.with_raw_response.edit(
-                "",
+                rule_id="",
                 account_id="6f91088a406011ed95aed352566e8d4c",
                 body={},
             )
@@ -246,7 +246,7 @@ class TestRules:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         rule = client.magic_network_monitoring.rules.get(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
@@ -254,7 +254,7 @@ class TestRules:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.magic_network_monitoring.rules.with_raw_response.get(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
 
@@ -266,7 +266,7 @@ class TestRules:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.magic_network_monitoring.rules.with_streaming_response.get(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         ) as response:
             assert not response.is_closed
@@ -281,13 +281,13 @@ class TestRules:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_network_monitoring.rules.with_raw_response.get(
-                "2890e6fa406311ed9b5a23f70f6fb8cf",
+                rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.magic_network_monitoring.rules.with_raw_response.get(
-                "",
+                rule_id="",
                 account_id="6f91088a406011ed95aed352566e8d4c",
             )
 
@@ -420,7 +420,7 @@ class TestAsyncRules:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.magic_network_monitoring.rules.delete(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
@@ -428,7 +428,7 @@ class TestAsyncRules:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_network_monitoring.rules.with_raw_response.delete(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
 
@@ -440,7 +440,7 @@ class TestAsyncRules:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_network_monitoring.rules.with_streaming_response.delete(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         ) as response:
             assert not response.is_closed
@@ -455,20 +455,20 @@ class TestAsyncRules:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_network_monitoring.rules.with_raw_response.delete(
-                "2890e6fa406311ed9b5a23f70f6fb8cf",
+                rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             await async_client.magic_network_monitoring.rules.with_raw_response.delete(
-                "",
+                rule_id="",
                 account_id="6f91088a406011ed95aed352566e8d4c",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.magic_network_monitoring.rules.edit(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
             body={},
         )
@@ -477,7 +477,7 @@ class TestAsyncRules:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_network_monitoring.rules.with_raw_response.edit(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
             body={},
         )
@@ -490,7 +490,7 @@ class TestAsyncRules:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_network_monitoring.rules.with_streaming_response.edit(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
             body={},
         ) as response:
@@ -506,14 +506,14 @@ class TestAsyncRules:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_network_monitoring.rules.with_raw_response.edit(
-                "2890e6fa406311ed9b5a23f70f6fb8cf",
+                rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
                 account_id="",
                 body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             await async_client.magic_network_monitoring.rules.with_raw_response.edit(
-                "",
+                rule_id="",
                 account_id="6f91088a406011ed95aed352566e8d4c",
                 body={},
             )
@@ -521,7 +521,7 @@ class TestAsyncRules:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         rule = await async_client.magic_network_monitoring.rules.get(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
         assert_matches_type(Optional[MagicNetworkMonitoringRule], rule, path=["response"])
@@ -529,7 +529,7 @@ class TestAsyncRules:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_network_monitoring.rules.with_raw_response.get(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         )
 
@@ -541,7 +541,7 @@ class TestAsyncRules:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_network_monitoring.rules.with_streaming_response.get(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
         ) as response:
             assert not response.is_closed
@@ -556,12 +556,12 @@ class TestAsyncRules:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_network_monitoring.rules.with_raw_response.get(
-                "2890e6fa406311ed9b5a23f70f6fb8cf",
+                rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             await async_client.magic_network_monitoring.rules.with_raw_response.get(
-                "",
+                rule_id="",
                 account_id="6f91088a406011ed95aed352566e8d4c",
             )

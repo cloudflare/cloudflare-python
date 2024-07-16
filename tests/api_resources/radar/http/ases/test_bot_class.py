@@ -21,14 +21,14 @@ class TestBotClass:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         bot_class = client.radar.http.ases.bot_class.get(
-            "LIKELY_AUTOMATED",
+            bot_class="LIKELY_AUTOMATED",
         )
         assert_matches_type(BotClassGetResponse, bot_class, path=["response"])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         bot_class = client.radar.http.ases.bot_class.get(
-            "LIKELY_AUTOMATED",
+            bot_class="LIKELY_AUTOMATED",
             asn=["string", "string", "string"],
             browser_family=["CHROME", "EDGE", "FIREFOX"],
             continent=["string", "string", "string"],
@@ -37,7 +37,7 @@ class TestBotClass:
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -59,7 +59,7 @@ class TestBotClass:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.radar.http.ases.bot_class.with_raw_response.get(
-            "LIKELY_AUTOMATED",
+            bot_class="LIKELY_AUTOMATED",
         )
 
         assert response.is_closed is True
@@ -70,7 +70,7 @@ class TestBotClass:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.radar.http.ases.bot_class.with_streaming_response.get(
-            "LIKELY_AUTOMATED",
+            bot_class="LIKELY_AUTOMATED",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -87,14 +87,14 @@ class TestAsyncBotClass:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         bot_class = await async_client.radar.http.ases.bot_class.get(
-            "LIKELY_AUTOMATED",
+            bot_class="LIKELY_AUTOMATED",
         )
         assert_matches_type(BotClassGetResponse, bot_class, path=["response"])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         bot_class = await async_client.radar.http.ases.bot_class.get(
-            "LIKELY_AUTOMATED",
+            bot_class="LIKELY_AUTOMATED",
             asn=["string", "string", "string"],
             browser_family=["CHROME", "EDGE", "FIREFOX"],
             continent=["string", "string", "string"],
@@ -103,7 +103,7 @@ class TestAsyncBotClass:
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
             ],
-            date_range=["1d", "2d", "7d"],
+            date_range=["7d", "7d", "7d"],
             date_start=[
                 parse_datetime("2019-12-27T18:11:19.117Z"),
                 parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -125,7 +125,7 @@ class TestAsyncBotClass:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.radar.http.ases.bot_class.with_raw_response.get(
-            "LIKELY_AUTOMATED",
+            bot_class="LIKELY_AUTOMATED",
         )
 
         assert response.is_closed is True
@@ -136,7 +136,7 @@ class TestAsyncBotClass:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.radar.http.ases.bot_class.with_streaming_response.get(
-            "LIKELY_AUTOMATED",
+            bot_class="LIKELY_AUTOMATED",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

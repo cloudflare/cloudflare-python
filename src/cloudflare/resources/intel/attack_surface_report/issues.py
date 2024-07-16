@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, cast
+from typing import Any, List, Type, Optional, cast
 
 import httpx
 
@@ -21,10 +21,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePagination, AsyncV4PagePagination
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.intel.attack_surface_report import (
     issue_list_params,
     issue_type_params,
@@ -147,7 +144,7 @@ class IssuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IssueClassResponse:
+    ) -> Optional[IssueClassResponse]:
         """
         Get Security Center Issue Counts by Class
 
@@ -187,9 +184,9 @@ class IssuesResource(SyncAPIResource):
                     },
                     issue_class_params.IssueClassParams,
                 ),
-                post_parser=ResultWrapper[IssueClassResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[IssueClassResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[IssueClassResponse], ResultWrapper[IssueClassResponse]),
+            cast_to=cast(Type[Optional[IssueClassResponse]], ResultWrapper[IssueClassResponse]),
         )
 
     def dismiss(
@@ -204,7 +201,7 @@ class IssuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IssueDismissResponse:
+    ) -> Optional[IssueDismissResponse]:
         """
         Archive Security Center Insight
 
@@ -224,7 +221,7 @@ class IssuesResource(SyncAPIResource):
         if not issue_id:
             raise ValueError(f"Expected a non-empty value for `issue_id` but received {issue_id!r}")
         return cast(
-            IssueDismissResponse,
+            Optional[IssueDismissResponse],
             self._put(
                 f"/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
                 body=maybe_transform({"dismiss": dismiss}, issue_dismiss_params.IssueDismissParams),
@@ -233,7 +230,7 @@ class IssuesResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[IssueDismissResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[IssueDismissResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IssueDismissResponse]
@@ -262,7 +259,7 @@ class IssuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IssueSeverityResponse:
+    ) -> Optional[IssueSeverityResponse]:
         """
         Get Security Center Issue Counts by Severity
 
@@ -302,9 +299,9 @@ class IssuesResource(SyncAPIResource):
                     },
                     issue_severity_params.IssueSeverityParams,
                 ),
-                post_parser=ResultWrapper[IssueSeverityResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[IssueSeverityResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[IssueSeverityResponse], ResultWrapper[IssueSeverityResponse]),
+            cast_to=cast(Type[Optional[IssueSeverityResponse]], ResultWrapper[IssueSeverityResponse]),
         )
 
     def type(
@@ -328,7 +325,7 @@ class IssuesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IssueTypeResponse:
+    ) -> Optional[IssueTypeResponse]:
         """
         Get Security Center Issue Counts by Type
 
@@ -368,9 +365,9 @@ class IssuesResource(SyncAPIResource):
                     },
                     issue_type_params.IssueTypeParams,
                 ),
-                post_parser=ResultWrapper[IssueTypeResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[IssueTypeResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[IssueTypeResponse], ResultWrapper[IssueTypeResponse]),
+            cast_to=cast(Type[Optional[IssueTypeResponse]], ResultWrapper[IssueTypeResponse]),
         )
 
 
@@ -478,7 +475,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IssueClassResponse:
+    ) -> Optional[IssueClassResponse]:
         """
         Get Security Center Issue Counts by Class
 
@@ -518,9 +515,9 @@ class AsyncIssuesResource(AsyncAPIResource):
                     },
                     issue_class_params.IssueClassParams,
                 ),
-                post_parser=ResultWrapper[IssueClassResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[IssueClassResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[IssueClassResponse], ResultWrapper[IssueClassResponse]),
+            cast_to=cast(Type[Optional[IssueClassResponse]], ResultWrapper[IssueClassResponse]),
         )
 
     async def dismiss(
@@ -535,7 +532,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IssueDismissResponse:
+    ) -> Optional[IssueDismissResponse]:
         """
         Archive Security Center Insight
 
@@ -555,7 +552,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         if not issue_id:
             raise ValueError(f"Expected a non-empty value for `issue_id` but received {issue_id!r}")
         return cast(
-            IssueDismissResponse,
+            Optional[IssueDismissResponse],
             await self._put(
                 f"/accounts/{account_id}/intel/attack-surface-report/{issue_id}/dismiss",
                 body=await async_maybe_transform({"dismiss": dismiss}, issue_dismiss_params.IssueDismissParams),
@@ -564,7 +561,7 @@ class AsyncIssuesResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[IssueDismissResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[IssueDismissResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[IssueDismissResponse]
@@ -593,7 +590,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IssueSeverityResponse:
+    ) -> Optional[IssueSeverityResponse]:
         """
         Get Security Center Issue Counts by Severity
 
@@ -633,9 +630,9 @@ class AsyncIssuesResource(AsyncAPIResource):
                     },
                     issue_severity_params.IssueSeverityParams,
                 ),
-                post_parser=ResultWrapper[IssueSeverityResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[IssueSeverityResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[IssueSeverityResponse], ResultWrapper[IssueSeverityResponse]),
+            cast_to=cast(Type[Optional[IssueSeverityResponse]], ResultWrapper[IssueSeverityResponse]),
         )
 
     async def type(
@@ -659,7 +656,7 @@ class AsyncIssuesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> IssueTypeResponse:
+    ) -> Optional[IssueTypeResponse]:
         """
         Get Security Center Issue Counts by Type
 
@@ -699,9 +696,9 @@ class AsyncIssuesResource(AsyncAPIResource):
                     },
                     issue_type_params.IssueTypeParams,
                 ),
-                post_parser=ResultWrapper[IssueTypeResponse]._unwrapper,
+                post_parser=ResultWrapper[Optional[IssueTypeResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[IssueTypeResponse], ResultWrapper[IssueTypeResponse]),
+            cast_to=cast(Type[Optional[IssueTypeResponse]], ResultWrapper[IssueTypeResponse]),
         )
 
 

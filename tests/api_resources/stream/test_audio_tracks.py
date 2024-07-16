@@ -24,7 +24,7 @@ class TestAudioTracks:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         audio_track = client.stream.audio_tracks.delete(
-            "ea95132c15732412d22c1476fa83f27a",
+            audio_identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
@@ -33,7 +33,7 @@ class TestAudioTracks:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.stream.audio_tracks.with_raw_response.delete(
-            "ea95132c15732412d22c1476fa83f27a",
+            audio_identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
@@ -46,7 +46,7 @@ class TestAudioTracks:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.stream.audio_tracks.with_streaming_response.delete(
-            "ea95132c15732412d22c1476fa83f27a",
+            audio_identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         ) as response:
@@ -62,21 +62,21 @@ class TestAudioTracks:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.stream.audio_tracks.with_raw_response.delete(
-                "ea95132c15732412d22c1476fa83f27a",
+                audio_identifier="ea95132c15732412d22c1476fa83f27a",
                 account_id="",
                 identifier="ea95132c15732412d22c1476fa83f27a",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.stream.audio_tracks.with_raw_response.delete(
-                "ea95132c15732412d22c1476fa83f27a",
+                audio_identifier="ea95132c15732412d22c1476fa83f27a",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `audio_identifier` but received ''"):
             client.stream.audio_tracks.with_raw_response.delete(
-                "",
+                audio_identifier="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="ea95132c15732412d22c1476fa83f27a",
             )
@@ -84,7 +84,7 @@ class TestAudioTracks:
     @parametrize
     def test_method_copy(self, client: Cloudflare) -> None:
         audio_track = client.stream.audio_tracks.copy(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             label="director commentary",
         )
@@ -93,7 +93,7 @@ class TestAudioTracks:
     @parametrize
     def test_method_copy_with_all_params(self, client: Cloudflare) -> None:
         audio_track = client.stream.audio_tracks.copy(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             label="director commentary",
             url="https://www.examplestorage.com/audio_file.mp3",
@@ -103,7 +103,7 @@ class TestAudioTracks:
     @parametrize
     def test_raw_response_copy(self, client: Cloudflare) -> None:
         response = client.stream.audio_tracks.with_raw_response.copy(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             label="director commentary",
         )
@@ -116,7 +116,7 @@ class TestAudioTracks:
     @parametrize
     def test_streaming_response_copy(self, client: Cloudflare) -> None:
         with client.stream.audio_tracks.with_streaming_response.copy(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             label="director commentary",
         ) as response:
@@ -132,14 +132,14 @@ class TestAudioTracks:
     def test_path_params_copy(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.stream.audio_tracks.with_raw_response.copy(
-                "ea95132c15732412d22c1476fa83f27a",
+                identifier="ea95132c15732412d22c1476fa83f27a",
                 account_id="",
                 label="director commentary",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.stream.audio_tracks.with_raw_response.copy(
-                "",
+                identifier="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 label="director commentary",
             )
@@ -147,7 +147,7 @@ class TestAudioTracks:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         audio_track = client.stream.audio_tracks.edit(
-            "ea95132c15732412d22c1476fa83f27a",
+            audio_identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
@@ -156,7 +156,7 @@ class TestAudioTracks:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         audio_track = client.stream.audio_tracks.edit(
-            "ea95132c15732412d22c1476fa83f27a",
+            audio_identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
             default=True,
@@ -167,7 +167,7 @@ class TestAudioTracks:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.stream.audio_tracks.with_raw_response.edit(
-            "ea95132c15732412d22c1476fa83f27a",
+            audio_identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
@@ -180,7 +180,7 @@ class TestAudioTracks:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.stream.audio_tracks.with_streaming_response.edit(
-            "ea95132c15732412d22c1476fa83f27a",
+            audio_identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         ) as response:
@@ -196,21 +196,21 @@ class TestAudioTracks:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.stream.audio_tracks.with_raw_response.edit(
-                "ea95132c15732412d22c1476fa83f27a",
+                audio_identifier="ea95132c15732412d22c1476fa83f27a",
                 account_id="",
                 identifier="ea95132c15732412d22c1476fa83f27a",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.stream.audio_tracks.with_raw_response.edit(
-                "ea95132c15732412d22c1476fa83f27a",
+                audio_identifier="ea95132c15732412d22c1476fa83f27a",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `audio_identifier` but received ''"):
             client.stream.audio_tracks.with_raw_response.edit(
-                "",
+                audio_identifier="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="ea95132c15732412d22c1476fa83f27a",
             )
@@ -218,7 +218,7 @@ class TestAudioTracks:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         audio_track = client.stream.audio_tracks.get(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[AudioTrackGetResponse], audio_track, path=["response"])
@@ -226,7 +226,7 @@ class TestAudioTracks:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.stream.audio_tracks.with_raw_response.get(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -238,7 +238,7 @@ class TestAudioTracks:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.stream.audio_tracks.with_streaming_response.get(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -253,13 +253,13 @@ class TestAudioTracks:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.stream.audio_tracks.with_raw_response.get(
-                "ea95132c15732412d22c1476fa83f27a",
+                identifier="ea95132c15732412d22c1476fa83f27a",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             client.stream.audio_tracks.with_raw_response.get(
-                "",
+                identifier="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -270,7 +270,7 @@ class TestAsyncAudioTracks:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         audio_track = await async_client.stream.audio_tracks.delete(
-            "ea95132c15732412d22c1476fa83f27a",
+            audio_identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
@@ -279,7 +279,7 @@ class TestAsyncAudioTracks:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.audio_tracks.with_raw_response.delete(
-            "ea95132c15732412d22c1476fa83f27a",
+            audio_identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
@@ -292,7 +292,7 @@ class TestAsyncAudioTracks:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.audio_tracks.with_streaming_response.delete(
-            "ea95132c15732412d22c1476fa83f27a",
+            audio_identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         ) as response:
@@ -308,21 +308,21 @@ class TestAsyncAudioTracks:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.stream.audio_tracks.with_raw_response.delete(
-                "ea95132c15732412d22c1476fa83f27a",
+                audio_identifier="ea95132c15732412d22c1476fa83f27a",
                 account_id="",
                 identifier="ea95132c15732412d22c1476fa83f27a",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.stream.audio_tracks.with_raw_response.delete(
-                "ea95132c15732412d22c1476fa83f27a",
+                audio_identifier="ea95132c15732412d22c1476fa83f27a",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `audio_identifier` but received ''"):
             await async_client.stream.audio_tracks.with_raw_response.delete(
-                "",
+                audio_identifier="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="ea95132c15732412d22c1476fa83f27a",
             )
@@ -330,7 +330,7 @@ class TestAsyncAudioTracks:
     @parametrize
     async def test_method_copy(self, async_client: AsyncCloudflare) -> None:
         audio_track = await async_client.stream.audio_tracks.copy(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             label="director commentary",
         )
@@ -339,7 +339,7 @@ class TestAsyncAudioTracks:
     @parametrize
     async def test_method_copy_with_all_params(self, async_client: AsyncCloudflare) -> None:
         audio_track = await async_client.stream.audio_tracks.copy(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             label="director commentary",
             url="https://www.examplestorage.com/audio_file.mp3",
@@ -349,7 +349,7 @@ class TestAsyncAudioTracks:
     @parametrize
     async def test_raw_response_copy(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.audio_tracks.with_raw_response.copy(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             label="director commentary",
         )
@@ -362,7 +362,7 @@ class TestAsyncAudioTracks:
     @parametrize
     async def test_streaming_response_copy(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.audio_tracks.with_streaming_response.copy(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             label="director commentary",
         ) as response:
@@ -378,14 +378,14 @@ class TestAsyncAudioTracks:
     async def test_path_params_copy(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.stream.audio_tracks.with_raw_response.copy(
-                "ea95132c15732412d22c1476fa83f27a",
+                identifier="ea95132c15732412d22c1476fa83f27a",
                 account_id="",
                 label="director commentary",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.stream.audio_tracks.with_raw_response.copy(
-                "",
+                identifier="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 label="director commentary",
             )
@@ -393,7 +393,7 @@ class TestAsyncAudioTracks:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         audio_track = await async_client.stream.audio_tracks.edit(
-            "ea95132c15732412d22c1476fa83f27a",
+            audio_identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
@@ -402,7 +402,7 @@ class TestAsyncAudioTracks:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         audio_track = await async_client.stream.audio_tracks.edit(
-            "ea95132c15732412d22c1476fa83f27a",
+            audio_identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
             default=True,
@@ -413,7 +413,7 @@ class TestAsyncAudioTracks:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.audio_tracks.with_raw_response.edit(
-            "ea95132c15732412d22c1476fa83f27a",
+            audio_identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         )
@@ -426,7 +426,7 @@ class TestAsyncAudioTracks:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.audio_tracks.with_streaming_response.edit(
-            "ea95132c15732412d22c1476fa83f27a",
+            audio_identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             identifier="ea95132c15732412d22c1476fa83f27a",
         ) as response:
@@ -442,21 +442,21 @@ class TestAsyncAudioTracks:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.stream.audio_tracks.with_raw_response.edit(
-                "ea95132c15732412d22c1476fa83f27a",
+                audio_identifier="ea95132c15732412d22c1476fa83f27a",
                 account_id="",
                 identifier="ea95132c15732412d22c1476fa83f27a",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.stream.audio_tracks.with_raw_response.edit(
-                "ea95132c15732412d22c1476fa83f27a",
+                audio_identifier="ea95132c15732412d22c1476fa83f27a",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `audio_identifier` but received ''"):
             await async_client.stream.audio_tracks.with_raw_response.edit(
-                "",
+                audio_identifier="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 identifier="ea95132c15732412d22c1476fa83f27a",
             )
@@ -464,7 +464,7 @@ class TestAsyncAudioTracks:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         audio_track = await async_client.stream.audio_tracks.get(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[AudioTrackGetResponse], audio_track, path=["response"])
@@ -472,7 +472,7 @@ class TestAsyncAudioTracks:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.stream.audio_tracks.with_raw_response.get(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -484,7 +484,7 @@ class TestAsyncAudioTracks:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.stream.audio_tracks.with_streaming_response.get(
-            "ea95132c15732412d22c1476fa83f27a",
+            identifier="ea95132c15732412d22c1476fa83f27a",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -499,12 +499,12 @@ class TestAsyncAudioTracks:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.stream.audio_tracks.with_raw_response.get(
-                "ea95132c15732412d22c1476fa83f27a",
+                identifier="ea95132c15732412d22c1476fa83f27a",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
             await async_client.stream.audio_tracks.with_raw_response.get(
-                "",
+                identifier="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

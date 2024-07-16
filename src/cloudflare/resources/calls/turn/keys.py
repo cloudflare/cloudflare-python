@@ -21,10 +21,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.calls.turn import key_create_params, key_update_params
 from ....types.calls.turn.key_get_response import KeyGetResponse
 from ....types.calls.turn.key_list_response import KeyListResponse

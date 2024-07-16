@@ -16,10 +16,7 @@ from ..._response import (
 )
 from ...pagination import SyncV4PagePagination, AsyncV4PagePagination
 from ...types.intel import dns_list_params
-from ..._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ..._base_client import AsyncPaginator, make_request_options
 from ...types.intel.dns_list_response import DNSListResponse
 
 __all__ = ["DNSResource", "AsyncDNSResource"]

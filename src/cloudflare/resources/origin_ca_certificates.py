@@ -22,10 +22,7 @@ from .._response import (
 from .._wrappers import ResultWrapper
 from ..types.ssl import RequestValidity
 from ..pagination import SyncSinglePage, AsyncSinglePage
-from .._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from .._base_client import AsyncPaginator, make_request_options
 from ..types.ssl.request_validity import RequestValidity
 from ..types.origin_ca_certificates import origin_ca_certificate_list_params, origin_ca_certificate_create_params
 from ..types.shared.certificate_request_type import CertificateRequestType

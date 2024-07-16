@@ -21,10 +21,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.gateway import certificate_create_params
 from ....types.zero_trust.gateway.certificate_get_response import CertificateGetResponse
 from ....types.zero_trust.gateway.certificate_list_response import CertificateListResponse

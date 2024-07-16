@@ -29,10 +29,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.waiting_rooms import event_edit_params, event_list_params, event_create_params, event_update_params
 from ....types.waiting_rooms.event import Event
 from ....types.waiting_rooms.event_delete_response import EventDeleteResponse

@@ -528,6 +528,14 @@ from .warp_connector import (
     WARPConnectorResourceWithStreamingResponse,
     AsyncWARPConnectorResourceWithStreamingResponse,
 )
+from .cloud_connector import (
+    CloudConnectorResource,
+    AsyncCloudConnectorResource,
+    CloudConnectorResourceWithRawResponse,
+    AsyncCloudConnectorResourceWithRawResponse,
+    CloudConnectorResourceWithStreamingResponse,
+    AsyncCloudConnectorResourceWithStreamingResponse,
+)
 from .durable_objects import (
     DurableObjectsResource,
     AsyncDurableObjectsResource,
@@ -1178,4 +1186,10 @@ __all__ = [
     "AsyncIAMResourceWithRawResponse",
     "IAMResourceWithStreamingResponse",
     "AsyncIAMResourceWithStreamingResponse",
+    "CloudConnectorResource",
+    "AsyncCloudConnectorResource",
+    "CloudConnectorResourceWithRawResponse",
+    "AsyncCloudConnectorResourceWithRawResponse",
+    "CloudConnectorResourceWithStreamingResponse",
+    "AsyncCloudConnectorResourceWithStreamingResponse",
 ]

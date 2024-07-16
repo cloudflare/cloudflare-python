@@ -15,10 +15,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ....pagination import SyncCursorLimitPagination, AsyncCursorLimitPagination
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.durable_objects.namespaces import object_list_params
 from ....types.durable_objects.namespaces.durable_object import DurableObject
 

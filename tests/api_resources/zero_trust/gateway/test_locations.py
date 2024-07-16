@@ -35,6 +35,7 @@ class TestLocations:
             account_id="699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
             client_default=False,
+            dns_destination_ips_id="0e4a32c6-6fb8-4858-9296-98f51631e8e6",
             ecs_support=False,
             networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
         )
@@ -77,7 +78,7 @@ class TestLocations:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         location = client.zero_trust.gateway.locations.update(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
         )
@@ -86,10 +87,11 @@ class TestLocations:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         location = client.zero_trust.gateway.locations.update(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
             client_default=False,
+            dns_destination_ips_id="0e4a32c6-6fb8-4858-9296-98f51631e8e6",
             ecs_support=False,
             networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
         )
@@ -98,7 +100,7 @@ class TestLocations:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.locations.with_raw_response.update(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
         )
@@ -111,7 +113,7 @@ class TestLocations:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.locations.with_streaming_response.update(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
         ) as response:
@@ -127,14 +129,14 @@ class TestLocations:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.gateway.locations.with_raw_response.update(
-                "ed35569b41ce4d1facfe683550f54086",
+                location_id="ed35569b41ce4d1facfe683550f54086",
                 account_id="",
                 name="Austin Office Location",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `location_id` but received ''"):
             client.zero_trust.gateway.locations.with_raw_response.update(
-                "",
+                location_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
                 name="Austin Office Location",
             )
@@ -180,7 +182,7 @@ class TestLocations:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         location = client.zero_trust.gateway.locations.delete(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[LocationDeleteResponse], location, path=["response"])
@@ -188,7 +190,7 @@ class TestLocations:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.locations.with_raw_response.delete(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -200,7 +202,7 @@ class TestLocations:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.locations.with_streaming_response.delete(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -215,20 +217,20 @@ class TestLocations:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.gateway.locations.with_raw_response.delete(
-                "ed35569b41ce4d1facfe683550f54086",
+                location_id="ed35569b41ce4d1facfe683550f54086",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `location_id` but received ''"):
             client.zero_trust.gateway.locations.with_raw_response.delete(
-                "",
+                location_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         location = client.zero_trust.gateway.locations.get(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[Location], location, path=["response"])
@@ -236,7 +238,7 @@ class TestLocations:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.gateway.locations.with_raw_response.get(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -248,7 +250,7 @@ class TestLocations:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.gateway.locations.with_streaming_response.get(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -263,13 +265,13 @@ class TestLocations:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.gateway.locations.with_raw_response.get(
-                "ed35569b41ce4d1facfe683550f54086",
+                location_id="ed35569b41ce4d1facfe683550f54086",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `location_id` but received ''"):
             client.zero_trust.gateway.locations.with_raw_response.get(
-                "",
+                location_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
@@ -291,6 +293,7 @@ class TestAsyncLocations:
             account_id="699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
             client_default=False,
+            dns_destination_ips_id="0e4a32c6-6fb8-4858-9296-98f51631e8e6",
             ecs_support=False,
             networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
         )
@@ -333,7 +336,7 @@ class TestAsyncLocations:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         location = await async_client.zero_trust.gateway.locations.update(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
         )
@@ -342,10 +345,11 @@ class TestAsyncLocations:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         location = await async_client.zero_trust.gateway.locations.update(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
             client_default=False,
+            dns_destination_ips_id="0e4a32c6-6fb8-4858-9296-98f51631e8e6",
             ecs_support=False,
             networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
         )
@@ -354,7 +358,7 @@ class TestAsyncLocations:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.locations.with_raw_response.update(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
         )
@@ -367,7 +371,7 @@ class TestAsyncLocations:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.locations.with_streaming_response.update(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
             name="Austin Office Location",
         ) as response:
@@ -383,14 +387,14 @@ class TestAsyncLocations:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.gateway.locations.with_raw_response.update(
-                "ed35569b41ce4d1facfe683550f54086",
+                location_id="ed35569b41ce4d1facfe683550f54086",
                 account_id="",
                 name="Austin Office Location",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `location_id` but received ''"):
             await async_client.zero_trust.gateway.locations.with_raw_response.update(
-                "",
+                location_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
                 name="Austin Office Location",
             )
@@ -436,7 +440,7 @@ class TestAsyncLocations:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         location = await async_client.zero_trust.gateway.locations.delete(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[LocationDeleteResponse], location, path=["response"])
@@ -444,7 +448,7 @@ class TestAsyncLocations:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.locations.with_raw_response.delete(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -456,7 +460,7 @@ class TestAsyncLocations:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.locations.with_streaming_response.delete(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -471,20 +475,20 @@ class TestAsyncLocations:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.gateway.locations.with_raw_response.delete(
-                "ed35569b41ce4d1facfe683550f54086",
+                location_id="ed35569b41ce4d1facfe683550f54086",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `location_id` but received ''"):
             await async_client.zero_trust.gateway.locations.with_raw_response.delete(
-                "",
+                location_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         location = await async_client.zero_trust.gateway.locations.get(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         )
         assert_matches_type(Optional[Location], location, path=["response"])
@@ -492,7 +496,7 @@ class TestAsyncLocations:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.gateway.locations.with_raw_response.get(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         )
 
@@ -504,7 +508,7 @@ class TestAsyncLocations:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.gateway.locations.with_streaming_response.get(
-            "ed35569b41ce4d1facfe683550f54086",
+            location_id="ed35569b41ce4d1facfe683550f54086",
             account_id="699d98642c564d2e855e9661899b7252",
         ) as response:
             assert not response.is_closed
@@ -519,12 +523,12 @@ class TestAsyncLocations:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.gateway.locations.with_raw_response.get(
-                "ed35569b41ce4d1facfe683550f54086",
+                location_id="ed35569b41ce4d1facfe683550f54086",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `location_id` but received ''"):
             await async_client.zero_trust.gateway.locations.with_raw_response.get(
-                "",
+                location_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
             )

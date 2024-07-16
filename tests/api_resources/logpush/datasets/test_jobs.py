@@ -21,8 +21,8 @@ class TestJobs:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         job = client.logpush.datasets.jobs.get(
-            "http_requests",
-            account_id="string",
+            dataset_id="http_requests",
+            account_id="account_id",
         )
         assert_matches_type(Optional[JobGetResponse], job, path=["response"])
 
@@ -30,8 +30,8 @@ class TestJobs:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         job = client.logpush.datasets.jobs.get(
-            "http_requests",
-            account_id="string",
+            dataset_id="http_requests",
+            account_id="account_id",
         )
         assert_matches_type(Optional[JobGetResponse], job, path=["response"])
 
@@ -39,8 +39,8 @@ class TestJobs:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.logpush.datasets.jobs.with_raw_response.get(
-            "http_requests",
-            account_id="string",
+            dataset_id="http_requests",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -52,8 +52,8 @@ class TestJobs:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.logpush.datasets.jobs.with_streaming_response.get(
-            "http_requests",
-            account_id="string",
+            dataset_id="http_requests",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -68,20 +68,20 @@ class TestJobs:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
             client.logpush.datasets.jobs.with_raw_response.get(
-                "",
-                account_id="string",
+                dataset_id="",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.logpush.datasets.jobs.with_raw_response.get(
-                "http_requests",
+                dataset_id="http_requests",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.logpush.datasets.jobs.with_raw_response.get(
-                "http_requests",
-                account_id="string",
+                dataset_id="http_requests",
+                account_id="account_id",
             )
 
 
@@ -92,8 +92,8 @@ class TestAsyncJobs:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         job = await async_client.logpush.datasets.jobs.get(
-            "http_requests",
-            account_id="string",
+            dataset_id="http_requests",
+            account_id="account_id",
         )
         assert_matches_type(Optional[JobGetResponse], job, path=["response"])
 
@@ -101,8 +101,8 @@ class TestAsyncJobs:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         job = await async_client.logpush.datasets.jobs.get(
-            "http_requests",
-            account_id="string",
+            dataset_id="http_requests",
+            account_id="account_id",
         )
         assert_matches_type(Optional[JobGetResponse], job, path=["response"])
 
@@ -110,8 +110,8 @@ class TestAsyncJobs:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logpush.datasets.jobs.with_raw_response.get(
-            "http_requests",
-            account_id="string",
+            dataset_id="http_requests",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -123,8 +123,8 @@ class TestAsyncJobs:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.datasets.jobs.with_streaming_response.get(
-            "http_requests",
-            account_id="string",
+            dataset_id="http_requests",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -139,18 +139,18 @@ class TestAsyncJobs:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dataset_id` but received ''"):
             await async_client.logpush.datasets.jobs.with_raw_response.get(
-                "",
-                account_id="string",
+                dataset_id="",
+                account_id="account_id",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.logpush.datasets.jobs.with_raw_response.get(
-                "http_requests",
+                dataset_id="http_requests",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.logpush.datasets.jobs.with_raw_response.get(
-                "http_requests",
-                account_id="string",
+                dataset_id="http_requests",
+                account_id="account_id",
             )

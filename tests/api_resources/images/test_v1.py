@@ -126,7 +126,7 @@ class TestV1:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         v1 = client.images.v1.delete(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(V1DeleteResponse, v1, path=["response"])
@@ -134,7 +134,7 @@ class TestV1:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.images.v1.with_raw_response.delete(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -146,7 +146,7 @@ class TestV1:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.images.v1.with_streaming_response.delete(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -161,20 +161,20 @@ class TestV1:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.images.v1.with_raw_response.delete(
-                "string",
+                image_id="image_id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `image_id` but received ''"):
             client.images.v1.with_raw_response.delete(
-                "",
+                image_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         v1 = client.images.v1.edit(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Image, v1, path=["response"])
@@ -182,7 +182,7 @@ class TestV1:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         v1 = client.images.v1.edit(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             metadata={},
             require_signed_urls=True,
@@ -192,7 +192,7 @@ class TestV1:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.images.v1.with_raw_response.edit(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -204,7 +204,7 @@ class TestV1:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.images.v1.with_streaming_response.edit(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -219,20 +219,20 @@ class TestV1:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.images.v1.with_raw_response.edit(
-                "string",
+                image_id="image_id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `image_id` but received ''"):
             client.images.v1.with_raw_response.edit(
-                "",
+                image_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         v1 = client.images.v1.get(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Image, v1, path=["response"])
@@ -240,7 +240,7 @@ class TestV1:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.images.v1.with_raw_response.get(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -252,7 +252,7 @@ class TestV1:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.images.v1.with_streaming_response.get(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -267,13 +267,13 @@ class TestV1:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.images.v1.with_raw_response.get(
-                "string",
+                image_id="image_id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `image_id` but received ''"):
             client.images.v1.with_raw_response.get(
-                "",
+                image_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -385,7 +385,7 @@ class TestAsyncV1:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         v1 = await async_client.images.v1.delete(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(V1DeleteResponse, v1, path=["response"])
@@ -393,7 +393,7 @@ class TestAsyncV1:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.images.v1.with_raw_response.delete(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -405,7 +405,7 @@ class TestAsyncV1:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.images.v1.with_streaming_response.delete(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -420,20 +420,20 @@ class TestAsyncV1:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.images.v1.with_raw_response.delete(
-                "string",
+                image_id="image_id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `image_id` but received ''"):
             await async_client.images.v1.with_raw_response.delete(
-                "",
+                image_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         v1 = await async_client.images.v1.edit(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Image, v1, path=["response"])
@@ -441,7 +441,7 @@ class TestAsyncV1:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         v1 = await async_client.images.v1.edit(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             metadata={},
             require_signed_urls=True,
@@ -451,7 +451,7 @@ class TestAsyncV1:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.images.v1.with_raw_response.edit(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -463,7 +463,7 @@ class TestAsyncV1:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.images.v1.with_streaming_response.edit(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -478,20 +478,20 @@ class TestAsyncV1:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.images.v1.with_raw_response.edit(
-                "string",
+                image_id="image_id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `image_id` but received ''"):
             await async_client.images.v1.with_raw_response.edit(
-                "",
+                image_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         v1 = await async_client.images.v1.get(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Image, v1, path=["response"])
@@ -499,7 +499,7 @@ class TestAsyncV1:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.images.v1.with_raw_response.get(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -511,7 +511,7 @@ class TestAsyncV1:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.images.v1.with_streaming_response.get(
-            "string",
+            image_id="image_id",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -526,12 +526,12 @@ class TestAsyncV1:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.images.v1.with_raw_response.get(
-                "string",
+                image_id="image_id",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `image_id` but received ''"):
             await async_client.images.v1.with_raw_response.get(
-                "",
+                image_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

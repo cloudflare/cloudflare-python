@@ -128,13 +128,13 @@ from .traffic_anomalies import (
     TrafficAnomaliesResourceWithStreamingResponse,
     AsyncTrafficAnomaliesResourceWithStreamingResponse,
 )
-from .connection_tampering import (
-    ConnectionTamperingResource,
-    AsyncConnectionTamperingResource,
-    ConnectionTamperingResourceWithRawResponse,
-    AsyncConnectionTamperingResourceWithRawResponse,
-    ConnectionTamperingResourceWithStreamingResponse,
-    AsyncConnectionTamperingResourceWithStreamingResponse,
+from .tcp_resets_timeouts import (
+    TCPResetsTimeoutsResource,
+    AsyncTCPResetsTimeoutsResource,
+    TCPResetsTimeoutsResourceWithRawResponse,
+    AsyncTCPResetsTimeoutsResourceWithRawResponse,
+    TCPResetsTimeoutsResourceWithStreamingResponse,
+    AsyncTCPResetsTimeoutsResourceWithStreamingResponse,
 )
 
 __all__ = [
@@ -186,12 +186,6 @@ __all__ = [
     "AsyncAS112ResourceWithRawResponse",
     "AS112ResourceWithStreamingResponse",
     "AsyncAS112ResourceWithStreamingResponse",
-    "ConnectionTamperingResource",
-    "AsyncConnectionTamperingResource",
-    "ConnectionTamperingResourceWithRawResponse",
-    "AsyncConnectionTamperingResourceWithRawResponse",
-    "ConnectionTamperingResourceWithStreamingResponse",
-    "AsyncConnectionTamperingResourceWithStreamingResponse",
     "EmailResource",
     "AsyncEmailResource",
     "EmailResourceWithRawResponse",
@@ -234,6 +228,12 @@ __all__ = [
     "AsyncTrafficAnomaliesResourceWithRawResponse",
     "TrafficAnomaliesResourceWithStreamingResponse",
     "AsyncTrafficAnomaliesResourceWithStreamingResponse",
+    "TCPResetsTimeoutsResource",
+    "AsyncTCPResetsTimeoutsResource",
+    "TCPResetsTimeoutsResourceWithRawResponse",
+    "AsyncTCPResetsTimeoutsResourceWithRawResponse",
+    "TCPResetsTimeoutsResourceWithStreamingResponse",
+    "AsyncTCPResetsTimeoutsResourceWithStreamingResponse",
     "RadarResource",
     "AsyncRadarResource",
     "RadarResourceWithRawResponse",

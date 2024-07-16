@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union, Optional
+from typing import List, Union
 from typing_extensions import Literal
 
 from ..._models import BaseModel
@@ -43,4 +43,4 @@ AuthIDCharacteristic = Union[
 
 
 class Configuration(BaseModel):
-    auth_id_characteristics: Optional[List[AuthIDCharacteristic]] = None
+    auth_id_characteristics: List[AuthIDCharacteristic]

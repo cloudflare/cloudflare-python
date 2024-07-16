@@ -22,9 +22,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from ...types.cache import regional_tiered_cache_edit_params
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.cache.regional_tiered_cache_get_response import RegionalTieredCacheGetResponse
 from ...types.cache.regional_tiered_cache_edit_response import RegionalTieredCacheEditResponse
 

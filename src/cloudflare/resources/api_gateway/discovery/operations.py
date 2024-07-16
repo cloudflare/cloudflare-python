@@ -21,11 +21,8 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ....pagination import SyncSinglePage, AsyncSinglePage
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.api_gateway.discovery import operation_edit_params, operation_list_params
 from ....types.api_gateway.discovery_operation import DiscoveryOperation
 from ....types.api_gateway.discovery.operation_edit_response import OperationEditResponse
@@ -54,8 +51,8 @@ class OperationsResource(SyncAPIResource):
         order: Literal["host", "method", "endpoint", "traffic_stats.requests", "traffic_stats.last_updated"]
         | NotGiven = NOT_GIVEN,
         origin: Literal["ML", "SessionIdentifier"] | NotGiven = NOT_GIVEN,
-        page: object | NotGiven = NOT_GIVEN,
-        per_page: object | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         state: Literal["review", "saved", "ignored"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -63,7 +60,7 @@ class OperationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[DiscoveryOperation]:
+    ) -> SyncV4PagePaginationArray[DiscoveryOperation]:
         """
         Retrieve the most up to date view of discovered operations
 
@@ -115,7 +112,7 @@ class OperationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/discovery/operations",
-            page=SyncSinglePage[DiscoveryOperation],
+            page=SyncV4PagePaginationArray[DiscoveryOperation],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -159,7 +156,7 @@ class OperationsResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
-          operation_id: UUID identifier
+          operation_id: UUID
 
           state: Mark state of operation in API Discovery
 
@@ -213,8 +210,8 @@ class AsyncOperationsResource(AsyncAPIResource):
         order: Literal["host", "method", "endpoint", "traffic_stats.requests", "traffic_stats.last_updated"]
         | NotGiven = NOT_GIVEN,
         origin: Literal["ML", "SessionIdentifier"] | NotGiven = NOT_GIVEN,
-        page: object | NotGiven = NOT_GIVEN,
-        per_page: object | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
         state: Literal["review", "saved", "ignored"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -222,7 +219,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[DiscoveryOperation, AsyncSinglePage[DiscoveryOperation]]:
+    ) -> AsyncPaginator[DiscoveryOperation, AsyncV4PagePaginationArray[DiscoveryOperation]]:
         """
         Retrieve the most up to date view of discovered operations
 
@@ -274,7 +271,7 @@ class AsyncOperationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/api_gateway/discovery/operations",
-            page=AsyncSinglePage[DiscoveryOperation],
+            page=AsyncV4PagePaginationArray[DiscoveryOperation],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -318,7 +315,7 @@ class AsyncOperationsResource(AsyncAPIResource):
         Args:
           zone_id: Identifier
 
-          operation_id: UUID identifier
+          operation_id: UUID
 
           state: Mark state of operation in API Discovery
 

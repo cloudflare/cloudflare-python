@@ -72,7 +72,7 @@ class TestSiteInfo:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         site_info = client.rum.site_info.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Site], site_info, path=["response"])
@@ -80,7 +80,7 @@ class TestSiteInfo:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         site_info = client.rum.site_info.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             auto_install=True,
             host="example.com",
@@ -91,7 +91,7 @@ class TestSiteInfo:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.rum.site_info.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -103,7 +103,7 @@ class TestSiteInfo:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.rum.site_info.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -118,13 +118,13 @@ class TestSiteInfo:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rum.site_info.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                site_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             client.rum.site_info.with_raw_response.update(
-                "",
+                site_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -179,7 +179,7 @@ class TestSiteInfo:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         site_info = client.rum.site_info.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[SiteInfoDeleteResponse], site_info, path=["response"])
@@ -187,7 +187,7 @@ class TestSiteInfo:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.rum.site_info.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -199,7 +199,7 @@ class TestSiteInfo:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.rum.site_info.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -214,20 +214,20 @@ class TestSiteInfo:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rum.site_info.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                site_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             client.rum.site_info.with_raw_response.delete(
-                "",
+                site_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         site_info = client.rum.site_info.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Site], site_info, path=["response"])
@@ -235,7 +235,7 @@ class TestSiteInfo:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.rum.site_info.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -247,7 +247,7 @@ class TestSiteInfo:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.rum.site_info.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -262,13 +262,13 @@ class TestSiteInfo:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.rum.site_info.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                site_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             client.rum.site_info.with_raw_response.get(
-                "",
+                site_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -327,7 +327,7 @@ class TestAsyncSiteInfo:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         site_info = await async_client.rum.site_info.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Site], site_info, path=["response"])
@@ -335,7 +335,7 @@ class TestAsyncSiteInfo:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         site_info = await async_client.rum.site_info.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             auto_install=True,
             host="example.com",
@@ -346,7 +346,7 @@ class TestAsyncSiteInfo:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rum.site_info.with_raw_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -358,7 +358,7 @@ class TestAsyncSiteInfo:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rum.site_info.with_streaming_response.update(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -373,13 +373,13 @@ class TestAsyncSiteInfo:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rum.site_info.with_raw_response.update(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                site_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             await async_client.rum.site_info.with_raw_response.update(
-                "",
+                site_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
@@ -434,7 +434,7 @@ class TestAsyncSiteInfo:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         site_info = await async_client.rum.site_info.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[SiteInfoDeleteResponse], site_info, path=["response"])
@@ -442,7 +442,7 @@ class TestAsyncSiteInfo:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rum.site_info.with_raw_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -454,7 +454,7 @@ class TestAsyncSiteInfo:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rum.site_info.with_streaming_response.delete(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -469,20 +469,20 @@ class TestAsyncSiteInfo:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rum.site_info.with_raw_response.delete(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                site_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             await async_client.rum.site_info.with_raw_response.delete(
-                "",
+                site_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         site_info = await async_client.rum.site_info.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
         assert_matches_type(Optional[Site], site_info, path=["response"])
@@ -490,7 +490,7 @@ class TestAsyncSiteInfo:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.rum.site_info.with_raw_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
 
@@ -502,7 +502,7 @@ class TestAsyncSiteInfo:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rum.site_info.with_streaming_response.get(
-            "023e105f4ecef8ad9ca31a8372d0c353",
+            site_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         ) as response:
             assert not response.is_closed
@@ -517,12 +517,12 @@ class TestAsyncSiteInfo:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.rum.site_info.with_raw_response.get(
-                "023e105f4ecef8ad9ca31a8372d0c353",
+                site_id="023e105f4ecef8ad9ca31a8372d0c353",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `site_id` but received ''"):
             await async_client.rum.site_info.with_raw_response.get(
-                "",
+                site_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
             )

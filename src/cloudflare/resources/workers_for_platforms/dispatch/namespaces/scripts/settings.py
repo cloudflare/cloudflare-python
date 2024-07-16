@@ -20,9 +20,7 @@ from ......_response import (
     async_to_streamed_response_wrapper,
 )
 from ......_wrappers import ResultWrapper
-from ......_base_client import (
-    make_request_options,
-)
+from ......_base_client import make_request_options
 from ......types.workers_for_platforms.dispatch.namespaces.scripts import setting_edit_params
 from ......types.workers_for_platforms.dispatch.namespaces.scripts.setting_get_response import SettingGetResponse
 from ......types.workers_for_platforms.dispatch.namespaces.scripts.setting_edit_response import SettingEditResponse
@@ -77,6 +75,10 @@ class SettingsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._patch(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/settings",
             body=maybe_transform({"settings": settings}, setting_edit_params.SettingEditParams),
@@ -187,6 +189,10 @@ class AsyncSettingsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `dispatch_namespace` but received {dispatch_namespace!r}")
         if not script_name:
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
+        # It should be noted that the actual Content-Type header that will be
+        # sent to the server will contain a `boundary` parameter, e.g.
+        # multipart/form-data; boundary=---abc--
+        extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._patch(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/settings",
             body=await async_maybe_transform({"settings": settings}, setting_edit_params.SettingEditParams),

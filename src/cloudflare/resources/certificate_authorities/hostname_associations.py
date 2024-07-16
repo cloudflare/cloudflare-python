@@ -20,9 +20,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.certificate_authorities import hostname_association_get_params, hostname_association_update_params
 from ...types.certificate_authorities.hostname_association import HostnameAssociation
 from ...types.certificate_authorities.hostname_association_get_response import HostnameAssociationGetResponse

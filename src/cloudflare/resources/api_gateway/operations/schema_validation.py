@@ -21,9 +21,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.api_gateway.operations import (
     SettingsMultipleRequest,
     schema_validation_edit_params,
@@ -64,6 +62,8 @@ class SchemaValidationResource(SyncAPIResource):
 
         Args:
           zone_id: Identifier
+
+          operation_id: UUID
 
           mitigation_action: When set, this applies a mitigation action to this operation
 
@@ -156,6 +156,8 @@ class SchemaValidationResource(SyncAPIResource):
         Args:
           zone_id: Identifier
 
+          operation_id: UUID
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -204,6 +206,8 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
 
         Args:
           zone_id: Identifier
+
+          operation_id: UUID
 
           mitigation_action: When set, this applies a mitigation action to this operation
 
@@ -297,6 +301,8 @@ class AsyncSchemaValidationResource(AsyncAPIResource):
 
         Args:
           zone_id: Identifier
+
+          operation_id: UUID
 
           extra_headers: Send extra headers
 

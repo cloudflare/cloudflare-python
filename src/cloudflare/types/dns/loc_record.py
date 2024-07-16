@@ -75,12 +75,6 @@ class LOCRecord(BaseModel):
     created_on: Optional[datetime] = None
     """When the record was created."""
 
-    locked: Optional[bool] = None
-    """
-    Whether this record can be modified/deleted (true means it's managed by
-    Cloudflare).
-    """
-
     meta: Optional[RecordMetadata] = None
     """Extra Cloudflare-specific information about the record."""
 

@@ -21,10 +21,7 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-from ...._base_client import (
-    AsyncPaginator,
-    make_request_options,
-)
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.firewall.waf import override_list_params, override_create_params, override_update_params
 from ....types.firewall.waf.override import Override
 from ....types.firewall.waf.override_delete_response import OverrideDeleteResponse

@@ -14,6 +14,18 @@ __all__ = [
     "FeaturesAPIShieldOperationFeatureParameterSchemas",
     "FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemas",
     "FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameterSchemas",
+    "FeaturesAPIShieldOperationFeatureAPIRouting",
+    "FeaturesAPIShieldOperationFeatureAPIRoutingAPIRouting",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervals",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervals",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThreshold",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervals",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP90",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP95",
+    "FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP99",
+    "FeaturesAPIShieldOperationFeatureSchemaInfo",
+    "FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo",
+    "FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema",
 ]
 
 
@@ -73,7 +85,123 @@ class FeaturesAPIShieldOperationFeatureParameterSchemas(BaseModel):
     parameter_schemas: FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemas
 
 
-Features = Union[FeaturesAPIShieldOperationFeatureThresholds, FeaturesAPIShieldOperationFeatureParameterSchemas]
+class FeaturesAPIShieldOperationFeatureAPIRoutingAPIRouting(BaseModel):
+    last_updated: Optional[datetime] = None
+
+    route: Optional[str] = None
+    """Target route."""
+
+
+class FeaturesAPIShieldOperationFeatureAPIRouting(BaseModel):
+    api_routing: Optional[FeaturesAPIShieldOperationFeatureAPIRoutingAPIRouting] = None
+    """API Routing settings on endpoint."""
+
+
+class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP90(
+    BaseModel
+):
+    lower: Optional[float] = None
+    """Lower bound for percentile estimate"""
+
+    upper: Optional[float] = None
+    """Upper bound for percentile estimate"""
+
+
+class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP95(
+    BaseModel
+):
+    lower: Optional[float] = None
+    """Lower bound for percentile estimate"""
+
+    upper: Optional[float] = None
+    """Upper bound for percentile estimate"""
+
+
+class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP99(
+    BaseModel
+):
+    lower: Optional[float] = None
+    """Lower bound for percentile estimate"""
+
+    upper: Optional[float] = None
+    """Upper bound for percentile estimate"""
+
+
+class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervals(
+    BaseModel
+):
+    p90: Optional[
+        FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP90
+    ] = None
+    """Upper and lower bound for percentile estimate"""
+
+    p95: Optional[
+        FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP95
+    ] = None
+    """Upper and lower bound for percentile estimate"""
+
+    p99: Optional[
+        FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervalsP99
+    ] = None
+    """Upper and lower bound for percentile estimate"""
+
+
+class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThreshold(BaseModel):
+    confidence_intervals: Optional[
+        FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThresholdConfidenceIntervals
+    ] = None
+
+    mean: Optional[float] = None
+    """Suggested threshold."""
+
+
+class FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervals(BaseModel):
+    last_updated: Optional[datetime] = None
+
+    suggested_threshold: Optional[
+        FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervalsSuggestedThreshold
+    ] = None
+
+
+class FeaturesAPIShieldOperationFeatureConfidenceIntervals(BaseModel):
+    confidence_intervals: Optional[FeaturesAPIShieldOperationFeatureConfidenceIntervalsConfidenceIntervals] = None
+
+
+class FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema(BaseModel):
+    id: Optional[str] = None
+    """UUID"""
+
+    created_at: Optional[datetime] = None
+
+    is_learned: Optional[bool] = None
+    """True if schema is Cloudflare-provided."""
+
+    name: Optional[str] = None
+    """Schema file name."""
+
+
+class FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo(BaseModel):
+    active_schema: Optional[FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfoActiveSchema] = None
+    """Schema active on endpoint."""
+
+    learned_available: Optional[bool] = None
+    """True if a Cloudflare-provided learned schema is available for this endpoint."""
+
+    mitigation_action: Optional[Literal["none", "log", "block"]] = None
+    """Action taken on requests failing validation."""
+
+
+class FeaturesAPIShieldOperationFeatureSchemaInfo(BaseModel):
+    schema_info: Optional[FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo] = None
+
+
+Features = Union[
+    FeaturesAPIShieldOperationFeatureThresholds,
+    FeaturesAPIShieldOperationFeatureParameterSchemas,
+    FeaturesAPIShieldOperationFeatureAPIRouting,
+    FeaturesAPIShieldOperationFeatureConfidenceIntervals,
+    FeaturesAPIShieldOperationFeatureSchemaInfo,
+]
 
 
 class APIShield(BaseModel):
@@ -94,6 +222,6 @@ class APIShield(BaseModel):
     """The HTTP method used to access the endpoint."""
 
     operation_id: str
-    """UUID identifier"""
+    """UUID"""
 
     features: Optional[Features] = None

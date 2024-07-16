@@ -22,9 +22,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.radar.bgp import ip_timeseries_params
 from ....types.radar.bgp.ip_timeseries_response import IPTimeseriesResponse
 
@@ -45,24 +43,7 @@ class IPsResource(SyncAPIResource):
         *,
         asn: str | NotGiven = NOT_GIVEN,
         date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_range: Literal[
-            "1d",
-            "2d",
-            "7d",
-            "14d",
-            "28d",
-            "12w",
-            "24w",
-            "52w",
-            "1dControl",
-            "2dControl",
-            "7dControl",
-            "14dControl",
-            "28dControl",
-            "12wControl",
-            "24wControl",
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: str | NotGiven = NOT_GIVEN,
         date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         include_delay: bool | NotGiven = NOT_GIVEN,
@@ -145,24 +126,7 @@ class AsyncIPsResource(AsyncAPIResource):
         *,
         asn: str | NotGiven = NOT_GIVEN,
         date_end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        date_range: Literal[
-            "1d",
-            "2d",
-            "7d",
-            "14d",
-            "28d",
-            "12w",
-            "24w",
-            "52w",
-            "1dControl",
-            "2dControl",
-            "7dControl",
-            "14dControl",
-            "28dControl",
-            "12wControl",
-            "24wControl",
-        ]
-        | NotGiven = NOT_GIVEN,
+        date_range: str | NotGiven = NOT_GIVEN,
         date_start: Union[str, datetime] | NotGiven = NOT_GIVEN,
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         include_delay: bool | NotGiven = NOT_GIVEN,

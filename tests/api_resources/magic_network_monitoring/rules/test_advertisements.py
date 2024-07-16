@@ -20,7 +20,7 @@ class TestAdvertisements:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         advertisement = client.magic_network_monitoring.rules.advertisements.edit(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
             body={},
         )
@@ -29,7 +29,7 @@ class TestAdvertisements:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.magic_network_monitoring.rules.advertisements.with_raw_response.edit(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
             body={},
         )
@@ -42,7 +42,7 @@ class TestAdvertisements:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.magic_network_monitoring.rules.advertisements.with_streaming_response.edit(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
             body={},
         ) as response:
@@ -58,14 +58,14 @@ class TestAdvertisements:
     def test_path_params_edit(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.magic_network_monitoring.rules.advertisements.with_raw_response.edit(
-                "2890e6fa406311ed9b5a23f70f6fb8cf",
+                rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
                 account_id="",
                 body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             client.magic_network_monitoring.rules.advertisements.with_raw_response.edit(
-                "",
+                rule_id="",
                 account_id="6f91088a406011ed95aed352566e8d4c",
                 body={},
             )
@@ -77,7 +77,7 @@ class TestAsyncAdvertisements:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         advertisement = await async_client.magic_network_monitoring.rules.advertisements.edit(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
             body={},
         )
@@ -86,7 +86,7 @@ class TestAsyncAdvertisements:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.magic_network_monitoring.rules.advertisements.with_raw_response.edit(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
             body={},
         )
@@ -99,7 +99,7 @@ class TestAsyncAdvertisements:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.magic_network_monitoring.rules.advertisements.with_streaming_response.edit(
-            "2890e6fa406311ed9b5a23f70f6fb8cf",
+            rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
             account_id="6f91088a406011ed95aed352566e8d4c",
             body={},
         ) as response:
@@ -115,14 +115,14 @@ class TestAsyncAdvertisements:
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.magic_network_monitoring.rules.advertisements.with_raw_response.edit(
-                "2890e6fa406311ed9b5a23f70f6fb8cf",
+                rule_id="2890e6fa406311ed9b5a23f70f6fb8cf",
                 account_id="",
                 body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `rule_id` but received ''"):
             await async_client.magic_network_monitoring.rules.advertisements.with_raw_response.edit(
-                "",
+                rule_id="",
                 account_id="6f91088a406011ed95aed352566e8d4c",
                 body={},
             )

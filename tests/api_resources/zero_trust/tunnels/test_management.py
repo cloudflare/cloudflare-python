@@ -20,7 +20,7 @@ class TestManagement:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         management = client.zero_trust.tunnels.management.create(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             resources=["logs"],
         )
@@ -29,7 +29,7 @@ class TestManagement:
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.zero_trust.tunnels.management.with_raw_response.create(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             resources=["logs"],
         )
@@ -42,7 +42,7 @@ class TestManagement:
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.zero_trust.tunnels.management.with_streaming_response.create(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             resources=["logs"],
         ) as response:
@@ -58,14 +58,14 @@ class TestManagement:
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.tunnels.management.with_raw_response.create(
-                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 resources=["logs"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             client.zero_trust.tunnels.management.with_raw_response.create(
-                "",
+                tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
                 resources=["logs"],
             )
@@ -77,7 +77,7 @@ class TestAsyncManagement:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         management = await async_client.zero_trust.tunnels.management.create(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             resources=["logs"],
         )
@@ -86,7 +86,7 @@ class TestAsyncManagement:
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.tunnels.management.with_raw_response.create(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             resources=["logs"],
         )
@@ -99,7 +99,7 @@ class TestAsyncManagement:
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.tunnels.management.with_streaming_response.create(
-            "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+            tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
             resources=["logs"],
         ) as response:
@@ -115,14 +115,14 @@ class TestAsyncManagement:
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.tunnels.management.with_raw_response.create(
-                "f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
+                tunnel_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
                 account_id="",
                 resources=["logs"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `tunnel_id` but received ''"):
             await async_client.zero_trust.tunnels.management.with_raw_response.create(
-                "",
+                tunnel_id="",
                 account_id="699d98642c564d2e855e9661899b7252",
                 resources=["logs"],
             )

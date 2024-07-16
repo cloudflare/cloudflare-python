@@ -22,9 +22,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.r2.temporary_credential_create_response import TemporaryCredentialCreateResponse
 
 __all__ = ["TemporaryCredentialsResource", "AsyncTemporaryCredentialsResource"]
@@ -63,7 +61,7 @@ class TemporaryCredentialsResource(SyncAPIResource):
         Args:
           account_id: Account ID
 
-          bucket: Name of the GCS bucket
+          bucket: Name of the R2 bucket
 
           parent_access_key_id: The parent access key id to use for signing
 
@@ -142,7 +140,7 @@ class AsyncTemporaryCredentialsResource(AsyncAPIResource):
         Args:
           account_id: Account ID
 
-          bucket: Name of the GCS bucket
+          bucket: Name of the R2 bucket
 
           parent_access_key_id: The parent access key id to use for signing
 

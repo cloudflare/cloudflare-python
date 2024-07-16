@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Iterable, cast
+from typing import List, Type, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
@@ -21,9 +21,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.api_gateway import configuration_get_params, configuration_update_params
 from ...types.api_gateway.configuration import Configuration
 from ...types.api_gateway.configuration_update_response import ConfigurationUpdateResponse
@@ -44,7 +42,7 @@ class ConfigurationsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        auth_id_characteristics: Iterable[configuration_update_params.AuthIDCharacteristic] | NotGiven = NOT_GIVEN,
+        auth_id_characteristics: Iterable[configuration_update_params.AuthIDCharacteristic],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -68,25 +66,16 @@ class ConfigurationsResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            ConfigurationUpdateResponse,
-            self._put(
-                f"/zones/{zone_id}/api_gateway/configuration",
-                body=maybe_transform(
-                    {"auth_id_characteristics": auth_id_characteristics},
-                    configuration_update_params.ConfigurationUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ConfigurationUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ConfigurationUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/zones/{zone_id}/api_gateway/configuration",
+            body=maybe_transform(
+                {"auth_id_characteristics": auth_id_characteristics},
+                configuration_update_params.ConfigurationUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ConfigurationUpdateResponse,
         )
 
     def get(
@@ -146,7 +135,7 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        auth_id_characteristics: Iterable[configuration_update_params.AuthIDCharacteristic] | NotGiven = NOT_GIVEN,
+        auth_id_characteristics: Iterable[configuration_update_params.AuthIDCharacteristic],
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -170,25 +159,16 @@ class AsyncConfigurationsResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            ConfigurationUpdateResponse,
-            await self._put(
-                f"/zones/{zone_id}/api_gateway/configuration",
-                body=await async_maybe_transform(
-                    {"auth_id_characteristics": auth_id_characteristics},
-                    configuration_update_params.ConfigurationUpdateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ConfigurationUpdateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ConfigurationUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/zones/{zone_id}/api_gateway/configuration",
+            body=await async_maybe_transform(
+                {"auth_id_characteristics": auth_id_characteristics},
+                configuration_update_params.ConfigurationUpdateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=ConfigurationUpdateResponse,
         )
 
     async def get(

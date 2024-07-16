@@ -76,7 +76,7 @@ class TestCustomNameservers:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         custom_nameserver = client.custom_nameservers.delete(
-            "ns1.example.com",
+            custom_ns_id="ns1.example.com",
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
         )
         assert_matches_type(Optional[CustomNameserverDeleteResponse], custom_nameserver, path=["response"])
@@ -84,7 +84,7 @@ class TestCustomNameservers:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.custom_nameservers.with_raw_response.delete(
-            "ns1.example.com",
+            custom_ns_id="ns1.example.com",
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
         )
 
@@ -96,7 +96,7 @@ class TestCustomNameservers:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.custom_nameservers.with_streaming_response.delete(
-            "ns1.example.com",
+            custom_ns_id="ns1.example.com",
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
         ) as response:
             assert not response.is_closed
@@ -111,13 +111,13 @@ class TestCustomNameservers:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.custom_nameservers.with_raw_response.delete(
-                "ns1.example.com",
+                custom_ns_id="ns1.example.com",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_ns_id` but received ''"):
             client.custom_nameservers.with_raw_response.delete(
-                "",
+                custom_ns_id="",
                 account_id="372e67954025e0ba6aaa6d586b9e0b59",
             )
 
@@ -255,7 +255,7 @@ class TestAsyncCustomNameservers:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         custom_nameserver = await async_client.custom_nameservers.delete(
-            "ns1.example.com",
+            custom_ns_id="ns1.example.com",
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
         )
         assert_matches_type(Optional[CustomNameserverDeleteResponse], custom_nameserver, path=["response"])
@@ -263,7 +263,7 @@ class TestAsyncCustomNameservers:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.custom_nameservers.with_raw_response.delete(
-            "ns1.example.com",
+            custom_ns_id="ns1.example.com",
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
         )
 
@@ -275,7 +275,7 @@ class TestAsyncCustomNameservers:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.custom_nameservers.with_streaming_response.delete(
-            "ns1.example.com",
+            custom_ns_id="ns1.example.com",
             account_id="372e67954025e0ba6aaa6d586b9e0b59",
         ) as response:
             assert not response.is_closed
@@ -290,13 +290,13 @@ class TestAsyncCustomNameservers:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.custom_nameservers.with_raw_response.delete(
-                "ns1.example.com",
+                custom_ns_id="ns1.example.com",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `custom_ns_id` but received ''"):
             await async_client.custom_nameservers.with_raw_response.delete(
-                "",
+                custom_ns_id="",
                 account_id="372e67954025e0ba6aaa6d586b9e0b59",
             )
 

@@ -112,7 +112,7 @@ class TestResourceGroups:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         resource_group = client.iam.resource_groups.update(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
@@ -128,7 +128,7 @@ class TestResourceGroups:
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         resource_group = client.iam.resource_groups.update(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
@@ -145,7 +145,7 @@ class TestResourceGroups:
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.iam.resource_groups.with_raw_response.update(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
@@ -165,7 +165,7 @@ class TestResourceGroups:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.iam.resource_groups.with_streaming_response.update(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
@@ -188,7 +188,7 @@ class TestResourceGroups:
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.iam.resource_groups.with_raw_response.update(
-                "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+                resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
                 account_id="",
                 scope={
                     "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
@@ -202,7 +202,7 @@ class TestResourceGroups:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `resource_group_id` but received ''"):
             client.iam.resource_groups.with_raw_response.update(
-                "",
+                resource_group_id="",
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
                 scope={
                     "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
@@ -266,7 +266,7 @@ class TestResourceGroups:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         resource_group = client.iam.resource_groups.delete(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
         assert_matches_type(Optional[ResourceGroupDeleteResponse], resource_group, path=["response"])
@@ -274,7 +274,7 @@ class TestResourceGroups:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.iam.resource_groups.with_raw_response.delete(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
 
@@ -286,7 +286,7 @@ class TestResourceGroups:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.iam.resource_groups.with_streaming_response.delete(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         ) as response:
             assert not response.is_closed
@@ -301,20 +301,20 @@ class TestResourceGroups:
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.iam.resource_groups.with_raw_response.delete(
-                "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+                resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `resource_group_id` but received ''"):
             client.iam.resource_groups.with_raw_response.delete(
-                "",
+                resource_group_id="",
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         resource_group = client.iam.resource_groups.get(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
         assert_matches_type(ResourceGroupGetResponse, resource_group, path=["response"])
@@ -322,7 +322,7 @@ class TestResourceGroups:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.iam.resource_groups.with_raw_response.get(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
 
@@ -334,7 +334,7 @@ class TestResourceGroups:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.iam.resource_groups.with_streaming_response.get(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         ) as response:
             assert not response.is_closed
@@ -349,13 +349,13 @@ class TestResourceGroups:
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.iam.resource_groups.with_raw_response.get(
-                "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+                resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `resource_group_id` but received ''"):
             client.iam.resource_groups.with_raw_response.get(
-                "",
+                resource_group_id="",
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
             )
 
@@ -452,7 +452,7 @@ class TestAsyncResourceGroups:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         resource_group = await async_client.iam.resource_groups.update(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
@@ -468,7 +468,7 @@ class TestAsyncResourceGroups:
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         resource_group = await async_client.iam.resource_groups.update(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
@@ -485,7 +485,7 @@ class TestAsyncResourceGroups:
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.iam.resource_groups.with_raw_response.update(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
@@ -505,7 +505,7 @@ class TestAsyncResourceGroups:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.iam.resource_groups.with_streaming_response.update(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
             scope={
                 "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
@@ -528,7 +528,7 @@ class TestAsyncResourceGroups:
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.iam.resource_groups.with_raw_response.update(
-                "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+                resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
                 account_id="",
                 scope={
                     "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
@@ -542,7 +542,7 @@ class TestAsyncResourceGroups:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `resource_group_id` but received ''"):
             await async_client.iam.resource_groups.with_raw_response.update(
-                "",
+                resource_group_id="",
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
                 scope={
                     "key": "com.cloudflare.api.account.eb78d65290b24279ba6f44721b3ea3c4",
@@ -606,7 +606,7 @@ class TestAsyncResourceGroups:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         resource_group = await async_client.iam.resource_groups.delete(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
         assert_matches_type(Optional[ResourceGroupDeleteResponse], resource_group, path=["response"])
@@ -614,7 +614,7 @@ class TestAsyncResourceGroups:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.iam.resource_groups.with_raw_response.delete(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
 
@@ -626,7 +626,7 @@ class TestAsyncResourceGroups:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.iam.resource_groups.with_streaming_response.delete(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         ) as response:
             assert not response.is_closed
@@ -641,20 +641,20 @@ class TestAsyncResourceGroups:
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.iam.resource_groups.with_raw_response.delete(
-                "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+                resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `resource_group_id` but received ''"):
             await async_client.iam.resource_groups.with_raw_response.delete(
-                "",
+                resource_group_id="",
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         resource_group = await async_client.iam.resource_groups.get(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
         assert_matches_type(ResourceGroupGetResponse, resource_group, path=["response"])
@@ -662,7 +662,7 @@ class TestAsyncResourceGroups:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.iam.resource_groups.with_raw_response.get(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         )
 
@@ -674,7 +674,7 @@ class TestAsyncResourceGroups:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.iam.resource_groups.with_streaming_response.get(
-            "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+            resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
             account_id="eb78d65290b24279ba6f44721b3ea3c4",
         ) as response:
             assert not response.is_closed
@@ -689,12 +689,12 @@ class TestAsyncResourceGroups:
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.iam.resource_groups.with_raw_response.get(
-                "6d7f2f5f5b1d4a0e9081fdc98d432fd1",
+                resource_group_id="6d7f2f5f5b1d4a0e9081fdc98d432fd1",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `resource_group_id` but received ''"):
             await async_client.iam.resource_groups.with_raw_response.get(
-                "",
+                resource_group_id="",
                 account_id="eb78d65290b24279ba6f44721b3ea3c4",
             )

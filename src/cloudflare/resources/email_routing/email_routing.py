@@ -45,9 +45,7 @@ from ..._response import (
 )
 from ..._wrappers import ResultWrapper
 from .rules.rules import RulesResource, AsyncRulesResource
-from ..._base_client import (
-    make_request_options,
-)
+from ..._base_client import make_request_options
 from ...types.email_routing import email_routing_enable_params, email_routing_disable_params
 from ...types.email_routing.settings import Settings
 

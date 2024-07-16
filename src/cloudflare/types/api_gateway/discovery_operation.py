@@ -25,7 +25,7 @@ class Features(BaseModel):
 
 class DiscoveryOperation(BaseModel):
     id: str
-    """UUID identifier"""
+    """UUID"""
 
     endpoint: str
     """

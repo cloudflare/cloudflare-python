@@ -28,9 +28,7 @@ from ...._response import (
     async_to_streamed_response_wrapper,
 )
 from ...._wrappers import ResultWrapper
-from ...._base_client import (
-    make_request_options,
-)
+from ...._base_client import make_request_options
 from ....types.stream import live_input_list_params, live_input_create_params, live_input_update_params
 from ....types.stream.live_input import LiveInput
 from ....types.stream.live_input_list_response import LiveInputListResponse
