@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Any, List, Type, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -47,6 +48,7 @@ class DatabaseResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
+        primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -60,6 +62,9 @@ class DatabaseResource(SyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          primary_location_hint: Specify the region to create the D1 primary, if available. If this option is
+              omitted, the D1 will be created as close as possible to the current user.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -72,7 +77,13 @@ class DatabaseResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/d1/database",
-            body=maybe_transform({"name": name}, database_create_params.DatabaseCreateParams),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "primary_location_hint": primary_location_hint,
+                },
+                database_create_params.DatabaseCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -248,6 +259,9 @@ class DatabaseResource(SyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          sql: Your SQL query. Supports multiple statements, joined by semicolons, which will
+              be executed as a batch.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -301,6 +315,9 @@ class DatabaseResource(SyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          sql: Your SQL query. Supports multiple statements, joined by semicolons, which will
+              be executed as a batch.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -347,6 +364,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
+        primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -360,6 +378,9 @@ class AsyncDatabaseResource(AsyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          primary_location_hint: Specify the region to create the D1 primary, if available. If this option is
+              omitted, the D1 will be created as close as possible to the current user.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -372,7 +393,13 @@ class AsyncDatabaseResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/d1/database",
-            body=await async_maybe_transform({"name": name}, database_create_params.DatabaseCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "primary_location_hint": primary_location_hint,
+                },
+                database_create_params.DatabaseCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -548,6 +575,9 @@ class AsyncDatabaseResource(AsyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          sql: Your SQL query. Supports multiple statements, joined by semicolons, which will
+              be executed as a batch.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -600,6 +630,9 @@ class AsyncDatabaseResource(AsyncAPIResource):
 
         Args:
           account_id: Account identifier tag.
+
+          sql: Your SQL query. Supports multiple statements, joined by semicolons, which will
+              be executed as a batch.
 
           extra_headers: Send extra headers
 
