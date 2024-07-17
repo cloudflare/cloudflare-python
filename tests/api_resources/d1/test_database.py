@@ -16,6 +16,8 @@ from cloudflare.types.d1 import (
     DatabaseQueryResponse,
     DatabaseCreateResponse,
     DatabaseDeleteResponse,
+    DatabaseExportResponse,
+    DatabaseImportResponse,
 )
 from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
@@ -173,6 +175,74 @@ class TestDatabase:
             )
 
     @parametrize
+    def test_method_export(self, client: Cloudflare) -> None:
+        database = client.d1.database.export(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            output_format="polling",
+        )
+        assert_matches_type(DatabaseExportResponse, database, path=["response"])
+
+    @parametrize
+    def test_method_export_with_all_params(self, client: Cloudflare) -> None:
+        database = client.d1.database.export(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            output_format="polling",
+            current_bookmark="current_bookmark",
+            dump_options={
+                "no_data": True,
+                "no_schema": True,
+                "tables": ["string", "string", "string"],
+            },
+        )
+        assert_matches_type(DatabaseExportResponse, database, path=["response"])
+
+    @parametrize
+    def test_raw_response_export(self, client: Cloudflare) -> None:
+        response = client.d1.database.with_raw_response.export(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            output_format="polling",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        database = response.parse()
+        assert_matches_type(DatabaseExportResponse, database, path=["response"])
+
+    @parametrize
+    def test_streaming_response_export(self, client: Cloudflare) -> None:
+        with client.d1.database.with_streaming_response.export(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            output_format="polling",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            database = response.parse()
+            assert_matches_type(DatabaseExportResponse, database, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_export(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.d1.database.with_raw_response.export(
+                database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                account_id="",
+                output_format="polling",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
+            client.d1.database.with_raw_response.export(
+                database_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                output_format="polling",
+            )
+
+    @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         database = client.d1.database.get(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -218,6 +288,185 @@ class TestDatabase:
             client.d1.database.with_raw_response.get(
                 database_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
+    def test_method_import_overload_1(self, client: Cloudflare) -> None:
+        database = client.d1.database.import_(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="init",
+            etag="etag",
+        )
+        assert_matches_type(DatabaseImportResponse, database, path=["response"])
+
+    @parametrize
+    def test_raw_response_import_overload_1(self, client: Cloudflare) -> None:
+        response = client.d1.database.with_raw_response.import_(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="init",
+            etag="etag",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        database = response.parse()
+        assert_matches_type(DatabaseImportResponse, database, path=["response"])
+
+    @parametrize
+    def test_streaming_response_import_overload_1(self, client: Cloudflare) -> None:
+        with client.d1.database.with_streaming_response.import_(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="init",
+            etag="etag",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            database = response.parse()
+            assert_matches_type(DatabaseImportResponse, database, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_import_overload_1(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.d1.database.with_raw_response.import_(
+                database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                account_id="",
+                action="init",
+                etag="etag",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
+            client.d1.database.with_raw_response.import_(
+                database_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action="init",
+                etag="etag",
+            )
+
+    @parametrize
+    def test_method_import_overload_2(self, client: Cloudflare) -> None:
+        database = client.d1.database.import_(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="ingest",
+            etag="etag",
+            filename="filename",
+        )
+        assert_matches_type(DatabaseImportResponse, database, path=["response"])
+
+    @parametrize
+    def test_raw_response_import_overload_2(self, client: Cloudflare) -> None:
+        response = client.d1.database.with_raw_response.import_(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="ingest",
+            etag="etag",
+            filename="filename",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        database = response.parse()
+        assert_matches_type(DatabaseImportResponse, database, path=["response"])
+
+    @parametrize
+    def test_streaming_response_import_overload_2(self, client: Cloudflare) -> None:
+        with client.d1.database.with_streaming_response.import_(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="ingest",
+            etag="etag",
+            filename="filename",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            database = response.parse()
+            assert_matches_type(DatabaseImportResponse, database, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_import_overload_2(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.d1.database.with_raw_response.import_(
+                database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                account_id="",
+                action="ingest",
+                etag="etag",
+                filename="filename",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
+            client.d1.database.with_raw_response.import_(
+                database_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action="ingest",
+                etag="etag",
+                filename="filename",
+            )
+
+    @parametrize
+    def test_method_import_overload_3(self, client: Cloudflare) -> None:
+        database = client.d1.database.import_(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="poll",
+            current_bookmark="current_bookmark",
+        )
+        assert_matches_type(DatabaseImportResponse, database, path=["response"])
+
+    @parametrize
+    def test_raw_response_import_overload_3(self, client: Cloudflare) -> None:
+        response = client.d1.database.with_raw_response.import_(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="poll",
+            current_bookmark="current_bookmark",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        database = response.parse()
+        assert_matches_type(DatabaseImportResponse, database, path=["response"])
+
+    @parametrize
+    def test_streaming_response_import_overload_3(self, client: Cloudflare) -> None:
+        with client.d1.database.with_streaming_response.import_(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="poll",
+            current_bookmark="current_bookmark",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            database = response.parse()
+            assert_matches_type(DatabaseImportResponse, database, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    def test_path_params_import_overload_3(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            client.d1.database.with_raw_response.import_(
+                database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                account_id="",
+                action="poll",
+                current_bookmark="current_bookmark",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
+            client.d1.database.with_raw_response.import_(
+                database_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action="poll",
+                current_bookmark="current_bookmark",
             )
 
     @parametrize
@@ -498,6 +747,74 @@ class TestAsyncDatabase:
             )
 
     @parametrize
+    async def test_method_export(self, async_client: AsyncCloudflare) -> None:
+        database = await async_client.d1.database.export(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            output_format="polling",
+        )
+        assert_matches_type(DatabaseExportResponse, database, path=["response"])
+
+    @parametrize
+    async def test_method_export_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        database = await async_client.d1.database.export(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            output_format="polling",
+            current_bookmark="current_bookmark",
+            dump_options={
+                "no_data": True,
+                "no_schema": True,
+                "tables": ["string", "string", "string"],
+            },
+        )
+        assert_matches_type(DatabaseExportResponse, database, path=["response"])
+
+    @parametrize
+    async def test_raw_response_export(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.d1.database.with_raw_response.export(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            output_format="polling",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        database = await response.parse()
+        assert_matches_type(DatabaseExportResponse, database, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_export(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.d1.database.with_streaming_response.export(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            output_format="polling",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            database = await response.parse()
+            assert_matches_type(DatabaseExportResponse, database, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_export(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.d1.database.with_raw_response.export(
+                database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                account_id="",
+                output_format="polling",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
+            await async_client.d1.database.with_raw_response.export(
+                database_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                output_format="polling",
+            )
+
+    @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         database = await async_client.d1.database.get(
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -543,6 +860,185 @@ class TestAsyncDatabase:
             await async_client.d1.database.with_raw_response.get(
                 database_id="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            )
+
+    @parametrize
+    async def test_method_import_overload_1(self, async_client: AsyncCloudflare) -> None:
+        database = await async_client.d1.database.import_(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="init",
+            etag="etag",
+        )
+        assert_matches_type(DatabaseImportResponse, database, path=["response"])
+
+    @parametrize
+    async def test_raw_response_import_overload_1(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.d1.database.with_raw_response.import_(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="init",
+            etag="etag",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        database = await response.parse()
+        assert_matches_type(DatabaseImportResponse, database, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_import_overload_1(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.d1.database.with_streaming_response.import_(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="init",
+            etag="etag",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            database = await response.parse()
+            assert_matches_type(DatabaseImportResponse, database, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_import_overload_1(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.d1.database.with_raw_response.import_(
+                database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                account_id="",
+                action="init",
+                etag="etag",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
+            await async_client.d1.database.with_raw_response.import_(
+                database_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action="init",
+                etag="etag",
+            )
+
+    @parametrize
+    async def test_method_import_overload_2(self, async_client: AsyncCloudflare) -> None:
+        database = await async_client.d1.database.import_(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="ingest",
+            etag="etag",
+            filename="filename",
+        )
+        assert_matches_type(DatabaseImportResponse, database, path=["response"])
+
+    @parametrize
+    async def test_raw_response_import_overload_2(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.d1.database.with_raw_response.import_(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="ingest",
+            etag="etag",
+            filename="filename",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        database = await response.parse()
+        assert_matches_type(DatabaseImportResponse, database, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_import_overload_2(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.d1.database.with_streaming_response.import_(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="ingest",
+            etag="etag",
+            filename="filename",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            database = await response.parse()
+            assert_matches_type(DatabaseImportResponse, database, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_import_overload_2(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.d1.database.with_raw_response.import_(
+                database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                account_id="",
+                action="ingest",
+                etag="etag",
+                filename="filename",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
+            await async_client.d1.database.with_raw_response.import_(
+                database_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action="ingest",
+                etag="etag",
+                filename="filename",
+            )
+
+    @parametrize
+    async def test_method_import_overload_3(self, async_client: AsyncCloudflare) -> None:
+        database = await async_client.d1.database.import_(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="poll",
+            current_bookmark="current_bookmark",
+        )
+        assert_matches_type(DatabaseImportResponse, database, path=["response"])
+
+    @parametrize
+    async def test_raw_response_import_overload_3(self, async_client: AsyncCloudflare) -> None:
+        response = await async_client.d1.database.with_raw_response.import_(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="poll",
+            current_bookmark="current_bookmark",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        database = await response.parse()
+        assert_matches_type(DatabaseImportResponse, database, path=["response"])
+
+    @parametrize
+    async def test_streaming_response_import_overload_3(self, async_client: AsyncCloudflare) -> None:
+        async with async_client.d1.database.with_streaming_response.import_(
+            database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            action="poll",
+            current_bookmark="current_bookmark",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            database = await response.parse()
+            assert_matches_type(DatabaseImportResponse, database, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @parametrize
+    async def test_path_params_import_overload_3(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
+            await async_client.d1.database.with_raw_response.import_(
+                database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+                account_id="",
+                action="poll",
+                current_bookmark="current_bookmark",
+            )
+
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `database_id` but received ''"):
+            await async_client.d1.database.with_raw_response.import_(
+                database_id="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                action="poll",
+                current_bookmark="current_bookmark",
             )
 
     @parametrize
