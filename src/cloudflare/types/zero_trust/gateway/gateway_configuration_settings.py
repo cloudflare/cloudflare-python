@@ -19,10 +19,7 @@ __all__ = ["GatewayConfigurationSettings", "Certificate"]
 
 class Certificate(BaseModel):
     id: str
-    """UUID of certificate to be used for interception.
-
-    Certificate must be active on the edge.
-    """
+    """UUID of certificate to be used for interception."""
 
 
 class GatewayConfigurationSettings(BaseModel):

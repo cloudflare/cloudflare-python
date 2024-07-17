@@ -37,34 +37,6 @@ class TestLocations:
             client_default=False,
             dns_destination_ips_id="0e4a32c6-6fb8-4858-9296-98f51631e8e6",
             ecs_support=False,
-            endpoints={
-                "doh": {
-                    "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
-                    "require_token": True,
-                },
-                "dot": {
-                    "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
-                },
-                "ipv4": {"enabled": True},
-                "ipv6": {
-                    "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
-                },
-            },
             networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
         )
         assert_matches_type(Optional[Location], location, path=["response"])
@@ -121,34 +93,6 @@ class TestLocations:
             client_default=False,
             dns_destination_ips_id="0e4a32c6-6fb8-4858-9296-98f51631e8e6",
             ecs_support=False,
-            endpoints={
-                "doh": {
-                    "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
-                    "require_token": True,
-                },
-                "dot": {
-                    "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
-                },
-                "ipv4": {"enabled": True},
-                "ipv6": {
-                    "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
-                },
-            },
             networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
         )
         assert_matches_type(Optional[Location], location, path=["response"])
@@ -351,34 +295,6 @@ class TestAsyncLocations:
             client_default=False,
             dns_destination_ips_id="0e4a32c6-6fb8-4858-9296-98f51631e8e6",
             ecs_support=False,
-            endpoints={
-                "doh": {
-                    "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
-                    "require_token": True,
-                },
-                "dot": {
-                    "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
-                },
-                "ipv4": {"enabled": True},
-                "ipv6": {
-                    "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
-                },
-            },
             networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
         )
         assert_matches_type(Optional[Location], location, path=["response"])
@@ -435,34 +351,6 @@ class TestAsyncLocations:
             client_default=False,
             dns_destination_ips_id="0e4a32c6-6fb8-4858-9296-98f51631e8e6",
             ecs_support=False,
-            endpoints={
-                "doh": {
-                    "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
-                    "require_token": True,
-                },
-                "dot": {
-                    "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
-                },
-                "ipv4": {"enabled": True},
-                "ipv6": {
-                    "enabled": True,
-                    "networks": [
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                        {"network": "2001:85a3::/64"},
-                    ],
-                },
-            },
             networks=[{"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}, {"network": "192.0.2.1/32"}],
         )
         assert_matches_type(Optional[Location], location, path=["response"])

@@ -20,10 +20,7 @@ __all__ = ["GatewayConfigurationSettingsParam", "Certificate"]
 
 class Certificate(TypedDict, total=False):
     id: Required[str]
-    """UUID of certificate to be used for interception.
-
-    Certificate must be active on the edge.
-    """
+    """UUID of certificate to be used for interception."""
 
 
 class GatewayConfigurationSettingsParam(TypedDict, total=False):
