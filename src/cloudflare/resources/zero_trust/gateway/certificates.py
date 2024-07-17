@@ -130,10 +130,8 @@ class CertificatesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CertificateDeleteResponse]:
-        """Deletes a gateway-managed Zero Trust certificate.
-
-        A certificate must be
-        deactivated from the edge (inactive) before it is deleted.
+        """
+        Deletes a gateway-managed Zero Trust certificate.
 
         Args:
           certificate_id: Certificate UUID tag.
@@ -304,10 +302,8 @@ class AsyncCertificatesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[CertificateDeleteResponse]:
-        """Deletes a gateway-managed Zero Trust certificate.
-
-        A certificate must be
-        deactivated from the edge (inactive) before it is deleted.
+        """
+        Deletes a gateway-managed Zero Trust certificate.
 
         Args:
           certificate_id: Certificate UUID tag.
