@@ -46,6 +46,7 @@ class LocationsResource(SyncAPIResource):
         client_default: bool | NotGiven = NOT_GIVEN,
         dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
+        endpoints: location_create_params.Endpoints | NotGiven = NOT_GIVEN,
         networks: Iterable[location_create_params.Network] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -70,6 +71,10 @@ class LocationsResource(SyncAPIResource):
 
           ecs_support: True if the location needs to resolve EDNS queries.
 
+          endpoints: The destination endpoints configured for this location. When updating a
+              location, if this field is absent or set with null, the endpoints configuration
+              remains unchanged.
+
           networks: A list of network ranges that requests from this location would originate from.
               A non-empty list is only effective if the ipv4 endpoint is enabled for this
               location.
@@ -92,6 +97,7 @@ class LocationsResource(SyncAPIResource):
                     "client_default": client_default,
                     "dns_destination_ips_id": dns_destination_ips_id,
                     "ecs_support": ecs_support,
+                    "endpoints": endpoints,
                     "networks": networks,
                 },
                 location_create_params.LocationCreateParams,
@@ -115,6 +121,7 @@ class LocationsResource(SyncAPIResource):
         client_default: bool | NotGiven = NOT_GIVEN,
         dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
+        endpoints: location_update_params.Endpoints | NotGiven = NOT_GIVEN,
         networks: Iterable[location_update_params.Network] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -138,6 +145,10 @@ class LocationsResource(SyncAPIResource):
               pre-assigned pair remains unchanged.
 
           ecs_support: True if the location needs to resolve EDNS queries.
+
+          endpoints: The destination endpoints configured for this location. When updating a
+              location, if this field is absent or set with null, the endpoints configuration
+              remains unchanged.
 
           networks: A list of network ranges that requests from this location would originate from.
               A non-empty list is only effective if the ipv4 endpoint is enabled for this
@@ -163,6 +174,7 @@ class LocationsResource(SyncAPIResource):
                     "client_default": client_default,
                     "dns_destination_ips_id": dns_destination_ips_id,
                     "ecs_support": ecs_support,
+                    "endpoints": endpoints,
                     "networks": networks,
                 },
                 location_update_params.LocationUpdateParams,
@@ -314,6 +326,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         client_default: bool | NotGiven = NOT_GIVEN,
         dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
+        endpoints: location_create_params.Endpoints | NotGiven = NOT_GIVEN,
         networks: Iterable[location_create_params.Network] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -338,6 +351,10 @@ class AsyncLocationsResource(AsyncAPIResource):
 
           ecs_support: True if the location needs to resolve EDNS queries.
 
+          endpoints: The destination endpoints configured for this location. When updating a
+              location, if this field is absent or set with null, the endpoints configuration
+              remains unchanged.
+
           networks: A list of network ranges that requests from this location would originate from.
               A non-empty list is only effective if the ipv4 endpoint is enabled for this
               location.
@@ -360,6 +377,7 @@ class AsyncLocationsResource(AsyncAPIResource):
                     "client_default": client_default,
                     "dns_destination_ips_id": dns_destination_ips_id,
                     "ecs_support": ecs_support,
+                    "endpoints": endpoints,
                     "networks": networks,
                 },
                 location_create_params.LocationCreateParams,
@@ -383,6 +401,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         client_default: bool | NotGiven = NOT_GIVEN,
         dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
+        endpoints: location_update_params.Endpoints | NotGiven = NOT_GIVEN,
         networks: Iterable[location_update_params.Network] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -406,6 +425,10 @@ class AsyncLocationsResource(AsyncAPIResource):
               pre-assigned pair remains unchanged.
 
           ecs_support: True if the location needs to resolve EDNS queries.
+
+          endpoints: The destination endpoints configured for this location. When updating a
+              location, if this field is absent or set with null, the endpoints configuration
+              remains unchanged.
 
           networks: A list of network ranges that requests from this location would originate from.
               A non-empty list is only effective if the ipv4 endpoint is enabled for this
@@ -431,6 +454,7 @@ class AsyncLocationsResource(AsyncAPIResource):
                     "client_default": client_default,
                     "dns_destination_ips_id": dns_destination_ips_id,
                     "ecs_support": ecs_support,
+                    "endpoints": endpoints,
                     "networks": networks,
                 },
                 location_update_params.LocationUpdateParams,
