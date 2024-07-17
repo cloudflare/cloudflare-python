@@ -30,7 +30,6 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -44,6 +43,7 @@ class TestConfigs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example-hyperdrive",
             origin={
+                "access_client_id": "0123456789abcdef0123456789abcdef.access",
                 "database": "postgres",
                 "host": "database.example.com",
                 "port": 5432,
@@ -67,7 +67,6 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -87,7 +86,6 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -110,7 +108,6 @@ class TestConfigs:
                 origin={
                     "database": "postgres",
                     "host": "database.example.com",
-                    "port": 5432,
                     "scheme": "postgres",
                     "user": "postgres",
                 },
@@ -126,7 +123,6 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -141,6 +137,7 @@ class TestConfigs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example-hyperdrive",
             origin={
+                "access_client_id": "0123456789abcdef0123456789abcdef.access",
                 "database": "postgres",
                 "host": "database.example.com",
                 "port": 5432,
@@ -165,7 +162,6 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -186,7 +182,6 @@ class TestConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -210,7 +205,6 @@ class TestConfigs:
                 origin={
                     "database": "postgres",
                     "host": "database.example.com",
-                    "port": 5432,
                     "scheme": "postgres",
                     "user": "postgres",
                 },
@@ -224,7 +218,6 @@ class TestConfigs:
                 origin={
                     "database": "postgres",
                     "host": "database.example.com",
-                    "port": 5432,
                     "scheme": "postgres",
                     "user": "postgres",
                 },
@@ -338,6 +331,7 @@ class TestConfigs:
             },
             name="example-hyperdrive",
             origin={
+                "access_client_id": "0123456789abcdef0123456789abcdef.access",
                 "database": "postgres",
                 "host": "database.example.com",
                 "port": 5432,
@@ -451,7 +445,6 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -465,6 +458,7 @@ class TestAsyncConfigs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example-hyperdrive",
             origin={
+                "access_client_id": "0123456789abcdef0123456789abcdef.access",
                 "database": "postgres",
                 "host": "database.example.com",
                 "port": 5432,
@@ -488,7 +482,6 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -508,7 +501,6 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -531,7 +523,6 @@ class TestAsyncConfigs:
                 origin={
                     "database": "postgres",
                     "host": "database.example.com",
-                    "port": 5432,
                     "scheme": "postgres",
                     "user": "postgres",
                 },
@@ -547,7 +538,6 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -562,6 +552,7 @@ class TestAsyncConfigs:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="example-hyperdrive",
             origin={
+                "access_client_id": "0123456789abcdef0123456789abcdef.access",
                 "database": "postgres",
                 "host": "database.example.com",
                 "port": 5432,
@@ -586,7 +577,6 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -607,7 +597,6 @@ class TestAsyncConfigs:
             origin={
                 "database": "postgres",
                 "host": "database.example.com",
-                "port": 5432,
                 "scheme": "postgres",
                 "user": "postgres",
             },
@@ -631,7 +620,6 @@ class TestAsyncConfigs:
                 origin={
                     "database": "postgres",
                     "host": "database.example.com",
-                    "port": 5432,
                     "scheme": "postgres",
                     "user": "postgres",
                 },
@@ -645,7 +633,6 @@ class TestAsyncConfigs:
                 origin={
                     "database": "postgres",
                     "host": "database.example.com",
-                    "port": 5432,
                     "scheme": "postgres",
                     "user": "postgres",
                 },
@@ -759,6 +746,7 @@ class TestAsyncConfigs:
             },
             name="example-hyperdrive",
             origin={
+                "access_client_id": "0123456789abcdef0123456789abcdef.access",
                 "database": "postgres",
                 "host": "database.example.com",
                 "port": 5432,
