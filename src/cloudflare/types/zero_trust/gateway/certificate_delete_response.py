@@ -14,10 +14,7 @@ class CertificateDeleteResponse(BaseModel):
     """Certificate UUID tag."""
 
     binding_status: Optional[Literal["pending_deployment", "active", "pending_deletion", "inactive"]] = None
-    """The deployment status of the certificate on Cloudflare's edge.
-
-    Certificates in the 'active' state may be used for Gateway TLS interception.
-    """
+    """The deployment status of the certificate on Cloudflare's edge."""
 
     created_at: Optional[datetime] = None
 
