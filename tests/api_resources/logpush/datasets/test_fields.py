@@ -20,7 +20,7 @@ class TestFields:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         field = client.logpush.datasets.fields.get(
-            dataset_id="http_requests",
+            dataset_id="gateway_dns",
             account_id="account_id",
         )
         assert_matches_type(object, field, path=["response"])
@@ -29,7 +29,7 @@ class TestFields:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         field = client.logpush.datasets.fields.get(
-            dataset_id="http_requests",
+            dataset_id="gateway_dns",
             account_id="account_id",
         )
         assert_matches_type(object, field, path=["response"])
@@ -38,7 +38,7 @@ class TestFields:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.logpush.datasets.fields.with_raw_response.get(
-            dataset_id="http_requests",
+            dataset_id="gateway_dns",
             account_id="account_id",
         )
 
@@ -51,7 +51,7 @@ class TestFields:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.logpush.datasets.fields.with_streaming_response.get(
-            dataset_id="http_requests",
+            dataset_id="gateway_dns",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -73,13 +73,13 @@ class TestFields:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.logpush.datasets.fields.with_raw_response.get(
-                dataset_id="http_requests",
+                dataset_id="gateway_dns",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.logpush.datasets.fields.with_raw_response.get(
-                dataset_id="http_requests",
+                dataset_id="gateway_dns",
                 account_id="account_id",
             )
 
@@ -91,7 +91,7 @@ class TestAsyncFields:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         field = await async_client.logpush.datasets.fields.get(
-            dataset_id="http_requests",
+            dataset_id="gateway_dns",
             account_id="account_id",
         )
         assert_matches_type(object, field, path=["response"])
@@ -100,7 +100,7 @@ class TestAsyncFields:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         field = await async_client.logpush.datasets.fields.get(
-            dataset_id="http_requests",
+            dataset_id="gateway_dns",
             account_id="account_id",
         )
         assert_matches_type(object, field, path=["response"])
@@ -109,7 +109,7 @@ class TestAsyncFields:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.logpush.datasets.fields.with_raw_response.get(
-            dataset_id="http_requests",
+            dataset_id="gateway_dns",
             account_id="account_id",
         )
 
@@ -122,7 +122,7 @@ class TestAsyncFields:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.logpush.datasets.fields.with_streaming_response.get(
-            dataset_id="http_requests",
+            dataset_id="gateway_dns",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -144,12 +144,12 @@ class TestAsyncFields:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.logpush.datasets.fields.with_raw_response.get(
-                dataset_id="http_requests",
+                dataset_id="gateway_dns",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.logpush.datasets.fields.with_raw_response.get(
-                dataset_id="http_requests",
+                dataset_id="gateway_dns",
                 account_id="account_id",
             )
