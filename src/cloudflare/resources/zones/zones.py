@@ -168,8 +168,10 @@ class ZonesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncV4PagePaginationArray[Zone]:
-        """
-        Lists, searches, sorts, and filters your zones.
+        """Lists, searches, sorts, and filters your zones.
+
+        Listing zones across more than
+        500 accounts is currently not allowed.
 
         Args:
           direction: Direction to order zones.
@@ -468,8 +470,10 @@ class AsyncZonesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[Zone, AsyncV4PagePaginationArray[Zone]]:
-        """
-        Lists, searches, sorts, and filters your zones.
+        """Lists, searches, sorts, and filters your zones.
+
+        Listing zones across more than
+        500 accounts is currently not allowed.
 
         Args:
           direction: Direction to order zones.
