@@ -33,6 +33,7 @@ class TestDeployments:
         deployment = client.workers.scripts.deployments.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            force=True,
             annotations={"workers_message": "Deploy bug fix."},
             strategy="strategy",
         )
@@ -143,6 +144,7 @@ class TestAsyncDeployments:
         deployment = await async_client.workers.scripts.deployments.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            force=True,
             annotations={"workers_message": "Deploy bug fix."},
             strategy="strategy",
         )
