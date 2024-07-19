@@ -43,6 +43,7 @@ class DeploymentsResource(SyncAPIResource):
         script_name: str,
         *,
         account_id: str,
+        force: bool | NotGiven = NOT_GIVEN,
         annotations: DeploymentParam | NotGiven = NOT_GIVEN,
         strategy: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -62,6 +63,9 @@ class DeploymentsResource(SyncAPIResource):
           account_id: Identifier
 
           script_name: Name of the script.
+
+          force: If set to true, the deployment will be created even if normally blocked by
+              something such rolling back to an older version when a secret has changed.
 
           extra_headers: Send extra headers
 
@@ -89,6 +93,7 @@ class DeploymentsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform({"force": force}, deployment_create_params.DeploymentCreateParams),
                 post_parser=ResultWrapper[Optional[DeploymentCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DeploymentCreateResponse]], ResultWrapper[DeploymentCreateResponse]),
@@ -155,6 +160,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         script_name: str,
         *,
         account_id: str,
+        force: bool | NotGiven = NOT_GIVEN,
         annotations: DeploymentParam | NotGiven = NOT_GIVEN,
         strategy: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -174,6 +180,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
           account_id: Identifier
 
           script_name: Name of the script.
+
+          force: If set to true, the deployment will be created even if normally blocked by
+              something such rolling back to an older version when a secret has changed.
 
           extra_headers: Send extra headers
 
@@ -201,6 +210,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform({"force": force}, deployment_create_params.DeploymentCreateParams),
                 post_parser=ResultWrapper[Optional[DeploymentCreateResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[DeploymentCreateResponse]], ResultWrapper[DeploymentCreateResponse]),
