@@ -13,6 +13,12 @@ class DeploymentCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
+    force: bool
+    """
+    If set to true, the deployment will be created even if normally blocked by
+    something such rolling back to an older version when a secret has changed.
+    """
+
     annotations: DeploymentParam
 
     strategy: str
