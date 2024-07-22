@@ -3,93 +3,10 @@
 from typing import List, Optional
 from datetime import datetime
 
+from .endpoint import Endpoint
 from ...._models import BaseModel
 
-__all__ = [
-    "Location",
-    "Endpoints",
-    "EndpointsDOH",
-    "EndpointsDOHNetwork",
-    "EndpointsDOT",
-    "EndpointsDOTNetwork",
-    "EndpointsIPV4",
-    "EndpointsIPV6",
-    "EndpointsIPV6Network",
-    "Network",
-]
-
-
-class EndpointsDOHNetwork(BaseModel):
-    network: str
-    """The IP address or IP CIDR."""
-
-
-class EndpointsDOH(BaseModel):
-    enabled: Optional[bool] = None
-    """True if the endpoint is enabled for this location."""
-
-    networks: Optional[List[EndpointsDOHNetwork]] = None
-    """A list of allowed source IP network ranges for this endpoint.
-
-    When empty, all source IPs are allowed. A non-empty list is only effective if
-    the endpoint is enabled for this location.
-    """
-
-    require_token: Optional[bool] = None
-    """
-    True if the endpoint requires
-    [user identity](https://developers.cloudflare.com/cloudflare-one/connections/connect-devices/agentless/dns/dns-over-https/#filter-doh-requests-by-user)
-    authentication.
-    """
-
-
-class EndpointsDOTNetwork(BaseModel):
-    network: str
-    """The IP address or IP CIDR."""
-
-
-class EndpointsDOT(BaseModel):
-    enabled: Optional[bool] = None
-    """True if the endpoint is enabled for this location."""
-
-    networks: Optional[List[EndpointsDOTNetwork]] = None
-    """A list of allowed source IP network ranges for this endpoint.
-
-    When empty, all source IPs are allowed. A non-empty list is only effective if
-    the endpoint is enabled for this location.
-    """
-
-
-class EndpointsIPV4(BaseModel):
-    enabled: Optional[bool] = None
-    """True if the endpoint is enabled for this location."""
-
-
-class EndpointsIPV6Network(BaseModel):
-    network: str
-    """The IPv6 address or IPv6 CIDR."""
-
-
-class EndpointsIPV6(BaseModel):
-    enabled: Optional[bool] = None
-    """True if the endpoint is enabled for this location."""
-
-    networks: Optional[List[EndpointsIPV6Network]] = None
-    """A list of allowed source IPv6 network ranges for this endpoint.
-
-    When empty, all source IPs are allowed. A non-empty list is only effective if
-    the endpoint is enabled for this location.
-    """
-
-
-class Endpoints(BaseModel):
-    doh: Optional[EndpointsDOH] = None
-
-    dot: Optional[EndpointsDOT] = None
-
-    ipv4: Optional[EndpointsIPV4] = None
-
-    ipv6: Optional[EndpointsIPV6] = None
+__all__ = ["Location", "Network"]
 
 
 class Network(BaseModel):
@@ -117,7 +34,7 @@ class Location(BaseModel):
     ecs_support: Optional[bool] = None
     """True if the location needs to resolve EDNS queries."""
 
-    endpoints: Optional[Endpoints] = None
+    endpoints: Optional[Endpoint] = None
     """The destination endpoints configured for this location.
 
     When updating a location, if this field is absent or set with null, the
