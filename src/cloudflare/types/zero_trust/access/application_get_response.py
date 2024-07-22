@@ -3,17 +3,15 @@
 from typing import List, Union, Optional
 from datetime import datetime
 
-from .decision import Decision
 from ...._models import BaseModel
-from ..access_rule import AccessRule
 from .allowed_idps import AllowedIdPs
 from .cors_headers import CORSHeaders
 from .oidc_saas_app import OIDCSaaSApp
 from .saml_saas_app import SAMLSaaSApp
 from .application_type import ApplicationType
+from .application_policy import ApplicationPolicy
 from .scim_config_mapping import SCIMConfigMapping
 from .self_hosted_domains import SelfHostedDomains
-from .applications.approval_group import ApprovalGroup
 from .scim_config_authentication_oauth2 import SCIMConfigAuthenticationOauth2
 from .scim_config_authentication_http_basic import SCIMConfigAuthenticationHTTPBasic
 from .scim_config_authentication_oauth_bearer_token import SCIMConfigAuthenticationOAuthBearerToken
@@ -21,101 +19,31 @@ from .scim_config_authentication_oauth_bearer_token import SCIMConfigAuthenticat
 __all__ = [
     "ApplicationGetResponse",
     "SelfHostedApplication",
-    "SelfHostedApplicationPolicy",
     "SelfHostedApplicationSCIMConfig",
     "SelfHostedApplicationSCIMConfigAuthentication",
     "SaaSApplication",
-    "SaaSApplicationPolicy",
     "SaaSApplicationSaaSApp",
     "SaaSApplicationSCIMConfig",
     "SaaSApplicationSCIMConfigAuthentication",
     "BrowserSSHApplication",
-    "BrowserSSHApplicationPolicy",
     "BrowserSSHApplicationSCIMConfig",
     "BrowserSSHApplicationSCIMConfigAuthentication",
     "BrowserVncApplication",
-    "BrowserVncApplicationPolicy",
     "BrowserVncApplicationSCIMConfig",
     "BrowserVncApplicationSCIMConfigAuthentication",
     "AppLauncherApplication",
-    "AppLauncherApplicationPolicy",
     "AppLauncherApplicationSCIMConfig",
     "AppLauncherApplicationSCIMConfigAuthentication",
     "DeviceEnrollmentPermissionsApplication",
-    "DeviceEnrollmentPermissionsApplicationPolicy",
     "DeviceEnrollmentPermissionsApplicationSCIMConfig",
     "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication",
     "BrowserIsolationPermissionsApplication",
-    "BrowserIsolationPermissionsApplicationPolicy",
     "BrowserIsolationPermissionsApplicationSCIMConfig",
     "BrowserIsolationPermissionsApplicationSCIMConfigAuthentication",
     "BookmarkApplication",
     "BookmarkApplicationSCIMConfig",
     "BookmarkApplicationSCIMConfigAuthentication",
 ]
-
-
-class SelfHostedApplicationPolicy(BaseModel):
-    id: Optional[str] = None
-    """The UUID of the policy"""
-
-    approval_groups: Optional[List[ApprovalGroup]] = None
-    """Administrators who can approve a temporary authentication request."""
-
-    approval_required: Optional[bool] = None
-    """
-    Requires the user to request access from an administrator at the start of each
-    session.
-    """
-
-    created_at: Optional[datetime] = None
-
-    decision: Optional[Decision] = None
-    """The action Access will take if a user matches this policy."""
-
-    exclude: Optional[List[AccessRule]] = None
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
-    """
-
-    include: Optional[List[AccessRule]] = None
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    isolation_required: Optional[bool] = None
-    """
-    Require this application to be served in an isolated browser for users matching
-    this policy. 'Client Web Isolation' must be on for the account in order to use
-    this feature.
-    """
-
-    name: Optional[str] = None
-    """The name of the Access policy."""
-
-    purpose_justification_prompt: Optional[str] = None
-    """A custom message that will appear on the purpose justification screen."""
-
-    purpose_justification_required: Optional[bool] = None
-    """Require users to enter a justification when they log in to the application."""
-
-    require: Optional[List[AccessRule]] = None
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
-    session_duration: Optional[str] = None
-    """The amount of time that tokens issued for the application will be valid.
-
-    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
-    """
-
-    updated_at: Optional[datetime] = None
-
 
 SelfHostedApplicationSCIMConfigAuthentication = Union[
     SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
@@ -252,7 +180,7 @@ class SelfHostedApplication(BaseModel):
     If disabled, the JWT will scope to the hostname by default
     """
 
-    policies: Optional[List[SelfHostedApplicationPolicy]] = None
+    policies: Optional[List[ApplicationPolicy]] = None
 
     same_site_cookie_attribute: Optional[str] = None
     """
@@ -286,68 +214,6 @@ class SelfHostedApplication(BaseModel):
     """The tags you want assigned to an application.
 
     Tags are used to filter applications in the App Launcher dashboard.
-    """
-
-    updated_at: Optional[datetime] = None
-
-
-class SaaSApplicationPolicy(BaseModel):
-    id: Optional[str] = None
-    """The UUID of the policy"""
-
-    approval_groups: Optional[List[ApprovalGroup]] = None
-    """Administrators who can approve a temporary authentication request."""
-
-    approval_required: Optional[bool] = None
-    """
-    Requires the user to request access from an administrator at the start of each
-    session.
-    """
-
-    created_at: Optional[datetime] = None
-
-    decision: Optional[Decision] = None
-    """The action Access will take if a user matches this policy."""
-
-    exclude: Optional[List[AccessRule]] = None
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
-    """
-
-    include: Optional[List[AccessRule]] = None
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    isolation_required: Optional[bool] = None
-    """
-    Require this application to be served in an isolated browser for users matching
-    this policy. 'Client Web Isolation' must be on for the account in order to use
-    this feature.
-    """
-
-    name: Optional[str] = None
-    """The name of the Access policy."""
-
-    purpose_justification_prompt: Optional[str] = None
-    """A custom message that will appear on the purpose justification screen."""
-
-    purpose_justification_required: Optional[bool] = None
-    """Require users to enter a justification when they log in to the application."""
-
-    require: Optional[List[AccessRule]] = None
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
-    session_duration: Optional[str] = None
-    """The amount of time that tokens issued for the application will be valid.
-
-    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
     """
 
     updated_at: Optional[datetime] = None
@@ -428,7 +294,7 @@ class SaaSApplication(BaseModel):
     name: Optional[str] = None
     """The name of the application."""
 
-    policies: Optional[List[SaaSApplicationPolicy]] = None
+    policies: Optional[List[ApplicationPolicy]] = None
 
     saas_app: Optional[SaaSApplicationSaaSApp] = None
 
@@ -446,68 +312,6 @@ class SaaSApplication(BaseModel):
 
     type: Optional[str] = None
     """The application type."""
-
-    updated_at: Optional[datetime] = None
-
-
-class BrowserSSHApplicationPolicy(BaseModel):
-    id: Optional[str] = None
-    """The UUID of the policy"""
-
-    approval_groups: Optional[List[ApprovalGroup]] = None
-    """Administrators who can approve a temporary authentication request."""
-
-    approval_required: Optional[bool] = None
-    """
-    Requires the user to request access from an administrator at the start of each
-    session.
-    """
-
-    created_at: Optional[datetime] = None
-
-    decision: Optional[Decision] = None
-    """The action Access will take if a user matches this policy."""
-
-    exclude: Optional[List[AccessRule]] = None
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
-    """
-
-    include: Optional[List[AccessRule]] = None
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    isolation_required: Optional[bool] = None
-    """
-    Require this application to be served in an isolated browser for users matching
-    this policy. 'Client Web Isolation' must be on for the account in order to use
-    this feature.
-    """
-
-    name: Optional[str] = None
-    """The name of the Access policy."""
-
-    purpose_justification_prompt: Optional[str] = None
-    """A custom message that will appear on the purpose justification screen."""
-
-    purpose_justification_required: Optional[bool] = None
-    """Require users to enter a justification when they log in to the application."""
-
-    require: Optional[List[AccessRule]] = None
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
-    session_duration: Optional[str] = None
-    """The amount of time that tokens issued for the application will be valid.
-
-    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
-    """
 
     updated_at: Optional[datetime] = None
 
@@ -647,7 +451,7 @@ class BrowserSSHApplication(BaseModel):
     If disabled, the JWT will scope to the hostname by default
     """
 
-    policies: Optional[List[BrowserSSHApplicationPolicy]] = None
+    policies: Optional[List[ApplicationPolicy]] = None
 
     same_site_cookie_attribute: Optional[str] = None
     """
@@ -681,68 +485,6 @@ class BrowserSSHApplication(BaseModel):
     """The tags you want assigned to an application.
 
     Tags are used to filter applications in the App Launcher dashboard.
-    """
-
-    updated_at: Optional[datetime] = None
-
-
-class BrowserVncApplicationPolicy(BaseModel):
-    id: Optional[str] = None
-    """The UUID of the policy"""
-
-    approval_groups: Optional[List[ApprovalGroup]] = None
-    """Administrators who can approve a temporary authentication request."""
-
-    approval_required: Optional[bool] = None
-    """
-    Requires the user to request access from an administrator at the start of each
-    session.
-    """
-
-    created_at: Optional[datetime] = None
-
-    decision: Optional[Decision] = None
-    """The action Access will take if a user matches this policy."""
-
-    exclude: Optional[List[AccessRule]] = None
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
-    """
-
-    include: Optional[List[AccessRule]] = None
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    isolation_required: Optional[bool] = None
-    """
-    Require this application to be served in an isolated browser for users matching
-    this policy. 'Client Web Isolation' must be on for the account in order to use
-    this feature.
-    """
-
-    name: Optional[str] = None
-    """The name of the Access policy."""
-
-    purpose_justification_prompt: Optional[str] = None
-    """A custom message that will appear on the purpose justification screen."""
-
-    purpose_justification_required: Optional[bool] = None
-    """Require users to enter a justification when they log in to the application."""
-
-    require: Optional[List[AccessRule]] = None
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
-    session_duration: Optional[str] = None
-    """The amount of time that tokens issued for the application will be valid.
-
-    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
     """
 
     updated_at: Optional[datetime] = None
@@ -883,7 +625,7 @@ class BrowserVncApplication(BaseModel):
     If disabled, the JWT will scope to the hostname by default
     """
 
-    policies: Optional[List[BrowserVncApplicationPolicy]] = None
+    policies: Optional[List[ApplicationPolicy]] = None
 
     same_site_cookie_attribute: Optional[str] = None
     """
@@ -917,68 +659,6 @@ class BrowserVncApplication(BaseModel):
     """The tags you want assigned to an application.
 
     Tags are used to filter applications in the App Launcher dashboard.
-    """
-
-    updated_at: Optional[datetime] = None
-
-
-class AppLauncherApplicationPolicy(BaseModel):
-    id: Optional[str] = None
-    """The UUID of the policy"""
-
-    approval_groups: Optional[List[ApprovalGroup]] = None
-    """Administrators who can approve a temporary authentication request."""
-
-    approval_required: Optional[bool] = None
-    """
-    Requires the user to request access from an administrator at the start of each
-    session.
-    """
-
-    created_at: Optional[datetime] = None
-
-    decision: Optional[Decision] = None
-    """The action Access will take if a user matches this policy."""
-
-    exclude: Optional[List[AccessRule]] = None
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
-    """
-
-    include: Optional[List[AccessRule]] = None
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    isolation_required: Optional[bool] = None
-    """
-    Require this application to be served in an isolated browser for users matching
-    this policy. 'Client Web Isolation' must be on for the account in order to use
-    this feature.
-    """
-
-    name: Optional[str] = None
-    """The name of the Access policy."""
-
-    purpose_justification_prompt: Optional[str] = None
-    """A custom message that will appear on the purpose justification screen."""
-
-    purpose_justification_required: Optional[bool] = None
-    """Require users to enter a justification when they log in to the application."""
-
-    require: Optional[List[AccessRule]] = None
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
-    session_duration: Optional[str] = None
-    """The amount of time that tokens issued for the application will be valid.
-
-    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
     """
 
     updated_at: Optional[datetime] = None
@@ -1058,7 +738,7 @@ class AppLauncherApplication(BaseModel):
     name: Optional[str] = None
     """The name of the application."""
 
-    policies: Optional[List[AppLauncherApplicationPolicy]] = None
+    policies: Optional[List[ApplicationPolicy]] = None
 
     scim_config: Optional[AppLauncherApplicationSCIMConfig] = None
     """Configuration for provisioning to this application via SCIM.
@@ -1068,68 +748,6 @@ class AppLauncherApplication(BaseModel):
 
     session_duration: Optional[str] = None
     """The amount of time that tokens issued for this application will be valid.
-
-    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
-    """
-
-    updated_at: Optional[datetime] = None
-
-
-class DeviceEnrollmentPermissionsApplicationPolicy(BaseModel):
-    id: Optional[str] = None
-    """The UUID of the policy"""
-
-    approval_groups: Optional[List[ApprovalGroup]] = None
-    """Administrators who can approve a temporary authentication request."""
-
-    approval_required: Optional[bool] = None
-    """
-    Requires the user to request access from an administrator at the start of each
-    session.
-    """
-
-    created_at: Optional[datetime] = None
-
-    decision: Optional[Decision] = None
-    """The action Access will take if a user matches this policy."""
-
-    exclude: Optional[List[AccessRule]] = None
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
-    """
-
-    include: Optional[List[AccessRule]] = None
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    isolation_required: Optional[bool] = None
-    """
-    Require this application to be served in an isolated browser for users matching
-    this policy. 'Client Web Isolation' must be on for the account in order to use
-    this feature.
-    """
-
-    name: Optional[str] = None
-    """The name of the Access policy."""
-
-    purpose_justification_prompt: Optional[str] = None
-    """A custom message that will appear on the purpose justification screen."""
-
-    purpose_justification_required: Optional[bool] = None
-    """Require users to enter a justification when they log in to the application."""
-
-    require: Optional[List[AccessRule]] = None
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
-    session_duration: Optional[str] = None
-    """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
     ms, s, m, h.
@@ -1212,7 +830,7 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     name: Optional[str] = None
     """The name of the application."""
 
-    policies: Optional[List[DeviceEnrollmentPermissionsApplicationPolicy]] = None
+    policies: Optional[List[ApplicationPolicy]] = None
 
     scim_config: Optional[DeviceEnrollmentPermissionsApplicationSCIMConfig] = None
     """Configuration for provisioning to this application via SCIM.
@@ -1222,68 +840,6 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
 
     session_duration: Optional[str] = None
     """The amount of time that tokens issued for this application will be valid.
-
-    Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
-    ms, s, m, h.
-    """
-
-    updated_at: Optional[datetime] = None
-
-
-class BrowserIsolationPermissionsApplicationPolicy(BaseModel):
-    id: Optional[str] = None
-    """The UUID of the policy"""
-
-    approval_groups: Optional[List[ApprovalGroup]] = None
-    """Administrators who can approve a temporary authentication request."""
-
-    approval_required: Optional[bool] = None
-    """
-    Requires the user to request access from an administrator at the start of each
-    session.
-    """
-
-    created_at: Optional[datetime] = None
-
-    decision: Optional[Decision] = None
-    """The action Access will take if a user matches this policy."""
-
-    exclude: Optional[List[AccessRule]] = None
-    """Rules evaluated with a NOT logical operator.
-
-    To match the policy, a user cannot meet any of the Exclude rules.
-    """
-
-    include: Optional[List[AccessRule]] = None
-    """Rules evaluated with an OR logical operator.
-
-    A user needs to meet only one of the Include rules.
-    """
-
-    isolation_required: Optional[bool] = None
-    """
-    Require this application to be served in an isolated browser for users matching
-    this policy. 'Client Web Isolation' must be on for the account in order to use
-    this feature.
-    """
-
-    name: Optional[str] = None
-    """The name of the Access policy."""
-
-    purpose_justification_prompt: Optional[str] = None
-    """A custom message that will appear on the purpose justification screen."""
-
-    purpose_justification_required: Optional[bool] = None
-    """Require users to enter a justification when they log in to the application."""
-
-    require: Optional[List[AccessRule]] = None
-    """Rules evaluated with an AND logical operator.
-
-    To match the policy, a user must meet all of the Require rules.
-    """
-
-    session_duration: Optional[str] = None
-    """The amount of time that tokens issued for the application will be valid.
 
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
     ms, s, m, h.
@@ -1366,7 +922,7 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     name: Optional[str] = None
     """The name of the application."""
 
-    policies: Optional[List[BrowserIsolationPermissionsApplicationPolicy]] = None
+    policies: Optional[List[ApplicationPolicy]] = None
 
     scim_config: Optional[BrowserIsolationPermissionsApplicationSCIMConfig] = None
     """Configuration for provisioning to this application via SCIM.

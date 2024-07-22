@@ -24,6 +24,7 @@ from .zero_trust_group import ZeroTrustGroup as ZeroTrustGroup
 from .key_update_params import KeyUpdateParams as KeyUpdateParams
 from .tag_create_params import TagCreateParams as TagCreateParams
 from .tag_update_params import TagUpdateParams as TagUpdateParams
+from .application_policy import ApplicationPolicy as ApplicationPolicy
 from .cors_headers_param import CORSHeadersParam as CORSHeadersParam
 from .group_create_params import GroupCreateParams as GroupCreateParams
 from .group_update_params import GroupUpdateParams as GroupUpdateParams

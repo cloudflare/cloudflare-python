@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["SCIMConfigParam"]
+__all__ = ["IdentityProviderSCIMConfigParam"]
 
 
-class SCIMConfigParam(TypedDict, total=False):
+class IdentityProviderSCIMConfigParam(TypedDict, total=False):
     enabled: bool
     """A flag to enable or disable SCIM for the identity provider."""
 
