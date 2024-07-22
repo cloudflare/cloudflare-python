@@ -112,6 +112,7 @@ class HTTPResource(SyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -151,6 +152,9 @@ class HTTPResource(SyncAPIResource):
 
           name: Array of names that will be used to name the series in responses.
 
+          normalization: Normalization method applied. Refer to
+              [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -177,6 +181,7 @@ class HTTPResource(SyncAPIResource):
                         "format": format,
                         "location": location,
                         "name": name,
+                        "normalization": normalization,
                     },
                     http_timeseries_params.HTTPTimeseriesParams,
                 ),
@@ -227,6 +232,7 @@ class AsyncHTTPResource(AsyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         location: List[str] | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
+        normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -266,6 +272,9 @@ class AsyncHTTPResource(AsyncAPIResource):
 
           name: Array of names that will be used to name the series in responses.
 
+          normalization: Normalization method applied. Refer to
+              [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -292,6 +301,7 @@ class AsyncHTTPResource(AsyncAPIResource):
                         "format": format,
                         "location": location,
                         "name": name,
+                        "normalization": normalization,
                     },
                     http_timeseries_params.HTTPTimeseriesParams,
                 ),

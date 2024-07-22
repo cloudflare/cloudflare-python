@@ -58,3 +58,10 @@ class HTTPTimeseriesParams(TypedDict, total=False):
 
     name: List[str]
     """Array of names that will be used to name the series in responses."""
+
+    normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"]
+    """Normalization method applied.
+
+    Refer to
+    [Normalization methods](https://developers.cloudflare.com/radar/concepts/normalization/).
+    """
