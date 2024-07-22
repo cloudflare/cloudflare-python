@@ -10,7 +10,7 @@ from .dns_resolver_settings_v6 import DNSResolverSettingsV6
 __all__ = [
     "RuleSetting",
     "AuditSSH",
-    "BisoAdminControls",
+    "BISOAdminControls",
     "CheckSession",
     "DNSResolvers",
     "Egress",
@@ -26,7 +26,7 @@ class AuditSSH(BaseModel):
     """Enable to turn on SSH command logging."""
 
 
-class BisoAdminControls(BaseModel):
+class BISOAdminControls(BaseModel):
     dcp: Optional[bool] = None
     """Set to false to enable copy-pasting."""
 
@@ -120,7 +120,7 @@ class RuleSetting(BaseModel):
     audit_ssh: Optional[AuditSSH] = None
     """Settings for the Audit SSH action."""
 
-    biso_admin_controls: Optional[BisoAdminControls] = None
+    biso_admin_controls: Optional[BISOAdminControls] = None
     """Configure how browser isolation behaves."""
 
     block_page_enabled: Optional[bool] = None
