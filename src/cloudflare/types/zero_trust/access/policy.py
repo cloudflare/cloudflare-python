@@ -3,15 +3,15 @@
 from typing import List, Optional
 from datetime import datetime
 
-from ..decision import Decision
-from ....._models import BaseModel
-from ...access_rule import AccessRule
-from .approval_group import ApprovalGroup
+from .decision import Decision
+from ...._models import BaseModel
+from ..access_rule import AccessRule
+from .applications.approval_group import ApprovalGroup
 
-__all__ = ["PolicyGetResponse"]
+__all__ = ["Policy"]
 
 
-class PolicyGetResponse(BaseModel):
+class Policy(BaseModel):
     id: Optional[str] = None
     """The UUID of the policy"""
 
