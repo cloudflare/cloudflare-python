@@ -46,6 +46,10 @@ class TextToImage(TypedDict, total=False):
 
     image_b64: str
 
+    lora_weights: Iterable[float]
+
+    loras: List[str]
+
     mask: Iterable[float]
 
     negative_prompt: str
