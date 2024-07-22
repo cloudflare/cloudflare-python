@@ -24,6 +24,7 @@ from .route_rule_param import RouteRuleParam as RouteRuleParam
 from .rule_edit_params import RuleEditParams as RuleEditParams
 from .score_rule_param import ScoreRuleParam as ScoreRuleParam
 from .serve_error_rule import ServeErrorRule as ServeErrorRule
+from .ddos_dynamic_rule import DDoSDynamicRule as DDoSDynamicRule
 from .js_challenge_rule import JSChallengeRule as JSChallengeRule
 from .execute_rule_param import ExecuteRuleParam as ExecuteRuleParam
 from .phase_get_response import PhaseGetResponse as PhaseGetResponse
@@ -37,6 +38,7 @@ from .rule_create_response import RuleCreateResponse as RuleCreateResponse
 from .rule_delete_response import RuleDeleteResponse as RuleDeleteResponse
 from .ruleset_get_response import RulesetGetResponse as RulesetGetResponse
 from .version_get_response import VersionGetResponse as VersionGetResponse
+from .log_custom_field_rule import LogCustomFieldRule as LogCustomFieldRule
 from .phase_update_response import PhaseUpdateResponse as PhaseUpdateResponse
 from .ruleset_create_params import RulesetCreateParams as RulesetCreateParams
 from .ruleset_list_response import RulesetListResponse as RulesetListResponse
@@ -47,10 +49,14 @@ from .compress_response_rule import CompressResponseRule as CompressResponseRule
 from .managed_challenge_rule import ManagedChallengeRule as ManagedChallengeRule
 from .rewrite_uri_part_param import RewriteURIPartParam as RewriteURIPartParam
 from .serve_error_rule_param import ServeErrorRuleParam as ServeErrorRuleParam
+from .ddos_dynamic_rule_param import DDoSDynamicRuleParam as DDoSDynamicRuleParam
 from .js_challenge_rule_param import JSChallengeRuleParam as JSChallengeRuleParam
 from .ruleset_create_response import RulesetCreateResponse as RulesetCreateResponse
 from .ruleset_update_response import RulesetUpdateResponse as RulesetUpdateResponse
 from .set_cache_settings_rule import SetCacheSettingsRule as SetCacheSettingsRule
+from .force_connection_close_rule import ForceConnectionCloseRule as ForceConnectionCloseRule
+from .log_custom_field_rule_param import LogCustomFieldRuleParam as LogCustomFieldRuleParam
 from .compress_response_rule_param import CompressResponseRuleParam as CompressResponseRuleParam
 from .managed_challenge_rule_param import ManagedChallengeRuleParam as ManagedChallengeRuleParam
 from .set_cache_settings_rule_param import SetCacheSettingsRuleParam as SetCacheSettingsRuleParam
+from .force_connection_close_rule_param import ForceConnectionCloseRuleParam as ForceConnectionCloseRuleParam
