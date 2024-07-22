@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from .tag import Tag as Tag
+from .policy import Policy as Policy
 from .bookmark import Bookmark as Bookmark
 from .decision import Decision as Decision
 from .access_user import AccessUser as AccessUser
@@ -11,6 +12,7 @@ from .custom_page import CustomPage as CustomPage
 from .allowed_idps import AllowedIdPs as AllowedIdPs
 from .app_id_param import AppIDParam as AppIDParam
 from .cors_headers import CORSHeaders as CORSHeaders
+from .oidc_saas_app import OIDCSaaSApp as OIDCSaaSApp
 from .saml_saas_app import SAMLSaaSApp as SAMLSaaSApp
 from .service_token import ServiceToken as ServiceToken
 from .allowed_headers import AllowedHeaders as AllowedHeaders
@@ -28,8 +30,10 @@ from .group_create_params import GroupCreateParams as GroupCreateParams
 from .group_update_params import GroupUpdateParams as GroupUpdateParams
 from .key_rotate_response import KeyRotateResponse as KeyRotateResponse
 from .key_update_response import KeyUpdateResponse as KeyUpdateResponse
+from .oidc_saas_app_param import OIDCSaaSAppParam as OIDCSaaSAppParam
 from .policy_get_response import PolicyGetResponse as PolicyGetResponse
 from .saml_saas_app_param import SAMLSaaSAppParam as SAMLSaaSAppParam
+from .scim_config_mapping import SCIMConfigMapping as SCIMConfigMapping
 from .self_hosted_domains import SelfHostedDomains as SelfHostedDomains
 from .tag_delete_response import TagDeleteResponse as TagDeleteResponse
 from .associated_hostnames import AssociatedHostnames as AssociatedHostnames
@@ -55,6 +59,7 @@ from .certificate_create_params import CertificateCreateParams as CertificateCre
 from .certificate_update_params import CertificateUpdateParams as CertificateUpdateParams
 from .custom_page_create_params import CustomPageCreateParams as CustomPageCreateParams
 from .custom_page_update_params import CustomPageUpdateParams as CustomPageUpdateParams
+from .scim_config_mapping_param import SCIMConfigMappingParam as SCIMConfigMappingParam
 from .application_create_response import ApplicationCreateResponse as ApplicationCreateResponse
 from .application_delete_response import ApplicationDeleteResponse as ApplicationDeleteResponse
 from .application_update_response import ApplicationUpdateResponse as ApplicationUpdateResponse
@@ -64,3 +69,19 @@ from .service_token_create_params import ServiceTokenCreateParams as ServiceToke
 from .service_token_update_params import ServiceTokenUpdateParams as ServiceTokenUpdateParams
 from .service_token_create_response import ServiceTokenCreateResponse as ServiceTokenCreateResponse
 from .service_token_rotate_response import ServiceTokenRotateResponse as ServiceTokenRotateResponse
+from .scim_config_authentication_oauth2 import SCIMConfigAuthenticationOauth2 as SCIMConfigAuthenticationOauth2
+from .scim_config_authentication_http_basic import (
+    SCIMConfigAuthenticationHTTPBasic as SCIMConfigAuthenticationHTTPBasic,
+)
+from .scim_config_authentication_oauth2_param import (
+    SCIMConfigAuthenticationOauth2Param as SCIMConfigAuthenticationOauth2Param,
+)
+from .scim_config_authentication_http_basic_param import (
+    SCIMConfigAuthenticationHTTPBasicParam as SCIMConfigAuthenticationHTTPBasicParam,
+)
+from .scim_config_authentication_oauth_bearer_token import (
+    SCIMConfigAuthenticationOAuthBearerToken as SCIMConfigAuthenticationOAuthBearerToken,
+)
+from .scim_config_authentication_oauth_bearer_token_param import (
+    SCIMConfigAuthenticationOAuthBearerTokenParam as SCIMConfigAuthenticationOAuthBearerTokenParam,
+)
