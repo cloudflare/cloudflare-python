@@ -5506,7 +5506,17 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.zero_trust.gateway import Location, LocationDeleteResponse
+from cloudflare.types.zero_trust.gateway import (
+    DOHEndpoint,
+    DOTEndpoint,
+    Endpoint,
+    IPNetwork,
+    IPV4Endpoint,
+    IPV6Endpoint,
+    IPV6Network,
+    Location,
+    LocationDeleteResponse,
+)
 ```
 
 Methods:
