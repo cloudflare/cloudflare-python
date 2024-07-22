@@ -28,9 +28,9 @@ __all__ = [
     "BrowserSSHApplication",
     "BrowserSSHApplicationSCIMConfig",
     "BrowserSSHApplicationSCIMConfigAuthentication",
-    "BrowserVncApplication",
-    "BrowserVncApplicationSCIMConfig",
-    "BrowserVncApplicationSCIMConfigAuthentication",
+    "BrowserVNCApplication",
+    "BrowserVNCApplicationSCIMConfig",
+    "BrowserVNCApplicationSCIMConfigAuthentication",
     "AppLauncherApplication",
     "AppLauncherApplicationSCIMConfig",
     "AppLauncherApplicationSCIMConfigAuthentication",
@@ -490,12 +490,12 @@ class BrowserSSHApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-BrowserVncApplicationSCIMConfigAuthentication = Union[
+BrowserVNCApplicationSCIMConfigAuthentication = Union[
     SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
 
 
-class BrowserVncApplicationSCIMConfig(BaseModel):
+class BrowserVNCApplicationSCIMConfig(BaseModel):
     idp_uid: str
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -505,7 +505,7 @@ class BrowserVncApplicationSCIMConfig(BaseModel):
     remote_uri: str
     """The base URI for the application's SCIM-compatible API."""
 
-    authentication: Optional[BrowserVncApplicationSCIMConfigAuthentication] = None
+    authentication: Optional[BrowserVNCApplicationSCIMConfigAuthentication] = None
     """
     Attributes for configuring HTTP Basic authentication scheme for SCIM
     provisioning to an application.
@@ -528,7 +528,7 @@ class BrowserVncApplicationSCIMConfig(BaseModel):
     """
 
 
-class BrowserVncApplication(BaseModel):
+class BrowserVNCApplication(BaseModel):
     domain: str
     """The primary hostname and path that Access will secure.
 
@@ -633,7 +633,7 @@ class BrowserVncApplication(BaseModel):
     attacks.
     """
 
-    scim_config: Optional[BrowserVncApplicationSCIMConfig] = None
+    scim_config: Optional[BrowserVNCApplicationSCIMConfig] = None
     """Configuration for provisioning to this application via SCIM.
 
     This is currently in closed beta.
@@ -1021,7 +1021,7 @@ ApplicationUpdateResponse = Union[
     SelfHostedApplication,
     SaaSApplication,
     BrowserSSHApplication,
-    BrowserVncApplication,
+    BrowserVNCApplication,
     AppLauncherApplication,
     DeviceEnrollmentPermissionsApplication,
     BrowserIsolationPermissionsApplication,
