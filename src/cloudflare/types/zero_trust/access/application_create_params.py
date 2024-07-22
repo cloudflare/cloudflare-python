@@ -40,12 +40,12 @@ __all__ = [
     "BrowserSSHApplicationPolicyUnionMember2",
     "BrowserSSHApplicationSCIMConfig",
     "BrowserSSHApplicationSCIMConfigAuthentication",
-    "BrowserVncApplication",
-    "BrowserVncApplicationPolicy",
-    "BrowserVncApplicationPolicyAccessAppPolicyLink",
-    "BrowserVncApplicationPolicyUnionMember2",
-    "BrowserVncApplicationSCIMConfig",
-    "BrowserVncApplicationSCIMConfigAuthentication",
+    "BrowserVNCApplication",
+    "BrowserVNCApplicationPolicy",
+    "BrowserVNCApplicationPolicyAccessAppPolicyLink",
+    "BrowserVNCApplicationPolicyUnionMember2",
+    "BrowserVNCApplicationSCIMConfig",
+    "BrowserVNCApplicationSCIMConfigAuthentication",
     "AppLauncherApplication",
     "AppLauncherApplicationPolicy",
     "AppLauncherApplicationPolicyAccessAppPolicyLink",
@@ -759,7 +759,7 @@ class BrowserSSHApplicationSCIMConfig(TypedDict, total=False):
     """
 
 
-class BrowserVncApplication(TypedDict, total=False):
+class BrowserVNCApplication(TypedDict, total=False):
     domain: Required[str]
     """The primary hostname and path that Access will secure.
 
@@ -854,7 +854,7 @@ class BrowserVncApplication(TypedDict, total=False):
     If disabled, the JWT will scope to the hostname by default
     """
 
-    policies: List[BrowserVncApplicationPolicy]
+    policies: List[BrowserVNCApplicationPolicy]
     """
     The policies that will apply to the application, in ascending order of
     precedence. Items can reference existing policies or create new policies
@@ -867,7 +867,7 @@ class BrowserVncApplication(TypedDict, total=False):
     attacks.
     """
 
-    scim_config: BrowserVncApplicationSCIMConfig
+    scim_config: BrowserVNCApplicationSCIMConfig
     """Configuration for provisioning to this application via SCIM.
 
     This is currently in closed beta.
@@ -896,7 +896,7 @@ class BrowserVncApplication(TypedDict, total=False):
     """
 
 
-class BrowserVncApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
+class BrowserVNCApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     id: str
     """The UUID of the policy"""
 
@@ -907,7 +907,7 @@ class BrowserVncApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
     """
 
 
-class BrowserVncApplicationPolicyUnionMember2(TypedDict, total=False):
+class BrowserVNCApplicationPolicyUnionMember2(TypedDict, total=False):
     decision: Required[Decision]
     """The action Access will take if a user matches this policy."""
 
@@ -971,18 +971,18 @@ class BrowserVncApplicationPolicyUnionMember2(TypedDict, total=False):
     """
 
 
-BrowserVncApplicationPolicy = Union[
-    BrowserVncApplicationPolicyAccessAppPolicyLink, str, BrowserVncApplicationPolicyUnionMember2
+BrowserVNCApplicationPolicy = Union[
+    BrowserVNCApplicationPolicyAccessAppPolicyLink, str, BrowserVNCApplicationPolicyUnionMember2
 ]
 
-BrowserVncApplicationSCIMConfigAuthentication = Union[
+BrowserVNCApplicationSCIMConfigAuthentication = Union[
     SCIMConfigAuthenticationHTTPBasicParam,
     SCIMConfigAuthenticationOAuthBearerTokenParam,
     SCIMConfigAuthenticationOauth2Param,
 ]
 
 
-class BrowserVncApplicationSCIMConfig(TypedDict, total=False):
+class BrowserVNCApplicationSCIMConfig(TypedDict, total=False):
     idp_uid: Required[str]
     """
     The UID of the IdP to use as the source for SCIM resources to provision to this
@@ -992,7 +992,7 @@ class BrowserVncApplicationSCIMConfig(TypedDict, total=False):
     remote_uri: Required[str]
     """The base URI for the application's SCIM-compatible API."""
 
-    authentication: BrowserVncApplicationSCIMConfigAuthentication
+    authentication: BrowserVNCApplicationSCIMConfigAuthentication
     """
     Attributes for configuring HTTP Basic authentication scheme for SCIM
     provisioning to an application.
@@ -1590,7 +1590,7 @@ ApplicationCreateParams = Union[
     SelfHostedApplication,
     SaaSApplication,
     BrowserSSHApplication,
-    BrowserVncApplication,
+    BrowserVNCApplication,
     AppLauncherApplication,
     DeviceEnrollmentPermissionsApplication,
     BrowserIsolationPermissionsApplication,
