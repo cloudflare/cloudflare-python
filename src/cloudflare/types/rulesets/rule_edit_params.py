@@ -71,13 +71,13 @@ __all__ = [
     "SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTL",
     "SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRange",
     "SetCacheSettingsRuleActionParametersServeStale",
-    "RulesetsLogCustomFieldRule",
-    "RulesetsLogCustomFieldRuleActionParameters",
-    "RulesetsLogCustomFieldRuleActionParametersCookieField",
-    "RulesetsLogCustomFieldRuleActionParametersRequestField",
-    "RulesetsLogCustomFieldRuleActionParametersResponseField",
-    "RulesetsDDoSDynamicRule",
-    "RulesetsForceConnectionCloseRule",
+    "LogCustomFieldRule",
+    "LogCustomFieldRuleActionParameters",
+    "LogCustomFieldRuleActionParametersCookieField",
+    "LogCustomFieldRuleActionParametersRequestField",
+    "LogCustomFieldRuleActionParametersResponseField",
+    "DDoSDynamicRule",
+    "ForceConnectionCloseRule",
 ]
 
 
@@ -1202,7 +1202,7 @@ class SetCacheSettingsRuleActionParameters(TypedDict, total=False):
     """
 
 
-class RulesetsLogCustomFieldRule(TypedDict, total=False):
+class LogCustomFieldRule(TypedDict, total=False):
     ruleset_id: Required[str]
     """The unique ID of the ruleset."""
 
@@ -1218,7 +1218,7 @@ class RulesetsLogCustomFieldRule(TypedDict, total=False):
     action: Literal["log_custom_field"]
     """The action to perform when the rule matches."""
 
-    action_parameters: RulesetsLogCustomFieldRuleActionParameters
+    action_parameters: LogCustomFieldRuleActionParameters
     """The parameters configuring the rule's action."""
 
     description: str
@@ -1237,33 +1237,33 @@ class RulesetsLogCustomFieldRule(TypedDict, total=False):
     """The reference of the rule (the rule ID by default)."""
 
 
-class RulesetsLogCustomFieldRuleActionParametersCookieField(TypedDict, total=False):
+class LogCustomFieldRuleActionParametersCookieField(TypedDict, total=False):
     name: Required[str]
     """The name of the field."""
 
 
-class RulesetsLogCustomFieldRuleActionParametersRequestField(TypedDict, total=False):
+class LogCustomFieldRuleActionParametersRequestField(TypedDict, total=False):
     name: Required[str]
     """The name of the field."""
 
 
-class RulesetsLogCustomFieldRuleActionParametersResponseField(TypedDict, total=False):
+class LogCustomFieldRuleActionParametersResponseField(TypedDict, total=False):
     name: Required[str]
     """The name of the field."""
 
 
-class RulesetsLogCustomFieldRuleActionParameters(TypedDict, total=False):
-    cookie_fields: Iterable[RulesetsLogCustomFieldRuleActionParametersCookieField]
+class LogCustomFieldRuleActionParameters(TypedDict, total=False):
+    cookie_fields: Iterable[LogCustomFieldRuleActionParametersCookieField]
     """The cookie fields to log."""
 
-    request_fields: Iterable[RulesetsLogCustomFieldRuleActionParametersRequestField]
+    request_fields: Iterable[LogCustomFieldRuleActionParametersRequestField]
     """The request fields to log."""
 
-    response_fields: Iterable[RulesetsLogCustomFieldRuleActionParametersResponseField]
+    response_fields: Iterable[LogCustomFieldRuleActionParametersResponseField]
     """The response fields to log."""
 
 
-class RulesetsDDoSDynamicRule(TypedDict, total=False):
+class DDoSDynamicRule(TypedDict, total=False):
     ruleset_id: Required[str]
     """The unique ID of the ruleset."""
 
@@ -1298,7 +1298,7 @@ class RulesetsDDoSDynamicRule(TypedDict, total=False):
     """The reference of the rule (the rule ID by default)."""
 
 
-class RulesetsForceConnectionCloseRule(TypedDict, total=False):
+class ForceConnectionCloseRule(TypedDict, total=False):
     ruleset_id: Required[str]
     """The unique ID of the ruleset."""
 
@@ -1349,7 +1349,7 @@ RuleEditParams = Union[
     SetConfigRule,
     SkipRule,
     SetCacheSettingsRule,
-    RulesetsLogCustomFieldRule,
-    RulesetsDDoSDynamicRule,
-    RulesetsForceConnectionCloseRule,
+    LogCustomFieldRule,
+    DDoSDynamicRule,
+    ForceConnectionCloseRule,
 ]

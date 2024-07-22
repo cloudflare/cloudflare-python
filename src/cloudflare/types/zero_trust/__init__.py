@@ -12,7 +12,6 @@ from .group_rule import GroupRule as GroupRule
 from .access_rule import AccessRule as AccessRule
 from .domain_rule import DomainRule as DomainRule
 from .percentiles import Percentiles as Percentiles
-from .scim_config import SCIMConfig as SCIMConfig
 from .country_rule import CountryRule as CountryRule
 from .ip_list_rule import IPListRule as IPListRule
 from .login_design import LoginDesign as LoginDesign
@@ -32,7 +31,6 @@ from .access_rule_param import AccessRuleParam as AccessRuleParam
 from .domain_rule_param import DomainRuleParam as DomainRuleParam
 from .gsuite_group_rule import GSuiteGroupRule as GSuiteGroupRule
 from .identity_provider import IdentityProvider as IdentityProvider
-from .scim_config_param import SCIMConfigParam as SCIMConfigParam
 from .country_rule_param import CountryRuleParam as CountryRuleParam
 from .ip_list_rule_param import IPListRuleParam as IPListRuleParam
 from .login_design_param import LoginDesignParam as LoginDesignParam
@@ -72,6 +70,7 @@ from .organization_create_params import OrganizationCreateParams as Organization
 from .organization_update_params import OrganizationUpdateParams as OrganizationUpdateParams
 from .risk_scoring_reset_response import RiskScoringResetResponse as RiskScoringResetResponse
 from .any_valid_service_token_rule import AnyValidServiceTokenRule as AnyValidServiceTokenRule
+from .identity_provider_scim_config import IdentityProviderSCIMConfig as IdentityProviderSCIMConfig
 from .external_evaluation_rule_param import ExternalEvaluationRuleParam as ExternalEvaluationRuleParam
 from .github_organization_rule_param import GitHubOrganizationRuleParam as GitHubOrganizationRuleParam
 from .identity_provider_create_params import IdentityProviderCreateParams as IdentityProviderCreateParams
@@ -86,3 +85,4 @@ from .identity_provider_delete_response import IdentityProviderDeleteResponse as
 from .any_valid_service_token_rule_param import AnyValidServiceTokenRuleParam as AnyValidServiceTokenRuleParam
 from .connectivity_setting_edit_response import ConnectivitySettingEditResponse as ConnectivitySettingEditResponse
 from .organization_revoke_users_response import OrganizationRevokeUsersResponse as OrganizationRevokeUsersResponse
+from .identity_provider_scim_config_param import IdentityProviderSCIMConfigParam as IdentityProviderSCIMConfigParam

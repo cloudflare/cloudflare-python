@@ -4,8 +4,8 @@ from typing import List, Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from .scim_config import SCIMConfig
 from .identity_provider_type import IdentityProviderType
+from .identity_provider_scim_config import IdentityProviderSCIMConfig
 
 __all__ = ["AzureAD", "Config"]
 
@@ -67,7 +67,7 @@ class AzureAD(BaseModel):
     id: Optional[str] = None
     """UUID"""
 
-    scim_config: Optional[SCIMConfig] = None
+    scim_config: Optional[IdentityProviderSCIMConfig] = None
     """
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
