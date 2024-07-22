@@ -43,6 +43,7 @@ class TestHTTP:
             format="JSON",
             location=["string", "string", "string"],
             name=["string", "string", "string"],
+            normalization="MIN0_MAX",
         )
         assert_matches_type(HTTPTimeseriesResponse, http, path=["response"])
 
@@ -95,6 +96,7 @@ class TestAsyncHTTP:
             format="JSON",
             location=["string", "string", "string"],
             name=["string", "string", "string"],
+            normalization="MIN0_MAX",
         )
         assert_matches_type(HTTPTimeseriesResponse, http, path=["response"])
 
