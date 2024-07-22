@@ -23,12 +23,15 @@ from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.access import Decision
-from .....types.zero_trust.access.policy import Policy
 from .....types.zero_trust.access.decision import Decision
 from .....types.zero_trust.access_rule_param import AccessRuleParam
 from .....types.zero_trust.access.applications import policy_create_params, policy_update_params
+from .....types.zero_trust.access.applications.policy_get_response import PolicyGetResponse
 from .....types.zero_trust.access.applications.approval_group_param import ApprovalGroupParam
+from .....types.zero_trust.access.applications.policy_list_response import PolicyListResponse
+from .....types.zero_trust.access.applications.policy_create_response import PolicyCreateResponse
 from .....types.zero_trust.access.applications.policy_delete_response import PolicyDeleteResponse
+from .....types.zero_trust.access.applications.policy_update_response import PolicyUpdateResponse
 
 __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
 
@@ -66,7 +69,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Policy]:
+    ) -> Optional[PolicyCreateResponse]:
         """
         Creates a policy applying exclusive to a single application that defines the
         users or groups who can reach it. We recommend creating a reusable policy
@@ -159,9 +162,9 @@ class PoliciesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Policy]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PolicyCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
+            cast_to=cast(Type[Optional[PolicyCreateResponse]], ResultWrapper[PolicyCreateResponse]),
         )
 
     def update(
@@ -189,7 +192,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Policy]:
+    ) -> Optional[PolicyUpdateResponse]:
         """Updates an Access policy specific to an application.
 
         To update a reusable
@@ -285,9 +288,9 @@ class PoliciesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Policy]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PolicyUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
+            cast_to=cast(Type[Optional[PolicyUpdateResponse]], ResultWrapper[PolicyUpdateResponse]),
         )
 
     def list(
@@ -302,7 +305,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Policy]:
+    ) -> SyncSinglePage[PolicyListResponse]:
         """Lists Access policies configured for an application.
 
         Returns both exclusively
@@ -339,11 +342,11 @@ class PoliciesResource(SyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
-            page=SyncSinglePage[Policy],
+            page=SyncSinglePage[PolicyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Policy,
+            model=PolicyListResponse,
         )
 
     def delete(
@@ -423,7 +426,7 @@ class PoliciesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Policy]:
+    ) -> Optional[PolicyGetResponse]:
         """Fetches a single Access policy configured for an application.
 
         Returns both
@@ -469,9 +472,9 @@ class PoliciesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Policy]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PolicyGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
+            cast_to=cast(Type[Optional[PolicyGetResponse]], ResultWrapper[PolicyGetResponse]),
         )
 
 
@@ -508,7 +511,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Policy]:
+    ) -> Optional[PolicyCreateResponse]:
         """
         Creates a policy applying exclusive to a single application that defines the
         users or groups who can reach it. We recommend creating a reusable policy
@@ -601,9 +604,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Policy]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PolicyCreateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
+            cast_to=cast(Type[Optional[PolicyCreateResponse]], ResultWrapper[PolicyCreateResponse]),
         )
 
     async def update(
@@ -631,7 +634,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Policy]:
+    ) -> Optional[PolicyUpdateResponse]:
         """Updates an Access policy specific to an application.
 
         To update a reusable
@@ -727,9 +730,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Policy]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PolicyUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
+            cast_to=cast(Type[Optional[PolicyUpdateResponse]], ResultWrapper[PolicyUpdateResponse]),
         )
 
     def list(
@@ -744,7 +747,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Policy, AsyncSinglePage[Policy]]:
+    ) -> AsyncPaginator[PolicyListResponse, AsyncSinglePage[PolicyListResponse]]:
         """Lists Access policies configured for an application.
 
         Returns both exclusively
@@ -781,11 +784,11 @@ class AsyncPoliciesResource(AsyncAPIResource):
             account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/policies",
-            page=AsyncSinglePage[Policy],
+            page=AsyncSinglePage[PolicyListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Policy,
+            model=PolicyListResponse,
         )
 
     async def delete(
@@ -865,7 +868,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Policy]:
+    ) -> Optional[PolicyGetResponse]:
         """Fetches a single Access policy configured for an application.
 
         Returns both
@@ -911,9 +914,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[Policy]]._unwrapper,
+                post_parser=ResultWrapper[Optional[PolicyGetResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Policy]], ResultWrapper[Policy]),
+            cast_to=cast(Type[Optional[PolicyGetResponse]], ResultWrapper[PolicyGetResponse]),
         )
 
 

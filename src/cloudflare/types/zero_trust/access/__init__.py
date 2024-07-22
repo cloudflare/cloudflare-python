@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from .tag import Tag as Tag
-from .policy import Policy as Policy
 from .bookmark import Bookmark as Bookmark
 from .decision import Decision as Decision
 from .access_user import AccessUser as AccessUser
