@@ -32,12 +32,18 @@ __all__ = [
     "BrowserVNCApplicationSCIMConfig",
     "BrowserVNCApplicationSCIMConfigAuthentication",
     "AppLauncherApplication",
+    "AppLauncherApplicationFooterLink",
+    "AppLauncherApplicationLandingPageDesign",
     "AppLauncherApplicationSCIMConfig",
     "AppLauncherApplicationSCIMConfigAuthentication",
     "DeviceEnrollmentPermissionsApplication",
+    "DeviceEnrollmentPermissionsApplicationFooterLink",
+    "DeviceEnrollmentPermissionsApplicationLandingPageDesign",
     "DeviceEnrollmentPermissionsApplicationSCIMConfig",
     "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication",
     "BrowserIsolationPermissionsApplication",
+    "BrowserIsolationPermissionsApplicationFooterLink",
+    "BrowserIsolationPermissionsApplicationLandingPageDesign",
     "BrowserIsolationPermissionsApplicationSCIMConfig",
     "BrowserIsolationPermissionsApplicationSCIMConfigAuthentication",
     "BookmarkApplication",
@@ -664,6 +670,31 @@ class BrowserVNCApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
+class AppLauncherApplicationFooterLink(BaseModel):
+    name: str
+    """The hypertext in the footer link."""
+
+    url: str
+    """the hyperlink in the footer link."""
+
+
+class AppLauncherApplicationLandingPageDesign(BaseModel):
+    button_color: Optional[str] = None
+    """The background color of the log in button on the landing page."""
+
+    button_text_color: Optional[str] = None
+    """The color of the text in the log in button on the landing page."""
+
+    image_url: Optional[str] = None
+    """The URL of the image shown on the landing page."""
+
+    message: Optional[str] = None
+    """The message shown on the landing page."""
+
+    title: Optional[str] = None
+    """The title shown on the landing page."""
+
+
 AppLauncherApplicationSCIMConfigAuthentication = Union[
     SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
@@ -716,6 +747,9 @@ class AppLauncherApplication(BaseModel):
     Defaults to all IdPs configured in your account.
     """
 
+    app_launcher_logo_url: Optional[str] = None
+    """The image URL of the logo shown in the App Launcher header."""
+
     aud: Optional[str] = None
     """Audience tag."""
 
@@ -726,6 +760,9 @@ class AppLauncherApplication(BaseModel):
     You must specify only one identity provider in allowed_idps.
     """
 
+    bg_color: Optional[str] = None
+    """The background color of the App Launcher page."""
+
     created_at: Optional[datetime] = None
 
     domain: Optional[str] = None
@@ -734,6 +771,15 @@ class AppLauncherApplication(BaseModel):
     If the app is visible in the App Launcher dashboard, this is the domain that
     will be displayed.
     """
+
+    footer_links: Optional[List[AppLauncherApplicationFooterLink]] = None
+    """The links in the App Launcher footer."""
+
+    header_bg_color: Optional[str] = None
+    """The background color of the App Launcher header."""
+
+    landing_page_design: Optional[AppLauncherApplicationLandingPageDesign] = None
+    """The design of the App Launcher landing page shown to users when they log in."""
 
     name: Optional[str] = None
     """The name of the application."""
@@ -753,7 +799,35 @@ class AppLauncherApplication(BaseModel):
     ms, s, m, h.
     """
 
+    skip_app_launcher_login_page: Optional[bool] = None
+    """Determines when to skip the App Launcher landing page."""
+
     updated_at: Optional[datetime] = None
+
+
+class DeviceEnrollmentPermissionsApplicationFooterLink(BaseModel):
+    name: str
+    """The hypertext in the footer link."""
+
+    url: str
+    """the hyperlink in the footer link."""
+
+
+class DeviceEnrollmentPermissionsApplicationLandingPageDesign(BaseModel):
+    button_color: Optional[str] = None
+    """The background color of the log in button on the landing page."""
+
+    button_text_color: Optional[str] = None
+    """The color of the text in the log in button on the landing page."""
+
+    image_url: Optional[str] = None
+    """The URL of the image shown on the landing page."""
+
+    message: Optional[str] = None
+    """The message shown on the landing page."""
+
+    title: Optional[str] = None
+    """The title shown on the landing page."""
 
 
 DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication = Union[
@@ -808,6 +882,9 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     Defaults to all IdPs configured in your account.
     """
 
+    app_launcher_logo_url: Optional[str] = None
+    """The image URL of the logo shown in the App Launcher header."""
+
     aud: Optional[str] = None
     """Audience tag."""
 
@@ -818,6 +895,9 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     You must specify only one identity provider in allowed_idps.
     """
 
+    bg_color: Optional[str] = None
+    """The background color of the App Launcher page."""
+
     created_at: Optional[datetime] = None
 
     domain: Optional[str] = None
@@ -826,6 +906,15 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     If the app is visible in the App Launcher dashboard, this is the domain that
     will be displayed.
     """
+
+    footer_links: Optional[List[DeviceEnrollmentPermissionsApplicationFooterLink]] = None
+    """The links in the App Launcher footer."""
+
+    header_bg_color: Optional[str] = None
+    """The background color of the App Launcher header."""
+
+    landing_page_design: Optional[DeviceEnrollmentPermissionsApplicationLandingPageDesign] = None
+    """The design of the App Launcher landing page shown to users when they log in."""
 
     name: Optional[str] = None
     """The name of the application."""
@@ -845,7 +934,35 @@ class DeviceEnrollmentPermissionsApplication(BaseModel):
     ms, s, m, h.
     """
 
+    skip_app_launcher_login_page: Optional[bool] = None
+    """Determines when to skip the App Launcher landing page."""
+
     updated_at: Optional[datetime] = None
+
+
+class BrowserIsolationPermissionsApplicationFooterLink(BaseModel):
+    name: str
+    """The hypertext in the footer link."""
+
+    url: str
+    """the hyperlink in the footer link."""
+
+
+class BrowserIsolationPermissionsApplicationLandingPageDesign(BaseModel):
+    button_color: Optional[str] = None
+    """The background color of the log in button on the landing page."""
+
+    button_text_color: Optional[str] = None
+    """The color of the text in the log in button on the landing page."""
+
+    image_url: Optional[str] = None
+    """The URL of the image shown on the landing page."""
+
+    message: Optional[str] = None
+    """The message shown on the landing page."""
+
+    title: Optional[str] = None
+    """The title shown on the landing page."""
 
 
 BrowserIsolationPermissionsApplicationSCIMConfigAuthentication = Union[
@@ -900,6 +1017,9 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     Defaults to all IdPs configured in your account.
     """
 
+    app_launcher_logo_url: Optional[str] = None
+    """The image URL of the logo shown in the App Launcher header."""
+
     aud: Optional[str] = None
     """Audience tag."""
 
@@ -910,6 +1030,9 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     You must specify only one identity provider in allowed_idps.
     """
 
+    bg_color: Optional[str] = None
+    """The background color of the App Launcher page."""
+
     created_at: Optional[datetime] = None
 
     domain: Optional[str] = None
@@ -918,6 +1041,15 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     If the app is visible in the App Launcher dashboard, this is the domain that
     will be displayed.
     """
+
+    footer_links: Optional[List[BrowserIsolationPermissionsApplicationFooterLink]] = None
+    """The links in the App Launcher footer."""
+
+    header_bg_color: Optional[str] = None
+    """The background color of the App Launcher header."""
+
+    landing_page_design: Optional[BrowserIsolationPermissionsApplicationLandingPageDesign] = None
+    """The design of the App Launcher landing page shown to users when they log in."""
 
     name: Optional[str] = None
     """The name of the application."""
@@ -936,6 +1068,9 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
     ms, s, m, h.
     """
+
+    skip_app_launcher_login_page: Optional[bool] = None
+    """Determines when to skip the App Launcher landing page."""
 
     updated_at: Optional[datetime] = None
 
