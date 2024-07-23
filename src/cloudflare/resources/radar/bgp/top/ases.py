@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Union, Iterable, cast
+from typing import List, Type, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -49,7 +49,7 @@ class AsesResource(SyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
-        prefix: Iterable[ase_get_params.Prefix] | NotGiven = NOT_GIVEN,
+        prefix: List[str] | NotGiven = NOT_GIVEN,
         update_type: List[Literal["ANNOUNCEMENT", "WITHDRAWAL"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -193,7 +193,7 @@ class AsyncAsesResource(AsyncAPIResource):
         format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         name: List[str] | NotGiven = NOT_GIVEN,
-        prefix: Iterable[ase_get_params.Prefix] | NotGiven = NOT_GIVEN,
+        prefix: List[str] | NotGiven = NOT_GIVEN,
         update_type: List[Literal["ANNOUNCEMENT", "WITHDRAWAL"]] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
