@@ -47,18 +47,24 @@ __all__ = [
     "BrowserVNCApplicationSCIMConfig",
     "BrowserVNCApplicationSCIMConfigAuthentication",
     "AppLauncherApplication",
+    "AppLauncherApplicationFooterLink",
+    "AppLauncherApplicationLandingPageDesign",
     "AppLauncherApplicationPolicy",
     "AppLauncherApplicationPolicyAccessAppPolicyLink",
     "AppLauncherApplicationPolicyUnionMember2",
     "AppLauncherApplicationSCIMConfig",
     "AppLauncherApplicationSCIMConfigAuthentication",
     "DeviceEnrollmentPermissionsApplication",
+    "DeviceEnrollmentPermissionsApplicationFooterLink",
+    "DeviceEnrollmentPermissionsApplicationLandingPageDesign",
     "DeviceEnrollmentPermissionsApplicationPolicy",
     "DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink",
     "DeviceEnrollmentPermissionsApplicationPolicyUnionMember2",
     "DeviceEnrollmentPermissionsApplicationSCIMConfig",
     "DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication",
     "BrowserIsolationPermissionsApplication",
+    "BrowserIsolationPermissionsApplicationFooterLink",
+    "BrowserIsolationPermissionsApplicationLandingPageDesign",
     "BrowserIsolationPermissionsApplicationPolicy",
     "BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink",
     "BrowserIsolationPermissionsApplicationPolicyUnionMember2",
@@ -1032,12 +1038,27 @@ class AppLauncherApplication(TypedDict, total=False):
     Defaults to all IdPs configured in your account.
     """
 
+    app_launcher_logo_url: str
+    """The image URL of the logo shown in the App Launcher header."""
+
     auto_redirect_to_identity: bool
     """When set to `true`, users skip the identity provider selection step during
     login.
 
     You must specify only one identity provider in allowed_idps.
     """
+
+    bg_color: str
+    """The background color of the App Launcher page."""
+
+    footer_links: Iterable[AppLauncherApplicationFooterLink]
+    """The links in the App Launcher footer."""
+
+    header_bg_color: str
+    """The background color of the App Launcher header."""
+
+    landing_page_design: AppLauncherApplicationLandingPageDesign
+    """The design of the App Launcher landing page shown to users when they log in."""
 
     policies: List[AppLauncherApplicationPolicy]
     """
@@ -1058,6 +1079,34 @@ class AppLauncherApplication(TypedDict, total=False):
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
     ms, s, m, h.
     """
+
+    skip_app_launcher_login_page: bool
+    """Determines when to skip the App Launcher landing page."""
+
+
+class AppLauncherApplicationFooterLink(TypedDict, total=False):
+    name: Required[str]
+    """The hypertext in the footer link."""
+
+    url: Required[str]
+    """the hyperlink in the footer link."""
+
+
+class AppLauncherApplicationLandingPageDesign(TypedDict, total=False):
+    button_color: str
+    """The background color of the log in button on the landing page."""
+
+    button_text_color: str
+    """The color of the text in the log in button on the landing page."""
+
+    image_url: str
+    """The URL of the image shown on the landing page."""
+
+    message: str
+    """The message shown on the landing page."""
+
+    title: str
+    """The title shown on the landing page."""
 
 
 class AppLauncherApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
@@ -1196,12 +1245,27 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     Defaults to all IdPs configured in your account.
     """
 
+    app_launcher_logo_url: str
+    """The image URL of the logo shown in the App Launcher header."""
+
     auto_redirect_to_identity: bool
     """When set to `true`, users skip the identity provider selection step during
     login.
 
     You must specify only one identity provider in allowed_idps.
     """
+
+    bg_color: str
+    """The background color of the App Launcher page."""
+
+    footer_links: Iterable[DeviceEnrollmentPermissionsApplicationFooterLink]
+    """The links in the App Launcher footer."""
+
+    header_bg_color: str
+    """The background color of the App Launcher header."""
+
+    landing_page_design: DeviceEnrollmentPermissionsApplicationLandingPageDesign
+    """The design of the App Launcher landing page shown to users when they log in."""
 
     policies: List[DeviceEnrollmentPermissionsApplicationPolicy]
     """
@@ -1222,6 +1286,34 @@ class DeviceEnrollmentPermissionsApplication(TypedDict, total=False):
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
     ms, s, m, h.
     """
+
+    skip_app_launcher_login_page: bool
+    """Determines when to skip the App Launcher landing page."""
+
+
+class DeviceEnrollmentPermissionsApplicationFooterLink(TypedDict, total=False):
+    name: Required[str]
+    """The hypertext in the footer link."""
+
+    url: Required[str]
+    """the hyperlink in the footer link."""
+
+
+class DeviceEnrollmentPermissionsApplicationLandingPageDesign(TypedDict, total=False):
+    button_color: str
+    """The background color of the log in button on the landing page."""
+
+    button_text_color: str
+    """The color of the text in the log in button on the landing page."""
+
+    image_url: str
+    """The URL of the image shown on the landing page."""
+
+    message: str
+    """The message shown on the landing page."""
+
+    title: str
+    """The title shown on the landing page."""
 
 
 class DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):
@@ -1362,12 +1454,27 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     Defaults to all IdPs configured in your account.
     """
 
+    app_launcher_logo_url: str
+    """The image URL of the logo shown in the App Launcher header."""
+
     auto_redirect_to_identity: bool
     """When set to `true`, users skip the identity provider selection step during
     login.
 
     You must specify only one identity provider in allowed_idps.
     """
+
+    bg_color: str
+    """The background color of the App Launcher page."""
+
+    footer_links: Iterable[BrowserIsolationPermissionsApplicationFooterLink]
+    """The links in the App Launcher footer."""
+
+    header_bg_color: str
+    """The background color of the App Launcher header."""
+
+    landing_page_design: BrowserIsolationPermissionsApplicationLandingPageDesign
+    """The design of the App Launcher landing page shown to users when they log in."""
 
     policies: List[BrowserIsolationPermissionsApplicationPolicy]
     """
@@ -1388,6 +1495,34 @@ class BrowserIsolationPermissionsApplication(TypedDict, total=False):
     Must be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs),
     ms, s, m, h.
     """
+
+    skip_app_launcher_login_page: bool
+    """Determines when to skip the App Launcher landing page."""
+
+
+class BrowserIsolationPermissionsApplicationFooterLink(TypedDict, total=False):
+    name: Required[str]
+    """The hypertext in the footer link."""
+
+    url: Required[str]
+    """the hyperlink in the footer link."""
+
+
+class BrowserIsolationPermissionsApplicationLandingPageDesign(TypedDict, total=False):
+    button_color: str
+    """The background color of the log in button on the landing page."""
+
+    button_text_color: str
+    """The color of the text in the log in button on the landing page."""
+
+    image_url: str
+    """The URL of the image shown on the landing page."""
+
+    message: str
+    """The message shown on the landing page."""
+
+    title: str
+    """The title shown on the landing page."""
 
 
 class BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink(TypedDict, total=False):

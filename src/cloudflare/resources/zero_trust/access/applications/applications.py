@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, Optional, cast, overload
+from typing import Any, List, Type, Iterable, Optional, cast, overload
 
 import httpx
 
@@ -534,10 +534,16 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -558,8 +564,18 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
@@ -571,6 +587,8 @@ class ApplicationsResource(SyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -590,10 +608,18 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.DeviceEnrollmentPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -614,8 +640,18 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
@@ -627,6 +663,8 @@ class ApplicationsResource(SyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -646,10 +684,18 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.BrowserIsolationPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.BrowserIsolationPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -670,8 +716,18 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
@@ -683,6 +739,8 @@ class ApplicationsResource(SyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -779,6 +837,12 @@ class ApplicationsResource(SyncAPIResource):
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -830,6 +894,12 @@ class ApplicationsResource(SyncAPIResource):
                         "skip_interstitial": skip_interstitial,
                         "tags": tags,
                         "saas_app": saas_app,
+                        "app_launcher_logo_url": app_launcher_logo_url,
+                        "bg_color": bg_color,
+                        "footer_links": footer_links,
+                        "header_bg_color": header_bg_color,
+                        "landing_page_design": landing_page_design,
+                        "skip_app_launcher_login_page": skip_app_launcher_login_page,
                     },
                     application_create_params.ApplicationCreateParams,
                 ),
@@ -1307,10 +1377,16 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1333,8 +1409,18 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
@@ -1346,6 +1432,8 @@ class ApplicationsResource(SyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -1366,10 +1454,18 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.DeviceEnrollmentPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1392,8 +1488,18 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
@@ -1405,6 +1511,8 @@ class ApplicationsResource(SyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -1425,10 +1533,18 @@ class ApplicationsResource(SyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.BrowserIsolationPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.BrowserIsolationPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1451,8 +1567,18 @@ class ApplicationsResource(SyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
@@ -1464,6 +1590,8 @@ class ApplicationsResource(SyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -1564,6 +1692,12 @@ class ApplicationsResource(SyncAPIResource):
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -1615,6 +1749,12 @@ class ApplicationsResource(SyncAPIResource):
                         "skip_interstitial": skip_interstitial,
                         "tags": tags,
                         "saas_app": saas_app,
+                        "app_launcher_logo_url": app_launcher_logo_url,
+                        "bg_color": bg_color,
+                        "footer_links": footer_links,
+                        "header_bg_color": header_bg_color,
+                        "landing_page_design": landing_page_design,
+                        "skip_app_launcher_login_page": skip_app_launcher_login_page,
                     },
                     application_update_params.ApplicationUpdateParams,
                 ),
@@ -2320,10 +2460,16 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2344,8 +2490,18 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
@@ -2357,6 +2513,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -2376,10 +2534,18 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.DeviceEnrollmentPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2400,8 +2566,18 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
@@ -2413,6 +2589,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -2432,10 +2610,18 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.BrowserIsolationPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.BrowserIsolationPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
         policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_create_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2456,8 +2642,18 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
@@ -2469,6 +2665,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -2565,6 +2763,12 @@ class AsyncApplicationsResource(AsyncAPIResource):
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -2616,6 +2820,12 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "skip_interstitial": skip_interstitial,
                         "tags": tags,
                         "saas_app": saas_app,
+                        "app_launcher_logo_url": app_launcher_logo_url,
+                        "bg_color": bg_color,
+                        "footer_links": footer_links,
+                        "header_bg_color": header_bg_color,
+                        "landing_page_design": landing_page_design,
+                        "skip_app_launcher_login_page": skip_app_launcher_login_page,
                     },
                     application_create_params.ApplicationCreateParams,
                 ),
@@ -3093,10 +3303,16 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3119,8 +3335,18 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
@@ -3132,6 +3358,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -3152,10 +3380,18 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.DeviceEnrollmentPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3178,8 +3414,18 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
@@ -3191,6 +3437,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -3211,10 +3459,18 @@ class AsyncApplicationsResource(AsyncAPIResource):
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
         allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
         auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.BrowserIsolationPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.BrowserIsolationPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
         policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
         scim_config: application_update_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
         session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3237,8 +3493,18 @@ class AsyncApplicationsResource(AsyncAPIResource):
           allowed_idps: The identity providers your users can select when connecting to this
               application. Defaults to all IdPs configured in your account.
 
+          app_launcher_logo_url: The image URL of the logo shown in the App Launcher header.
+
           auto_redirect_to_identity: When set to `true`, users skip the identity provider selection step during
               login. You must specify only one identity provider in allowed_idps.
+
+          bg_color: The background color of the App Launcher page.
+
+          footer_links: The links in the App Launcher footer.
+
+          header_bg_color: The background color of the App Launcher header.
+
+          landing_page_design: The design of the App Launcher landing page shown to users when they log in.
 
           policies: The policies that will apply to the application, in ascending order of
               precedence. Items can reference existing policies or create new policies
@@ -3250,6 +3516,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
           session_duration: The amount of time that tokens issued for this application will be valid. Must
               be in the format `300ms` or `2h45m`. Valid time units are: ns, us (or µs), ms,
               s, m, h.
+
+          skip_app_launcher_login_page: Determines when to skip the App Launcher landing page.
 
           extra_headers: Send extra headers
 
@@ -3350,6 +3618,12 @@ class AsyncApplicationsResource(AsyncAPIResource):
         skip_interstitial: bool | NotGiven = NOT_GIVEN,
         tags: List[str] | NotGiven = NOT_GIVEN,
         saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -3401,6 +3675,12 @@ class AsyncApplicationsResource(AsyncAPIResource):
                         "skip_interstitial": skip_interstitial,
                         "tags": tags,
                         "saas_app": saas_app,
+                        "app_launcher_logo_url": app_launcher_logo_url,
+                        "bg_color": bg_color,
+                        "footer_links": footer_links,
+                        "header_bg_color": header_bg_color,
+                        "landing_page_design": landing_page_design,
+                        "skip_app_launcher_login_page": skip_app_launcher_login_page,
                     },
                     application_update_params.ApplicationUpdateParams,
                 ),

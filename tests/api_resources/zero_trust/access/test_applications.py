@@ -698,7 +698,23 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -760,6 +776,7 @@ class TestApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -826,7 +843,23 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -888,6 +921,7 @@ class TestApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -954,7 +988,23 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -1016,6 +1066,7 @@ class TestApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -1868,7 +1919,23 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -1930,6 +1997,7 @@ class TestApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -2002,7 +2070,23 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -2064,6 +2148,7 @@ class TestApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -2136,7 +2221,23 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -2198,6 +2299,7 @@ class TestApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -3276,7 +3378,23 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -3338,6 +3456,7 @@ class TestAsyncApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -3404,7 +3523,23 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -3466,6 +3601,7 @@ class TestAsyncApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -3532,7 +3668,23 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -3594,6 +3746,7 @@ class TestAsyncApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -4446,7 +4599,23 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -4508,6 +4677,7 @@ class TestAsyncApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -4580,7 +4750,23 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -4642,6 +4828,7 @@ class TestAsyncApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -4714,7 +4901,23 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -4776,6 +4979,7 @@ class TestAsyncApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
