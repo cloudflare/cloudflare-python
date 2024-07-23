@@ -41,26 +41,7 @@ class TestAses:
             format="JSON",
             limit=5,
             name=["string", "string", "string"],
-            prefix=[
-                {
-                    "in": "query",
-                    "name": "prefix",
-                    "test": 12,
-                    "type": "1.1.1.0/24",
-                },
-                {
-                    "in": "query",
-                    "name": "prefix",
-                    "test": 12,
-                    "type": "1.1.1.0/24",
-                },
-                {
-                    "in": "query",
-                    "name": "prefix",
-                    "test": 12,
-                    "type": "1.1.1.0/24",
-                },
-            ],
+            prefix=["1.1.1.0/24", "1.1.1.0/24", "1.1.1.0/24"],
             update_type=["ANNOUNCEMENT", "WITHDRAWAL"],
         )
         assert_matches_type(AseGetResponse, ase, path=["response"])
@@ -146,26 +127,7 @@ class TestAsyncAses:
             format="JSON",
             limit=5,
             name=["string", "string", "string"],
-            prefix=[
-                {
-                    "in": "query",
-                    "name": "prefix",
-                    "test": 12,
-                    "type": "1.1.1.0/24",
-                },
-                {
-                    "in": "query",
-                    "name": "prefix",
-                    "test": 12,
-                    "type": "1.1.1.0/24",
-                },
-                {
-                    "in": "query",
-                    "name": "prefix",
-                    "test": 12,
-                    "type": "1.1.1.0/24",
-                },
-            ],
+            prefix=["1.1.1.0/24", "1.1.1.0/24", "1.1.1.0/24"],
             update_type=["ANNOUNCEMENT", "WITHDRAWAL"],
         )
         assert_matches_type(AseGetResponse, ase, path=["response"])
