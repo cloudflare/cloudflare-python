@@ -370,17 +370,17 @@ client = Cloudflare(
 
 By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
 
-## Versioning
+## Semantic versioning
 
 This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions, though certain backwards-incompatible changes may be released as minor versions:
 
 1. Changes that only affect static types, without breaking runtime behavior.
-2. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals)_.
-3. Changes that we do not expect to impact the vast majority of users in practice.
+1. Changes to library internals which are technically public but not intended or documented for external use. _(Please open a GitHub issue to let us know if you are relying on such internals)_.
+1. Changes that we do not expect to impact the vast majority of users in practice.
 
-We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
-
-We are keen for your feedback; please open an [issue](https://www.github.com/cloudflare/cloudflare-python/issues) with questions, bugs, or suggestions.
+> [!WARNING]
+> In addition to the above, changes to type names, structure or methods _may_ occur as we stabilise the automated codegen pipeline. This will be removed in the future once we are further along and the service owner OpenAPI schemas have reached a higher maturity level where changes are not as constant.
+> If this isn't suitable for your project, we recommend pinning to a known version or using the previous major version.
 
 ## Requirements
 
