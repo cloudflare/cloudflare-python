@@ -9,7 +9,7 @@ __all__ = ["IndexQuery", "Match"]
 
 class Match(BaseModel):
     id: Optional[str] = None
-    """Identifier"""
+    """Identifier for a Vector"""
 
     metadata: Optional[object] = None
 
