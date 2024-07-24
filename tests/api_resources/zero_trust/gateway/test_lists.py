@@ -9,7 +9,6 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.gateway import (
     GatewayList,
@@ -41,17 +40,14 @@ class TestLists:
             description="The serial numbers for administrators",
             items=[
                 {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
                 {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
                 {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
@@ -268,17 +264,14 @@ class TestLists:
             account_id="699d98642c564d2e855e9661899b7252",
             append=[
                 {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
                 {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
                 {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
@@ -397,17 +390,14 @@ class TestAsyncLists:
             description="The serial numbers for administrators",
             items=[
                 {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
                 {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
                 {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
@@ -624,17 +614,14 @@ class TestAsyncLists:
             account_id="699d98642c564d2e855e9661899b7252",
             append=[
                 {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
                 {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },
                 {
-                    "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                     "description": "Austin office IP",
                     "value": "8GE8721REF",
                 },

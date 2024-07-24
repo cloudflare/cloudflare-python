@@ -2,11 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union
-from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
-
-from ...._utils import PropertyInfo
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["CustomPageUpdateParams"]
 
@@ -27,9 +23,5 @@ class CustomPageUpdateParams(TypedDict, total=False):
     app_count: int
     """Number of apps the custom page is assigned to."""
 
-    created_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-
     uid: str
     """UUID"""
-
-    updated_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]

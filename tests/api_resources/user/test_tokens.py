@@ -133,7 +133,6 @@ class TestTokens:
                     "not_in": ["123.123.123.100/24", "2606:4700:4700::/48"],
                 }
             },
-            expires_on=parse_datetime("2020-01-01T00:00:00Z"),
             not_before=parse_datetime("2018-07-01T05:20:00Z"),
         )
         assert_matches_type(Optional[TokenCreateResponse], token, path=["response"])
@@ -330,7 +329,6 @@ class TestTokens:
                     "not_in": ["123.123.123.100/24", "2606:4700:4700::/48"],
                 }
             },
-            expires_on=parse_datetime("2020-01-01T00:00:00Z"),
             not_before=parse_datetime("2018-07-01T05:20:00Z"),
         )
         assert_matches_type(object, token, path=["response"])
@@ -652,7 +650,6 @@ class TestAsyncTokens:
                     "not_in": ["123.123.123.100/24", "2606:4700:4700::/48"],
                 }
             },
-            expires_on=parse_datetime("2020-01-01T00:00:00Z"),
             not_before=parse_datetime("2018-07-01T05:20:00Z"),
         )
         assert_matches_type(Optional[TokenCreateResponse], token, path=["response"])
@@ -849,7 +846,6 @@ class TestAsyncTokens:
                     "not_in": ["123.123.123.100/24", "2606:4700:4700::/48"],
                 }
             },
-            expires_on=parse_datetime("2020-01-01T00:00:00Z"),
             not_before=parse_datetime("2018-07-01T05:20:00Z"),
         )
         assert_matches_type(object, token, path=["response"])
