@@ -25,6 +25,12 @@ class TokenUpdateParams(TypedDict, total=False):
 
     condition: Condition
 
+    expires_on: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """
+    The expiration time on or after which the JWT MUST NOT be accepted for
+    processing.
+    """
+
     not_before: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """The time before which the token MUST NOT be accepted for processing."""
 
