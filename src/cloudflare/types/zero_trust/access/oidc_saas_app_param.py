@@ -2,11 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union
-from datetime import datetime
-from typing_extensions import Literal, Annotated, TypedDict
-
-from ...._utils import PropertyInfo
+from typing import Dict, List
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["OIDCSaaSAppParam", "CustomClaims", "CustomClaimsSource", "HybridAndImplicitOptions", "RefreshTokenOptions"]
 
@@ -77,8 +74,6 @@ class OIDCSaaSAppParam(TypedDict, total=False):
     client_secret: str
     """The application client secret, only returned on POST request."""
 
-    created_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-
     custom_claims: CustomClaims
 
     grant_types: List[
@@ -107,5 +102,3 @@ class OIDCSaaSAppParam(TypedDict, total=False):
     Define the user information shared with access, "offline_access" scope will be
     automatically enabled if refresh tokens are enabled
     """
-
-    updated_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
