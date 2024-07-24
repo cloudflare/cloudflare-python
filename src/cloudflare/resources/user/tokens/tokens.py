@@ -72,6 +72,7 @@ class TokensResource(SyncAPIResource):
         name: str,
         policies: Iterable[PolicyParam],
         condition: token_create_params.Condition | NotGiven = NOT_GIVEN,
+        expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
         not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -87,6 +88,9 @@ class TokensResource(SyncAPIResource):
           name: Token name.
 
           policies: List of access policies assigned to the token.
+
+          expires_on: The expiration time on or after which the JWT MUST NOT be accepted for
+              processing.
 
           not_before: The time before which the token MUST NOT be accepted for processing.
 
@@ -105,6 +109,7 @@ class TokensResource(SyncAPIResource):
                     "name": name,
                     "policies": policies,
                     "condition": condition,
+                    "expires_on": expires_on,
                     "not_before": not_before,
                 },
                 token_create_params.TokenCreateParams,
@@ -127,6 +132,7 @@ class TokensResource(SyncAPIResource):
         policies: Iterable[PolicyParam],
         status: Literal["active", "disabled", "expired"],
         condition: token_update_params.Condition | NotGiven = NOT_GIVEN,
+        expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
         not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -144,6 +150,9 @@ class TokensResource(SyncAPIResource):
           policies: List of access policies assigned to the token.
 
           status: Status of the token.
+
+          expires_on: The expiration time on or after which the JWT MUST NOT be accepted for
+              processing.
 
           not_before: The time before which the token MUST NOT be accepted for processing.
 
@@ -163,6 +172,7 @@ class TokensResource(SyncAPIResource):
                     "policies": policies,
                     "status": status,
                     "condition": condition,
+                    "expires_on": expires_on,
                     "not_before": not_before,
                 },
                 token_update_params.TokenUpdateParams,
@@ -345,6 +355,7 @@ class AsyncTokensResource(AsyncAPIResource):
         name: str,
         policies: Iterable[PolicyParam],
         condition: token_create_params.Condition | NotGiven = NOT_GIVEN,
+        expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
         not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -360,6 +371,9 @@ class AsyncTokensResource(AsyncAPIResource):
           name: Token name.
 
           policies: List of access policies assigned to the token.
+
+          expires_on: The expiration time on or after which the JWT MUST NOT be accepted for
+              processing.
 
           not_before: The time before which the token MUST NOT be accepted for processing.
 
@@ -378,6 +392,7 @@ class AsyncTokensResource(AsyncAPIResource):
                     "name": name,
                     "policies": policies,
                     "condition": condition,
+                    "expires_on": expires_on,
                     "not_before": not_before,
                 },
                 token_create_params.TokenCreateParams,
@@ -400,6 +415,7 @@ class AsyncTokensResource(AsyncAPIResource):
         policies: Iterable[PolicyParam],
         status: Literal["active", "disabled", "expired"],
         condition: token_update_params.Condition | NotGiven = NOT_GIVEN,
+        expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
         not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -417,6 +433,9 @@ class AsyncTokensResource(AsyncAPIResource):
           policies: List of access policies assigned to the token.
 
           status: Status of the token.
+
+          expires_on: The expiration time on or after which the JWT MUST NOT be accepted for
+              processing.
 
           not_before: The time before which the token MUST NOT be accepted for processing.
 
@@ -436,6 +455,7 @@ class AsyncTokensResource(AsyncAPIResource):
                     "policies": policies,
                     "status": status,
                     "condition": condition,
+                    "expires_on": expires_on,
                     "not_before": not_before,
                 },
                 token_update_params.TokenUpdateParams,
