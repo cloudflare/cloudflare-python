@@ -107,6 +107,7 @@ class PoliciesResource(SyncAPIResource):
         service_mode_v2: policy_create_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
+        tunnel_protocol: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -159,6 +160,8 @@ class PoliciesResource(SyncAPIResource):
 
           switch_locked: Whether to allow the user to turn off the WARP switch and disconnect the client.
 
+          tunnel_protocol: Determines which tunnel protocol to use.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -190,6 +193,7 @@ class PoliciesResource(SyncAPIResource):
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
+                    "tunnel_protocol": tunnel_protocol,
                 },
                 policy_create_params.PolicyCreateParams,
             ),
@@ -300,6 +304,7 @@ class PoliciesResource(SyncAPIResource):
         service_mode_v2: policy_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
+        tunnel_protocol: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -345,6 +350,8 @@ class PoliciesResource(SyncAPIResource):
 
           switch_locked: Whether to allow the user to turn off the WARP switch and disconnect the client.
 
+          tunnel_protocol: Determines which tunnel protocol to use.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -376,6 +383,7 @@ class PoliciesResource(SyncAPIResource):
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
+                    "tunnel_protocol": tunnel_protocol,
                 },
                 policy_edit_params.PolicyEditParams,
             ),
@@ -478,6 +486,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         service_mode_v2: policy_create_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
+        tunnel_protocol: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -530,6 +539,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           switch_locked: Whether to allow the user to turn off the WARP switch and disconnect the client.
 
+          tunnel_protocol: Determines which tunnel protocol to use.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -561,6 +572,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
+                    "tunnel_protocol": tunnel_protocol,
                 },
                 policy_create_params.PolicyCreateParams,
             ),
@@ -671,6 +683,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         service_mode_v2: policy_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
         support_url: str | NotGiven = NOT_GIVEN,
         switch_locked: bool | NotGiven = NOT_GIVEN,
+        tunnel_protocol: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -716,6 +729,8 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           switch_locked: Whether to allow the user to turn off the WARP switch and disconnect the client.
 
+          tunnel_protocol: Determines which tunnel protocol to use.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -747,6 +762,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "service_mode_v2": service_mode_v2,
                     "support_url": support_url,
                     "switch_locked": switch_locked,
+                    "tunnel_protocol": tunnel_protocol,
                 },
                 policy_edit_params.PolicyEditParams,
             ),
