@@ -15,7 +15,6 @@ from cloudflare.types.d1 import (
     DatabaseListResponse,
     DatabaseQueryResponse,
     DatabaseCreateResponse,
-    DatabaseDeleteResponse,
     DatabaseExportResponse,
     DatabaseImportResponse,
 )
@@ -132,7 +131,7 @@ class TestDatabase:
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DatabaseDeleteResponse, database, path=["response"])
+        assert_matches_type(object, database, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -144,7 +143,7 @@ class TestDatabase:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         database = response.parse()
-        assert_matches_type(DatabaseDeleteResponse, database, path=["response"])
+        assert_matches_type(object, database, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -156,7 +155,7 @@ class TestDatabase:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             database = response.parse()
-            assert_matches_type(DatabaseDeleteResponse, database, path=["response"])
+            assert_matches_type(object, database, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -704,7 +703,7 @@ class TestAsyncDatabase:
             database_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(DatabaseDeleteResponse, database, path=["response"])
+        assert_matches_type(object, database, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -716,7 +715,7 @@ class TestAsyncDatabase:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         database = await response.parse()
-        assert_matches_type(DatabaseDeleteResponse, database, path=["response"])
+        assert_matches_type(object, database, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -728,7 +727,7 @@ class TestAsyncDatabase:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             database = await response.parse()
-            assert_matches_type(DatabaseDeleteResponse, database, path=["response"])
+            assert_matches_type(object, database, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
