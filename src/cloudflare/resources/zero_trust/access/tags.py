@@ -42,7 +42,7 @@ class TagsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        name: str,
+        body: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -56,7 +56,7 @@ class TagsResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          name: The name of the tag
+          body: The name of the tag
 
           extra_headers: Send extra headers
 
@@ -70,7 +70,7 @@ class TagsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/access/tags",
-            body=maybe_transform({"name": name}, tag_create_params.TagCreateParams),
+            body=maybe_transform(body, tag_create_params.TagCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -267,7 +267,7 @@ class AsyncTagsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        name: str,
+        body: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -281,7 +281,7 @@ class AsyncTagsResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          name: The name of the tag
+          body: The name of the tag
 
           extra_headers: Send extra headers
 
@@ -295,7 +295,7 @@ class AsyncTagsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/access/tags",
-            body=await async_maybe_transform({"name": name}, tag_create_params.TagCreateParams),
+            body=await async_maybe_transform(body, tag_create_params.TagCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

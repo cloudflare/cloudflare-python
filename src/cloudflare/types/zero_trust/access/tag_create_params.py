@@ -11,5 +11,5 @@ class TagCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    name: Required[str]
+    body: Required[str]
     """The name of the tag"""
