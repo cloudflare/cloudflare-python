@@ -16,10 +16,15 @@ __all__ = [
     "Variant6",
     "Variant7",
     "Variant7Message",
+    "Variant7Function",
     "Variant7Tool",
-    "Variant7ToolFunction",
-    "Variant7ToolFunctionParameters",
-    "Variant7ToolFunctionParametersProperties",
+    "Variant7ToolUnionMember0",
+    "Variant7ToolUnionMember0Parameters",
+    "Variant7ToolUnionMember0ParametersProperties",
+    "Variant7ToolUnionMember1",
+    "Variant7ToolUnionMember1Function",
+    "Variant7ToolUnionMember1FunctionParameters",
+    "Variant7ToolUnionMember1FunctionParametersProperties",
     "Translation",
     "Summarization",
     "ImageToText",
@@ -118,6 +123,8 @@ class Variant7(TypedDict, total=False):
 
     frequency_penalty: float
 
+    functions: Iterable[Variant7Function]
+
     max_tokens: int
 
     presence_penalty: float
@@ -143,32 +150,63 @@ class Variant7Message(TypedDict, total=False):
     role: Required[str]
 
 
-class Variant7ToolFunctionParametersProperties(TypedDict, total=False):
-    description: str
+class Variant7Function(TypedDict, total=False):
+    code: Required[str]
 
-    type: str
+    name: Required[str]
 
 
-class Variant7ToolFunctionParameters(TypedDict, total=False):
-    properties: Dict[str, Variant7ToolFunctionParametersProperties]
+class Variant7ToolUnionMember0ParametersProperties(TypedDict, total=False):
+    description: Required[str]
+
+    type: Required[str]
+
+
+class Variant7ToolUnionMember0Parameters(TypedDict, total=False):
+    properties: Required[Dict[str, Variant7ToolUnionMember0ParametersProperties]]
+
+    type: Required[str]
 
     required: List[str]
 
-    type: str
+
+class Variant7ToolUnionMember0(TypedDict, total=False):
+    description: Required[str]
+
+    name: Required[str]
+
+    parameters: Required[Variant7ToolUnionMember0Parameters]
 
 
-class Variant7ToolFunction(TypedDict, total=False):
-    description: str
+class Variant7ToolUnionMember1FunctionParametersProperties(TypedDict, total=False):
+    description: Required[str]
 
-    name: str
-
-    parameters: Variant7ToolFunctionParameters
+    type: Required[str]
 
 
-class Variant7Tool(TypedDict, total=False):
-    function: Variant7ToolFunction
+class Variant7ToolUnionMember1FunctionParameters(TypedDict, total=False):
+    properties: Required[Dict[str, Variant7ToolUnionMember1FunctionParametersProperties]]
 
-    type: str
+    type: Required[str]
+
+    required: List[str]
+
+
+class Variant7ToolUnionMember1Function(TypedDict, total=False):
+    description: Required[str]
+
+    name: Required[str]
+
+    parameters: Required[Variant7ToolUnionMember1FunctionParameters]
+
+
+class Variant7ToolUnionMember1(TypedDict, total=False):
+    function: Required[Variant7ToolUnionMember1Function]
+
+    type: Required[str]
+
+
+Variant7Tool = Union[Variant7ToolUnionMember0, Variant7ToolUnionMember1]
 
 
 class Translation(TypedDict, total=False):
