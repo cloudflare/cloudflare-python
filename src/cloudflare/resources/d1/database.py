@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Type, cast, overload
+from typing import List, Type, Optional, cast, overload
 from typing_extensions import Literal
 
 import httpx
@@ -37,7 +37,6 @@ from ...types.d1.database_raw_response import DatabaseRawResponse
 from ...types.d1.database_list_response import DatabaseListResponse
 from ...types.d1.database_query_response import DatabaseQueryResponse
 from ...types.d1.database_create_response import DatabaseCreateResponse
-from ...types.d1.database_delete_response import DatabaseDeleteResponse
 from ...types.d1.database_export_response import DatabaseExportResponse
 from ...types.d1.database_import_response import DatabaseImportResponse
 
@@ -171,7 +170,7 @@ class DatabaseResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatabaseDeleteResponse:
+    ) -> object:
         """
         Deletes the specified D1 database.
 
@@ -190,21 +189,16 @@ class DatabaseResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
-        return cast(
-            DatabaseDeleteResponse,
-            self._delete(
-                f"/accounts/{account_id}/d1/database/{database_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[DatabaseDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[DatabaseDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/d1/database/{database_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def export(
@@ -712,7 +706,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatabaseDeleteResponse:
+    ) -> object:
         """
         Deletes the specified D1 database.
 
@@ -731,21 +725,16 @@ class AsyncDatabaseResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
             raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
-        return cast(
-            DatabaseDeleteResponse,
-            await self._delete(
-                f"/accounts/{account_id}/d1/database/{database_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[DatabaseDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[DatabaseDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/d1/database/{database_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def export(
