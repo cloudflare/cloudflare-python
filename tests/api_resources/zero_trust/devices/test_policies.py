@@ -57,6 +57,7 @@ class TestPolicies:
             },
             support_url="https://1.1.1.1/help",
             switch_locked=True,
+            tunnel_protocol="wireguard",
         )
         assert_matches_type(Optional[SettingsPolicy], policy, path=["response"])
 
@@ -222,6 +223,7 @@ class TestPolicies:
             },
             support_url="https://1.1.1.1/help",
             switch_locked=True,
+            tunnel_protocol="wireguard",
         )
         assert_matches_type(Optional[SettingsPolicy], policy, path=["response"])
 
@@ -360,6 +362,7 @@ class TestAsyncPolicies:
             },
             support_url="https://1.1.1.1/help",
             switch_locked=True,
+            tunnel_protocol="wireguard",
         )
         assert_matches_type(Optional[SettingsPolicy], policy, path=["response"])
 
@@ -525,6 +528,7 @@ class TestAsyncPolicies:
             },
             support_url="https://1.1.1.1/help",
             switch_locked=True,
+            tunnel_protocol="wireguard",
         )
         assert_matches_type(Optional[SettingsPolicy], policy, path=["response"])
 
