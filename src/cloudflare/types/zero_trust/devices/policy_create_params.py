@@ -81,6 +81,9 @@ class PolicyCreateParams(TypedDict, total=False):
     Whether to allow the user to turn off the WARP switch and disconnect the client.
     """
 
+    tunnel_protocol: str
+    """Determines which tunnel protocol to use."""
+
 
 class ServiceModeV2(TypedDict, total=False):
     mode: str

@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Union, Optional
+from typing import List, Union, Optional
 from typing_extensions import Literal
 
 from ...._models import BaseModel
@@ -19,7 +19,13 @@ from .sentinelone_s2s_input import SentineloneS2sInput
 from .unique_client_id_input import UniqueClientIDInput
 from .client_certificate_input import ClientCertificateInput
 
-__all__ = ["DeviceInput", "TeamsDevicesCarbonblackInputRequest", "TeamsDevicesApplicationInputRequest"]
+__all__ = [
+    "DeviceInput",
+    "TeamsDevicesCarbonblackInputRequest",
+    "TeamsDevicesApplicationInputRequest",
+    "TeamsDevicesClientCertificateV2InputRequest",
+    "TeamsDevicesClientCertificateV2InputRequestLocations",
+]
 
 
 class TeamsDevicesCarbonblackInputRequest(BaseModel):
@@ -50,6 +56,44 @@ class TeamsDevicesApplicationInputRequest(BaseModel):
     """Signing certificate thumbprint."""
 
 
+class TeamsDevicesClientCertificateV2InputRequestLocations(BaseModel):
+    paths: Optional[List[str]] = None
+    """List of paths to check for client certificate on linux."""
+
+    trust_stores: Optional[List[Literal["system", "user"]]] = None
+    """List of trust stores to check for client certificate."""
+
+
+class TeamsDevicesClientCertificateV2InputRequest(BaseModel):
+    certificate_id: str
+    """UUID of Cloudflare managed certificate."""
+
+    check_private_key: bool
+    """Confirm the certificate was not imported from another device.
+
+    We recommend keeping this enabled unless the certificate was deployed without a
+    private key.
+    """
+
+    operating_system: Literal["windows", "linux", "mac"]
+    """Operating system"""
+
+    cn: Optional[str] = None
+    """Common Name that is protected by the client certificate.
+
+    This may include one or more variables in the ${ } notation. Only
+    ${serial_number} and ${hostname} are valid variables.
+    """
+
+    extended_key_usage: Optional[List[Literal["clientAuth", "emailProtection"]]] = None
+    """
+    List of values indicating purposes for which the certificate public key can be
+    used
+    """
+
+    locations: Optional[TeamsDevicesClientCertificateV2InputRequestLocations] = None
+
+
 DeviceInput = Union[
     FileInput,
     UniqueClientIDInput,
@@ -61,6 +105,7 @@ DeviceInput = Union[
     DiskEncryptionInput,
     TeamsDevicesApplicationInputRequest,
     ClientCertificateInput,
+    TeamsDevicesClientCertificateV2InputRequest,
     WorkspaceOneInput,
     CrowdstrikeInput,
     IntuneInput,
