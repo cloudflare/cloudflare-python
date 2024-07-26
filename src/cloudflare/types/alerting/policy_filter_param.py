@@ -16,10 +16,7 @@ class PolicyFilterParam(TypedDict, total=False):
     """Used for configuring radar_notification"""
 
     affected_components: List[str]
-    """Used for configuring incident_alert.
-
-    A list of identifiers for each component to monitor.
-    """
+    """Used for configuring incident_alert"""
 
     affected_locations: List[str]
     """Used for configuring radar_notification"""
@@ -30,8 +27,8 @@ class PolicyFilterParam(TypedDict, total=False):
     alert_trigger_preferences: List[str]
     """Usage depends on specific alert type"""
 
-    alert_trigger_preferences_value: List[Literal["99.0", "98.0", "97.0"]]
-    """Used for configuring magic_tunnel_health_check_event"""
+    alert_trigger_preferences_value: List[str]
+    """Usage depends on specific alert type"""
 
     enabled: List[str]
     """Used for configuring load_balancing_pool_enablement_alert"""
@@ -126,7 +123,7 @@ class PolicyFilterParam(TypedDict, total=False):
     """Used for configuring tunnel_health_event"""
 
     tunnel_name: List[str]
-    """Used for configuring magic_tunnel_health_check_event"""
+    """Usage depends on specific alert type"""
 
     where: List[str]
     """Usage depends on specific alert type"""

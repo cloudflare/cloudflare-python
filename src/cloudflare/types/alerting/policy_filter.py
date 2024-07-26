@@ -16,10 +16,7 @@ class PolicyFilter(BaseModel):
     """Used for configuring radar_notification"""
 
     affected_components: Optional[List[str]] = None
-    """Used for configuring incident_alert.
-
-    A list of identifiers for each component to monitor.
-    """
+    """Used for configuring incident_alert"""
 
     affected_locations: Optional[List[str]] = None
     """Used for configuring radar_notification"""
@@ -30,8 +27,8 @@ class PolicyFilter(BaseModel):
     alert_trigger_preferences: Optional[List[str]] = None
     """Usage depends on specific alert type"""
 
-    alert_trigger_preferences_value: Optional[List[Literal["99.0", "98.0", "97.0"]]] = None
-    """Used for configuring magic_tunnel_health_check_event"""
+    alert_trigger_preferences_value: Optional[List[str]] = None
+    """Usage depends on specific alert type"""
 
     enabled: Optional[List[str]] = None
     """Used for configuring load_balancing_pool_enablement_alert"""
@@ -130,7 +127,7 @@ class PolicyFilter(BaseModel):
     """Used for configuring tunnel_health_event"""
 
     tunnel_name: Optional[List[str]] = None
-    """Used for configuring magic_tunnel_health_check_event"""
+    """Usage depends on specific alert type"""
 
     where: Optional[List[str]] = None
     """Usage depends on specific alert type"""
