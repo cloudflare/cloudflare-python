@@ -5884,6 +5884,16 @@ Methods:
 
 ## Annotations
 
+Types:
+
+```python
+from cloudflare.types.radar import AnnotationListResponse
+```
+
+Methods:
+
+- <code title="get /radar/annotations">client.radar.annotations.<a href="./src/cloudflare/resources/radar/annotations/annotations.py">list</a>(\*\*<a href="src/cloudflare/types/radar/annotation_list_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/annotation_list_response.py">AnnotationListResponse</a></code>
+
 ### Outages
 
 Types:
@@ -6028,11 +6038,12 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.radar import NetflowTimeseriesResponse
+from cloudflare.types.radar import NetflowSummaryResponse, NetflowTimeseriesResponse
 ```
 
 Methods:
 
+- <code title="get /radar/netflows/summary">client.radar.netflows.<a href="./src/cloudflare/resources/radar/netflows/netflows.py">summary</a>(\*\*<a href="src/cloudflare/types/radar/netflow_summary_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/netflow_summary_response.py">NetflowSummaryResponse</a></code>
 - <code title="get /radar/netflows/timeseries">client.radar.netflows.<a href="./src/cloudflare/resources/radar/netflows/netflows.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/netflow_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/netflow_timeseries_response.py">NetflowTimeseriesResponse</a></code>
 
 ### Top
