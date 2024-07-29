@@ -91,8 +91,8 @@ class TestTests:
         test = client.speed.pages.tests.list(
             url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            page=1,
-            per_page=20,
+            page=0,
+            per_page=5,
             region="us-central1",
         )
         assert_matches_type(TestListResponse, test, path=["response"])
@@ -328,8 +328,8 @@ class TestAsyncTests:
         test = await async_client.speed.pages.tests.list(
             url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            page=1,
-            per_page=20,
+            page=0,
+            per_page=5,
             region="us-central1",
         )
         assert_matches_type(TestListResponse, test, path=["response"])
