@@ -7,7 +7,7 @@ cloudflare_zone_id = "zone"
 alias_name = "www.mydns.com"
 cannonical_name = "cname.example.com"
 
-client = Cloudflare(api_token=cloudflare_token)
+client = Cloudflare()
 
 
 
