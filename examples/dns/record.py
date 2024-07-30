@@ -8,7 +8,6 @@ cloudflare_zone_id = "zone"
 alias_name = "www.mydns.com"
 cannonical_name = "cname.example.com"
 
-# build cloudflare driver here
 client = Cloudflare(api_token=cloudflare_token)
 
 
