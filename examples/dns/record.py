@@ -1,7 +1,6 @@
 from cloudflare import Cloudflare
 
 
-# define your variable here
 
 cloudflare_token = "your-cloudflare-token"
 cloudflare_zone_id = "zone"
