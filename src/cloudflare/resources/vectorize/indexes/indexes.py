@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Any, List, Type, Iterable, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -381,6 +382,7 @@ class IndexesResource(SyncAPIResource):
         *,
         account_id: str,
         body: FileTypes,
+        unparsable_behavior: Literal["error", "discard"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -396,6 +398,8 @@ class IndexesResource(SyncAPIResource):
           account_id: Identifier
 
           body: ndjson file containing vectors to insert.
+
+          unparsable_behavior: Behavior for ndjson parse failures.
 
           extra_headers: Send extra headers
 
@@ -417,6 +421,9 @@ class IndexesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform(
+                    {"unparsable_behavior": unparsable_behavior}, index_insert_params.IndexInsertParams
+                ),
                 post_parser=ResultWrapper[Optional[IndexInsertResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IndexInsertResponse]], ResultWrapper[IndexInsertResponse]),
@@ -495,6 +502,7 @@ class IndexesResource(SyncAPIResource):
         *,
         account_id: str,
         body: FileTypes,
+        unparsable_behavior: Literal["error", "discard"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -510,6 +518,8 @@ class IndexesResource(SyncAPIResource):
           account_id: Identifier
 
           body: ndjson file containing vectors to upsert.
+
+          unparsable_behavior: Behavior for ndjson parse failures.
 
           extra_headers: Send extra headers
 
@@ -531,6 +541,9 @@ class IndexesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=maybe_transform(
+                    {"unparsable_behavior": unparsable_behavior}, index_upsert_params.IndexUpsertParams
+                ),
                 post_parser=ResultWrapper[Optional[IndexUpsertResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IndexUpsertResponse]], ResultWrapper[IndexUpsertResponse]),
@@ -869,6 +882,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         *,
         account_id: str,
         body: FileTypes,
+        unparsable_behavior: Literal["error", "discard"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -884,6 +898,8 @@ class AsyncIndexesResource(AsyncAPIResource):
           account_id: Identifier
 
           body: ndjson file containing vectors to insert.
+
+          unparsable_behavior: Behavior for ndjson parse failures.
 
           extra_headers: Send extra headers
 
@@ -905,6 +921,9 @@ class AsyncIndexesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {"unparsable_behavior": unparsable_behavior}, index_insert_params.IndexInsertParams
+                ),
                 post_parser=ResultWrapper[Optional[IndexInsertResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IndexInsertResponse]], ResultWrapper[IndexInsertResponse]),
@@ -983,6 +1002,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         *,
         account_id: str,
         body: FileTypes,
+        unparsable_behavior: Literal["error", "discard"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -998,6 +1018,8 @@ class AsyncIndexesResource(AsyncAPIResource):
           account_id: Identifier
 
           body: ndjson file containing vectors to upsert.
+
+          unparsable_behavior: Behavior for ndjson parse failures.
 
           extra_headers: Send extra headers
 
@@ -1019,6 +1041,9 @@ class AsyncIndexesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
+                query=await async_maybe_transform(
+                    {"unparsable_behavior": unparsable_behavior}, index_upsert_params.IndexUpsertParams
+                ),
                 post_parser=ResultWrapper[Optional[IndexUpsertResponse]]._unwrapper,
             ),
             cast_to=cast(Type[Optional[IndexUpsertResponse]], ResultWrapper[IndexUpsertResponse]),
