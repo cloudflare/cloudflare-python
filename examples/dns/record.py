@@ -14,7 +14,7 @@ client = Cloudflare(api_token=cloudflare_token)
 
 
 # create dns using defined driver
-dns = client.dns.records.create(
+record = client.dns.records.create(
     zone_id=cloudflare_zone_id, 
     type='CNAME', 
     name=alias_name, 
@@ -23,4 +23,4 @@ dns = client.dns.records.create(
     )
 
 # print output
-print(dns)
+print(record)
