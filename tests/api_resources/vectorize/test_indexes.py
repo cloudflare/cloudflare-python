@@ -405,6 +405,17 @@ class TestIndexes:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
+    def test_method_insert_with_all_params(self, client: Cloudflare) -> None:
+        index = client.vectorize.indexes.insert(
+            index_name="example-index",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=b"raw file contents",
+            unparsable_behavior="error",
+        )
+        assert_matches_type(Optional[IndexInsertResponse], index, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
     def test_raw_response_insert(self, client: Cloudflare) -> None:
         response = client.vectorize.indexes.with_raw_response.insert(
             index_name="example-index",
@@ -526,6 +537,17 @@ class TestIndexes:
             index_name="example-index",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body=b"raw file contents",
+        )
+        assert_matches_type(Optional[IndexUpsertResponse], index, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_upsert_with_all_params(self, client: Cloudflare) -> None:
+        index = client.vectorize.indexes.upsert(
+            index_name="example-index",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=b"raw file contents",
+            unparsable_behavior="error",
         )
         assert_matches_type(Optional[IndexUpsertResponse], index, path=["response"])
 
@@ -959,6 +981,17 @@ class TestAsyncIndexes:
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
+    async def test_method_insert_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        index = await async_client.vectorize.indexes.insert(
+            index_name="example-index",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=b"raw file contents",
+            unparsable_behavior="error",
+        )
+        assert_matches_type(Optional[IndexInsertResponse], index, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
     async def test_raw_response_insert(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.vectorize.indexes.with_raw_response.insert(
             index_name="example-index",
@@ -1080,6 +1113,17 @@ class TestAsyncIndexes:
             index_name="example-index",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body=b"raw file contents",
+        )
+        assert_matches_type(Optional[IndexUpsertResponse], index, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_upsert_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        index = await async_client.vectorize.indexes.upsert(
+            index_name="example-index",
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            body=b"raw file contents",
+            unparsable_behavior="error",
         )
         assert_matches_type(Optional[IndexUpsertResponse], index, path=["response"])
 

@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._types import FileTypes
+from ..._utils import PropertyInfo
 
 __all__ = ["IndexInsertParams"]
 
@@ -15,3 +16,6 @@ class IndexInsertParams(TypedDict, total=False):
 
     body: Required[FileTypes]
     """ndjson file containing vectors to insert."""
+
+    unparsable_behavior: Annotated[Literal["error", "discard"], PropertyInfo(alias="unparsable-behavior")]
+    """Behavior for ndjson parse failures."""
