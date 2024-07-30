@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from ..._models import BaseModel
 
-__all__ = ["IndexQuery", "Match"]
+__all__ = ["IndexQueryResponse", "Match"]
 
 
 class Match(BaseModel):
@@ -13,13 +13,15 @@ class Match(BaseModel):
 
     metadata: Optional[object] = None
 
+    namespace: Optional[str] = None
+
     score: Optional[float] = None
     """The score of the vector according to the index's distance metric"""
 
     values: Optional[List[float]] = None
 
 
-class IndexQuery(BaseModel):
+class IndexQueryResponse(BaseModel):
     count: Optional[int] = None
     """Specifies the count of vectors returned by the search"""
 

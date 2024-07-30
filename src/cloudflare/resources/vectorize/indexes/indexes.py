@@ -6,42 +6,54 @@ from typing import Any, List, Type, Iterable, Optional, cast
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
-from ..._utils import (
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven, FileTypes
+from ...._utils import (
     maybe_transform,
     async_maybe_transform,
 )
-from ..._compat import cached_property
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ..._response import (
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
-from ..._base_client import AsyncPaginator, make_request_options
-from ...types.vectorize import (
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from .metadata_index import (
+    MetadataIndexResource,
+    AsyncMetadataIndexResource,
+    MetadataIndexResourceWithRawResponse,
+    AsyncMetadataIndexResourceWithRawResponse,
+    MetadataIndexResourceWithStreamingResponse,
+    AsyncMetadataIndexResourceWithStreamingResponse,
+)
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.vectorize import (
     index_query_params,
     index_create_params,
     index_insert_params,
-    index_update_params,
     index_upsert_params,
     index_get_by_ids_params,
     index_delete_by_ids_params,
 )
-from ...types.vectorize.index_query import IndexQuery
-from ...types.vectorize.create_index import CreateIndex
-from ...types.vectorize.index_insert import IndexInsert
-from ...types.vectorize.index_upsert import IndexUpsert
-from ...types.vectorize.index_delete_response import IndexDeleteResponse
-from ...types.vectorize.index_delete_vectors_by_id import IndexDeleteVectorsByID
+from ....types.vectorize.create_index import CreateIndex
+from ....types.vectorize.index_info_response import IndexInfoResponse
+from ....types.vectorize.index_query_response import IndexQueryResponse
+from ....types.vectorize.index_delete_response import IndexDeleteResponse
+from ....types.vectorize.index_insert_response import IndexInsertResponse
+from ....types.vectorize.index_upsert_response import IndexUpsertResponse
+from ....types.vectorize.index_delete_by_ids_response import IndexDeleteByIDsResponse
 
 __all__ = ["IndexesResource", "AsyncIndexesResource"]
 
 
 class IndexesResource(SyncAPIResource):
+    @cached_property
+    def metadata_index(self) -> MetadataIndexResource:
+        return MetadataIndexResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> IndexesResourceWithRawResponse:
         return IndexesResourceWithRawResponse(self)
@@ -85,7 +97,7 @@ class IndexesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
-            f"/accounts/{account_id}/vectorize/indexes",
+            f"/accounts/{account_id}/vectorize/v2/indexes",
             body=maybe_transform(
                 {
                     "config": config,
@@ -94,52 +106,6 @@ class IndexesResource(SyncAPIResource):
                 },
                 index_create_params.IndexCreateParams,
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CreateIndex]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[CreateIndex]], ResultWrapper[CreateIndex]),
-        )
-
-    def update(
-        self,
-        index_name: str,
-        *,
-        account_id: str,
-        description: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CreateIndex]:
-        """
-        Updates and returns the specified Vectorize Index.
-
-        Args:
-          account_id: Identifier
-
-          description: Specifies the description of the index.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not index_name:
-            raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
-        return self._put(
-            f"/accounts/{account_id}/vectorize/indexes/{index_name}",
-            body=maybe_transform({"description": description}, index_update_params.IndexUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -178,7 +144,7 @@ class IndexesResource(SyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/vectorize/indexes",
+            f"/accounts/{account_id}/vectorize/v2/indexes",
             page=SyncSinglePage[CreateIndex],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -219,7 +185,7 @@ class IndexesResource(SyncAPIResource):
         return cast(
             IndexDeleteResponse,
             self._delete(
-                f"/accounts/{account_id}/vectorize/indexes/{index_name}",
+                f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -245,7 +211,7 @@ class IndexesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexDeleteVectorsByID]:
+    ) -> Optional[IndexDeleteByIDsResponse]:
         """
         Delete a set of vectors from an index by their vector identifiers.
 
@@ -267,16 +233,16 @@ class IndexesResource(SyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return self._post(
-            f"/accounts/{account_id}/vectorize/indexes/{index_name}/delete-by-ids",
+            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/delete_by_ids",
             body=maybe_transform({"ids": ids}, index_delete_by_ids_params.IndexDeleteByIDsParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[IndexDeleteVectorsByID]]._unwrapper,
+                post_parser=ResultWrapper[Optional[IndexDeleteByIDsResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexDeleteVectorsByID]], ResultWrapper[IndexDeleteVectorsByID]),
+            cast_to=cast(Type[Optional[IndexDeleteByIDsResponse]], ResultWrapper[IndexDeleteByIDsResponse]),
         )
 
     def get(
@@ -310,7 +276,7 @@ class IndexesResource(SyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return self._get(
-            f"/accounts/{account_id}/vectorize/indexes/{index_name}",
+            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -355,7 +321,7 @@ class IndexesResource(SyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return self._post(
-            f"/accounts/{account_id}/vectorize/indexes/{index_name}/get-by-ids",
+            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/get_by_ids",
             body=maybe_transform({"ids": ids}, index_get_by_ids_params.IndexGetByIDsParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -365,6 +331,48 @@ class IndexesResource(SyncAPIResource):
                 post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
+    def info(
+        self,
+        index_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[IndexInfoResponse]:
+        """
+        Get information about a vectorize index.
+
+        Args:
+          account_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not index_name:
+            raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
+        return self._get(
+            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/info",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[IndexInfoResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[IndexInfoResponse]], ResultWrapper[IndexInfoResponse]),
         )
 
     def insert(
@@ -379,10 +387,10 @@ class IndexesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexInsert]:
+    ) -> Optional[IndexInsertResponse]:
         """
-        Inserts vectors into the specified index and returns the count of the vectors
-        successfully inserted.
+        Inserts vectors into the specified index and returns a mutation id corresponding
+        to the vectors enqueued for insertion.
 
         Args:
           account_id: Identifier
@@ -402,16 +410,16 @@ class IndexesResource(SyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return self._post(
-            f"/accounts/{account_id}/vectorize/indexes/{index_name}/insert",
+            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/insert",
             body=maybe_transform(body, index_insert_params.IndexInsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[IndexInsert]]._unwrapper,
+                post_parser=ResultWrapper[Optional[IndexInsertResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexInsert]], ResultWrapper[IndexInsert]),
+            cast_to=cast(Type[Optional[IndexInsertResponse]], ResultWrapper[IndexInsertResponse]),
         )
 
     def query(
@@ -430,7 +438,7 @@ class IndexesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexQuery]:
+    ) -> Optional[IndexQueryResponse]:
         """
         Finds vectors closest to a given vector in an index.
 
@@ -460,7 +468,7 @@ class IndexesResource(SyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return self._post(
-            f"/accounts/{account_id}/vectorize/indexes/{index_name}/query",
+            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/query",
             body=maybe_transform(
                 {
                     "vector": vector,
@@ -476,9 +484,9 @@ class IndexesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[IndexQuery]]._unwrapper,
+                post_parser=ResultWrapper[Optional[IndexQueryResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexQuery]], ResultWrapper[IndexQuery]),
+            cast_to=cast(Type[Optional[IndexQueryResponse]], ResultWrapper[IndexQueryResponse]),
         )
 
     def upsert(
@@ -493,10 +501,10 @@ class IndexesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexUpsert]:
+    ) -> Optional[IndexUpsertResponse]:
         """
         Upserts vectors into the specified index, creating them if they do not exist and
-        returns the count of values and ids successfully inserted.
+        returns a mutation id corresponding to the vectors enqueued for upsertion.
 
         Args:
           account_id: Identifier
@@ -516,20 +524,24 @@ class IndexesResource(SyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return self._post(
-            f"/accounts/{account_id}/vectorize/indexes/{index_name}/upsert",
+            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/upsert",
             body=maybe_transform(body, index_upsert_params.IndexUpsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[IndexUpsert]]._unwrapper,
+                post_parser=ResultWrapper[Optional[IndexUpsertResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexUpsert]], ResultWrapper[IndexUpsert]),
+            cast_to=cast(Type[Optional[IndexUpsertResponse]], ResultWrapper[IndexUpsertResponse]),
         )
 
 
 class AsyncIndexesResource(AsyncAPIResource):
+    @cached_property
+    def metadata_index(self) -> AsyncMetadataIndexResource:
+        return AsyncMetadataIndexResource(self._client)
+
     @cached_property
     def with_raw_response(self) -> AsyncIndexesResourceWithRawResponse:
         return AsyncIndexesResourceWithRawResponse(self)
@@ -573,7 +585,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
-            f"/accounts/{account_id}/vectorize/indexes",
+            f"/accounts/{account_id}/vectorize/v2/indexes",
             body=await async_maybe_transform(
                 {
                     "config": config,
@@ -582,52 +594,6 @@ class AsyncIndexesResource(AsyncAPIResource):
                 },
                 index_create_params.IndexCreateParams,
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[CreateIndex]]._unwrapper,
-            ),
-            cast_to=cast(Type[Optional[CreateIndex]], ResultWrapper[CreateIndex]),
-        )
-
-    async def update(
-        self,
-        index_name: str,
-        *,
-        account_id: str,
-        description: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CreateIndex]:
-        """
-        Updates and returns the specified Vectorize Index.
-
-        Args:
-          account_id: Identifier
-
-          description: Specifies the description of the index.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not index_name:
-            raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
-        return await self._put(
-            f"/accounts/{account_id}/vectorize/indexes/{index_name}",
-            body=await async_maybe_transform({"description": description}, index_update_params.IndexUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -666,7 +632,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_id}/vectorize/indexes",
+            f"/accounts/{account_id}/vectorize/v2/indexes",
             page=AsyncSinglePage[CreateIndex],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -707,7 +673,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         return cast(
             IndexDeleteResponse,
             await self._delete(
-                f"/accounts/{account_id}/vectorize/indexes/{index_name}",
+                f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -733,7 +699,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexDeleteVectorsByID]:
+    ) -> Optional[IndexDeleteByIDsResponse]:
         """
         Delete a set of vectors from an index by their vector identifiers.
 
@@ -755,16 +721,16 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._post(
-            f"/accounts/{account_id}/vectorize/indexes/{index_name}/delete-by-ids",
+            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/delete_by_ids",
             body=await async_maybe_transform({"ids": ids}, index_delete_by_ids_params.IndexDeleteByIDsParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[IndexDeleteVectorsByID]]._unwrapper,
+                post_parser=ResultWrapper[Optional[IndexDeleteByIDsResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexDeleteVectorsByID]], ResultWrapper[IndexDeleteVectorsByID]),
+            cast_to=cast(Type[Optional[IndexDeleteByIDsResponse]], ResultWrapper[IndexDeleteByIDsResponse]),
         )
 
     async def get(
@@ -798,7 +764,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._get(
-            f"/accounts/{account_id}/vectorize/indexes/{index_name}",
+            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -843,7 +809,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._post(
-            f"/accounts/{account_id}/vectorize/indexes/{index_name}/get-by-ids",
+            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/get_by_ids",
             body=await async_maybe_transform({"ids": ids}, index_get_by_ids_params.IndexGetByIDsParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -853,6 +819,48 @@ class AsyncIndexesResource(AsyncAPIResource):
                 post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
             cast_to=cast(Type[object], ResultWrapper[object]),
+        )
+
+    async def info(
+        self,
+        index_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[IndexInfoResponse]:
+        """
+        Get information about a vectorize index.
+
+        Args:
+          account_id: Identifier
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not index_name:
+            raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
+        return await self._get(
+            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/info",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[IndexInfoResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[IndexInfoResponse]], ResultWrapper[IndexInfoResponse]),
         )
 
     async def insert(
@@ -867,10 +875,10 @@ class AsyncIndexesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexInsert]:
+    ) -> Optional[IndexInsertResponse]:
         """
-        Inserts vectors into the specified index and returns the count of the vectors
-        successfully inserted.
+        Inserts vectors into the specified index and returns a mutation id corresponding
+        to the vectors enqueued for insertion.
 
         Args:
           account_id: Identifier
@@ -890,16 +898,16 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._post(
-            f"/accounts/{account_id}/vectorize/indexes/{index_name}/insert",
+            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/insert",
             body=await async_maybe_transform(body, index_insert_params.IndexInsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[IndexInsert]]._unwrapper,
+                post_parser=ResultWrapper[Optional[IndexInsertResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexInsert]], ResultWrapper[IndexInsert]),
+            cast_to=cast(Type[Optional[IndexInsertResponse]], ResultWrapper[IndexInsertResponse]),
         )
 
     async def query(
@@ -918,7 +926,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexQuery]:
+    ) -> Optional[IndexQueryResponse]:
         """
         Finds vectors closest to a given vector in an index.
 
@@ -948,7 +956,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._post(
-            f"/accounts/{account_id}/vectorize/indexes/{index_name}/query",
+            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/query",
             body=await async_maybe_transform(
                 {
                     "vector": vector,
@@ -964,9 +972,9 @@ class AsyncIndexesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[IndexQuery]]._unwrapper,
+                post_parser=ResultWrapper[Optional[IndexQueryResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexQuery]], ResultWrapper[IndexQuery]),
+            cast_to=cast(Type[Optional[IndexQueryResponse]], ResultWrapper[IndexQueryResponse]),
         )
 
     async def upsert(
@@ -981,10 +989,10 @@ class AsyncIndexesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IndexUpsert]:
+    ) -> Optional[IndexUpsertResponse]:
         """
         Upserts vectors into the specified index, creating them if they do not exist and
-        returns the count of values and ids successfully inserted.
+        returns a mutation id corresponding to the vectors enqueued for upsertion.
 
         Args:
           account_id: Identifier
@@ -1004,16 +1012,16 @@ class AsyncIndexesResource(AsyncAPIResource):
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
         return await self._post(
-            f"/accounts/{account_id}/vectorize/indexes/{index_name}/upsert",
+            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/upsert",
             body=await async_maybe_transform(body, index_upsert_params.IndexUpsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[IndexUpsert]]._unwrapper,
+                post_parser=ResultWrapper[Optional[IndexUpsertResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[IndexUpsert]], ResultWrapper[IndexUpsert]),
+            cast_to=cast(Type[Optional[IndexUpsertResponse]], ResultWrapper[IndexUpsertResponse]),
         )
 
 
@@ -1023,9 +1031,6 @@ class IndexesResourceWithRawResponse:
 
         self.create = to_raw_response_wrapper(
             indexes.create,
-        )
-        self.update = to_raw_response_wrapper(
-            indexes.update,
         )
         self.list = to_raw_response_wrapper(
             indexes.list,
@@ -1042,6 +1047,9 @@ class IndexesResourceWithRawResponse:
         self.get_by_ids = to_raw_response_wrapper(
             indexes.get_by_ids,
         )
+        self.info = to_raw_response_wrapper(
+            indexes.info,
+        )
         self.insert = to_raw_response_wrapper(
             indexes.insert,
         )
@@ -1052,6 +1060,10 @@ class IndexesResourceWithRawResponse:
             indexes.upsert,
         )
 
+    @cached_property
+    def metadata_index(self) -> MetadataIndexResourceWithRawResponse:
+        return MetadataIndexResourceWithRawResponse(self._indexes.metadata_index)
+
 
 class AsyncIndexesResourceWithRawResponse:
     def __init__(self, indexes: AsyncIndexesResource) -> None:
@@ -1059,9 +1071,6 @@ class AsyncIndexesResourceWithRawResponse:
 
         self.create = async_to_raw_response_wrapper(
             indexes.create,
-        )
-        self.update = async_to_raw_response_wrapper(
-            indexes.update,
         )
         self.list = async_to_raw_response_wrapper(
             indexes.list,
@@ -1078,6 +1087,9 @@ class AsyncIndexesResourceWithRawResponse:
         self.get_by_ids = async_to_raw_response_wrapper(
             indexes.get_by_ids,
         )
+        self.info = async_to_raw_response_wrapper(
+            indexes.info,
+        )
         self.insert = async_to_raw_response_wrapper(
             indexes.insert,
         )
@@ -1088,6 +1100,10 @@ class AsyncIndexesResourceWithRawResponse:
             indexes.upsert,
         )
 
+    @cached_property
+    def metadata_index(self) -> AsyncMetadataIndexResourceWithRawResponse:
+        return AsyncMetadataIndexResourceWithRawResponse(self._indexes.metadata_index)
+
 
 class IndexesResourceWithStreamingResponse:
     def __init__(self, indexes: IndexesResource) -> None:
@@ -1095,9 +1111,6 @@ class IndexesResourceWithStreamingResponse:
 
         self.create = to_streamed_response_wrapper(
             indexes.create,
-        )
-        self.update = to_streamed_response_wrapper(
-            indexes.update,
         )
         self.list = to_streamed_response_wrapper(
             indexes.list,
@@ -1114,6 +1127,9 @@ class IndexesResourceWithStreamingResponse:
         self.get_by_ids = to_streamed_response_wrapper(
             indexes.get_by_ids,
         )
+        self.info = to_streamed_response_wrapper(
+            indexes.info,
+        )
         self.insert = to_streamed_response_wrapper(
             indexes.insert,
         )
@@ -1124,6 +1140,10 @@ class IndexesResourceWithStreamingResponse:
             indexes.upsert,
         )
 
+    @cached_property
+    def metadata_index(self) -> MetadataIndexResourceWithStreamingResponse:
+        return MetadataIndexResourceWithStreamingResponse(self._indexes.metadata_index)
+
 
 class AsyncIndexesResourceWithStreamingResponse:
     def __init__(self, indexes: AsyncIndexesResource) -> None:
@@ -1131,9 +1151,6 @@ class AsyncIndexesResourceWithStreamingResponse:
 
         self.create = async_to_streamed_response_wrapper(
             indexes.create,
-        )
-        self.update = async_to_streamed_response_wrapper(
-            indexes.update,
         )
         self.list = async_to_streamed_response_wrapper(
             indexes.list,
@@ -1150,6 +1167,9 @@ class AsyncIndexesResourceWithStreamingResponse:
         self.get_by_ids = async_to_streamed_response_wrapper(
             indexes.get_by_ids,
         )
+        self.info = async_to_streamed_response_wrapper(
+            indexes.info,
+        )
         self.insert = async_to_streamed_response_wrapper(
             indexes.insert,
         )
@@ -1159,3 +1179,7 @@ class AsyncIndexesResourceWithStreamingResponse:
         self.upsert = async_to_streamed_response_wrapper(
             indexes.upsert,
         )
+
+    @cached_property
+    def metadata_index(self) -> AsyncMetadataIndexResourceWithStreamingResponse:
+        return AsyncMetadataIndexResourceWithStreamingResponse(self._indexes.metadata_index)
