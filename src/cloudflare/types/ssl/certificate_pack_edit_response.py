@@ -14,7 +14,7 @@ class CertificatePackEditResponse(BaseModel):
     id: Optional[str] = None
     """Identifier"""
 
-    certificate_authority: Optional[Literal["google", "lets_encrypt"]] = None
+    certificate_authority: Optional[Literal["google", "lets_encrypt", "ssl_com"]] = None
     """Certificate Authority selected for the order.
 
     For information on any certificate authority specific details or restrictions
