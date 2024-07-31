@@ -11,19 +11,20 @@ class Settings(BaseModel):
     batch_size: Optional[float] = None
 
     max_retries: Optional[float] = None
+    """The maximum number of retries"""
 
     max_wait_time_ms: Optional[float] = None
 
 
 class ConsumerUpdateResponse(BaseModel):
-    created_on: Optional[object] = None
+    created_on: Optional[str] = None
 
     dead_letter_queue: Optional[str] = None
 
-    environment: Optional[object] = None
+    environment: Optional[str] = None
 
-    queue_name: Optional[object] = None
+    queue_name: Optional[str] = None
 
-    script_name: Optional[object] = None
+    script_name: Optional[str] = None
 
     settings: Optional[Settings] = None
