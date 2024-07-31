@@ -16,5 +16,4 @@ record = client.dns.records.create(
     proxied=False
 )
 
-
 # print(record)
