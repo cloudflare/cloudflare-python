@@ -29,9 +29,9 @@ class LogListResponse(BaseModel):
 
     success: bool
 
-    tokens_in: int
+    tokens_in: Optional[int] = None
 
-    tokens_out: int
+    tokens_out: Optional[int] = None
 
     cost: Optional[float] = None
 
