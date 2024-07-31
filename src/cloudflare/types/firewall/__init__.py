@@ -9,11 +9,11 @@ from .configuration import Configuration as Configuration
 from .firewall_rule import FirewallRule as FirewallRule
 from .deleted_filter import DeletedFilter as DeletedFilter
 from .rule_get_params import RuleGetParams as RuleGetParams
+from .rule_edit_params import RuleEditParams as RuleEditParams
 from .rule_list_params import RuleListParams as RuleListParams
 from .rule_create_params import RuleCreateParams as RuleCreateParams
 from .rule_edit_response import RuleEditResponse as RuleEditResponse
 from .rule_update_params import RuleUpdateParams as RuleUpdateParams
-from .configuration_param import ConfigurationParam as ConfigurationParam
 from .ua_rule_list_params import UARuleListParams as UARuleListParams
 from .lockdown_list_params import LockdownListParams as LockdownListParams
 from .rule_create_response import RuleCreateResponse as RuleCreateResponse
@@ -39,7 +39,5 @@ from .access_rule_create_response import AccessRuleCreateResponse as AccessRuleC
 from .access_rule_delete_response import AccessRuleDeleteResponse as AccessRuleDeleteResponse
 from .country_configuration_param import CountryConfigurationParam as CountryConfigurationParam
 from .lockdown_cidr_configuration import LockdownCIDRConfiguration as LockdownCIDRConfiguration
-from .lockdown_ip_configuration_param import LockdownIPConfigurationParam as LockdownIPConfigurationParam
-from .lockdown_cidr_configuration_param import LockdownCIDRConfigurationParam as LockdownCIDRConfigurationParam
 from .access_rule_ip_configuration_param import AccessRuleIPConfigurationParam as AccessRuleIPConfigurationParam
 from .access_rule_cidr_configuration_param import AccessRuleCIDRConfigurationParam as AccessRuleCIDRConfigurationParam

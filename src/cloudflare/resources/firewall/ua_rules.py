@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 from typing import Any, Type, cast
-from typing_extensions import Literal
 
 import httpx
 
@@ -46,8 +45,7 @@ class UARulesResource(SyncAPIResource):
         self,
         zone_identifier: str,
         *,
-        configuration: ua_rule_create_params.Configuration,
-        mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -60,10 +58,6 @@ class UARulesResource(SyncAPIResource):
 
         Args:
           zone_identifier: Identifier
-
-          configuration: The rule configuration.
-
-          mode: The action to apply to a matched request.
 
           extra_headers: Send extra headers
 
@@ -79,13 +73,7 @@ class UARulesResource(SyncAPIResource):
             UARuleCreateResponse,
             self._post(
                 f"/zones/{zone_identifier}/firewall/ua_rules",
-                body=maybe_transform(
-                    {
-                        "configuration": configuration,
-                        "mode": mode,
-                    },
-                    ua_rule_create_params.UARuleCreateParams,
-                ),
+                body=maybe_transform(body, ua_rule_create_params.UARuleCreateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -104,8 +92,7 @@ class UARulesResource(SyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
-        configuration: ua_rule_update_params.Configuration,
-        mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -120,10 +107,6 @@ class UARulesResource(SyncAPIResource):
           zone_identifier: Identifier
 
           id: The unique identifier of the User Agent Blocking rule.
-
-          configuration: The rule configuration.
-
-          mode: The action to apply to a matched request.
 
           extra_headers: Send extra headers
 
@@ -141,13 +124,7 @@ class UARulesResource(SyncAPIResource):
             UARuleUpdateResponse,
             self._put(
                 f"/zones/{zone_identifier}/firewall/ua_rules/{id}",
-                body=maybe_transform(
-                    {
-                        "configuration": configuration,
-                        "mode": mode,
-                    },
-                    ua_rule_update_params.UARuleUpdateParams,
-                ),
+                body=maybe_transform(body, ua_rule_update_params.UARuleUpdateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -335,8 +312,7 @@ class AsyncUARulesResource(AsyncAPIResource):
         self,
         zone_identifier: str,
         *,
-        configuration: ua_rule_create_params.Configuration,
-        mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -349,10 +325,6 @@ class AsyncUARulesResource(AsyncAPIResource):
 
         Args:
           zone_identifier: Identifier
-
-          configuration: The rule configuration.
-
-          mode: The action to apply to a matched request.
 
           extra_headers: Send extra headers
 
@@ -368,13 +340,7 @@ class AsyncUARulesResource(AsyncAPIResource):
             UARuleCreateResponse,
             await self._post(
                 f"/zones/{zone_identifier}/firewall/ua_rules",
-                body=await async_maybe_transform(
-                    {
-                        "configuration": configuration,
-                        "mode": mode,
-                    },
-                    ua_rule_create_params.UARuleCreateParams,
-                ),
+                body=await async_maybe_transform(body, ua_rule_create_params.UARuleCreateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -393,8 +359,7 @@ class AsyncUARulesResource(AsyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
-        configuration: ua_rule_update_params.Configuration,
-        mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -409,10 +374,6 @@ class AsyncUARulesResource(AsyncAPIResource):
           zone_identifier: Identifier
 
           id: The unique identifier of the User Agent Blocking rule.
-
-          configuration: The rule configuration.
-
-          mode: The action to apply to a matched request.
 
           extra_headers: Send extra headers
 
@@ -430,13 +391,7 @@ class AsyncUARulesResource(AsyncAPIResource):
             UARuleUpdateResponse,
             await self._put(
                 f"/zones/{zone_identifier}/firewall/ua_rules/{id}",
-                body=await async_maybe_transform(
-                    {
-                        "configuration": configuration,
-                        "mode": mode,
-                    },
-                    ua_rule_update_params.UARuleUpdateParams,
-                ),
+                body=await async_maybe_transform(body, ua_rule_update_params.UARuleUpdateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

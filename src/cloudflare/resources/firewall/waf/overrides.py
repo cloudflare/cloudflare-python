@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Type, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -22,15 +22,8 @@ from ...._response import (
 from ...._wrappers import ResultWrapper
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.firewall.waf import (
-    override_list_params,
-    override_create_params,
-    override_update_params,
-)
+from ....types.firewall.waf import override_list_params, override_create_params, override_update_params
 from ....types.firewall.waf.override import Override
-from ....types.firewall.waf.override_url import OverrideURL
-from ....types.firewall.waf.waf_rule_param import WAFRuleParam
-from ....types.firewall.waf.rewrite_action_param import RewriteActionParam
 from ....types.firewall.waf.override_delete_response import OverrideDeleteResponse
 
 __all__ = ["OverridesResource", "AsyncOverridesResource"]
@@ -49,7 +42,7 @@ class OverridesResource(SyncAPIResource):
         self,
         zone_identifier: str,
         *,
-        urls: List[OverrideURL],
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -66,10 +59,6 @@ class OverridesResource(SyncAPIResource):
         Args:
           zone_identifier: Identifier
 
-          urls: The URLs to include in the current WAF override. You can use wildcards. Each
-              entered URL will be escaped before use, which means you can only use simple
-              wildcard patterns.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -82,7 +71,7 @@ class OverridesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._post(
             f"/zones/{zone_identifier}/firewall/waf/overrides",
-            body=maybe_transform({"urls": urls}, override_create_params.OverrideCreateParams),
+            body=maybe_transform(body, override_create_params.OverrideCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -95,13 +84,10 @@ class OverridesResource(SyncAPIResource):
 
     def update(
         self,
-        zone_identifier: str,
+        id: str,
         *,
-        path_id: str,
-        body_id: str,
-        rewrite_action: RewriteActionParam,
-        rules: WAFRuleParam,
-        urls: List[OverrideURL],
+        zone_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -116,24 +102,9 @@ class OverridesResource(SyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          path_id: The unique identifier of the WAF override.
-
           zone_identifier: Identifier
 
-          body_id: Identifier
-
-          rewrite_action: Specifies that, when a WAF rule matches, its configured action will be replaced
-              by the action configured in this object.
-
-          rules: An object that allows you to override the action of specific WAF rules. Each key
-              of this object must be the ID of a WAF rule, and each value must be a valid WAF
-              action. Unless you are disabling a rule, ensure that you also enable the rule
-              group that this WAF rule belongs to. When creating a new URI-based WAF override,
-              you must provide a `groups` object or a `rules` object.
-
-          urls: The URLs to include in the current WAF override. You can use wildcards. Each
-              entered URL will be escaped before use, which means you can only use simple
-              wildcard patterns.
+          id: The unique identifier of the WAF override.
 
           extra_headers: Send extra headers
 
@@ -143,21 +114,13 @@ class OverridesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_id:
-            raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._put(
-            f"/zones/{zone_identifier}/firewall/waf/overrides/{path_id}",
-            body=maybe_transform(
-                {
-                    "id": body_id,
-                    "rewrite_action": rewrite_action,
-                    "rules": rules,
-                    "urls": urls,
-                },
-                override_update_params.OverrideUpdateParams,
-            ),
+            f"/zones/{zone_identifier}/firewall/waf/overrides/{id}",
+            body=maybe_transform(body, override_update_params.OverrideUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -331,7 +294,7 @@ class AsyncOverridesResource(AsyncAPIResource):
         self,
         zone_identifier: str,
         *,
-        urls: List[OverrideURL],
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -348,10 +311,6 @@ class AsyncOverridesResource(AsyncAPIResource):
         Args:
           zone_identifier: Identifier
 
-          urls: The URLs to include in the current WAF override. You can use wildcards. Each
-              entered URL will be escaped before use, which means you can only use simple
-              wildcard patterns.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -364,7 +323,7 @@ class AsyncOverridesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._post(
             f"/zones/{zone_identifier}/firewall/waf/overrides",
-            body=await async_maybe_transform({"urls": urls}, override_create_params.OverrideCreateParams),
+            body=await async_maybe_transform(body, override_create_params.OverrideCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -377,13 +336,10 @@ class AsyncOverridesResource(AsyncAPIResource):
 
     async def update(
         self,
-        zone_identifier: str,
+        id: str,
         *,
-        path_id: str,
-        body_id: str,
-        rewrite_action: RewriteActionParam,
-        rules: WAFRuleParam,
-        urls: List[OverrideURL],
+        zone_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -398,24 +354,9 @@ class AsyncOverridesResource(AsyncAPIResource):
         [previous version of WAF managed rules](https://developers.cloudflare.com/support/firewall/managed-rules-web-application-firewall-waf/understanding-waf-managed-rules-web-application-firewall/).
 
         Args:
-          path_id: The unique identifier of the WAF override.
-
           zone_identifier: Identifier
 
-          body_id: Identifier
-
-          rewrite_action: Specifies that, when a WAF rule matches, its configured action will be replaced
-              by the action configured in this object.
-
-          rules: An object that allows you to override the action of specific WAF rules. Each key
-              of this object must be the ID of a WAF rule, and each value must be a valid WAF
-              action. Unless you are disabling a rule, ensure that you also enable the rule
-              group that this WAF rule belongs to. When creating a new URI-based WAF override,
-              you must provide a `groups` object or a `rules` object.
-
-          urls: The URLs to include in the current WAF override. You can use wildcards. Each
-              entered URL will be escaped before use, which means you can only use simple
-              wildcard patterns.
+          id: The unique identifier of the WAF override.
 
           extra_headers: Send extra headers
 
@@ -425,21 +366,13 @@ class AsyncOverridesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not path_id:
-            raise ValueError(f"Expected a non-empty value for `path_id` but received {path_id!r}")
         if not zone_identifier:
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._put(
-            f"/zones/{zone_identifier}/firewall/waf/overrides/{path_id}",
-            body=await async_maybe_transform(
-                {
-                    "id": body_id,
-                    "rewrite_action": rewrite_action,
-                    "rules": rules,
-                    "urls": urls,
-                },
-                override_update_params.OverrideUpdateParams,
-            ),
+            f"/zones/{zone_identifier}/firewall/waf/overrides/{id}",
+            body=await async_maybe_transform(body, override_update_params.OverrideUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -2,33 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Union
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
-from .asn_configuration_param import ASNConfigurationParam
-from .ipv6_configuration_param import IPV6ConfigurationParam
-from .country_configuration_param import CountryConfigurationParam
-from .access_rule_ip_configuration_param import AccessRuleIPConfigurationParam
-from .access_rule_cidr_configuration_param import AccessRuleCIDRConfigurationParam
-
-__all__ = ["UARuleUpdateParams", "Configuration"]
+__all__ = ["UARuleUpdateParams"]
 
 
 class UARuleUpdateParams(TypedDict, total=False):
     zone_identifier: Required[str]
     """Identifier"""
 
-    configuration: Required[Configuration]
-    """The rule configuration."""
-
-    mode: Required[Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"]]
-    """The action to apply to a matched request."""
-
-
-Configuration = Union[
-    AccessRuleIPConfigurationParam,
-    IPV6ConfigurationParam,
-    AccessRuleCIDRConfigurationParam,
-    ASNConfigurationParam,
-    CountryConfigurationParam,
-]
+    body: Required[object]
