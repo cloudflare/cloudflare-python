@@ -8,9 +8,4 @@ __all__ = ["FilterCreateParams"]
 
 
 class FilterCreateParams(TypedDict, total=False):
-    expression: Required[str]
-    """The filter expression.
-
-    For more information, refer to
-    [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
-    """
+    body: Required[object]

@@ -32,55 +32,7 @@ class TestRateLimits:
         with pytest.warns(DeprecationWarning):
             rate_limit = client.rate_limits.create(
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                action={},
-                match={},
-                period=900,
-                threshold=60,
-            )
-
-        assert_matches_type(RateLimitCreateResponse, rate_limit, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            rate_limit = client.rate_limits.create(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                action={
-                    "mode": "challenge",
-                    "response": {
-                        "body": "<error>This request has been rate-limited.</error>",
-                        "content_type": "text/xml",
-                    },
-                    "timeout": 86400,
-                },
-                match={
-                    "headers": [
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "ne",
-                            "value": "HIT",
-                        },
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "ne",
-                            "value": "HIT",
-                        },
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "ne",
-                            "value": "HIT",
-                        },
-                    ],
-                    "request": {
-                        "methods": ["GET", "POST"],
-                        "schemes": ["HTTP", "HTTPS"],
-                        "url": "*.example.org/path*",
-                    },
-                    "response": {"origin_traffic": True},
-                },
-                period=900,
-                threshold=60,
+                body={},
             )
 
         assert_matches_type(RateLimitCreateResponse, rate_limit, path=["response"])
@@ -91,10 +43,7 @@ class TestRateLimits:
         with pytest.warns(DeprecationWarning):
             response = client.rate_limits.with_raw_response.create(
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                action={},
-                match={},
-                period=900,
-                threshold=60,
+                body={},
             )
 
         assert response.is_closed is True
@@ -108,10 +57,7 @@ class TestRateLimits:
         with pytest.warns(DeprecationWarning):
             with client.rate_limits.with_streaming_response.create(
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                action={},
-                match={},
-                period=900,
-                threshold=60,
+                body={},
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -128,10 +74,7 @@ class TestRateLimits:
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 client.rate_limits.with_raw_response.create(
                     zone_identifier="",
-                    action={},
-                    match={},
-                    period=900,
-                    threshold=60,
+                    body={},
                 )
 
     @parametrize
@@ -248,56 +191,7 @@ class TestRateLimits:
             rate_limit = client.rate_limits.edit(
                 id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                action={},
-                match={},
-                period=900,
-                threshold=60,
-            )
-
-        assert_matches_type(RateLimitEditResponse, rate_limit, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            rate_limit = client.rate_limits.edit(
-                id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                action={
-                    "mode": "challenge",
-                    "response": {
-                        "body": "<error>This request has been rate-limited.</error>",
-                        "content_type": "text/xml",
-                    },
-                    "timeout": 86400,
-                },
-                match={
-                    "headers": [
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "ne",
-                            "value": "HIT",
-                        },
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "ne",
-                            "value": "HIT",
-                        },
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "ne",
-                            "value": "HIT",
-                        },
-                    ],
-                    "request": {
-                        "methods": ["GET", "POST"],
-                        "schemes": ["HTTP", "HTTPS"],
-                        "url": "*.example.org/path*",
-                    },
-                    "response": {"origin_traffic": True},
-                },
-                period=900,
-                threshold=60,
+                body={},
             )
 
         assert_matches_type(RateLimitEditResponse, rate_limit, path=["response"])
@@ -309,10 +203,7 @@ class TestRateLimits:
             response = client.rate_limits.with_raw_response.edit(
                 id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                action={},
-                match={},
-                period=900,
-                threshold=60,
+                body={},
             )
 
         assert response.is_closed is True
@@ -327,10 +218,7 @@ class TestRateLimits:
             with client.rate_limits.with_streaming_response.edit(
                 id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                action={},
-                match={},
-                period=900,
-                threshold=60,
+                body={},
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -348,20 +236,14 @@ class TestRateLimits:
                 client.rate_limits.with_raw_response.edit(
                     id="372e67954025e0ba6aaa6d586b9e0b59",
                     zone_identifier="",
-                    action={},
-                    match={},
-                    period=900,
-                    threshold=60,
+                    body={},
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
                 client.rate_limits.with_raw_response.edit(
                     id="",
                     zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                    action={},
-                    match={},
-                    period=900,
-                    threshold=60,
+                    body={},
                 )
 
     @parametrize
@@ -427,55 +309,7 @@ class TestAsyncRateLimits:
         with pytest.warns(DeprecationWarning):
             rate_limit = await async_client.rate_limits.create(
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                action={},
-                match={},
-                period=900,
-                threshold=60,
-            )
-
-        assert_matches_type(RateLimitCreateResponse, rate_limit, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            rate_limit = await async_client.rate_limits.create(
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                action={
-                    "mode": "challenge",
-                    "response": {
-                        "body": "<error>This request has been rate-limited.</error>",
-                        "content_type": "text/xml",
-                    },
-                    "timeout": 86400,
-                },
-                match={
-                    "headers": [
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "ne",
-                            "value": "HIT",
-                        },
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "ne",
-                            "value": "HIT",
-                        },
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "ne",
-                            "value": "HIT",
-                        },
-                    ],
-                    "request": {
-                        "methods": ["GET", "POST"],
-                        "schemes": ["HTTP", "HTTPS"],
-                        "url": "*.example.org/path*",
-                    },
-                    "response": {"origin_traffic": True},
-                },
-                period=900,
-                threshold=60,
+                body={},
             )
 
         assert_matches_type(RateLimitCreateResponse, rate_limit, path=["response"])
@@ -486,10 +320,7 @@ class TestAsyncRateLimits:
         with pytest.warns(DeprecationWarning):
             response = await async_client.rate_limits.with_raw_response.create(
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                action={},
-                match={},
-                period=900,
-                threshold=60,
+                body={},
             )
 
         assert response.is_closed is True
@@ -503,10 +334,7 @@ class TestAsyncRateLimits:
         with pytest.warns(DeprecationWarning):
             async with async_client.rate_limits.with_streaming_response.create(
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                action={},
-                match={},
-                period=900,
-                threshold=60,
+                body={},
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -523,10 +351,7 @@ class TestAsyncRateLimits:
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 await async_client.rate_limits.with_raw_response.create(
                     zone_identifier="",
-                    action={},
-                    match={},
-                    period=900,
-                    threshold=60,
+                    body={},
                 )
 
     @parametrize
@@ -643,56 +468,7 @@ class TestAsyncRateLimits:
             rate_limit = await async_client.rate_limits.edit(
                 id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                action={},
-                match={},
-                period=900,
-                threshold=60,
-            )
-
-        assert_matches_type(RateLimitEditResponse, rate_limit, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        with pytest.warns(DeprecationWarning):
-            rate_limit = await async_client.rate_limits.edit(
-                id="372e67954025e0ba6aaa6d586b9e0b59",
-                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                action={
-                    "mode": "challenge",
-                    "response": {
-                        "body": "<error>This request has been rate-limited.</error>",
-                        "content_type": "text/xml",
-                    },
-                    "timeout": 86400,
-                },
-                match={
-                    "headers": [
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "ne",
-                            "value": "HIT",
-                        },
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "ne",
-                            "value": "HIT",
-                        },
-                        {
-                            "name": "Cf-Cache-Status",
-                            "op": "ne",
-                            "value": "HIT",
-                        },
-                    ],
-                    "request": {
-                        "methods": ["GET", "POST"],
-                        "schemes": ["HTTP", "HTTPS"],
-                        "url": "*.example.org/path*",
-                    },
-                    "response": {"origin_traffic": True},
-                },
-                period=900,
-                threshold=60,
+                body={},
             )
 
         assert_matches_type(RateLimitEditResponse, rate_limit, path=["response"])
@@ -704,10 +480,7 @@ class TestAsyncRateLimits:
             response = await async_client.rate_limits.with_raw_response.edit(
                 id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                action={},
-                match={},
-                period=900,
-                threshold=60,
+                body={},
             )
 
         assert response.is_closed is True
@@ -722,10 +495,7 @@ class TestAsyncRateLimits:
             async with async_client.rate_limits.with_streaming_response.edit(
                 id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                action={},
-                match={},
-                period=900,
-                threshold=60,
+                body={},
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -743,20 +513,14 @@ class TestAsyncRateLimits:
                 await async_client.rate_limits.with_raw_response.edit(
                     id="372e67954025e0ba6aaa6d586b9e0b59",
                     zone_identifier="",
-                    action={},
-                    match={},
-                    period=900,
-                    threshold=60,
+                    body={},
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
                 await async_client.rate_limits.with_raw_response.edit(
                     id="",
                     zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                    action={},
-                    match={},
-                    period=900,
-                    threshold=60,
+                    body={},
                 )
 
     @parametrize
