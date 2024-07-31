@@ -29,7 +29,7 @@ class TestFilters:
         with pytest.warns(DeprecationWarning):
             filter = client.filters.create(
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
             )
 
         assert_matches_type(Optional[FilterCreateResponse], filter, path=["response"])
@@ -40,7 +40,7 @@ class TestFilters:
         with pytest.warns(DeprecationWarning):
             response = client.filters.with_raw_response.create(
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
             )
 
         assert response.is_closed is True
@@ -54,7 +54,7 @@ class TestFilters:
         with pytest.warns(DeprecationWarning):
             with client.filters.with_streaming_response.create(
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -71,7 +71,7 @@ class TestFilters:
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 client.filters.with_raw_response.create(
                     zone_identifier="",
-                    body={},
+                    expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
                 )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -311,7 +311,7 @@ class TestAsyncFilters:
         with pytest.warns(DeprecationWarning):
             filter = await async_client.filters.create(
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
             )
 
         assert_matches_type(Optional[FilterCreateResponse], filter, path=["response"])
@@ -322,7 +322,7 @@ class TestAsyncFilters:
         with pytest.warns(DeprecationWarning):
             response = await async_client.filters.with_raw_response.create(
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
             )
 
         assert response.is_closed is True
@@ -336,7 +336,7 @@ class TestAsyncFilters:
         with pytest.warns(DeprecationWarning):
             async with async_client.filters.with_streaming_response.create(
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -353,7 +353,7 @@ class TestAsyncFilters:
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 await async_client.filters.with_raw_response.create(
                     zone_identifier="",
-                    body={},
+                    expression='(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
                 )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
