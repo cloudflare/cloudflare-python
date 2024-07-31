@@ -125,9 +125,11 @@ class AccessRulesResource(SyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        configuration: access_rule_list_params.Configuration | NotGiven = NOT_GIVEN,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        egs_pagination: access_rule_list_params.EgsPagination | NotGiven = NOT_GIVEN,
-        filters: access_rule_list_params.Filters | NotGiven = NOT_GIVEN,
+        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
+        mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"] | NotGiven = NOT_GIVEN,
+        notes: str | NotGiven = NOT_GIVEN,
         order: Literal["configuration.target", "configuration.value", "mode"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
@@ -150,6 +152,15 @@ class AccessRulesResource(SyncAPIResource):
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           direction: The direction used to sort returned rules.
+
+          match: When set to `all`, all the search requirements must match. When set to `any`,
+              only one of the search requirements has to match.
+
+          mode: The action to apply to a matched request.
+
+          notes: The string to search for in the notes of existing IP Access rules. Notes: For
+              example, the string 'attack' would match IP Access rules with notes 'Attack
+              26/02' and 'Attack 27/02'. The search is case insensitive.
 
           order: The field used to sort returned rules.
 
@@ -187,9 +198,11 @@ class AccessRulesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "configuration": configuration,
                         "direction": direction,
-                        "egs_pagination": egs_pagination,
-                        "filters": filters,
+                        "match": match,
+                        "mode": mode,
+                        "notes": notes,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
@@ -202,7 +215,7 @@ class AccessRulesResource(SyncAPIResource):
 
     def delete(
         self,
-        identifier: object,
+        identifier: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -219,6 +232,8 @@ class AccessRulesResource(SyncAPIResource):
         Note: This operation will affect all zones in the account or zone.
 
         Args:
+          identifier: The unique identifier of the resource.
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
@@ -231,6 +246,8 @@ class AccessRulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -257,7 +274,7 @@ class AccessRulesResource(SyncAPIResource):
 
     def edit(
         self,
-        identifier: object,
+        identifier: str,
         *,
         configuration: access_rule_edit_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
@@ -277,6 +294,8 @@ class AccessRulesResource(SyncAPIResource):
         Note: This operation will affect all zones in the account or zone.
 
         Args:
+          identifier: The unique identifier of the resource.
+
           configuration: The rule configuration.
 
           mode: The action to apply to a matched request.
@@ -295,6 +314,8 @@ class AccessRulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -334,7 +355,7 @@ class AccessRulesResource(SyncAPIResource):
 
     def get(
         self,
-        identifier: object,
+        identifier: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -349,6 +370,8 @@ class AccessRulesResource(SyncAPIResource):
         Fetches the details of an IP Access rule defined.
 
         Args:
+          identifier: The unique identifier of the resource.
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
@@ -361,6 +384,8 @@ class AccessRulesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -484,9 +509,11 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
+        configuration: access_rule_list_params.Configuration | NotGiven = NOT_GIVEN,
         direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-        egs_pagination: access_rule_list_params.EgsPagination | NotGiven = NOT_GIVEN,
-        filters: access_rule_list_params.Filters | NotGiven = NOT_GIVEN,
+        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
+        mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"] | NotGiven = NOT_GIVEN,
+        notes: str | NotGiven = NOT_GIVEN,
         order: Literal["configuration.target", "configuration.value", "mode"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
@@ -509,6 +536,15 @@ class AsyncAccessRulesResource(AsyncAPIResource):
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
 
           direction: The direction used to sort returned rules.
+
+          match: When set to `all`, all the search requirements must match. When set to `any`,
+              only one of the search requirements has to match.
+
+          mode: The action to apply to a matched request.
+
+          notes: The string to search for in the notes of existing IP Access rules. Notes: For
+              example, the string 'attack' would match IP Access rules with notes 'Attack
+              26/02' and 'Attack 27/02'. The search is case insensitive.
 
           order: The field used to sort returned rules.
 
@@ -546,9 +582,11 @@ class AsyncAccessRulesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "configuration": configuration,
                         "direction": direction,
-                        "egs_pagination": egs_pagination,
-                        "filters": filters,
+                        "match": match,
+                        "mode": mode,
+                        "notes": notes,
                         "order": order,
                         "page": page,
                         "per_page": per_page,
@@ -561,7 +599,7 @@ class AsyncAccessRulesResource(AsyncAPIResource):
 
     async def delete(
         self,
-        identifier: object,
+        identifier: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -578,6 +616,8 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         Note: This operation will affect all zones in the account or zone.
 
         Args:
+          identifier: The unique identifier of the resource.
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
@@ -590,6 +630,8 @@ class AsyncAccessRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -616,7 +658,7 @@ class AsyncAccessRulesResource(AsyncAPIResource):
 
     async def edit(
         self,
-        identifier: object,
+        identifier: str,
         *,
         configuration: access_rule_edit_params.Configuration,
         mode: Literal["block", "challenge", "whitelist", "js_challenge", "managed_challenge"],
@@ -636,6 +678,8 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         Note: This operation will affect all zones in the account or zone.
 
         Args:
+          identifier: The unique identifier of the resource.
+
           configuration: The rule configuration.
 
           mode: The action to apply to a matched request.
@@ -654,6 +698,8 @@ class AsyncAccessRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -693,7 +739,7 @@ class AsyncAccessRulesResource(AsyncAPIResource):
 
     async def get(
         self,
-        identifier: object,
+        identifier: str,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -708,6 +754,8 @@ class AsyncAccessRulesResource(AsyncAPIResource):
         Fetches the details of an IP Access rule defined.
 
         Args:
+          identifier: The unique identifier of the resource.
+
           account_id: The Account ID to use for this endpoint. Mutually exclusive with the Zone ID.
 
           zone_id: The Zone ID to use for this endpoint. Mutually exclusive with the Account ID.
@@ -720,6 +768,8 @@ class AsyncAccessRulesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not identifier:
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
