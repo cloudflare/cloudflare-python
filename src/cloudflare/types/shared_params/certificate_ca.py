@@ -6,4 +6,4 @@ from typing_extensions import Literal
 
 __all__ = ["CertificateCA"]
 
-CertificateCA = Literal["digicert", "google", "lets_encrypt"]
+CertificateCA = Literal["digicert", "google", "lets_encrypt", "ssl_com"]
