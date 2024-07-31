@@ -21,10 +21,6 @@ class AIGatewayGetResponse(BaseModel):
 
     created_at: datetime
 
-    improved_logs: bool
-
-    logpush: bool
-
     modified_at: datetime
 
     rate_limiting_interval: Optional[int] = None
@@ -32,5 +28,9 @@ class AIGatewayGetResponse(BaseModel):
     rate_limiting_limit: Optional[int] = None
 
     rate_limiting_technique: Literal["fixed", "sliding"]
+
+    improved_logs: Optional[bool] = None
+
+    logpush: Optional[bool] = None
 
     logpush_public_key: Optional[str] = None
