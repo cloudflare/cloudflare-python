@@ -12,17 +12,18 @@ class Settings(BaseModel):
     """The maximum number of messages to include in a batch"""
 
     max_retries: Optional[float] = None
+    """The maximum number of retries"""
 
     max_wait_time_ms: Optional[float] = None
 
 
 class Consumer(BaseModel):
-    created_on: Optional[object] = None
+    created_on: Optional[str] = None
 
-    environment: Optional[object] = None
+    environment: Optional[str] = None
 
-    queue_name: Optional[object] = None
+    queue_name: Optional[str] = None
 
-    service: Optional[object] = None
+    service: Optional[str] = None
 
     settings: Optional[Settings] = None

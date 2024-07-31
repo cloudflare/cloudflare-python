@@ -8,9 +8,9 @@ __all__ = ["QueueUpdated"]
 
 
 class QueueUpdated(BaseModel):
-    created_on: Optional[object] = None
+    created_on: Optional[str] = None
 
-    modified_on: Optional[object] = None
+    modified_on: Optional[str] = None
 
     queue_id: Optional[str] = None
 
