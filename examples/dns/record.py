@@ -1,5 +1,6 @@
 import os
 import sys
+
 from cloudflare import Cloudflare
 
 zone_id = os.getenv("CLOUDFLARE_ZONE_ID")
