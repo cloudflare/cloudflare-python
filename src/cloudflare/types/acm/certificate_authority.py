@@ -4,4 +4,4 @@ from typing_extensions import Literal
 
 __all__ = ["CertificateAuthority"]
 
-CertificateAuthority = Literal["google", "lets_encrypt"]
+CertificateAuthority = Literal["google", "lets_encrypt", "ssl_com"]
