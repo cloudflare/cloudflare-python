@@ -62,9 +62,9 @@ from ......_response import (
 )
 from ......_wrappers import ResultWrapper
 from ......_base_client import make_request_options
-from ......types.workers.script import Script as WorkersScript
 from ......types.workers_for_platforms.dispatch.namespaces import script_delete_params, script_update_params
-from ......types.workers_for_platforms.dispatch.namespaces.script import Script as NamespacesScript
+from ......types.workers_for_platforms.dispatch.namespaces.script import Script
+from ......types.workers_for_platforms.dispatch.namespaces.script_update_response import ScriptUpdateResponse
 
 __all__ = ["ScriptsResource", "AsyncScriptsResource"]
 
@@ -113,7 +113,7 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersScript]:
+    ) -> Optional[ScriptUpdateResponse]:
         """Upload a worker module to a Workers for Platforms namespace.
 
         You can find an
@@ -159,7 +159,7 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersScript]:
+    ) -> Optional[ScriptUpdateResponse]:
         """Upload a worker module to a Workers for Platforms namespace.
 
         You can find an
@@ -202,7 +202,7 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersScript]:
+    ) -> Optional[ScriptUpdateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -224,9 +224,9 @@ class ScriptsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[WorkersScript]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ScriptUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersScript]], ResultWrapper[WorkersScript]),
+            cast_to=cast(Type[Optional[ScriptUpdateResponse]], ResultWrapper[ScriptUpdateResponse]),
         )
 
     def delete(
@@ -298,7 +298,7 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NamespacesScript]:
+    ) -> Optional[Script]:
         """
         Fetch information about a script uploaded to a Workers for Platforms namespace.
 
@@ -330,9 +330,9 @@ class ScriptsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[NamespacesScript]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NamespacesScript]], ResultWrapper[NamespacesScript]),
+            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
         )
 
 
@@ -380,7 +380,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersScript]:
+    ) -> Optional[ScriptUpdateResponse]:
         """Upload a worker module to a Workers for Platforms namespace.
 
         You can find an
@@ -426,7 +426,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersScript]:
+    ) -> Optional[ScriptUpdateResponse]:
         """Upload a worker module to a Workers for Platforms namespace.
 
         You can find an
@@ -469,7 +469,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[WorkersScript]:
+    ) -> Optional[ScriptUpdateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not dispatch_namespace:
@@ -491,9 +491,9 @@ class AsyncScriptsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[WorkersScript]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ScriptUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[WorkersScript]], ResultWrapper[WorkersScript]),
+            cast_to=cast(Type[Optional[ScriptUpdateResponse]], ResultWrapper[ScriptUpdateResponse]),
         )
 
     async def delete(
@@ -565,7 +565,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[NamespacesScript]:
+    ) -> Optional[Script]:
         """
         Fetch information about a script uploaded to a Workers for Platforms namespace.
 
@@ -597,9 +597,9 @@ class AsyncScriptsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[NamespacesScript]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[NamespacesScript]], ResultWrapper[NamespacesScript]),
+            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
         )
 
 
