@@ -27,6 +27,7 @@ from .service_binding_param import ServiceBindingParam as ServiceBindingParam
 from .single_step_migration import SingleStepMigration as SingleStepMigration
 from .worker_metadata_param import WorkerMetadataParam as WorkerMetadataParam
 from .durable_object_binding import DurableObjectBinding as DurableObjectBinding
+from .script_update_response import ScriptUpdateResponse as ScriptUpdateResponse
 from .subdomain_get_response import SubdomainGetResponse as SubdomainGetResponse
 from .mtls_cert_binding_param import MTLSCERTBindingParam as MTLSCERTBindingParam
 from .placement_configuration import PlacementConfiguration as PlacementConfiguration

@@ -15,3 +15,5 @@ class VersionCreateResponse(BaseModel):
     metadata: Optional[object] = None
 
     number: Optional[float] = None
+
+    startup_time_ms: Optional[int] = None
