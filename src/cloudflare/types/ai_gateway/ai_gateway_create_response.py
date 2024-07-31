@@ -21,6 +21,10 @@ class Task(BaseModel):
 
     created_at: datetime
 
+    improved_logs: bool
+
+    logpush: bool
+
     modified_at: datetime
 
     rate_limiting_interval: Optional[int] = None
@@ -28,6 +32,8 @@ class Task(BaseModel):
     rate_limiting_limit: Optional[int] = None
 
     rate_limiting_technique: Literal["fixed", "sliding"]
+
+    logpush_public_key: Optional[str] = None
 
 
 class AIGatewayCreateResponse(BaseModel):

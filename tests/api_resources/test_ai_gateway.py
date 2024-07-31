@@ -32,9 +32,28 @@ class TestAIGateway:
             cache_invalidate_on_update=True,
             cache_ttl=0,
             collect_logs=True,
+            improved_logs=True,
+            logpush=True,
             rate_limiting_interval=0,
             rate_limiting_limit=0,
             rate_limiting_technique="fixed",
+        )
+        assert_matches_type(AIGatewayCreateResponse, ai_gateway, path=["response"])
+
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        ai_gateway = client.ai_gateway.create(
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
+            id="my-gateway",
+            cache_invalidate_on_update=True,
+            cache_ttl=0,
+            collect_logs=True,
+            improved_logs=True,
+            logpush=True,
+            rate_limiting_interval=0,
+            rate_limiting_limit=0,
+            rate_limiting_technique="fixed",
+            logpush_public_key="xxxxxxxxxxxxxxxx",
         )
         assert_matches_type(AIGatewayCreateResponse, ai_gateway, path=["response"])
 
@@ -46,6 +65,8 @@ class TestAIGateway:
             cache_invalidate_on_update=True,
             cache_ttl=0,
             collect_logs=True,
+            improved_logs=True,
+            logpush=True,
             rate_limiting_interval=0,
             rate_limiting_limit=0,
             rate_limiting_technique="fixed",
@@ -64,6 +85,8 @@ class TestAIGateway:
             cache_invalidate_on_update=True,
             cache_ttl=0,
             collect_logs=True,
+            improved_logs=True,
+            logpush=True,
             rate_limiting_interval=0,
             rate_limiting_limit=0,
             rate_limiting_technique="fixed",
@@ -85,6 +108,8 @@ class TestAIGateway:
                 cache_invalidate_on_update=True,
                 cache_ttl=0,
                 collect_logs=True,
+                improved_logs=True,
+                logpush=True,
                 rate_limiting_interval=0,
                 rate_limiting_limit=0,
                 rate_limiting_technique="fixed",
@@ -98,9 +123,28 @@ class TestAIGateway:
             cache_invalidate_on_update=True,
             cache_ttl=0,
             collect_logs=True,
+            improved_logs=True,
+            logpush=True,
             rate_limiting_interval=0,
             rate_limiting_limit=0,
             rate_limiting_technique="fixed",
+        )
+        assert_matches_type(AIGatewayUpdateResponse, ai_gateway, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        ai_gateway = client.ai_gateway.update(
+            id="my-gateway",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
+            cache_invalidate_on_update=True,
+            cache_ttl=0,
+            collect_logs=True,
+            improved_logs=True,
+            logpush=True,
+            rate_limiting_interval=0,
+            rate_limiting_limit=0,
+            rate_limiting_technique="fixed",
+            logpush_public_key="xxxxxxxxxxxxxxxx",
         )
         assert_matches_type(AIGatewayUpdateResponse, ai_gateway, path=["response"])
 
@@ -112,6 +156,8 @@ class TestAIGateway:
             cache_invalidate_on_update=True,
             cache_ttl=0,
             collect_logs=True,
+            improved_logs=True,
+            logpush=True,
             rate_limiting_interval=0,
             rate_limiting_limit=0,
             rate_limiting_technique="fixed",
@@ -130,6 +176,8 @@ class TestAIGateway:
             cache_invalidate_on_update=True,
             cache_ttl=0,
             collect_logs=True,
+            improved_logs=True,
+            logpush=True,
             rate_limiting_interval=0,
             rate_limiting_limit=0,
             rate_limiting_technique="fixed",
@@ -151,6 +199,8 @@ class TestAIGateway:
                 cache_invalidate_on_update=True,
                 cache_ttl=0,
                 collect_logs=True,
+                improved_logs=True,
+                logpush=True,
                 rate_limiting_interval=0,
                 rate_limiting_limit=0,
                 rate_limiting_technique="fixed",
@@ -163,6 +213,8 @@ class TestAIGateway:
                 cache_invalidate_on_update=True,
                 cache_ttl=0,
                 collect_logs=True,
+                improved_logs=True,
+                logpush=True,
                 rate_limiting_interval=0,
                 rate_limiting_limit=0,
                 rate_limiting_technique="fixed",
@@ -325,9 +377,28 @@ class TestAsyncAIGateway:
             cache_invalidate_on_update=True,
             cache_ttl=0,
             collect_logs=True,
+            improved_logs=True,
+            logpush=True,
             rate_limiting_interval=0,
             rate_limiting_limit=0,
             rate_limiting_technique="fixed",
+        )
+        assert_matches_type(AIGatewayCreateResponse, ai_gateway, path=["response"])
+
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        ai_gateway = await async_client.ai_gateway.create(
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
+            id="my-gateway",
+            cache_invalidate_on_update=True,
+            cache_ttl=0,
+            collect_logs=True,
+            improved_logs=True,
+            logpush=True,
+            rate_limiting_interval=0,
+            rate_limiting_limit=0,
+            rate_limiting_technique="fixed",
+            logpush_public_key="xxxxxxxxxxxxxxxx",
         )
         assert_matches_type(AIGatewayCreateResponse, ai_gateway, path=["response"])
 
@@ -339,6 +410,8 @@ class TestAsyncAIGateway:
             cache_invalidate_on_update=True,
             cache_ttl=0,
             collect_logs=True,
+            improved_logs=True,
+            logpush=True,
             rate_limiting_interval=0,
             rate_limiting_limit=0,
             rate_limiting_technique="fixed",
@@ -357,6 +430,8 @@ class TestAsyncAIGateway:
             cache_invalidate_on_update=True,
             cache_ttl=0,
             collect_logs=True,
+            improved_logs=True,
+            logpush=True,
             rate_limiting_interval=0,
             rate_limiting_limit=0,
             rate_limiting_technique="fixed",
@@ -378,6 +453,8 @@ class TestAsyncAIGateway:
                 cache_invalidate_on_update=True,
                 cache_ttl=0,
                 collect_logs=True,
+                improved_logs=True,
+                logpush=True,
                 rate_limiting_interval=0,
                 rate_limiting_limit=0,
                 rate_limiting_technique="fixed",
@@ -391,9 +468,28 @@ class TestAsyncAIGateway:
             cache_invalidate_on_update=True,
             cache_ttl=0,
             collect_logs=True,
+            improved_logs=True,
+            logpush=True,
             rate_limiting_interval=0,
             rate_limiting_limit=0,
             rate_limiting_technique="fixed",
+        )
+        assert_matches_type(AIGatewayUpdateResponse, ai_gateway, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        ai_gateway = await async_client.ai_gateway.update(
+            id="my-gateway",
+            account_id="3ebbcb006d4d46d7bb6a8c7f14676cb0",
+            cache_invalidate_on_update=True,
+            cache_ttl=0,
+            collect_logs=True,
+            improved_logs=True,
+            logpush=True,
+            rate_limiting_interval=0,
+            rate_limiting_limit=0,
+            rate_limiting_technique="fixed",
+            logpush_public_key="xxxxxxxxxxxxxxxx",
         )
         assert_matches_type(AIGatewayUpdateResponse, ai_gateway, path=["response"])
 
@@ -405,6 +501,8 @@ class TestAsyncAIGateway:
             cache_invalidate_on_update=True,
             cache_ttl=0,
             collect_logs=True,
+            improved_logs=True,
+            logpush=True,
             rate_limiting_interval=0,
             rate_limiting_limit=0,
             rate_limiting_technique="fixed",
@@ -423,6 +521,8 @@ class TestAsyncAIGateway:
             cache_invalidate_on_update=True,
             cache_ttl=0,
             collect_logs=True,
+            improved_logs=True,
+            logpush=True,
             rate_limiting_interval=0,
             rate_limiting_limit=0,
             rate_limiting_technique="fixed",
@@ -444,6 +544,8 @@ class TestAsyncAIGateway:
                 cache_invalidate_on_update=True,
                 cache_ttl=0,
                 collect_logs=True,
+                improved_logs=True,
+                logpush=True,
                 rate_limiting_interval=0,
                 rate_limiting_limit=0,
                 rate_limiting_technique="fixed",
@@ -456,6 +558,8 @@ class TestAsyncAIGateway:
                 cache_invalidate_on_update=True,
                 cache_ttl=0,
                 collect_logs=True,
+                improved_logs=True,
+                logpush=True,
                 rate_limiting_interval=0,
                 rate_limiting_limit=0,
                 rate_limiting_technique="fixed",

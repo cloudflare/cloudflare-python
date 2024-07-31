@@ -20,8 +20,14 @@ class AIGatewayCreateParams(TypedDict, total=False):
 
     collect_logs: Required[bool]
 
+    improved_logs: Required[bool]
+
+    logpush: Required[bool]
+
     rate_limiting_interval: Required[Optional[int]]
 
     rate_limiting_limit: Required[Optional[int]]
 
     rate_limiting_technique: Required[Literal["fixed", "sliding"]]
+
+    logpush_public_key: str

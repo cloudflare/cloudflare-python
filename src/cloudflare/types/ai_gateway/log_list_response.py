@@ -33,6 +33,8 @@ class LogListResponse(BaseModel):
 
     tokens_out: int
 
+    cost: Optional[float] = None
+
     metadata: Optional[str] = None
 
     request_content_type: Optional[str] = None
