@@ -107,14 +107,20 @@ class TestAccessRules:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.list(
             account_id="account_id",
-            configuration={
-                "target": "ip",
-                "value": "198.51.100.4",
-            },
             direction="desc",
-            match="any",
-            mode="challenge",
-            notes="my note",
+            egs_pagination={
+                "json": {
+                    "page": 1,
+                    "per_page": 1,
+                }
+            },
+            filters={
+                "configuration_target": "ip",
+                "configuration_value": "198.51.100.4",
+                "match": "any",
+                "mode": "challenge",
+                "notes": "my note",
+            },
             order="mode",
             page=1,
             per_page=20,
@@ -164,7 +170,7 @@ class TestAccessRules:
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.delete(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             account_id="account_id",
         )
         assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
@@ -173,7 +179,7 @@ class TestAccessRules:
     @parametrize
     def test_method_delete_with_all_params(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.delete(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             account_id="account_id",
         )
         assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
@@ -182,7 +188,7 @@ class TestAccessRules:
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
         response = client.firewall.access_rules.with_raw_response.delete(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             account_id="account_id",
         )
 
@@ -195,7 +201,7 @@ class TestAccessRules:
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
         with client.firewall.access_rules.with_streaming_response.delete(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -209,21 +215,15 @@ class TestAccessRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-            client.firewall.access_rules.with_raw_response.delete(
-                identifier="",
-                account_id="account_id",
-            )
-
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.firewall.access_rules.with_raw_response.delete(
-                identifier="de677e5818985db1285d0e80225f06e5",
+                identifier={},
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.firewall.access_rules.with_raw_response.delete(
-                identifier="de677e5818985db1285d0e80225f06e5",
+                identifier={},
                 account_id="account_id",
             )
 
@@ -231,7 +231,7 @@ class TestAccessRules:
     @parametrize
     def test_method_edit(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.edit(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             configuration={},
             mode="challenge",
             account_id="account_id",
@@ -242,7 +242,7 @@ class TestAccessRules:
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.edit(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             configuration={
                 "target": "ip",
                 "value": "198.51.100.4",
@@ -257,7 +257,7 @@ class TestAccessRules:
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
         response = client.firewall.access_rules.with_raw_response.edit(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             configuration={},
             mode="challenge",
             account_id="account_id",
@@ -272,7 +272,7 @@ class TestAccessRules:
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
         with client.firewall.access_rules.with_streaming_response.edit(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             configuration={},
             mode="challenge",
             account_id="account_id",
@@ -288,17 +288,9 @@ class TestAccessRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_edit(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-            client.firewall.access_rules.with_raw_response.edit(
-                identifier="",
-                configuration={},
-                mode="challenge",
-                account_id="account_id",
-            )
-
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.firewall.access_rules.with_raw_response.edit(
-                identifier="de677e5818985db1285d0e80225f06e5",
+                identifier={},
                 configuration={},
                 mode="challenge",
                 account_id="",
@@ -306,7 +298,7 @@ class TestAccessRules:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.firewall.access_rules.with_raw_response.edit(
-                identifier="de677e5818985db1285d0e80225f06e5",
+                identifier={},
                 configuration={},
                 mode="challenge",
                 account_id="account_id",
@@ -316,7 +308,7 @@ class TestAccessRules:
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.get(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             account_id="account_id",
         )
         assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
@@ -325,7 +317,7 @@ class TestAccessRules:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.get(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             account_id="account_id",
         )
         assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
@@ -334,7 +326,7 @@ class TestAccessRules:
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.firewall.access_rules.with_raw_response.get(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             account_id="account_id",
         )
 
@@ -347,7 +339,7 @@ class TestAccessRules:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.firewall.access_rules.with_streaming_response.get(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -361,21 +353,15 @@ class TestAccessRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-            client.firewall.access_rules.with_raw_response.get(
-                identifier="",
-                account_id="account_id",
-            )
-
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.firewall.access_rules.with_raw_response.get(
-                identifier="de677e5818985db1285d0e80225f06e5",
+                identifier={},
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.firewall.access_rules.with_raw_response.get(
-                identifier="de677e5818985db1285d0e80225f06e5",
+                identifier={},
                 account_id="account_id",
             )
 
@@ -467,14 +453,20 @@ class TestAsyncAccessRules:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.list(
             account_id="account_id",
-            configuration={
-                "target": "ip",
-                "value": "198.51.100.4",
-            },
             direction="desc",
-            match="any",
-            mode="challenge",
-            notes="my note",
+            egs_pagination={
+                "json": {
+                    "page": 1,
+                    "per_page": 1,
+                }
+            },
+            filters={
+                "configuration_target": "ip",
+                "configuration_value": "198.51.100.4",
+                "match": "any",
+                "mode": "challenge",
+                "notes": "my note",
+            },
             order="mode",
             page=1,
             per_page=20,
@@ -524,7 +516,7 @@ class TestAsyncAccessRules:
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.delete(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             account_id="account_id",
         )
         assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
@@ -533,7 +525,7 @@ class TestAsyncAccessRules:
     @parametrize
     async def test_method_delete_with_all_params(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.delete(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             account_id="account_id",
         )
         assert_matches_type(Optional[AccessRuleDeleteResponse], access_rule, path=["response"])
@@ -542,7 +534,7 @@ class TestAsyncAccessRules:
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.access_rules.with_raw_response.delete(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             account_id="account_id",
         )
 
@@ -555,7 +547,7 @@ class TestAsyncAccessRules:
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.access_rules.with_streaming_response.delete(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -569,21 +561,15 @@ class TestAsyncAccessRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-            await async_client.firewall.access_rules.with_raw_response.delete(
-                identifier="",
-                account_id="account_id",
-            )
-
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.firewall.access_rules.with_raw_response.delete(
-                identifier="de677e5818985db1285d0e80225f06e5",
+                identifier={},
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.firewall.access_rules.with_raw_response.delete(
-                identifier="de677e5818985db1285d0e80225f06e5",
+                identifier={},
                 account_id="account_id",
             )
 
@@ -591,7 +577,7 @@ class TestAsyncAccessRules:
     @parametrize
     async def test_method_edit(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.edit(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             configuration={},
             mode="challenge",
             account_id="account_id",
@@ -602,7 +588,7 @@ class TestAsyncAccessRules:
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.edit(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             configuration={
                 "target": "ip",
                 "value": "198.51.100.4",
@@ -617,7 +603,7 @@ class TestAsyncAccessRules:
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.access_rules.with_raw_response.edit(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             configuration={},
             mode="challenge",
             account_id="account_id",
@@ -632,7 +618,7 @@ class TestAsyncAccessRules:
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.access_rules.with_streaming_response.edit(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             configuration={},
             mode="challenge",
             account_id="account_id",
@@ -648,17 +634,9 @@ class TestAsyncAccessRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_edit(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-            await async_client.firewall.access_rules.with_raw_response.edit(
-                identifier="",
-                configuration={},
-                mode="challenge",
-                account_id="account_id",
-            )
-
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.firewall.access_rules.with_raw_response.edit(
-                identifier="de677e5818985db1285d0e80225f06e5",
+                identifier={},
                 configuration={},
                 mode="challenge",
                 account_id="",
@@ -666,7 +644,7 @@ class TestAsyncAccessRules:
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.firewall.access_rules.with_raw_response.edit(
-                identifier="de677e5818985db1285d0e80225f06e5",
+                identifier={},
                 configuration={},
                 mode="challenge",
                 account_id="account_id",
@@ -676,7 +654,7 @@ class TestAsyncAccessRules:
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.get(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             account_id="account_id",
         )
         assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
@@ -685,7 +663,7 @@ class TestAsyncAccessRules:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.get(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             account_id="account_id",
         )
         assert_matches_type(AccessRuleGetResponse, access_rule, path=["response"])
@@ -694,7 +672,7 @@ class TestAsyncAccessRules:
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.access_rules.with_raw_response.get(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             account_id="account_id",
         )
 
@@ -707,7 +685,7 @@ class TestAsyncAccessRules:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.access_rules.with_streaming_response.get(
-            identifier="de677e5818985db1285d0e80225f06e5",
+            identifier={},
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -721,20 +699,14 @@ class TestAsyncAccessRules:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
-        with pytest.raises(ValueError, match=r"Expected a non-empty value for `identifier` but received ''"):
-            await async_client.firewall.access_rules.with_raw_response.get(
-                identifier="",
-                account_id="account_id",
-            )
-
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.firewall.access_rules.with_raw_response.get(
-                identifier="de677e5818985db1285d0e80225f06e5",
+                identifier={},
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.firewall.access_rules.with_raw_response.get(
-                identifier="de677e5818985db1285d0e80225f06e5",
+                identifier={},
                 account_id="account_id",
             )

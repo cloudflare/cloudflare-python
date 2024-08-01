@@ -29,21 +29,7 @@ class TestUARules:
     def test_method_create(self, client: Cloudflare) -> None:
         ua_rule = client.firewall.ua_rules.create(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={},
-            mode="challenge",
-        )
-        assert_matches_type(UARuleCreateResponse, ua_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
-        ua_rule = client.firewall.ua_rules.create(
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={
-                "target": "ip",
-                "value": "198.51.100.4",
-            },
-            mode="challenge",
+            body={},
         )
         assert_matches_type(UARuleCreateResponse, ua_rule, path=["response"])
 
@@ -52,8 +38,7 @@ class TestUARules:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.firewall.ua_rules.with_raw_response.create(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={},
-            mode="challenge",
+            body={},
         )
 
         assert response.is_closed is True
@@ -66,8 +51,7 @@ class TestUARules:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.firewall.ua_rules.with_streaming_response.create(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={},
-            mode="challenge",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -83,8 +67,7 @@ class TestUARules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             client.firewall.ua_rules.with_raw_response.create(
                 zone_identifier="",
-                configuration={},
-                mode="challenge",
+                body={},
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -93,22 +76,7 @@ class TestUARules:
         ua_rule = client.firewall.ua_rules.update(
             id="372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={},
-            mode="challenge",
-        )
-        assert_matches_type(UARuleUpdateResponse, ua_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
-        ua_rule = client.firewall.ua_rules.update(
-            id="372e67954025e0ba6aaa6d586b9e0b59",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={
-                "target": "ip",
-                "value": "198.51.100.4",
-            },
-            mode="challenge",
+            body={},
         )
         assert_matches_type(UARuleUpdateResponse, ua_rule, path=["response"])
 
@@ -118,8 +86,7 @@ class TestUARules:
         response = client.firewall.ua_rules.with_raw_response.update(
             id="372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={},
-            mode="challenge",
+            body={},
         )
 
         assert response.is_closed is True
@@ -133,8 +100,7 @@ class TestUARules:
         with client.firewall.ua_rules.with_streaming_response.update(
             id="372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={},
-            mode="challenge",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -151,16 +117,14 @@ class TestUARules:
             client.firewall.ua_rules.with_raw_response.update(
                 id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="",
-                configuration={},
-                mode="challenge",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.firewall.ua_rules.with_raw_response.update(
                 id="",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                configuration={},
-                mode="challenge",
+                body={},
             )
 
     @parametrize
@@ -318,21 +282,7 @@ class TestAsyncUARules:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         ua_rule = await async_client.firewall.ua_rules.create(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={},
-            mode="challenge",
-        )
-        assert_matches_type(UARuleCreateResponse, ua_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        ua_rule = await async_client.firewall.ua_rules.create(
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={
-                "target": "ip",
-                "value": "198.51.100.4",
-            },
-            mode="challenge",
+            body={},
         )
         assert_matches_type(UARuleCreateResponse, ua_rule, path=["response"])
 
@@ -341,8 +291,7 @@ class TestAsyncUARules:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.ua_rules.with_raw_response.create(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={},
-            mode="challenge",
+            body={},
         )
 
         assert response.is_closed is True
@@ -355,8 +304,7 @@ class TestAsyncUARules:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.ua_rules.with_streaming_response.create(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={},
-            mode="challenge",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -372,8 +320,7 @@ class TestAsyncUARules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
             await async_client.firewall.ua_rules.with_raw_response.create(
                 zone_identifier="",
-                configuration={},
-                mode="challenge",
+                body={},
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -382,22 +329,7 @@ class TestAsyncUARules:
         ua_rule = await async_client.firewall.ua_rules.update(
             id="372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={},
-            mode="challenge",
-        )
-        assert_matches_type(UARuleUpdateResponse, ua_rule, path=["response"])
-
-    @pytest.mark.skip(reason="TODO: investigate broken test")
-    @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        ua_rule = await async_client.firewall.ua_rules.update(
-            id="372e67954025e0ba6aaa6d586b9e0b59",
-            zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={
-                "target": "ip",
-                "value": "198.51.100.4",
-            },
-            mode="challenge",
+            body={},
         )
         assert_matches_type(UARuleUpdateResponse, ua_rule, path=["response"])
 
@@ -407,8 +339,7 @@ class TestAsyncUARules:
         response = await async_client.firewall.ua_rules.with_raw_response.update(
             id="372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={},
-            mode="challenge",
+            body={},
         )
 
         assert response.is_closed is True
@@ -422,8 +353,7 @@ class TestAsyncUARules:
         async with async_client.firewall.ua_rules.with_streaming_response.update(
             id="372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            configuration={},
-            mode="challenge",
+            body={},
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -440,16 +370,14 @@ class TestAsyncUARules:
             await async_client.firewall.ua_rules.with_raw_response.update(
                 id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="",
-                configuration={},
-                mode="challenge",
+                body={},
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.firewall.ua_rules.with_raw_response.update(
                 id="",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                configuration={},
-                mode="challenge",
+                body={},
             )
 
     @parametrize
