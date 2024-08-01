@@ -49,10 +49,7 @@ class RateLimitsResource(SyncAPIResource):
         self,
         zone_identifier: str,
         *,
-        action: rate_limit_create_params.Action,
-        match: rate_limit_create_params.Match,
-        period: float,
-        threshold: float,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -68,18 +65,6 @@ class RateLimitsResource(SyncAPIResource):
         Args:
           zone_identifier: Identifier
 
-          action: The action to perform when the threshold of matched traffic within the
-              configured period is exceeded.
-
-          match: Determines which traffic the rate limit counts towards the threshold.
-
-          period: The time in seconds (an integer value) to count matching traffic. If the count
-              exceeds the configured threshold within this period, Cloudflare will perform the
-              configured action.
-
-          threshold: The threshold that will trigger the configured mitigation action. Configure this
-              value along with the `period` property to establish a threshold per period.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -94,15 +79,7 @@ class RateLimitsResource(SyncAPIResource):
             RateLimitCreateResponse,
             self._post(
                 f"/zones/{zone_identifier}/rate_limits",
-                body=maybe_transform(
-                    {
-                        "action": action,
-                        "match": match,
-                        "period": period,
-                        "threshold": threshold,
-                    },
-                    rate_limit_create_params.RateLimitCreateParams,
-                ),
+                body=maybe_transform(body, rate_limit_create_params.RateLimitCreateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -227,10 +204,7 @@ class RateLimitsResource(SyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
-        action: rate_limit_edit_params.Action,
-        match: rate_limit_edit_params.Match,
-        period: float,
-        threshold: float,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -245,18 +219,6 @@ class RateLimitsResource(SyncAPIResource):
           zone_identifier: Identifier
 
           id: The unique identifier of the rate limit.
-
-          action: The action to perform when the threshold of matched traffic within the
-              configured period is exceeded.
-
-          match: Determines which traffic the rate limit counts towards the threshold.
-
-          period: The time in seconds (an integer value) to count matching traffic. If the count
-              exceeds the configured threshold within this period, Cloudflare will perform the
-              configured action.
-
-          threshold: The threshold that will trigger the configured mitigation action. Configure this
-              value along with the `period` property to establish a threshold per period.
 
           extra_headers: Send extra headers
 
@@ -274,15 +236,7 @@ class RateLimitsResource(SyncAPIResource):
             RateLimitEditResponse,
             self._put(
                 f"/zones/{zone_identifier}/rate_limits/{id}",
-                body=maybe_transform(
-                    {
-                        "action": action,
-                        "match": match,
-                        "period": period,
-                        "threshold": threshold,
-                    },
-                    rate_limit_edit_params.RateLimitEditParams,
-                ),
+                body=maybe_transform(body, rate_limit_edit_params.RateLimitEditParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -365,10 +319,7 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         self,
         zone_identifier: str,
         *,
-        action: rate_limit_create_params.Action,
-        match: rate_limit_create_params.Match,
-        period: float,
-        threshold: float,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -384,18 +335,6 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         Args:
           zone_identifier: Identifier
 
-          action: The action to perform when the threshold of matched traffic within the
-              configured period is exceeded.
-
-          match: Determines which traffic the rate limit counts towards the threshold.
-
-          period: The time in seconds (an integer value) to count matching traffic. If the count
-              exceeds the configured threshold within this period, Cloudflare will perform the
-              configured action.
-
-          threshold: The threshold that will trigger the configured mitigation action. Configure this
-              value along with the `period` property to establish a threshold per period.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -410,15 +349,7 @@ class AsyncRateLimitsResource(AsyncAPIResource):
             RateLimitCreateResponse,
             await self._post(
                 f"/zones/{zone_identifier}/rate_limits",
-                body=await async_maybe_transform(
-                    {
-                        "action": action,
-                        "match": match,
-                        "period": period,
-                        "threshold": threshold,
-                    },
-                    rate_limit_create_params.RateLimitCreateParams,
-                ),
+                body=await async_maybe_transform(body, rate_limit_create_params.RateLimitCreateParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -543,10 +474,7 @@ class AsyncRateLimitsResource(AsyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
-        action: rate_limit_edit_params.Action,
-        match: rate_limit_edit_params.Match,
-        period: float,
-        threshold: float,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -561,18 +489,6 @@ class AsyncRateLimitsResource(AsyncAPIResource):
           zone_identifier: Identifier
 
           id: The unique identifier of the rate limit.
-
-          action: The action to perform when the threshold of matched traffic within the
-              configured period is exceeded.
-
-          match: Determines which traffic the rate limit counts towards the threshold.
-
-          period: The time in seconds (an integer value) to count matching traffic. If the count
-              exceeds the configured threshold within this period, Cloudflare will perform the
-              configured action.
-
-          threshold: The threshold that will trigger the configured mitigation action. Configure this
-              value along with the `period` property to establish a threshold per period.
 
           extra_headers: Send extra headers
 
@@ -590,15 +506,7 @@ class AsyncRateLimitsResource(AsyncAPIResource):
             RateLimitEditResponse,
             await self._put(
                 f"/zones/{zone_identifier}/rate_limits/{id}",
-                body=await async_maybe_transform(
-                    {
-                        "action": action,
-                        "match": match,
-                        "period": period,
-                        "threshold": threshold,
-                    },
-                    rate_limit_edit_params.RateLimitEditParams,
-                ),
+                body=await async_maybe_transform(body, rate_limit_edit_params.RateLimitEditParams),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
