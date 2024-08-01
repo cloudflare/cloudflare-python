@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["RateLimitEditParams"]
+__all__ = ["RuleEditParams"]
 
 
-class RateLimitEditParams(TypedDict, total=False):
+class RuleEditParams(TypedDict, total=False):
     zone_identifier: Required[str]
     """Identifier"""
 

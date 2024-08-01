@@ -2,18 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List
 from typing_extensions import Required, TypedDict
-
-from .override_url import OverrideURL
 
 __all__ = ["OverrideCreateParams"]
 
 
 class OverrideCreateParams(TypedDict, total=False):
-    urls: Required[List[OverrideURL]]
-    """The URLs to include in the current WAF override.
-
-    You can use wildcards. Each entered URL will be escaped before use, which means
-    you can only use simple wildcard patterns.
-    """
+    body: Required[object]

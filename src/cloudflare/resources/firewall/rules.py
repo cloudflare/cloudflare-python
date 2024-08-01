@@ -23,10 +23,15 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
-from ...types.firewall import rule_get_params, rule_list_params, rule_create_params, rule_update_params
+from ...types.firewall import (
+    rule_get_params,
+    rule_edit_params,
+    rule_list_params,
+    rule_create_params,
+    rule_update_params,
+)
 from ...types.firewall.firewall_rule import FirewallRule
 from ...types.firewall.rule_edit_response import RuleEditResponse
-from ...types.filters.firewall_filter_param import FirewallFilterParam
 from ...types.firewall.rule_create_response import RuleCreateResponse
 
 __all__ = ["RulesResource", "AsyncRulesResource"]
@@ -48,8 +53,7 @@ class RulesResource(SyncAPIResource):
         self,
         zone_identifier: str,
         *,
-        action: rule_create_params.Action,
-        filter: FirewallFilterParam,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -63,9 +67,6 @@ class RulesResource(SyncAPIResource):
         Args:
           zone_identifier: Identifier
 
-          action: The action to perform when the threshold of matched traffic within the
-              configured period is exceeded.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -78,13 +79,7 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._post(
             f"/zones/{zone_identifier}/firewall/rules",
-            body=maybe_transform(
-                {
-                    "action": action,
-                    "filter": filter,
-                },
-                rule_create_params.RuleCreateParams,
-            ),
+            body=maybe_transform(body, rule_create_params.RuleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -103,8 +98,7 @@ class RulesResource(SyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
-        action: rule_update_params.Action,
-        filter: FirewallFilterParam,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -120,9 +114,6 @@ class RulesResource(SyncAPIResource):
 
           id: The unique identifier of the firewall rule.
 
-          action: The action to perform when the threshold of matched traffic within the
-              configured period is exceeded.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -137,13 +128,7 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._put(
             f"/zones/{zone_identifier}/firewall/rules/{id}",
-            body=maybe_transform(
-                {
-                    "action": action,
-                    "filter": filter,
-                },
-                rule_update_params.RuleUpdateParams,
-            ),
+            body=maybe_transform(body, rule_update_params.RuleUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -282,6 +267,7 @@ class RulesResource(SyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -311,6 +297,7 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._patch(
             f"/zones/{zone_identifier}/firewall/rules/{id}",
+            body=maybe_transform(body, rule_edit_params.RuleEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -389,8 +376,7 @@ class AsyncRulesResource(AsyncAPIResource):
         self,
         zone_identifier: str,
         *,
-        action: rule_create_params.Action,
-        filter: FirewallFilterParam,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -404,9 +390,6 @@ class AsyncRulesResource(AsyncAPIResource):
         Args:
           zone_identifier: Identifier
 
-          action: The action to perform when the threshold of matched traffic within the
-              configured period is exceeded.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -419,13 +402,7 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._post(
             f"/zones/{zone_identifier}/firewall/rules",
-            body=await async_maybe_transform(
-                {
-                    "action": action,
-                    "filter": filter,
-                },
-                rule_create_params.RuleCreateParams,
-            ),
+            body=await async_maybe_transform(body, rule_create_params.RuleCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -444,8 +421,7 @@ class AsyncRulesResource(AsyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
-        action: rule_update_params.Action,
-        filter: FirewallFilterParam,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -461,9 +437,6 @@ class AsyncRulesResource(AsyncAPIResource):
 
           id: The unique identifier of the firewall rule.
 
-          action: The action to perform when the threshold of matched traffic within the
-              configured period is exceeded.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -478,13 +451,7 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._put(
             f"/zones/{zone_identifier}/firewall/rules/{id}",
-            body=await async_maybe_transform(
-                {
-                    "action": action,
-                    "filter": filter,
-                },
-                rule_update_params.RuleUpdateParams,
-            ),
+            body=await async_maybe_transform(body, rule_update_params.RuleUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -623,6 +590,7 @@ class AsyncRulesResource(AsyncAPIResource):
         id: str,
         *,
         zone_identifier: str,
+        body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -652,6 +620,7 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._patch(
             f"/zones/{zone_identifier}/firewall/rules/{id}",
+            body=await async_maybe_transform(body, rule_edit_params.RuleEditParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
