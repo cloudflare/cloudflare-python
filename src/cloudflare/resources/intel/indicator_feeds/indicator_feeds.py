@@ -123,6 +123,7 @@ class IndicatorFeedsResource(SyncAPIResource):
         account_id: str,
         description: str | NotGiven = NOT_GIVEN,
         is_attributable: bool | NotGiven = NOT_GIVEN,
+        is_downloadable: bool | NotGiven = NOT_GIVEN,
         is_public: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -144,6 +145,8 @@ class IndicatorFeedsResource(SyncAPIResource):
 
           is_attributable: The new is_attributable value of the feed
 
+          is_downloadable: The new is_downloadable value of the feed
+
           is_public: The new is_public value of the feed
 
           name: The new name of the feed
@@ -164,6 +167,7 @@ class IndicatorFeedsResource(SyncAPIResource):
                 {
                     "description": description,
                     "is_attributable": is_attributable,
+                    "is_downloadable": is_downloadable,
                     "is_public": is_public,
                     "name": name,
                 },
@@ -373,6 +377,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         account_id: str,
         description: str | NotGiven = NOT_GIVEN,
         is_attributable: bool | NotGiven = NOT_GIVEN,
+        is_downloadable: bool | NotGiven = NOT_GIVEN,
         is_public: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -394,6 +399,8 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
 
           is_attributable: The new is_attributable value of the feed
 
+          is_downloadable: The new is_downloadable value of the feed
+
           is_public: The new is_public value of the feed
 
           name: The new name of the feed
@@ -414,6 +421,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
                 {
                     "description": description,
                     "is_attributable": is_attributable,
+                    "is_downloadable": is_downloadable,
                     "is_public": is_public,
                     "name": name,
                 },

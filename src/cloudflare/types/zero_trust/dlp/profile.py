@@ -13,7 +13,7 @@ __all__ = ["Profile", "DLPIntegrationProfile", "DLPIntegrationProfileEntry"]
 
 class DLPIntegrationProfileEntry(BaseModel):
     id: Optional[str] = None
-    """The ID for this entry"""
+    """Unique identifier for a DLP entry"""
 
     created_at: Optional[datetime] = None
 
@@ -23,15 +23,15 @@ class DLPIntegrationProfileEntry(BaseModel):
     name: Optional[str] = None
     """The name of the entry."""
 
-    profile_id: Optional[object] = None
-    """ID of the parent profile"""
+    profile_id: Optional[str] = None
+    """Unique identifier for a DLP profile"""
 
     updated_at: Optional[datetime] = None
 
 
 class DLPIntegrationProfile(BaseModel):
     id: Optional[str] = None
-    """The ID for this profile"""
+    """Unique identifier for a DLP profile"""
 
     created_at: Optional[datetime] = None
 

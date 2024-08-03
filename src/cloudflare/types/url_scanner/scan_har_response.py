@@ -5,7 +5,6 @@ from typing import List, Optional
 from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
-from ..radar.http.browser import Browser
 
 __all__ = [
     "ScanHarResponse",
@@ -14,8 +13,10 @@ __all__ = [
     "HarLogCreator",
     "HarLogEntry",
     "HarLogEntryRequest",
+    "HarLogEntryRequestHeader",
     "HarLogEntryResponse",
     "HarLogEntryResponseContent",
+    "HarLogEntryResponseHeader",
     "HarLogPage",
     "HarLogPagePageTimings",
 ]
@@ -29,10 +30,16 @@ class HarLogCreator(BaseModel):
     version: str
 
 
+class HarLogEntryRequestHeader(BaseModel):
+    name: str
+
+    value: str
+
+
 class HarLogEntryRequest(BaseModel):
     body_size: float = FieldInfo(alias="bodySize")
 
-    headers: List[Browser]
+    headers: List[HarLogEntryRequestHeader]
 
     headers_size: float = FieldInfo(alias="headersSize")
 
@@ -51,6 +58,12 @@ class HarLogEntryResponseContent(BaseModel):
     compression: Optional[int] = None
 
 
+class HarLogEntryResponseHeader(BaseModel):
+    name: str
+
+    value: str
+
+
 class HarLogEntryResponse(BaseModel):
     transfer_size: float = FieldInfo(alias="_transferSize")
 
@@ -58,7 +71,7 @@ class HarLogEntryResponse(BaseModel):
 
     content: HarLogEntryResponseContent
 
-    headers: List[Browser]
+    headers: List[HarLogEntryResponseHeader]
 
     headers_size: float = FieldInfo(alias="headersSize")
 

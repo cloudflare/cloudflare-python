@@ -85,6 +85,7 @@ class TestIndicatorFeeds:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="This is an example description",
             is_attributable=True,
+            is_downloadable=True,
             is_public=True,
             name="indicator_list",
         )
@@ -312,6 +313,7 @@ class TestAsyncIndicatorFeeds:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             description="This is an example description",
             is_attributable=True,
+            is_downloadable=True,
             is_public=True,
             name="indicator_list",
         )
