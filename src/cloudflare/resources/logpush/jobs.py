@@ -25,6 +25,7 @@ from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.logpush import job_create_params, job_update_params
 from ...types.logpush.logpush_job import LogpushJob
+from ...types.logpush.job_delete_response import JobDeleteResponse
 from ...types.logpush.output_options_param import OutputOptionsParam
 
 __all__ = ["JobsResource", "AsyncJobsResource"]
@@ -354,7 +355,7 @@ class JobsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[JobDeleteResponse]:
         """
         Deletes a Logpush job.
 
@@ -392,9 +393,9 @@ class JobsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[JobDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[JobDeleteResponse]], ResultWrapper[JobDeleteResponse]),
         )
 
     def get(
@@ -777,7 +778,7 @@ class AsyncJobsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[JobDeleteResponse]:
         """
         Deletes a Logpush job.
 
@@ -815,9 +816,9 @@ class AsyncJobsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[JobDeleteResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[JobDeleteResponse]], ResultWrapper[JobDeleteResponse]),
         )
 
     async def get(

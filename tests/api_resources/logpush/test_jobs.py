@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.logpush import LogpushJob
+from cloudflare.types.logpush import LogpushJob, JobDeleteResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -249,7 +249,7 @@ class TestJobs:
             job_id=1,
             account_id="account_id",
         )
-        assert_matches_type(object, job, path=["response"])
+        assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -258,7 +258,7 @@ class TestJobs:
             job_id=1,
             account_id="account_id",
         )
-        assert_matches_type(object, job, path=["response"])
+        assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -271,7 +271,7 @@ class TestJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = response.parse()
-        assert_matches_type(object, job, path=["response"])
+        assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -284,7 +284,7 @@ class TestJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = response.parse()
-            assert_matches_type(object, job, path=["response"])
+            assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -599,7 +599,7 @@ class TestAsyncJobs:
             job_id=1,
             account_id="account_id",
         )
-        assert_matches_type(object, job, path=["response"])
+        assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -608,7 +608,7 @@ class TestAsyncJobs:
             job_id=1,
             account_id="account_id",
         )
-        assert_matches_type(object, job, path=["response"])
+        assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -621,7 +621,7 @@ class TestAsyncJobs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         job = await response.parse()
-        assert_matches_type(object, job, path=["response"])
+        assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -634,7 +634,7 @@ class TestAsyncJobs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             job = await response.parse()
-            assert_matches_type(object, job, path=["response"])
+            assert_matches_type(Optional[JobDeleteResponse], job, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

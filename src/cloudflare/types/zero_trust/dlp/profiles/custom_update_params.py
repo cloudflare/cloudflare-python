@@ -64,9 +64,6 @@ class Entry(TypedDict, total=False):
     pattern: PatternParam
     """A pattern that matches an entry"""
 
-    profile_id: object
-    """ID of the parent profile"""
-
 
 class SharedEntryDLPSharedEntryUpdatePredefined(TypedDict, total=False):
     enabled: bool

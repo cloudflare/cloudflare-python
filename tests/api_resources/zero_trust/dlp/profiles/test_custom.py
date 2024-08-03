@@ -90,7 +90,6 @@ class TestCustom:
                         "regex": "^4[0-9]{6,14}$",
                         "validation": "luhn",
                     },
-                    "profile_id": {},
                 },
                 {
                     "enabled": True,
@@ -99,7 +98,6 @@ class TestCustom:
                         "regex": "^4[0-9]{6,14}$",
                         "validation": "luhn",
                     },
-                    "profile_id": {},
                 },
                 {
                     "enabled": True,
@@ -108,7 +106,6 @@ class TestCustom:
                         "regex": "^4[0-9]{6,14}$",
                         "validation": "luhn",
                     },
-                    "profile_id": {},
                 },
             ],
             name="Generic CVV Card Number",
@@ -326,7 +323,6 @@ class TestAsyncCustom:
                         "regex": "^4[0-9]{6,14}$",
                         "validation": "luhn",
                     },
-                    "profile_id": {},
                 },
                 {
                     "enabled": True,
@@ -335,7 +331,6 @@ class TestAsyncCustom:
                         "regex": "^4[0-9]{6,14}$",
                         "validation": "luhn",
                     },
-                    "profile_id": {},
                 },
                 {
                     "enabled": True,
@@ -344,7 +339,6 @@ class TestAsyncCustom:
                         "regex": "^4[0-9]{6,14}$",
                         "validation": "luhn",
                     },
-                    "profile_id": {},
                 },
             ],
             name="Generic CVV Card Number",

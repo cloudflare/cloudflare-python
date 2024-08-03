@@ -27,4 +27,4 @@ class AIGatewayUpdateParams(TypedDict, total=False):
 
     logpush: bool
 
-    logpush_public_key: str
+    logpush_public_key: Optional[str]

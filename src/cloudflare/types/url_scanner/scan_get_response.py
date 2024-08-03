@@ -7,7 +7,6 @@ from pydantic import Field as FieldInfo
 
 from ..._models import BaseModel
 from .url_scanner_domain import URLScannerDomain
-from ..radar.http.browser import Browser
 
 __all__ = [
     "ScanGetResponse",
@@ -26,6 +25,7 @@ __all__ = [
     "ScanPage",
     "ScanPageConsole",
     "ScanPageCookie",
+    "ScanPageHeader",
     "ScanPageJS",
     "ScanPageJSVariable",
     "ScanPageSecurityViolation",
@@ -204,6 +204,12 @@ class ScanPageCookie(BaseModel):
     priority: Optional[str] = None
 
 
+class ScanPageHeader(BaseModel):
+    name: str
+
+    value: str
+
+
 class ScanPageJSVariable(BaseModel):
     name: str
 
@@ -239,7 +245,7 @@ class ScanPage(BaseModel):
 
     domain: str
 
-    headers: List[Browser]
+    headers: List[ScanPageHeader]
 
     ip: str
 

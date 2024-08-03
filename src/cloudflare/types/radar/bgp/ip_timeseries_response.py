@@ -7,30 +7,26 @@ from pydantic import Field as FieldInfo
 
 from ...._models import BaseModel
 
-__all__ = ["IPTimeseriesResponse", "Meta", "MetaDateRange", "Serie174", "SerieCn"]
+__all__ = ["IPTimeseriesResponse", "Meta", "MetaQuery", "MetaQueryDateRange", "Serie174"]
 
 
-class MetaDateRange(BaseModel):
-    end_time: datetime = FieldInfo(alias="endTime")
-    """Adjusted end of date range."""
+class MetaQueryDateRange(BaseModel):
+    end_time: str = FieldInfo(alias="endTime")
 
-    start_time: datetime = FieldInfo(alias="startTime")
-    """Adjusted start of date range."""
+    start_time: str = FieldInfo(alias="startTime")
+
+
+class MetaQuery(BaseModel):
+    date_range: MetaQueryDateRange = FieldInfo(alias="dateRange")
+
+    entity: str
 
 
 class Meta(BaseModel):
-    date_range: List[MetaDateRange] = FieldInfo(alias="dateRange")
+    queries: List[MetaQuery]
 
 
 class Serie174(BaseModel):
-    ipv4: List[str]
-
-    ipv6: List[str]
-
-    timestamps: List[datetime]
-
-
-class SerieCn(BaseModel):
     ipv4: List[str]
 
     ipv6: List[str]
@@ -42,5 +38,3 @@ class IPTimeseriesResponse(BaseModel):
     meta: Meta
 
     serie_174: Serie174
-
-    serie_cn: SerieCn

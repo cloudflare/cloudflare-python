@@ -17,6 +17,9 @@ class IndicatorFeedUpdateParams(TypedDict, total=False):
     is_attributable: bool
     """The new is_attributable value of the feed"""
 
+    is_downloadable: bool
+    """The new is_downloadable value of the feed"""
+
     is_public: bool
     """The new is_public value of the feed"""
 

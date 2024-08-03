@@ -1,13 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .top import (
-    TopResource,
-    AsyncTopResource,
-    TopResourceWithRawResponse,
-    AsyncTopResourceWithRawResponse,
-    TopResourceWithStreamingResponse,
-    AsyncTopResourceWithStreamingResponse,
-)
 from .ases import (
     AsesResource,
     AsyncAsesResource,
@@ -50,12 +42,6 @@ from .timeseries_groups import (
 )
 
 __all__ = [
-    "TopResource",
-    "AsyncTopResource",
-    "TopResourceWithRawResponse",
-    "AsyncTopResourceWithRawResponse",
-    "TopResourceWithStreamingResponse",
-    "AsyncTopResourceWithStreamingResponse",
     "LocationsResource",
     "AsyncLocationsResource",
     "LocationsResourceWithRawResponse",
