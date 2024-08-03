@@ -26,13 +26,22 @@ class TestIPs:
     @parametrize
     def test_method_timeseries_with_all_params(self, client: Cloudflare) -> None:
         ip = client.radar.bgp.ips.timeseries(
-            asn="174,7922",
-            date_end=parse_datetime("2023-09-01T11:41:33.782Z"),
-            date_range="7d",
-            date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
+            asn=["string", "string", "string"],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
+            date_range=["7d", "7d", "7d"],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             format="JSON",
             include_delay=True,
-            location="US,CA",
+            ip_version=["IPv4", "IPv6"],
+            location=["string", "string", "string"],
             name=["string", "string", "string"],
         )
         assert_matches_type(IPTimeseriesResponse, ip, path=["response"])
@@ -69,13 +78,22 @@ class TestAsyncIPs:
     @parametrize
     async def test_method_timeseries_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ip = await async_client.radar.bgp.ips.timeseries(
-            asn="174,7922",
-            date_end=parse_datetime("2023-09-01T11:41:33.782Z"),
-            date_range="7d",
-            date_start=parse_datetime("2023-09-01T11:41:33.782Z"),
+            asn=["string", "string", "string"],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
+            date_range=["7d", "7d", "7d"],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             format="JSON",
             include_delay=True,
-            location="US,CA",
+            ip_version=["IPv4", "IPv6"],
+            location=["string", "string", "string"],
             name=["string", "string", "string"],
         )
         assert_matches_type(IPTimeseriesResponse, ip, path=["response"])

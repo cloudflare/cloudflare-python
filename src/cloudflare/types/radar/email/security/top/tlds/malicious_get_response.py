@@ -6,9 +6,15 @@ from datetime import datetime
 from pydantic import Field as FieldInfo
 
 from ......._models import BaseModel
-from .....http.browser import Browser
 
-__all__ = ["MaliciousGetResponse", "Meta", "MetaDateRange", "MetaConfidenceInfo", "MetaConfidenceInfoAnnotation"]
+__all__ = [
+    "MaliciousGetResponse",
+    "Meta",
+    "MetaDateRange",
+    "MetaConfidenceInfo",
+    "MetaConfidenceInfoAnnotation",
+    "Top0",
+]
 
 
 class MetaDateRange(BaseModel):
@@ -49,7 +55,13 @@ class Meta(BaseModel):
     confidence_info: Optional[MetaConfidenceInfo] = FieldInfo(alias="confidenceInfo", default=None)
 
 
+class Top0(BaseModel):
+    name: str
+
+    value: str
+
+
 class MaliciousGetResponse(BaseModel):
     meta: Meta
 
-    top_0: List[Browser]
+    top_0: List[Top0]

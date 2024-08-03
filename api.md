@@ -1509,7 +1509,7 @@ Methods:
 - <code title="post /{account_or_zone}/{account_or_zone_id}/logpush/jobs">client.logpush.jobs.<a href="./src/cloudflare/resources/logpush/jobs.py">create</a>(\*, account_id, zone_id, \*\*<a href="src/cloudflare/types/logpush/job_create_params.py">params</a>) -> <a href="./src/cloudflare/types/logpush/logpush_job.py">Optional</a></code>
 - <code title="put /{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}">client.logpush.jobs.<a href="./src/cloudflare/resources/logpush/jobs.py">update</a>(job_id, \*, account_id, zone_id, \*\*<a href="src/cloudflare/types/logpush/job_update_params.py">params</a>) -> <a href="./src/cloudflare/types/logpush/logpush_job.py">Optional</a></code>
 - <code title="get /{account_or_zone}/{account_or_zone_id}/logpush/jobs">client.logpush.jobs.<a href="./src/cloudflare/resources/logpush/jobs.py">list</a>(\*, account_id, zone_id) -> <a href="./src/cloudflare/types/logpush/logpush_job.py">SyncSinglePage[Optional]</a></code>
-- <code title="delete /{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}">client.logpush.jobs.<a href="./src/cloudflare/resources/logpush/jobs.py">delete</a>(job_id, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/logpush/job_delete_response.py">object</a></code>
+- <code title="delete /{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}">client.logpush.jobs.<a href="./src/cloudflare/resources/logpush/jobs.py">delete</a>(job_id, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/logpush/job_delete_response.py">Optional</a></code>
 - <code title="get /{account_or_zone}/{account_or_zone_id}/logpush/jobs/{job_id}">client.logpush.jobs.<a href="./src/cloudflare/resources/logpush/jobs.py">get</a>(job_id, \*, account_id, zone_id) -> <a href="./src/cloudflare/types/logpush/logpush_job.py">Optional</a></code>
 
 ## Ownership
@@ -6619,19 +6619,6 @@ from cloudflare.types.radar import HTTPTimeseriesResponse
 Methods:
 
 - <code title="get /radar/http/timeseries">client.radar.http.<a href="./src/cloudflare/resources/radar/http/http.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/http_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/http_timeseries_response.py">HTTPTimeseriesResponse</a></code>
-
-### Top
-
-Types:
-
-```python
-from cloudflare.types.radar.http import Browser, TopBrowserFamiliesResponse, TopBrowsersResponse
-```
-
-Methods:
-
-- <code title="get /radar/http/top/browser_families">client.radar.http.top.<a href="./src/cloudflare/resources/radar/http/top.py">browser_families</a>(\*\*<a href="src/cloudflare/types/radar/http/top_browser_families_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/http/top_browser_families_response.py">TopBrowserFamiliesResponse</a></code>
-- <code title="get /radar/http/top/browsers">client.radar.http.top.<a href="./src/cloudflare/resources/radar/http/top.py">browsers</a>(\*\*<a href="src/cloudflare/types/radar/http/top_browsers_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/http/top_browsers_response.py">TopBrowsersResponse</a></code>
 
 ### Locations
 

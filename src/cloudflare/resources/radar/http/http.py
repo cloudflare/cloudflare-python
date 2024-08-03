@@ -8,14 +8,6 @@ from typing_extensions import Literal
 
 import httpx
 
-from .top import (
-    TopResource,
-    AsyncTopResource,
-    TopResourceWithRawResponse,
-    AsyncTopResourceWithRawResponse,
-    TopResourceWithStreamingResponse,
-    AsyncTopResourceWithStreamingResponse,
-)
 from .ases import (
     AsesResource,
     AsyncAsesResource,
@@ -72,10 +64,6 @@ __all__ = ["HTTPResource", "AsyncHTTPResource"]
 
 
 class HTTPResource(SyncAPIResource):
-    @cached_property
-    def top(self) -> TopResource:
-        return TopResource(self._client)
-
     @cached_property
     def locations(self) -> LocationsResource:
         return LocationsResource(self._client)
@@ -192,10 +180,6 @@ class HTTPResource(SyncAPIResource):
 
 
 class AsyncHTTPResource(AsyncAPIResource):
-    @cached_property
-    def top(self) -> AsyncTopResource:
-        return AsyncTopResource(self._client)
-
     @cached_property
     def locations(self) -> AsyncLocationsResource:
         return AsyncLocationsResource(self._client)
@@ -320,10 +304,6 @@ class HTTPResourceWithRawResponse:
         )
 
     @cached_property
-    def top(self) -> TopResourceWithRawResponse:
-        return TopResourceWithRawResponse(self._http.top)
-
-    @cached_property
     def locations(self) -> LocationsResourceWithRawResponse:
         return LocationsResourceWithRawResponse(self._http.locations)
 
@@ -347,10 +327,6 @@ class AsyncHTTPResourceWithRawResponse:
         self.timeseries = async_to_raw_response_wrapper(
             http.timeseries,
         )
-
-    @cached_property
-    def top(self) -> AsyncTopResourceWithRawResponse:
-        return AsyncTopResourceWithRawResponse(self._http.top)
 
     @cached_property
     def locations(self) -> AsyncLocationsResourceWithRawResponse:
@@ -378,10 +354,6 @@ class HTTPResourceWithStreamingResponse:
         )
 
     @cached_property
-    def top(self) -> TopResourceWithStreamingResponse:
-        return TopResourceWithStreamingResponse(self._http.top)
-
-    @cached_property
     def locations(self) -> LocationsResourceWithStreamingResponse:
         return LocationsResourceWithStreamingResponse(self._http.locations)
 
@@ -405,10 +377,6 @@ class AsyncHTTPResourceWithStreamingResponse:
         self.timeseries = async_to_streamed_response_wrapper(
             http.timeseries,
         )
-
-    @cached_property
-    def top(self) -> AsyncTopResourceWithStreamingResponse:
-        return AsyncTopResourceWithStreamingResponse(self._http.top)
 
     @cached_property
     def locations(self) -> AsyncLocationsResourceWithStreamingResponse:

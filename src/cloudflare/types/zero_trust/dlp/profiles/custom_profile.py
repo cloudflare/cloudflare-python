@@ -13,7 +13,7 @@ __all__ = ["CustomProfile", "Entry"]
 
 class Entry(BaseModel):
     id: Optional[str] = None
-    """The ID for this entry"""
+    """Unique identifier for a DLP entry"""
 
     created_at: Optional[datetime] = None
 
@@ -26,15 +26,15 @@ class Entry(BaseModel):
     pattern: Optional[Pattern] = None
     """A pattern that matches an entry"""
 
-    profile_id: Optional[object] = None
-    """ID of the parent profile"""
+    profile_id: Optional[str] = None
+    """Unique identifier for a DLP profile"""
 
     updated_at: Optional[datetime] = None
 
 
 class CustomProfile(BaseModel):
     id: Optional[str] = None
-    """The ID for this profile"""
+    """Unique identifier for a DLP profile"""
 
     allowed_match_count: Optional[float] = None
     """Related DLP policies will trigger when the match count exceeds the number set."""

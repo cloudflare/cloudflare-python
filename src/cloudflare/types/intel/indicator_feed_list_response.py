@@ -21,6 +21,9 @@ class IndicatorFeedListResponse(BaseModel):
     is_attributable: Optional[bool] = None
     """Whether the indicator feed can be attributed to a provider"""
 
+    is_downloadable: Optional[bool] = None
+    """Whether the indicator feed can be downloaded"""
+
     is_public: Optional[bool] = None
     """Whether the indicator feed is exposed to customers"""
 
