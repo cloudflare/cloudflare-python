@@ -134,7 +134,7 @@ class TestMetadataIndex:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             property_name="random_metadata_property",
         )
-        assert_matches_type(MetadataIndexDeleteResponse, metadata_index, path=["response"])
+        assert_matches_type(Optional[MetadataIndexDeleteResponse], metadata_index, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -147,7 +147,7 @@ class TestMetadataIndex:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         metadata_index = response.parse()
-        assert_matches_type(MetadataIndexDeleteResponse, metadata_index, path=["response"])
+        assert_matches_type(Optional[MetadataIndexDeleteResponse], metadata_index, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -160,7 +160,7 @@ class TestMetadataIndex:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             metadata_index = response.parse()
-            assert_matches_type(MetadataIndexDeleteResponse, metadata_index, path=["response"])
+            assert_matches_type(Optional[MetadataIndexDeleteResponse], metadata_index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -297,7 +297,7 @@ class TestAsyncMetadataIndex:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             property_name="random_metadata_property",
         )
-        assert_matches_type(MetadataIndexDeleteResponse, metadata_index, path=["response"])
+        assert_matches_type(Optional[MetadataIndexDeleteResponse], metadata_index, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -310,7 +310,7 @@ class TestAsyncMetadataIndex:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         metadata_index = await response.parse()
-        assert_matches_type(MetadataIndexDeleteResponse, metadata_index, path=["response"])
+        assert_matches_type(Optional[MetadataIndexDeleteResponse], metadata_index, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -323,7 +323,7 @@ class TestAsyncMetadataIndex:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             metadata_index = await response.parse()
-            assert_matches_type(MetadataIndexDeleteResponse, metadata_index, path=["response"])
+            assert_matches_type(Optional[MetadataIndexDeleteResponse], metadata_index, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
