@@ -23,8 +23,8 @@ from ..._wrappers import ResultWrapper
 from ...pagination import SyncSinglePage, AsyncSinglePage
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.registrar import domain_update_params
-from ...types.registrar.domain import Domain
 from ...types.registrar.domain_get_response import DomainGetResponse
+from ...types.registrar.domain_list_response import DomainListResponse
 from ...types.registrar.domain_update_response import DomainUpdateResponse
 
 __all__ = ["DomainsResource", "AsyncDomainsResource"]
@@ -116,7 +116,7 @@ class DomainsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Domain]:
+    ) -> SyncSinglePage[DomainListResponse]:
         """
         List domains handled by Registrar.
 
@@ -135,11 +135,11 @@ class DomainsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/registrar/domains",
-            page=SyncSinglePage[Domain],
+            page=SyncSinglePage[DomainListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Domain,
+            model=DomainListResponse,
         )
 
     def get(
@@ -278,7 +278,7 @@ class AsyncDomainsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Domain, AsyncSinglePage[Domain]]:
+    ) -> AsyncPaginator[DomainListResponse, AsyncSinglePage[DomainListResponse]]:
         """
         List domains handled by Registrar.
 
@@ -297,11 +297,11 @@ class AsyncDomainsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/registrar/domains",
-            page=AsyncSinglePage[Domain],
+            page=AsyncSinglePage[DomainListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=Domain,
+            model=DomainListResponse,
         )
 
     async def get(
