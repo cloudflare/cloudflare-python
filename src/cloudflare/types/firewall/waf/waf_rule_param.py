@@ -3,8 +3,8 @@
 from __future__ import annotations
 
 from typing import Dict
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 __all__ = ["WAFRuleParam"]
 
-WAFRuleParam = Dict[str, Literal["challenge", "block", "simulate", "disable", "default"]]
+WAFRuleParam: TypeAlias = Dict[str, Literal["challenge", "block", "simulate", "disable", "default"]]

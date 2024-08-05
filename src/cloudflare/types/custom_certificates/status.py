@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 __all__ = ["Status"]
 
-Status = Literal["active", "pending_reactivation", "pending_revocation", "revoked"]
+Status: TypeAlias = Literal["active", "pending_reactivation", "pending_revocation", "revoked"]

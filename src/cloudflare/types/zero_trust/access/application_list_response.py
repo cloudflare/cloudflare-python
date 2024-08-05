@@ -2,6 +2,7 @@
 
 from typing import List, Union, Optional
 from datetime import datetime
+from typing_extensions import TypeAlias
 
 from ...._models import BaseModel
 from .allowed_idps import AllowedIdPs
@@ -51,7 +52,7 @@ __all__ = [
     "BookmarkApplicationSCIMConfigAuthentication",
 ]
 
-SelfHostedApplicationSCIMConfigAuthentication = Union[
+SelfHostedApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
 
@@ -225,9 +226,9 @@ class SelfHostedApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-SaaSApplicationSaaSApp = Union[SAMLSaaSApp, OIDCSaaSApp]
+SaaSApplicationSaaSApp: TypeAlias = Union[SAMLSaaSApp, OIDCSaaSApp]
 
-SaaSApplicationSCIMConfigAuthentication = Union[
+SaaSApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
 
@@ -322,7 +323,7 @@ class SaaSApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-BrowserSSHApplicationSCIMConfigAuthentication = Union[
+BrowserSSHApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
 
@@ -496,7 +497,7 @@ class BrowserSSHApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-BrowserVNCApplicationSCIMConfigAuthentication = Union[
+BrowserVNCApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
 
@@ -695,7 +696,7 @@ class AppLauncherApplicationLandingPageDesign(BaseModel):
     """The title shown on the landing page."""
 
 
-AppLauncherApplicationSCIMConfigAuthentication = Union[
+AppLauncherApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
 
@@ -830,7 +831,7 @@ class DeviceEnrollmentPermissionsApplicationLandingPageDesign(BaseModel):
     """The title shown on the landing page."""
 
 
-DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication = Union[
+DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
 
@@ -965,7 +966,7 @@ class BrowserIsolationPermissionsApplicationLandingPageDesign(BaseModel):
     """The title shown on the landing page."""
 
 
-BrowserIsolationPermissionsApplicationSCIMConfigAuthentication = Union[
+BrowserIsolationPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
 
@@ -1075,7 +1076,7 @@ class BrowserIsolationPermissionsApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-BookmarkApplicationSCIMConfigAuthentication = Union[
+BookmarkApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasic, SCIMConfigAuthenticationOAuthBearerToken, SCIMConfigAuthenticationOauth2
 ]
 
@@ -1152,7 +1153,7 @@ class BookmarkApplication(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-ApplicationListResponse = Union[
+ApplicationListResponse: TypeAlias = Union[
     SelfHostedApplication,
     SaaSApplication,
     BrowserSSHApplication,

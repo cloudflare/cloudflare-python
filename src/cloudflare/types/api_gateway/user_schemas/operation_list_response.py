@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ...._models import BaseModel
 from ..api_shield import APIShield
@@ -25,4 +25,4 @@ class APIShieldBasicOperation(BaseModel):
     """The HTTP method used to access the endpoint."""
 
 
-OperationListResponse = Union[APIShield, APIShieldBasicOperation]
+OperationListResponse: TypeAlias = Union[APIShield, APIShieldBasicOperation]

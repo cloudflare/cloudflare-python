@@ -1,7 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union, Optional
+from typing_extensions import TypeAlias
 
 __all__ = ["OriginCACertificateGetResponse"]
 
-OriginCACertificateGetResponse = Union[Optional[str], Optional[object]]
+OriginCACertificateGetResponse: TypeAlias = Union[Optional[str], Optional[object]]

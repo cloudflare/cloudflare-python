@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Union, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .identity_provider_type import IdentityProviderType
 from .generic_oauth_config_param import GenericOAuthConfigParam
@@ -721,7 +721,7 @@ class AccessOnetimepin(TypedDict, total=False):
     """
 
 
-IdentityProviderCreateParams = Union[
+IdentityProviderCreateParams: TypeAlias = Union[
     AzureAD,
     AccessCentrify,
     AccessFacebook,

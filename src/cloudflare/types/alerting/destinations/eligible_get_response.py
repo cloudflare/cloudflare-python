@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, List, Optional
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ...._models import BaseModel
 
@@ -23,4 +23,4 @@ class EligibleGetResponseItem(BaseModel):
     """Determines type of delivery mechanism."""
 
 
-EligibleGetResponse = Dict[str, List[EligibleGetResponseItem]]
+EligibleGetResponse: TypeAlias = Dict[str, List[EligibleGetResponseItem]]

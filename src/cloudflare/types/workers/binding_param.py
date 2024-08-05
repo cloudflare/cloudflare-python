@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .d1_binding_param import D1BindingParam
 from .r2_binding_param import R2BindingParam
@@ -24,7 +24,7 @@ class WorkersQueueBinding(TypedDict, total=False):
     """The class of resource that the binding provides."""
 
 
-BindingParam = Union[
+BindingParam: TypeAlias = Union[
     KVNamespaceBindingParam,
     ServiceBindingParam,
     DurableObjectBindingParam,

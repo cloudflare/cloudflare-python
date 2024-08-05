@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, TypeAlias, TypedDict
 
 from .kind import Kind
 from .phase import Phase
@@ -52,7 +52,7 @@ class RulesetUpdateParams(TypedDict, total=False):
     """The phase of the ruleset."""
 
 
-Rule = Union[
+Rule: TypeAlias = Union[
     BlockRuleParam,
     ChallengeRuleParam,
     CompressResponseRuleParam,

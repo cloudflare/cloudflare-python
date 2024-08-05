@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .asn_configuration_param import ASNConfigurationParam
 from .ipv6_configuration_param import IPV6ConfigurationParam
@@ -22,7 +22,7 @@ class UARuleCreateParams(TypedDict, total=False):
     """The action to apply to a matched request."""
 
 
-Configuration = Union[
+Configuration: TypeAlias = Union[
     AccessRuleIPConfigurationParam,
     IPV6ConfigurationParam,
     AccessRuleCIDRConfigurationParam,

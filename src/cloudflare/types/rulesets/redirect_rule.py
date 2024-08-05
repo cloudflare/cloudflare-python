@@ -2,7 +2,7 @@
 
 from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from .logging import Logging
 from ..._models import BaseModel
@@ -36,7 +36,7 @@ class ActionParametersFromValueTargetURLDynamicURLRedirect(BaseModel):
     """An expression to evaluate to get the URL to redirect the request to."""
 
 
-ActionParametersFromValueTargetURL = Union[
+ActionParametersFromValueTargetURL: TypeAlias = Union[
     ActionParametersFromValueTargetURLStaticURLRedirect, ActionParametersFromValueTargetURLDynamicURLRedirect
 ]
 

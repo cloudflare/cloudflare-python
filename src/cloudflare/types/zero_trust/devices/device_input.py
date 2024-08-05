@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ...._models import BaseModel
 from .file_input import FileInput
@@ -94,7 +94,7 @@ class TeamsDevicesClientCertificateV2InputRequest(BaseModel):
     locations: Optional[TeamsDevicesClientCertificateV2InputRequestLocations] = None
 
 
-DeviceInput = Union[
+DeviceInput: TypeAlias = Union[
     FileInput,
     UniqueClientIDInput,
     DomainJoinedInput,

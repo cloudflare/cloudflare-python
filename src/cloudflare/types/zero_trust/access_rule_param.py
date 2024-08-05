@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
+from typing_extensions import TypeAlias
 
 from .ip_rule_param import IPRuleParam
 from .email_rule_param import EmailRuleParam
@@ -26,7 +27,7 @@ from .any_valid_service_token_rule_param import AnyValidServiceTokenRuleParam
 
 __all__ = ["AccessRuleParam"]
 
-AccessRuleParam = Union[
+AccessRuleParam: TypeAlias = Union[
     EmailRuleParam,
     EmailListRuleParam,
     DomainRuleParam,

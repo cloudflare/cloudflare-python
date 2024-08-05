@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 __all__ = ["CertificateCA"]
 
-CertificateCA = Literal["digicert", "google", "lets_encrypt", "ssl_com"]
+CertificateCA: TypeAlias = Literal["digicert", "google", "lets_encrypt", "ssl_com"]
