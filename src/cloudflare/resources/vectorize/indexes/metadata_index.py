@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -149,7 +149,7 @@ class MetadataIndexResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MetadataIndexDeleteResponse:
+    ) -> Optional[MetadataIndexDeleteResponse]:
         """
         Allow Vectorize to delete the specified metadata index.
 
@@ -170,24 +170,19 @@ class MetadataIndexResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
-        return cast(
-            MetadataIndexDeleteResponse,
-            self._post(
-                f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/delete",
-                body=maybe_transform(
-                    {"property_name": property_name}, metadata_index_delete_params.MetadataIndexDeleteParams
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[MetadataIndexDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[MetadataIndexDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/delete",
+            body=maybe_transform(
+                {"property_name": property_name}, metadata_index_delete_params.MetadataIndexDeleteParams
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MetadataIndexDeleteResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[MetadataIndexDeleteResponse]], ResultWrapper[MetadataIndexDeleteResponse]),
         )
 
 
@@ -310,7 +305,7 @@ class AsyncMetadataIndexResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> MetadataIndexDeleteResponse:
+    ) -> Optional[MetadataIndexDeleteResponse]:
         """
         Allow Vectorize to delete the specified metadata index.
 
@@ -331,24 +326,19 @@ class AsyncMetadataIndexResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not index_name:
             raise ValueError(f"Expected a non-empty value for `index_name` but received {index_name!r}")
-        return cast(
-            MetadataIndexDeleteResponse,
-            await self._post(
-                f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/delete",
-                body=await async_maybe_transform(
-                    {"property_name": property_name}, metadata_index_delete_params.MetadataIndexDeleteParams
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[MetadataIndexDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[MetadataIndexDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}/metadata_index/delete",
+            body=await async_maybe_transform(
+                {"property_name": property_name}, metadata_index_delete_params.MetadataIndexDeleteParams
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[MetadataIndexDeleteResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[MetadataIndexDeleteResponse]], ResultWrapper[MetadataIndexDeleteResponse]),
         )
 
 
