@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable
+from typing import Union
 from typing_extensions import TypedDict
 
-__all__ = ["MechanismParam", "MechanismParamItem"]
+__all__ = ["MechanismParam"]
 
 
-class MechanismParamItem(TypedDict, total=False):
+class MechanismParam(TypedDict, total=False):
     id: Union[str, str]
     """UUID"""
-
-
-MechanismParam = Dict[str, Iterable[MechanismParamItem]]

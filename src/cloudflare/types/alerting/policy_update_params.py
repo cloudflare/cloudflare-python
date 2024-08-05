@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Dict, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from .mechanism_param import MechanismParam
@@ -103,7 +104,7 @@ class PolicyUpdateParams(TypedDict, total=False):
     types. See alert type documentation for more details.
     """
 
-    mechanisms: MechanismParam
+    mechanisms: Dict[str, Iterable[MechanismParam]]
     """List of IDs that will be used when dispatching a notification.
 
     IDs for email type will be the email address.
