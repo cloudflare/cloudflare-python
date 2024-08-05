@@ -47,12 +47,13 @@ from .user_policy_checks import (
     AsyncUserPolicyChecksResourceWithStreamingResponse,
 )
 from .....types.zero_trust.access import (
+    AppID,
     ApplicationType,
     application_create_params,
     application_update_params,
 )
+from .....types.zero_trust.access.app_id import AppID
 from .....types.zero_trust.access.allowed_idps import AllowedIdPs
-from .....types.zero_trust.access.app_id_param import AppIDParam
 from .....types.zero_trust.access.application_type import ApplicationType
 from .....types.zero_trust.access.cors_headers_param import CORSHeadersParam
 from .....types.zero_trust.access.self_hosted_domains import SelfHostedDomains
@@ -919,7 +920,7 @@ class ApplicationsResource(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         domain: str,
         type: str,
@@ -1046,7 +1047,7 @@ class ApplicationsResource(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -1117,7 +1118,7 @@ class ApplicationsResource(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         domain: str,
         type: str,
@@ -1244,7 +1245,7 @@ class ApplicationsResource(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         domain: str,
         type: str,
@@ -1371,7 +1372,7 @@ class ApplicationsResource(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -1448,7 +1449,7 @@ class ApplicationsResource(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -1527,7 +1528,7 @@ class ApplicationsResource(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -1606,7 +1607,7 @@ class ApplicationsResource(SyncAPIResource):
     @overload
     def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -1662,7 +1663,7 @@ class ApplicationsResource(SyncAPIResource):
 
     def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         domain: str | NotGiven = NOT_GIVEN,
         type: str | ApplicationType | NotGiven = NOT_GIVEN,
@@ -1705,6 +1706,8 @@ class ApplicationsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ApplicationUpdateResponse]:
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1822,7 +1825,7 @@ class ApplicationsResource(SyncAPIResource):
 
     def delete(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -1851,6 +1854,8 @@ class ApplicationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1877,7 +1882,7 @@ class ApplicationsResource(SyncAPIResource):
 
     def get(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -1906,6 +1911,8 @@ class ApplicationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -1937,7 +1944,7 @@ class ApplicationsResource(SyncAPIResource):
 
     def revoke_tokens(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -1966,6 +1973,8 @@ class ApplicationsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -2845,7 +2854,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         domain: str,
         type: str,
@@ -2972,7 +2981,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -3043,7 +3052,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         domain: str,
         type: str,
@@ -3170,7 +3179,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         domain: str,
         type: str,
@@ -3297,7 +3306,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -3374,7 +3383,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -3453,7 +3462,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         type: ApplicationType,
         account_id: str | NotGiven = NOT_GIVEN,
@@ -3532,7 +3541,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
     @overload
     async def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -3588,7 +3597,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
     async def update(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         domain: str | NotGiven = NOT_GIVEN,
         type: str | ApplicationType | NotGiven = NOT_GIVEN,
@@ -3631,6 +3640,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ApplicationUpdateResponse]:
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3748,7 +3759,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
     async def delete(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -3777,6 +3788,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3803,7 +3816,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
     async def get(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -3832,6 +3845,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -3863,7 +3878,7 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
     async def revoke_tokens(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -3892,6 +3907,8 @@ class AsyncApplicationsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 

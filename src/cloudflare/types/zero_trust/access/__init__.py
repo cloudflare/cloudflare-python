@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 from .tag import Tag as Tag
+from .app_id import AppID as AppID
 from .bookmark import Bookmark as Bookmark
 from .decision import Decision as Decision
 from .access_user import AccessUser as AccessUser
 from .certificate import Certificate as Certificate
 from .custom_page import CustomPage as CustomPage
 from .allowed_idps import AllowedIdPs as AllowedIdPs
-from .app_id_param import AppIDParam as AppIDParam
 from .cors_headers import CORSHeaders as CORSHeaders
 from .oidc_saas_app import OIDCSaaSApp as OIDCSaaSApp
 from .saml_saas_app import SAMLSaaSApp as SAMLSaaSApp

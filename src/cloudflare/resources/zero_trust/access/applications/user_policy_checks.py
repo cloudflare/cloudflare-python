@@ -17,7 +17,8 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
-from .....types.zero_trust.access.app_id_param import AppIDParam
+from .....types.zero_trust.access import AppID
+from .....types.zero_trust.access.app_id import AppID
 from .....types.zero_trust.access.applications.user_policy_check_list_response import UserPolicyCheckListResponse
 
 __all__ = ["UserPolicyChecksResource", "AsyncUserPolicyChecksResource"]
@@ -34,7 +35,7 @@ class UserPolicyChecksResource(SyncAPIResource):
 
     def list(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -63,6 +64,8 @@ class UserPolicyChecksResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 
@@ -99,7 +102,7 @@ class AsyncUserPolicyChecksResource(AsyncAPIResource):
 
     async def list(
         self,
-        app_id: AppIDParam,
+        app_id: AppID,
         *,
         account_id: str | NotGiven = NOT_GIVEN,
         zone_id: str | NotGiven = NOT_GIVEN,
@@ -128,6 +131,8 @@ class AsyncUserPolicyChecksResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not app_id:
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
             raise ValueError("You cannot provide both account_id and zone_id")
 

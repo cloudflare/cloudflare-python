@@ -32,9 +32,9 @@ from ....types.dns import firewall_edit_params, firewall_list_params, firewall_c
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ...._base_client import AsyncPaginator, make_request_options
 from .analytics.analytics import AnalyticsResource, AsyncAnalyticsResource
+from ....types.dns.firewall_ips import FirewallIPs
+from ....types.dns.upstream_ips import UpstreamIPs
 from ....types.dns.firewall.firewall import Firewall
-from ....types.dns.firewall_ips_param import FirewallIPsParam
-from ....types.dns.upstream_ips_param import UpstreamIPsParam
 from ....types.dns.attack_mitigation_param import AttackMitigationParam
 from ....types.dns.firewall_delete_response import FirewallDeleteResponse
 
@@ -59,7 +59,7 @@ class FirewallResource(SyncAPIResource):
         *,
         account_id: str,
         name: str,
-        upstream_ips: List[UpstreamIPsParam],
+        upstream_ips: List[UpstreamIPs],
         attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
         deprecate_any_requests: bool | NotGiven = NOT_GIVEN,
         ecs_fallback: bool | NotGiven = NOT_GIVEN,
@@ -246,12 +246,12 @@ class FirewallResource(SyncAPIResource):
         account_id: str,
         id: str,
         deprecate_any_requests: bool,
-        dns_firewall_ips: List[FirewallIPsParam],
+        dns_firewall_ips: List[FirewallIPs],
         ecs_fallback: bool,
         maximum_cache_ttl: float,
         minimum_cache_ttl: float,
         name: str,
-        upstream_ips: List[UpstreamIPsParam],
+        upstream_ips: List[UpstreamIPs],
         attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
         negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
         ratelimit: Optional[float] | NotGiven = NOT_GIVEN,
@@ -402,7 +402,7 @@ class AsyncFirewallResource(AsyncAPIResource):
         *,
         account_id: str,
         name: str,
-        upstream_ips: List[UpstreamIPsParam],
+        upstream_ips: List[UpstreamIPs],
         attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
         deprecate_any_requests: bool | NotGiven = NOT_GIVEN,
         ecs_fallback: bool | NotGiven = NOT_GIVEN,
@@ -589,12 +589,12 @@ class AsyncFirewallResource(AsyncAPIResource):
         account_id: str,
         id: str,
         deprecate_any_requests: bool,
-        dns_firewall_ips: List[FirewallIPsParam],
+        dns_firewall_ips: List[FirewallIPs],
         ecs_fallback: bool,
         maximum_cache_ttl: float,
         minimum_cache_ttl: float,
         name: str,
-        upstream_ips: List[UpstreamIPsParam],
+        upstream_ips: List[UpstreamIPs],
         attack_mitigation: Optional[AttackMitigationParam] | NotGiven = NOT_GIVEN,
         negative_cache_ttl: Optional[float] | NotGiven = NOT_GIVEN,
         ratelimit: Optional[float] | NotGiven = NOT_GIVEN,

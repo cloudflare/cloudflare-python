@@ -10,7 +10,6 @@ from .subnet import Subnet as Subnet
 from .nat_param import NatParam as NatParam
 from .dhcp_relay import DHCPRelay as DHCPRelay
 from .dhcp_server import DHCPServer as DHCPServer
-from .subnet_param import SubnetParam as SubnetParam
 from .routed_subnet import RoutedSubnet as RoutedSubnet
 from .acl_edit_params import ACLEditParams as ACLEditParams
 from .lan_edit_params import LANEditParams as LANEditParams
