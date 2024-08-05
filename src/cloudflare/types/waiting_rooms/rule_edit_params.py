@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = ["RuleEditParams", "Position", "PositionIndex", "PositionBefore", "PositionAfter"]
 
@@ -58,4 +58,4 @@ class PositionAfter(TypedDict, total=False):
     """
 
 
-Position = Union[PositionIndex, PositionBefore, PositionAfter]
+Position: TypeAlias = Union[PositionIndex, PositionBefore, PositionAfter]

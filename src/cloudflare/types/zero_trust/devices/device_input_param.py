@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Union
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .file_input_param import FileInputParam
 from .intune_input_param import IntuneInputParam
@@ -95,7 +95,7 @@ class TeamsDevicesClientCertificateV2InputRequest(TypedDict, total=False):
     locations: TeamsDevicesClientCertificateV2InputRequestLocations
 
 
-DeviceInputParam = Union[
+DeviceInputParam: TypeAlias = Union[
     FileInputParam,
     UniqueClientIDInputParam,
     DomainJoinedInputParam,

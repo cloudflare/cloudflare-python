@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ...._models import BaseModel
 
@@ -18,4 +18,4 @@ class ReferenceGetResponseItem(BaseModel):
     resource_type: Optional[str] = None
 
 
-ReferenceGetResponse = List[ReferenceGetResponseItem]
+ReferenceGetResponse: TypeAlias = List[ReferenceGetResponseItem]

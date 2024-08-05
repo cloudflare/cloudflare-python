@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
+from typing_extensions import TypeAlias
 
 from ......_models import BaseModel
 from .....workers.binding import Binding
@@ -17,7 +18,7 @@ class Limits(BaseModel):
     """The amount of CPU time this Worker can use in milliseconds."""
 
 
-Migrations = Union[SingleStepMigration, SteppedMigration]
+Migrations: TypeAlias = Union[SingleStepMigration, SteppedMigration]
 
 
 class SettingGetResponse(BaseModel):

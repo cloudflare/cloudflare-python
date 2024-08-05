@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
     "IntegrationCreateParams",
@@ -128,7 +128,7 @@ class ConfigTeamsDevicesSentineloneS2sConfigRequest(TypedDict, total=False):
     """The SentinelOne S2S client secret."""
 
 
-Config = Union[
+Config: TypeAlias = Union[
     ConfigTeamsDevicesWorkspaceOneConfigRequest,
     ConfigTeamsDevicesCrowdstrikeConfigRequest,
     ConfigTeamsDevicesUptycsConfigRequest,

@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union
+from typing_extensions import TypeAlias
 
 from .ip_rule import IPRule
 from .email_rule import EmailRule
@@ -24,7 +25,7 @@ from .any_valid_service_token_rule import AnyValidServiceTokenRule
 
 __all__ = ["AccessRule"]
 
-AccessRule = Union[
+AccessRule: TypeAlias = Union[
     EmailRule,
     EmailListRule,
     DomainRule,

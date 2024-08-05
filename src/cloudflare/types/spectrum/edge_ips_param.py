@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Union
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, TypeAlias, TypedDict
 
 __all__ = ["EdgeIPsParam", "EyeballIPs", "CustomerOwnedIPs"]
 
@@ -35,4 +35,4 @@ class CustomerOwnedIPs(TypedDict, total=False):
     """
 
 
-EdgeIPsParam = Union[EyeballIPs, CustomerOwnedIPs]
+EdgeIPsParam: TypeAlias = Union[EyeballIPs, CustomerOwnedIPs]

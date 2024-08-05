@@ -2,7 +2,7 @@
 
 from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ...._models import BaseModel
 from .profiles.custom_profile import CustomProfile
@@ -50,4 +50,4 @@ class DLPIntegrationProfile(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-ProfileGetResponse = Union[PredefinedProfile, CustomProfile, DLPIntegrationProfile]
+ProfileGetResponse: TypeAlias = Union[PredefinedProfile, CustomProfile, DLPIntegrationProfile]

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, TypeAlias, TypedDict
 
 __all__ = ["AppUpdateParams", "UpdateAppName", "UpdateAppType", "UpdateAppHostnames", "UpdateAppSubnets"]
 
@@ -36,4 +36,4 @@ class UpdateAppSubnets(TypedDict, total=False):
     body: Required[object]
 
 
-AppUpdateParams = Union[UpdateAppName, UpdateAppType, UpdateAppHostnames, UpdateAppSubnets]
+AppUpdateParams: TypeAlias = Union[UpdateAppName, UpdateAppType, UpdateAppHostnames, UpdateAppSubnets]

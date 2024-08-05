@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ....._models import BaseModel
 from .waf_rule_group import WAFRuleGroup
@@ -99,6 +99,6 @@ class WAFManagedRulesTraditionalAllowRule(BaseModel):
     """The order in which the individual WAF rule is executed within its rule group."""
 
 
-RuleEditResponse = Union[
+RuleEditResponse: TypeAlias = Union[
     WAFManagedRulesAnomalyRule, WAFManagedRulesTraditionalDenyRule, WAFManagedRulesTraditionalAllowRule
 ]

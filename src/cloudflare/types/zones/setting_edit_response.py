@@ -2,7 +2,7 @@
 
 from typing import Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from .nel import NEL
 from .ssl import SSL
@@ -208,7 +208,7 @@ class ZonesTLS1_2Only(BaseModel):
     """last time this setting was modified."""
 
 
-SettingEditResponse = Union[
+SettingEditResponse: TypeAlias = Union[
     ZeroRTT,
     AdvancedDDoS,
     AlwaysOnline,
