@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -108,7 +108,7 @@ class Policy(BaseModel):
     types. See alert type documentation for more details.
     """
 
-    mechanisms: Optional[Mechanism] = None
+    mechanisms: Optional[Dict[str, List[Mechanism]]] = None
     """List of IDs that will be used when dispatching a notification.
 
     IDs for email type will be the email address.
