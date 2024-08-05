@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import List, Union
 from datetime import datetime
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
@@ -52,7 +52,7 @@ class Query(TypedDict, total=False):
     since: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Start of time interval to query, defaults to 6 hours before request received."""
 
-    sort: Iterable[object]
+    sort: List[str]
     """
     Array of dimensions or metrics to sort by, each dimension/metric may be prefixed
     by - (descending) or + (ascending).
