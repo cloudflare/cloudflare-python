@@ -35,11 +35,9 @@ from .record_metadata import RecordMetadata as RecordMetadata
 from .nameserver_param import NameserverParam as NameserverParam
 from .attack_mitigation import AttackMitigation as AttackMitigation
 from .dns_setting_param import DNSSettingParam as DNSSettingParam
-from .firewall_ips_param import FirewallIPsParam as FirewallIPsParam
 from .record_edit_params import RecordEditParams as RecordEditParams
 from .record_list_params import RecordListParams as RecordListParams
 from .record_scan_params import RecordScanParams as RecordScanParams
-from .upstream_ips_param import UpstreamIPsParam as UpstreamIPsParam
 from .dns_analytics_query import DNSAnalyticsQuery as DNSAnalyticsQuery
 from .setting_edit_params import SettingEditParams as SettingEditParams
 from .firewall_edit_params import FirewallEditParams as FirewallEditParams

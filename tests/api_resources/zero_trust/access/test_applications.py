@@ -1372,6 +1372,14 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_1(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1538,6 +1546,12 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_2(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1705,6 +1719,14 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_3(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1876,6 +1898,14 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_4(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2029,6 +2059,13 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_5(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="app_launcher",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2180,6 +2217,13 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_6(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="warp",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2331,6 +2375,13 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_7(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="biso",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2446,6 +2497,12 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_8(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2562,6 +2619,12 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.delete(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.delete(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2623,6 +2686,12 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.get(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.get(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2684,6 +2753,12 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_revoke_tokens(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.revoke_tokens(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.revoke_tokens(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4048,6 +4123,14 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_1(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4214,6 +4297,12 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_2(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4381,6 +4470,14 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_3(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4552,6 +4649,14 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_4(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4705,6 +4810,13 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_5(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="app_launcher",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4856,6 +4968,13 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_6(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="warp",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5007,6 +5126,13 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_7(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="biso",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5122,6 +5248,12 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_8(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5238,6 +5370,12 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.delete(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.delete(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5299,6 +5437,12 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.get(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.get(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5360,6 +5504,12 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_revoke_tokens(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.revoke_tokens(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.revoke_tokens(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",

@@ -2,12 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Union
 from typing_extensions import TypedDict
 
 __all__ = ["MechanismParam"]
 
 
 class MechanismParam(TypedDict, total=False):
-    id: Union[str, str]
+    id: str
     """UUID"""

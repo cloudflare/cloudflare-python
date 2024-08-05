@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import List, Optional
 from typing_extensions import Required, TypedDict
 
-from .firewall_ips_param import FirewallIPsParam
-from .upstream_ips_param import UpstreamIPsParam
+from .firewall_ips import FirewallIPs
+from .upstream_ips import UpstreamIPs
 from .attack_mitigation_param import AttackMitigationParam
 
 __all__ = ["FirewallEditParams"]
@@ -22,7 +22,7 @@ class FirewallEditParams(TypedDict, total=False):
     deprecate_any_requests: Required[bool]
     """Deprecate the response to ANY requests."""
 
-    dns_firewall_ips: Required[List[FirewallIPsParam]]
+    dns_firewall_ips: Required[List[FirewallIPs]]
 
     ecs_fallback: Required[bool]
     """Forward client IP (resolver) subnet if no EDNS Client Subnet is sent."""
@@ -46,7 +46,7 @@ class FirewallEditParams(TypedDict, total=False):
     name: Required[str]
     """DNS Firewall Cluster Name."""
 
-    upstream_ips: Required[List[UpstreamIPsParam]]
+    upstream_ips: Required[List[UpstreamIPs]]
 
     attack_mitigation: Optional[AttackMitigationParam]
     """Attack mitigation settings."""
