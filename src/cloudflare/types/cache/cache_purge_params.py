@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Union, Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, TypeAlias, TypedDict
 
 __all__ = [
     "CachePurgeParams",
@@ -83,7 +83,7 @@ class CachePurgeSingleFileWithURLAndHeadersFile(TypedDict, total=False):
     url: str
 
 
-CachePurgeParams = Union[
+CachePurgeParams: TypeAlias = Union[
     CachePurgeFlexPurgeByTags,
     CachePurgeFlexPurgeByHostnames,
     CachePurgeFlexPurgeByPrefixes,

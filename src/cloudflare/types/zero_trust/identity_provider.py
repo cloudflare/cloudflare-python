@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
+from typing_extensions import TypeAlias
 
 from .azure_ad import AzureAD
 from ..._models import BaseModel
@@ -570,7 +571,7 @@ class AccessOnetimepin(BaseModel):
     """
 
 
-IdentityProvider = Union[
+IdentityProvider: TypeAlias = Union[
     AzureAD,
     AccessCentrify,
     AccessFacebook,

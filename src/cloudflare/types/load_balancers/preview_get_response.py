@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Dict, List, Optional
+from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
@@ -27,4 +28,4 @@ class PreviewGetResponseItem(BaseModel):
     origins: Optional[List[Dict[str, PreviewGetResponseItemOriginPreviewGetResponseItemOriginItem]]] = None
 
 
-PreviewGetResponse = Dict[str, PreviewGetResponseItem]
+PreviewGetResponse: TypeAlias = Dict[str, PreviewGetResponseItem]

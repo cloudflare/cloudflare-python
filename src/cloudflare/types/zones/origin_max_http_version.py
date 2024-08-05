@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 __all__ = ["OriginMaxHTTPVersion"]
 
-OriginMaxHTTPVersion = Literal["origin_max_http_version"]
+OriginMaxHTTPVersion: TypeAlias = Literal["origin_max_http_version"]

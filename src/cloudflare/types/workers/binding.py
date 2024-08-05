@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 from .d1_binding import D1Binding
@@ -26,7 +26,7 @@ class WorkersQueueBinding(BaseModel):
     """The class of resource that the binding provides."""
 
 
-Binding = Union[
+Binding: TypeAlias = Union[
     KVNamespaceBinding,
     ServiceBinding,
     DurableObjectBinding,

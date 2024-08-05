@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, List, Union, Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, TypeAlias, TypedDict
 
 __all__ = [
     "AIRunParams",
@@ -206,7 +206,7 @@ class Variant7ToolUnionMember1(TypedDict, total=False):
     type: Required[str]
 
 
-Variant7Tool = Union[Variant7ToolUnionMember0, Variant7ToolUnionMember1]
+Variant7Tool: TypeAlias = Union[Variant7ToolUnionMember0, Variant7ToolUnionMember1]
 
 
 class Translation(TypedDict, total=False):
@@ -249,7 +249,7 @@ class ImageToTextMessage(TypedDict, total=False):
     role: Required[str]
 
 
-AIRunParams = Union[
+AIRunParams: TypeAlias = Union[
     TextClassification,
     TextToImage,
     TextEmbeddings,

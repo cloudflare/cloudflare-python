@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Literal, TypedDict
+from typing_extensions import Literal, TypeAlias, TypedDict
 
 from .logging_param import LoggingParam
 
@@ -36,7 +36,7 @@ class ActionParametersFromValueTargetURLDynamicURLRedirect(TypedDict, total=Fals
     """An expression to evaluate to get the URL to redirect the request to."""
 
 
-ActionParametersFromValueTargetURL = Union[
+ActionParametersFromValueTargetURL: TypeAlias = Union[
     ActionParametersFromValueTargetURLStaticURLRedirect, ActionParametersFromValueTargetURLDynamicURLRedirect
 ]
 

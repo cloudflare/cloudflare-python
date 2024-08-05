@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
     "MemberUpdateParams",
@@ -58,4 +58,4 @@ class IAMUpdateMemberWithPoliciesPolicy(TypedDict, total=False):
     """A list of resource groups that the policy applies to."""
 
 
-MemberUpdateParams = Union[Member, IAMUpdateMemberWithPolicies]
+MemberUpdateParams: TypeAlias = Union[Member, IAMUpdateMemberWithPolicies]

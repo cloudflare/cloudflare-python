@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Union, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = [
     "MemberCreateParams",
@@ -62,4 +62,4 @@ class IAMCreateMemberWithPoliciesPolicy(TypedDict, total=False):
     """A list of resource groups that the policy applies to."""
 
 
-MemberCreateParams = Union[IAMCreateMemberWithRoles, IAMCreateMemberWithPolicies]
+MemberCreateParams: TypeAlias = Union[IAMCreateMemberWithRoles, IAMCreateMemberWithPolicies]

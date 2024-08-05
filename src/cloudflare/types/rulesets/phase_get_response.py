@@ -2,7 +2,7 @@
 
 from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Annotated
+from typing_extensions import Annotated, TypeAlias
 
 from .kind import Kind
 from .phase import Phase
@@ -29,7 +29,7 @@ from .force_connection_close_rule import ForceConnectionCloseRule
 
 __all__ = ["PhaseGetResponse", "Rule"]
 
-Rule = Annotated[
+Rule: TypeAlias = Annotated[
     Union[
         BlockRule,
         ChallengeRule,

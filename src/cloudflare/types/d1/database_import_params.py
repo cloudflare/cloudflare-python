@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 __all__ = ["DatabaseImportParams", "Variant0", "Variant1", "Variant2"]
 
@@ -51,4 +51,4 @@ class Variant2(TypedDict, total=False):
     """This identifies the currently-running import, checking its status."""
 
 
-DatabaseImportParams = Union[Variant0, Variant1, Variant2]
+DatabaseImportParams: TypeAlias = Union[Variant0, Variant1, Variant2]

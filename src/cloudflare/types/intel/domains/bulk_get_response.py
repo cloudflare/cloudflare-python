@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
+from typing_extensions import TypeAlias
 
 from ...._models import BaseModel
 
@@ -78,4 +79,4 @@ class BulkGetResponseItem(BaseModel):
     risk_types: Optional[List[object]] = None
 
 
-BulkGetResponse = List[BulkGetResponseItem]
+BulkGetResponse: TypeAlias = List[BulkGetResponseItem]

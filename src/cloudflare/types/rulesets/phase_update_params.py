@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, TypeAlias, TypedDict
 
 from .log_rule_param import LogRuleParam
 from .skip_rule_param import SkipRuleParam
@@ -44,7 +44,7 @@ class PhaseUpdateParams(TypedDict, total=False):
     """The human-readable name of the ruleset."""
 
 
-Rule = Union[
+Rule: TypeAlias = Union[
     BlockRuleParam,
     ChallengeRuleParam,
     CompressResponseRuleParam,

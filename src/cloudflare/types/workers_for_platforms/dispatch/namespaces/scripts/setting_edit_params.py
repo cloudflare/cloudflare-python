@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Union, Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, TypeAlias, TypedDict
 
 from .....workers.binding_param import BindingParam
 from .....workers.stepped_migration_param import SteppedMigrationParam
@@ -29,7 +29,7 @@ class SettingsLimits(TypedDict, total=False):
     """The amount of CPU time this Worker can use in milliseconds."""
 
 
-SettingsMigrations = Union[SingleStepMigrationParam, SteppedMigrationParam]
+SettingsMigrations: TypeAlias = Union[SingleStepMigrationParam, SteppedMigrationParam]
 
 
 class Settings(TypedDict, total=False):

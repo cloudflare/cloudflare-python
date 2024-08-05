@@ -2,6 +2,7 @@
 
 from typing import Union, Optional
 from datetime import datetime
+from typing_extensions import TypeAlias
 
 from ...._models import BaseModel
 
@@ -42,4 +43,4 @@ class ZeroTrustGatewayApplicationType(BaseModel):
     """The name of the application or application type."""
 
 
-AppType = Union[ZeroTrustGatewayApplication, ZeroTrustGatewayApplicationType]
+AppType: TypeAlias = Union[ZeroTrustGatewayApplication, ZeroTrustGatewayApplicationType]

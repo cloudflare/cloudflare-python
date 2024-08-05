@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 from typing import Union
+from typing_extensions import TypeAlias
 
 __all__ = ["AppIDParam"]
 
-AppIDParam = Union[str, str]
+AppIDParam: TypeAlias = Union[str, str]

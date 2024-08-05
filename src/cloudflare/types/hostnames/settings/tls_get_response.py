@@ -2,6 +2,7 @@
 
 from typing import List, Optional
 from datetime import datetime
+from typing_extensions import TypeAlias
 
 from ...._models import BaseModel
 from .setting_value import SettingValue
@@ -26,4 +27,4 @@ class TLSGetResponseItem(BaseModel):
     """The tls setting value."""
 
 
-TLSGetResponse = List[TLSGetResponseItem]
+TLSGetResponse: TypeAlias = List[TLSGetResponseItem]

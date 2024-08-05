@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Union, Iterable
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ....._types import FileTypes
 from ....._utils import PropertyInfo
@@ -35,7 +35,7 @@ class Variant0(TypedDict, total=False):
     """JSON encoded metadata about the uploaded parts and Worker configuration."""
 
 
-Variant0MetadataMigrations = Union[SingleStepMigrationParam, SteppedMigrationParam]
+Variant0MetadataMigrations: TypeAlias = Union[SingleStepMigrationParam, SteppedMigrationParam]
 
 
 class Variant0Metadata(TypedDict, total=False):
@@ -107,4 +107,4 @@ class Variant1(TypedDict, total=False):
     """
 
 
-ScriptUpdateParams = Union[Variant0, Variant1]
+ScriptUpdateParams: TypeAlias = Union[Variant0, Variant1]

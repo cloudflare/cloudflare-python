@@ -1,7 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union, Optional
+from typing_extensions import TypeAlias
 
 __all__ = ["ProfileGetResponse"]
 
-ProfileGetResponse = Union[Optional[str], Optional[object]]
+ProfileGetResponse: TypeAlias = Union[Optional[str], Optional[object]]

@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Union
+from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
@@ -17,4 +18,4 @@ class DynamicValue(BaseModel):
     """Expression to evaluate for the replacement value."""
 
 
-RewriteURIPart = Union[StaticValue, DynamicValue]
+RewriteURIPart: TypeAlias = Union[StaticValue, DynamicValue]

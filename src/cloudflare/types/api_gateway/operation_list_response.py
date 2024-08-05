@@ -2,7 +2,7 @@
 
 from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 
@@ -195,7 +195,7 @@ class FeaturesAPIShieldOperationFeatureSchemaInfo(BaseModel):
     schema_info: Optional[FeaturesAPIShieldOperationFeatureSchemaInfoSchemaInfo] = None
 
 
-Features = Union[
+Features: TypeAlias = Union[
     FeaturesAPIShieldOperationFeatureThresholds,
     FeaturesAPIShieldOperationFeatureParameterSchemas,
     FeaturesAPIShieldOperationFeatureAPIRouting,

@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 from typing import Union
+from typing_extensions import TypeAlias
 
 __all__ = ["SubnetParam"]
 
-SubnetParam = Union[str, str]
+SubnetParam: TypeAlias = Union[str, str]

@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 from typing import Union
+from typing_extensions import TypeAlias
 
 __all__ = ["FirewallIPsParam"]
 
-FirewallIPsParam = Union[str, str]
+FirewallIPsParam: TypeAlias = Union[str, str]

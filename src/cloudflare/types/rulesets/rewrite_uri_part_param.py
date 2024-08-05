@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, TypeAlias, TypedDict
 
 __all__ = ["RewriteURIPartParam", "StaticValue", "DynamicValue"]
 
@@ -18,4 +18,4 @@ class DynamicValue(TypedDict, total=False):
     """Expression to evaluate for the replacement value."""
 
 
-RewriteURIPartParam = Union[StaticValue, DynamicValue]
+RewriteURIPartParam: TypeAlias = Union[StaticValue, DynamicValue]

@@ -2,7 +2,7 @@
 
 from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 from ..shared.cloudflare_tunnel import CloudflareTunnel
@@ -91,4 +91,4 @@ class TunnelWARPConnectorTunnel(BaseModel):
     """The type of tunnel."""
 
 
-WARPConnectorDeleteResponse = Union[CloudflareTunnel, TunnelWARPConnectorTunnel]
+WARPConnectorDeleteResponse: TypeAlias = Union[CloudflareTunnel, TunnelWARPConnectorTunnel]

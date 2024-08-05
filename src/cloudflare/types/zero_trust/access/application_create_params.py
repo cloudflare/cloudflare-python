@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Union, Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, TypeAlias, TypedDict
 
 from .decision import Decision
 from .allowed_idps import AllowedIdPs
@@ -288,11 +288,11 @@ class SelfHostedApplicationPolicyUnionMember2(TypedDict, total=False):
     """
 
 
-SelfHostedApplicationPolicy = Union[
+SelfHostedApplicationPolicy: TypeAlias = Union[
     SelfHostedApplicationPolicyAccessAppPolicyLink, str, SelfHostedApplicationPolicyUnionMember2
 ]
 
-SelfHostedApplicationSCIMConfigAuthentication = Union[
+SelfHostedApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasicParam,
     SCIMConfigAuthenticationOAuthBearerTokenParam,
     SCIMConfigAuthenticationOauth2Param,
@@ -465,11 +465,13 @@ class SaaSApplicationPolicyUnionMember2(TypedDict, total=False):
     """
 
 
-SaaSApplicationPolicy = Union[SaaSApplicationPolicyAccessAppPolicyLink, str, SaaSApplicationPolicyUnionMember2]
+SaaSApplicationPolicy: TypeAlias = Union[
+    SaaSApplicationPolicyAccessAppPolicyLink, str, SaaSApplicationPolicyUnionMember2
+]
 
-SaaSApplicationSaaSApp = Union[SAMLSaaSAppParam, OIDCSaaSAppParam]
+SaaSApplicationSaaSApp: TypeAlias = Union[SAMLSaaSAppParam, OIDCSaaSAppParam]
 
-SaaSApplicationSCIMConfigAuthentication = Union[
+SaaSApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasicParam,
     SCIMConfigAuthenticationOAuthBearerTokenParam,
     SCIMConfigAuthenticationOauth2Param,
@@ -721,11 +723,11 @@ class BrowserSSHApplicationPolicyUnionMember2(TypedDict, total=False):
     """
 
 
-BrowserSSHApplicationPolicy = Union[
+BrowserSSHApplicationPolicy: TypeAlias = Union[
     BrowserSSHApplicationPolicyAccessAppPolicyLink, str, BrowserSSHApplicationPolicyUnionMember2
 ]
 
-BrowserSSHApplicationSCIMConfigAuthentication = Union[
+BrowserSSHApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasicParam,
     SCIMConfigAuthenticationOAuthBearerTokenParam,
     SCIMConfigAuthenticationOauth2Param,
@@ -977,11 +979,11 @@ class BrowserVNCApplicationPolicyUnionMember2(TypedDict, total=False):
     """
 
 
-BrowserVNCApplicationPolicy = Union[
+BrowserVNCApplicationPolicy: TypeAlias = Union[
     BrowserVNCApplicationPolicyAccessAppPolicyLink, str, BrowserVNCApplicationPolicyUnionMember2
 ]
 
-BrowserVNCApplicationSCIMConfigAuthentication = Union[
+BrowserVNCApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasicParam,
     SCIMConfigAuthenticationOAuthBearerTokenParam,
     SCIMConfigAuthenticationOauth2Param,
@@ -1184,11 +1186,11 @@ class AppLauncherApplicationPolicyUnionMember2(TypedDict, total=False):
     """
 
 
-AppLauncherApplicationPolicy = Union[
+AppLauncherApplicationPolicy: TypeAlias = Union[
     AppLauncherApplicationPolicyAccessAppPolicyLink, str, AppLauncherApplicationPolicyUnionMember2
 ]
 
-AppLauncherApplicationSCIMConfigAuthentication = Union[
+AppLauncherApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasicParam,
     SCIMConfigAuthenticationOAuthBearerTokenParam,
     SCIMConfigAuthenticationOauth2Param,
@@ -1391,13 +1393,13 @@ class DeviceEnrollmentPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     """
 
 
-DeviceEnrollmentPermissionsApplicationPolicy = Union[
+DeviceEnrollmentPermissionsApplicationPolicy: TypeAlias = Union[
     DeviceEnrollmentPermissionsApplicationPolicyAccessAppPolicyLink,
     str,
     DeviceEnrollmentPermissionsApplicationPolicyUnionMember2,
 ]
 
-DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication = Union[
+DeviceEnrollmentPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasicParam,
     SCIMConfigAuthenticationOAuthBearerTokenParam,
     SCIMConfigAuthenticationOauth2Param,
@@ -1600,13 +1602,13 @@ class BrowserIsolationPermissionsApplicationPolicyUnionMember2(TypedDict, total=
     """
 
 
-BrowserIsolationPermissionsApplicationPolicy = Union[
+BrowserIsolationPermissionsApplicationPolicy: TypeAlias = Union[
     BrowserIsolationPermissionsApplicationPolicyAccessAppPolicyLink,
     str,
     BrowserIsolationPermissionsApplicationPolicyUnionMember2,
 ]
 
-BrowserIsolationPermissionsApplicationSCIMConfigAuthentication = Union[
+BrowserIsolationPermissionsApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasicParam,
     SCIMConfigAuthenticationOAuthBearerTokenParam,
     SCIMConfigAuthenticationOauth2Param,
@@ -1681,7 +1683,7 @@ class BookmarkApplication(TypedDict, total=False):
     """The application type."""
 
 
-BookmarkApplicationSCIMConfigAuthentication = Union[
+BookmarkApplicationSCIMConfigAuthentication: TypeAlias = Union[
     SCIMConfigAuthenticationHTTPBasicParam,
     SCIMConfigAuthenticationOAuthBearerTokenParam,
     SCIMConfigAuthenticationOauth2Param,
@@ -1721,7 +1723,7 @@ class BookmarkApplicationSCIMConfig(TypedDict, total=False):
     """
 
 
-ApplicationCreateParams = Union[
+ApplicationCreateParams: TypeAlias = Union[
     SelfHostedApplication,
     SaaSApplication,
     BrowserSSHApplication,

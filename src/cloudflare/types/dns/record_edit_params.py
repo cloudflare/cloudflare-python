@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Union
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .ttl_param import TTLParam
 from .record_tags import RecordTags
@@ -959,7 +959,7 @@ class URIRecordData(TypedDict, total=False):
     """The record weight."""
 
 
-RecordEditParams = Union[
+RecordEditParams: TypeAlias = Union[
     ARecord,
     AAAARecord,
     CAARecord,

@@ -1,6 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
+from typing_extensions import TypeAlias
 
 from ..._models import BaseModel
 
@@ -99,7 +100,7 @@ class ImageToText(BaseModel):
     description: Optional[str] = None
 
 
-AIRunResponse = Union[
+AIRunResponse: TypeAlias = Union[
     List[TextClassification],
     object,
     TextEmbeddings,

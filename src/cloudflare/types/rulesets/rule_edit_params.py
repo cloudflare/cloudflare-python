@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, List, Union, Iterable
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .phase import Phase
 from .logging_param import LoggingParam
@@ -482,7 +482,7 @@ class RedirectRuleActionParametersFromValueTargetURLDynamicURLRedirect(TypedDict
     """An expression to evaluate to get the URL to redirect the request to."""
 
 
-RedirectRuleActionParametersFromValueTargetURL = Union[
+RedirectRuleActionParametersFromValueTargetURL: TypeAlias = Union[
     RedirectRuleActionParametersFromValueTargetURLStaticURLRedirect,
     RedirectRuleActionParametersFromValueTargetURLDynamicURLRedirect,
 ]
@@ -560,7 +560,7 @@ class RewriteRuleActionParametersHeadersDynamicHeader(TypedDict, total=False):
     operation: Required[Literal["set"]]
 
 
-RewriteRuleActionParametersHeaders = Union[
+RewriteRuleActionParametersHeaders: TypeAlias = Union[
     RewriteRuleActionParametersHeadersRemoveHeader,
     RewriteRuleActionParametersHeadersStaticHeader,
     RewriteRuleActionParametersHeadersDynamicHeader,
@@ -1333,7 +1333,7 @@ class ForceConnectionCloseRule(TypedDict, total=False):
     """The reference of the rule (the rule ID by default)."""
 
 
-RuleEditParams = Union[
+RuleEditParams: TypeAlias = Union[
     BlockRule,
     ChallengeRule,
     CompressResponseRule,

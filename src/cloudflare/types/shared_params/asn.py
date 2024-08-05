@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing_extensions import TypeAlias
+
 __all__ = ["ASN"]
 
-ASN = int
+ASN: TypeAlias = int
