@@ -108,7 +108,6 @@ AIRunResponse: TypeAlias = Union[
     List[ImageClassification],
     List[ObjectDetection],
     UnionMember6,
-    object,
     Translation,
     Summarization,
     ImageToText,

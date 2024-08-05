@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import List, Iterable
 from typing_extensions import Required, TypedDict
 
-from .subnet_param import SubnetParam
+from .subnet import Subnet
 
 __all__ = ["ACLConfigurationParam"]
 
@@ -23,7 +23,7 @@ class ACLConfigurationParam(TypedDict, total=False):
     If no ports are provided, communication on any port on this LAN is allowed.
     """
 
-    subnets: List[SubnetParam]
+    subnets: List[Subnet]
     """Array of subnet IPs within the LAN that will be included in the ACL.
 
     If no subnets are provided, communication on any subnets on this LAN are
