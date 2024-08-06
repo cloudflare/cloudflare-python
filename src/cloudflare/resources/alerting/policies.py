@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, Type, Iterable, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -112,7 +112,7 @@ class PoliciesResource(SyncAPIResource):
             "zone_aop_custom_certificate_expiration_type",
         ],
         enabled: bool,
-        mechanisms: Dict[str, Iterable[MechanismParam]],
+        mechanisms: MechanismParam,
         name: str,
         alert_interval: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -258,7 +258,7 @@ class PoliciesResource(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         filters: PolicyFilterParam | NotGiven = NOT_GIVEN,
-        mechanisms: Dict[str, Iterable[MechanismParam]] | NotGiven = NOT_GIVEN,
+        mechanisms: MechanismParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -530,7 +530,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             "zone_aop_custom_certificate_expiration_type",
         ],
         enabled: bool,
-        mechanisms: Dict[str, Iterable[MechanismParam]],
+        mechanisms: MechanismParam,
         name: str,
         alert_interval: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
@@ -676,7 +676,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         filters: PolicyFilterParam | NotGiven = NOT_GIVEN,
-        mechanisms: Dict[str, Iterable[MechanismParam]] | NotGiven = NOT_GIVEN,
+        mechanisms: MechanismParam | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
