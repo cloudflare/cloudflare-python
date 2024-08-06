@@ -65,9 +65,6 @@ class AIGatewayResource(SyncAPIResource):
         rate_limiting_interval: Optional[int],
         rate_limiting_limit: Optional[int],
         rate_limiting_technique: Literal["fixed", "sliding"],
-        improved_logs: bool | NotGiven = NOT_GIVEN,
-        logpush: bool | NotGiven = NOT_GIVEN,
-        logpush_public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -102,9 +99,6 @@ class AIGatewayResource(SyncAPIResource):
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
-                    "improved_logs": improved_logs,
-                    "logpush": logpush,
-                    "logpush_public_key": logpush_public_key,
                 },
                 ai_gateway_create_params.AIGatewayCreateParams,
             ),
@@ -129,9 +123,6 @@ class AIGatewayResource(SyncAPIResource):
         rate_limiting_interval: Optional[int],
         rate_limiting_limit: Optional[int],
         rate_limiting_technique: Literal["fixed", "sliding"],
-        improved_logs: bool | NotGiven = NOT_GIVEN,
-        logpush: bool | NotGiven = NOT_GIVEN,
-        logpush_public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -167,9 +158,6 @@ class AIGatewayResource(SyncAPIResource):
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
-                    "improved_logs": improved_logs,
-                    "logpush": logpush,
-                    "logpush_public_key": logpush_public_key,
                 },
                 ai_gateway_update_params.AIGatewayUpdateParams,
             ),
@@ -344,9 +332,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         rate_limiting_interval: Optional[int],
         rate_limiting_limit: Optional[int],
         rate_limiting_technique: Literal["fixed", "sliding"],
-        improved_logs: bool | NotGiven = NOT_GIVEN,
-        logpush: bool | NotGiven = NOT_GIVEN,
-        logpush_public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -381,9 +366,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
-                    "improved_logs": improved_logs,
-                    "logpush": logpush,
-                    "logpush_public_key": logpush_public_key,
                 },
                 ai_gateway_create_params.AIGatewayCreateParams,
             ),
@@ -408,9 +390,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
         rate_limiting_interval: Optional[int],
         rate_limiting_limit: Optional[int],
         rate_limiting_technique: Literal["fixed", "sliding"],
-        improved_logs: bool | NotGiven = NOT_GIVEN,
-        logpush: bool | NotGiven = NOT_GIVEN,
-        logpush_public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -446,9 +425,6 @@ class AsyncAIGatewayResource(AsyncAPIResource):
                     "rate_limiting_interval": rate_limiting_interval,
                     "rate_limiting_limit": rate_limiting_limit,
                     "rate_limiting_technique": rate_limiting_technique,
-                    "improved_logs": improved_logs,
-                    "logpush": logpush,
-                    "logpush_public_key": logpush_public_key,
                 },
                 ai_gateway_update_params.AIGatewayUpdateParams,
             ),
