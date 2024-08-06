@@ -116,9 +116,9 @@ class ScriptsResource(SyncAPIResource):
     ) -> Optional[ScriptUpdateResponse]:
         """Upload a worker module to a Workers for Platforms namespace.
 
-        You can find an
-        example of the metadata on our docs:
-        https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/reference/metadata/
+        You can find more
+        about the multipart metadata on our docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
@@ -162,9 +162,9 @@ class ScriptsResource(SyncAPIResource):
     ) -> Optional[ScriptUpdateResponse]:
         """Upload a worker module to a Workers for Platforms namespace.
 
-        You can find an
-        example of the metadata on our docs:
-        https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/reference/metadata/
+        You can find more
+        about the multipart metadata on our docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
@@ -383,9 +383,9 @@ class AsyncScriptsResource(AsyncAPIResource):
     ) -> Optional[ScriptUpdateResponse]:
         """Upload a worker module to a Workers for Platforms namespace.
 
-        You can find an
-        example of the metadata on our docs:
-        https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/reference/metadata/
+        You can find more
+        about the multipart metadata on our docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
@@ -429,9 +429,9 @@ class AsyncScriptsResource(AsyncAPIResource):
     ) -> Optional[ScriptUpdateResponse]:
         """Upload a worker module to a Workers for Platforms namespace.
 
-        You can find an
-        example of the metadata on our docs:
-        https://developers.cloudflare.com/cloudflare-for-platforms/workers-for-platforms/reference/metadata/
+        You can find more
+        about the multipart metadata on our docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
