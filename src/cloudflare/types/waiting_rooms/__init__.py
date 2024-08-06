@@ -9,6 +9,7 @@ from .additional_routes import AdditionalRoutes as AdditionalRoutes
 from .cookie_attributes import CookieAttributes as CookieAttributes
 from .event_edit_params import EventEditParams as EventEditParams
 from .event_list_params import EventListParams as EventListParams
+from .rule_get_response import RuleGetResponse as RuleGetResponse
 from .waiting_room_rule import WaitingRoomRule as WaitingRoomRule
 from .rule_create_params import RuleCreateParams as RuleCreateParams
 from .rule_edit_response import RuleEditResponse as RuleEditResponse

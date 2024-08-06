@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable
 from typing_extensions import Literal, Required, TypedDict
 
 from .mechanism_param import MechanismParam
@@ -90,7 +89,7 @@ class PolicyCreateParams(TypedDict, total=False):
     enabled: Required[bool]
     """Whether or not the Notification policy is enabled."""
 
-    mechanisms: Required[Dict[str, Iterable[MechanismParam]]]
+    mechanisms: Required[MechanismParam]
     """List of IDs that will be used when dispatching a notification.
 
     IDs for email type will be the email address.
