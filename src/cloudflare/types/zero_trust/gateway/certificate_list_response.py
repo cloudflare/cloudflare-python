@@ -21,10 +21,10 @@ class CertificateListResponse(BaseModel):
 
     created_at: Optional[datetime] = None
 
-    enabled: Optional[bool] = None
-    """Use this certificate for Gateway TLS interception"""
-
     expires_on: Optional[datetime] = None
+
+    in_use: Optional[bool] = None
+    """Use this certificate for Gateway TLS interception"""
 
     type: Optional[Literal["custom", "gateway_managed"]] = None
     """The type of certificate, either BYO-PKI (custom) or Gateway-managed."""
