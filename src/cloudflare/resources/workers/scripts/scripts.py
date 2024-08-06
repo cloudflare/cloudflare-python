@@ -135,8 +135,11 @@ class ScriptsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ScriptUpdateResponse]:
-        """
-        Upload a worker module.
+        """Upload a worker module.
+
+        You can find more about the multipart metadata on our
+        docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
@@ -180,8 +183,11 @@ class ScriptsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ScriptUpdateResponse]:
-        """
-        Upload a worker module.
+        """Upload a worker module.
+
+        You can find more about the multipart metadata on our
+        docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
@@ -427,8 +433,11 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ScriptUpdateResponse]:
-        """
-        Upload a worker module.
+        """Upload a worker module.
+
+        You can find more about the multipart metadata on our
+        docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
@@ -472,8 +481,11 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[ScriptUpdateResponse]:
-        """
-        Upload a worker module.
+        """Upload a worker module.
+
+        You can find more about the multipart metadata on our
+        docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
