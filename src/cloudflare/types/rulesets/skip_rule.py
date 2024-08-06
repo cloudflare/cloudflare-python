@@ -18,9 +18,9 @@ class ActionParameters(BaseModel):
     This option is incompatible with the ruleset and rulesets options.
     """
 
-    products: Optional[
-        List[Literal["bic", "hot", "rateLimit", "securityLevel", "uaBlock", "waf", "zoneLockdown"]]
-    ] = None
+    products: Optional[List[Literal["bic", "hot", "rateLimit", "securityLevel", "uaBlock", "waf", "zoneLockdown"]]] = (
+        None
+    )
     """A list of legacy security products to skip the execution of."""
 
     rules: Optional[Dict[str, List[str]]] = None
