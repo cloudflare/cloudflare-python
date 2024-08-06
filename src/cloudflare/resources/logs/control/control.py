@@ -11,14 +11,6 @@ from .cmb import (
     AsyncCmbResourceWithStreamingResponse,
 )
 from .cmb.cmb import CmbResource, AsyncCmbResource
-from .retention import (
-    RetentionResource,
-    AsyncRetentionResource,
-    RetentionResourceWithRawResponse,
-    AsyncRetentionResourceWithRawResponse,
-    RetentionResourceWithStreamingResponse,
-    AsyncRetentionResourceWithStreamingResponse,
-)
 from ...._compat import cached_property
 from ...._resource import SyncAPIResource, AsyncAPIResource
 
@@ -26,10 +18,6 @@ __all__ = ["ControlResource", "AsyncControlResource"]
 
 
 class ControlResource(SyncAPIResource):
-    @cached_property
-    def retention(self) -> RetentionResource:
-        return RetentionResource(self._client)
-
     @cached_property
     def cmb(self) -> CmbResource:
         return CmbResource(self._client)
@@ -44,10 +32,6 @@ class ControlResource(SyncAPIResource):
 
 
 class AsyncControlResource(AsyncAPIResource):
-    @cached_property
-    def retention(self) -> AsyncRetentionResource:
-        return AsyncRetentionResource(self._client)
-
     @cached_property
     def cmb(self) -> AsyncCmbResource:
         return AsyncCmbResource(self._client)
@@ -66,10 +50,6 @@ class ControlResourceWithRawResponse:
         self._control = control
 
     @cached_property
-    def retention(self) -> RetentionResourceWithRawResponse:
-        return RetentionResourceWithRawResponse(self._control.retention)
-
-    @cached_property
     def cmb(self) -> CmbResourceWithRawResponse:
         return CmbResourceWithRawResponse(self._control.cmb)
 
@@ -77,10 +57,6 @@ class ControlResourceWithRawResponse:
 class AsyncControlResourceWithRawResponse:
     def __init__(self, control: AsyncControlResource) -> None:
         self._control = control
-
-    @cached_property
-    def retention(self) -> AsyncRetentionResourceWithRawResponse:
-        return AsyncRetentionResourceWithRawResponse(self._control.retention)
 
     @cached_property
     def cmb(self) -> AsyncCmbResourceWithRawResponse:
@@ -92,10 +68,6 @@ class ControlResourceWithStreamingResponse:
         self._control = control
 
     @cached_property
-    def retention(self) -> RetentionResourceWithStreamingResponse:
-        return RetentionResourceWithStreamingResponse(self._control.retention)
-
-    @cached_property
     def cmb(self) -> CmbResourceWithStreamingResponse:
         return CmbResourceWithStreamingResponse(self._control.cmb)
 
@@ -103,10 +75,6 @@ class ControlResourceWithStreamingResponse:
 class AsyncControlResourceWithStreamingResponse:
     def __init__(self, control: AsyncControlResource) -> None:
         self._control = control
-
-    @cached_property
-    def retention(self) -> AsyncRetentionResourceWithStreamingResponse:
-        return AsyncRetentionResourceWithStreamingResponse(self._control.retention)
 
     @cached_property
     def cmb(self) -> AsyncCmbResourceWithStreamingResponse:
