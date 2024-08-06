@@ -55,8 +55,11 @@ class VersionsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[VersionCreateResponse]:
-        """
-        Upload a Worker Version without deploying to Cloudflare's network.
+        """Upload a Worker Version without deploying to Cloudflare's network.
+
+        You can find
+        more about the multipart metadata on our docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
@@ -239,8 +242,11 @@ class AsyncVersionsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[VersionCreateResponse]:
-        """
-        Upload a Worker Version without deploying to Cloudflare's network.
+        """Upload a Worker Version without deploying to Cloudflare's network.
+
+        You can find
+        more about the multipart metadata on our docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
