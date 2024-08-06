@@ -75,9 +75,9 @@ class FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameter
 class FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemas(BaseModel):
     last_updated: Optional[datetime] = None
 
-    parameter_schemas: Optional[
-        FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameterSchemas
-    ] = None
+    parameter_schemas: Optional[FeaturesAPIShieldOperationFeatureParameterSchemasParameterSchemasParameterSchemas] = (
+        None
+    )
     """An operation schema object containing a response."""
 
 
