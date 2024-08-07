@@ -22,7 +22,7 @@ class OutgoingGetResponse(BaseModel):
     name: Optional[str] = None
     """Zone name."""
 
-    peers: Optional[List[object]] = None
+    peers: Optional[List[str]] = None
     """A list of peer tags."""
 
     soa_serial: Optional[float] = None
