@@ -9,6 +9,8 @@ __all__ = ["DeploymentGetResponse", "Deployment"]
 
 
 class Deployment(BaseModel):
+    strategy: str
+
     id: Optional[str] = None
 
     annotations: Optional[deployment.Deployment] = None
@@ -18,8 +20,6 @@ class Deployment(BaseModel):
     created_on: Optional[str] = None
 
     source: Optional[str] = None
-
-    strategy: Optional[str] = None
 
 
 class DeploymentGetResponse(BaseModel):
