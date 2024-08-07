@@ -23,7 +23,7 @@ class TestPeers:
     def test_method_create(self, client: Cloudflare) -> None:
         peer = client.secondary_dns.peers.create(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
+            name="my-peer-1",
         )
         assert_matches_type(Optional[Peer], peer, path=["response"])
 
@@ -32,7 +32,7 @@ class TestPeers:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.secondary_dns.peers.with_raw_response.create(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
+            name="my-peer-1",
         )
 
         assert response.is_closed is True
@@ -45,7 +45,7 @@ class TestPeers:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.secondary_dns.peers.with_streaming_response.create(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
+            name="my-peer-1",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -61,7 +61,7 @@ class TestPeers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.secondary_dns.peers.with_raw_response.create(
                 account_id="",
-                body={},
+                name="my-peer-1",
             )
 
     @parametrize
@@ -273,7 +273,7 @@ class TestAsyncPeers:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         peer = await async_client.secondary_dns.peers.create(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
+            name="my-peer-1",
         )
         assert_matches_type(Optional[Peer], peer, path=["response"])
 
@@ -282,7 +282,7 @@ class TestAsyncPeers:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.secondary_dns.peers.with_raw_response.create(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
+            name="my-peer-1",
         )
 
         assert response.is_closed is True
@@ -295,7 +295,7 @@ class TestAsyncPeers:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.secondary_dns.peers.with_streaming_response.create(
             account_id="01a7362d577a6c3019a474fd6f485823",
-            body={},
+            name="my-peer-1",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -311,7 +311,7 @@ class TestAsyncPeers:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.secondary_dns.peers.with_raw_response.create(
                 account_id="",
-                body={},
+                name="my-peer-1",
             )
 
     @parametrize
