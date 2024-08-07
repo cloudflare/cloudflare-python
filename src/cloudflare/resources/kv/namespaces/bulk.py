@@ -78,7 +78,7 @@ class BulkResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._put(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
-            body=maybe_transform(body, bulk_update_params.BulkUpdateParams),
+            body=maybe_transform(body, Iterable[bulk_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -186,7 +186,7 @@ class AsyncBulkResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return await self._put(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}/bulk",
-            body=await async_maybe_transform(body, bulk_update_params.BulkUpdateParams),
+            body=await async_maybe_transform(body, Iterable[bulk_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
