@@ -144,14 +144,6 @@ from .pcaps import (
     PCAPsResourceWithStreamingResponse,
     AsyncPCAPsResourceWithStreamingResponse,
 )
-from .plans import (
-    PlansResource,
-    AsyncPlansResource,
-    PlansResourceWithRawResponse,
-    AsyncPlansResourceWithRawResponse,
-    PlansResourceWithStreamingResponse,
-    AsyncPlansResourceWithStreamingResponse,
-)
 from .radar import (
     RadarResource,
     AsyncRadarResource,
@@ -215,14 +207,6 @@ from .stream import (
     AsyncStreamResourceWithRawResponse,
     StreamResourceWithStreamingResponse,
     AsyncStreamResourceWithStreamingResponse,
-)
-from .billing import (
-    BillingResource,
-    AsyncBillingResource,
-    BillingResourceWithRawResponse,
-    AsyncBillingResourceWithRawResponse,
-    BillingResourceWithStreamingResponse,
-    AsyncBillingResourceWithStreamingResponse,
 )
 from .filters import (
     FiltersResource,
@@ -375,14 +359,6 @@ from .hyperdrive import (
     AsyncHyperdriveResourceWithRawResponse,
     HyperdriveResourceWithStreamingResponse,
     AsyncHyperdriveResourceWithStreamingResponse,
-)
-from .rate_plans import (
-    RatePlansResource,
-    AsyncRatePlansResource,
-    RatePlansResourceWithRawResponse,
-    AsyncRatePlansResourceWithRawResponse,
-    RatePlansResourceWithStreamingResponse,
-    AsyncRatePlansResourceWithStreamingResponse,
 )
 from .zero_trust import (
     ZeroTrustResource,
@@ -754,18 +730,6 @@ __all__ = [
     "AsyncArgoResourceWithRawResponse",
     "ArgoResourceWithStreamingResponse",
     "AsyncArgoResourceWithStreamingResponse",
-    "PlansResource",
-    "AsyncPlansResource",
-    "PlansResourceWithRawResponse",
-    "AsyncPlansResourceWithRawResponse",
-    "PlansResourceWithStreamingResponse",
-    "AsyncPlansResourceWithStreamingResponse",
-    "RatePlansResource",
-    "AsyncRatePlansResource",
-    "RatePlansResourceWithRawResponse",
-    "AsyncRatePlansResourceWithRawResponse",
-    "RatePlansResourceWithStreamingResponse",
-    "AsyncRatePlansResourceWithStreamingResponse",
     "CertificateAuthoritiesResource",
     "AsyncCertificateAuthoritiesResource",
     "CertificateAuthoritiesResourceWithRawResponse",
@@ -958,12 +922,6 @@ __all__ = [
     "AsyncAuditLogsResourceWithRawResponse",
     "AuditLogsResourceWithStreamingResponse",
     "AsyncAuditLogsResourceWithStreamingResponse",
-    "BillingResource",
-    "AsyncBillingResource",
-    "BillingResourceWithRawResponse",
-    "AsyncBillingResourceWithRawResponse",
-    "BillingResourceWithStreamingResponse",
-    "AsyncBillingResourceWithStreamingResponse",
     "BrandProtectionResource",
     "AsyncBrandProtectionResource",
     "BrandProtectionResourceWithRawResponse",
