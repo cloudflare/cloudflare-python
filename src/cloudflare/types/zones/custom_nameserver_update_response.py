@@ -5,4 +5,4 @@ from typing_extensions import TypeAlias
 
 __all__ = ["CustomNameserverUpdateResponse"]
 
-CustomNameserverUpdateResponse: TypeAlias = List[object]
+CustomNameserverUpdateResponse: TypeAlias = List[str]
