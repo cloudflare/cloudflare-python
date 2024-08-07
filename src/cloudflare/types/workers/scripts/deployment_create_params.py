@@ -13,6 +13,8 @@ class DeploymentCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
+    strategy: Required[str]
+
     force: bool
     """
     If set to true, the deployment will be created even if normally blocked by
@@ -20,5 +22,3 @@ class DeploymentCreateParams(TypedDict, total=False):
     """
 
     annotations: DeploymentParam
-
-    strategy: str

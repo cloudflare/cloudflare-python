@@ -43,9 +43,9 @@ class DeploymentsResource(SyncAPIResource):
         script_name: str,
         *,
         account_id: str,
+        strategy: str,
         force: bool | NotGiven = NOT_GIVEN,
         annotations: DeploymentParam | NotGiven = NOT_GIVEN,
-        strategy: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -83,8 +83,8 @@ class DeploymentsResource(SyncAPIResource):
             f"/accounts/{account_id}/workers/scripts/{script_name}/deployments",
             body=maybe_transform(
                 {
-                    "annotations": annotations,
                     "strategy": strategy,
+                    "annotations": annotations,
                 },
                 deployment_create_params.DeploymentCreateParams,
             ),
@@ -160,9 +160,9 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         script_name: str,
         *,
         account_id: str,
+        strategy: str,
         force: bool | NotGiven = NOT_GIVEN,
         annotations: DeploymentParam | NotGiven = NOT_GIVEN,
-        strategy: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -200,8 +200,8 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             f"/accounts/{account_id}/workers/scripts/{script_name}/deployments",
             body=await async_maybe_transform(
                 {
-                    "annotations": annotations,
                     "strategy": strategy,
+                    "annotations": annotations,
                 },
                 deployment_create_params.DeploymentCreateParams,
             ),
