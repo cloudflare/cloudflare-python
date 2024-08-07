@@ -22,7 +22,6 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import AsyncPaginator, make_request_options
-from .....types.zero_trust.devices.policies import exclude_update_params
 from .....types.zero_trust.devices.policies.exclude_get_response import ExcludeGetResponse
 from .....types.zero_trust.devices.policies.split_tunnel_exclude import SplitTunnelExclude
 from .....types.zero_trust.devices.policies.exclude_update_response import ExcludeUpdateResponse
@@ -68,7 +67,7 @@ class ExcludesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
             f"/accounts/{account_id}/devices/policy/exclude",
-            body=maybe_transform(body, exclude_update_params.ExcludeUpdateParams),
+            body=maybe_transform(body, Iterable[SplitTunnelExcludeParam]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -194,7 +193,7 @@ class AsyncExcludesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
             f"/accounts/{account_id}/devices/policy/exclude",
-            body=await async_maybe_transform(body, exclude_update_params.ExcludeUpdateParams),
+            body=await async_maybe_transform(body, Iterable[SplitTunnelExcludeParam]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

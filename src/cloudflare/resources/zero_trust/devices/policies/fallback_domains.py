@@ -22,7 +22,6 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import AsyncPaginator, make_request_options
-from .....types.zero_trust.devices.policies import fallback_domain_update_params
 from .....types.zero_trust.devices.policies.fallback_domain import FallbackDomain
 from .....types.zero_trust.devices.policies.fallback_domain_param import FallbackDomainParam
 from .....types.zero_trust.devices.policies.fallback_domain_get_response import FallbackDomainGetResponse
@@ -76,7 +75,7 @@ class FallbackDomainsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._put(
             f"/accounts/{account_id}/devices/policy/{policy_id}/fallback_domains",
-            body=maybe_transform(body, fallback_domain_update_params.FallbackDomainUpdateParams),
+            body=maybe_transform(body, Iterable[FallbackDomainParam]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -213,7 +212,7 @@ class AsyncFallbackDomainsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._put(
             f"/accounts/{account_id}/devices/policy/{policy_id}/fallback_domains",
-            body=await async_maybe_transform(body, fallback_domain_update_params.FallbackDomainUpdateParams),
+            body=await async_maybe_transform(body, Iterable[FallbackDomainParam]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -67,7 +67,7 @@ class SeatsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._patch(
             f"/accounts/{account_id}/access/seats",
-            body=maybe_transform(body, seat_edit_params.SeatEditParams),
+            body=maybe_transform(body, Iterable[seat_edit_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -119,7 +119,7 @@ class AsyncSeatsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/access/seats",
-            body=await async_maybe_transform(body, seat_edit_params.SeatEditParams),
+            body=await async_maybe_transform(body, Iterable[seat_edit_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

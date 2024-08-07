@@ -21,7 +21,6 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
-from ....types.zero_trust.devices import unrevoke_create_params
 from ....types.zero_trust.devices.unrevoke_create_response import UnrevokeCreateResponse
 
 __all__ = ["UnrevokeResource", "AsyncUnrevokeResource"]
@@ -68,7 +67,7 @@ class UnrevokeResource(SyncAPIResource):
             UnrevokeCreateResponse,
             self._post(
                 f"/accounts/{account_id}/devices/unrevoke",
-                body=maybe_transform(body, unrevoke_create_params.UnrevokeCreateParams),
+                body=maybe_transform(body, List[str]),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -124,7 +123,7 @@ class AsyncUnrevokeResource(AsyncAPIResource):
             UnrevokeCreateResponse,
             await self._post(
                 f"/accounts/{account_id}/devices/unrevoke",
-                body=await async_maybe_transform(body, unrevoke_create_params.UnrevokeCreateParams),
+                body=await async_maybe_transform(body, List[str]),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
