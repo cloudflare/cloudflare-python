@@ -88,7 +88,7 @@ class OperationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
             f"/zones/{zone_id}/api_gateway/operations",
-            body=maybe_transform(body, operation_create_params.OperationCreateParams),
+            body=maybe_transform(body, Iterable[operation_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -317,7 +317,7 @@ class AsyncOperationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/api_gateway/operations",
-            body=await async_maybe_transform(body, operation_create_params.OperationCreateParams),
+            body=await async_maybe_transform(body, Iterable[operation_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

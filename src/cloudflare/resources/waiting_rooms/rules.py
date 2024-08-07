@@ -141,7 +141,7 @@ class RulesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._put(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
-            body=maybe_transform(body, rule_update_params.RuleUpdateParams),
+            body=maybe_transform(body, Iterable[rule_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -423,7 +423,7 @@ class AsyncRulesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._put(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/rules",
-            body=await async_maybe_transform(body, rule_update_params.RuleUpdateParams),
+            body=await async_maybe_transform(body, Iterable[rule_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

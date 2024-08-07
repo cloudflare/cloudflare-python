@@ -22,7 +22,6 @@ from ......_response import (
 from ......_wrappers import ResultWrapper
 from ......pagination import SyncSinglePage, AsyncSinglePage
 from ......_base_client import AsyncPaginator, make_request_options
-from ......types.workers_for_platforms.dispatch.namespaces.scripts import tag_update_params
 from ......types.workers_for_platforms.dispatch.namespaces.scripts.tag_list_response import TagListResponse
 from ......types.workers_for_platforms.dispatch.namespaces.scripts.tag_update_response import TagUpdateResponse
 
@@ -80,7 +79,7 @@ class TagsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return self._put(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/tags",
-            body=maybe_transform(body, tag_update_params.TagUpdateParams),
+            body=maybe_transform(body, List[str]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -243,7 +242,7 @@ class AsyncTagsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `script_name` but received {script_name!r}")
         return await self._put(
             f"/accounts/{account_id}/workers/dispatch/namespaces/{dispatch_namespace}/scripts/{script_name}/tags",
-            body=await async_maybe_transform(body, tag_update_params.TagUpdateParams),
+            body=await async_maybe_transform(body, List[str]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
