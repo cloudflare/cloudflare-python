@@ -80,7 +80,7 @@ class ItemsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._post(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            body=maybe_transform(body, item_create_params.ItemCreateParams),
+            body=maybe_transform(body, Iterable[item_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -131,7 +131,7 @@ class ItemsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return self._put(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            body=maybe_transform(body, item_update_params.ItemUpdateParams),
+            body=maybe_transform(body, Iterable[item_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -363,7 +363,7 @@ class AsyncItemsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return await self._post(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            body=await async_maybe_transform(body, item_create_params.ItemCreateParams),
+            body=await async_maybe_transform(body, Iterable[item_create_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -414,7 +414,7 @@ class AsyncItemsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `list_id` but received {list_id!r}")
         return await self._put(
             f"/accounts/{account_id}/rules/lists/{list_id}/items",
-            body=await async_maybe_transform(body, item_update_params.ItemUpdateParams),
+            body=await async_maybe_transform(body, Iterable[item_update_params.Body]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
