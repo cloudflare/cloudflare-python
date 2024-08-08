@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, Iterable, Optional, cast
+from typing_extensions import Literal
 
 import httpx
 
@@ -43,7 +44,8 @@ class DeploymentsResource(SyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        strategy: str,
+        strategy: Literal["percentage"],
+        versions: Iterable[deployment_create_params.Version],
         force: bool | NotGiven = NOT_GIVEN,
         annotations: DeploymentParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -84,6 +86,7 @@ class DeploymentsResource(SyncAPIResource):
             body=maybe_transform(
                 {
                     "strategy": strategy,
+                    "versions": versions,
                     "annotations": annotations,
                 },
                 deployment_create_params.DeploymentCreateParams,
@@ -160,7 +163,8 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         script_name: str,
         *,
         account_id: str,
-        strategy: str,
+        strategy: Literal["percentage"],
+        versions: Iterable[deployment_create_params.Version],
         force: bool | NotGiven = NOT_GIVEN,
         annotations: DeploymentParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -201,6 +205,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
             body=await async_maybe_transform(
                 {
                     "strategy": strategy,
+                    "versions": versions,
                     "annotations": annotations,
                 },
                 deployment_create_params.DeploymentCreateParams,
