@@ -410,6 +410,7 @@ from cloudflare.types.zones import SubscriptionCreateResponse, SubscriptionGetRe
 Methods:
 
 - <code title="post /zones/{identifier}/subscription">client.zones.subscriptions.<a href="./src/cloudflare/resources/zones/subscriptions.py">create</a>(identifier, \*\*<a href="src/cloudflare/types/zones/subscription_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zones/subscription_create_response.py">SubscriptionCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/subscriptions">client.zones.subscriptions.<a href="./src/cloudflare/resources/zones/subscriptions.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/user/subscription.py">SyncSinglePage[Subscription]</a></code>
 - <code title="get /zones/{identifier}/subscription">client.zones.subscriptions.<a href="./src/cloudflare/resources/zones/subscriptions.py">get</a>(identifier) -> <a href="./src/cloudflare/types/zones/subscription_get_response.py">SubscriptionGetResponse</a></code>
 
 # LoadBalancers
@@ -764,12 +765,20 @@ Methods:
 Types:
 
 ```python
-from cloudflare.types.subscriptions import SubscriptionCreateResponse, SubscriptionGetResponse
+from cloudflare.types.subscriptions import (
+    SubscriptionCreateResponse,
+    SubscriptionUpdateResponse,
+    SubscriptionDeleteResponse,
+    SubscriptionGetResponse,
+)
 ```
 
 Methods:
 
 - <code title="post /zones/{identifier}/subscription">client.subscriptions.<a href="./src/cloudflare/resources/subscriptions.py">create</a>(identifier, \*\*<a href="src/cloudflare/types/subscriptions/subscription_create_params.py">params</a>) -> <a href="./src/cloudflare/types/subscriptions/subscription_create_response.py">SubscriptionCreateResponse</a></code>
+- <code title="put /accounts/{account_id}/subscriptions/{subscription_identifier}">client.subscriptions.<a href="./src/cloudflare/resources/subscriptions.py">update</a>(subscription_identifier, \*, account_id, \*\*<a href="src/cloudflare/types/subscriptions/subscription_update_params.py">params</a>) -> <a href="./src/cloudflare/types/subscriptions/subscription_update_response.py">SubscriptionUpdateResponse</a></code>
+- <code title="get /accounts/{account_id}/subscriptions">client.subscriptions.<a href="./src/cloudflare/resources/subscriptions.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/user/subscription.py">SyncSinglePage[Subscription]</a></code>
+- <code title="delete /accounts/{account_id}/subscriptions/{subscription_identifier}">client.subscriptions.<a href="./src/cloudflare/resources/subscriptions.py">delete</a>(subscription_identifier, \*, account_id) -> <a href="./src/cloudflare/types/subscriptions/subscription_delete_response.py">SubscriptionDeleteResponse</a></code>
 - <code title="get /zones/{identifier}/subscription">client.subscriptions.<a href="./src/cloudflare/resources/subscriptions.py">get</a>(identifier) -> <a href="./src/cloudflare/types/subscriptions/subscription_get_response.py">SubscriptionGetResponse</a></code>
 
 # ACM
@@ -823,13 +832,22 @@ Types:
 from cloudflare.types.plans import AvailableRatePlan
 ```
 
+Methods:
+
+- <code title="get /zones/{zone_id}/available_plans">client.plans.<a href="./src/cloudflare/resources/plans.py">list</a>(\*, zone_id) -> <a href="./src/cloudflare/types/plans/available_rate_plan.py">SyncSinglePage[AvailableRatePlan]</a></code>
+- <code title="get /zones/{zone_id}/available_plans/{plan_identifier}">client.plans.<a href="./src/cloudflare/resources/plans.py">get</a>(plan_identifier, \*, zone_id) -> <a href="./src/cloudflare/types/plans/available_rate_plan.py">AvailableRatePlan</a></code>
+
 # RatePlans
 
 Types:
 
 ```python
-from cloudflare.types.rate_plans import RatePlan
+from cloudflare.types.rate_plans import RatePlan, RatePlanGetResponse
 ```
+
+Methods:
+
+- <code title="get /zones/{zone_id}/available_rate_plans">client.rate_plans.<a href="./src/cloudflare/resources/rate_plans.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/rate_plans/rate_plan_get_response.py">Optional</a></code>
 
 # CertificateAuthorities
 
@@ -1119,6 +1137,152 @@ Methods:
 - <code title="delete /zones/{zone_id}/dnssec">client.dnssec.<a href="./src/cloudflare/resources/dnssec.py">delete</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dnssec/dnssec_delete_response.py">Optional</a></code>
 - <code title="patch /zones/{zone_id}/dnssec">client.dnssec.<a href="./src/cloudflare/resources/dnssec.py">edit</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/dnssec/dnssec_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/dnssec/dnssec.py">Optional</a></code>
 - <code title="get /zones/{zone_id}/dnssec">client.dnssec.<a href="./src/cloudflare/resources/dnssec.py">get</a>(\*, zone_id) -> <a href="./src/cloudflare/types/dnssec/dnssec.py">Optional</a></code>
+
+# EmailSecurity
+
+## Investigate
+
+Types:
+
+```python
+from cloudflare.types.email_security import (
+    InvestigateListResponse,
+    InvestigateDetectionsResponse,
+    InvestigateGetResponse,
+    InvestigatePreviewResponse,
+    InvestigateRawResponse,
+    InvestigateTraceResponse,
+)
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/email-security/investigate">client.email_security.investigate.<a href="./src/cloudflare/resources/email_security/investigate.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/investigate_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/investigate_list_response.py">SyncV4PagePaginationArray[InvestigateListResponse]</a></code>
+- <code title="get /accounts/{account_id}/email-security/investigate/{postfix_id}/detections">client.email_security.investigate.<a href="./src/cloudflare/resources/email_security/investigate.py">detections</a>(postfix_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate_detections_response.py">InvestigateDetectionsResponse</a></code>
+- <code title="get /accounts/{account_id}/email-security/investigate/{postfix_id}">client.email_security.investigate.<a href="./src/cloudflare/resources/email_security/investigate.py">get</a>(postfix_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate_get_response.py">InvestigateGetResponse</a></code>
+- <code title="get /accounts/{account_id}/email-security/investigate/{postfix_id}/preview">client.email_security.investigate.<a href="./src/cloudflare/resources/email_security/investigate.py">preview</a>(postfix_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate_preview_response.py">InvestigatePreviewResponse</a></code>
+- <code title="get /accounts/{account_id}/email-security/investigate/{postfix_id}/raw">client.email_security.investigate.<a href="./src/cloudflare/resources/email_security/investigate.py">raw</a>(postfix_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate_raw_response.py">InvestigateRawResponse</a></code>
+- <code title="get /accounts/{account_id}/email-security/investigate/{postfix_id}/trace">client.email_security.investigate.<a href="./src/cloudflare/resources/email_security/investigate.py">trace</a>(postfix_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/investigate_trace_response.py">InvestigateTraceResponse</a></code>
+
+## Phishguard
+
+Types:
+
+```python
+from cloudflare.types.email_security import PhishguardListResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/email-security/phishguard/reports">client.email_security.phishguard.<a href="./src/cloudflare/resources/email_security/phishguard.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/phishguard_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/phishguard_list_response.py">SyncSinglePage[PhishguardListResponse]</a></code>
+
+## Settings
+
+### AllowPatterns
+
+Types:
+
+```python
+from cloudflare.types.email_security.settings import (
+    AllowPatternCreateResponse,
+    AllowPatternListResponse,
+    AllowPatternDeleteResponse,
+    AllowPatternEditResponse,
+    AllowPatternGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/email-security/settings/allow_patterns">client.email_security.settings.allow_patterns.<a href="./src/cloudflare/resources/email_security/settings/allow_patterns.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/allow_pattern_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/allow_pattern_create_response.py">AllowPatternCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/email-security/settings/allow_patterns">client.email_security.settings.allow_patterns.<a href="./src/cloudflare/resources/email_security/settings/allow_patterns.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/allow_pattern_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/allow_pattern_list_response.py">SyncV4PagePaginationArray[AllowPatternListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/email-security/settings/allow_patterns/{pattern_id}">client.email_security.settings.allow_patterns.<a href="./src/cloudflare/resources/email_security/settings/allow_patterns.py">delete</a>(pattern_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/allow_pattern_delete_response.py">AllowPatternDeleteResponse</a></code>
+- <code title="patch /accounts/{account_id}/email-security/settings/allow_patterns/{pattern_id}">client.email_security.settings.allow_patterns.<a href="./src/cloudflare/resources/email_security/settings/allow_patterns.py">edit</a>(pattern_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/allow_pattern_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/allow_pattern_edit_response.py">AllowPatternEditResponse</a></code>
+- <code title="get /accounts/{account_id}/email-security/settings/allow_patterns/{pattern_id}">client.email_security.settings.allow_patterns.<a href="./src/cloudflare/resources/email_security/settings/allow_patterns.py">get</a>(pattern_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/allow_pattern_get_response.py">AllowPatternGetResponse</a></code>
+
+### BlockSenders
+
+Types:
+
+```python
+from cloudflare.types.email_security.settings import (
+    BlockSenderCreateResponse,
+    BlockSenderListResponse,
+    BlockSenderDeleteResponse,
+    BlockSenderEditResponse,
+    BlockSenderGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/email-security/settings/block_senders">client.email_security.settings.block_senders.<a href="./src/cloudflare/resources/email_security/settings/block_senders.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/block_sender_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/block_sender_create_response.py">BlockSenderCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/email-security/settings/block_senders">client.email_security.settings.block_senders.<a href="./src/cloudflare/resources/email_security/settings/block_senders.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/block_sender_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/block_sender_list_response.py">SyncV4PagePaginationArray[BlockSenderListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/email-security/settings/block_senders/{pattern_id}">client.email_security.settings.block_senders.<a href="./src/cloudflare/resources/email_security/settings/block_senders.py">delete</a>(pattern_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/block_sender_delete_response.py">BlockSenderDeleteResponse</a></code>
+- <code title="patch /accounts/{account_id}/email-security/settings/block_senders/{pattern_id}">client.email_security.settings.block_senders.<a href="./src/cloudflare/resources/email_security/settings/block_senders.py">edit</a>(pattern_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/block_sender_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/block_sender_edit_response.py">BlockSenderEditResponse</a></code>
+- <code title="get /accounts/{account_id}/email-security/settings/block_senders/{pattern_id}">client.email_security.settings.block_senders.<a href="./src/cloudflare/resources/email_security/settings/block_senders.py">get</a>(pattern_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/block_sender_get_response.py">BlockSenderGetResponse</a></code>
+
+### Domains
+
+Types:
+
+```python
+from cloudflare.types.email_security.settings import (
+    DomainListResponse,
+    DomainDeleteResponse,
+    DomainEditResponse,
+)
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/email-security/settings/domains">client.email_security.settings.domains.<a href="./src/cloudflare/resources/email_security/settings/domains.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/domain_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/domain_list_response.py">SyncV4PagePaginationArray[DomainListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/email-security/settings/domains/{domain_id}">client.email_security.settings.domains.<a href="./src/cloudflare/resources/email_security/settings/domains.py">delete</a>(domain_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/domain_delete_response.py">DomainDeleteResponse</a></code>
+- <code title="patch /accounts/{account_id}/email-security/settings/domains/{domain_id}">client.email_security.settings.domains.<a href="./src/cloudflare/resources/email_security/settings/domains.py">edit</a>(domain_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/domain_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/domain_edit_response.py">DomainEditResponse</a></code>
+
+### ImpersonationRegistry
+
+Types:
+
+```python
+from cloudflare.types.email_security.settings import (
+    ImpersonationRegistryCreateResponse,
+    ImpersonationRegistryListResponse,
+    ImpersonationRegistryDeleteResponse,
+    ImpersonationRegistryEditResponse,
+    ImpersonationRegistryGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/email-security/settings/impersonation_registry">client.email_security.settings.impersonation_registry.<a href="./src/cloudflare/resources/email_security/settings/impersonation_registry.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/impersonation_registry_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/impersonation_registry_create_response.py">ImpersonationRegistryCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/email-security/settings/impersonation_registry">client.email_security.settings.impersonation_registry.<a href="./src/cloudflare/resources/email_security/settings/impersonation_registry.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/impersonation_registry_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/impersonation_registry_list_response.py">SyncV4PagePaginationArray[ImpersonationRegistryListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/email-security/settings/impersonation_registry/{display_name_id}">client.email_security.settings.impersonation_registry.<a href="./src/cloudflare/resources/email_security/settings/impersonation_registry.py">delete</a>(display_name_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/impersonation_registry_delete_response.py">ImpersonationRegistryDeleteResponse</a></code>
+- <code title="patch /accounts/{account_id}/email-security/settings/impersonation_registry/{display_name_id}">client.email_security.settings.impersonation_registry.<a href="./src/cloudflare/resources/email_security/settings/impersonation_registry.py">edit</a>(display_name_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/impersonation_registry_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/impersonation_registry_edit_response.py">ImpersonationRegistryEditResponse</a></code>
+- <code title="get /accounts/{account_id}/email-security/settings/impersonation_registry/{display_name_id}">client.email_security.settings.impersonation_registry.<a href="./src/cloudflare/resources/email_security/settings/impersonation_registry.py">get</a>(display_name_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/impersonation_registry_get_response.py">ImpersonationRegistryGetResponse</a></code>
+
+### TrustedDomains
+
+Types:
+
+```python
+from cloudflare.types.email_security.settings import (
+    TrustedDomainCreateResponse,
+    TrustedDomainListResponse,
+    TrustedDomainDeleteResponse,
+    TrustedDomainEditResponse,
+    TrustedDomainGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /accounts/{account_id}/email-security/settings/trusted_domains">client.email_security.settings.trusted_domains.<a href="./src/cloudflare/resources/email_security/settings/trusted_domains.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/trusted_domain_create_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/trusted_domain_create_response.py">TrustedDomainCreateResponse</a></code>
+- <code title="get /accounts/{account_id}/email-security/settings/trusted_domains">client.email_security.settings.trusted_domains.<a href="./src/cloudflare/resources/email_security/settings/trusted_domains.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/trusted_domain_list_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/trusted_domain_list_response.py">SyncV4PagePaginationArray[TrustedDomainListResponse]</a></code>
+- <code title="delete /accounts/{account_id}/email-security/settings/trusted_domains/{pattern_id}">client.email_security.settings.trusted_domains.<a href="./src/cloudflare/resources/email_security/settings/trusted_domains.py">delete</a>(pattern_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/trusted_domain_delete_response.py">TrustedDomainDeleteResponse</a></code>
+- <code title="patch /accounts/{account_id}/email-security/settings/trusted_domains/{pattern_id}">client.email_security.settings.trusted_domains.<a href="./src/cloudflare/resources/email_security/settings/trusted_domains.py">edit</a>(pattern_id, \*, account_id, \*\*<a href="src/cloudflare/types/email_security/settings/trusted_domain_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/email_security/settings/trusted_domain_edit_response.py">TrustedDomainEditResponse</a></code>
+- <code title="get /accounts/{account_id}/email-security/settings/trusted_domains/{pattern_id}">client.email_security.settings.trusted_domains.<a href="./src/cloudflare/resources/email_security/settings/trusted_domains.py">get</a>(pattern_id, \*, account_id) -> <a href="./src/cloudflare/types/email_security/settings/trusted_domain_get_response.py">TrustedDomainGetResponse</a></code>
 
 # EmailRouting
 
@@ -2984,6 +3148,20 @@ Methods:
 Methods:
 
 - <code title="get /accounts/{account_id}/audit_logs">client.audit_logs.<a href="./src/cloudflare/resources/audit_logs.py">list</a>(\*, account_id, \*\*<a href="src/cloudflare/types/audit_logs/audit_log_list_params.py">params</a>) -> <a href="./src/cloudflare/types/shared/audit_log.py">SyncV4PagePaginationArray[AuditLog]</a></code>
+
+# Billing
+
+## Profiles
+
+Types:
+
+```python
+from cloudflare.types.billing import ProfileGetResponse
+```
+
+Methods:
+
+- <code title="get /accounts/{account_id}/billing/profile">client.billing.profiles.<a href="./src/cloudflare/resources/billing/profiles.py">get</a>(\*, account_id) -> <a href="./src/cloudflare/types/billing/profile_get_response.py">ProfileGetResponse</a></code>
 
 # BrandProtection
 
@@ -6029,6 +6207,16 @@ Methods:
 
 ## DNS
 
+Types:
+
+```python
+from cloudflare.types.radar import DNSTimeseriesResponse
+```
+
+Methods:
+
+- <code title="get /radar/dns/timeseries">client.radar.dns.<a href="./src/cloudflare/resources/radar/dns/dns.py">timeseries</a>(\*\*<a href="src/cloudflare/types/radar/dns_timeseries_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns_timeseries_response.py">DNSTimeseriesResponse</a></code>
+
 ### Top
 
 Types:
@@ -6041,6 +6229,70 @@ Methods:
 
 - <code title="get /radar/dns/top/ases">client.radar.dns.top.<a href="./src/cloudflare/resources/radar/dns/top.py">ases</a>(\*\*<a href="src/cloudflare/types/radar/dns/top_ases_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/top_ases_response.py">TopAsesResponse</a></code>
 - <code title="get /radar/dns/top/locations">client.radar.dns.top.<a href="./src/cloudflare/resources/radar/dns/top.py">locations</a>(\*\*<a href="src/cloudflare/types/radar/dns/top_locations_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/top_locations_response.py">TopLocationsResponse</a></code>
+
+### Summary
+
+Types:
+
+```python
+from cloudflare.types.radar.dns import (
+    SummaryCacheHitResponse,
+    SummaryDNSSECResponse,
+    SummaryDNSSECAwareResponse,
+    SummaryDNSSECE2EResponse,
+    SummaryIPVersionResponse,
+    SummaryMatchingAnswerResponse,
+    SummaryProtocolResponse,
+    SummaryQueryTypeResponse,
+    SummaryResponseCodesResponse,
+    SummaryResponseTTLResponse,
+)
+```
+
+Methods:
+
+- <code title="get /radar/dns/summary/cache_hit">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">cache_hit</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_cache_hit_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_cache_hit_response.py">SummaryCacheHitResponse</a></code>
+- <code title="get /radar/dns/summary/dnssec">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">dnssec</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_dnssec_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_dnssec_response.py">SummaryDNSSECResponse</a></code>
+- <code title="get /radar/dns/summary/dnssec_aware">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">dnssec_aware</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_dnssec_aware_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_dnssec_aware_response.py">SummaryDNSSECAwareResponse</a></code>
+- <code title="get /radar/dns/summary/dnssec_e2e">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">dnssec_e2e</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_dnssec_e2e_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_dnssec_e2e_response.py">SummaryDNSSECE2EResponse</a></code>
+- <code title="get /radar/dns/summary/ip_version">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">ip_version</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_ip_version_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_ip_version_response.py">SummaryIPVersionResponse</a></code>
+- <code title="get /radar/dns/summary/matching_answer">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">matching_answer</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_matching_answer_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_matching_answer_response.py">SummaryMatchingAnswerResponse</a></code>
+- <code title="get /radar/dns/summary/protocol">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">protocol</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_protocol_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_protocol_response.py">SummaryProtocolResponse</a></code>
+- <code title="get /radar/dns/summary/query_type">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">query_type</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_query_type_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_query_type_response.py">SummaryQueryTypeResponse</a></code>
+- <code title="get /radar/dns/summary/response_codes">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">response_codes</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_response_codes_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_response_codes_response.py">SummaryResponseCodesResponse</a></code>
+- <code title="get /radar/dns/summary/response_ttl">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">response_ttl</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_response_ttl_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_response_ttl_response.py">SummaryResponseTTLResponse</a></code>
+
+### TimeseriesGroups
+
+Types:
+
+```python
+from cloudflare.types.radar.dns import (
+    TimeseriesGroupCacheHitResponse,
+    TimeseriesGroupDNSSECResponse,
+    TimeseriesGroupDNSSECAwareResponse,
+    TimeseriesGroupDNSSECE2EResponse,
+    TimeseriesGroupIPVersionResponse,
+    TimeseriesGroupMatchingAnswerResponse,
+    TimeseriesGroupProtocolResponse,
+    TimeseriesGroupQueryTypeResponse,
+    TimeseriesGroupResponseCodesResponse,
+    TimeseriesGroupResponseTTLResponse,
+)
+```
+
+Methods:
+
+- <code title="get /radar/dns/timeseries_groups/cache_hit">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">cache_hit</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_cache_hit_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_cache_hit_response.py">TimeseriesGroupCacheHitResponse</a></code>
+- <code title="get /radar/dns/timeseries_groups/dnssec">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">dnssec</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_dnssec_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_dnssec_response.py">TimeseriesGroupDNSSECResponse</a></code>
+- <code title="get /radar/dns/timeseries_groups/dnssec_aware">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">dnssec_aware</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_dnssec_aware_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_dnssec_aware_response.py">TimeseriesGroupDNSSECAwareResponse</a></code>
+- <code title="get /radar/dns/timeseries_groups/dnssec_e2e">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">dnssec_e2e</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_dnssec_e2e_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_dnssec_e2e_response.py">TimeseriesGroupDNSSECE2EResponse</a></code>
+- <code title="get /radar/dns/timeseries_groups/ip_version">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">ip_version</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_ip_version_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_ip_version_response.py">TimeseriesGroupIPVersionResponse</a></code>
+- <code title="get /radar/dns/timeseries_groups/matching_answer">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">matching_answer</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_matching_answer_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_matching_answer_response.py">TimeseriesGroupMatchingAnswerResponse</a></code>
+- <code title="get /radar/dns/timeseries_groups/protocol">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">protocol</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_protocol_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_protocol_response.py">TimeseriesGroupProtocolResponse</a></code>
+- <code title="get /radar/dns/timeseries_groups/query_type">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">query_type</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_query_type_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_query_type_response.py">TimeseriesGroupQueryTypeResponse</a></code>
+- <code title="get /radar/dns/timeseries_groups/response_codes">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">response_codes</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_response_codes_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_response_codes_response.py">TimeseriesGroupResponseCodesResponse</a></code>
+- <code title="get /radar/dns/timeseries_groups/response_ttl">client.radar.dns.timeseries_groups.<a href="./src/cloudflare/resources/radar/dns/timeseries_groups.py">response_ttl</a>(\*\*<a href="src/cloudflare/types/radar/dns/timeseries_group_response_ttl_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/timeseries_group_response_ttl_response.py">TimeseriesGroupResponseTTLResponse</a></code>
 
 ## Netflows
 
@@ -6881,6 +7133,19 @@ Methods:
 - <code title="get /radar/http/timeseries_groups/os">client.radar.http.timeseries_groups.<a href="./src/cloudflare/resources/radar/http/timeseries_groups.py">os</a>(\*\*<a href="src/cloudflare/types/radar/http/timeseries_group_os_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/http/timeseries_group_os_response.py">TimeseriesGroupOSResponse</a></code>
 - <code title="get /radar/http/timeseries_groups/post_quantum">client.radar.http.timeseries_groups.<a href="./src/cloudflare/resources/radar/http/timeseries_groups.py">post_quantum</a>(\*\*<a href="src/cloudflare/types/radar/http/timeseries_group_post_quantum_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/http/timeseries_group_post_quantum_response.py">TimeseriesGroupPostQuantumResponse</a></code>
 - <code title="get /radar/http/timeseries_groups/tls_version">client.radar.http.timeseries_groups.<a href="./src/cloudflare/resources/radar/http/timeseries_groups.py">tls_version</a>(\*\*<a href="src/cloudflare/types/radar/http/timeseries_group_tls_version_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/http/timeseries_group_tls_version_response.py">TimeseriesGroupTLSVersionResponse</a></code>
+
+### Top
+
+Types:
+
+```python
+from cloudflare.types.radar.http import TopBrowserResponse, TopBrowserFamilyResponse
+```
+
+Methods:
+
+- <code title="get /radar/http/top/browser">client.radar.http.top.<a href="./src/cloudflare/resources/radar/http/top.py">browser</a>(\*\*<a href="src/cloudflare/types/radar/http/top_browser_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/http/top_browser_response.py">TopBrowserResponse</a></code>
+- <code title="get /radar/http/top/browser_family">client.radar.http.top.<a href="./src/cloudflare/resources/radar/http/top.py">browser_family</a>(\*\*<a href="src/cloudflare/types/radar/http/top_browser_family_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/http/top_browser_family_response.py">TopBrowserFamilyResponse</a></code>
 
 ## Quality
 
