@@ -25,7 +25,21 @@ class TestDeployments:
         deployment = client.workers.scripts.deployments.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            strategy="strategy",
+            strategy="percentage",
+            versions=[
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+            ],
         )
         assert_matches_type(Optional[DeploymentCreateResponse], deployment, path=["response"])
 
@@ -34,7 +48,21 @@ class TestDeployments:
         deployment = client.workers.scripts.deployments.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            strategy="strategy",
+            strategy="percentage",
+            versions=[
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+            ],
             force=True,
             annotations={"workers_message": "Deploy bug fix."},
         )
@@ -45,7 +73,21 @@ class TestDeployments:
         response = client.workers.scripts.deployments.with_raw_response.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            strategy="strategy",
+            strategy="percentage",
+            versions=[
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+            ],
         )
 
         assert response.is_closed is True
@@ -58,7 +100,21 @@ class TestDeployments:
         with client.workers.scripts.deployments.with_streaming_response.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            strategy="strategy",
+            strategy="percentage",
+            versions=[
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -74,14 +130,42 @@ class TestDeployments:
             client.workers.scripts.deployments.with_raw_response.create(
                 script_name="this-is_my_script-01",
                 account_id="",
-                strategy="strategy",
+                strategy="percentage",
+                versions=[
+                    {
+                        "percentage": 100,
+                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                    },
+                    {
+                        "percentage": 100,
+                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                    },
+                    {
+                        "percentage": 100,
+                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                    },
+                ],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             client.workers.scripts.deployments.with_raw_response.create(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                strategy="strategy",
+                strategy="percentage",
+                versions=[
+                    {
+                        "percentage": 100,
+                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                    },
+                    {
+                        "percentage": 100,
+                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                    },
+                    {
+                        "percentage": 100,
+                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                    },
+                ],
             )
 
     @parametrize
@@ -141,7 +225,21 @@ class TestAsyncDeployments:
         deployment = await async_client.workers.scripts.deployments.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            strategy="strategy",
+            strategy="percentage",
+            versions=[
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+            ],
         )
         assert_matches_type(Optional[DeploymentCreateResponse], deployment, path=["response"])
 
@@ -150,7 +248,21 @@ class TestAsyncDeployments:
         deployment = await async_client.workers.scripts.deployments.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            strategy="strategy",
+            strategy="percentage",
+            versions=[
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+            ],
             force=True,
             annotations={"workers_message": "Deploy bug fix."},
         )
@@ -161,7 +273,21 @@ class TestAsyncDeployments:
         response = await async_client.workers.scripts.deployments.with_raw_response.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            strategy="strategy",
+            strategy="percentage",
+            versions=[
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+            ],
         )
 
         assert response.is_closed is True
@@ -174,7 +300,21 @@ class TestAsyncDeployments:
         async with async_client.workers.scripts.deployments.with_streaming_response.create(
             script_name="this-is_my_script-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            strategy="strategy",
+            strategy="percentage",
+            versions=[
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+                {
+                    "percentage": 100,
+                    "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                },
+            ],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -190,14 +330,42 @@ class TestAsyncDeployments:
             await async_client.workers.scripts.deployments.with_raw_response.create(
                 script_name="this-is_my_script-01",
                 account_id="",
-                strategy="strategy",
+                strategy="percentage",
+                versions=[
+                    {
+                        "percentage": 100,
+                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                    },
+                    {
+                        "percentage": 100,
+                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                    },
+                    {
+                        "percentage": 100,
+                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                    },
+                ],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `script_name` but received ''"):
             await async_client.workers.scripts.deployments.with_raw_response.create(
                 script_name="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
-                strategy="strategy",
+                strategy="percentage",
+                versions=[
+                    {
+                        "percentage": 100,
+                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                    },
+                    {
+                        "percentage": 100,
+                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                    },
+                    {
+                        "percentage": 100,
+                        "version_id": "bcf48806-b317-4351-9ee7-36e7d557d4de",
+                    },
+                ],
             )
 
     @parametrize
