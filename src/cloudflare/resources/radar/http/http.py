@@ -8,6 +8,14 @@ from typing_extensions import Literal
 
 import httpx
 
+from .top import (
+    TopResource,
+    AsyncTopResource,
+    TopResourceWithRawResponse,
+    AsyncTopResourceWithRawResponse,
+    TopResourceWithStreamingResponse,
+    AsyncTopResourceWithStreamingResponse,
+)
 from .ases import (
     AsesResource,
     AsyncAsesResource,
@@ -79,6 +87,10 @@ class HTTPResource(SyncAPIResource):
     @cached_property
     def timeseries_groups(self) -> TimeseriesGroupsResource:
         return TimeseriesGroupsResource(self._client)
+
+    @cached_property
+    def top(self) -> TopResource:
+        return TopResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> HTTPResourceWithRawResponse:
@@ -195,6 +207,10 @@ class AsyncHTTPResource(AsyncAPIResource):
     @cached_property
     def timeseries_groups(self) -> AsyncTimeseriesGroupsResource:
         return AsyncTimeseriesGroupsResource(self._client)
+
+    @cached_property
+    def top(self) -> AsyncTopResource:
+        return AsyncTopResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> AsyncHTTPResourceWithRawResponse:
@@ -319,6 +335,10 @@ class HTTPResourceWithRawResponse:
     def timeseries_groups(self) -> TimeseriesGroupsResourceWithRawResponse:
         return TimeseriesGroupsResourceWithRawResponse(self._http.timeseries_groups)
 
+    @cached_property
+    def top(self) -> TopResourceWithRawResponse:
+        return TopResourceWithRawResponse(self._http.top)
+
 
 class AsyncHTTPResourceWithRawResponse:
     def __init__(self, http: AsyncHTTPResource) -> None:
@@ -343,6 +363,10 @@ class AsyncHTTPResourceWithRawResponse:
     @cached_property
     def timeseries_groups(self) -> AsyncTimeseriesGroupsResourceWithRawResponse:
         return AsyncTimeseriesGroupsResourceWithRawResponse(self._http.timeseries_groups)
+
+    @cached_property
+    def top(self) -> AsyncTopResourceWithRawResponse:
+        return AsyncTopResourceWithRawResponse(self._http.top)
 
 
 class HTTPResourceWithStreamingResponse:
@@ -369,6 +393,10 @@ class HTTPResourceWithStreamingResponse:
     def timeseries_groups(self) -> TimeseriesGroupsResourceWithStreamingResponse:
         return TimeseriesGroupsResourceWithStreamingResponse(self._http.timeseries_groups)
 
+    @cached_property
+    def top(self) -> TopResourceWithStreamingResponse:
+        return TopResourceWithStreamingResponse(self._http.top)
+
 
 class AsyncHTTPResourceWithStreamingResponse:
     def __init__(self, http: AsyncHTTPResource) -> None:
@@ -393,3 +421,7 @@ class AsyncHTTPResourceWithStreamingResponse:
     @cached_property
     def timeseries_groups(self) -> AsyncTimeseriesGroupsResourceWithStreamingResponse:
         return AsyncTimeseriesGroupsResourceWithStreamingResponse(self._http.timeseries_groups)
+
+    @cached_property
+    def top(self) -> AsyncTopResourceWithStreamingResponse:
+        return AsyncTopResourceWithStreamingResponse(self._http.top)

@@ -59,6 +59,8 @@ class Cloudflare(SyncAPIClient):
     subscriptions: resources.SubscriptionsResource
     acm: resources.ACMResource
     argo: resources.ArgoResource
+    plans: resources.PlansResource
+    rate_plans: resources.RatePlansResource
     certificate_authorities: resources.CertificateAuthoritiesResource
     client_certificates: resources.ClientCertificatesResource
     custom_certificates: resources.CustomCertificatesResource
@@ -66,6 +68,7 @@ class Cloudflare(SyncAPIClient):
     custom_nameservers: resources.CustomNameserversResource
     dns: resources.DNSResource
     dnssec: resources.DNSSECResource
+    email_security: resources.EmailSecurityResource
     email_routing: resources.EmailRoutingResource
     filters: resources.FiltersResource
     firewall: resources.FirewallResource
@@ -91,6 +94,7 @@ class Cloudflare(SyncAPIClient):
     spectrum: resources.SpectrumResource
     addressing: resources.AddressingResource
     audit_logs: resources.AuditLogsResource
+    billing: resources.BillingResource
     brand_protection: resources.BrandProtectionResource
     diagnostics: resources.DiagnosticsResource
     images: resources.ImagesResource
@@ -216,6 +220,8 @@ class Cloudflare(SyncAPIClient):
         self.subscriptions = resources.SubscriptionsResource(self)
         self.acm = resources.ACMResource(self)
         self.argo = resources.ArgoResource(self)
+        self.plans = resources.PlansResource(self)
+        self.rate_plans = resources.RatePlansResource(self)
         self.certificate_authorities = resources.CertificateAuthoritiesResource(self)
         self.client_certificates = resources.ClientCertificatesResource(self)
         self.custom_certificates = resources.CustomCertificatesResource(self)
@@ -223,6 +229,7 @@ class Cloudflare(SyncAPIClient):
         self.custom_nameservers = resources.CustomNameserversResource(self)
         self.dns = resources.DNSResource(self)
         self.dnssec = resources.DNSSECResource(self)
+        self.email_security = resources.EmailSecurityResource(self)
         self.email_routing = resources.EmailRoutingResource(self)
         self.filters = resources.FiltersResource(self)
         self.firewall = resources.FirewallResource(self)
@@ -248,6 +255,7 @@ class Cloudflare(SyncAPIClient):
         self.spectrum = resources.SpectrumResource(self)
         self.addressing = resources.AddressingResource(self)
         self.audit_logs = resources.AuditLogsResource(self)
+        self.billing = resources.BillingResource(self)
         self.brand_protection = resources.BrandProtectionResource(self)
         self.diagnostics = resources.DiagnosticsResource(self)
         self.images = resources.ImagesResource(self)
@@ -476,6 +484,8 @@ class AsyncCloudflare(AsyncAPIClient):
     subscriptions: resources.AsyncSubscriptionsResource
     acm: resources.AsyncACMResource
     argo: resources.AsyncArgoResource
+    plans: resources.AsyncPlansResource
+    rate_plans: resources.AsyncRatePlansResource
     certificate_authorities: resources.AsyncCertificateAuthoritiesResource
     client_certificates: resources.AsyncClientCertificatesResource
     custom_certificates: resources.AsyncCustomCertificatesResource
@@ -483,6 +493,7 @@ class AsyncCloudflare(AsyncAPIClient):
     custom_nameservers: resources.AsyncCustomNameserversResource
     dns: resources.AsyncDNSResource
     dnssec: resources.AsyncDNSSECResource
+    email_security: resources.AsyncEmailSecurityResource
     email_routing: resources.AsyncEmailRoutingResource
     filters: resources.AsyncFiltersResource
     firewall: resources.AsyncFirewallResource
@@ -508,6 +519,7 @@ class AsyncCloudflare(AsyncAPIClient):
     spectrum: resources.AsyncSpectrumResource
     addressing: resources.AsyncAddressingResource
     audit_logs: resources.AsyncAuditLogsResource
+    billing: resources.AsyncBillingResource
     brand_protection: resources.AsyncBrandProtectionResource
     diagnostics: resources.AsyncDiagnosticsResource
     images: resources.AsyncImagesResource
@@ -633,6 +645,8 @@ class AsyncCloudflare(AsyncAPIClient):
         self.subscriptions = resources.AsyncSubscriptionsResource(self)
         self.acm = resources.AsyncACMResource(self)
         self.argo = resources.AsyncArgoResource(self)
+        self.plans = resources.AsyncPlansResource(self)
+        self.rate_plans = resources.AsyncRatePlansResource(self)
         self.certificate_authorities = resources.AsyncCertificateAuthoritiesResource(self)
         self.client_certificates = resources.AsyncClientCertificatesResource(self)
         self.custom_certificates = resources.AsyncCustomCertificatesResource(self)
@@ -640,6 +654,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.custom_nameservers = resources.AsyncCustomNameserversResource(self)
         self.dns = resources.AsyncDNSResource(self)
         self.dnssec = resources.AsyncDNSSECResource(self)
+        self.email_security = resources.AsyncEmailSecurityResource(self)
         self.email_routing = resources.AsyncEmailRoutingResource(self)
         self.filters = resources.AsyncFiltersResource(self)
         self.firewall = resources.AsyncFirewallResource(self)
@@ -665,6 +680,7 @@ class AsyncCloudflare(AsyncAPIClient):
         self.spectrum = resources.AsyncSpectrumResource(self)
         self.addressing = resources.AsyncAddressingResource(self)
         self.audit_logs = resources.AsyncAuditLogsResource(self)
+        self.billing = resources.AsyncBillingResource(self)
         self.brand_protection = resources.AsyncBrandProtectionResource(self)
         self.diagnostics = resources.AsyncDiagnosticsResource(self)
         self.images = resources.AsyncImagesResource(self)
@@ -896,6 +912,8 @@ class CloudflareWithRawResponse:
         self.subscriptions = resources.SubscriptionsResourceWithRawResponse(client.subscriptions)
         self.acm = resources.ACMResourceWithRawResponse(client.acm)
         self.argo = resources.ArgoResourceWithRawResponse(client.argo)
+        self.plans = resources.PlansResourceWithRawResponse(client.plans)
+        self.rate_plans = resources.RatePlansResourceWithRawResponse(client.rate_plans)
         self.certificate_authorities = resources.CertificateAuthoritiesResourceWithRawResponse(
             client.certificate_authorities
         )
@@ -905,6 +923,7 @@ class CloudflareWithRawResponse:
         self.custom_nameservers = resources.CustomNameserversResourceWithRawResponse(client.custom_nameservers)
         self.dns = resources.DNSResourceWithRawResponse(client.dns)
         self.dnssec = resources.DNSSECResourceWithRawResponse(client.dnssec)
+        self.email_security = resources.EmailSecurityResourceWithRawResponse(client.email_security)
         self.email_routing = resources.EmailRoutingResourceWithRawResponse(client.email_routing)
         self.filters = resources.FiltersResourceWithRawResponse(client.filters)
         self.firewall = resources.FirewallResourceWithRawResponse(client.firewall)
@@ -932,6 +951,7 @@ class CloudflareWithRawResponse:
         self.spectrum = resources.SpectrumResourceWithRawResponse(client.spectrum)
         self.addressing = resources.AddressingResourceWithRawResponse(client.addressing)
         self.audit_logs = resources.AuditLogsResourceWithRawResponse(client.audit_logs)
+        self.billing = resources.BillingResourceWithRawResponse(client.billing)
         self.brand_protection = resources.BrandProtectionResourceWithRawResponse(client.brand_protection)
         self.diagnostics = resources.DiagnosticsResourceWithRawResponse(client.diagnostics)
         self.images = resources.ImagesResourceWithRawResponse(client.images)
@@ -992,6 +1012,8 @@ class AsyncCloudflareWithRawResponse:
         self.subscriptions = resources.AsyncSubscriptionsResourceWithRawResponse(client.subscriptions)
         self.acm = resources.AsyncACMResourceWithRawResponse(client.acm)
         self.argo = resources.AsyncArgoResourceWithRawResponse(client.argo)
+        self.plans = resources.AsyncPlansResourceWithRawResponse(client.plans)
+        self.rate_plans = resources.AsyncRatePlansResourceWithRawResponse(client.rate_plans)
         self.certificate_authorities = resources.AsyncCertificateAuthoritiesResourceWithRawResponse(
             client.certificate_authorities
         )
@@ -1001,6 +1023,7 @@ class AsyncCloudflareWithRawResponse:
         self.custom_nameservers = resources.AsyncCustomNameserversResourceWithRawResponse(client.custom_nameservers)
         self.dns = resources.AsyncDNSResourceWithRawResponse(client.dns)
         self.dnssec = resources.AsyncDNSSECResourceWithRawResponse(client.dnssec)
+        self.email_security = resources.AsyncEmailSecurityResourceWithRawResponse(client.email_security)
         self.email_routing = resources.AsyncEmailRoutingResourceWithRawResponse(client.email_routing)
         self.filters = resources.AsyncFiltersResourceWithRawResponse(client.filters)
         self.firewall = resources.AsyncFirewallResourceWithRawResponse(client.firewall)
@@ -1030,6 +1053,7 @@ class AsyncCloudflareWithRawResponse:
         self.spectrum = resources.AsyncSpectrumResourceWithRawResponse(client.spectrum)
         self.addressing = resources.AsyncAddressingResourceWithRawResponse(client.addressing)
         self.audit_logs = resources.AsyncAuditLogsResourceWithRawResponse(client.audit_logs)
+        self.billing = resources.AsyncBillingResourceWithRawResponse(client.billing)
         self.brand_protection = resources.AsyncBrandProtectionResourceWithRawResponse(client.brand_protection)
         self.diagnostics = resources.AsyncDiagnosticsResourceWithRawResponse(client.diagnostics)
         self.images = resources.AsyncImagesResourceWithRawResponse(client.images)
@@ -1092,6 +1116,8 @@ class CloudflareWithStreamedResponse:
         self.subscriptions = resources.SubscriptionsResourceWithStreamingResponse(client.subscriptions)
         self.acm = resources.ACMResourceWithStreamingResponse(client.acm)
         self.argo = resources.ArgoResourceWithStreamingResponse(client.argo)
+        self.plans = resources.PlansResourceWithStreamingResponse(client.plans)
+        self.rate_plans = resources.RatePlansResourceWithStreamingResponse(client.rate_plans)
         self.certificate_authorities = resources.CertificateAuthoritiesResourceWithStreamingResponse(
             client.certificate_authorities
         )
@@ -1101,6 +1127,7 @@ class CloudflareWithStreamedResponse:
         self.custom_nameservers = resources.CustomNameserversResourceWithStreamingResponse(client.custom_nameservers)
         self.dns = resources.DNSResourceWithStreamingResponse(client.dns)
         self.dnssec = resources.DNSSECResourceWithStreamingResponse(client.dnssec)
+        self.email_security = resources.EmailSecurityResourceWithStreamingResponse(client.email_security)
         self.email_routing = resources.EmailRoutingResourceWithStreamingResponse(client.email_routing)
         self.filters = resources.FiltersResourceWithStreamingResponse(client.filters)
         self.firewall = resources.FirewallResourceWithStreamingResponse(client.firewall)
@@ -1130,6 +1157,7 @@ class CloudflareWithStreamedResponse:
         self.spectrum = resources.SpectrumResourceWithStreamingResponse(client.spectrum)
         self.addressing = resources.AddressingResourceWithStreamingResponse(client.addressing)
         self.audit_logs = resources.AuditLogsResourceWithStreamingResponse(client.audit_logs)
+        self.billing = resources.BillingResourceWithStreamingResponse(client.billing)
         self.brand_protection = resources.BrandProtectionResourceWithStreamingResponse(client.brand_protection)
         self.diagnostics = resources.DiagnosticsResourceWithStreamingResponse(client.diagnostics)
         self.images = resources.ImagesResourceWithStreamingResponse(client.images)
@@ -1192,6 +1220,8 @@ class AsyncCloudflareWithStreamedResponse:
         self.subscriptions = resources.AsyncSubscriptionsResourceWithStreamingResponse(client.subscriptions)
         self.acm = resources.AsyncACMResourceWithStreamingResponse(client.acm)
         self.argo = resources.AsyncArgoResourceWithStreamingResponse(client.argo)
+        self.plans = resources.AsyncPlansResourceWithStreamingResponse(client.plans)
+        self.rate_plans = resources.AsyncRatePlansResourceWithStreamingResponse(client.rate_plans)
         self.certificate_authorities = resources.AsyncCertificateAuthoritiesResourceWithStreamingResponse(
             client.certificate_authorities
         )
@@ -1207,6 +1237,7 @@ class AsyncCloudflareWithStreamedResponse:
         )
         self.dns = resources.AsyncDNSResourceWithStreamingResponse(client.dns)
         self.dnssec = resources.AsyncDNSSECResourceWithStreamingResponse(client.dnssec)
+        self.email_security = resources.AsyncEmailSecurityResourceWithStreamingResponse(client.email_security)
         self.email_routing = resources.AsyncEmailRoutingResourceWithStreamingResponse(client.email_routing)
         self.filters = resources.AsyncFiltersResourceWithStreamingResponse(client.filters)
         self.firewall = resources.AsyncFirewallResourceWithStreamingResponse(client.firewall)
@@ -1236,6 +1267,7 @@ class AsyncCloudflareWithStreamedResponse:
         self.spectrum = resources.AsyncSpectrumResourceWithStreamingResponse(client.spectrum)
         self.addressing = resources.AsyncAddressingResourceWithStreamingResponse(client.addressing)
         self.audit_logs = resources.AsyncAuditLogsResourceWithStreamingResponse(client.audit_logs)
+        self.billing = resources.AsyncBillingResourceWithStreamingResponse(client.billing)
         self.brand_protection = resources.AsyncBrandProtectionResourceWithStreamingResponse(client.brand_protection)
         self.diagnostics = resources.AsyncDiagnosticsResourceWithStreamingResponse(client.diagnostics)
         self.images = resources.AsyncImagesResourceWithStreamingResponse(client.images)
