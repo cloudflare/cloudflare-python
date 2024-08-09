@@ -18,7 +18,6 @@ from cloudflare.types.radar.dns import (
     SummaryIPVersionResponse,
     SummaryQueryTypeResponse,
     SummaryDNSSECAwareResponse,
-    SummaryResponseTTLResponse,
     SummaryResponseCodesResponse,
     SummaryMatchingAnswerResponse,
 )
@@ -461,54 +460,6 @@ class TestSummary:
 
         assert cast(Any, response.is_closed) is True
 
-    @parametrize
-    def test_method_response_ttl(self, client: Cloudflare) -> None:
-        summary = client.radar.dns.summary.response_ttl()
-        assert_matches_type(SummaryResponseTTLResponse, summary, path=["response"])
-
-    @parametrize
-    def test_method_response_ttl_with_all_params(self, client: Cloudflare) -> None:
-        summary = client.radar.dns.summary.response_ttl(
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            tld=["string", "string", "string"],
-        )
-        assert_matches_type(SummaryResponseTTLResponse, summary, path=["response"])
-
-    @parametrize
-    def test_raw_response_response_ttl(self, client: Cloudflare) -> None:
-        response = client.radar.dns.summary.with_raw_response.response_ttl()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        summary = response.parse()
-        assert_matches_type(SummaryResponseTTLResponse, summary, path=["response"])
-
-    @parametrize
-    def test_streaming_response_response_ttl(self, client: Cloudflare) -> None:
-        with client.radar.dns.summary.with_streaming_response.response_ttl() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            summary = response.parse()
-            assert_matches_type(SummaryResponseTTLResponse, summary, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
 
 class TestAsyncSummary:
     parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
@@ -942,53 +893,5 @@ class TestAsyncSummary:
 
             summary = await response.parse()
             assert_matches_type(SummaryResponseCodesResponse, summary, path=["response"])
-
-        assert cast(Any, response.is_closed) is True
-
-    @parametrize
-    async def test_method_response_ttl(self, async_client: AsyncCloudflare) -> None:
-        summary = await async_client.radar.dns.summary.response_ttl()
-        assert_matches_type(SummaryResponseTTLResponse, summary, path=["response"])
-
-    @parametrize
-    async def test_method_response_ttl_with_all_params(self, async_client: AsyncCloudflare) -> None:
-        summary = await async_client.radar.dns.summary.response_ttl(
-            asn=["string", "string", "string"],
-            continent=["string", "string", "string"],
-            date_end=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            date_range=["7d", "7d", "7d"],
-            date_start=[
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-                parse_datetime("2019-12-27T18:11:19.117Z"),
-            ],
-            format="JSON",
-            location=["string", "string", "string"],
-            name=["string", "string", "string"],
-            tld=["string", "string", "string"],
-        )
-        assert_matches_type(SummaryResponseTTLResponse, summary, path=["response"])
-
-    @parametrize
-    async def test_raw_response_response_ttl(self, async_client: AsyncCloudflare) -> None:
-        response = await async_client.radar.dns.summary.with_raw_response.response_ttl()
-
-        assert response.is_closed is True
-        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-        summary = await response.parse()
-        assert_matches_type(SummaryResponseTTLResponse, summary, path=["response"])
-
-    @parametrize
-    async def test_streaming_response_response_ttl(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.dns.summary.with_streaming_response.response_ttl() as response:
-            assert not response.is_closed
-            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
-
-            summary = await response.parse()
-            assert_matches_type(SummaryResponseTTLResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True

@@ -6245,7 +6245,6 @@ from cloudflare.types.radar.dns import (
     SummaryProtocolResponse,
     SummaryQueryTypeResponse,
     SummaryResponseCodesResponse,
-    SummaryResponseTTLResponse,
 )
 ```
 
@@ -6260,7 +6259,6 @@ Methods:
 - <code title="get /radar/dns/summary/protocol">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">protocol</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_protocol_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_protocol_response.py">SummaryProtocolResponse</a></code>
 - <code title="get /radar/dns/summary/query_type">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">query_type</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_query_type_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_query_type_response.py">SummaryQueryTypeResponse</a></code>
 - <code title="get /radar/dns/summary/response_codes">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">response_codes</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_response_codes_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_response_codes_response.py">SummaryResponseCodesResponse</a></code>
-- <code title="get /radar/dns/summary/response_ttl">client.radar.dns.summary.<a href="./src/cloudflare/resources/radar/dns/summary.py">response_ttl</a>(\*\*<a href="src/cloudflare/types/radar/dns/summary_response_ttl_params.py">params</a>) -> <a href="./src/cloudflare/types/radar/dns/summary_response_ttl_response.py">SummaryResponseTTLResponse</a></code>
 
 ### TimeseriesGroups
 
