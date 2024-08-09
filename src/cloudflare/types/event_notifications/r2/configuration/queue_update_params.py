@@ -10,10 +10,10 @@ __all__ = ["QueueUpdateParams", "Rule"]
 
 class QueueUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     bucket_name: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     rules: Iterable[Rule]
     """Array of rules to drive notifications"""
