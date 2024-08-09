@@ -3,17 +3,12 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.stream import (
-    WebhookGetResponse,
-    WebhookDeleteResponse,
-    WebhookUpdateResponse,
-)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -27,7 +22,7 @@ class TestWebhooks:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             notification_url="https://example.com",
         )
-        assert_matches_type(Optional[WebhookUpdateResponse], webhook, path=["response"])
+        assert_matches_type(object, webhook, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -39,7 +34,7 @@ class TestWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = response.parse()
-        assert_matches_type(Optional[WebhookUpdateResponse], webhook, path=["response"])
+        assert_matches_type(object, webhook, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -51,7 +46,7 @@ class TestWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = response.parse()
-            assert_matches_type(Optional[WebhookUpdateResponse], webhook, path=["response"])
+            assert_matches_type(object, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -68,7 +63,7 @@ class TestWebhooks:
         webhook = client.stream.webhooks.delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[WebhookDeleteResponse], webhook, path=["response"])
+        assert_matches_type(str, webhook, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -79,7 +74,7 @@ class TestWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = response.parse()
-        assert_matches_type(Optional[WebhookDeleteResponse], webhook, path=["response"])
+        assert_matches_type(str, webhook, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -90,7 +85,7 @@ class TestWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = response.parse()
-            assert_matches_type(Optional[WebhookDeleteResponse], webhook, path=["response"])
+            assert_matches_type(str, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -106,7 +101,7 @@ class TestWebhooks:
         webhook = client.stream.webhooks.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[WebhookGetResponse], webhook, path=["response"])
+        assert_matches_type(object, webhook, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -117,7 +112,7 @@ class TestWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = response.parse()
-        assert_matches_type(Optional[WebhookGetResponse], webhook, path=["response"])
+        assert_matches_type(object, webhook, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -128,7 +123,7 @@ class TestWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = response.parse()
-            assert_matches_type(Optional[WebhookGetResponse], webhook, path=["response"])
+            assert_matches_type(object, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -149,7 +144,7 @@ class TestAsyncWebhooks:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             notification_url="https://example.com",
         )
-        assert_matches_type(Optional[WebhookUpdateResponse], webhook, path=["response"])
+        assert_matches_type(object, webhook, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -161,7 +156,7 @@ class TestAsyncWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = await response.parse()
-        assert_matches_type(Optional[WebhookUpdateResponse], webhook, path=["response"])
+        assert_matches_type(object, webhook, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -173,7 +168,7 @@ class TestAsyncWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = await response.parse()
-            assert_matches_type(Optional[WebhookUpdateResponse], webhook, path=["response"])
+            assert_matches_type(object, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -190,7 +185,7 @@ class TestAsyncWebhooks:
         webhook = await async_client.stream.webhooks.delete(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[WebhookDeleteResponse], webhook, path=["response"])
+        assert_matches_type(str, webhook, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -201,7 +196,7 @@ class TestAsyncWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = await response.parse()
-        assert_matches_type(Optional[WebhookDeleteResponse], webhook, path=["response"])
+        assert_matches_type(str, webhook, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -212,7 +207,7 @@ class TestAsyncWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = await response.parse()
-            assert_matches_type(Optional[WebhookDeleteResponse], webhook, path=["response"])
+            assert_matches_type(str, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -228,7 +223,7 @@ class TestAsyncWebhooks:
         webhook = await async_client.stream.webhooks.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[WebhookGetResponse], webhook, path=["response"])
+        assert_matches_type(object, webhook, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -239,7 +234,7 @@ class TestAsyncWebhooks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         webhook = await response.parse()
-        assert_matches_type(Optional[WebhookGetResponse], webhook, path=["response"])
+        assert_matches_type(object, webhook, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -250,7 +245,7 @@ class TestAsyncWebhooks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             webhook = await response.parse()
-            assert_matches_type(Optional[WebhookGetResponse], webhook, path=["response"])
+            assert_matches_type(object, webhook, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
