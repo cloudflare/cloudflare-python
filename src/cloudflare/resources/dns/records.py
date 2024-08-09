@@ -301,7 +301,7 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        content: object,
+        content: str,
         name: str,
         type: Literal["CNAME"],
         id: str | NotGiven = NOT_GIVEN,
@@ -1264,7 +1264,7 @@ class RecordsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        content: str | object | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
         name: str,
         type: Literal["A"]
         | Literal["AAAA"]
@@ -1603,7 +1603,7 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: object,
+        content: str,
         name: str,
         type: Literal["CNAME"],
         id: str | NotGiven = NOT_GIVEN,
@@ -2598,7 +2598,7 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str | object | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
         name: str,
         type: Literal["A"]
         | Literal["AAAA"]
@@ -3108,7 +3108,7 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: object,
+        content: str,
         name: str,
         type: Literal["CNAME"],
         id: str | NotGiven = NOT_GIVEN,
@@ -4103,7 +4103,7 @@ class RecordsResource(SyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str | object | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
         name: str,
         type: Literal["A"]
         | Literal["AAAA"]
@@ -4647,7 +4647,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        content: object,
+        content: str,
         name: str,
         type: Literal["CNAME"],
         id: str | NotGiven = NOT_GIVEN,
@@ -5610,7 +5610,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        content: str | object | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
         name: str,
         type: Literal["A"]
         | Literal["AAAA"]
@@ -5949,7 +5949,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: object,
+        content: str,
         name: str,
         type: Literal["CNAME"],
         id: str | NotGiven = NOT_GIVEN,
@@ -6944,7 +6944,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str | object | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
         name: str,
         type: Literal["A"]
         | Literal["AAAA"]
@@ -7454,7 +7454,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: object,
+        content: str,
         name: str,
         type: Literal["CNAME"],
         id: str | NotGiven = NOT_GIVEN,
@@ -8449,7 +8449,7 @@ class AsyncRecordsResource(AsyncAPIResource):
         dns_record_id: str,
         *,
         zone_id: str,
-        content: str | object | NotGiven = NOT_GIVEN,
+        content: str | NotGiven = NOT_GIVEN,
         name: str,
         type: Literal["A"]
         | Literal["AAAA"]
