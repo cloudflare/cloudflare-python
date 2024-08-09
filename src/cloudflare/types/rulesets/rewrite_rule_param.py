@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Dict, Union
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .logging_param import LoggingParam
 from .rewrite_uri_part_param import RewriteURIPartParam
@@ -37,7 +37,7 @@ class ActionParametersHeadersDynamicHeader(TypedDict, total=False):
     operation: Required[Literal["set"]]
 
 
-ActionParametersHeaders = Union[
+ActionParametersHeaders: TypeAlias = Union[
     ActionParametersHeadersRemoveHeader, ActionParametersHeadersStaticHeader, ActionParametersHeadersDynamicHeader
 ]
 

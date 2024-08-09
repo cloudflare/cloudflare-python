@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Iterable, Optional, cast
+from typing import Type, Iterable, Optional, cast
 
 import httpx
 
@@ -24,7 +24,7 @@ from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.gateway import location_create_params, location_update_params
 from ....types.zero_trust.gateway.location import Location
-from ....types.zero_trust.gateway.location_delete_response import LocationDeleteResponse
+from ....types.zero_trust.gateway.endpoint_param import EndpointParam
 
 __all__ = ["LocationsResource", "AsyncLocationsResource"]
 
@@ -46,6 +46,7 @@ class LocationsResource(SyncAPIResource):
         client_default: bool | NotGiven = NOT_GIVEN,
         dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
+        endpoints: EndpointParam | NotGiven = NOT_GIVEN,
         networks: Iterable[location_create_params.Network] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -70,6 +71,10 @@ class LocationsResource(SyncAPIResource):
 
           ecs_support: True if the location needs to resolve EDNS queries.
 
+          endpoints: The destination endpoints configured for this location. When updating a
+              location, if this field is absent or set with null, the endpoints configuration
+              remains unchanged.
+
           networks: A list of network ranges that requests from this location would originate from.
               A non-empty list is only effective if the ipv4 endpoint is enabled for this
               location.
@@ -92,6 +97,7 @@ class LocationsResource(SyncAPIResource):
                     "client_default": client_default,
                     "dns_destination_ips_id": dns_destination_ips_id,
                     "ecs_support": ecs_support,
+                    "endpoints": endpoints,
                     "networks": networks,
                 },
                 location_create_params.LocationCreateParams,
@@ -115,6 +121,7 @@ class LocationsResource(SyncAPIResource):
         client_default: bool | NotGiven = NOT_GIVEN,
         dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
+        endpoints: EndpointParam | NotGiven = NOT_GIVEN,
         networks: Iterable[location_update_params.Network] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -138,6 +145,10 @@ class LocationsResource(SyncAPIResource):
               pre-assigned pair remains unchanged.
 
           ecs_support: True if the location needs to resolve EDNS queries.
+
+          endpoints: The destination endpoints configured for this location. When updating a
+              location, if this field is absent or set with null, the endpoints configuration
+              remains unchanged.
 
           networks: A list of network ranges that requests from this location would originate from.
               A non-empty list is only effective if the ipv4 endpoint is enabled for this
@@ -163,6 +174,7 @@ class LocationsResource(SyncAPIResource):
                     "client_default": client_default,
                     "dns_destination_ips_id": dns_destination_ips_id,
                     "ecs_support": ecs_support,
+                    "endpoints": endpoints,
                     "networks": networks,
                 },
                 location_update_params.LocationUpdateParams,
@@ -222,7 +234,7 @@ class LocationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LocationDeleteResponse]:
+    ) -> object:
         """
         Deletes a configured Zero Trust Gateway location.
 
@@ -239,21 +251,16 @@ class LocationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not location_id:
             raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
-        return cast(
-            Optional[LocationDeleteResponse],
-            self._delete(
-                f"/accounts/{account_id}/gateway/locations/{location_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[LocationDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[LocationDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/gateway/locations/{location_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -314,6 +321,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         client_default: bool | NotGiven = NOT_GIVEN,
         dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
+        endpoints: EndpointParam | NotGiven = NOT_GIVEN,
         networks: Iterable[location_create_params.Network] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -338,6 +346,10 @@ class AsyncLocationsResource(AsyncAPIResource):
 
           ecs_support: True if the location needs to resolve EDNS queries.
 
+          endpoints: The destination endpoints configured for this location. When updating a
+              location, if this field is absent or set with null, the endpoints configuration
+              remains unchanged.
+
           networks: A list of network ranges that requests from this location would originate from.
               A non-empty list is only effective if the ipv4 endpoint is enabled for this
               location.
@@ -360,6 +372,7 @@ class AsyncLocationsResource(AsyncAPIResource):
                     "client_default": client_default,
                     "dns_destination_ips_id": dns_destination_ips_id,
                     "ecs_support": ecs_support,
+                    "endpoints": endpoints,
                     "networks": networks,
                 },
                 location_create_params.LocationCreateParams,
@@ -383,6 +396,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         client_default: bool | NotGiven = NOT_GIVEN,
         dns_destination_ips_id: str | NotGiven = NOT_GIVEN,
         ecs_support: bool | NotGiven = NOT_GIVEN,
+        endpoints: EndpointParam | NotGiven = NOT_GIVEN,
         networks: Iterable[location_update_params.Network] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -406,6 +420,10 @@ class AsyncLocationsResource(AsyncAPIResource):
               pre-assigned pair remains unchanged.
 
           ecs_support: True if the location needs to resolve EDNS queries.
+
+          endpoints: The destination endpoints configured for this location. When updating a
+              location, if this field is absent or set with null, the endpoints configuration
+              remains unchanged.
 
           networks: A list of network ranges that requests from this location would originate from.
               A non-empty list is only effective if the ipv4 endpoint is enabled for this
@@ -431,6 +449,7 @@ class AsyncLocationsResource(AsyncAPIResource):
                     "client_default": client_default,
                     "dns_destination_ips_id": dns_destination_ips_id,
                     "ecs_support": ecs_support,
+                    "endpoints": endpoints,
                     "networks": networks,
                 },
                 location_update_params.LocationUpdateParams,
@@ -490,7 +509,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LocationDeleteResponse]:
+    ) -> object:
         """
         Deletes a configured Zero Trust Gateway location.
 
@@ -507,21 +526,16 @@ class AsyncLocationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not location_id:
             raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
-        return cast(
-            Optional[LocationDeleteResponse],
-            await self._delete(
-                f"/accounts/{account_id}/gateway/locations/{location_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[LocationDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[LocationDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/gateway/locations/{location_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def get(

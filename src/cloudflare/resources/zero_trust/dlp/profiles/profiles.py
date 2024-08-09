@@ -112,7 +112,7 @@ class ProfilesResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          profile_id: The ID for this profile
+          profile_id: Unique identifier for a DLP profile
 
           extra_headers: Send extra headers
 
@@ -216,7 +216,7 @@ class AsyncProfilesResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          profile_id: The ID for this profile
+          profile_id: Unique identifier for a DLP profile
 
           extra_headers: Send extra headers
 

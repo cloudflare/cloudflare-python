@@ -42,7 +42,8 @@ class ACLsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        body: object,
+        ip_range: str,
+        name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -54,6 +55,14 @@ class ACLsResource(SyncAPIResource):
         Create ACL.
 
         Args:
+          ip_range: Allowed IPv4/IPv6 address range of primary or secondary nameservers. This will
+              be applied for the entire account. The IP range is used to allow additional
+              NOTIFY IPs for secondary zones and IPs Cloudflare allows AXFR/IXFR requests from
+              for primary zones. CIDRs are limited to a maximum of /24 for IPv4 and /64 for
+              IPv6 respectively.
+
+          name: The name of the acl.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -66,7 +75,13 @@ class ACLsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/secondary_dns/acls",
-            body=maybe_transform(body, acl_create_params.ACLCreateParams),
+            body=maybe_transform(
+                {
+                    "ip_range": ip_range,
+                    "name": name,
+                },
+                acl_create_params.ACLCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -262,7 +277,8 @@ class AsyncACLsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        body: object,
+        ip_range: str,
+        name: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -274,6 +290,14 @@ class AsyncACLsResource(AsyncAPIResource):
         Create ACL.
 
         Args:
+          ip_range: Allowed IPv4/IPv6 address range of primary or secondary nameservers. This will
+              be applied for the entire account. The IP range is used to allow additional
+              NOTIFY IPs for secondary zones and IPs Cloudflare allows AXFR/IXFR requests from
+              for primary zones. CIDRs are limited to a maximum of /24 for IPv4 and /64 for
+              IPv6 respectively.
+
+          name: The name of the acl.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -286,7 +310,13 @@ class AsyncACLsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/secondary_dns/acls",
-            body=await async_maybe_transform(body, acl_create_params.ACLCreateParams),
+            body=await async_maybe_transform(
+                {
+                    "ip_range": ip_range,
+                    "name": name,
+                },
+                acl_create_params.ACLCreateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

@@ -30,7 +30,32 @@ class TestRules:
         with pytest.warns(DeprecationWarning):
             rule = client.firewall.rules.create(
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                action={},
+                filter={},
+            )
+
+        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_create_with_all_params(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            rule = client.firewall.rules.create(
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                action={
+                    "mode": "challenge",
+                    "response": {
+                        "body": "<error>This request has been rate-limited.</error>",
+                        "content_type": "text/xml",
+                    },
+                    "timeout": 86400,
+                },
+                filter={
+                    "description": "Restrict access from these browsers on this address range.",
+                    "expression": '(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
+                    "paused": False,
+                    "ref": "FIL-100",
+                },
             )
 
         assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
@@ -41,7 +66,8 @@ class TestRules:
         with pytest.warns(DeprecationWarning):
             response = client.firewall.rules.with_raw_response.create(
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                action={},
+                filter={},
             )
 
         assert response.is_closed is True
@@ -55,7 +81,8 @@ class TestRules:
         with pytest.warns(DeprecationWarning):
             with client.firewall.rules.with_streaming_response.create(
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                action={},
+                filter={},
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -72,7 +99,8 @@ class TestRules:
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 client.firewall.rules.with_raw_response.create(
                     zone_identifier="",
-                    body={},
+                    action={},
+                    filter={},
                 )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -82,7 +110,33 @@ class TestRules:
             rule = client.firewall.rules.update(
                 id="372e67954025e0ba6aaa6d586b9e0b60",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                action={},
+                filter={},
+            )
+
+        assert_matches_type(FirewallRule, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            rule = client.firewall.rules.update(
+                id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                action={
+                    "mode": "challenge",
+                    "response": {
+                        "body": "<error>This request has been rate-limited.</error>",
+                        "content_type": "text/xml",
+                    },
+                    "timeout": 86400,
+                },
+                filter={
+                    "description": "Restrict access from these browsers on this address range.",
+                    "expression": '(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
+                    "paused": False,
+                    "ref": "FIL-100",
+                },
             )
 
         assert_matches_type(FirewallRule, rule, path=["response"])
@@ -94,7 +148,8 @@ class TestRules:
             response = client.firewall.rules.with_raw_response.update(
                 id="372e67954025e0ba6aaa6d586b9e0b60",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                action={},
+                filter={},
             )
 
         assert response.is_closed is True
@@ -109,7 +164,8 @@ class TestRules:
             with client.firewall.rules.with_streaming_response.update(
                 id="372e67954025e0ba6aaa6d586b9e0b60",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                action={},
+                filter={},
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -127,14 +183,16 @@ class TestRules:
                 client.firewall.rules.with_raw_response.update(
                     id="372e67954025e0ba6aaa6d586b9e0b60",
                     zone_identifier="",
-                    body={},
+                    action={},
+                    filter={},
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
                 client.firewall.rules.with_raw_response.update(
                     id="",
                     zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                    body={},
+                    action={},
+                    filter={},
                 )
 
     @parametrize
@@ -255,7 +313,6 @@ class TestRules:
             rule = client.firewall.rules.edit(
                 id="372e67954025e0ba6aaa6d586b9e0b60",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
         assert_matches_type(Optional[RuleEditResponse], rule, path=["response"])
@@ -267,7 +324,6 @@ class TestRules:
             response = client.firewall.rules.with_raw_response.edit(
                 id="372e67954025e0ba6aaa6d586b9e0b60",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
         assert response.is_closed is True
@@ -282,7 +338,6 @@ class TestRules:
             with client.firewall.rules.with_streaming_response.edit(
                 id="372e67954025e0ba6aaa6d586b9e0b60",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -300,14 +355,12 @@ class TestRules:
                 client.firewall.rules.with_raw_response.edit(
                     id="372e67954025e0ba6aaa6d586b9e0b60",
                     zone_identifier="",
-                    body={},
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
                 client.firewall.rules.with_raw_response.edit(
                     id="",
                     zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                    body={},
                 )
 
     @parametrize
@@ -385,7 +438,32 @@ class TestAsyncRules:
         with pytest.warns(DeprecationWarning):
             rule = await async_client.firewall.rules.create(
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                action={},
+                filter={},
+            )
+
+        assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            rule = await async_client.firewall.rules.create(
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                action={
+                    "mode": "challenge",
+                    "response": {
+                        "body": "<error>This request has been rate-limited.</error>",
+                        "content_type": "text/xml",
+                    },
+                    "timeout": 86400,
+                },
+                filter={
+                    "description": "Restrict access from these browsers on this address range.",
+                    "expression": '(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
+                    "paused": False,
+                    "ref": "FIL-100",
+                },
             )
 
         assert_matches_type(Optional[RuleCreateResponse], rule, path=["response"])
@@ -396,7 +474,8 @@ class TestAsyncRules:
         with pytest.warns(DeprecationWarning):
             response = await async_client.firewall.rules.with_raw_response.create(
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                action={},
+                filter={},
             )
 
         assert response.is_closed is True
@@ -410,7 +489,8 @@ class TestAsyncRules:
         with pytest.warns(DeprecationWarning):
             async with async_client.firewall.rules.with_streaming_response.create(
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                action={},
+                filter={},
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -427,7 +507,8 @@ class TestAsyncRules:
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_identifier` but received ''"):
                 await async_client.firewall.rules.with_raw_response.create(
                     zone_identifier="",
-                    body={},
+                    action={},
+                    filter={},
                 )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -437,7 +518,33 @@ class TestAsyncRules:
             rule = await async_client.firewall.rules.update(
                 id="372e67954025e0ba6aaa6d586b9e0b60",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                action={},
+                filter={},
+            )
+
+        assert_matches_type(FirewallRule, rule, path=["response"])
+
+    @pytest.mark.skip(reason="TODO: investigate broken test")
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        with pytest.warns(DeprecationWarning):
+            rule = await async_client.firewall.rules.update(
+                id="372e67954025e0ba6aaa6d586b9e0b60",
+                zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
+                action={
+                    "mode": "challenge",
+                    "response": {
+                        "body": "<error>This request has been rate-limited.</error>",
+                        "content_type": "text/xml",
+                    },
+                    "timeout": 86400,
+                },
+                filter={
+                    "description": "Restrict access from these browsers on this address range.",
+                    "expression": '(http.request.uri.path ~ ".*wp-login.php" or http.request.uri.path ~ ".*xmlrpc.php") and ip.addr ne 172.16.22.155',
+                    "paused": False,
+                    "ref": "FIL-100",
+                },
             )
 
         assert_matches_type(FirewallRule, rule, path=["response"])
@@ -449,7 +556,8 @@ class TestAsyncRules:
             response = await async_client.firewall.rules.with_raw_response.update(
                 id="372e67954025e0ba6aaa6d586b9e0b60",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                action={},
+                filter={},
             )
 
         assert response.is_closed is True
@@ -464,7 +572,8 @@ class TestAsyncRules:
             async with async_client.firewall.rules.with_streaming_response.update(
                 id="372e67954025e0ba6aaa6d586b9e0b60",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
+                action={},
+                filter={},
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -482,14 +591,16 @@ class TestAsyncRules:
                 await async_client.firewall.rules.with_raw_response.update(
                     id="372e67954025e0ba6aaa6d586b9e0b60",
                     zone_identifier="",
-                    body={},
+                    action={},
+                    filter={},
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
                 await async_client.firewall.rules.with_raw_response.update(
                     id="",
                     zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                    body={},
+                    action={},
+                    filter={},
                 )
 
     @parametrize
@@ -610,7 +721,6 @@ class TestAsyncRules:
             rule = await async_client.firewall.rules.edit(
                 id="372e67954025e0ba6aaa6d586b9e0b60",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
         assert_matches_type(Optional[RuleEditResponse], rule, path=["response"])
@@ -622,7 +732,6 @@ class TestAsyncRules:
             response = await async_client.firewall.rules.with_raw_response.edit(
                 id="372e67954025e0ba6aaa6d586b9e0b60",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             )
 
         assert response.is_closed is True
@@ -637,7 +746,6 @@ class TestAsyncRules:
             async with async_client.firewall.rules.with_streaming_response.edit(
                 id="372e67954025e0ba6aaa6d586b9e0b60",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                body={},
             ) as response:
                 assert not response.is_closed
                 assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -655,14 +763,12 @@ class TestAsyncRules:
                 await async_client.firewall.rules.with_raw_response.edit(
                     id="372e67954025e0ba6aaa6d586b9e0b60",
                     zone_identifier="",
-                    body={},
                 )
 
             with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
                 await async_client.firewall.rules.with_raw_response.edit(
                     id="",
                     zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-                    body={},
                 )
 
     @parametrize

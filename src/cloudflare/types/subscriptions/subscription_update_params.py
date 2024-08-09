@@ -13,7 +13,7 @@ __all__ = ["SubscriptionUpdateParams", "App"]
 
 
 class SubscriptionUpdateParams(TypedDict, total=False):
-    account_identifier: Required[str]
+    account_id: Required[str]
     """Identifier"""
 
     app: App

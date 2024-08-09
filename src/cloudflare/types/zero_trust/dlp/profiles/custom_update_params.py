@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import Union, Iterable
-from typing_extensions import Required, TypedDict
+from typing_extensions import Required, TypeAlias, TypedDict
 
 from .pattern_param import PatternParam
 from ..context_awareness_param import ContextAwarenessParam
@@ -64,9 +64,6 @@ class Entry(TypedDict, total=False):
     pattern: PatternParam
     """A pattern that matches an entry"""
 
-    profile_id: object
-    """ID of the parent profile"""
-
 
 class SharedEntryDLPSharedEntryUpdatePredefined(TypedDict, total=False):
     enabled: bool
@@ -78,4 +75,4 @@ class SharedEntryDLPSharedEntryUpdateIntegration(TypedDict, total=False):
     """Whether the entry is enabled or not."""
 
 
-SharedEntry = Union[SharedEntryDLPSharedEntryUpdatePredefined, SharedEntryDLPSharedEntryUpdateIntegration]
+SharedEntry: TypeAlias = Union[SharedEntryDLPSharedEntryUpdatePredefined, SharedEntryDLPSharedEntryUpdateIntegration]

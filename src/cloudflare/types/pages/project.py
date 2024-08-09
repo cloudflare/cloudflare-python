@@ -105,9 +105,9 @@ class DeploymentConfigsPreviewAnalyticsEngineDatasetsAnalyticsEngineBinding(Base
 
 
 class DeploymentConfigsPreviewAnalyticsEngineDatasets(BaseModel):
-    analytics_engine_binding: Optional[
-        DeploymentConfigsPreviewAnalyticsEngineDatasetsAnalyticsEngineBinding
-    ] = FieldInfo(alias="ANALYTICS_ENGINE_BINDING", default=None)
+    analytics_engine_binding: Optional[DeploymentConfigsPreviewAnalyticsEngineDatasetsAnalyticsEngineBinding] = (
+        FieldInfo(alias="ANALYTICS_ENGINE_BINDING", default=None)
+    )
     """Analytics Engine binding."""
 
 
@@ -305,9 +305,9 @@ class DeploymentConfigsProductionAnalyticsEngineDatasetsAnalyticsEngineBinding(B
 
 
 class DeploymentConfigsProductionAnalyticsEngineDatasets(BaseModel):
-    analytics_engine_binding: Optional[
-        DeploymentConfigsProductionAnalyticsEngineDatasetsAnalyticsEngineBinding
-    ] = FieldInfo(alias="ANALYTICS_ENGINE_BINDING", default=None)
+    analytics_engine_binding: Optional[DeploymentConfigsProductionAnalyticsEngineDatasetsAnalyticsEngineBinding] = (
+        FieldInfo(alias="ANALYTICS_ENGINE_BINDING", default=None)
+    )
     """Analytics Engine binding."""
 
 

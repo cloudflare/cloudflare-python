@@ -50,8 +50,8 @@ class ReceivedResource(SyncAPIResource):
 
     def get(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         end: Union[str, int],
         count: int | NotGiven = NOT_GIVEN,
         fields: str | NotGiven = NOT_GIVEN,
@@ -77,7 +77,7 @@ class ReceivedResource(SyncAPIResource):
         will be handled properly.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           end: Sets the (exclusive) end of the requested time frame. This can be a unix
               timestamp (in seconds or nanoseconds), or an absolute timestamp that conforms to
@@ -129,12 +129,12 @@ class ReceivedResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
             ReceivedGetResponse,
             self._get(
-                f"/zones/{zone_identifier}/logs/received",
+                f"/zones/{zone_id}/logs/received",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -174,8 +174,8 @@ class AsyncReceivedResource(AsyncAPIResource):
 
     async def get(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         end: Union[str, int],
         count: int | NotGiven = NOT_GIVEN,
         fields: str | NotGiven = NOT_GIVEN,
@@ -201,7 +201,7 @@ class AsyncReceivedResource(AsyncAPIResource):
         will be handled properly.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           end: Sets the (exclusive) end of the requested time frame. This can be a unix
               timestamp (in seconds or nanoseconds), or an absolute timestamp that conforms to
@@ -253,12 +253,12 @@ class AsyncReceivedResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return cast(
             ReceivedGetResponse,
             await self._get(
-                f"/zones/{zone_identifier}/logs/received",
+                f"/zones/{zone_id}/logs/received",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

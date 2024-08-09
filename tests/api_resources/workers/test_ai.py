@@ -89,8 +89,6 @@ class TestAI:
             height=0,
             image=[0, 0, 0],
             image_b64="image_b64",
-            lora_weights=[0, 0, 0],
-            loras=["string", "string", "string"],
             mask=[0, 0, 0],
             negative_prompt="negative_prompt",
             num_steps=0,
@@ -475,6 +473,20 @@ class TestAI:
                 },
             ],
             frequency_penalty=0,
+            functions=[
+                {
+                    "code": "code",
+                    "name": "name",
+                },
+                {
+                    "code": "code",
+                    "name": "name",
+                },
+                {
+                    "code": "code",
+                    "name": "name",
+                },
+            ],
             max_tokens=0,
             presence_penalty=0,
             repetition_penalty=0,
@@ -483,55 +495,46 @@ class TestAI:
             temperature=0,
             tools=[
                 {
-                    "function": {
-                        "description": "description",
-                        "name": "name",
-                        "parameters": {
-                            "properties": {
-                                "foo": {
-                                    "description": "description",
-                                    "type": "type",
-                                }
-                            },
-                            "required": ["string", "string", "string"],
-                            "type": "type",
+                    "description": "description",
+                    "name": "name",
+                    "parameters": {
+                        "properties": {
+                            "foo": {
+                                "description": "description",
+                                "type": "type",
+                            }
                         },
+                        "required": ["string", "string", "string"],
+                        "type": "type",
                     },
-                    "type": "type",
                 },
                 {
-                    "function": {
-                        "description": "description",
-                        "name": "name",
-                        "parameters": {
-                            "properties": {
-                                "foo": {
-                                    "description": "description",
-                                    "type": "type",
-                                }
-                            },
-                            "required": ["string", "string", "string"],
-                            "type": "type",
+                    "description": "description",
+                    "name": "name",
+                    "parameters": {
+                        "properties": {
+                            "foo": {
+                                "description": "description",
+                                "type": "type",
+                            }
                         },
+                        "required": ["string", "string", "string"],
+                        "type": "type",
                     },
-                    "type": "type",
                 },
                 {
-                    "function": {
-                        "description": "description",
-                        "name": "name",
-                        "parameters": {
-                            "properties": {
-                                "foo": {
-                                    "description": "description",
-                                    "type": "type",
-                                }
-                            },
-                            "required": ["string", "string", "string"],
-                            "type": "type",
+                    "description": "description",
+                    "name": "name",
+                    "parameters": {
+                        "properties": {
+                            "foo": {
+                                "description": "description",
+                                "type": "type",
+                            }
                         },
+                        "required": ["string", "string", "string"],
+                        "type": "type",
                     },
-                    "type": "type",
                 },
             ],
             top_k=1,
@@ -923,8 +926,6 @@ class TestAsyncAI:
             height=0,
             image=[0, 0, 0],
             image_b64="image_b64",
-            lora_weights=[0, 0, 0],
-            loras=["string", "string", "string"],
             mask=[0, 0, 0],
             negative_prompt="negative_prompt",
             num_steps=0,
@@ -1309,6 +1310,20 @@ class TestAsyncAI:
                 },
             ],
             frequency_penalty=0,
+            functions=[
+                {
+                    "code": "code",
+                    "name": "name",
+                },
+                {
+                    "code": "code",
+                    "name": "name",
+                },
+                {
+                    "code": "code",
+                    "name": "name",
+                },
+            ],
             max_tokens=0,
             presence_penalty=0,
             repetition_penalty=0,
@@ -1317,55 +1332,46 @@ class TestAsyncAI:
             temperature=0,
             tools=[
                 {
-                    "function": {
-                        "description": "description",
-                        "name": "name",
-                        "parameters": {
-                            "properties": {
-                                "foo": {
-                                    "description": "description",
-                                    "type": "type",
-                                }
-                            },
-                            "required": ["string", "string", "string"],
-                            "type": "type",
+                    "description": "description",
+                    "name": "name",
+                    "parameters": {
+                        "properties": {
+                            "foo": {
+                                "description": "description",
+                                "type": "type",
+                            }
                         },
+                        "required": ["string", "string", "string"],
+                        "type": "type",
                     },
-                    "type": "type",
                 },
                 {
-                    "function": {
-                        "description": "description",
-                        "name": "name",
-                        "parameters": {
-                            "properties": {
-                                "foo": {
-                                    "description": "description",
-                                    "type": "type",
-                                }
-                            },
-                            "required": ["string", "string", "string"],
-                            "type": "type",
+                    "description": "description",
+                    "name": "name",
+                    "parameters": {
+                        "properties": {
+                            "foo": {
+                                "description": "description",
+                                "type": "type",
+                            }
                         },
+                        "required": ["string", "string", "string"],
+                        "type": "type",
                     },
-                    "type": "type",
                 },
                 {
-                    "function": {
-                        "description": "description",
-                        "name": "name",
-                        "parameters": {
-                            "properties": {
-                                "foo": {
-                                    "description": "description",
-                                    "type": "type",
-                                }
-                            },
-                            "required": ["string", "string", "string"],
-                            "type": "type",
+                    "description": "description",
+                    "name": "name",
+                    "parameters": {
+                        "properties": {
+                            "foo": {
+                                "description": "description",
+                                "type": "type",
+                            }
                         },
+                        "required": ["string", "string", "string"],
+                        "type": "type",
                     },
-                    "type": "type",
                 },
             ],
             top_k=1,

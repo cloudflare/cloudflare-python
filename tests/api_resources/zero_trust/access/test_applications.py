@@ -9,7 +9,6 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare._utils import parse_datetime
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.access import (
     ApplicationGetResponse,
@@ -234,7 +233,6 @@ class TestApplications:
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
-                "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                 "custom_attributes": {
                     "friendly_name": "Last Name",
                     "name": "family_name",
@@ -256,7 +254,6 @@ class TestApplications:
                 "saml_attribute_transform_jsonata": "$ ~>| groups | {'group_name': name} |",
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
-                "updated_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
             },
             scim_config={
                 "authentication": {
@@ -698,7 +695,23 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -760,6 +773,7 @@ class TestApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -826,7 +840,23 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -888,6 +918,7 @@ class TestApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -954,7 +985,23 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -1016,6 +1063,7 @@ class TestApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -1324,6 +1372,14 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_1(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1386,7 +1442,6 @@ class TestApplications:
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
-                "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                 "custom_attributes": {
                     "friendly_name": "Last Name",
                     "name": "family_name",
@@ -1408,7 +1463,6 @@ class TestApplications:
                 "saml_attribute_transform_jsonata": "$ ~>| groups | {'group_name': name} |",
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
-                "updated_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
             },
             scim_config={
                 "authentication": {
@@ -1492,6 +1546,12 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_2(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1659,6 +1719,14 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_3(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1830,6 +1898,14 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_4(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1868,7 +1944,23 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -1930,6 +2022,7 @@ class TestApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -1966,6 +2059,13 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_5(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="app_launcher",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2002,7 +2102,23 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -2064,6 +2180,7 @@ class TestApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -2100,6 +2217,13 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_6(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="warp",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2136,7 +2260,23 @@ class TestApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -2198,6 +2338,7 @@ class TestApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -2234,6 +2375,13 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_7(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="biso",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2349,6 +2497,12 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_update_overload_8(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2465,6 +2619,12 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.delete(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.delete(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2526,6 +2686,12 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.get(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.get(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2587,6 +2753,12 @@ class TestApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_path_params_revoke_tokens(self, client: Cloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            client.zero_trust.access.applications.with_raw_response.revoke_tokens(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.access.applications.with_raw_response.revoke_tokens(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -2812,7 +2984,6 @@ class TestAsyncApplications:
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
-                "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                 "custom_attributes": {
                     "friendly_name": "Last Name",
                     "name": "family_name",
@@ -2834,7 +3005,6 @@ class TestAsyncApplications:
                 "saml_attribute_transform_jsonata": "$ ~>| groups | {'group_name': name} |",
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
-                "updated_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
             },
             scim_config={
                 "authentication": {
@@ -3276,7 +3446,23 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -3338,6 +3524,7 @@ class TestAsyncApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -3404,7 +3591,23 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -3466,6 +3669,7 @@ class TestAsyncApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -3532,7 +3736,23 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -3594,6 +3814,7 @@ class TestAsyncApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationCreateResponse], application, path=["response"])
 
@@ -3902,6 +4123,14 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_1(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                domain="test.example.com/admin",
+                type="self_hosted",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3964,7 +4193,6 @@ class TestAsyncApplications:
             saas_app={
                 "auth_type": "saml",
                 "consumer_service_url": "https://example.com",
-                "created_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
                 "custom_attributes": {
                     "friendly_name": "Last Name",
                     "name": "family_name",
@@ -3986,7 +4214,6 @@ class TestAsyncApplications:
                 "saml_attribute_transform_jsonata": "$ ~>| groups | {'group_name': name} |",
                 "sp_entity_id": "example unique name",
                 "sso_endpoint": "https://example.cloudflareaccess.com/cdn-cgi/access/sso/saml/b3f58a2b414e0b51d45c8c2af26fccca0e27c63763c426fa52f98dcf0b3b3bfd",
-                "updated_at": parse_datetime("2014-01-01T05:20:00.12345Z"),
             },
             scim_config={
                 "authentication": {
@@ -4070,6 +4297,12 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_2(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4237,6 +4470,14 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_3(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                domain="test.example.com/admin",
+                type="ssh",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4408,6 +4649,14 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_4(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                domain="test.example.com/admin",
+                type="vnc",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4446,7 +4695,23 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -4508,6 +4773,7 @@ class TestAsyncApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -4544,6 +4810,13 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_5(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="app_launcher",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4580,7 +4853,23 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -4642,6 +4931,7 @@ class TestAsyncApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -4678,6 +4968,13 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_6(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="warp",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4714,7 +5011,23 @@ class TestAsyncApplications:
                 "699d98642c564d2e855e9661899b7252",
                 "699d98642c564d2e855e9661899b7252",
             ],
+            app_launcher_logo_url="https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
             auto_redirect_to_identity=True,
+            bg_color="#ff0000",
+            footer_links=[
+                {
+                    "name": "Cloudflare's Privacy Policy",
+                    "url": "https://www.cloudflare.com/privacypolicy/",
+                }
+            ],
+            header_bg_color="#ff0000",
+            landing_page_design={
+                "button_color": "#ff0000",
+                "button_text_color": "#ff0000",
+                "image_url": "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg",
+                "message": "Log in below to reach your applications behind Access.",
+                "title": "Welcome back!",
+            },
             policies=[
                 {
                     "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
@@ -4776,6 +5089,7 @@ class TestAsyncApplications:
                 "remote_uri": "remote_uri",
             },
             session_duration="24h",
+            skip_app_launcher_login_page=True,
         )
         assert_matches_type(Optional[ApplicationUpdateResponse], application, path=["response"])
 
@@ -4812,6 +5126,13 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_7(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                type="biso",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -4927,6 +5248,12 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_update_overload_8(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.update(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.update(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5043,6 +5370,12 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.delete(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.delete(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5104,6 +5437,12 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.get(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.get(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5165,6 +5504,12 @@ class TestAsyncApplications:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_path_params_revoke_tokens(self, async_client: AsyncCloudflare) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `app_id` but received ''"):
+            await async_client.zero_trust.access.applications.with_raw_response.revoke_tokens(
+                app_id="",
+                account_id="account_id",
+            )
+
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.access.applications.with_raw_response.revoke_tokens(
                 app_id="023e105f4ecef8ad9ca31a8372d0c353",

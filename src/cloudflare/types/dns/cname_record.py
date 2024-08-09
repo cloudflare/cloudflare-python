@@ -13,7 +13,7 @@ __all__ = ["CNAMERecord"]
 
 
 class CNAMERecord(BaseModel):
-    content: object
+    content: str
     """A valid hostname. Must not match the record's name."""
 
     name: str

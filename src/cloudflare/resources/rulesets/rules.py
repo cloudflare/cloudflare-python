@@ -950,7 +950,7 @@ class RulesResource(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["log_custom_field"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RulesetsLogCustomFieldRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.LogCustomFieldRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -1159,7 +1159,7 @@ class RulesResource(SyncAPIResource):
         | rule_create_params.SetConfigRuleActionParameters
         | rule_create_params.SkipRuleActionParameters
         | rule_create_params.SetCacheSettingsRuleActionParameters
-        | rule_create_params.RulesetsLogCustomFieldRuleActionParameters
+        | rule_create_params.LogCustomFieldRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
@@ -2199,7 +2199,7 @@ class RulesResource(SyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["log_custom_field"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RulesetsLogCustomFieldRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.LogCustomFieldRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -2412,7 +2412,7 @@ class RulesResource(SyncAPIResource):
         | rule_edit_params.SetConfigRuleActionParameters
         | rule_edit_params.SkipRuleActionParameters
         | rule_edit_params.SetCacheSettingsRuleActionParameters
-        | rule_edit_params.RulesetsLogCustomFieldRuleActionParameters
+        | rule_edit_params.LogCustomFieldRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
@@ -3386,7 +3386,7 @@ class AsyncRulesResource(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["log_custom_field"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_create_params.RulesetsLogCustomFieldRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_create_params.LogCustomFieldRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -3595,7 +3595,7 @@ class AsyncRulesResource(AsyncAPIResource):
         | rule_create_params.SetConfigRuleActionParameters
         | rule_create_params.SkipRuleActionParameters
         | rule_create_params.SetCacheSettingsRuleActionParameters
-        | rule_create_params.RulesetsLogCustomFieldRuleActionParameters
+        | rule_create_params.LogCustomFieldRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
@@ -4635,7 +4635,7 @@ class AsyncRulesResource(AsyncAPIResource):
         zone_id: str | NotGiven = NOT_GIVEN,
         id: str | NotGiven = NOT_GIVEN,
         action: Literal["log_custom_field"] | NotGiven = NOT_GIVEN,
-        action_parameters: rule_edit_params.RulesetsLogCustomFieldRuleActionParameters | NotGiven = NOT_GIVEN,
+        action_parameters: rule_edit_params.LogCustomFieldRuleActionParameters | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,
         expression: str | NotGiven = NOT_GIVEN,
@@ -4848,7 +4848,7 @@ class AsyncRulesResource(AsyncAPIResource):
         | rule_edit_params.SetConfigRuleActionParameters
         | rule_edit_params.SkipRuleActionParameters
         | rule_edit_params.SetCacheSettingsRuleActionParameters
-        | rule_edit_params.RulesetsLogCustomFieldRuleActionParameters
+        | rule_edit_params.LogCustomFieldRuleActionParameters
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         enabled: bool | NotGiven = NOT_GIVEN,

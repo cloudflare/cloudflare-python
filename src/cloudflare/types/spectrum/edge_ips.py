@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union, Optional
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 
@@ -35,4 +35,4 @@ class CustomerOwnedIPs(BaseModel):
     """
 
 
-EdgeIPs = Union[EyeballIPs, CustomerOwnedIPs]
+EdgeIPs: TypeAlias = Union[EyeballIPs, CustomerOwnedIPs]

@@ -26,7 +26,7 @@ class TestFirewall:
         firewall = client.dns.firewall.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         )
         assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
@@ -35,7 +35,7 @@ class TestFirewall:
         firewall = client.dns.firewall.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
             attack_mitigation={
                 "enabled": True,
                 "only_when_upstream_unhealthy": False,
@@ -55,7 +55,7 @@ class TestFirewall:
         response = client.dns.firewall.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         )
 
         assert response.is_closed is True
@@ -68,7 +68,7 @@ class TestFirewall:
         with client.dns.firewall.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -84,7 +84,7 @@ class TestFirewall:
             client.dns.firewall.with_raw_response.create(
                 account_id="",
                 name="My Awesome DNS Firewall cluster",
-                upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+                upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
             )
 
     @parametrize
@@ -189,12 +189,12 @@ class TestFirewall:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             deprecate_any_requests=True,
-            dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
+            dns_firewall_ips=["203.0.113.1", "203.0.113.254", "string", "string"],
             ecs_fallback=False,
             maximum_cache_ttl=900,
             minimum_cache_ttl=60,
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         )
         assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
@@ -205,12 +205,12 @@ class TestFirewall:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             deprecate_any_requests=True,
-            dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
+            dns_firewall_ips=["203.0.113.1", "203.0.113.254", "string", "string"],
             ecs_fallback=False,
             maximum_cache_ttl=900,
             minimum_cache_ttl=60,
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
             attack_mitigation={
                 "enabled": True,
                 "only_when_upstream_unhealthy": False,
@@ -228,12 +228,12 @@ class TestFirewall:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             deprecate_any_requests=True,
-            dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
+            dns_firewall_ips=["203.0.113.1", "203.0.113.254", "string", "string"],
             ecs_fallback=False,
             maximum_cache_ttl=900,
             minimum_cache_ttl=60,
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         )
 
         assert response.is_closed is True
@@ -248,12 +248,12 @@ class TestFirewall:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             deprecate_any_requests=True,
-            dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
+            dns_firewall_ips=["203.0.113.1", "203.0.113.254", "string", "string"],
             ecs_fallback=False,
             maximum_cache_ttl=900,
             minimum_cache_ttl=60,
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -271,12 +271,12 @@ class TestFirewall:
                 account_id="",
                 id="023e105f4ecef8ad9ca31a8372d0c353",
                 deprecate_any_requests=True,
-                dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
+                dns_firewall_ips=["203.0.113.1", "203.0.113.254", "string", "string"],
                 ecs_fallback=False,
                 maximum_cache_ttl=900,
                 minimum_cache_ttl=60,
                 name="My Awesome DNS Firewall cluster",
-                upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+                upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_firewall_id` but received ''"):
@@ -285,12 +285,12 @@ class TestFirewall:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="023e105f4ecef8ad9ca31a8372d0c353",
                 deprecate_any_requests=True,
-                dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
+                dns_firewall_ips=["203.0.113.1", "203.0.113.254", "string", "string"],
                 ecs_fallback=False,
                 maximum_cache_ttl=900,
                 minimum_cache_ttl=60,
                 name="My Awesome DNS Firewall cluster",
-                upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+                upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
             )
 
     @parametrize
@@ -350,7 +350,7 @@ class TestAsyncFirewall:
         firewall = await async_client.dns.firewall.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         )
         assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
@@ -359,7 +359,7 @@ class TestAsyncFirewall:
         firewall = await async_client.dns.firewall.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
             attack_mitigation={
                 "enabled": True,
                 "only_when_upstream_unhealthy": False,
@@ -379,7 +379,7 @@ class TestAsyncFirewall:
         response = await async_client.dns.firewall.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         )
 
         assert response.is_closed is True
@@ -392,7 +392,7 @@ class TestAsyncFirewall:
         async with async_client.dns.firewall.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -408,7 +408,7 @@ class TestAsyncFirewall:
             await async_client.dns.firewall.with_raw_response.create(
                 account_id="",
                 name="My Awesome DNS Firewall cluster",
-                upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+                upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
             )
 
     @parametrize
@@ -513,12 +513,12 @@ class TestAsyncFirewall:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             deprecate_any_requests=True,
-            dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
+            dns_firewall_ips=["203.0.113.1", "203.0.113.254", "string", "string"],
             ecs_fallback=False,
             maximum_cache_ttl=900,
             minimum_cache_ttl=60,
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         )
         assert_matches_type(Optional[Firewall], firewall, path=["response"])
 
@@ -529,12 +529,12 @@ class TestAsyncFirewall:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             deprecate_any_requests=True,
-            dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
+            dns_firewall_ips=["203.0.113.1", "203.0.113.254", "string", "string"],
             ecs_fallback=False,
             maximum_cache_ttl=900,
             minimum_cache_ttl=60,
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
             attack_mitigation={
                 "enabled": True,
                 "only_when_upstream_unhealthy": False,
@@ -552,12 +552,12 @@ class TestAsyncFirewall:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             deprecate_any_requests=True,
-            dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
+            dns_firewall_ips=["203.0.113.1", "203.0.113.254", "string", "string"],
             ecs_fallback=False,
             maximum_cache_ttl=900,
             minimum_cache_ttl=60,
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         )
 
         assert response.is_closed is True
@@ -572,12 +572,12 @@ class TestAsyncFirewall:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="023e105f4ecef8ad9ca31a8372d0c353",
             deprecate_any_requests=True,
-            dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
+            dns_firewall_ips=["203.0.113.1", "203.0.113.254", "string", "string"],
             ecs_fallback=False,
             maximum_cache_ttl=900,
             minimum_cache_ttl=60,
             name="My Awesome DNS Firewall cluster",
-            upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+            upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -595,12 +595,12 @@ class TestAsyncFirewall:
                 account_id="",
                 id="023e105f4ecef8ad9ca31a8372d0c353",
                 deprecate_any_requests=True,
-                dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
+                dns_firewall_ips=["203.0.113.1", "203.0.113.254", "string", "string"],
                 ecs_fallback=False,
                 maximum_cache_ttl=900,
                 minimum_cache_ttl=60,
                 name="My Awesome DNS Firewall cluster",
-                upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+                upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `dns_firewall_id` but received ''"):
@@ -609,12 +609,12 @@ class TestAsyncFirewall:
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="023e105f4ecef8ad9ca31a8372d0c353",
                 deprecate_any_requests=True,
-                dns_firewall_ips=["203.0.113.1", "203.0.113.254", "2001:DB8:AB::CF", "2001:DB8:CD::CF"],
+                dns_firewall_ips=["203.0.113.1", "203.0.113.254", "string", "string"],
                 ecs_fallback=False,
                 maximum_cache_ttl=900,
                 minimum_cache_ttl=60,
                 name="My Awesome DNS Firewall cluster",
-                upstream_ips=["192.0.2.1", "198.51.100.1", "2001:DB8:100::CF"],
+                upstream_ips=["192.0.2.1", "198.51.100.1", "string"],
             )
 
     @parametrize

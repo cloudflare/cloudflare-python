@@ -116,7 +116,7 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         subscription_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         app: subscription_update_params.App | NotGiven = NOT_GIVEN,
         component_values: Iterable[SubscriptionComponentParam] | NotGiven = NOT_GIVEN,
         frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
@@ -133,7 +133,7 @@ class SubscriptionsResource(SyncAPIResource):
         Updates an account subscription.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           subscription_identifier: Subscription identifier tag.
 
@@ -153,8 +153,8 @@ class SubscriptionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not subscription_identifier:
             raise ValueError(
                 f"Expected a non-empty value for `subscription_identifier` but received {subscription_identifier!r}"
@@ -162,7 +162,7 @@ class SubscriptionsResource(SyncAPIResource):
         return cast(
             SubscriptionUpdateResponse,
             self._put(
-                f"/accounts/{account_identifier}/subscriptions/{subscription_identifier}",
+                f"/accounts/{account_id}/subscriptions/{subscription_identifier}",
                 body=maybe_transform(
                     {
                         "app": app,
@@ -188,8 +188,8 @@ class SubscriptionsResource(SyncAPIResource):
 
     def list(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -201,7 +201,7 @@ class SubscriptionsResource(SyncAPIResource):
         Lists all of an account's subscriptions.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -211,10 +211,10 @@ class SubscriptionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_identifier}/subscriptions",
+            f"/accounts/{account_id}/subscriptions",
             page=SyncSinglePage[Subscription],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -226,7 +226,7 @@ class SubscriptionsResource(SyncAPIResource):
         self,
         subscription_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -238,7 +238,7 @@ class SubscriptionsResource(SyncAPIResource):
         Deletes an account's subscription.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           subscription_identifier: Subscription identifier tag.
 
@@ -250,14 +250,14 @@ class SubscriptionsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not subscription_identifier:
             raise ValueError(
                 f"Expected a non-empty value for `subscription_identifier` but received {subscription_identifier!r}"
             )
         return self._delete(
-            f"/accounts/{account_identifier}/subscriptions/{subscription_identifier}",
+            f"/accounts/{account_id}/subscriptions/{subscription_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -393,7 +393,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         subscription_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         app: subscription_update_params.App | NotGiven = NOT_GIVEN,
         component_values: Iterable[SubscriptionComponentParam] | NotGiven = NOT_GIVEN,
         frequency: Literal["weekly", "monthly", "quarterly", "yearly"] | NotGiven = NOT_GIVEN,
@@ -410,7 +410,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         Updates an account subscription.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           subscription_identifier: Subscription identifier tag.
 
@@ -430,8 +430,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not subscription_identifier:
             raise ValueError(
                 f"Expected a non-empty value for `subscription_identifier` but received {subscription_identifier!r}"
@@ -439,7 +439,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         return cast(
             SubscriptionUpdateResponse,
             await self._put(
-                f"/accounts/{account_identifier}/subscriptions/{subscription_identifier}",
+                f"/accounts/{account_id}/subscriptions/{subscription_identifier}",
                 body=await async_maybe_transform(
                     {
                         "app": app,
@@ -465,8 +465,8 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
     def list(
         self,
-        account_identifier: str,
         *,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -478,7 +478,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         Lists all of an account's subscriptions.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -488,10 +488,10 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
-            f"/accounts/{account_identifier}/subscriptions",
+            f"/accounts/{account_id}/subscriptions",
             page=AsyncSinglePage[Subscription],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -503,7 +503,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         self,
         subscription_identifier: str,
         *,
-        account_identifier: str,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -515,7 +515,7 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
         Deletes an account's subscription.
 
         Args:
-          account_identifier: Identifier
+          account_id: Identifier
 
           subscription_identifier: Subscription identifier tag.
 
@@ -527,14 +527,14 @@ class AsyncSubscriptionsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not account_identifier:
-            raise ValueError(f"Expected a non-empty value for `account_identifier` but received {account_identifier!r}")
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not subscription_identifier:
             raise ValueError(
                 f"Expected a non-empty value for `subscription_identifier` but received {subscription_identifier!r}"
             )
         return await self._delete(
-            f"/accounts/{account_identifier}/subscriptions/{subscription_identifier}",
+            f"/accounts/{account_id}/subscriptions/{subscription_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

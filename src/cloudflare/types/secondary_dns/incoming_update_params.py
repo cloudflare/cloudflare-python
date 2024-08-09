@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import List
 from typing_extensions import Required, TypedDict
 
 __all__ = ["IncomingUpdateParams"]
@@ -20,5 +20,5 @@ class IncomingUpdateParams(TypedDict, total=False):
     name: Required[str]
     """Zone name."""
 
-    peers: Required[Iterable[object]]
+    peers: Required[List[str]]
     """A list of peer tags."""

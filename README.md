@@ -92,7 +92,7 @@ List methods in the Cloudflare API are paginated.
 This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
 
 ```python
-import cloudflare
+from cloudflare import Cloudflare
 
 client = Cloudflare()
 
@@ -108,7 +108,7 @@ Or, asynchronously:
 
 ```python
 import asyncio
-import cloudflare
+from cloudflare import AsyncCloudflare
 
 client = AsyncCloudflare()
 
@@ -364,6 +364,12 @@ client = Cloudflare(
         transport=httpx.HTTPTransport(local_address="0.0.0.0"),
     ),
 )
+```
+
+You can also customize the client on a per-request basis by using `with_options()`:
+
+```python
+client.with_options(http_client=DefaultHttpxClient(...))
 ```
 
 ### Managing HTTP resources

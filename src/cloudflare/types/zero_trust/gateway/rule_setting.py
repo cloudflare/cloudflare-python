@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 from ...._models import BaseModel
@@ -10,7 +10,7 @@ from .dns_resolver_settings_v6 import DNSResolverSettingsV6
 __all__ = [
     "RuleSetting",
     "AuditSSH",
-    "BisoAdminControls",
+    "BISOAdminControls",
     "CheckSession",
     "DNSResolvers",
     "Egress",
@@ -26,7 +26,7 @@ class AuditSSH(BaseModel):
     """Enable to turn on SSH command logging."""
 
 
-class BisoAdminControls(BaseModel):
+class BISOAdminControls(BaseModel):
     dcp: Optional[bool] = None
     """Set to false to enable copy-pasting."""
 
@@ -108,7 +108,7 @@ class UntrustedCERT(BaseModel):
 
 
 class RuleSetting(BaseModel):
-    add_headers: Optional[object] = None
+    add_headers: Optional[Dict[str, str]] = None
     """Add custom headers to allowed requests, in the form of key-value pairs.
 
     Keys are header names, pointing to an array with its header value(s).
@@ -120,7 +120,7 @@ class RuleSetting(BaseModel):
     audit_ssh: Optional[AuditSSH] = None
     """Settings for the Audit SSH action."""
 
-    biso_admin_controls: Optional[BisoAdminControls] = None
+    biso_admin_controls: Optional[BISOAdminControls] = None
     """Configure how browser isolation behaves."""
 
     block_page_enabled: Optional[bool] = None

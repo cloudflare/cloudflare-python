@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ..._models import BaseModel
 
@@ -37,7 +37,7 @@ class AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim(BaseModel):
     """The type of characteristic."""
 
 
-AuthIDCharacteristic = Union[
+AuthIDCharacteristic: TypeAlias = Union[
     AuthIDCharacteristicAPIShieldAuthIDCharacteristic, AuthIDCharacteristicAPIShieldAuthIDCharacteristicJwtClaim
 ]
 

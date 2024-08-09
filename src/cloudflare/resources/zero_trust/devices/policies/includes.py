@@ -22,7 +22,6 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import AsyncPaginator, make_request_options
-from .....types.zero_trust.devices.policies import include_update_params
 from .....types.zero_trust.devices.policies.include_get_response import IncludeGetResponse
 from .....types.zero_trust.devices.policies.split_tunnel_include import SplitTunnelInclude
 from .....types.zero_trust.devices.policies.include_update_response import IncludeUpdateResponse
@@ -68,7 +67,7 @@ class IncludesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
             f"/accounts/{account_id}/devices/policy/include",
-            body=maybe_transform(body, include_update_params.IncludeUpdateParams),
+            body=maybe_transform(body, Iterable[SplitTunnelIncludeParam]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -194,7 +193,7 @@ class AsyncIncludesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
             f"/accounts/{account_id}/devices/policy/include",
-            body=await async_maybe_transform(body, include_update_params.IncludeUpdateParams),
+            body=await async_maybe_transform(body, Iterable[SplitTunnelIncludeParam]),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

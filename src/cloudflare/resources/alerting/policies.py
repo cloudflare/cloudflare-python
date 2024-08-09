@@ -61,8 +61,11 @@ class PoliciesResource(SyncAPIResource):
             "brand_protection_digest",
             "clickhouse_alert_fw_anomaly",
             "clickhouse_alert_fw_ent_anomaly",
+            "cloudforce_one_request_notification",
+            "custom_analytics",
             "custom_ssl_certificate_event_type",
             "dedicated_ssl_certificate_event_type",
+            "device_connectivity_anomaly_alert",
             "dos_attack_l4",
             "dos_attack_l7",
             "expiring_service_token_alert",
@@ -79,6 +82,7 @@ class PoliciesResource(SyncAPIResource):
             "load_balancing_pool_enablement_alert",
             "logo_match_alert",
             "magic_tunnel_health_check_event",
+            "magic_wan_tunnel_health",
             "maintenance_event_notification",
             "mtls_certificate_store_certificate_expiration_type",
             "pages_event_alert",
@@ -93,10 +97,13 @@ class PoliciesResource(SyncAPIResource):
             "scriptmonitor_alert_new_resources",
             "secondary_dns_all_primaries_failing",
             "secondary_dns_primaries_failing",
+            "secondary_dns_warning",
             "secondary_dns_zone_successfully_updated",
             "secondary_dns_zone_validation_warning",
             "sentinel_alert",
             "stream_live_notifications",
+            "synthetic_test_latency_alert",
+            "synthetic_test_low_availability_alert",
             "traffic_anomalies_alert",
             "tunnel_health_event",
             "tunnel_update_event",
@@ -107,6 +114,7 @@ class PoliciesResource(SyncAPIResource):
         enabled: bool,
         mechanisms: MechanismParam,
         name: str,
+        alert_interval: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         filters: PolicyFilterParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -133,6 +141,9 @@ class PoliciesResource(SyncAPIResource):
 
           name: Name of the policy.
 
+          alert_interval: Optional specification of how often to re-alert from the same incident, not
+              support on all alert types.
+
           description: Optional description for the Notification policy.
 
           filters: Optional filters that allow you to be alerted only on a subset of events for
@@ -157,6 +168,7 @@ class PoliciesResource(SyncAPIResource):
                     "enabled": enabled,
                     "mechanisms": mechanisms,
                     "name": name,
+                    "alert_interval": alert_interval,
                     "description": description,
                     "filters": filters,
                 },
@@ -177,6 +189,7 @@ class PoliciesResource(SyncAPIResource):
         policy_id: str,
         *,
         account_id: str,
+        alert_interval: str | NotGiven = NOT_GIVEN,
         alert_type: Literal[
             "access_custom_certificate_expiration_type",
             "advanced_ddos_attack_l4_alert",
@@ -191,8 +204,11 @@ class PoliciesResource(SyncAPIResource):
             "brand_protection_digest",
             "clickhouse_alert_fw_anomaly",
             "clickhouse_alert_fw_ent_anomaly",
+            "cloudforce_one_request_notification",
+            "custom_analytics",
             "custom_ssl_certificate_event_type",
             "dedicated_ssl_certificate_event_type",
+            "device_connectivity_anomaly_alert",
             "dos_attack_l4",
             "dos_attack_l7",
             "expiring_service_token_alert",
@@ -209,6 +225,7 @@ class PoliciesResource(SyncAPIResource):
             "load_balancing_pool_enablement_alert",
             "logo_match_alert",
             "magic_tunnel_health_check_event",
+            "magic_wan_tunnel_health",
             "maintenance_event_notification",
             "mtls_certificate_store_certificate_expiration_type",
             "pages_event_alert",
@@ -223,10 +240,13 @@ class PoliciesResource(SyncAPIResource):
             "scriptmonitor_alert_new_resources",
             "secondary_dns_all_primaries_failing",
             "secondary_dns_primaries_failing",
+            "secondary_dns_warning",
             "secondary_dns_zone_successfully_updated",
             "secondary_dns_zone_validation_warning",
             "sentinel_alert",
             "stream_live_notifications",
+            "synthetic_test_latency_alert",
+            "synthetic_test_low_availability_alert",
             "traffic_anomalies_alert",
             "tunnel_health_event",
             "tunnel_update_event",
@@ -254,6 +274,9 @@ class PoliciesResource(SyncAPIResource):
           account_id: The account id
 
           policy_id: The unique identifier of a notification policy
+
+          alert_interval: Optional specification of how often to re-alert from the same incident, not
+              support on all alert types.
 
           alert_type: Refers to which event will trigger a Notification dispatch. You can use the
               endpoint to get available alert types which then will give you a list of
@@ -288,6 +311,7 @@ class PoliciesResource(SyncAPIResource):
             f"/accounts/{account_id}/alerting/v3/policies/{policy_id}",
             body=maybe_transform(
                 {
+                    "alert_interval": alert_interval,
                     "alert_type": alert_type,
                     "description": description,
                     "enabled": enabled,
@@ -455,8 +479,11 @@ class AsyncPoliciesResource(AsyncAPIResource):
             "brand_protection_digest",
             "clickhouse_alert_fw_anomaly",
             "clickhouse_alert_fw_ent_anomaly",
+            "cloudforce_one_request_notification",
+            "custom_analytics",
             "custom_ssl_certificate_event_type",
             "dedicated_ssl_certificate_event_type",
+            "device_connectivity_anomaly_alert",
             "dos_attack_l4",
             "dos_attack_l7",
             "expiring_service_token_alert",
@@ -473,6 +500,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             "load_balancing_pool_enablement_alert",
             "logo_match_alert",
             "magic_tunnel_health_check_event",
+            "magic_wan_tunnel_health",
             "maintenance_event_notification",
             "mtls_certificate_store_certificate_expiration_type",
             "pages_event_alert",
@@ -487,10 +515,13 @@ class AsyncPoliciesResource(AsyncAPIResource):
             "scriptmonitor_alert_new_resources",
             "secondary_dns_all_primaries_failing",
             "secondary_dns_primaries_failing",
+            "secondary_dns_warning",
             "secondary_dns_zone_successfully_updated",
             "secondary_dns_zone_validation_warning",
             "sentinel_alert",
             "stream_live_notifications",
+            "synthetic_test_latency_alert",
+            "synthetic_test_low_availability_alert",
             "traffic_anomalies_alert",
             "tunnel_health_event",
             "tunnel_update_event",
@@ -501,6 +532,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         enabled: bool,
         mechanisms: MechanismParam,
         name: str,
+        alert_interval: str | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         filters: PolicyFilterParam | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -527,6 +559,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
 
           name: Name of the policy.
 
+          alert_interval: Optional specification of how often to re-alert from the same incident, not
+              support on all alert types.
+
           description: Optional description for the Notification policy.
 
           filters: Optional filters that allow you to be alerted only on a subset of events for
@@ -551,6 +586,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
                     "enabled": enabled,
                     "mechanisms": mechanisms,
                     "name": name,
+                    "alert_interval": alert_interval,
                     "description": description,
                     "filters": filters,
                 },
@@ -571,6 +607,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
         policy_id: str,
         *,
         account_id: str,
+        alert_interval: str | NotGiven = NOT_GIVEN,
         alert_type: Literal[
             "access_custom_certificate_expiration_type",
             "advanced_ddos_attack_l4_alert",
@@ -585,8 +622,11 @@ class AsyncPoliciesResource(AsyncAPIResource):
             "brand_protection_digest",
             "clickhouse_alert_fw_anomaly",
             "clickhouse_alert_fw_ent_anomaly",
+            "cloudforce_one_request_notification",
+            "custom_analytics",
             "custom_ssl_certificate_event_type",
             "dedicated_ssl_certificate_event_type",
+            "device_connectivity_anomaly_alert",
             "dos_attack_l4",
             "dos_attack_l7",
             "expiring_service_token_alert",
@@ -603,6 +643,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             "load_balancing_pool_enablement_alert",
             "logo_match_alert",
             "magic_tunnel_health_check_event",
+            "magic_wan_tunnel_health",
             "maintenance_event_notification",
             "mtls_certificate_store_certificate_expiration_type",
             "pages_event_alert",
@@ -617,10 +658,13 @@ class AsyncPoliciesResource(AsyncAPIResource):
             "scriptmonitor_alert_new_resources",
             "secondary_dns_all_primaries_failing",
             "secondary_dns_primaries_failing",
+            "secondary_dns_warning",
             "secondary_dns_zone_successfully_updated",
             "secondary_dns_zone_validation_warning",
             "sentinel_alert",
             "stream_live_notifications",
+            "synthetic_test_latency_alert",
+            "synthetic_test_low_availability_alert",
             "traffic_anomalies_alert",
             "tunnel_health_event",
             "tunnel_update_event",
@@ -648,6 +692,9 @@ class AsyncPoliciesResource(AsyncAPIResource):
           account_id: The account id
 
           policy_id: The unique identifier of a notification policy
+
+          alert_interval: Optional specification of how often to re-alert from the same incident, not
+              support on all alert types.
 
           alert_type: Refers to which event will trigger a Notification dispatch. You can use the
               endpoint to get available alert types which then will give you a list of
@@ -682,6 +729,7 @@ class AsyncPoliciesResource(AsyncAPIResource):
             f"/accounts/{account_id}/alerting/v3/policies/{policy_id}",
             body=await async_maybe_transform(
                 {
+                    "alert_interval": alert_interval,
                     "alert_type": alert_type,
                     "description": description,
                     "enabled": enabled,

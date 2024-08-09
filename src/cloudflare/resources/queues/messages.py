@@ -112,7 +112,7 @@ class MessagesResource(SyncAPIResource):
 
           queue_id: Identifier
 
-          batch_size: The maximum number of messages to include in a batch
+          batch_size: The maximum number of messages to include in a batch.
 
           visibility_timeout_ms: The number of milliseconds that a message is exclusively leased. After the
               timeout, the message becomes available for another attempt.
@@ -233,7 +233,7 @@ class AsyncMessagesResource(AsyncAPIResource):
 
           queue_id: Identifier
 
-          batch_size: The maximum number of messages to include in a batch
+          batch_size: The maximum number of messages to include in a batch.
 
           visibility_timeout_ms: The number of milliseconds that a message is exclusively leased. After the
               timeout, the message becomes available for another attempt.

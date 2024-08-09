@@ -113,3 +113,6 @@ class SettingsPolicy(BaseModel):
     """
 
     target_tests: Optional[List[TargetTest]] = None
+
+    tunnel_protocol: Optional[str] = None
+    """Determines which tunnel protocol to use."""

@@ -33,8 +33,8 @@ class ProfilesResource(SyncAPIResource):
 
     def get(
         self,
-        account_identifier: object,
         *,
+        account_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -57,7 +57,7 @@ class ProfilesResource(SyncAPIResource):
         return cast(
             ProfileGetResponse,
             self._get(
-                f"/accounts/{account_identifier}/billing/profile",
+                f"/accounts/{account_id}/billing/profile",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -83,8 +83,8 @@ class AsyncProfilesResource(AsyncAPIResource):
 
     async def get(
         self,
-        account_identifier: object,
         *,
+        account_id: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -107,7 +107,7 @@ class AsyncProfilesResource(AsyncAPIResource):
         return cast(
             ProfileGetResponse,
             await self._get(
-                f"/accounts/{account_identifier}/billing/profile",
+                f"/accounts/{account_id}/billing/profile",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

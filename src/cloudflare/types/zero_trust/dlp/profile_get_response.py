@@ -2,7 +2,7 @@
 
 from typing import List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from ...._models import BaseModel
 from .profiles.custom_profile import CustomProfile
@@ -13,7 +13,7 @@ __all__ = ["ProfileGetResponse", "DLPIntegrationProfile", "DLPIntegrationProfile
 
 class DLPIntegrationProfileEntry(BaseModel):
     id: Optional[str] = None
-    """The ID for this entry"""
+    """Unique identifier for a DLP entry"""
 
     created_at: Optional[datetime] = None
 
@@ -23,15 +23,15 @@ class DLPIntegrationProfileEntry(BaseModel):
     name: Optional[str] = None
     """The name of the entry."""
 
-    profile_id: Optional[object] = None
-    """ID of the parent profile"""
+    profile_id: Optional[str] = None
+    """Unique identifier for a DLP profile"""
 
     updated_at: Optional[datetime] = None
 
 
 class DLPIntegrationProfile(BaseModel):
     id: Optional[str] = None
-    """The ID for this profile"""
+    """Unique identifier for a DLP profile"""
 
     created_at: Optional[datetime] = None
 
@@ -50,4 +50,4 @@ class DLPIntegrationProfile(BaseModel):
     updated_at: Optional[datetime] = None
 
 
-ProfileGetResponse = Union[PredefinedProfile, CustomProfile, DLPIntegrationProfile]
+ProfileGetResponse: TypeAlias = Union[PredefinedProfile, CustomProfile, DLPIntegrationProfile]

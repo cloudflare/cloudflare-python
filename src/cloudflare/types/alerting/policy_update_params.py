@@ -14,6 +14,12 @@ class PolicyUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """The account id"""
 
+    alert_interval: str
+    """
+    Optional specification of how often to re-alert from the same incident, not
+    support on all alert types.
+    """
+
     alert_type: Literal[
         "access_custom_certificate_expiration_type",
         "advanced_ddos_attack_l4_alert",
@@ -28,8 +34,11 @@ class PolicyUpdateParams(TypedDict, total=False):
         "brand_protection_digest",
         "clickhouse_alert_fw_anomaly",
         "clickhouse_alert_fw_ent_anomaly",
+        "cloudforce_one_request_notification",
+        "custom_analytics",
         "custom_ssl_certificate_event_type",
         "dedicated_ssl_certificate_event_type",
+        "device_connectivity_anomaly_alert",
         "dos_attack_l4",
         "dos_attack_l7",
         "expiring_service_token_alert",
@@ -46,6 +55,7 @@ class PolicyUpdateParams(TypedDict, total=False):
         "load_balancing_pool_enablement_alert",
         "logo_match_alert",
         "magic_tunnel_health_check_event",
+        "magic_wan_tunnel_health",
         "maintenance_event_notification",
         "mtls_certificate_store_certificate_expiration_type",
         "pages_event_alert",
@@ -60,10 +70,13 @@ class PolicyUpdateParams(TypedDict, total=False):
         "scriptmonitor_alert_new_resources",
         "secondary_dns_all_primaries_failing",
         "secondary_dns_primaries_failing",
+        "secondary_dns_warning",
         "secondary_dns_zone_successfully_updated",
         "secondary_dns_zone_validation_warning",
         "sentinel_alert",
         "stream_live_notifications",
+        "synthetic_test_latency_alert",
+        "synthetic_test_low_availability_alert",
         "traffic_anomalies_alert",
         "tunnel_health_event",
         "tunnel_update_event",

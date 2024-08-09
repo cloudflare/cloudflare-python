@@ -11,4 +11,4 @@ class QueueCreateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    body: Required[object]
+    queue_name: Required[str]

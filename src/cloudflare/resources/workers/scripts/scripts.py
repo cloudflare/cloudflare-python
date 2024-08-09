@@ -81,6 +81,7 @@ from ....pagination import SyncSinglePage, AsyncSinglePage
 from ...._base_client import AsyncPaginator, make_request_options
 from ....types.workers import script_delete_params, script_update_params
 from ....types.workers.script import Script
+from ....types.workers.script_update_response import ScriptUpdateResponse
 
 __all__ = ["ScriptsResource", "AsyncScriptsResource"]
 
@@ -133,9 +134,12 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
-        """
-        Upload a worker module.
+    ) -> Optional[ScriptUpdateResponse]:
+        """Upload a worker module.
+
+        You can find more about the multipart metadata on our
+        docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
@@ -178,9 +182,12 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
-        """
-        Upload a worker module.
+    ) -> Optional[ScriptUpdateResponse]:
+        """Upload a worker module.
+
+        You can find more about the multipart metadata on our
+        docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
@@ -220,7 +227,7 @@ class ScriptsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
+    ) -> Optional[ScriptUpdateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -241,9 +248,9 @@ class ScriptsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform({"rollback_to": rollback_to}, script_update_params.ScriptUpdateParams),
-                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ScriptUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
+            cast_to=cast(Type[Optional[ScriptUpdateResponse]], ResultWrapper[ScriptUpdateResponse]),
         )
 
     def list(
@@ -425,9 +432,12 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
-        """
-        Upload a worker module.
+    ) -> Optional[ScriptUpdateResponse]:
+        """Upload a worker module.
+
+        You can find more about the multipart metadata on our
+        docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
@@ -470,9 +480,12 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
-        """
-        Upload a worker module.
+    ) -> Optional[ScriptUpdateResponse]:
+        """Upload a worker module.
+
+        You can find more about the multipart metadata on our
+        docs:
+        https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/.
 
         Args:
           account_id: Identifier
@@ -512,7 +525,7 @@ class AsyncScriptsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[Script]:
+    ) -> Optional[ScriptUpdateResponse]:
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not script_name:
@@ -535,9 +548,9 @@ class AsyncScriptsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {"rollback_to": rollback_to}, script_update_params.ScriptUpdateParams
                 ),
-                post_parser=ResultWrapper[Optional[Script]]._unwrapper,
+                post_parser=ResultWrapper[Optional[ScriptUpdateResponse]]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[Script]], ResultWrapper[Script]),
+            cast_to=cast(Type[Optional[ScriptUpdateResponse]], ResultWrapper[ScriptUpdateResponse]),
         )
 
     def list(

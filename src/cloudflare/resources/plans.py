@@ -34,8 +34,8 @@ class PlansResource(SyncAPIResource):
 
     def list(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -47,7 +47,7 @@ class PlansResource(SyncAPIResource):
         Lists available plans the zone can subscribe to.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -57,10 +57,10 @@ class PlansResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_identifier}/available_plans",
+            f"/zones/{zone_id}/available_plans",
             page=SyncSinglePage[AvailableRatePlan],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -72,7 +72,7 @@ class PlansResource(SyncAPIResource):
         self,
         plan_identifier: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -84,7 +84,7 @@ class PlansResource(SyncAPIResource):
         Details of the available plan that the zone can subscribe to.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           plan_identifier: Identifier
 
@@ -96,12 +96,12 @@ class PlansResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not plan_identifier:
             raise ValueError(f"Expected a non-empty value for `plan_identifier` but received {plan_identifier!r}")
         return self._get(
-            f"/zones/{zone_identifier}/available_plans/{plan_identifier}",
+            f"/zones/{zone_id}/available_plans/{plan_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -124,8 +124,8 @@ class AsyncPlansResource(AsyncAPIResource):
 
     def list(
         self,
-        zone_identifier: str,
         *,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -137,7 +137,7 @@ class AsyncPlansResource(AsyncAPIResource):
         Lists available plans the zone can subscribe to.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           extra_headers: Send extra headers
 
@@ -147,10 +147,10 @@ class AsyncPlansResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
-            f"/zones/{zone_identifier}/available_plans",
+            f"/zones/{zone_id}/available_plans",
             page=AsyncSinglePage[AvailableRatePlan],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
@@ -162,7 +162,7 @@ class AsyncPlansResource(AsyncAPIResource):
         self,
         plan_identifier: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -174,7 +174,7 @@ class AsyncPlansResource(AsyncAPIResource):
         Details of the available plan that the zone can subscribe to.
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
           plan_identifier: Identifier
 
@@ -186,12 +186,12 @@ class AsyncPlansResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not plan_identifier:
             raise ValueError(f"Expected a non-empty value for `plan_identifier` but received {plan_identifier!r}")
         return await self._get(
-            f"/zones/{zone_identifier}/available_plans/{plan_identifier}",
+            f"/zones/{zone_id}/available_plans/{plan_identifier}",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

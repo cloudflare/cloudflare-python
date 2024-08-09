@@ -315,7 +315,7 @@ class TestRecords:
     def test_method_create_overload_5(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
         )
@@ -326,7 +326,7 @@ class TestRecords:
     def test_method_create_with_all_params_overload_5(self, client: Cloudflare) -> None:
         record = client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
             id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -342,7 +342,7 @@ class TestRecords:
     def test_raw_response_create_overload_5(self, client: Cloudflare) -> None:
         response = client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
         )
@@ -357,7 +357,7 @@ class TestRecords:
     def test_streaming_response_create_overload_5(self, client: Cloudflare) -> None:
         with client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
         ) as response:
@@ -375,7 +375,7 @@ class TestRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.dns.records.with_raw_response.create(
                 zone_id="",
-                content={},
+                content="content",
                 name="example.com",
                 type="CNAME",
             )
@@ -1837,7 +1837,7 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
         )
@@ -1849,7 +1849,7 @@ class TestRecords:
         record = client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
             id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -1866,7 +1866,7 @@ class TestRecords:
         response = client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
         )
@@ -1882,7 +1882,7 @@ class TestRecords:
         with client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
         ) as response:
@@ -1901,7 +1901,7 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
-                content={},
+                content="content",
                 name="example.com",
                 type="CNAME",
             )
@@ -1910,7 +1910,7 @@ class TestRecords:
             client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                content={},
+                content="content",
                 name="example.com",
                 type="CNAME",
             )
@@ -3704,7 +3704,7 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
         )
@@ -3716,7 +3716,7 @@ class TestRecords:
         record = client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
             id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -3733,7 +3733,7 @@ class TestRecords:
         response = client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
         )
@@ -3749,7 +3749,7 @@ class TestRecords:
         with client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
         ) as response:
@@ -3768,7 +3768,7 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
-                content={},
+                content="content",
                 name="example.com",
                 type="CNAME",
             )
@@ -3777,7 +3777,7 @@ class TestRecords:
             client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                content={},
+                content="content",
                 name="example.com",
                 type="CNAME",
             )
@@ -5582,7 +5582,7 @@ class TestAsyncRecords:
     async def test_method_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
         )
@@ -5593,7 +5593,7 @@ class TestAsyncRecords:
     async def test_method_create_with_all_params_overload_5(self, async_client: AsyncCloudflare) -> None:
         record = await async_client.dns.records.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
             id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -5609,7 +5609,7 @@ class TestAsyncRecords:
     async def test_raw_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.dns.records.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
         )
@@ -5624,7 +5624,7 @@ class TestAsyncRecords:
     async def test_streaming_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         async with async_client.dns.records.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
         ) as response:
@@ -5642,7 +5642,7 @@ class TestAsyncRecords:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.dns.records.with_raw_response.create(
                 zone_id="",
-                content={},
+                content="content",
                 name="example.com",
                 type="CNAME",
             )
@@ -7104,7 +7104,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
         )
@@ -7116,7 +7116,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
             id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -7133,7 +7133,7 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
         )
@@ -7149,7 +7149,7 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.update(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
         ) as response:
@@ -7168,7 +7168,7 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
-                content={},
+                content="content",
                 name="example.com",
                 type="CNAME",
             )
@@ -7177,7 +7177,7 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.update(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                content={},
+                content="content",
                 name="example.com",
                 type="CNAME",
             )
@@ -8971,7 +8971,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
         )
@@ -8983,7 +8983,7 @@ class TestAsyncRecords:
         record = await async_client.dns.records.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
             id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -9000,7 +9000,7 @@ class TestAsyncRecords:
         response = await async_client.dns.records.with_raw_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
         )
@@ -9016,7 +9016,7 @@ class TestAsyncRecords:
         async with async_client.dns.records.with_streaming_response.edit(
             dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            content={},
+            content="content",
             name="example.com",
             type="CNAME",
         ) as response:
@@ -9035,7 +9035,7 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="023e105f4ecef8ad9ca31a8372d0c353",
                 zone_id="",
-                content={},
+                content="content",
                 name="example.com",
                 type="CNAME",
             )
@@ -9044,7 +9044,7 @@ class TestAsyncRecords:
             await async_client.dns.records.with_raw_response.edit(
                 dns_record_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                content={},
+                content="content",
                 name="example.com",
                 type="CNAME",
             )

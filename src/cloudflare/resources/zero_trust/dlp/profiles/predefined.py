@@ -60,7 +60,7 @@ class PredefinedResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          profile_id: The ID for this profile
+          profile_id: Unique identifier for a DLP profile
 
           allowed_match_count: Related DLP policies will trigger when the match count exceeds the number set.
 
@@ -118,7 +118,7 @@ class PredefinedResource(SyncAPIResource):
         Args:
           account_id: Identifier
 
-          profile_id: The ID for this profile
+          profile_id: Unique identifier for a DLP profile
 
           extra_headers: Send extra headers
 
@@ -177,7 +177,7 @@ class AsyncPredefinedResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          profile_id: The ID for this profile
+          profile_id: Unique identifier for a DLP profile
 
           allowed_match_count: Related DLP policies will trigger when the match count exceeds the number set.
 
@@ -235,7 +235,7 @@ class AsyncPredefinedResource(AsyncAPIResource):
         Args:
           account_id: Identifier
 
-          profile_id: The ID for this profile
+          profile_id: Unique identifier for a DLP profile
 
           extra_headers: Send extra headers
 

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Union, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .automatic_platform_optimization_param import AutomaticPlatformOptimizationParam
 
@@ -792,7 +792,7 @@ class Websocket(TypedDict, total=False):
     """Current value of the zone setting."""
 
 
-SettingEditParams = Union[
+SettingEditParams: TypeAlias = Union[
     ZeroRTT,
     AdvancedDDoS,
     AlwaysOnline,

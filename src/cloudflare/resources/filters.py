@@ -46,7 +46,7 @@ class FiltersResource(SyncAPIResource):
         self,
         zone_identifier: str,
         *,
-        body: object,
+        expression: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -60,6 +60,9 @@ class FiltersResource(SyncAPIResource):
         Args:
           zone_identifier: Identifier
 
+          expression: The filter expression. For more information, refer to
+              [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -72,7 +75,7 @@ class FiltersResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._post(
             f"/zones/{zone_identifier}/filters",
-            body=maybe_transform(body, filter_create_params.FilterCreateParams),
+            body=maybe_transform({"expression": expression}, filter_create_params.FilterCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -320,7 +323,7 @@ class AsyncFiltersResource(AsyncAPIResource):
         self,
         zone_identifier: str,
         *,
-        body: object,
+        expression: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -334,6 +337,9 @@ class AsyncFiltersResource(AsyncAPIResource):
         Args:
           zone_identifier: Identifier
 
+          expression: The filter expression. For more information, refer to
+              [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/).
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -346,7 +352,7 @@ class AsyncFiltersResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._post(
             f"/zones/{zone_identifier}/filters",
-            body=await async_maybe_transform(body, filter_create_params.FilterCreateParams),
+            body=await async_maybe_transform({"expression": expression}, filter_create_params.FilterCreateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

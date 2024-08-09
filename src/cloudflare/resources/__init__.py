@@ -512,6 +512,14 @@ from .dcv_delegation import (
     DCVDelegationResourceWithStreamingResponse,
     AsyncDCVDelegationResourceWithStreamingResponse,
 )
+from .email_security import (
+    EmailSecurityResource,
+    AsyncEmailSecurityResource,
+    EmailSecurityResourceWithRawResponse,
+    AsyncEmailSecurityResourceWithRawResponse,
+    EmailSecurityResourceWithStreamingResponse,
+    AsyncEmailSecurityResourceWithStreamingResponse,
+)
 from .load_balancers import (
     LoadBalancersResource,
     AsyncLoadBalancersResource,
@@ -808,6 +816,12 @@ __all__ = [
     "AsyncDNSSECResourceWithRawResponse",
     "DNSSECResourceWithStreamingResponse",
     "AsyncDNSSECResourceWithStreamingResponse",
+    "EmailSecurityResource",
+    "AsyncEmailSecurityResource",
+    "EmailSecurityResourceWithRawResponse",
+    "AsyncEmailSecurityResourceWithRawResponse",
+    "EmailSecurityResourceWithStreamingResponse",
+    "AsyncEmailSecurityResourceWithStreamingResponse",
     "EmailRoutingResource",
     "AsyncEmailRoutingResource",
     "EmailRoutingResourceWithRawResponse",

@@ -2,7 +2,7 @@
 
 from typing import Dict, List, Union, Optional
 from datetime import datetime
-from typing_extensions import Literal
+from typing_extensions import Literal, TypeAlias
 
 from .logging import Logging
 from ..._models import BaseModel
@@ -37,7 +37,7 @@ class ActionParametersHeadersDynamicHeader(BaseModel):
     operation: Literal["set"]
 
 
-ActionParametersHeaders = Union[
+ActionParametersHeaders: TypeAlias = Union[
     ActionParametersHeadersRemoveHeader, ActionParametersHeadersStaticHeader, ActionParametersHeadersDynamicHeader
 ]
 

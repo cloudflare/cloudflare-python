@@ -11,6 +11,14 @@ from ...._utils import (
     maybe_transform,
     async_maybe_transform,
 )
+from .downloads import (
+    DownloadsResource,
+    AsyncDownloadsResource,
+    DownloadsResourceWithRawResponse,
+    AsyncDownloadsResourceWithRawResponse,
+    DownloadsResourceWithStreamingResponse,
+    AsyncDownloadsResourceWithStreamingResponse,
+)
 from .snapshots import (
     SnapshotsResource,
     AsyncSnapshotsResource,
@@ -55,6 +63,10 @@ class IndicatorFeedsResource(SyncAPIResource):
     @cached_property
     def permissions(self) -> PermissionsResource:
         return PermissionsResource(self._client)
+
+    @cached_property
+    def downloads(self) -> DownloadsResource:
+        return DownloadsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> IndicatorFeedsResourceWithRawResponse:
@@ -123,6 +135,7 @@ class IndicatorFeedsResource(SyncAPIResource):
         account_id: str,
         description: str | NotGiven = NOT_GIVEN,
         is_attributable: bool | NotGiven = NOT_GIVEN,
+        is_downloadable: bool | NotGiven = NOT_GIVEN,
         is_public: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -144,6 +157,8 @@ class IndicatorFeedsResource(SyncAPIResource):
 
           is_attributable: The new is_attributable value of the feed
 
+          is_downloadable: The new is_downloadable value of the feed
+
           is_public: The new is_public value of the feed
 
           name: The new name of the feed
@@ -164,6 +179,7 @@ class IndicatorFeedsResource(SyncAPIResource):
                 {
                     "description": description,
                     "is_attributable": is_attributable,
+                    "is_downloadable": is_downloadable,
                     "is_public": is_public,
                     "name": name,
                 },
@@ -307,6 +323,10 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         return AsyncPermissionsResource(self._client)
 
     @cached_property
+    def downloads(self) -> AsyncDownloadsResource:
+        return AsyncDownloadsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncIndicatorFeedsResourceWithRawResponse:
         return AsyncIndicatorFeedsResourceWithRawResponse(self)
 
@@ -373,6 +393,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
         account_id: str,
         description: str | NotGiven = NOT_GIVEN,
         is_attributable: bool | NotGiven = NOT_GIVEN,
+        is_downloadable: bool | NotGiven = NOT_GIVEN,
         is_public: bool | NotGiven = NOT_GIVEN,
         name: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -394,6 +415,8 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
 
           is_attributable: The new is_attributable value of the feed
 
+          is_downloadable: The new is_downloadable value of the feed
+
           is_public: The new is_public value of the feed
 
           name: The new name of the feed
@@ -414,6 +437,7 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
                 {
                     "description": description,
                     "is_attributable": is_attributable,
+                    "is_downloadable": is_downloadable,
                     "is_public": is_public,
                     "name": name,
                 },
@@ -575,6 +599,10 @@ class IndicatorFeedsResourceWithRawResponse:
     def permissions(self) -> PermissionsResourceWithRawResponse:
         return PermissionsResourceWithRawResponse(self._indicator_feeds.permissions)
 
+    @cached_property
+    def downloads(self) -> DownloadsResourceWithRawResponse:
+        return DownloadsResourceWithRawResponse(self._indicator_feeds.downloads)
+
 
 class AsyncIndicatorFeedsResourceWithRawResponse:
     def __init__(self, indicator_feeds: AsyncIndicatorFeedsResource) -> None:
@@ -603,6 +631,10 @@ class AsyncIndicatorFeedsResourceWithRawResponse:
     @cached_property
     def permissions(self) -> AsyncPermissionsResourceWithRawResponse:
         return AsyncPermissionsResourceWithRawResponse(self._indicator_feeds.permissions)
+
+    @cached_property
+    def downloads(self) -> AsyncDownloadsResourceWithRawResponse:
+        return AsyncDownloadsResourceWithRawResponse(self._indicator_feeds.downloads)
 
 
 class IndicatorFeedsResourceWithStreamingResponse:
@@ -633,6 +665,10 @@ class IndicatorFeedsResourceWithStreamingResponse:
     def permissions(self) -> PermissionsResourceWithStreamingResponse:
         return PermissionsResourceWithStreamingResponse(self._indicator_feeds.permissions)
 
+    @cached_property
+    def downloads(self) -> DownloadsResourceWithStreamingResponse:
+        return DownloadsResourceWithStreamingResponse(self._indicator_feeds.downloads)
+
 
 class AsyncIndicatorFeedsResourceWithStreamingResponse:
     def __init__(self, indicator_feeds: AsyncIndicatorFeedsResource) -> None:
@@ -661,3 +697,7 @@ class AsyncIndicatorFeedsResourceWithStreamingResponse:
     @cached_property
     def permissions(self) -> AsyncPermissionsResourceWithStreamingResponse:
         return AsyncPermissionsResourceWithStreamingResponse(self._indicator_feeds.permissions)
+
+    @cached_property
+    def downloads(self) -> AsyncDownloadsResourceWithStreamingResponse:
+        return AsyncDownloadsResourceWithStreamingResponse(self._indicator_feeds.downloads)

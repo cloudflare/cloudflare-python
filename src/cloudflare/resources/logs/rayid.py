@@ -38,9 +38,9 @@ class RayIDResource(SyncAPIResource):
 
     def get(
         self,
-        ray_identifier: str,
+        rayid: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         fields: str | NotGiven = NOT_GIVEN,
         timestamps: Literal["unix", "unixnano", "rfc3339"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -56,9 +56,9 @@ class RayIDResource(SyncAPIResource):
         return zero, one, or more records (ray ids are not unique).
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          ray_identifier: Ray identifier.
+          rayid: Ray identifier.
 
           fields: The `/received` route by default returns a limited set of fields, and allows
               customers to override the default field set by specifying individual fields. The
@@ -86,14 +86,14 @@ class RayIDResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not ray_identifier:
-            raise ValueError(f"Expected a non-empty value for `ray_identifier` but received {ray_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not rayid:
+            raise ValueError(f"Expected a non-empty value for `rayid` but received {rayid!r}")
         return cast(
             RayIDGetResponse,
             self._get(
-                f"/zones/{zone_identifier}/logs/rayids/{ray_identifier}",
+                f"/zones/{zone_id}/logs/rayids/{rayid}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -123,9 +123,9 @@ class AsyncRayIDResource(AsyncAPIResource):
 
     async def get(
         self,
-        ray_identifier: str,
+        rayid: str,
         *,
-        zone_identifier: str,
+        zone_id: str,
         fields: str | NotGiven = NOT_GIVEN,
         timestamps: Literal["unix", "unixnano", "rfc3339"] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -141,9 +141,9 @@ class AsyncRayIDResource(AsyncAPIResource):
         return zero, one, or more records (ray ids are not unique).
 
         Args:
-          zone_identifier: Identifier
+          zone_id: Identifier
 
-          ray_identifier: Ray identifier.
+          rayid: Ray identifier.
 
           fields: The `/received` route by default returns a limited set of fields, and allows
               customers to override the default field set by specifying individual fields. The
@@ -171,14 +171,14 @@ class AsyncRayIDResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not zone_identifier:
-            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
-        if not ray_identifier:
-            raise ValueError(f"Expected a non-empty value for `ray_identifier` but received {ray_identifier!r}")
+        if not zone_id:
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
+        if not rayid:
+            raise ValueError(f"Expected a non-empty value for `rayid` but received {rayid!r}")
         return cast(
             RayIDGetResponse,
             await self._get(
-                f"/zones/{zone_identifier}/logs/rayids/{ray_identifier}",
+                f"/zones/{zone_id}/logs/rayids/{rayid}",
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

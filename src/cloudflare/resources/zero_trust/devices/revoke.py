@@ -21,7 +21,6 @@ from ...._response import (
 )
 from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
-from ....types.zero_trust.devices import revoke_create_params
 from ....types.zero_trust.devices.revoke_create_response import RevokeCreateResponse
 
 __all__ = ["RevokeResource", "AsyncRevokeResource"]
@@ -68,7 +67,7 @@ class RevokeResource(SyncAPIResource):
             RevokeCreateResponse,
             self._post(
                 f"/accounts/{account_id}/devices/revoke",
-                body=maybe_transform(body, revoke_create_params.RevokeCreateParams),
+                body=maybe_transform(body, List[str]),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,
@@ -124,7 +123,7 @@ class AsyncRevokeResource(AsyncAPIResource):
             RevokeCreateResponse,
             await self._post(
                 f"/accounts/{account_id}/devices/revoke",
-                body=await async_maybe_transform(body, revoke_create_params.RevokeCreateParams),
+                body=await async_maybe_transform(body, List[str]),
                 options=make_request_options(
                     extra_headers=extra_headers,
                     extra_query=extra_query,

@@ -11,7 +11,7 @@ __all__ = ["PredefinedProfile", "Entry"]
 
 class Entry(BaseModel):
     id: Optional[str] = None
-    """The ID for this entry"""
+    """Unique identifier for a DLP entry"""
 
     enabled: Optional[bool] = None
     """Whether the entry is enabled or not."""
@@ -19,13 +19,13 @@ class Entry(BaseModel):
     name: Optional[str] = None
     """The name of the entry."""
 
-    profile_id: Optional[object] = None
-    """ID of the parent profile"""
+    profile_id: Optional[str] = None
+    """Unique identifier for a DLP profile"""
 
 
 class PredefinedProfile(BaseModel):
     id: Optional[str] = None
-    """The ID for this profile"""
+    """Unique identifier for a DLP profile"""
 
     allowed_match_count: Optional[float] = None
     """Related DLP policies will trigger when the match count exceeds the number set."""

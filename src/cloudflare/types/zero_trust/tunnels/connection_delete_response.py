@@ -1,7 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Union
+from typing_extensions import TypeAlias
 
 __all__ = ["ConnectionDeleteResponse"]
 
-ConnectionDeleteResponse = Union[List[object], str, object]
+ConnectionDeleteResponse: TypeAlias = Union[List[object], str, object]

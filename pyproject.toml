@@ -1,6 +1,6 @@
 [project]
 name = "cloudflare"
-version = "3.1.0"
+version = "4.0.0"
 description = "The official Python library for the cloudflare API"
 dynamic = ["readme"]
 license = "Apache-2.0"
@@ -77,8 +77,8 @@ format = { chain = [
   "check:ruff",
   "typecheck",
 ]}
-"check:ruff" = "ruff ."
-"fix:ruff" = "ruff --fix ."
+"check:ruff" = "ruff check ."
+"fix:ruff" = "ruff check --fix ."
 
 typecheck = { chain = [
   "typecheck:pyright",
@@ -163,6 +163,11 @@ reportOverlappingOverload = false
 line-length = 120
 output-format = "grouped"
 target-version = "py37"
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint]
 select = [
   # isort
   "I",
@@ -191,10 +196,6 @@ unfixable = [
   "T201",
   "T203",
 ]
-ignore-init-module-imports = true
-
-[tool.ruff.format]
-docstring-code-format = true
 
 [tool.ruff.lint.flake8-tidy-imports.banned-api]
 "functools.lru_cache".msg = "This function does not retain type information for the wrapped function's arguments; The `lru_cache` function from `_utils` should be used instead"
@@ -206,7 +207,7 @@ combine-as-imports = true
 extra-standard-library = ["typing_extensions"]
 known-first-party = ["cloudflare", "tests"]
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "bin/**.py" = ["T201", "T203"]
 "scripts/**.py" = ["T201", "T203"]
 "tests/**.py" = ["T201", "T203"]

@@ -12,6 +12,7 @@ from .indexes import (
 )
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .indexes.indexes import IndexesResource, AsyncIndexesResource
 
 __all__ = ["VectorizeResource", "AsyncVectorizeResource"]
 
