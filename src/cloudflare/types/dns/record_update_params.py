@@ -219,7 +219,7 @@ class CNAMERecord(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
 
-    content: Required[object]
+    content: Required[str]
     """A valid hostname. Must not match the record's name."""
 
     name: Required[str]
