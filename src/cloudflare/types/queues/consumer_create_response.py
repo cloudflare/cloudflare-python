@@ -9,7 +9,7 @@ __all__ = ["ConsumerCreateResponse", "Settings"]
 
 class Settings(BaseModel):
     batch_size: Optional[float] = None
-    """The maximum number of messages to include in a batch"""
+    """The maximum number of messages to include in a batch."""
 
     max_retries: Optional[float] = None
     """The maximum number of retries"""
@@ -21,7 +21,7 @@ class ConsumerCreateResponse(BaseModel):
     created_on: Optional[str] = None
 
     dead_letter_queue: Optional[str] = None
-    """The name of the dead letter queue"""
+    """The name of the dead letter queue."""
 
     environment: Optional[str] = None
 
