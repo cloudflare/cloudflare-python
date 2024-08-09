@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from typing_extensions import Literal
 
 from ...._models import BaseModel
@@ -108,7 +108,7 @@ class UntrustedCERT(BaseModel):
 
 
 class RuleSetting(BaseModel):
-    add_headers: Optional[object] = None
+    add_headers: Optional[Dict[str, str]] = None
     """Add custom headers to allowed requests, in the form of key-value pairs.
 
     Keys are header names, pointing to an array with its header value(s).

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Iterable, Optional, cast
+from typing import Type, Iterable, Optional, cast
 
 import httpx
 
@@ -25,7 +25,6 @@ from ...._base_client import AsyncPaginator, make_request_options
 from ....types.zero_trust.gateway import location_create_params, location_update_params
 from ....types.zero_trust.gateway.location import Location
 from ....types.zero_trust.gateway.endpoint_param import EndpointParam
-from ....types.zero_trust.gateway.location_delete_response import LocationDeleteResponse
 
 __all__ = ["LocationsResource", "AsyncLocationsResource"]
 
@@ -235,7 +234,7 @@ class LocationsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LocationDeleteResponse]:
+    ) -> object:
         """
         Deletes a configured Zero Trust Gateway location.
 
@@ -252,21 +251,16 @@ class LocationsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not location_id:
             raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
-        return cast(
-            Optional[LocationDeleteResponse],
-            self._delete(
-                f"/accounts/{account_id}/gateway/locations/{location_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[LocationDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[LocationDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/gateway/locations/{location_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -515,7 +509,7 @@ class AsyncLocationsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[LocationDeleteResponse]:
+    ) -> object:
         """
         Deletes a configured Zero Trust Gateway location.
 
@@ -532,21 +526,16 @@ class AsyncLocationsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not location_id:
             raise ValueError(f"Expected a non-empty value for `location_id` but received {location_id!r}")
-        return cast(
-            Optional[LocationDeleteResponse],
-            await self._delete(
-                f"/accounts/{account_id}/gateway/locations/{location_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[LocationDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[LocationDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/gateway/locations/{location_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def get(
