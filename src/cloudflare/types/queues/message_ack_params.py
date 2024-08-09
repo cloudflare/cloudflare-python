@@ -10,7 +10,7 @@ __all__ = ["MessageAckParams", "Ack", "Retry"]
 
 class MessageAckParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
+    """Identifier."""
 
     acks: Iterable[Ack]
 
