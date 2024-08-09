@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Dict, List, Iterable
 from typing_extensions import Literal, TypedDict
 
 from .dns_resolver_settings_v4_param import DNSResolverSettingsV4Param
@@ -109,7 +109,7 @@ class UntrustedCERT(TypedDict, total=False):
 
 
 class RuleSettingParam(TypedDict, total=False):
-    add_headers: object
+    add_headers: Dict[str, str]
     """Add custom headers to allowed requests, in the form of key-value pairs.
 
     Keys are header names, pointing to an array with its header value(s).
