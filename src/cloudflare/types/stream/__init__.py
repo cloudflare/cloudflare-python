@@ -20,6 +20,8 @@ from .key_delete_response import KeyDeleteResponse as KeyDeleteResponse
 from .token_create_params import TokenCreateParams as TokenCreateParams
 from .caption_get_response import CaptionGetResponse as CaptionGetResponse
 from .stream_create_params import StreamCreateParams as StreamCreateParams
+from .webhook_get_response import WebhookGetResponse as WebhookGetResponse
+from .download_get_response import DownloadGetResponse as DownloadGetResponse
 from .token_create_response import TokenCreateResponse as TokenCreateResponse
 from .webhook_update_params import WebhookUpdateParams as WebhookUpdateParams
 from .download_create_params import DownloadCreateParams as DownloadCreateParams
@@ -28,7 +30,9 @@ from .audio_track_copy_params import AudioTrackCopyParams as AudioTrackCopyParam
 from .audio_track_edit_params import AudioTrackEditParams as AudioTrackEditParams
 from .watermark_create_params import WatermarkCreateParams as WatermarkCreateParams
 from .webhook_delete_response import WebhookDeleteResponse as WebhookDeleteResponse
+from .webhook_update_response import WebhookUpdateResponse as WebhookUpdateResponse
 from .audio_track_get_response import AudioTrackGetResponse as AudioTrackGetResponse
+from .download_create_response import DownloadCreateResponse as DownloadCreateResponse
 from .download_delete_response import DownloadDeleteResponse as DownloadDeleteResponse
 from .live_input_create_params import LiveInputCreateParams as LiveInputCreateParams
 from .live_input_list_response import LiveInputListResponse as LiveInputListResponse

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Any, Optional, cast
 
 import httpx
 
@@ -22,7 +22,9 @@ from ..._response import (
 from ..._wrappers import ResultWrapper
 from ..._base_client import make_request_options
 from ...types.stream import webhook_update_params
+from ...types.stream.webhook_get_response import WebhookGetResponse
 from ...types.stream.webhook_delete_response import WebhookDeleteResponse
+from ...types.stream.webhook_update_response import WebhookUpdateResponse
 
 __all__ = ["WebhooksResource", "AsyncWebhooksResource"]
 
@@ -47,7 +49,7 @@ class WebhooksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[WebhookUpdateResponse]:
         """
         Creates a webhook notification.
 
@@ -66,17 +68,22 @@ class WebhooksResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._put(
-            f"/accounts/{account_id}/stream/webhook",
-            body=maybe_transform({"notification_url": notification_url}, webhook_update_params.WebhookUpdateParams),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+        return cast(
+            Optional[WebhookUpdateResponse],
+            self._put(
+                f"/accounts/{account_id}/stream/webhook",
+                body=maybe_transform({"notification_url": notification_url}, webhook_update_params.WebhookUpdateParams),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[WebhookUpdateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[WebhookUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def delete(
@@ -89,7 +96,7 @@ class WebhooksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> Optional[WebhookDeleteResponse]:
         """
         Deletes a webhook.
 
@@ -106,16 +113,21 @@ class WebhooksResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._delete(
-            f"/accounts/{account_id}/stream/webhook",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[WebhookDeleteResponse]]._unwrapper,
+        return cast(
+            Optional[WebhookDeleteResponse],
+            self._delete(
+                f"/accounts/{account_id}/stream/webhook",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[WebhookDeleteResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[WebhookDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
     def get(
@@ -128,7 +140,7 @@ class WebhooksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[WebhookGetResponse]:
         """
         Retrieves a list of webhooks.
 
@@ -145,16 +157,21 @@ class WebhooksResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._get(
-            f"/accounts/{account_id}/stream/webhook",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+        return cast(
+            Optional[WebhookGetResponse],
+            self._get(
+                f"/accounts/{account_id}/stream/webhook",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[WebhookGetResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[WebhookGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
@@ -178,7 +195,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[WebhookUpdateResponse]:
         """
         Creates a webhook notification.
 
@@ -197,19 +214,24 @@ class AsyncWebhooksResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._put(
-            f"/accounts/{account_id}/stream/webhook",
-            body=await async_maybe_transform(
-                {"notification_url": notification_url}, webhook_update_params.WebhookUpdateParams
+        return cast(
+            Optional[WebhookUpdateResponse],
+            await self._put(
+                f"/accounts/{account_id}/stream/webhook",
+                body=await async_maybe_transform(
+                    {"notification_url": notification_url}, webhook_update_params.WebhookUpdateParams
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[WebhookUpdateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[WebhookUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
-            ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def delete(
@@ -222,7 +244,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> str:
+    ) -> Optional[WebhookDeleteResponse]:
         """
         Deletes a webhook.
 
@@ -239,16 +261,21 @@ class AsyncWebhooksResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._delete(
-            f"/accounts/{account_id}/stream/webhook",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[WebhookDeleteResponse]]._unwrapper,
+        return cast(
+            Optional[WebhookDeleteResponse],
+            await self._delete(
+                f"/accounts/{account_id}/stream/webhook",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[WebhookDeleteResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[WebhookDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
     async def get(
@@ -261,7 +288,7 @@ class AsyncWebhooksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[WebhookGetResponse]:
         """
         Retrieves a list of webhooks.
 
@@ -278,16 +305,21 @@ class AsyncWebhooksResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/stream/webhook",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+        return cast(
+            Optional[WebhookGetResponse],
+            await self._get(
+                f"/accounts/{account_id}/stream/webhook",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[WebhookGetResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[WebhookGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
