@@ -55,9 +55,9 @@ class MessagesResource(SyncAPIResource):
         Acknowledge + Retry messages from a Queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -108,11 +108,11 @@ class MessagesResource(SyncAPIResource):
         Pull a batch of messages from a Queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
-          batch_size: The maximum number of messages to include in a batch
+          batch_size: The maximum number of messages to include in a batch.
 
           visibility_timeout_ms: The number of milliseconds that a message is exclusively leased. After the
               timeout, the message becomes available for another attempt.
@@ -176,9 +176,9 @@ class AsyncMessagesResource(AsyncAPIResource):
         Acknowledge + Retry messages from a Queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -229,11 +229,11 @@ class AsyncMessagesResource(AsyncAPIResource):
         Pull a batch of messages from a Queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
-          batch_size: The maximum number of messages to include in a batch
+          batch_size: The maximum number of messages to include in a batch.
 
           visibility_timeout_ms: The number of milliseconds that a message is exclusively leased. After the
               timeout, the message becomes available for another attempt.

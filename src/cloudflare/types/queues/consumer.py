@@ -9,7 +9,7 @@ __all__ = ["Consumer", "Settings"]
 
 class Settings(BaseModel):
     batch_size: Optional[float] = None
-    """The maximum number of messages to include in a batch"""
+    """The maximum number of messages to include in a batch."""
 
     max_retries: Optional[float] = None
     """The maximum number of retries"""
