@@ -46,8 +46,6 @@ from .fips_settings_param import FipsSettingsParam as FipsSettingsParam
 from .ipv4_endpoint_param import IPV4EndpointParam as IPV4EndpointParam
 from .ipv6_endpoint_param import IPV6EndpointParam as IPV6EndpointParam
 from .list_create_response import ListCreateResponse as ListCreateResponse
-from .list_delete_response import ListDeleteResponse as ListDeleteResponse
-from .rule_delete_response import RuleDeleteResponse as RuleDeleteResponse
 from .activity_log_settings import ActivityLogSettings as ActivityLogSettings
 from .logging_update_params import LoggingUpdateParams as LoggingUpdateParams
 from .notification_settings import NotificationSettings as NotificationSettings
@@ -58,7 +56,6 @@ from .extended_email_matching import ExtendedEmailMatching as ExtendedEmailMatch
 from .certificate_get_response import CertificateGetResponse as CertificateGetResponse
 from .dns_resolver_settings_v4 import DNSResolverSettingsV4 as DNSResolverSettingsV4
 from .dns_resolver_settings_v6 import DNSResolverSettingsV6 as DNSResolverSettingsV6
-from .location_delete_response import LocationDeleteResponse as LocationDeleteResponse
 from .protocol_detection_param import ProtocolDetectionParam as ProtocolDetectionParam
 from .anti_virus_settings_param import AntiVirusSettingsParam as AntiVirusSettingsParam
 from .block_page_settings_param import BlockPageSettingsParam as BlockPageSettingsParam
@@ -86,7 +83,6 @@ from .extended_email_matching_param import ExtendedEmailMatchingParam as Extende
 from .dns_resolver_settings_v4_param import DNSResolverSettingsV4Param as DNSResolverSettingsV4Param
 from .dns_resolver_settings_v6_param import DNSResolverSettingsV6Param as DNSResolverSettingsV6Param
 from .gateway_configuration_settings import GatewayConfigurationSettings as GatewayConfigurationSettings
-from .proxy_endpoint_delete_response import ProxyEndpointDeleteResponse as ProxyEndpointDeleteResponse
 from .audit_ssh_setting_update_params import AuditSSHSettingUpdateParams as AuditSSHSettingUpdateParams
 from .certificate_deactivate_response import CertificateDeactivateResponse as CertificateDeactivateResponse
 from .browser_isolation_settings_param import BrowserIsolationSettingsParam as BrowserIsolationSettingsParam
