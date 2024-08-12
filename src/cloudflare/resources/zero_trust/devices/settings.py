@@ -40,6 +40,7 @@ class SettingsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
+        disable_for_time: float | NotGiven = NOT_GIVEN,
         gateway_proxy_enabled: bool | NotGiven = NOT_GIVEN,
         gateway_udp_proxy_enabled: bool | NotGiven = NOT_GIVEN,
         root_certificate_installation_enabled: bool | NotGiven = NOT_GIVEN,
@@ -55,6 +56,9 @@ class SettingsResource(SyncAPIResource):
         Updates the current device settings for a Zero Trust account.
 
         Args:
+          disable_for_time: Sets the time limit, in seconds, that a user can use an override code to bypass
+              WARP.
+
           gateway_proxy_enabled: Enable gateway proxy filtering on TCP.
 
           gateway_udp_proxy_enabled: Enable gateway proxy filtering on UDP.
@@ -77,6 +81,7 @@ class SettingsResource(SyncAPIResource):
             f"/accounts/{account_id}/devices/settings",
             body=maybe_transform(
                 {
+                    "disable_for_time": disable_for_time,
                     "gateway_proxy_enabled": gateway_proxy_enabled,
                     "gateway_udp_proxy_enabled": gateway_udp_proxy_enabled,
                     "root_certificate_installation_enabled": root_certificate_installation_enabled,
@@ -145,6 +150,7 @@ class AsyncSettingsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
+        disable_for_time: float | NotGiven = NOT_GIVEN,
         gateway_proxy_enabled: bool | NotGiven = NOT_GIVEN,
         gateway_udp_proxy_enabled: bool | NotGiven = NOT_GIVEN,
         root_certificate_installation_enabled: bool | NotGiven = NOT_GIVEN,
@@ -160,6 +166,9 @@ class AsyncSettingsResource(AsyncAPIResource):
         Updates the current device settings for a Zero Trust account.
 
         Args:
+          disable_for_time: Sets the time limit, in seconds, that a user can use an override code to bypass
+              WARP.
+
           gateway_proxy_enabled: Enable gateway proxy filtering on TCP.
 
           gateway_udp_proxy_enabled: Enable gateway proxy filtering on UDP.
@@ -182,6 +191,7 @@ class AsyncSettingsResource(AsyncAPIResource):
             f"/accounts/{account_id}/devices/settings",
             body=await async_maybe_transform(
                 {
+                    "disable_for_time": disable_for_time,
                     "gateway_proxy_enabled": gateway_proxy_enabled,
                     "gateway_udp_proxy_enabled": gateway_udp_proxy_enabled,
                     "root_certificate_installation_enabled": root_certificate_installation_enabled,
