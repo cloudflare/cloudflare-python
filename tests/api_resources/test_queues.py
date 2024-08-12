@@ -27,7 +27,7 @@ class TestQueues:
     def test_method_create(self, client: Cloudflare) -> None:
         queue = client.queues.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            queue_name="queue_name",
+            queue_name="example-queue",
         )
         assert_matches_type(Optional[QueueCreated], queue, path=["response"])
 
@@ -35,7 +35,7 @@ class TestQueues:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.queues.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            queue_name="queue_name",
+            queue_name="example-queue",
         )
 
         assert response.is_closed is True
@@ -47,7 +47,7 @@ class TestQueues:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.queues.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            queue_name="queue_name",
+            queue_name="example-queue",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -62,7 +62,7 @@ class TestQueues:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.queues.with_raw_response.create(
                 account_id="",
-                queue_name="queue_name",
+                queue_name="example-queue",
             )
 
     @parametrize
@@ -260,7 +260,7 @@ class TestAsyncQueues:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         queue = await async_client.queues.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            queue_name="queue_name",
+            queue_name="example-queue",
         )
         assert_matches_type(Optional[QueueCreated], queue, path=["response"])
 
@@ -268,7 +268,7 @@ class TestAsyncQueues:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.queues.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            queue_name="queue_name",
+            queue_name="example-queue",
         )
 
         assert response.is_closed is True
@@ -280,7 +280,7 @@ class TestAsyncQueues:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.queues.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            queue_name="queue_name",
+            queue_name="example-queue",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -295,7 +295,7 @@ class TestAsyncQueues:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.queues.with_raw_response.create(
                 account_id="",
-                queue_name="queue_name",
+                queue_name="example-queue",
             )
 
     @parametrize
