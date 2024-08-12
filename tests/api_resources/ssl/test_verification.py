@@ -25,7 +25,7 @@ class TestVerification:
         verification = client.ssl.verification.edit(
             certificate_pack_id="a77f8bd7-3b47-46b4-a6f1-75cf98109948",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            validation_method="txt",
+            validation_method="http",
         )
         assert_matches_type(Optional[VerificationEditResponse], verification, path=["response"])
 
@@ -34,7 +34,7 @@ class TestVerification:
         response = client.ssl.verification.with_raw_response.edit(
             certificate_pack_id="a77f8bd7-3b47-46b4-a6f1-75cf98109948",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            validation_method="txt",
+            validation_method="http",
         )
 
         assert response.is_closed is True
@@ -47,7 +47,7 @@ class TestVerification:
         with client.ssl.verification.with_streaming_response.edit(
             certificate_pack_id="a77f8bd7-3b47-46b4-a6f1-75cf98109948",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            validation_method="txt",
+            validation_method="http",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -63,14 +63,14 @@ class TestVerification:
             client.ssl.verification.with_raw_response.edit(
                 certificate_pack_id="a77f8bd7-3b47-46b4-a6f1-75cf98109948",
                 zone_id="",
-                validation_method="txt",
+                validation_method="http",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_pack_id` but received ''"):
             client.ssl.verification.with_raw_response.edit(
                 certificate_pack_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                validation_method="txt",
+                validation_method="http",
             )
 
     @parametrize
@@ -128,7 +128,7 @@ class TestAsyncVerification:
         verification = await async_client.ssl.verification.edit(
             certificate_pack_id="a77f8bd7-3b47-46b4-a6f1-75cf98109948",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            validation_method="txt",
+            validation_method="http",
         )
         assert_matches_type(Optional[VerificationEditResponse], verification, path=["response"])
 
@@ -137,7 +137,7 @@ class TestAsyncVerification:
         response = await async_client.ssl.verification.with_raw_response.edit(
             certificate_pack_id="a77f8bd7-3b47-46b4-a6f1-75cf98109948",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            validation_method="txt",
+            validation_method="http",
         )
 
         assert response.is_closed is True
@@ -150,7 +150,7 @@ class TestAsyncVerification:
         async with async_client.ssl.verification.with_streaming_response.edit(
             certificate_pack_id="a77f8bd7-3b47-46b4-a6f1-75cf98109948",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            validation_method="txt",
+            validation_method="http",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -166,14 +166,14 @@ class TestAsyncVerification:
             await async_client.ssl.verification.with_raw_response.edit(
                 certificate_pack_id="a77f8bd7-3b47-46b4-a6f1-75cf98109948",
                 zone_id="",
-                validation_method="txt",
+                validation_method="http",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `certificate_pack_id` but received ''"):
             await async_client.ssl.verification.with_raw_response.edit(
                 certificate_pack_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-                validation_method="txt",
+                validation_method="http",
             )
 
     @parametrize

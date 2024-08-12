@@ -504,8 +504,8 @@ class TestAI:
                                 "type": "type",
                             }
                         },
-                        "required": ["string", "string", "string"],
                         "type": "type",
+                        "required": ["string", "string", "string"],
                     },
                 },
                 {
@@ -518,8 +518,8 @@ class TestAI:
                                 "type": "type",
                             }
                         },
-                        "required": ["string", "string", "string"],
                         "type": "type",
+                        "required": ["string", "string", "string"],
                     },
                 },
                 {
@@ -532,8 +532,8 @@ class TestAI:
                                 "type": "type",
                             }
                         },
-                        "required": ["string", "string", "string"],
                         "type": "type",
+                        "required": ["string", "string", "string"],
                     },
                 },
             ],
@@ -1341,8 +1341,8 @@ class TestAsyncAI:
                                 "type": "type",
                             }
                         },
-                        "required": ["string", "string", "string"],
                         "type": "type",
+                        "required": ["string", "string", "string"],
                     },
                 },
                 {
@@ -1355,8 +1355,8 @@ class TestAsyncAI:
                                 "type": "type",
                             }
                         },
-                        "required": ["string", "string", "string"],
                         "type": "type",
+                        "required": ["string", "string", "string"],
                     },
                 },
                 {
@@ -1369,8 +1369,8 @@ class TestAsyncAI:
                                 "type": "type",
                             }
                         },
-                        "required": ["string", "string", "string"],
                         "type": "type",
+                        "required": ["string", "string", "string"],
                     },
                 },
             ],

@@ -26,7 +26,7 @@ class TestWidgets:
         widget = client.challenges.widgets.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-            mode="invisible",
+            mode="non-interactive",
             name="blog.cloudflare.com login form",
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
@@ -36,14 +36,14 @@ class TestWidgets:
         widget = client.challenges.widgets.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-            mode="invisible",
+            mode="non-interactive",
             name="blog.cloudflare.com login form",
             direction="asc",
             order="id",
             page=1,
             per_page=5,
             bot_fight_mode=False,
-            clearance_level="interactive",
+            clearance_level="no_clearance",
             offlabel=False,
             region="world",
         )
@@ -54,7 +54,7 @@ class TestWidgets:
         response = client.challenges.widgets.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-            mode="invisible",
+            mode="non-interactive",
             name="blog.cloudflare.com login form",
         )
 
@@ -68,7 +68,7 @@ class TestWidgets:
         with client.challenges.widgets.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-            mode="invisible",
+            mode="non-interactive",
             name="blog.cloudflare.com login form",
         ) as response:
             assert not response.is_closed
@@ -85,7 +85,7 @@ class TestWidgets:
             client.challenges.widgets.with_raw_response.create(
                 account_id="",
                 domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-                mode="invisible",
+                mode="non-interactive",
                 name="blog.cloudflare.com login form",
             )
 
@@ -95,7 +95,7 @@ class TestWidgets:
             sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-            mode="invisible",
+            mode="non-interactive",
             name="blog.cloudflare.com login form",
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
@@ -106,10 +106,10 @@ class TestWidgets:
             sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-            mode="invisible",
+            mode="non-interactive",
             name="blog.cloudflare.com login form",
             bot_fight_mode=False,
-            clearance_level="interactive",
+            clearance_level="no_clearance",
             offlabel=False,
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
@@ -120,7 +120,7 @@ class TestWidgets:
             sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-            mode="invisible",
+            mode="non-interactive",
             name="blog.cloudflare.com login form",
         )
 
@@ -135,7 +135,7 @@ class TestWidgets:
             sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-            mode="invisible",
+            mode="non-interactive",
             name="blog.cloudflare.com login form",
         ) as response:
             assert not response.is_closed
@@ -153,7 +153,7 @@ class TestWidgets:
                 sitekey="0x4AAF00AAAABn0R22HWm-YUc",
                 account_id="",
                 domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-                mode="invisible",
+                mode="non-interactive",
                 name="blog.cloudflare.com login form",
             )
 
@@ -162,7 +162,7 @@ class TestWidgets:
                 sitekey="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-                mode="invisible",
+                mode="non-interactive",
                 name="blog.cloudflare.com login form",
             )
 
@@ -377,7 +377,7 @@ class TestAsyncWidgets:
         widget = await async_client.challenges.widgets.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-            mode="invisible",
+            mode="non-interactive",
             name="blog.cloudflare.com login form",
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
@@ -387,14 +387,14 @@ class TestAsyncWidgets:
         widget = await async_client.challenges.widgets.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-            mode="invisible",
+            mode="non-interactive",
             name="blog.cloudflare.com login form",
             direction="asc",
             order="id",
             page=1,
             per_page=5,
             bot_fight_mode=False,
-            clearance_level="interactive",
+            clearance_level="no_clearance",
             offlabel=False,
             region="world",
         )
@@ -405,7 +405,7 @@ class TestAsyncWidgets:
         response = await async_client.challenges.widgets.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-            mode="invisible",
+            mode="non-interactive",
             name="blog.cloudflare.com login form",
         )
 
@@ -419,7 +419,7 @@ class TestAsyncWidgets:
         async with async_client.challenges.widgets.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-            mode="invisible",
+            mode="non-interactive",
             name="blog.cloudflare.com login form",
         ) as response:
             assert not response.is_closed
@@ -436,7 +436,7 @@ class TestAsyncWidgets:
             await async_client.challenges.widgets.with_raw_response.create(
                 account_id="",
                 domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-                mode="invisible",
+                mode="non-interactive",
                 name="blog.cloudflare.com login form",
             )
 
@@ -446,7 +446,7 @@ class TestAsyncWidgets:
             sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-            mode="invisible",
+            mode="non-interactive",
             name="blog.cloudflare.com login form",
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
@@ -457,10 +457,10 @@ class TestAsyncWidgets:
             sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-            mode="invisible",
+            mode="non-interactive",
             name="blog.cloudflare.com login form",
             bot_fight_mode=False,
-            clearance_level="interactive",
+            clearance_level="no_clearance",
             offlabel=False,
         )
         assert_matches_type(Optional[Widget], widget, path=["response"])
@@ -471,7 +471,7 @@ class TestAsyncWidgets:
             sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-            mode="invisible",
+            mode="non-interactive",
             name="blog.cloudflare.com login form",
         )
 
@@ -486,7 +486,7 @@ class TestAsyncWidgets:
             sitekey="0x4AAF00AAAABn0R22HWm-YUc",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-            mode="invisible",
+            mode="non-interactive",
             name="blog.cloudflare.com login form",
         ) as response:
             assert not response.is_closed
@@ -504,7 +504,7 @@ class TestAsyncWidgets:
                 sitekey="0x4AAF00AAAABn0R22HWm-YUc",
                 account_id="",
                 domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-                mode="invisible",
+                mode="non-interactive",
                 name="blog.cloudflare.com login form",
             )
 
@@ -513,7 +513,7 @@ class TestAsyncWidgets:
                 sitekey="",
                 account_id="023e105f4ecef8ad9ca31a8372d0c353",
                 domains=["203.0.113.1", "cloudflare.com", "blog.example.com"],
-                mode="invisible",
+                mode="non-interactive",
                 name="blog.cloudflare.com login form",
             )
 

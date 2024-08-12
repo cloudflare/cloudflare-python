@@ -53,10 +53,10 @@ class TestScripts:
                 "logpush": False,
                 "main_module": "worker.js",
                 "migrations": {
-                    "new_tag": "v2",
-                    "old_tag": "v1",
                     "deleted_classes": ["string", "string", "string"],
                     "new_classes": ["string", "string", "string"],
+                    "new_tag": "v2",
+                    "old_tag": "v1",
                     "renamed_classes": [
                         {
                             "from": "from",
@@ -93,19 +93,19 @@ class TestScripts:
                 "tags": ["string", "string", "string"],
                 "tail_consumers": [
                     {
+                        "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                        "service": "my-log-consumer",
                     },
                     {
+                        "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                        "service": "my-log-consumer",
                     },
                     {
+                        "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                        "service": "my-log-consumer",
                     },
                 ],
                 "usage_model": "bundled",
@@ -410,10 +410,10 @@ class TestAsyncScripts:
                 "logpush": False,
                 "main_module": "worker.js",
                 "migrations": {
-                    "new_tag": "v2",
-                    "old_tag": "v1",
                     "deleted_classes": ["string", "string", "string"],
                     "new_classes": ["string", "string", "string"],
+                    "new_tag": "v2",
+                    "old_tag": "v1",
                     "renamed_classes": [
                         {
                             "from": "from",
@@ -450,19 +450,19 @@ class TestAsyncScripts:
                 "tags": ["string", "string", "string"],
                 "tail_consumers": [
                     {
+                        "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                        "service": "my-log-consumer",
                     },
                     {
+                        "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                        "service": "my-log-consumer",
                     },
                     {
+                        "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                        "service": "my-log-consumer",
                     },
                 ],
                 "usage_model": "bundled",

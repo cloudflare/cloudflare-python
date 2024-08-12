@@ -35,7 +35,7 @@ class TestGroups:
         group = client.firewall.waf.packages.groups.list(
             package_id="a25a9a7e9c00afc1fb2e0245519d725b",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            direction="desc",
+            direction="asc",
             match="any",
             mode="on",
             name="Project Honey Pot",
@@ -233,7 +233,7 @@ class TestAsyncGroups:
         group = await async_client.firewall.waf.packages.groups.list(
             package_id="a25a9a7e9c00afc1fb2e0245519d725b",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            direction="desc",
+            direction="asc",
             match="any",
             mode="on",
             name="Project Honey Pot",

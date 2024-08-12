@@ -425,7 +425,7 @@ class TestTokens:
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         token = client.user.tokens.list(
-            direction="desc",
+            direction="asc",
             page=1,
             per_page=5,
         )
@@ -944,7 +944,7 @@ class TestAsyncTokens:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         token = await async_client.user.tokens.list(
-            direction="desc",
+            direction="asc",
             page=1,
             per_page=5,
         )

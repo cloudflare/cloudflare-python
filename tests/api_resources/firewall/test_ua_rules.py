@@ -30,7 +30,7 @@ class TestUARules:
         ua_rule = client.firewall.ua_rules.create(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             configuration={},
-            mode="challenge",
+            mode="block",
         )
         assert_matches_type(UARuleCreateResponse, ua_rule, path=["response"])
 
@@ -43,7 +43,7 @@ class TestUARules:
                 "target": "ip",
                 "value": "198.51.100.4",
             },
-            mode="challenge",
+            mode="block",
         )
         assert_matches_type(UARuleCreateResponse, ua_rule, path=["response"])
 
@@ -53,7 +53,7 @@ class TestUARules:
         response = client.firewall.ua_rules.with_raw_response.create(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             configuration={},
-            mode="challenge",
+            mode="block",
         )
 
         assert response.is_closed is True
@@ -67,7 +67,7 @@ class TestUARules:
         with client.firewall.ua_rules.with_streaming_response.create(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             configuration={},
-            mode="challenge",
+            mode="block",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -84,7 +84,7 @@ class TestUARules:
             client.firewall.ua_rules.with_raw_response.create(
                 zone_identifier="",
                 configuration={},
-                mode="challenge",
+                mode="block",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -94,7 +94,7 @@ class TestUARules:
             id="372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             configuration={},
-            mode="challenge",
+            mode="block",
         )
         assert_matches_type(UARuleUpdateResponse, ua_rule, path=["response"])
 
@@ -108,7 +108,7 @@ class TestUARules:
                 "target": "ip",
                 "value": "198.51.100.4",
             },
-            mode="challenge",
+            mode="block",
         )
         assert_matches_type(UARuleUpdateResponse, ua_rule, path=["response"])
 
@@ -119,7 +119,7 @@ class TestUARules:
             id="372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             configuration={},
-            mode="challenge",
+            mode="block",
         )
 
         assert response.is_closed is True
@@ -134,7 +134,7 @@ class TestUARules:
             id="372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             configuration={},
-            mode="challenge",
+            mode="block",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -152,7 +152,7 @@ class TestUARules:
                 id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="",
                 configuration={},
-                mode="challenge",
+                mode="block",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -160,7 +160,7 @@ class TestUARules:
                 id="",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 configuration={},
-                mode="challenge",
+                mode="block",
             )
 
     @parametrize
@@ -319,7 +319,7 @@ class TestAsyncUARules:
         ua_rule = await async_client.firewall.ua_rules.create(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             configuration={},
-            mode="challenge",
+            mode="block",
         )
         assert_matches_type(UARuleCreateResponse, ua_rule, path=["response"])
 
@@ -332,7 +332,7 @@ class TestAsyncUARules:
                 "target": "ip",
                 "value": "198.51.100.4",
             },
-            mode="challenge",
+            mode="block",
         )
         assert_matches_type(UARuleCreateResponse, ua_rule, path=["response"])
 
@@ -342,7 +342,7 @@ class TestAsyncUARules:
         response = await async_client.firewall.ua_rules.with_raw_response.create(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             configuration={},
-            mode="challenge",
+            mode="block",
         )
 
         assert response.is_closed is True
@@ -356,7 +356,7 @@ class TestAsyncUARules:
         async with async_client.firewall.ua_rules.with_streaming_response.create(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             configuration={},
-            mode="challenge",
+            mode="block",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -373,7 +373,7 @@ class TestAsyncUARules:
             await async_client.firewall.ua_rules.with_raw_response.create(
                 zone_identifier="",
                 configuration={},
-                mode="challenge",
+                mode="block",
             )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
@@ -383,7 +383,7 @@ class TestAsyncUARules:
             id="372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             configuration={},
-            mode="challenge",
+            mode="block",
         )
         assert_matches_type(UARuleUpdateResponse, ua_rule, path=["response"])
 
@@ -397,7 +397,7 @@ class TestAsyncUARules:
                 "target": "ip",
                 "value": "198.51.100.4",
             },
-            mode="challenge",
+            mode="block",
         )
         assert_matches_type(UARuleUpdateResponse, ua_rule, path=["response"])
 
@@ -408,7 +408,7 @@ class TestAsyncUARules:
             id="372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             configuration={},
-            mode="challenge",
+            mode="block",
         )
 
         assert response.is_closed is True
@@ -423,7 +423,7 @@ class TestAsyncUARules:
             id="372e67954025e0ba6aaa6d586b9e0b59",
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
             configuration={},
-            mode="challenge",
+            mode="block",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -441,7 +441,7 @@ class TestAsyncUARules:
                 id="372e67954025e0ba6aaa6d586b9e0b59",
                 zone_identifier="",
                 configuration={},
-                mode="challenge",
+                mode="block",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -449,7 +449,7 @@ class TestAsyncUARules:
                 id="",
                 zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
                 configuration={},
-                mode="challenge",
+                mode="block",
             )
 
     @parametrize

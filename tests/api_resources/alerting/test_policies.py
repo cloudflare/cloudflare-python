@@ -30,7 +30,7 @@ class TestPolicies:
     def test_method_create(self, client: Cloudflare) -> None:
         policy = client.alerting.policies.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="universal_ssl_event_type",
+            alert_type="access_custom_certificate_expiration_type",
             enabled=True,
             mechanisms={
                 "email": [{}],
@@ -48,7 +48,7 @@ class TestPolicies:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         policy = client.alerting.policies.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="universal_ssl_event_type",
+            alert_type="access_custom_certificate_expiration_type",
             enabled=True,
             mechanisms={
                 "email": [{"id": "test@example.com"}],
@@ -110,7 +110,7 @@ class TestPolicies:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.alerting.policies.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="universal_ssl_event_type",
+            alert_type="access_custom_certificate_expiration_type",
             enabled=True,
             mechanisms={
                 "email": [{}],
@@ -132,7 +132,7 @@ class TestPolicies:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.alerting.policies.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="universal_ssl_event_type",
+            alert_type="access_custom_certificate_expiration_type",
             enabled=True,
             mechanisms={
                 "email": [{}],
@@ -157,7 +157,7 @@ class TestPolicies:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.alerting.policies.with_raw_response.create(
                 account_id="",
-                alert_type="universal_ssl_event_type",
+                alert_type="access_custom_certificate_expiration_type",
                 enabled=True,
                 mechanisms={
                     "email": [{}],
@@ -187,7 +187,7 @@ class TestPolicies:
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             alert_interval="30m",
-            alert_type="universal_ssl_event_type",
+            alert_type="access_custom_certificate_expiration_type",
             description="Something describing the policy.",
             enabled=True,
             filters={
@@ -447,7 +447,7 @@ class TestAsyncPolicies:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.alerting.policies.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="universal_ssl_event_type",
+            alert_type="access_custom_certificate_expiration_type",
             enabled=True,
             mechanisms={
                 "email": [{}],
@@ -465,7 +465,7 @@ class TestAsyncPolicies:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         policy = await async_client.alerting.policies.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="universal_ssl_event_type",
+            alert_type="access_custom_certificate_expiration_type",
             enabled=True,
             mechanisms={
                 "email": [{"id": "test@example.com"}],
@@ -527,7 +527,7 @@ class TestAsyncPolicies:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.alerting.policies.with_raw_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="universal_ssl_event_type",
+            alert_type="access_custom_certificate_expiration_type",
             enabled=True,
             mechanisms={
                 "email": [{}],
@@ -549,7 +549,7 @@ class TestAsyncPolicies:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.alerting.policies.with_streaming_response.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            alert_type="universal_ssl_event_type",
+            alert_type="access_custom_certificate_expiration_type",
             enabled=True,
             mechanisms={
                 "email": [{}],
@@ -574,7 +574,7 @@ class TestAsyncPolicies:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.alerting.policies.with_raw_response.create(
                 account_id="",
-                alert_type="universal_ssl_event_type",
+                alert_type="access_custom_certificate_expiration_type",
                 enabled=True,
                 mechanisms={
                     "email": [{}],
@@ -604,7 +604,7 @@ class TestAsyncPolicies:
             policy_id="0da2b59e-f118-439d-8097-bdfb215203c9",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             alert_interval="30m",
-            alert_type="universal_ssl_event_type",
+            alert_type="access_custom_certificate_expiration_type",
             description="Something describing the policy.",
             enabled=True,
             filters={

@@ -35,7 +35,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.get(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -83,7 +83,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_http_method_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.http_method(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -135,7 +135,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_http_version_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.http_version(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -187,7 +187,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_industry_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.industry(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -241,7 +241,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.ip_version(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -293,7 +293,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_managed_rules_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.managed_rules(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -346,7 +346,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_mitigation_product_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.mitigation_product(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -398,7 +398,7 @@ class TestTimeseriesGroups:
     @parametrize
     def test_method_vertical_with_all_params(self, client: Cloudflare) -> None:
         timeseries_group = client.radar.attacks.layer7.timeseries_groups.vertical(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -456,7 +456,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.get(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -504,7 +504,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_http_method_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.http_method(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -556,7 +556,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_http_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.http_version(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -608,7 +608,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_industry_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.industry(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -662,7 +662,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.ip_version(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -714,7 +714,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_managed_rules_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.managed_rules(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -767,7 +767,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_mitigation_product_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.mitigation_product(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -819,7 +819,7 @@ class TestAsyncTimeseriesGroups:
     @parametrize
     async def test_method_vertical_with_all_params(self, async_client: AsyncCloudflare) -> None:
         timeseries_group = await async_client.radar.attacks.layer7.timeseries_groups.vertical(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
