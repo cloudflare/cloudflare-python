@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Mapping, Optional, cast
+from typing import Type, Mapping, cast
 from typing_extensions import Literal
 
 import httpx
@@ -196,7 +196,7 @@ class UserSchemasResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UserSchemaDeleteResponse]:
+    ) -> UserSchemaDeleteResponse:
         """
         Delete a schema
 
@@ -215,21 +215,12 @@ class UserSchemasResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:
             raise ValueError(f"Expected a non-empty value for `schema_id` but received {schema_id!r}")
-        return cast(
-            Optional[UserSchemaDeleteResponse],
-            self._delete(
-                f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[UserSchemaDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[UserSchemaDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=UserSchemaDeleteResponse,
         )
 
     def edit(
@@ -477,7 +468,7 @@ class AsyncUserSchemasResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[UserSchemaDeleteResponse]:
+    ) -> UserSchemaDeleteResponse:
         """
         Delete a schema
 
@@ -496,21 +487,12 @@ class AsyncUserSchemasResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not schema_id:
             raise ValueError(f"Expected a non-empty value for `schema_id` but received {schema_id!r}")
-        return cast(
-            Optional[UserSchemaDeleteResponse],
-            await self._delete(
-                f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[UserSchemaDeleteResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[UserSchemaDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/zones/{zone_id}/api_gateway/user_schemas/{schema_id}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
+            cast_to=UserSchemaDeleteResponse,
         )
 
     async def edit(
