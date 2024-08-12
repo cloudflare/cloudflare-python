@@ -28,6 +28,7 @@ class TestSettings:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         setting = client.zero_trust.devices.settings.update(
             account_id="699d98642c564d2e855e9661899b7252",
+            disable_for_time=0,
             gateway_proxy_enabled=True,
             gateway_udp_proxy_enabled=True,
             root_certificate_installation_enabled=True,
@@ -119,6 +120,7 @@ class TestAsyncSettings:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         setting = await async_client.zero_trust.devices.settings.update(
             account_id="699d98642c564d2e855e9661899b7252",
+            disable_for_time=0,
             gateway_proxy_enabled=True,
             gateway_udp_proxy_enabled=True,
             root_certificate_installation_enabled=True,
