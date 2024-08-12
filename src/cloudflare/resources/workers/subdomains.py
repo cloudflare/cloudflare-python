@@ -41,7 +41,7 @@ class SubdomainsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        body: str,
+        subdomain: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -67,7 +67,7 @@ class SubdomainsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
             f"/accounts/{account_id}/workers/subdomain",
-            body=maybe_transform(body, subdomain_update_params.SubdomainUpdateParams),
+            body=maybe_transform({"subdomain": subdomain}, subdomain_update_params.SubdomainUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -131,7 +131,7 @@ class AsyncSubdomainsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        body: str,
+        subdomain: str | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -157,7 +157,7 @@ class AsyncSubdomainsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
             f"/accounts/{account_id}/workers/subdomain",
-            body=await async_maybe_transform(body, subdomain_update_params.SubdomainUpdateParams),
+            body=await async_maybe_transform({"subdomain": subdomain}, subdomain_update_params.SubdomainUpdateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
