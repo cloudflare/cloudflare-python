@@ -65,7 +65,8 @@ class SecretsResource(SyncAPIResource):
 
           script_name: Name of the script, used in URLs and route configuration.
 
-          name: The name of this secret, this is what will be to access it inside the Worker.
+          name: The name of this secret, this is what will be used to access it inside the
+              Worker.
 
           text: The value of the secret.
 
@@ -119,7 +120,7 @@ class SecretsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> SyncSinglePage[SecretListResponse]:
         """
-        Fetch secrets from a script uploaded to a Workers for Platforms namespace.
+        List secrets from a script uploaded to a Workers for Platforms namespace.
 
         Args:
           account_id: Identifier
@@ -187,7 +188,8 @@ class AsyncSecretsResource(AsyncAPIResource):
 
           script_name: Name of the script, used in URLs and route configuration.
 
-          name: The name of this secret, this is what will be to access it inside the Worker.
+          name: The name of this secret, this is what will be used to access it inside the
+              Worker.
 
           text: The value of the secret.
 
@@ -241,7 +243,7 @@ class AsyncSecretsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AsyncPaginator[SecretListResponse, AsyncSinglePage[SecretListResponse]]:
         """
-        Fetch secrets from a script uploaded to a Workers for Platforms namespace.
+        List secrets from a script uploaded to a Workers for Platforms namespace.
 
         Args:
           account_id: Identifier
