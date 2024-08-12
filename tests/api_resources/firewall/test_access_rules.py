@@ -28,7 +28,7 @@ class TestAccessRules:
     def test_method_create(self, client: Cloudflare) -> None:
         access_rule = client.firewall.access_rules.create(
             configuration={},
-            mode="challenge",
+            mode="block",
             account_id="account_id",
         )
         assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
@@ -41,7 +41,7 @@ class TestAccessRules:
                 "target": "ip",
                 "value": "198.51.100.4",
             },
-            mode="challenge",
+            mode="block",
             account_id="account_id",
             notes="This rule is enabled because of an event that occurred on date X.",
         )
@@ -52,7 +52,7 @@ class TestAccessRules:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.firewall.access_rules.with_raw_response.create(
             configuration={},
-            mode="challenge",
+            mode="block",
             account_id="account_id",
         )
 
@@ -66,7 +66,7 @@ class TestAccessRules:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.firewall.access_rules.with_streaming_response.create(
             configuration={},
-            mode="challenge",
+            mode="block",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -83,14 +83,14 @@ class TestAccessRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.firewall.access_rules.with_raw_response.create(
                 configuration={},
-                mode="challenge",
+                mode="block",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.firewall.access_rules.with_raw_response.create(
                 configuration={},
-                mode="challenge",
+                mode="block",
                 account_id="account_id",
             )
 
@@ -111,11 +111,11 @@ class TestAccessRules:
                 "target": "ip",
                 "value": "198.51.100.4",
             },
-            direction="desc",
+            direction="asc",
             match="any",
-            mode="challenge",
+            mode="block",
             notes="my note",
-            order="mode",
+            order="configuration.target",
             page=1,
             per_page=20,
         )
@@ -233,7 +233,7 @@ class TestAccessRules:
         access_rule = client.firewall.access_rules.edit(
             identifier="de677e5818985db1285d0e80225f06e5",
             configuration={},
-            mode="challenge",
+            mode="block",
             account_id="account_id",
         )
         assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
@@ -247,7 +247,7 @@ class TestAccessRules:
                 "target": "ip",
                 "value": "198.51.100.4",
             },
-            mode="challenge",
+            mode="block",
             account_id="account_id",
             notes="This rule is enabled because of an event that occurred on date X.",
         )
@@ -259,7 +259,7 @@ class TestAccessRules:
         response = client.firewall.access_rules.with_raw_response.edit(
             identifier="de677e5818985db1285d0e80225f06e5",
             configuration={},
-            mode="challenge",
+            mode="block",
             account_id="account_id",
         )
 
@@ -274,7 +274,7 @@ class TestAccessRules:
         with client.firewall.access_rules.with_streaming_response.edit(
             identifier="de677e5818985db1285d0e80225f06e5",
             configuration={},
-            mode="challenge",
+            mode="block",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -292,7 +292,7 @@ class TestAccessRules:
             client.firewall.access_rules.with_raw_response.edit(
                 identifier="",
                 configuration={},
-                mode="challenge",
+                mode="block",
                 account_id="account_id",
             )
 
@@ -300,7 +300,7 @@ class TestAccessRules:
             client.firewall.access_rules.with_raw_response.edit(
                 identifier="de677e5818985db1285d0e80225f06e5",
                 configuration={},
-                mode="challenge",
+                mode="block",
                 account_id="",
             )
 
@@ -308,7 +308,7 @@ class TestAccessRules:
             client.firewall.access_rules.with_raw_response.edit(
                 identifier="de677e5818985db1285d0e80225f06e5",
                 configuration={},
-                mode="challenge",
+                mode="block",
                 account_id="account_id",
             )
 
@@ -388,7 +388,7 @@ class TestAsyncAccessRules:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         access_rule = await async_client.firewall.access_rules.create(
             configuration={},
-            mode="challenge",
+            mode="block",
             account_id="account_id",
         )
         assert_matches_type(AccessRuleCreateResponse, access_rule, path=["response"])
@@ -401,7 +401,7 @@ class TestAsyncAccessRules:
                 "target": "ip",
                 "value": "198.51.100.4",
             },
-            mode="challenge",
+            mode="block",
             account_id="account_id",
             notes="This rule is enabled because of an event that occurred on date X.",
         )
@@ -412,7 +412,7 @@ class TestAsyncAccessRules:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.firewall.access_rules.with_raw_response.create(
             configuration={},
-            mode="challenge",
+            mode="block",
             account_id="account_id",
         )
 
@@ -426,7 +426,7 @@ class TestAsyncAccessRules:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.firewall.access_rules.with_streaming_response.create(
             configuration={},
-            mode="challenge",
+            mode="block",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -443,14 +443,14 @@ class TestAsyncAccessRules:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.firewall.access_rules.with_raw_response.create(
                 configuration={},
-                mode="challenge",
+                mode="block",
                 account_id="",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.firewall.access_rules.with_raw_response.create(
                 configuration={},
-                mode="challenge",
+                mode="block",
                 account_id="account_id",
             )
 
@@ -471,11 +471,11 @@ class TestAsyncAccessRules:
                 "target": "ip",
                 "value": "198.51.100.4",
             },
-            direction="desc",
+            direction="asc",
             match="any",
-            mode="challenge",
+            mode="block",
             notes="my note",
-            order="mode",
+            order="configuration.target",
             page=1,
             per_page=20,
         )
@@ -593,7 +593,7 @@ class TestAsyncAccessRules:
         access_rule = await async_client.firewall.access_rules.edit(
             identifier="de677e5818985db1285d0e80225f06e5",
             configuration={},
-            mode="challenge",
+            mode="block",
             account_id="account_id",
         )
         assert_matches_type(AccessRuleEditResponse, access_rule, path=["response"])
@@ -607,7 +607,7 @@ class TestAsyncAccessRules:
                 "target": "ip",
                 "value": "198.51.100.4",
             },
-            mode="challenge",
+            mode="block",
             account_id="account_id",
             notes="This rule is enabled because of an event that occurred on date X.",
         )
@@ -619,7 +619,7 @@ class TestAsyncAccessRules:
         response = await async_client.firewall.access_rules.with_raw_response.edit(
             identifier="de677e5818985db1285d0e80225f06e5",
             configuration={},
-            mode="challenge",
+            mode="block",
             account_id="account_id",
         )
 
@@ -634,7 +634,7 @@ class TestAsyncAccessRules:
         async with async_client.firewall.access_rules.with_streaming_response.edit(
             identifier="de677e5818985db1285d0e80225f06e5",
             configuration={},
-            mode="challenge",
+            mode="block",
             account_id="account_id",
         ) as response:
             assert not response.is_closed
@@ -652,7 +652,7 @@ class TestAsyncAccessRules:
             await async_client.firewall.access_rules.with_raw_response.edit(
                 identifier="",
                 configuration={},
-                mode="challenge",
+                mode="block",
                 account_id="account_id",
             )
 
@@ -660,7 +660,7 @@ class TestAsyncAccessRules:
             await async_client.firewall.access_rules.with_raw_response.edit(
                 identifier="de677e5818985db1285d0e80225f06e5",
                 configuration={},
-                mode="challenge",
+                mode="block",
                 account_id="",
             )
 
@@ -668,7 +668,7 @@ class TestAsyncAccessRules:
             await async_client.firewall.access_rules.with_raw_response.edit(
                 identifier="de677e5818985db1285d0e80225f06e5",
                 configuration={},
-                mode="challenge",
+                mode="block",
                 account_id="account_id",
             )
 

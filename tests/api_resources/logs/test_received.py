@@ -34,7 +34,7 @@ class TestReceived:
             fields="ClientIP,RayID,EdgeStartTimestamp",
             sample=0.1,
             start="2018-05-20T10:00:00Z",
-            timestamps="unixnano",
+            timestamps="unix",
         )
         assert_matches_type(ReceivedGetResponse, received, path=["response"])
 
@@ -93,7 +93,7 @@ class TestAsyncReceived:
             fields="ClientIP,RayID,EdgeStartTimestamp",
             sample=0.1,
             start="2018-05-20T10:00:00Z",
-            timestamps="unixnano",
+            timestamps="unix",
         )
         assert_matches_type(ReceivedGetResponse, received, path=["response"])
 

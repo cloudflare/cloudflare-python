@@ -34,7 +34,7 @@ class TestTests:
         test = client.speed.pages.tests.create(
             url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            region="us-central1",
+            region="asia-east1",
         )
         assert_matches_type(Optional[Test], test, path=["response"])
 
@@ -93,7 +93,7 @@ class TestTests:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             page=0,
             per_page=5,
-            region="us-central1",
+            region="asia-east1",
         )
         assert_matches_type(SyncV4PagePaginationArray[Test], test, path=["response"])
 
@@ -150,7 +150,7 @@ class TestTests:
         test = client.speed.pages.tests.delete(
             url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            region="us-central1",
+            region="asia-east1",
         )
         assert_matches_type(Optional[TestDeleteResponse], test, path=["response"])
 
@@ -271,7 +271,7 @@ class TestAsyncTests:
         test = await async_client.speed.pages.tests.create(
             url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            region="us-central1",
+            region="asia-east1",
         )
         assert_matches_type(Optional[Test], test, path=["response"])
 
@@ -330,7 +330,7 @@ class TestAsyncTests:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             page=0,
             per_page=5,
-            region="us-central1",
+            region="asia-east1",
         )
         assert_matches_type(AsyncV4PagePaginationArray[Test], test, path=["response"])
 
@@ -387,7 +387,7 @@ class TestAsyncTests:
         test = await async_client.speed.pages.tests.delete(
             url="example.com",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            region="us-central1",
+            region="asia-east1",
         )
         assert_matches_type(Optional[TestDeleteResponse], test, path=["response"])
 

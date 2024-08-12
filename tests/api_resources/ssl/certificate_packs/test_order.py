@@ -21,7 +21,7 @@ class TestOrder:
     def test_method_create(self, client: Cloudflare) -> None:
         order = client.ssl.certificate_packs.order.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_authority="lets_encrypt",
+            certificate_authority="google",
             hosts=["example.com", "*.example.com", "www.example.com"],
             type="advanced",
             validation_method="txt",
@@ -33,7 +33,7 @@ class TestOrder:
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
         order = client.ssl.certificate_packs.order.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_authority="lets_encrypt",
+            certificate_authority="google",
             hosts=["example.com", "*.example.com", "www.example.com"],
             type="advanced",
             validation_method="txt",
@@ -46,7 +46,7 @@ class TestOrder:
     def test_raw_response_create(self, client: Cloudflare) -> None:
         response = client.ssl.certificate_packs.order.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_authority="lets_encrypt",
+            certificate_authority="google",
             hosts=["example.com", "*.example.com", "www.example.com"],
             type="advanced",
             validation_method="txt",
@@ -62,7 +62,7 @@ class TestOrder:
     def test_streaming_response_create(self, client: Cloudflare) -> None:
         with client.ssl.certificate_packs.order.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_authority="lets_encrypt",
+            certificate_authority="google",
             hosts=["example.com", "*.example.com", "www.example.com"],
             type="advanced",
             validation_method="txt",
@@ -81,7 +81,7 @@ class TestOrder:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.ssl.certificate_packs.order.with_raw_response.create(
                 zone_id="",
-                certificate_authority="lets_encrypt",
+                certificate_authority="google",
                 hosts=["example.com", "*.example.com", "www.example.com"],
                 type="advanced",
                 validation_method="txt",
@@ -96,7 +96,7 @@ class TestAsyncOrder:
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         order = await async_client.ssl.certificate_packs.order.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_authority="lets_encrypt",
+            certificate_authority="google",
             hosts=["example.com", "*.example.com", "www.example.com"],
             type="advanced",
             validation_method="txt",
@@ -108,7 +108,7 @@ class TestAsyncOrder:
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
         order = await async_client.ssl.certificate_packs.order.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_authority="lets_encrypt",
+            certificate_authority="google",
             hosts=["example.com", "*.example.com", "www.example.com"],
             type="advanced",
             validation_method="txt",
@@ -121,7 +121,7 @@ class TestAsyncOrder:
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.ssl.certificate_packs.order.with_raw_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_authority="lets_encrypt",
+            certificate_authority="google",
             hosts=["example.com", "*.example.com", "www.example.com"],
             type="advanced",
             validation_method="txt",
@@ -137,7 +137,7 @@ class TestAsyncOrder:
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
         async with async_client.ssl.certificate_packs.order.with_streaming_response.create(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            certificate_authority="lets_encrypt",
+            certificate_authority="google",
             hosts=["example.com", "*.example.com", "www.example.com"],
             type="advanced",
             validation_method="txt",
@@ -156,7 +156,7 @@ class TestAsyncOrder:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.ssl.certificate_packs.order.with_raw_response.create(
                 zone_id="",
-                certificate_authority="lets_encrypt",
+                certificate_authority="google",
                 hosts=["example.com", "*.example.com", "www.example.com"],
                 type="advanced",
                 validation_method="txt",

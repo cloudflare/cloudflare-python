@@ -48,10 +48,10 @@ class TestSettings:
                 "limits": {"cpu_ms": 50},
                 "logpush": False,
                 "migrations": {
-                    "new_tag": "v2",
-                    "old_tag": "v1",
                     "deleted_classes": ["string", "string", "string"],
                     "new_classes": ["string", "string", "string"],
+                    "new_tag": "v2",
+                    "old_tag": "v1",
                     "renamed_classes": [
                         {
                             "from": "from",
@@ -88,19 +88,19 @@ class TestSettings:
                 "tags": ["my-tag", "my-tag", "my-tag"],
                 "tail_consumers": [
                     {
+                        "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                        "service": "my-log-consumer",
                     },
                     {
+                        "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                        "service": "my-log-consumer",
                     },
                     {
+                        "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                        "service": "my-log-consumer",
                     },
                 ],
                 "usage_model": "unbound",
@@ -254,10 +254,10 @@ class TestAsyncSettings:
                 "limits": {"cpu_ms": 50},
                 "logpush": False,
                 "migrations": {
-                    "new_tag": "v2",
-                    "old_tag": "v1",
                     "deleted_classes": ["string", "string", "string"],
                     "new_classes": ["string", "string", "string"],
+                    "new_tag": "v2",
+                    "old_tag": "v1",
                     "renamed_classes": [
                         {
                             "from": "from",
@@ -294,19 +294,19 @@ class TestAsyncSettings:
                 "tags": ["my-tag", "my-tag", "my-tag"],
                 "tail_consumers": [
                     {
+                        "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                        "service": "my-log-consumer",
                     },
                     {
+                        "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                        "service": "my-log-consumer",
                     },
                     {
+                        "service": "my-log-consumer",
                         "environment": "production",
                         "namespace": "my-namespace",
-                        "service": "my-log-consumer",
                     },
                 ],
                 "usage_model": "unbound",

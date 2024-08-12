@@ -30,8 +30,8 @@ class TestAuditLogs:
             id="f174be97-19b1-40d6-954d-70cd5fbd52db",
             action={"type": "add"},
             actor={
-                "ip": "17.168.228.63",
                 "email": "alice@example.com",
+                "ip": "17.168.228.63",
             },
             before=parse_datetime("2019-04-30T01:12:20Z"),
             direction="desc",
@@ -79,8 +79,8 @@ class TestAsyncAuditLogs:
             id="f174be97-19b1-40d6-954d-70cd5fbd52db",
             action={"type": "add"},
             actor={
-                "ip": "17.168.228.63",
                 "email": "alice@example.com",
+                "ip": "17.168.228.63",
             },
             before=parse_datetime("2019-04-30T01:12:20Z"),
             direction="desc",

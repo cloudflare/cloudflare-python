@@ -34,7 +34,7 @@ class TestBytimes:
             metrics=["count", "bytesIngress"],
             since=parse_datetime("2014-01-02T02:20:00Z"),
             sort=["+count", "-bytesIngress"],
-            time_delta="minute",
+            time_delta="year",
             until=parse_datetime("2014-01-02T03:20:00Z"),
         )
         assert_matches_type(Optional[BytimeGetResponse], bytime, path=["response"])
@@ -90,7 +90,7 @@ class TestAsyncBytimes:
             metrics=["count", "bytesIngress"],
             since=parse_datetime("2014-01-02T02:20:00Z"),
             sort=["+count", "-bytesIngress"],
-            time_delta="minute",
+            time_delta="year",
             until=parse_datetime("2014-01-02T03:20:00Z"),
         )
         assert_matches_type(Optional[BytimeGetResponse], bytime, path=["response"])

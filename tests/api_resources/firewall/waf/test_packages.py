@@ -31,7 +31,7 @@ class TestPackages:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         package = client.firewall.waf.packages.list(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            direction="desc",
+            direction="asc",
             match="any",
             name="USER",
             order="name",
@@ -139,7 +139,7 @@ class TestAsyncPackages:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         package = await async_client.firewall.waf.packages.list(
             zone_identifier="023e105f4ecef8ad9ca31a8372d0c353",
-            direction="desc",
+            direction="asc",
             match="any",
             name="USER",
             order="name",

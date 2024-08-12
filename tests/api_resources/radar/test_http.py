@@ -26,7 +26,7 @@ class TestHTTP:
     @parametrize
     def test_method_timeseries_with_all_params(self, client: Cloudflare) -> None:
         http = client.radar.http.timeseries(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -43,7 +43,7 @@ class TestHTTP:
             format="JSON",
             location=["string", "string", "string"],
             name=["string", "string", "string"],
-            normalization="MIN0_MAX",
+            normalization="PERCENTAGE_CHANGE",
         )
         assert_matches_type(HTTPTimeseriesResponse, http, path=["response"])
 
@@ -79,7 +79,7 @@ class TestAsyncHTTP:
     @parametrize
     async def test_method_timeseries_with_all_params(self, async_client: AsyncCloudflare) -> None:
         http = await async_client.radar.http.timeseries(
-            agg_interval="1h",
+            agg_interval="15m",
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
             date_end=[
@@ -96,7 +96,7 @@ class TestAsyncHTTP:
             format="JSON",
             location=["string", "string", "string"],
             name=["string", "string", "string"],
-            normalization="MIN0_MAX",
+            normalization="PERCENTAGE_CHANGE",
         )
         assert_matches_type(HTTPTimeseriesResponse, http, path=["response"])
 

@@ -34,7 +34,7 @@ class TestSchemaValidation:
         schema_validation = client.api_gateway.operations.schema_validation.update(
             operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            mitigation_action="block",
+            mitigation_action="log",
         )
         assert_matches_type(SchemaValidationUpdateResponse, schema_validation, path=["response"])
 
@@ -197,7 +197,7 @@ class TestAsyncSchemaValidation:
         schema_validation = await async_client.api_gateway.operations.schema_validation.update(
             operation_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            mitigation_action="block",
+            mitigation_action="log",
         )
         assert_matches_type(SchemaValidationUpdateResponse, schema_validation, path=["response"])
 

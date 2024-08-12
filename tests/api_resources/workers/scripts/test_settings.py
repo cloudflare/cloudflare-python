@@ -33,19 +33,19 @@ class TestSettings:
             logpush=False,
             tail_consumers=[
                 {
+                    "service": "my-log-consumer",
                     "environment": "production",
                     "namespace": "my-namespace",
-                    "service": "my-log-consumer",
                 },
                 {
+                    "service": "my-log-consumer",
                     "environment": "production",
                     "namespace": "my-namespace",
-                    "service": "my-log-consumer",
                 },
                 {
+                    "service": "my-log-consumer",
                     "environment": "production",
                     "namespace": "my-namespace",
-                    "service": "my-log-consumer",
                 },
             ],
         )
@@ -159,19 +159,19 @@ class TestAsyncSettings:
             logpush=False,
             tail_consumers=[
                 {
+                    "service": "my-log-consumer",
                     "environment": "production",
                     "namespace": "my-namespace",
-                    "service": "my-log-consumer",
                 },
                 {
+                    "service": "my-log-consumer",
                     "environment": "production",
                     "namespace": "my-namespace",
-                    "service": "my-log-consumer",
                 },
                 {
+                    "service": "my-log-consumer",
                     "environment": "production",
                     "namespace": "my-namespace",
-                    "service": "my-log-consumer",
                 },
             ],
         )

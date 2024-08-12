@@ -56,7 +56,7 @@ class TestApps:
             },
             ip_firewall=True,
             proxy_protocol="off",
-            tls="full",
+            tls="off",
             traffic_type="direct",
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
@@ -139,7 +139,7 @@ class TestApps:
             },
             ip_firewall=True,
             proxy_protocol="off",
-            tls="full",
+            tls="off",
             traffic_type="direct",
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
@@ -211,7 +211,7 @@ class TestApps:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         app = client.spectrum.apps.list(
             zone="023e105f4ecef8ad9ca31a8372d0c353",
-            direction="desc",
+            direction="asc",
             order="protocol",
             page=1,
             per_page=1,
@@ -382,7 +382,7 @@ class TestAsyncApps:
             },
             ip_firewall=True,
             proxy_protocol="off",
-            tls="full",
+            tls="off",
             traffic_type="direct",
         )
         assert_matches_type(Optional[AppCreateResponse], app, path=["response"])
@@ -465,7 +465,7 @@ class TestAsyncApps:
             },
             ip_firewall=True,
             proxy_protocol="off",
-            tls="full",
+            tls="off",
             traffic_type="direct",
         )
         assert_matches_type(Optional[AppUpdateResponse], app, path=["response"])
@@ -537,7 +537,7 @@ class TestAsyncApps:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         app = await async_client.spectrum.apps.list(
             zone="023e105f4ecef8ad9ca31a8372d0c353",
-            direction="desc",
+            direction="asc",
             order="protocol",
             page=1,
             per_page=1,

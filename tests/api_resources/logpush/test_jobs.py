@@ -43,9 +43,9 @@ class TestJobs:
             max_upload_records=1000,
             name="example.com",
             output_options={
-                "cve_2021_4428": True,
                 "batch_prefix": "batch_prefix",
                 "batch_suffix": "batch_suffix",
+                "cve_2021_4428": True,
                 "field_delimiter": "field_delimiter",
                 "field_names": ["ClientIP", "EdgeStartTimestamp", "RayID"],
                 "output_type": "ndjson",
@@ -127,9 +127,9 @@ class TestJobs:
             max_upload_interval_seconds=30,
             max_upload_records=1000,
             output_options={
-                "cve_2021_4428": True,
                 "batch_prefix": "batch_prefix",
                 "batch_suffix": "batch_suffix",
+                "cve_2021_4428": True,
                 "field_delimiter": "field_delimiter",
                 "field_names": ["ClientIP", "EdgeStartTimestamp", "RayID"],
                 "output_type": "ndjson",
@@ -393,9 +393,9 @@ class TestAsyncJobs:
             max_upload_records=1000,
             name="example.com",
             output_options={
-                "cve_2021_4428": True,
                 "batch_prefix": "batch_prefix",
                 "batch_suffix": "batch_suffix",
+                "cve_2021_4428": True,
                 "field_delimiter": "field_delimiter",
                 "field_names": ["ClientIP", "EdgeStartTimestamp", "RayID"],
                 "output_type": "ndjson",
@@ -477,9 +477,9 @@ class TestAsyncJobs:
             max_upload_interval_seconds=30,
             max_upload_records=1000,
             output_options={
-                "cve_2021_4428": True,
                 "batch_prefix": "batch_prefix",
                 "batch_suffix": "batch_suffix",
+                "cve_2021_4428": True,
                 "field_delimiter": "field_delimiter",
                 "field_names": ["ClientIP", "EdgeStartTimestamp", "RayID"],
                 "output_type": "ndjson",
