@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from .ca import CA as CA
 from .approval_group import ApprovalGroup as ApprovalGroup
-from .ca_get_response import CAGetResponse as CAGetResponse
-from .ca_create_response import CACreateResponse as CACreateResponse
 from .ca_delete_response import CADeleteResponse as CADeleteResponse
 from .approval_group_param import ApprovalGroupParam as ApprovalGroupParam
 from .policy_create_params import PolicyCreateParams as PolicyCreateParams
