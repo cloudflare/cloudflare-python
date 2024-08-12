@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import List
 from typing_extensions import Required, TypedDict
 
 __all__ = ["FallbackDomainParam"]
@@ -15,5 +15,5 @@ class FallbackDomainParam(TypedDict, total=False):
     description: str
     """A description of the fallback domain, displayed in the client UI."""
 
-    dns_server: Iterable[object]
+    dns_server: List[str]
     """A list of IP addresses to handle domain resolution."""
