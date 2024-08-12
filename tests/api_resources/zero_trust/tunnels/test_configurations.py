@@ -37,11 +37,12 @@ class TestConfigurations:
                 "ingress": [
                     {
                         "hostname": "tunnel.example.com",
+                        "service": "https://localhost:8001",
                         "origin_request": {
                             "access": {
                                 "aud_tag": ["string", "string", "string"],
-                                "required": True,
                                 "team_name": "teamName",
+                                "required": True,
                             },
                             "ca_pool": "caPool",
                             "connect_timeout": 0,
@@ -58,15 +59,15 @@ class TestConfigurations:
                             "tls_timeout": 0,
                         },
                         "path": "subpath",
-                        "service": "https://localhost:8001",
                     },
                     {
                         "hostname": "tunnel.example.com",
+                        "service": "https://localhost:8001",
                         "origin_request": {
                             "access": {
                                 "aud_tag": ["string", "string", "string"],
-                                "required": True,
                                 "team_name": "teamName",
+                                "required": True,
                             },
                             "ca_pool": "caPool",
                             "connect_timeout": 0,
@@ -83,15 +84,15 @@ class TestConfigurations:
                             "tls_timeout": 0,
                         },
                         "path": "subpath",
-                        "service": "https://localhost:8001",
                     },
                     {
                         "hostname": "tunnel.example.com",
+                        "service": "https://localhost:8001",
                         "origin_request": {
                             "access": {
                                 "aud_tag": ["string", "string", "string"],
-                                "required": True,
                                 "team_name": "teamName",
+                                "required": True,
                             },
                             "ca_pool": "caPool",
                             "connect_timeout": 0,
@@ -108,14 +109,13 @@ class TestConfigurations:
                             "tls_timeout": 0,
                         },
                         "path": "subpath",
-                        "service": "https://localhost:8001",
                     },
                 ],
                 "origin_request": {
                     "access": {
                         "aud_tag": ["string", "string", "string"],
-                        "required": True,
                         "team_name": "teamName",
+                        "required": True,
                     },
                     "ca_pool": "caPool",
                     "connect_timeout": 0,
@@ -245,11 +245,12 @@ class TestAsyncConfigurations:
                 "ingress": [
                     {
                         "hostname": "tunnel.example.com",
+                        "service": "https://localhost:8001",
                         "origin_request": {
                             "access": {
                                 "aud_tag": ["string", "string", "string"],
-                                "required": True,
                                 "team_name": "teamName",
+                                "required": True,
                             },
                             "ca_pool": "caPool",
                             "connect_timeout": 0,
@@ -266,15 +267,15 @@ class TestAsyncConfigurations:
                             "tls_timeout": 0,
                         },
                         "path": "subpath",
-                        "service": "https://localhost:8001",
                     },
                     {
                         "hostname": "tunnel.example.com",
+                        "service": "https://localhost:8001",
                         "origin_request": {
                             "access": {
                                 "aud_tag": ["string", "string", "string"],
-                                "required": True,
                                 "team_name": "teamName",
+                                "required": True,
                             },
                             "ca_pool": "caPool",
                             "connect_timeout": 0,
@@ -291,15 +292,15 @@ class TestAsyncConfigurations:
                             "tls_timeout": 0,
                         },
                         "path": "subpath",
-                        "service": "https://localhost:8001",
                     },
                     {
                         "hostname": "tunnel.example.com",
+                        "service": "https://localhost:8001",
                         "origin_request": {
                             "access": {
                                 "aud_tag": ["string", "string", "string"],
-                                "required": True,
                                 "team_name": "teamName",
+                                "required": True,
                             },
                             "ca_pool": "caPool",
                             "connect_timeout": 0,
@@ -316,14 +317,13 @@ class TestAsyncConfigurations:
                             "tls_timeout": 0,
                         },
                         "path": "subpath",
-                        "service": "https://localhost:8001",
                     },
                 ],
                 "origin_request": {
                     "access": {
                         "aud_tag": ["string", "string", "string"],
-                        "required": True,
                         "team_name": "teamName",
+                        "required": True,
                     },
                     "ca_pool": "caPool",
                     "connect_timeout": 0,

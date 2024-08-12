@@ -276,8 +276,8 @@ class TestRules:
                     "action": "log",
                     "categories": [
                         {
-                            "action": "log",
                             "category": "directory-traversal",
+                            "action": "log",
                             "enabled": True,
                             "sensitivity_level": "default",
                         }
@@ -285,9 +285,9 @@ class TestRules:
                     "enabled": True,
                     "rules": [
                         {
+                            "id": "8ac8bc2a661e475d940980f9317f28e1",
                             "action": "log",
                             "enabled": True,
-                            "id": "8ac8bc2a661e475d940980f9317f28e1",
                             "score_threshold": 0,
                             "sensitivity_level": "default",
                         }
@@ -1099,7 +1099,7 @@ class TestRules:
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
-                "phases": ["http_request_firewall_custom"],
+                "phases": ["ddos_l4"],
                 "products": ["bic"],
                 "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},
                 "ruleset": "current",
@@ -1182,8 +1182,8 @@ class TestRules:
             action_parameters={
                 "additional_cacheable_ports": [0, 0, 0],
                 "browser_ttl": {
-                    "default": 0,
                     "mode": "respect_origin",
+                    "default": 0,
                 },
                 "cache": True,
                 "cache_key": {
@@ -1228,28 +1228,28 @@ class TestRules:
                     "mode": "respect_origin",
                     "status_code_ttl": [
                         {
+                            "value": 0,
                             "status_code_range": {
                                 "from": 0,
                                 "to": 0,
                             },
                             "status_code_value": 0,
-                            "value": 0,
                         },
                         {
+                            "value": 0,
                             "status_code_range": {
                                 "from": 0,
                                 "to": 0,
                             },
                             "status_code_value": 0,
-                            "value": 0,
                         },
                         {
+                            "value": 0,
                             "status_code_range": {
                                 "from": 0,
                                 "to": 0,
                             },
                             "status_code_value": 0,
-                            "value": 0,
                         },
                     ],
                 },
@@ -1925,8 +1925,8 @@ class TestRules:
                     "action": "log",
                     "categories": [
                         {
-                            "action": "log",
                             "category": "directory-traversal",
+                            "action": "log",
                             "enabled": True,
                             "sensitivity_level": "default",
                         }
@@ -1934,9 +1934,9 @@ class TestRules:
                     "enabled": True,
                     "rules": [
                         {
+                            "id": "8ac8bc2a661e475d940980f9317f28e1",
                             "action": "log",
                             "enabled": True,
-                            "id": "8ac8bc2a661e475d940980f9317f28e1",
                             "score_threshold": 0,
                             "sensitivity_level": "default",
                         }
@@ -2888,7 +2888,7 @@ class TestRules:
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
-                "phases": ["http_request_firewall_custom"],
+                "phases": ["ddos_l4"],
                 "products": ["bic"],
                 "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},
                 "ruleset": "current",
@@ -2985,8 +2985,8 @@ class TestRules:
             action_parameters={
                 "additional_cacheable_ports": [0, 0, 0],
                 "browser_ttl": {
-                    "default": 0,
                     "mode": "respect_origin",
+                    "default": 0,
                 },
                 "cache": True,
                 "cache_key": {
@@ -3031,28 +3031,28 @@ class TestRules:
                     "mode": "respect_origin",
                     "status_code_ttl": [
                         {
+                            "value": 0,
                             "status_code_range": {
                                 "from": 0,
                                 "to": 0,
                             },
                             "status_code_value": 0,
-                            "value": 0,
                         },
                         {
+                            "value": 0,
                             "status_code_range": {
                                 "from": 0,
                                 "to": 0,
                             },
                             "status_code_value": 0,
-                            "value": 0,
                         },
                         {
+                            "value": 0,
                             "status_code_range": {
                                 "from": 0,
                                 "to": 0,
                             },
                             "status_code_value": 0,
-                            "value": 0,
                         },
                     ],
                 },
@@ -3661,8 +3661,8 @@ class TestAsyncRules:
                     "action": "log",
                     "categories": [
                         {
-                            "action": "log",
                             "category": "directory-traversal",
+                            "action": "log",
                             "enabled": True,
                             "sensitivity_level": "default",
                         }
@@ -3670,9 +3670,9 @@ class TestAsyncRules:
                     "enabled": True,
                     "rules": [
                         {
+                            "id": "8ac8bc2a661e475d940980f9317f28e1",
                             "action": "log",
                             "enabled": True,
-                            "id": "8ac8bc2a661e475d940980f9317f28e1",
                             "score_threshold": 0,
                             "sensitivity_level": "default",
                         }
@@ -4484,7 +4484,7 @@ class TestAsyncRules:
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
-                "phases": ["http_request_firewall_custom"],
+                "phases": ["ddos_l4"],
                 "products": ["bic"],
                 "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},
                 "ruleset": "current",
@@ -4567,8 +4567,8 @@ class TestAsyncRules:
             action_parameters={
                 "additional_cacheable_ports": [0, 0, 0],
                 "browser_ttl": {
-                    "default": 0,
                     "mode": "respect_origin",
+                    "default": 0,
                 },
                 "cache": True,
                 "cache_key": {
@@ -4613,28 +4613,28 @@ class TestAsyncRules:
                     "mode": "respect_origin",
                     "status_code_ttl": [
                         {
+                            "value": 0,
                             "status_code_range": {
                                 "from": 0,
                                 "to": 0,
                             },
                             "status_code_value": 0,
-                            "value": 0,
                         },
                         {
+                            "value": 0,
                             "status_code_range": {
                                 "from": 0,
                                 "to": 0,
                             },
                             "status_code_value": 0,
-                            "value": 0,
                         },
                         {
+                            "value": 0,
                             "status_code_range": {
                                 "from": 0,
                                 "to": 0,
                             },
                             "status_code_value": 0,
-                            "value": 0,
                         },
                     ],
                 },
@@ -5310,8 +5310,8 @@ class TestAsyncRules:
                     "action": "log",
                     "categories": [
                         {
-                            "action": "log",
                             "category": "directory-traversal",
+                            "action": "log",
                             "enabled": True,
                             "sensitivity_level": "default",
                         }
@@ -5319,9 +5319,9 @@ class TestAsyncRules:
                     "enabled": True,
                     "rules": [
                         {
+                            "id": "8ac8bc2a661e475d940980f9317f28e1",
                             "action": "log",
                             "enabled": True,
-                            "id": "8ac8bc2a661e475d940980f9317f28e1",
                             "score_threshold": 0,
                             "sensitivity_level": "default",
                         }
@@ -6273,7 +6273,7 @@ class TestAsyncRules:
             id="3a03d665bac047339bb530ecb439a90d",
             action="skip",
             action_parameters={
-                "phases": ["http_request_firewall_custom"],
+                "phases": ["ddos_l4"],
                 "products": ["bic"],
                 "rules": {"4814384a9e5d4991b9815dcfc25d2f1f": ["8ac8bc2a661e475d940980f9317f28e1"]},
                 "ruleset": "current",
@@ -6370,8 +6370,8 @@ class TestAsyncRules:
             action_parameters={
                 "additional_cacheable_ports": [0, 0, 0],
                 "browser_ttl": {
-                    "default": 0,
                     "mode": "respect_origin",
+                    "default": 0,
                 },
                 "cache": True,
                 "cache_key": {
@@ -6416,28 +6416,28 @@ class TestAsyncRules:
                     "mode": "respect_origin",
                     "status_code_ttl": [
                         {
+                            "value": 0,
                             "status_code_range": {
                                 "from": 0,
                                 "to": 0,
                             },
                             "status_code_value": 0,
-                            "value": 0,
                         },
                         {
+                            "value": 0,
                             "status_code_range": {
                                 "from": 0,
                                 "to": 0,
                             },
                             "status_code_value": 0,
-                            "value": 0,
                         },
                         {
+                            "value": 0,
                             "status_code_range": {
                                 "from": 0,
                                 "to": 0,
                             },
                             "status_code_value": 0,
-                            "value": 0,
                         },
                     ],
                 },

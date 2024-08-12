@@ -45,7 +45,7 @@ class TestSettings:
                     "rname": "admin.example.com",
                     "ttl": 3600,
                 },
-                "zone_mode": "dns_only",
+                "zone_mode": "standard",
             },
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
@@ -176,7 +176,7 @@ class TestAsyncSettings:
                     "rname": "admin.example.com",
                     "ttl": 3600,
                 },
-                "zone_mode": "dns_only",
+                "zone_mode": "standard",
             },
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])

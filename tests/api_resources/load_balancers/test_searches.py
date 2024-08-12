@@ -34,7 +34,7 @@ class TestSearches:
             per_page={},
             search_params={
                 "query": "primary",
-                "references": "*",
+                "references": "",
             },
         )
         assert_matches_type(Optional[SearchGetResponse], search, path=["response"])
@@ -94,7 +94,7 @@ class TestAsyncSearches:
             per_page={},
             search_params={
                 "query": "primary",
-                "references": "*",
+                "references": "",
             },
         )
         assert_matches_type(Optional[SearchGetResponse], search, path=["response"])

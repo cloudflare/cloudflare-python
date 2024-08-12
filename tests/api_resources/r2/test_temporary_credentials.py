@@ -23,7 +23,7 @@ class TestTemporaryCredentials:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket="example-bucket",
             parent_access_key_id="example-access-key-id",
-            permission="object-read-write",
+            permission="admin-read-write",
             ttl_seconds=3600,
         )
         assert_matches_type(TemporaryCredentialCreateResponse, temporary_credential, path=["response"])
@@ -34,7 +34,7 @@ class TestTemporaryCredentials:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket="example-bucket",
             parent_access_key_id="example-access-key-id",
-            permission="object-read-write",
+            permission="admin-read-write",
             ttl_seconds=3600,
             objects=["example-object"],
             prefixes=["example-prefix/"],
@@ -47,7 +47,7 @@ class TestTemporaryCredentials:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket="example-bucket",
             parent_access_key_id="example-access-key-id",
-            permission="object-read-write",
+            permission="admin-read-write",
             ttl_seconds=3600,
         )
 
@@ -62,7 +62,7 @@ class TestTemporaryCredentials:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket="example-bucket",
             parent_access_key_id="example-access-key-id",
-            permission="object-read-write",
+            permission="admin-read-write",
             ttl_seconds=3600,
         ) as response:
             assert not response.is_closed
@@ -80,7 +80,7 @@ class TestTemporaryCredentials:
                 account_id="",
                 bucket="example-bucket",
                 parent_access_key_id="example-access-key-id",
-                permission="object-read-write",
+                permission="admin-read-write",
                 ttl_seconds=3600,
             )
 
@@ -94,7 +94,7 @@ class TestAsyncTemporaryCredentials:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket="example-bucket",
             parent_access_key_id="example-access-key-id",
-            permission="object-read-write",
+            permission="admin-read-write",
             ttl_seconds=3600,
         )
         assert_matches_type(TemporaryCredentialCreateResponse, temporary_credential, path=["response"])
@@ -105,7 +105,7 @@ class TestAsyncTemporaryCredentials:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket="example-bucket",
             parent_access_key_id="example-access-key-id",
-            permission="object-read-write",
+            permission="admin-read-write",
             ttl_seconds=3600,
             objects=["example-object"],
             prefixes=["example-prefix/"],
@@ -118,7 +118,7 @@ class TestAsyncTemporaryCredentials:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket="example-bucket",
             parent_access_key_id="example-access-key-id",
-            permission="object-read-write",
+            permission="admin-read-write",
             ttl_seconds=3600,
         )
 
@@ -133,7 +133,7 @@ class TestAsyncTemporaryCredentials:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             bucket="example-bucket",
             parent_access_key_id="example-access-key-id",
-            permission="object-read-write",
+            permission="admin-read-write",
             ttl_seconds=3600,
         ) as response:
             assert not response.is_closed
@@ -151,6 +151,6 @@ class TestAsyncTemporaryCredentials:
                 account_id="",
                 bucket="example-bucket",
                 parent_access_key_id="example-access-key-id",
-                permission="object-read-write",
+                permission="admin-read-write",
                 ttl_seconds=3600,
             )

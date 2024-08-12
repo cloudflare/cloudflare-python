@@ -37,8 +37,8 @@ class TestEvents:
             leak_asn=0,
             page=0,
             per_page=0,
-            sort_by="TIME",
-            sort_order="DESC",
+            sort_by="ID",
+            sort_order="ASC",
         )
         assert_matches_type(SyncV4PagePagination[EventListResponse], event, path=["response"])
 
@@ -84,8 +84,8 @@ class TestAsyncEvents:
             leak_asn=0,
             page=0,
             per_page=0,
-            sort_by="TIME",
-            sort_order="DESC",
+            sort_by="ID",
+            sort_order="ASC",
         )
         assert_matches_type(AsyncV4PagePagination[EventListResponse], event, path=["response"])
 

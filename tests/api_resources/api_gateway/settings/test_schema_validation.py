@@ -23,7 +23,7 @@ class TestSchemaValidation:
     def test_method_update(self, client: Cloudflare) -> None:
         schema_validation = client.api_gateway.settings.schema_validation.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            validation_default_mitigation_action="block",
+            validation_default_mitigation_action="none",
         )
         assert_matches_type(Settings, schema_validation, path=["response"])
 
@@ -31,7 +31,7 @@ class TestSchemaValidation:
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         schema_validation = client.api_gateway.settings.schema_validation.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            validation_default_mitigation_action="block",
+            validation_default_mitigation_action="none",
             validation_override_mitigation_action="none",
         )
         assert_matches_type(Settings, schema_validation, path=["response"])
@@ -40,7 +40,7 @@ class TestSchemaValidation:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.api_gateway.settings.schema_validation.with_raw_response.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            validation_default_mitigation_action="block",
+            validation_default_mitigation_action="none",
         )
 
         assert response.is_closed is True
@@ -52,7 +52,7 @@ class TestSchemaValidation:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.api_gateway.settings.schema_validation.with_streaming_response.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            validation_default_mitigation_action="block",
+            validation_default_mitigation_action="none",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -67,7 +67,7 @@ class TestSchemaValidation:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             client.api_gateway.settings.schema_validation.with_raw_response.update(
                 zone_id="",
-                validation_default_mitigation_action="block",
+                validation_default_mitigation_action="none",
             )
 
     @parametrize
@@ -81,7 +81,7 @@ class TestSchemaValidation:
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
         schema_validation = client.api_gateway.settings.schema_validation.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            validation_default_mitigation_action="block",
+            validation_default_mitigation_action="none",
             validation_override_mitigation_action="none",
         )
         assert_matches_type(Settings, schema_validation, path=["response"])
@@ -163,7 +163,7 @@ class TestAsyncSchemaValidation:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         schema_validation = await async_client.api_gateway.settings.schema_validation.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            validation_default_mitigation_action="block",
+            validation_default_mitigation_action="none",
         )
         assert_matches_type(Settings, schema_validation, path=["response"])
 
@@ -171,7 +171,7 @@ class TestAsyncSchemaValidation:
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         schema_validation = await async_client.api_gateway.settings.schema_validation.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            validation_default_mitigation_action="block",
+            validation_default_mitigation_action="none",
             validation_override_mitigation_action="none",
         )
         assert_matches_type(Settings, schema_validation, path=["response"])
@@ -180,7 +180,7 @@ class TestAsyncSchemaValidation:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.api_gateway.settings.schema_validation.with_raw_response.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            validation_default_mitigation_action="block",
+            validation_default_mitigation_action="none",
         )
 
         assert response.is_closed is True
@@ -192,7 +192,7 @@ class TestAsyncSchemaValidation:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.api_gateway.settings.schema_validation.with_streaming_response.update(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            validation_default_mitigation_action="block",
+            validation_default_mitigation_action="none",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -207,7 +207,7 @@ class TestAsyncSchemaValidation:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
             await async_client.api_gateway.settings.schema_validation.with_raw_response.update(
                 zone_id="",
-                validation_default_mitigation_action="block",
+                validation_default_mitigation_action="none",
             )
 
     @parametrize
@@ -221,7 +221,7 @@ class TestAsyncSchemaValidation:
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
         schema_validation = await async_client.api_gateway.settings.schema_validation.edit(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            validation_default_mitigation_action="block",
+            validation_default_mitigation_action="none",
             validation_override_mitigation_action="none",
         )
         assert_matches_type(Settings, schema_validation, path=["response"])

@@ -316,7 +316,7 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="brotli",
-            value="on",
+            value="off",
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
@@ -326,7 +326,7 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="brotli",
-            value="on",
+            value="off",
         )
 
         assert response.is_closed is True
@@ -340,7 +340,7 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="brotli",
-            value="on",
+            value="off",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -357,7 +357,7 @@ class TestSettings:
                 setting_id="always_online",
                 zone_id="",
                 id="brotli",
-                value="on",
+                value="off",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
@@ -365,7 +365,7 @@ class TestSettings:
                 setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="brotli",
-                value="on",
+                value="off",
             )
 
     @parametrize
@@ -1302,7 +1302,7 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ipv6",
-            value="on",
+            value="off",
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
@@ -1312,7 +1312,7 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ipv6",
-            value="on",
+            value="off",
         )
 
         assert response.is_closed is True
@@ -1326,7 +1326,7 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ipv6",
-            value="on",
+            value="off",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1343,7 +1343,7 @@ class TestSettings:
                 setting_id="always_online",
                 zone_id="",
                 id="ipv6",
-                value="on",
+                value="off",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
@@ -1351,7 +1351,7 @@ class TestSettings:
                 setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="ipv6",
-                value="on",
+                value="off",
             )
 
     @parametrize
@@ -2669,7 +2669,7 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sha1_support",
-            value="on",
+            value="off",
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
@@ -2679,7 +2679,7 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sha1_support",
-            value="on",
+            value="off",
         )
 
         assert response.is_closed is True
@@ -2693,7 +2693,7 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sha1_support",
-            value="on",
+            value="off",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2710,7 +2710,7 @@ class TestSettings:
                 setting_id="always_online",
                 zone_id="",
                 id="sha1_support",
-                value="on",
+                value="off",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
@@ -2718,7 +2718,7 @@ class TestSettings:
                 setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="sha1_support",
-                value="on",
+                value="off",
             )
 
     @parametrize
@@ -2901,7 +2901,7 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_2_only",
-            value="on",
+            value="off",
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
@@ -2911,7 +2911,7 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_2_only",
-            value="on",
+            value="off",
         )
 
         assert response.is_closed is True
@@ -2925,7 +2925,7 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_2_only",
-            value="on",
+            value="off",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -2942,7 +2942,7 @@ class TestSettings:
                 setting_id="always_online",
                 zone_id="",
                 id="tls_1_2_only",
-                value="on",
+                value="off",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
@@ -2950,7 +2950,7 @@ class TestSettings:
                 setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="tls_1_2_only",
-                value="on",
+                value="off",
             )
 
     @parametrize
@@ -3191,7 +3191,7 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="webp",
-            value="on",
+            value="off",
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
@@ -3201,7 +3201,7 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="webp",
-            value="on",
+            value="off",
         )
 
         assert response.is_closed is True
@@ -3215,7 +3215,7 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="webp",
-            value="on",
+            value="off",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3232,7 +3232,7 @@ class TestSettings:
                 setting_id="always_online",
                 zone_id="",
                 id="webp",
-                value="on",
+                value="off",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
@@ -3240,7 +3240,7 @@ class TestSettings:
                 setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="webp",
-                value="on",
+                value="off",
             )
 
     @parametrize
@@ -3249,7 +3249,7 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="websockets",
-            value="on",
+            value="off",
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
@@ -3259,7 +3259,7 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="websockets",
-            value="on",
+            value="off",
         )
 
         assert response.is_closed is True
@@ -3273,7 +3273,7 @@ class TestSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="websockets",
-            value="on",
+            value="off",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3290,7 +3290,7 @@ class TestSettings:
                 setting_id="always_online",
                 zone_id="",
                 id="websockets",
-                value="on",
+                value="off",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
@@ -3298,7 +3298,7 @@ class TestSettings:
                 setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="websockets",
-                value="on",
+                value="off",
             )
 
     @parametrize
@@ -3649,7 +3649,7 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="brotli",
-            value="on",
+            value="off",
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
@@ -3659,7 +3659,7 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="brotli",
-            value="on",
+            value="off",
         )
 
         assert response.is_closed is True
@@ -3673,7 +3673,7 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="brotli",
-            value="on",
+            value="off",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -3690,7 +3690,7 @@ class TestAsyncSettings:
                 setting_id="always_online",
                 zone_id="",
                 id="brotli",
-                value="on",
+                value="off",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
@@ -3698,7 +3698,7 @@ class TestAsyncSettings:
                 setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="brotli",
-                value="on",
+                value="off",
             )
 
     @parametrize
@@ -4635,7 +4635,7 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ipv6",
-            value="on",
+            value="off",
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
@@ -4645,7 +4645,7 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ipv6",
-            value="on",
+            value="off",
         )
 
         assert response.is_closed is True
@@ -4659,7 +4659,7 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="ipv6",
-            value="on",
+            value="off",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -4676,7 +4676,7 @@ class TestAsyncSettings:
                 setting_id="always_online",
                 zone_id="",
                 id="ipv6",
-                value="on",
+                value="off",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
@@ -4684,7 +4684,7 @@ class TestAsyncSettings:
                 setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="ipv6",
-                value="on",
+                value="off",
             )
 
     @parametrize
@@ -6002,7 +6002,7 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sha1_support",
-            value="on",
+            value="off",
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
@@ -6012,7 +6012,7 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sha1_support",
-            value="on",
+            value="off",
         )
 
         assert response.is_closed is True
@@ -6026,7 +6026,7 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="sha1_support",
-            value="on",
+            value="off",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6043,7 +6043,7 @@ class TestAsyncSettings:
                 setting_id="always_online",
                 zone_id="",
                 id="sha1_support",
-                value="on",
+                value="off",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
@@ -6051,7 +6051,7 @@ class TestAsyncSettings:
                 setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="sha1_support",
-                value="on",
+                value="off",
             )
 
     @parametrize
@@ -6234,7 +6234,7 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_2_only",
-            value="on",
+            value="off",
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
@@ -6244,7 +6244,7 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_2_only",
-            value="on",
+            value="off",
         )
 
         assert response.is_closed is True
@@ -6258,7 +6258,7 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="tls_1_2_only",
-            value="on",
+            value="off",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6275,7 +6275,7 @@ class TestAsyncSettings:
                 setting_id="always_online",
                 zone_id="",
                 id="tls_1_2_only",
-                value="on",
+                value="off",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
@@ -6283,7 +6283,7 @@ class TestAsyncSettings:
                 setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="tls_1_2_only",
-                value="on",
+                value="off",
             )
 
     @parametrize
@@ -6524,7 +6524,7 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="webp",
-            value="on",
+            value="off",
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
@@ -6534,7 +6534,7 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="webp",
-            value="on",
+            value="off",
         )
 
         assert response.is_closed is True
@@ -6548,7 +6548,7 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="webp",
-            value="on",
+            value="off",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6565,7 +6565,7 @@ class TestAsyncSettings:
                 setting_id="always_online",
                 zone_id="",
                 id="webp",
-                value="on",
+                value="off",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
@@ -6573,7 +6573,7 @@ class TestAsyncSettings:
                 setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="webp",
-                value="on",
+                value="off",
             )
 
     @parametrize
@@ -6582,7 +6582,7 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="websockets",
-            value="on",
+            value="off",
         )
         assert_matches_type(Optional[SettingEditResponse], setting, path=["response"])
 
@@ -6592,7 +6592,7 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="websockets",
-            value="on",
+            value="off",
         )
 
         assert response.is_closed is True
@@ -6606,7 +6606,7 @@ class TestAsyncSettings:
             setting_id="always_online",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             id="websockets",
-            value="on",
+            value="off",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -6623,7 +6623,7 @@ class TestAsyncSettings:
                 setting_id="always_online",
                 zone_id="",
                 id="websockets",
-                value="on",
+                value="off",
             )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `setting_id` but received ''"):
@@ -6631,7 +6631,7 @@ class TestAsyncSettings:
                 setting_id="",
                 zone_id="023e105f4ecef8ad9ca31a8372d0c353",
                 id="websockets",
-                value="on",
+                value="off",
             )
 
     @parametrize
