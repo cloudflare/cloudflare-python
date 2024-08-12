@@ -41,7 +41,8 @@ class AccountSettingsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        body: str,
+        default_usage_model: str | NotGiven = NOT_GIVEN,
+        green_compute: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -67,7 +68,13 @@ class AccountSettingsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
             f"/accounts/{account_id}/workers/account-settings",
-            body=maybe_transform(body, account_setting_update_params.AccountSettingUpdateParams),
+            body=maybe_transform(
+                {
+                    "default_usage_model": default_usage_model,
+                    "green_compute": green_compute,
+                },
+                account_setting_update_params.AccountSettingUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -131,7 +138,8 @@ class AsyncAccountSettingsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        body: str,
+        default_usage_model: str | NotGiven = NOT_GIVEN,
+        green_compute: bool | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -157,7 +165,13 @@ class AsyncAccountSettingsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
             f"/accounts/{account_id}/workers/account-settings",
-            body=await async_maybe_transform(body, account_setting_update_params.AccountSettingUpdateParams),
+            body=await async_maybe_transform(
+                {
+                    "default_usage_model": default_usage_model,
+                    "green_compute": green_compute,
+                },
+                account_setting_update_params.AccountSettingUpdateParams,
+            ),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,

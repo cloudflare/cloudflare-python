@@ -24,7 +24,15 @@ class TestAccountSettings:
     def test_method_update(self, client: Cloudflare) -> None:
         account_setting = client.workers.account_settings.update(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body="{'default_usage_model': 'unbound'}",
+        )
+        assert_matches_type(Optional[AccountSettingUpdateResponse], account_setting, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        account_setting = client.workers.account_settings.update(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            default_usage_model="default_usage_model",
+            green_compute=True,
         )
         assert_matches_type(Optional[AccountSettingUpdateResponse], account_setting, path=["response"])
 
@@ -32,7 +40,6 @@ class TestAccountSettings:
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.workers.account_settings.with_raw_response.update(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body="{'default_usage_model': 'unbound'}",
         )
 
         assert response.is_closed is True
@@ -44,7 +51,6 @@ class TestAccountSettings:
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.workers.account_settings.with_streaming_response.update(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body="{'default_usage_model': 'unbound'}",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -59,7 +65,6 @@ class TestAccountSettings:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.workers.account_settings.with_raw_response.update(
                 account_id="",
-                body="{'default_usage_model': 'unbound'}",
             )
 
     @parametrize
@@ -108,7 +113,15 @@ class TestAsyncAccountSettings:
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         account_setting = await async_client.workers.account_settings.update(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body="{'default_usage_model': 'unbound'}",
+        )
+        assert_matches_type(Optional[AccountSettingUpdateResponse], account_setting, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        account_setting = await async_client.workers.account_settings.update(
+            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            default_usage_model="default_usage_model",
+            green_compute=True,
         )
         assert_matches_type(Optional[AccountSettingUpdateResponse], account_setting, path=["response"])
 
@@ -116,7 +129,6 @@ class TestAsyncAccountSettings:
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.workers.account_settings.with_raw_response.update(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body="{'default_usage_model': 'unbound'}",
         )
 
         assert response.is_closed is True
@@ -128,7 +140,6 @@ class TestAsyncAccountSettings:
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.workers.account_settings.with_streaming_response.update(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            body="{'default_usage_model': 'unbound'}",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -143,7 +154,6 @@ class TestAsyncAccountSettings:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.workers.account_settings.with_raw_response.update(
                 account_id="",
-                body="{'default_usage_model': 'unbound'}",
             )
 
     @parametrize

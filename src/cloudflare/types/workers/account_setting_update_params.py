@@ -11,4 +11,6 @@ class AccountSettingUpdateParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    body: Required[str]
+    default_usage_model: str
+
+    green_compute: bool
