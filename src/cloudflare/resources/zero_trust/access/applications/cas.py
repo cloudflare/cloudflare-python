@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -19,8 +19,6 @@ from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import AsyncPaginator, make_request_options
 from .....types.zero_trust.access.applications.ca import CA
-from .....types.zero_trust.access.applications.ca_get_response import CAGetResponse
-from .....types.zero_trust.access.applications.ca_create_response import CACreateResponse
 from .....types.zero_trust.access.applications.ca_delete_response import CADeleteResponse
 
 __all__ = ["CAsResource", "AsyncCAsResource"]
@@ -47,7 +45,7 @@ class CAsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CACreateResponse]:
+    ) -> object:
         """
         Generates a new short-lived certificate CA and public key.
 
@@ -80,21 +78,16 @@ class CAsResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return cast(
-            Optional[CACreateResponse],
-            self._post(
-                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/ca",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CACreateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CACreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/ca",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def list(
@@ -215,7 +208,7 @@ class CAsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CAGetResponse]:
+    ) -> object:
         """
         Fetches a short-lived certificate CA and its public key.
 
@@ -248,21 +241,16 @@ class CAsResource(SyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return cast(
-            Optional[CAGetResponse],
-            self._get(
-                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/ca",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CAGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CAGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/ca",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
@@ -287,7 +275,7 @@ class AsyncCAsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CACreateResponse]:
+    ) -> object:
         """
         Generates a new short-lived certificate CA and public key.
 
@@ -320,21 +308,16 @@ class AsyncCAsResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return cast(
-            Optional[CACreateResponse],
-            await self._post(
-                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/ca",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CACreateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CACreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/ca",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def list(
@@ -455,7 +438,7 @@ class AsyncCAsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CAGetResponse]:
+    ) -> object:
         """
         Fetches a short-lived certificate CA and its public key.
 
@@ -488,21 +471,16 @@ class AsyncCAsResource(AsyncAPIResource):
 
             account_or_zone = "zones"
             account_or_zone_id = zone_id
-        return cast(
-            Optional[CAGetResponse],
-            await self._get(
-                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/ca",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CAGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CAGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/ca",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 

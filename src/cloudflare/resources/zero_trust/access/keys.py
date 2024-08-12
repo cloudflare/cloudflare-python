@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -68,24 +68,19 @@ class KeysResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            Optional[KeyUpdateResponse],
-            self._put(
-                f"/accounts/{account_id}/access/keys",
-                body=maybe_transform(
-                    {"key_rotation_interval_days": key_rotation_interval_days}, key_update_params.KeyUpdateParams
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[KeyUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[KeyUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._put(
+            f"/accounts/{account_id}/access/keys",
+            body=maybe_transform(
+                {"key_rotation_interval_days": key_rotation_interval_days}, key_update_params.KeyUpdateParams
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[KeyUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[KeyUpdateResponse]], ResultWrapper[KeyUpdateResponse]),
         )
 
     def get(
@@ -115,21 +110,16 @@ class KeysResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            Optional[KeyGetResponse],
-            self._get(
-                f"/accounts/{account_id}/access/keys",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[KeyGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[KeyGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/accounts/{account_id}/access/keys",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[KeyGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[KeyGetResponse]], ResultWrapper[KeyGetResponse]),
         )
 
     def rotate(
@@ -159,21 +149,16 @@ class KeysResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            Optional[KeyRotateResponse],
-            self._post(
-                f"/accounts/{account_id}/access/keys/rotate",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[KeyRotateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[KeyRotateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            f"/accounts/{account_id}/access/keys/rotate",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[KeyRotateResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[KeyRotateResponse]], ResultWrapper[KeyRotateResponse]),
         )
 
 
@@ -216,24 +201,19 @@ class AsyncKeysResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            Optional[KeyUpdateResponse],
-            await self._put(
-                f"/accounts/{account_id}/access/keys",
-                body=await async_maybe_transform(
-                    {"key_rotation_interval_days": key_rotation_interval_days}, key_update_params.KeyUpdateParams
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[KeyUpdateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[KeyUpdateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._put(
+            f"/accounts/{account_id}/access/keys",
+            body=await async_maybe_transform(
+                {"key_rotation_interval_days": key_rotation_interval_days}, key_update_params.KeyUpdateParams
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[KeyUpdateResponse]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[KeyUpdateResponse]], ResultWrapper[KeyUpdateResponse]),
         )
 
     async def get(
@@ -263,21 +243,16 @@ class AsyncKeysResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            Optional[KeyGetResponse],
-            await self._get(
-                f"/accounts/{account_id}/access/keys",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[KeyGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[KeyGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/accounts/{account_id}/access/keys",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[KeyGetResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[KeyGetResponse]], ResultWrapper[KeyGetResponse]),
         )
 
     async def rotate(
@@ -307,21 +282,16 @@ class AsyncKeysResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            Optional[KeyRotateResponse],
-            await self._post(
-                f"/accounts/{account_id}/access/keys/rotate",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[KeyRotateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[KeyRotateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            f"/accounts/{account_id}/access/keys/rotate",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[KeyRotateResponse]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[KeyRotateResponse]], ResultWrapper[KeyRotateResponse]),
         )
 
 
