@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -19,7 +17,6 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.addressing.address_maps import account_update_params
 from ....types.addressing.address_maps.account_delete_response import AccountDeleteResponse
@@ -49,7 +46,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccountUpdateResponse]:
+    ) -> AccountUpdateResponse:
         """
         Add an account as a member of a particular address map.
 
@@ -74,13 +71,9 @@ class AccountsResource(SyncAPIResource):
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
             body=maybe_transform(body, account_update_params.AccountUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AccountUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AccountUpdateResponse]], ResultWrapper[AccountUpdateResponse]),
+            cast_to=AccountUpdateResponse,
         )
 
     def delete(
@@ -94,7 +87,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccountDeleteResponse]:
+    ) -> AccountDeleteResponse:
         """
         Remove an account as a member of a particular address map.
 
@@ -118,13 +111,9 @@ class AccountsResource(SyncAPIResource):
         return self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AccountDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AccountDeleteResponse]], ResultWrapper[AccountDeleteResponse]),
+            cast_to=AccountDeleteResponse,
         )
 
 
@@ -149,7 +138,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccountUpdateResponse]:
+    ) -> AccountUpdateResponse:
         """
         Add an account as a member of a particular address map.
 
@@ -174,13 +163,9 @@ class AsyncAccountsResource(AsyncAPIResource):
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
             body=await async_maybe_transform(body, account_update_params.AccountUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AccountUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AccountUpdateResponse]], ResultWrapper[AccountUpdateResponse]),
+            cast_to=AccountUpdateResponse,
         )
 
     async def delete(
@@ -194,7 +179,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AccountDeleteResponse]:
+    ) -> AccountDeleteResponse:
         """
         Remove an account as a member of a particular address map.
 
@@ -218,13 +203,9 @@ class AsyncAccountsResource(AsyncAPIResource):
         return await self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{account_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AccountDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AccountDeleteResponse]], ResultWrapper[AccountDeleteResponse]),
+            cast_to=AccountDeleteResponse,
         )
 
 
