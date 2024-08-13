@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -19,7 +17,6 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.addressing.address_maps import zone_update_params
 from ....types.addressing.address_maps.zone_delete_response import ZoneDeleteResponse
@@ -50,7 +47,7 @@ class ZonesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneUpdateResponse]:
+    ) -> ZoneUpdateResponse:
         """
         Add a zone as a member of a particular address map.
 
@@ -79,13 +76,9 @@ class ZonesResource(SyncAPIResource):
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
             body=maybe_transform(body, zone_update_params.ZoneUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZoneUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ZoneUpdateResponse]], ResultWrapper[ZoneUpdateResponse]),
+            cast_to=ZoneUpdateResponse,
         )
 
     def delete(
@@ -100,7 +93,7 @@ class ZonesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneDeleteResponse]:
+    ) -> ZoneDeleteResponse:
         """
         Remove a zone as a member of a particular address map.
 
@@ -128,13 +121,9 @@ class ZonesResource(SyncAPIResource):
         return self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZoneDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ZoneDeleteResponse]], ResultWrapper[ZoneDeleteResponse]),
+            cast_to=ZoneDeleteResponse,
         )
 
 
@@ -160,7 +149,7 @@ class AsyncZonesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneUpdateResponse]:
+    ) -> ZoneUpdateResponse:
         """
         Add a zone as a member of a particular address map.
 
@@ -189,13 +178,9 @@ class AsyncZonesResource(AsyncAPIResource):
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
             body=await async_maybe_transform(body, zone_update_params.ZoneUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZoneUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ZoneUpdateResponse]], ResultWrapper[ZoneUpdateResponse]),
+            cast_to=ZoneUpdateResponse,
         )
 
     async def delete(
@@ -210,7 +195,7 @@ class AsyncZonesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ZoneDeleteResponse]:
+    ) -> ZoneDeleteResponse:
         """
         Remove a zone as a member of a particular address map.
 
@@ -238,13 +223,9 @@ class AsyncZonesResource(AsyncAPIResource):
         return await self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/zones/{zone_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[ZoneDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[ZoneDeleteResponse]], ResultWrapper[ZoneDeleteResponse]),
+            cast_to=ZoneDeleteResponse,
         )
 
 

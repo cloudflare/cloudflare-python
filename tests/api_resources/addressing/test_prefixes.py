@@ -112,7 +112,7 @@ class TestPrefixes:
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PrefixDeleteResponse], prefix, path=["response"])
+        assert_matches_type(PrefixDeleteResponse, prefix, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -124,7 +124,7 @@ class TestPrefixes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         prefix = response.parse()
-        assert_matches_type(Optional[PrefixDeleteResponse], prefix, path=["response"])
+        assert_matches_type(PrefixDeleteResponse, prefix, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -136,7 +136,7 @@ class TestPrefixes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             prefix = response.parse()
-            assert_matches_type(Optional[PrefixDeleteResponse], prefix, path=["response"])
+            assert_matches_type(PrefixDeleteResponse, prefix, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -353,7 +353,7 @@ class TestAsyncPrefixes:
             prefix_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[PrefixDeleteResponse], prefix, path=["response"])
+        assert_matches_type(PrefixDeleteResponse, prefix, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -365,7 +365,7 @@ class TestAsyncPrefixes:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         prefix = await response.parse()
-        assert_matches_type(Optional[PrefixDeleteResponse], prefix, path=["response"])
+        assert_matches_type(PrefixDeleteResponse, prefix, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -377,7 +377,7 @@ class TestAsyncPrefixes:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             prefix = await response.parse()
-            assert_matches_type(Optional[PrefixDeleteResponse], prefix, path=["response"])
+            assert_matches_type(PrefixDeleteResponse, prefix, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

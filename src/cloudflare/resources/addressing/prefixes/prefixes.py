@@ -166,7 +166,7 @@ class PrefixesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PrefixDeleteResponse]:
+    ) -> PrefixDeleteResponse:
         """
         Delete an unapproved prefix owned by the account.
 
@@ -190,13 +190,9 @@ class PrefixesResource(SyncAPIResource):
         return self._delete(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PrefixDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PrefixDeleteResponse]], ResultWrapper[PrefixDeleteResponse]),
+            cast_to=PrefixDeleteResponse,
         )
 
     def edit(
@@ -412,7 +408,7 @@ class AsyncPrefixesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PrefixDeleteResponse]:
+    ) -> PrefixDeleteResponse:
         """
         Delete an unapproved prefix owned by the account.
 
@@ -436,13 +432,9 @@ class AsyncPrefixesResource(AsyncAPIResource):
         return await self._delete(
             f"/accounts/{account_id}/addressing/prefixes/{prefix_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[PrefixDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[PrefixDeleteResponse]], ResultWrapper[PrefixDeleteResponse]),
+            cast_to=PrefixDeleteResponse,
         )
 
     async def edit(
