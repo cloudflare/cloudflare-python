@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Type, cast
 
 import httpx
 
@@ -28,9 +28,6 @@ from ....types.zero_trust.networks import (
     virtual_network_create_params,
 )
 from ....types.zero_trust.networks.virtual_network import VirtualNetwork
-from ....types.zero_trust.networks.virtual_network_edit_response import VirtualNetworkEditResponse
-from ....types.zero_trust.networks.virtual_network_create_response import VirtualNetworkCreateResponse
-from ....types.zero_trust.networks.virtual_network_delete_response import VirtualNetworkDeleteResponse
 
 __all__ = ["VirtualNetworksResource", "AsyncVirtualNetworksResource"]
 
@@ -57,7 +54,7 @@ class VirtualNetworksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetworkCreateResponse:
+    ) -> VirtualNetwork:
         """
         Adds a new virtual network to an account.
 
@@ -80,29 +77,24 @@ class VirtualNetworksResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            VirtualNetworkCreateResponse,
-            self._post(
-                f"/accounts/{account_id}/teamnet/virtual_networks",
-                body=maybe_transform(
-                    {
-                        "name": name,
-                        "comment": comment,
-                        "is_default": is_default,
-                    },
-                    virtual_network_create_params.VirtualNetworkCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[VirtualNetworkCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[VirtualNetworkCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            f"/accounts/{account_id}/teamnet/virtual_networks",
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "comment": comment,
+                    "is_default": is_default,
+                },
+                virtual_network_create_params.VirtualNetworkCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
+            ),
+            cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
         )
 
     def list(
@@ -178,7 +170,7 @@ class VirtualNetworksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetworkDeleteResponse:
+    ) -> VirtualNetwork:
         """
         Deletes an existing virtual network.
 
@@ -199,21 +191,16 @@ class VirtualNetworksResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not virtual_network_id:
             raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
-        return cast(
-            VirtualNetworkDeleteResponse,
-            self._delete(
-                f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[VirtualNetworkDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[VirtualNetworkDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._delete(
+            f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
             ),
+            cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
         )
 
     def edit(
@@ -230,7 +217,7 @@ class VirtualNetworksResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetworkEditResponse:
+    ) -> VirtualNetwork:
         """
         Updates an existing virtual network.
 
@@ -257,29 +244,24 @@ class VirtualNetworksResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not virtual_network_id:
             raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
-        return cast(
-            VirtualNetworkEditResponse,
-            self._patch(
-                f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
-                body=maybe_transform(
-                    {
-                        "comment": comment,
-                        "is_default_network": is_default_network,
-                        "name": name,
-                    },
-                    virtual_network_edit_params.VirtualNetworkEditParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[VirtualNetworkEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[VirtualNetworkEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._patch(
+            f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+            body=maybe_transform(
+                {
+                    "comment": comment,
+                    "is_default_network": is_default_network,
+                    "name": name,
+                },
+                virtual_network_edit_params.VirtualNetworkEditParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
+            ),
+            cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
         )
 
 
@@ -305,7 +287,7 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetworkCreateResponse:
+    ) -> VirtualNetwork:
         """
         Adds a new virtual network to an account.
 
@@ -328,29 +310,24 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return cast(
-            VirtualNetworkCreateResponse,
-            await self._post(
-                f"/accounts/{account_id}/teamnet/virtual_networks",
-                body=await async_maybe_transform(
-                    {
-                        "name": name,
-                        "comment": comment,
-                        "is_default": is_default,
-                    },
-                    virtual_network_create_params.VirtualNetworkCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[VirtualNetworkCreateResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[VirtualNetworkCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            f"/accounts/{account_id}/teamnet/virtual_networks",
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "comment": comment,
+                    "is_default": is_default,
+                },
+                virtual_network_create_params.VirtualNetworkCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
+            ),
+            cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
         )
 
     def list(
@@ -426,7 +403,7 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetworkDeleteResponse:
+    ) -> VirtualNetwork:
         """
         Deletes an existing virtual network.
 
@@ -447,21 +424,16 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not virtual_network_id:
             raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
-        return cast(
-            VirtualNetworkDeleteResponse,
-            await self._delete(
-                f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[VirtualNetworkDeleteResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[VirtualNetworkDeleteResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._delete(
+            f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
             ),
+            cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
         )
 
     async def edit(
@@ -478,7 +450,7 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> VirtualNetworkEditResponse:
+    ) -> VirtualNetwork:
         """
         Updates an existing virtual network.
 
@@ -505,29 +477,24 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not virtual_network_id:
             raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
-        return cast(
-            VirtualNetworkEditResponse,
-            await self._patch(
-                f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
-                body=await async_maybe_transform(
-                    {
-                        "comment": comment,
-                        "is_default_network": is_default_network,
-                        "name": name,
-                    },
-                    virtual_network_edit_params.VirtualNetworkEditParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[VirtualNetworkEditResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[VirtualNetworkEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._patch(
+            f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
+            body=await async_maybe_transform(
+                {
+                    "comment": comment,
+                    "is_default_network": is_default_network,
+                    "name": name,
+                },
+                virtual_network_edit_params.VirtualNetworkEditParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
+            ),
+            cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
         )
 
 

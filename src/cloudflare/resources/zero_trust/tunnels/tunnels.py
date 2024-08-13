@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Union, cast
+from typing import Any, Union, cast
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -64,12 +64,9 @@ from .configurations import (
     AsyncConfigurationsResourceWithStreamingResponse,
 )
 from ...._base_client import AsyncPaginator, make_request_options
-from ....types.zero_trust import tunnel_edit_params, tunnel_list_params, tunnel_create_params
-from ....types.zero_trust.tunnel_get_response import TunnelGetResponse
+from ....types.zero_trust import tunnel_edit_params, tunnel_list_params
 from ....types.zero_trust.tunnel_edit_response import TunnelEditResponse
 from ....types.zero_trust.tunnel_list_response import TunnelListResponse
-from ....types.zero_trust.tunnel_create_response import TunnelCreateResponse
-from ....types.zero_trust.tunnel_delete_response import TunnelDeleteResponse
 
 __all__ = ["TunnelsResource", "AsyncTunnelsResource"]
 
@@ -102,59 +99,6 @@ class TunnelsResource(SyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> TunnelsResourceWithStreamingResponse:
         return TunnelsResourceWithStreamingResponse(self)
-
-    def create(
-        self,
-        *,
-        account_id: str,
-        name: str,
-        tunnel_secret: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelCreateResponse:
-        """
-        Creates a new Argo Tunnel in an account.
-
-        Args:
-          account_id: Cloudflare account ID
-
-          name: A user-friendly name for a tunnel.
-
-          tunnel_secret: Sets the password required to run a locally-managed tunnel. Must be at least 32
-              bytes and encoded as a base64 string.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return self._post(
-            f"/accounts/{account_id}/tunnels",
-            body=maybe_transform(
-                {
-                    "name": name,
-                    "tunnel_secret": tunnel_secret,
-                },
-                tunnel_create_params.TunnelCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[TunnelCreateResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[TunnelCreateResponse], ResultWrapper[TunnelCreateResponse]),
-        )
 
     def list(
         self,
@@ -245,50 +189,6 @@ class TunnelsResource(SyncAPIResource):
             model=cast(Any, TunnelListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
-    def delete(
-        self,
-        tunnel_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelDeleteResponse:
-        """
-        Deletes an Argo Tunnel from an account.
-
-        Args:
-          account_id: Cloudflare account ID
-
-          tunnel_id: UUID of the tunnel.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return self._delete(
-            f"/accounts/{account_id}/tunnels/{tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[TunnelDeleteResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[TunnelDeleteResponse], ResultWrapper[TunnelDeleteResponse]),
-        )
-
     def edit(
         self,
         tunnel_id: str,
@@ -352,50 +252,6 @@ class TunnelsResource(SyncAPIResource):
             ),
         )
 
-    def get(
-        self,
-        tunnel_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelGetResponse:
-        """
-        Fetches a single Argo Tunnel.
-
-        Args:
-          account_id: Cloudflare account ID
-
-          tunnel_id: UUID of the tunnel.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return self._get(
-            f"/accounts/{account_id}/tunnels/{tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[TunnelGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[TunnelGetResponse], ResultWrapper[TunnelGetResponse]),
-        )
-
 
 class AsyncTunnelsResource(AsyncAPIResource):
     @cached_property
@@ -425,59 +281,6 @@ class AsyncTunnelsResource(AsyncAPIResource):
     @cached_property
     def with_streaming_response(self) -> AsyncTunnelsResourceWithStreamingResponse:
         return AsyncTunnelsResourceWithStreamingResponse(self)
-
-    async def create(
-        self,
-        *,
-        account_id: str,
-        name: str,
-        tunnel_secret: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelCreateResponse:
-        """
-        Creates a new Argo Tunnel in an account.
-
-        Args:
-          account_id: Cloudflare account ID
-
-          name: A user-friendly name for a tunnel.
-
-          tunnel_secret: Sets the password required to run a locally-managed tunnel. Must be at least 32
-              bytes and encoded as a base64 string.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        return await self._post(
-            f"/accounts/{account_id}/tunnels",
-            body=await async_maybe_transform(
-                {
-                    "name": name,
-                    "tunnel_secret": tunnel_secret,
-                },
-                tunnel_create_params.TunnelCreateParams,
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[TunnelCreateResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[TunnelCreateResponse], ResultWrapper[TunnelCreateResponse]),
-        )
 
     def list(
         self,
@@ -568,50 +371,6 @@ class AsyncTunnelsResource(AsyncAPIResource):
             model=cast(Any, TunnelListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
-    async def delete(
-        self,
-        tunnel_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelDeleteResponse:
-        """
-        Deletes an Argo Tunnel from an account.
-
-        Args:
-          account_id: Cloudflare account ID
-
-          tunnel_id: UUID of the tunnel.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return await self._delete(
-            f"/accounts/{account_id}/tunnels/{tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[TunnelDeleteResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[TunnelDeleteResponse], ResultWrapper[TunnelDeleteResponse]),
-        )
-
     async def edit(
         self,
         tunnel_id: str,
@@ -675,69 +434,16 @@ class AsyncTunnelsResource(AsyncAPIResource):
             ),
         )
 
-    async def get(
-        self,
-        tunnel_id: str,
-        *,
-        account_id: str,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> TunnelGetResponse:
-        """
-        Fetches a single Argo Tunnel.
-
-        Args:
-          account_id: Cloudflare account ID
-
-          tunnel_id: UUID of the tunnel.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not account_id:
-            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
-        if not tunnel_id:
-            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
-        return await self._get(
-            f"/accounts/{account_id}/tunnels/{tunnel_id}",
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[TunnelGetResponse]._unwrapper,
-            ),
-            cast_to=cast(Type[TunnelGetResponse], ResultWrapper[TunnelGetResponse]),
-        )
-
 
 class TunnelsResourceWithRawResponse:
     def __init__(self, tunnels: TunnelsResource) -> None:
         self._tunnels = tunnels
 
-        self.create = to_raw_response_wrapper(
-            tunnels.create,
-        )
         self.list = to_raw_response_wrapper(
             tunnels.list,
         )
-        self.delete = to_raw_response_wrapper(
-            tunnels.delete,
-        )
         self.edit = to_raw_response_wrapper(
             tunnels.edit,
-        )
-        self.get = to_raw_response_wrapper(
-            tunnels.get,
         )
 
     @cached_property
@@ -765,20 +471,11 @@ class AsyncTunnelsResourceWithRawResponse:
     def __init__(self, tunnels: AsyncTunnelsResource) -> None:
         self._tunnels = tunnels
 
-        self.create = async_to_raw_response_wrapper(
-            tunnels.create,
-        )
         self.list = async_to_raw_response_wrapper(
             tunnels.list,
         )
-        self.delete = async_to_raw_response_wrapper(
-            tunnels.delete,
-        )
         self.edit = async_to_raw_response_wrapper(
             tunnels.edit,
-        )
-        self.get = async_to_raw_response_wrapper(
-            tunnels.get,
         )
 
     @cached_property
@@ -806,20 +503,11 @@ class TunnelsResourceWithStreamingResponse:
     def __init__(self, tunnels: TunnelsResource) -> None:
         self._tunnels = tunnels
 
-        self.create = to_streamed_response_wrapper(
-            tunnels.create,
-        )
         self.list = to_streamed_response_wrapper(
             tunnels.list,
         )
-        self.delete = to_streamed_response_wrapper(
-            tunnels.delete,
-        )
         self.edit = to_streamed_response_wrapper(
             tunnels.edit,
-        )
-        self.get = to_streamed_response_wrapper(
-            tunnels.get,
         )
 
     @cached_property
@@ -847,20 +535,11 @@ class AsyncTunnelsResourceWithStreamingResponse:
     def __init__(self, tunnels: AsyncTunnelsResource) -> None:
         self._tunnels = tunnels
 
-        self.create = async_to_streamed_response_wrapper(
-            tunnels.create,
-        )
         self.list = async_to_streamed_response_wrapper(
             tunnels.list,
         )
-        self.delete = async_to_streamed_response_wrapper(
-            tunnels.delete,
-        )
         self.edit = async_to_streamed_response_wrapper(
             tunnels.edit,
-        )
-        self.get = async_to_streamed_response_wrapper(
-            tunnels.get,
         )
 
     @cached_property
