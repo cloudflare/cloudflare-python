@@ -184,7 +184,7 @@ class AddressMapsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AddressMapDeleteResponse]:
+    ) -> AddressMapDeleteResponse:
         """Delete a particular address map owned by the account.
 
         An Address Map must be
@@ -210,13 +210,9 @@ class AddressMapsResource(SyncAPIResource):
         return self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AddressMapDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AddressMapDeleteResponse]], ResultWrapper[AddressMapDeleteResponse]),
+            cast_to=AddressMapDeleteResponse,
         )
 
     def edit(
@@ -460,7 +456,7 @@ class AsyncAddressMapsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AddressMapDeleteResponse]:
+    ) -> AddressMapDeleteResponse:
         """Delete a particular address map owned by the account.
 
         An Address Map must be
@@ -486,13 +482,9 @@ class AsyncAddressMapsResource(AsyncAPIResource):
         return await self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[AddressMapDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[AddressMapDeleteResponse]], ResultWrapper[AddressMapDeleteResponse]),
+            cast_to=AddressMapDeleteResponse,
         )
 
     async def edit(

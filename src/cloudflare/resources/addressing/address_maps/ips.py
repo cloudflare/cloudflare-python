@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -19,7 +17,6 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.addressing.address_maps import ip_update_params
 from ....types.addressing.address_maps.ip_delete_response import IPDeleteResponse
@@ -50,7 +47,7 @@ class IPsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IPUpdateResponse]:
+    ) -> IPUpdateResponse:
         """
         Add an IP from a prefix owned by the account to a particular address map.
 
@@ -79,13 +76,9 @@ class IPsResource(SyncAPIResource):
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
             body=maybe_transform(body, ip_update_params.IPUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IPUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[IPUpdateResponse]], ResultWrapper[IPUpdateResponse]),
+            cast_to=IPUpdateResponse,
         )
 
     def delete(
@@ -100,7 +93,7 @@ class IPsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IPDeleteResponse]:
+    ) -> IPDeleteResponse:
         """
         Remove an IP from a particular address map.
 
@@ -128,13 +121,9 @@ class IPsResource(SyncAPIResource):
         return self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IPDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[IPDeleteResponse]], ResultWrapper[IPDeleteResponse]),
+            cast_to=IPDeleteResponse,
         )
 
 
@@ -160,7 +149,7 @@ class AsyncIPsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IPUpdateResponse]:
+    ) -> IPUpdateResponse:
         """
         Add an IP from a prefix owned by the account to a particular address map.
 
@@ -189,13 +178,9 @@ class AsyncIPsResource(AsyncAPIResource):
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
             body=await async_maybe_transform(body, ip_update_params.IPUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IPUpdateResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[IPUpdateResponse]], ResultWrapper[IPUpdateResponse]),
+            cast_to=IPUpdateResponse,
         )
 
     async def delete(
@@ -210,7 +195,7 @@ class AsyncIPsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[IPDeleteResponse]:
+    ) -> IPDeleteResponse:
         """
         Remove an IP from a particular address map.
 
@@ -238,13 +223,9 @@ class AsyncIPsResource(AsyncAPIResource):
         return await self._delete(
             f"/accounts/{account_id}/addressing/address_maps/{address_map_id}/ips/{ip_address}",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[IPDeleteResponse]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[IPDeleteResponse]], ResultWrapper[IPDeleteResponse]),
+            cast_to=IPDeleteResponse,
         )
 
 
