@@ -19,6 +19,12 @@ class Recording(BaseModel):
     empty array allows videos to be viewed on any origin.
     """
 
+    hide_live_viewer_count: Optional[bool] = FieldInfo(alias="hideLiveViewerCount", default=None)
+    """
+    Disables reporting the number of live viewers when this property is set to
+    `true`.
+    """
+
     mode: Optional[Literal["off", "automatic"]] = None
     """Specifies the recording behavior for the live input.
 
