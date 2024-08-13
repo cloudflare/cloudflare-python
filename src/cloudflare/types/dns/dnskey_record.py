@@ -45,6 +45,9 @@ class DNSKEYRecord(BaseModel):
     This field has no effect on DNS responses.
     """
 
+    comment_modified_on: Optional[datetime] = None
+    """When the record comment was last modified."""
+
     content: Optional[str] = None
     """Formatted DNSKEY content. See 'data' to set DNSKEY properties."""
 
@@ -62,6 +65,9 @@ class DNSKEYRecord(BaseModel):
 
     tags: Optional[List[RecordTags]] = None
     """Custom tags for the DNS record. This field has no effect on DNS responses."""
+
+    tags_modified_on: Optional[datetime] = None
+    """When the record tags were last modified."""
 
     ttl: Optional[TTL] = None
     """Time To Live (TTL) of the DNS record in seconds.
