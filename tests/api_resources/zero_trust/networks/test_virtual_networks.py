@@ -12,9 +12,6 @@ from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.zero_trust.networks import (
     VirtualNetwork,
-    VirtualNetworkEditResponse,
-    VirtualNetworkCreateResponse,
-    VirtualNetworkDeleteResponse,
 )
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -29,7 +26,7 @@ class TestVirtualNetworks:
             account_id="699d98642c564d2e855e9661899b7252",
             name="us-east-1-vpc",
         )
-        assert_matches_type(VirtualNetworkCreateResponse, virtual_network, path=["response"])
+        assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -39,7 +36,7 @@ class TestVirtualNetworks:
             comment="Staging VPC for data science",
             is_default=True,
         )
-        assert_matches_type(VirtualNetworkCreateResponse, virtual_network, path=["response"])
+        assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -51,7 +48,7 @@ class TestVirtualNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_network = response.parse()
-        assert_matches_type(VirtualNetworkCreateResponse, virtual_network, path=["response"])
+        assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -63,7 +60,7 @@ class TestVirtualNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             virtual_network = response.parse()
-            assert_matches_type(VirtualNetworkCreateResponse, virtual_network, path=["response"])
+            assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -130,7 +127,7 @@ class TestVirtualNetworks:
             virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(VirtualNetworkDeleteResponse, virtual_network, path=["response"])
+        assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -142,7 +139,7 @@ class TestVirtualNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_network = response.parse()
-        assert_matches_type(VirtualNetworkDeleteResponse, virtual_network, path=["response"])
+        assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -154,7 +151,7 @@ class TestVirtualNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             virtual_network = response.parse()
-            assert_matches_type(VirtualNetworkDeleteResponse, virtual_network, path=["response"])
+            assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -178,7 +175,7 @@ class TestVirtualNetworks:
             virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(VirtualNetworkEditResponse, virtual_network, path=["response"])
+        assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
@@ -189,7 +186,7 @@ class TestVirtualNetworks:
             is_default_network=True,
             name="us-east-1-vpc",
         )
-        assert_matches_type(VirtualNetworkEditResponse, virtual_network, path=["response"])
+        assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -201,7 +198,7 @@ class TestVirtualNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_network = response.parse()
-        assert_matches_type(VirtualNetworkEditResponse, virtual_network, path=["response"])
+        assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -213,7 +210,7 @@ class TestVirtualNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             virtual_network = response.parse()
-            assert_matches_type(VirtualNetworkEditResponse, virtual_network, path=["response"])
+            assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -241,7 +238,7 @@ class TestAsyncVirtualNetworks:
             account_id="699d98642c564d2e855e9661899b7252",
             name="us-east-1-vpc",
         )
-        assert_matches_type(VirtualNetworkCreateResponse, virtual_network, path=["response"])
+        assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -251,7 +248,7 @@ class TestAsyncVirtualNetworks:
             comment="Staging VPC for data science",
             is_default=True,
         )
-        assert_matches_type(VirtualNetworkCreateResponse, virtual_network, path=["response"])
+        assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -263,7 +260,7 @@ class TestAsyncVirtualNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_network = await response.parse()
-        assert_matches_type(VirtualNetworkCreateResponse, virtual_network, path=["response"])
+        assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -275,7 +272,7 @@ class TestAsyncVirtualNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             virtual_network = await response.parse()
-            assert_matches_type(VirtualNetworkCreateResponse, virtual_network, path=["response"])
+            assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -342,7 +339,7 @@ class TestAsyncVirtualNetworks:
             virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(VirtualNetworkDeleteResponse, virtual_network, path=["response"])
+        assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -354,7 +351,7 @@ class TestAsyncVirtualNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_network = await response.parse()
-        assert_matches_type(VirtualNetworkDeleteResponse, virtual_network, path=["response"])
+        assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -366,7 +363,7 @@ class TestAsyncVirtualNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             virtual_network = await response.parse()
-            assert_matches_type(VirtualNetworkDeleteResponse, virtual_network, path=["response"])
+            assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -390,7 +387,7 @@ class TestAsyncVirtualNetworks:
             virtual_network_id="f70ff985-a4ef-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(VirtualNetworkEditResponse, virtual_network, path=["response"])
+        assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -401,7 +398,7 @@ class TestAsyncVirtualNetworks:
             is_default_network=True,
             name="us-east-1-vpc",
         )
-        assert_matches_type(VirtualNetworkEditResponse, virtual_network, path=["response"])
+        assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -413,7 +410,7 @@ class TestAsyncVirtualNetworks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         virtual_network = await response.parse()
-        assert_matches_type(VirtualNetworkEditResponse, virtual_network, path=["response"])
+        assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -425,7 +422,7 @@ class TestAsyncVirtualNetworks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             virtual_network = await response.parse()
-            assert_matches_type(VirtualNetworkEditResponse, virtual_network, path=["response"])
+            assert_matches_type(VirtualNetwork, virtual_network, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
