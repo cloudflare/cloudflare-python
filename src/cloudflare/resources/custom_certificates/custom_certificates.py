@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Optional, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -40,9 +40,6 @@ from ...types.custom_certificates import (
 from ...types.custom_hostnames.bundle_method import BundleMethod
 from ...types.custom_certificates.custom_certificate import CustomCertificate
 from ...types.custom_certificates.geo_restrictions_param import GeoRestrictionsParam
-from ...types.custom_certificates.custom_certificate_get_response import CustomCertificateGetResponse
-from ...types.custom_certificates.custom_certificate_edit_response import CustomCertificateEditResponse
-from ...types.custom_certificates.custom_certificate_create_response import CustomCertificateCreateResponse
 from ...types.custom_certificates.custom_certificate_delete_response import CustomCertificateDeleteResponse
 
 __all__ = ["CustomCertificatesResource", "AsyncCustomCertificatesResource"]
@@ -77,7 +74,7 @@ class CustomCertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomCertificateCreateResponse]:
+    ) -> Optional[CustomCertificate]:
         """
         Upload a new SSL certificate for a zone.
 
@@ -124,32 +121,27 @@ class CustomCertificatesResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[CustomCertificateCreateResponse],
-            self._post(
-                f"/zones/{zone_id}/custom_certificates",
-                body=maybe_transform(
-                    {
-                        "certificate": certificate,
-                        "private_key": private_key,
-                        "bundle_method": bundle_method,
-                        "geo_restrictions": geo_restrictions,
-                        "policy": policy,
-                        "type": type,
-                    },
-                    custom_certificate_create_params.CustomCertificateCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomCertificateCreateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CustomCertificateCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            f"/zones/{zone_id}/custom_certificates",
+            body=maybe_transform(
+                {
+                    "certificate": certificate,
+                    "private_key": private_key,
+                    "bundle_method": bundle_method,
+                    "geo_restrictions": geo_restrictions,
+                    "policy": policy,
+                    "type": type,
+                },
+                custom_certificate_create_params.CustomCertificateCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomCertificate]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CustomCertificate]], ResultWrapper[CustomCertificate]),
         )
 
     def list(
@@ -279,7 +271,7 @@ class CustomCertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomCertificateEditResponse]:
+    ) -> Optional[CustomCertificate]:
         """Upload a new private key and/or PEM/CRT for the SSL certificate.
 
         Note: PATCHing
@@ -332,31 +324,26 @@ class CustomCertificatesResource(SyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `custom_certificate_id` but received {custom_certificate_id!r}"
             )
-        return cast(
-            Optional[CustomCertificateEditResponse],
-            self._patch(
-                f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
-                body=maybe_transform(
-                    {
-                        "bundle_method": bundle_method,
-                        "certificate": certificate,
-                        "geo_restrictions": geo_restrictions,
-                        "policy": policy,
-                        "private_key": private_key,
-                    },
-                    custom_certificate_edit_params.CustomCertificateEditParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomCertificateEditResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CustomCertificateEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._patch(
+            f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
+            body=maybe_transform(
+                {
+                    "bundle_method": bundle_method,
+                    "certificate": certificate,
+                    "geo_restrictions": geo_restrictions,
+                    "policy": policy,
+                    "private_key": private_key,
+                },
+                custom_certificate_edit_params.CustomCertificateEditParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomCertificate]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CustomCertificate]], ResultWrapper[CustomCertificate]),
         )
 
     def get(
@@ -370,7 +357,7 @@ class CustomCertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomCertificateGetResponse]:
+    ) -> Optional[CustomCertificate]:
         """
         SSL Configuration Details
 
@@ -393,21 +380,16 @@ class CustomCertificatesResource(SyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `custom_certificate_id` but received {custom_certificate_id!r}"
             )
-        return cast(
-            Optional[CustomCertificateGetResponse],
-            self._get(
-                f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomCertificateGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CustomCertificateGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomCertificate]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[CustomCertificate]], ResultWrapper[CustomCertificate]),
         )
 
 
@@ -440,7 +422,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomCertificateCreateResponse]:
+    ) -> Optional[CustomCertificate]:
         """
         Upload a new SSL certificate for a zone.
 
@@ -487,32 +469,27 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[CustomCertificateCreateResponse],
-            await self._post(
-                f"/zones/{zone_id}/custom_certificates",
-                body=await async_maybe_transform(
-                    {
-                        "certificate": certificate,
-                        "private_key": private_key,
-                        "bundle_method": bundle_method,
-                        "geo_restrictions": geo_restrictions,
-                        "policy": policy,
-                        "type": type,
-                    },
-                    custom_certificate_create_params.CustomCertificateCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomCertificateCreateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CustomCertificateCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            f"/zones/{zone_id}/custom_certificates",
+            body=await async_maybe_transform(
+                {
+                    "certificate": certificate,
+                    "private_key": private_key,
+                    "bundle_method": bundle_method,
+                    "geo_restrictions": geo_restrictions,
+                    "policy": policy,
+                    "type": type,
+                },
+                custom_certificate_create_params.CustomCertificateCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomCertificate]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CustomCertificate]], ResultWrapper[CustomCertificate]),
         )
 
     def list(
@@ -642,7 +619,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomCertificateEditResponse]:
+    ) -> Optional[CustomCertificate]:
         """Upload a new private key and/or PEM/CRT for the SSL certificate.
 
         Note: PATCHing
@@ -695,31 +672,26 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `custom_certificate_id` but received {custom_certificate_id!r}"
             )
-        return cast(
-            Optional[CustomCertificateEditResponse],
-            await self._patch(
-                f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
-                body=await async_maybe_transform(
-                    {
-                        "bundle_method": bundle_method,
-                        "certificate": certificate,
-                        "geo_restrictions": geo_restrictions,
-                        "policy": policy,
-                        "private_key": private_key,
-                    },
-                    custom_certificate_edit_params.CustomCertificateEditParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomCertificateEditResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CustomCertificateEditResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._patch(
+            f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
+            body=await async_maybe_transform(
+                {
+                    "bundle_method": bundle_method,
+                    "certificate": certificate,
+                    "geo_restrictions": geo_restrictions,
+                    "policy": policy,
+                    "private_key": private_key,
+                },
+                custom_certificate_edit_params.CustomCertificateEditParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomCertificate]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[CustomCertificate]], ResultWrapper[CustomCertificate]),
         )
 
     async def get(
@@ -733,7 +705,7 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomCertificateGetResponse]:
+    ) -> Optional[CustomCertificate]:
         """
         SSL Configuration Details
 
@@ -756,21 +728,16 @@ class AsyncCustomCertificatesResource(AsyncAPIResource):
             raise ValueError(
                 f"Expected a non-empty value for `custom_certificate_id` but received {custom_certificate_id!r}"
             )
-        return cast(
-            Optional[CustomCertificateGetResponse],
-            await self._get(
-                f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomCertificateGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[CustomCertificateGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/zones/{zone_id}/custom_certificates/{custom_certificate_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CustomCertificate]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[CustomCertificate]], ResultWrapper[CustomCertificate]),
         )
 
 

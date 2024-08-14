@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Type, Optional, cast
 
 import httpx
 
@@ -23,7 +23,6 @@ from ..._wrappers import ResultWrapper
 from ...types.ssl import analyze_create_params
 from ..._base_client import make_request_options
 from ...types.custom_hostnames import BundleMethod
-from ...types.ssl.analyze_create_response import AnalyzeCreateResponse
 from ...types.custom_hostnames.bundle_method import BundleMethod
 
 __all__ = ["AnalyzeResource", "AsyncAnalyzeResource"]
@@ -50,7 +49,7 @@ class AnalyzeResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AnalyzeCreateResponse]:
+    ) -> object:
         """
         Returns the set of hostnames, the signature algorithm, and the expiration date
         of the certificate.
@@ -75,28 +74,23 @@ class AnalyzeResource(SyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[AnalyzeCreateResponse],
-            self._post(
-                f"/zones/{zone_id}/ssl/analyze",
-                body=maybe_transform(
-                    {
-                        "bundle_method": bundle_method,
-                        "certificate": certificate,
-                    },
-                    analyze_create_params.AnalyzeCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[AnalyzeCreateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AnalyzeCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            f"/zones/{zone_id}/ssl/analyze",
+            body=maybe_transform(
+                {
+                    "bundle_method": bundle_method,
+                    "certificate": certificate,
+                },
+                analyze_create_params.AnalyzeCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
@@ -121,7 +115,7 @@ class AsyncAnalyzeResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[AnalyzeCreateResponse]:
+    ) -> object:
         """
         Returns the set of hostnames, the signature algorithm, and the expiration date
         of the certificate.
@@ -146,28 +140,23 @@ class AsyncAnalyzeResource(AsyncAPIResource):
         """
         if not zone_id:
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
-        return cast(
-            Optional[AnalyzeCreateResponse],
-            await self._post(
-                f"/zones/{zone_id}/ssl/analyze",
-                body=await async_maybe_transform(
-                    {
-                        "bundle_method": bundle_method,
-                        "certificate": certificate,
-                    },
-                    analyze_create_params.AnalyzeCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[AnalyzeCreateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[AnalyzeCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            f"/zones/{zone_id}/ssl/analyze",
+            body=await async_maybe_transform(
+                {
+                    "bundle_method": bundle_method,
+                    "certificate": certificate,
+                },
+                analyze_create_params.AnalyzeCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
 
