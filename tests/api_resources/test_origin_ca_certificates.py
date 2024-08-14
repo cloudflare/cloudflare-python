@@ -12,8 +12,6 @@ from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 from cloudflare.types.origin_ca_certificates import (
     OriginCACertificate,
-    OriginCACertificateGetResponse,
-    OriginCACertificateCreateResponse,
     OriginCACertificateDeleteResponse,
 )
 
@@ -26,7 +24,7 @@ class TestOriginCACertificates:
     @parametrize
     def test_method_create(self, client: Cloudflare) -> None:
         origin_ca_certificate = client.origin_ca_certificates.create()
-        assert_matches_type(Optional[OriginCACertificateCreateResponse], origin_ca_certificate, path=["response"])
+        assert_matches_type(Optional[OriginCACertificate], origin_ca_certificate, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -36,7 +34,7 @@ class TestOriginCACertificates:
             request_type="origin-rsa",
             requested_validity=7,
         )
-        assert_matches_type(Optional[OriginCACertificateCreateResponse], origin_ca_certificate, path=["response"])
+        assert_matches_type(Optional[OriginCACertificate], origin_ca_certificate, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -45,7 +43,7 @@ class TestOriginCACertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_ca_certificate = response.parse()
-        assert_matches_type(Optional[OriginCACertificateCreateResponse], origin_ca_certificate, path=["response"])
+        assert_matches_type(Optional[OriginCACertificate], origin_ca_certificate, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -54,7 +52,7 @@ class TestOriginCACertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_ca_certificate = response.parse()
-            assert_matches_type(Optional[OriginCACertificateCreateResponse], origin_ca_certificate, path=["response"])
+            assert_matches_type(Optional[OriginCACertificate], origin_ca_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -133,7 +131,7 @@ class TestOriginCACertificates:
         origin_ca_certificate = client.origin_ca_certificates.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[OriginCACertificateGetResponse], origin_ca_certificate, path=["response"])
+        assert_matches_type(Optional[OriginCACertificate], origin_ca_certificate, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -144,7 +142,7 @@ class TestOriginCACertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_ca_certificate = response.parse()
-        assert_matches_type(Optional[OriginCACertificateGetResponse], origin_ca_certificate, path=["response"])
+        assert_matches_type(Optional[OriginCACertificate], origin_ca_certificate, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -155,7 +153,7 @@ class TestOriginCACertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_ca_certificate = response.parse()
-            assert_matches_type(Optional[OriginCACertificateGetResponse], origin_ca_certificate, path=["response"])
+            assert_matches_type(Optional[OriginCACertificate], origin_ca_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -173,7 +171,7 @@ class TestAsyncOriginCACertificates:
     @parametrize
     async def test_method_create(self, async_client: AsyncCloudflare) -> None:
         origin_ca_certificate = await async_client.origin_ca_certificates.create()
-        assert_matches_type(Optional[OriginCACertificateCreateResponse], origin_ca_certificate, path=["response"])
+        assert_matches_type(Optional[OriginCACertificate], origin_ca_certificate, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -183,7 +181,7 @@ class TestAsyncOriginCACertificates:
             request_type="origin-rsa",
             requested_validity=7,
         )
-        assert_matches_type(Optional[OriginCACertificateCreateResponse], origin_ca_certificate, path=["response"])
+        assert_matches_type(Optional[OriginCACertificate], origin_ca_certificate, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -192,7 +190,7 @@ class TestAsyncOriginCACertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_ca_certificate = await response.parse()
-        assert_matches_type(Optional[OriginCACertificateCreateResponse], origin_ca_certificate, path=["response"])
+        assert_matches_type(Optional[OriginCACertificate], origin_ca_certificate, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -201,7 +199,7 @@ class TestAsyncOriginCACertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_ca_certificate = await response.parse()
-            assert_matches_type(Optional[OriginCACertificateCreateResponse], origin_ca_certificate, path=["response"])
+            assert_matches_type(Optional[OriginCACertificate], origin_ca_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -280,7 +278,7 @@ class TestAsyncOriginCACertificates:
         origin_ca_certificate = await async_client.origin_ca_certificates.get(
             "023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[OriginCACertificateGetResponse], origin_ca_certificate, path=["response"])
+        assert_matches_type(Optional[OriginCACertificate], origin_ca_certificate, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -291,7 +289,7 @@ class TestAsyncOriginCACertificates:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         origin_ca_certificate = await response.parse()
-        assert_matches_type(Optional[OriginCACertificateGetResponse], origin_ca_certificate, path=["response"])
+        assert_matches_type(Optional[OriginCACertificate], origin_ca_certificate, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -302,7 +300,7 @@ class TestAsyncOriginCACertificates:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             origin_ca_certificate = await response.parse()
-            assert_matches_type(Optional[OriginCACertificateGetResponse], origin_ca_certificate, path=["response"])
+            assert_matches_type(Optional[OriginCACertificate], origin_ca_certificate, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

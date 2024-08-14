@@ -9,11 +9,4 @@ from .setting_update_response import SettingUpdateResponse as SettingUpdateRespo
 from .hostname_update_response import HostnameUpdateResponse as HostnameUpdateResponse
 from .authenticated_origin_pull import AuthenticatedOriginPull as AuthenticatedOriginPull
 from .zone_authenticated_origin_pull import ZoneAuthenticatedOriginPull as ZoneAuthenticatedOriginPull
-from .origin_tls_client_auth_get_response import OriginTLSClientAuthGetResponse as OriginTLSClientAuthGetResponse
 from .origin_tls_client_auth_create_params import OriginTLSClientAuthCreateParams as OriginTLSClientAuthCreateParams
-from .origin_tls_client_auth_create_response import (
-    OriginTLSClientAuthCreateResponse as OriginTLSClientAuthCreateResponse,
-)
-from .origin_tls_client_auth_delete_response import (
-    OriginTLSClientAuthDeleteResponse as OriginTLSClientAuthDeleteResponse,
-)
