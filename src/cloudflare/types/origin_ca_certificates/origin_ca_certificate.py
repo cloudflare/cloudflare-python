@@ -14,7 +14,7 @@ class OriginCACertificate(BaseModel):
     csr: str
     """The Certificate Signing Request (CSR). Must be newline-encoded."""
 
-    hostnames: List[object]
+    hostnames: List[str]
     """
     Array of hostnames or wildcard names (e.g., \\**.example.com) bound to the
     certificate.

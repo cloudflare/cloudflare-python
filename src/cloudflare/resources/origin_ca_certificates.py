@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, Iterable, Optional, cast
+from typing import List, Type, Optional, cast
 
 import httpx
 
@@ -27,8 +27,6 @@ from ..types.ssl.request_validity import RequestValidity
 from ..types.origin_ca_certificates import origin_ca_certificate_list_params, origin_ca_certificate_create_params
 from ..types.shared.certificate_request_type import CertificateRequestType
 from ..types.origin_ca_certificates.origin_ca_certificate import OriginCACertificate
-from ..types.origin_ca_certificates.origin_ca_certificate_get_response import OriginCACertificateGetResponse
-from ..types.origin_ca_certificates.origin_ca_certificate_create_response import OriginCACertificateCreateResponse
 from ..types.origin_ca_certificates.origin_ca_certificate_delete_response import OriginCACertificateDeleteResponse
 
 __all__ = ["OriginCACertificatesResource", "AsyncOriginCACertificatesResource"]
@@ -47,7 +45,7 @@ class OriginCACertificatesResource(SyncAPIResource):
         self,
         *,
         csr: str | NotGiven = NOT_GIVEN,
-        hostnames: Iterable[object] | NotGiven = NOT_GIVEN,
+        hostnames: List[str] | NotGiven = NOT_GIVEN,
         request_type: CertificateRequestType | NotGiven = NOT_GIVEN,
         requested_validity: RequestValidity | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -56,7 +54,7 @@ class OriginCACertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OriginCACertificateCreateResponse]:
+    ) -> Optional[OriginCACertificate]:
         """Create an Origin CA certificate.
 
         Use your Origin CA Key as your User Service Key
@@ -81,30 +79,25 @@ class OriginCACertificatesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            Optional[OriginCACertificateCreateResponse],
-            self._post(
-                "/certificates",
-                body=maybe_transform(
-                    {
-                        "csr": csr,
-                        "hostnames": hostnames,
-                        "request_type": request_type,
-                        "requested_validity": requested_validity,
-                    },
-                    origin_ca_certificate_create_params.OriginCACertificateCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[OriginCACertificateCreateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[OriginCACertificateCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._post(
+            "/certificates",
+            body=maybe_transform(
+                {
+                    "csr": csr,
+                    "hostnames": hostnames,
+                    "request_type": request_type,
+                    "requested_validity": requested_validity,
+                },
+                origin_ca_certificate_create_params.OriginCACertificateCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[OriginCACertificate]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[OriginCACertificate]], ResultWrapper[OriginCACertificate]),
         )
 
     def list(
@@ -204,7 +197,7 @@ class OriginCACertificatesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OriginCACertificateGetResponse]:
+    ) -> Optional[OriginCACertificate]:
         """Get an existing Origin CA certificate by its serial number.
 
         Use your Origin CA
@@ -224,21 +217,16 @@ class OriginCACertificatesResource(SyncAPIResource):
         """
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
-        return cast(
-            Optional[OriginCACertificateGetResponse],
-            self._get(
-                f"/certificates/{certificate_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[OriginCACertificateGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[OriginCACertificateGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/certificates/{certificate_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[OriginCACertificate]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[OriginCACertificate]], ResultWrapper[OriginCACertificate]),
         )
 
 
@@ -255,7 +243,7 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
         self,
         *,
         csr: str | NotGiven = NOT_GIVEN,
-        hostnames: Iterable[object] | NotGiven = NOT_GIVEN,
+        hostnames: List[str] | NotGiven = NOT_GIVEN,
         request_type: CertificateRequestType | NotGiven = NOT_GIVEN,
         requested_validity: RequestValidity | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -264,7 +252,7 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OriginCACertificateCreateResponse]:
+    ) -> Optional[OriginCACertificate]:
         """Create an Origin CA certificate.
 
         Use your Origin CA Key as your User Service Key
@@ -289,30 +277,25 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            Optional[OriginCACertificateCreateResponse],
-            await self._post(
-                "/certificates",
-                body=await async_maybe_transform(
-                    {
-                        "csr": csr,
-                        "hostnames": hostnames,
-                        "request_type": request_type,
-                        "requested_validity": requested_validity,
-                    },
-                    origin_ca_certificate_create_params.OriginCACertificateCreateParams,
-                ),
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[OriginCACertificateCreateResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[OriginCACertificateCreateResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._post(
+            "/certificates",
+            body=await async_maybe_transform(
+                {
+                    "csr": csr,
+                    "hostnames": hostnames,
+                    "request_type": request_type,
+                    "requested_validity": requested_validity,
+                },
+                origin_ca_certificate_create_params.OriginCACertificateCreateParams,
             ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[OriginCACertificate]]._unwrapper,
+            ),
+            cast_to=cast(Type[Optional[OriginCACertificate]], ResultWrapper[OriginCACertificate]),
         )
 
     def list(
@@ -412,7 +395,7 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OriginCACertificateGetResponse]:
+    ) -> Optional[OriginCACertificate]:
         """Get an existing Origin CA certificate by its serial number.
 
         Use your Origin CA
@@ -432,21 +415,16 @@ class AsyncOriginCACertificatesResource(AsyncAPIResource):
         """
         if not certificate_id:
             raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
-        return cast(
-            Optional[OriginCACertificateGetResponse],
-            await self._get(
-                f"/certificates/{certificate_id}",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[Optional[OriginCACertificateGetResponse]]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[OriginCACertificateGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/certificates/{certificate_id}",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[OriginCACertificate]]._unwrapper,
             ),
+            cast_to=cast(Type[Optional[OriginCACertificate]], ResultWrapper[OriginCACertificate]),
         )
 
 
