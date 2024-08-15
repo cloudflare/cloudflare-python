@@ -296,14 +296,6 @@ from .snippets import (
     SnippetsResourceWithStreamingResponse,
     AsyncSnippetsResourceWithStreamingResponse,
 )
-from .spectrum import (
-    SpectrumResource,
-    AsyncSpectrumResource,
-    SpectrumResourceWithRawResponse,
-    AsyncSpectrumResourceWithRawResponse,
-    SpectrumResourceWithStreamingResponse,
-    AsyncSpectrumResourceWithStreamingResponse,
-)
 from .hostnames import (
     HostnamesResource,
     AsyncHostnamesResource,
@@ -954,12 +946,6 @@ __all__ = [
     "AsyncURLNormalizationResourceWithRawResponse",
     "URLNormalizationResourceWithStreamingResponse",
     "AsyncURLNormalizationResourceWithStreamingResponse",
-    "SpectrumResource",
-    "AsyncSpectrumResource",
-    "SpectrumResourceWithRawResponse",
-    "AsyncSpectrumResourceWithRawResponse",
-    "SpectrumResourceWithStreamingResponse",
-    "AsyncSpectrumResourceWithStreamingResponse",
     "AddressingResource",
     "AsyncAddressingResource",
     "AddressingResourceWithRawResponse",

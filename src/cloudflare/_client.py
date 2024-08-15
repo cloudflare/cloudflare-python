@@ -91,7 +91,6 @@ class Cloudflare(SyncAPIClient):
     page_shield: resources.PageShieldResource
     rulesets: resources.RulesetsResource
     url_normalization: resources.URLNormalizationResource
-    spectrum: resources.SpectrumResource
     addressing: resources.AddressingResource
     audit_logs: resources.AuditLogsResource
     billing: resources.BillingResource
@@ -252,7 +251,6 @@ class Cloudflare(SyncAPIClient):
         self.page_shield = resources.PageShieldResource(self)
         self.rulesets = resources.RulesetsResource(self)
         self.url_normalization = resources.URLNormalizationResource(self)
-        self.spectrum = resources.SpectrumResource(self)
         self.addressing = resources.AddressingResource(self)
         self.audit_logs = resources.AuditLogsResource(self)
         self.billing = resources.BillingResource(self)
@@ -516,7 +514,6 @@ class AsyncCloudflare(AsyncAPIClient):
     page_shield: resources.AsyncPageShieldResource
     rulesets: resources.AsyncRulesetsResource
     url_normalization: resources.AsyncURLNormalizationResource
-    spectrum: resources.AsyncSpectrumResource
     addressing: resources.AsyncAddressingResource
     audit_logs: resources.AsyncAuditLogsResource
     billing: resources.AsyncBillingResource
@@ -677,7 +674,6 @@ class AsyncCloudflare(AsyncAPIClient):
         self.page_shield = resources.AsyncPageShieldResource(self)
         self.rulesets = resources.AsyncRulesetsResource(self)
         self.url_normalization = resources.AsyncURLNormalizationResource(self)
-        self.spectrum = resources.AsyncSpectrumResource(self)
         self.addressing = resources.AsyncAddressingResource(self)
         self.audit_logs = resources.AsyncAuditLogsResource(self)
         self.billing = resources.AsyncBillingResource(self)
@@ -948,7 +944,6 @@ class CloudflareWithRawResponse:
         self.page_shield = resources.PageShieldResourceWithRawResponse(client.page_shield)
         self.rulesets = resources.RulesetsResourceWithRawResponse(client.rulesets)
         self.url_normalization = resources.URLNormalizationResourceWithRawResponse(client.url_normalization)
-        self.spectrum = resources.SpectrumResourceWithRawResponse(client.spectrum)
         self.addressing = resources.AddressingResourceWithRawResponse(client.addressing)
         self.audit_logs = resources.AuditLogsResourceWithRawResponse(client.audit_logs)
         self.billing = resources.BillingResourceWithRawResponse(client.billing)
@@ -1050,7 +1045,6 @@ class AsyncCloudflareWithRawResponse:
         self.page_shield = resources.AsyncPageShieldResourceWithRawResponse(client.page_shield)
         self.rulesets = resources.AsyncRulesetsResourceWithRawResponse(client.rulesets)
         self.url_normalization = resources.AsyncURLNormalizationResourceWithRawResponse(client.url_normalization)
-        self.spectrum = resources.AsyncSpectrumResourceWithRawResponse(client.spectrum)
         self.addressing = resources.AsyncAddressingResourceWithRawResponse(client.addressing)
         self.audit_logs = resources.AsyncAuditLogsResourceWithRawResponse(client.audit_logs)
         self.billing = resources.AsyncBillingResourceWithRawResponse(client.billing)
@@ -1154,7 +1148,6 @@ class CloudflareWithStreamedResponse:
         self.page_shield = resources.PageShieldResourceWithStreamingResponse(client.page_shield)
         self.rulesets = resources.RulesetsResourceWithStreamingResponse(client.rulesets)
         self.url_normalization = resources.URLNormalizationResourceWithStreamingResponse(client.url_normalization)
-        self.spectrum = resources.SpectrumResourceWithStreamingResponse(client.spectrum)
         self.addressing = resources.AddressingResourceWithStreamingResponse(client.addressing)
         self.audit_logs = resources.AuditLogsResourceWithStreamingResponse(client.audit_logs)
         self.billing = resources.BillingResourceWithStreamingResponse(client.billing)
@@ -1264,7 +1257,6 @@ class AsyncCloudflareWithStreamedResponse:
         self.page_shield = resources.AsyncPageShieldResourceWithStreamingResponse(client.page_shield)
         self.rulesets = resources.AsyncRulesetsResourceWithStreamingResponse(client.rulesets)
         self.url_normalization = resources.AsyncURLNormalizationResourceWithStreamingResponse(client.url_normalization)
-        self.spectrum = resources.AsyncSpectrumResourceWithStreamingResponse(client.spectrum)
         self.addressing = resources.AsyncAddressingResourceWithStreamingResponse(client.addressing)
         self.audit_logs = resources.AsyncAuditLogsResourceWithStreamingResponse(client.audit_logs)
         self.billing = resources.AsyncBillingResourceWithStreamingResponse(client.billing)
