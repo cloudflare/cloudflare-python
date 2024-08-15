@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -54,7 +54,7 @@ class Monitor(BaseModel):
     This parameter is only valid for HTTP and HTTPS monitors.
     """
 
-    header: Optional[object] = None
+    header: Optional[Dict[str, List[str]]] = None
     """The HTTP request headers to send in the health check.
 
     It is recommended you set a Host header by default. The User-Agent header cannot

@@ -65,7 +65,7 @@ class Pool(BaseModel):
 
     modified_on: Optional[datetime] = None
 
-    monitor: Optional[object] = None
+    monitor: Optional[str] = None
     """
     The ID of the Monitor to use for checking the health of origins within this
     pool.

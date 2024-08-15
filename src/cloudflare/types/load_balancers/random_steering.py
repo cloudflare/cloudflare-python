@@ -4,7 +4,15 @@ from typing import Optional
 
 from ..._models import BaseModel
 
-__all__ = ["RandomSteering"]
+__all__ = ["RandomSteering", "PoolWeights"]
+
+
+class PoolWeights(BaseModel):
+    key: Optional[str] = None
+    """Pool ID"""
+
+    value: Optional[float] = None
+    """Weight"""
 
 
 class RandomSteering(BaseModel):
@@ -14,7 +22,7 @@ class RandomSteering(BaseModel):
     pool_weights map.
     """
 
-    pool_weights: Optional[object] = None
+    pool_weights: Optional[PoolWeights] = None
     """A mapping of pool IDs to custom weights.
 
     The weight is relative to other pools in the load balancer.

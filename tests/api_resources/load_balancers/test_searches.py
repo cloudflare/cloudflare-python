@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import pytest
 
@@ -23,21 +23,21 @@ class TestSearches:
         search = client.load_balancers.searches.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[SearchGetResponse], search, path=["response"])
+        assert_matches_type(SearchGetResponse, search, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         search = client.load_balancers.searches.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            page={},
-            per_page={},
+            page=1,
+            per_page=1,
             search_params={
                 "query": "primary",
                 "references": "",
             },
         )
-        assert_matches_type(Optional[SearchGetResponse], search, path=["response"])
+        assert_matches_type(SearchGetResponse, search, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -49,7 +49,7 @@ class TestSearches:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         search = response.parse()
-        assert_matches_type(Optional[SearchGetResponse], search, path=["response"])
+        assert_matches_type(SearchGetResponse, search, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -61,7 +61,7 @@ class TestSearches:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             search = response.parse()
-            assert_matches_type(Optional[SearchGetResponse], search, path=["response"])
+            assert_matches_type(SearchGetResponse, search, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -83,21 +83,21 @@ class TestAsyncSearches:
         search = await async_client.load_balancers.searches.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[SearchGetResponse], search, path=["response"])
+        assert_matches_type(SearchGetResponse, search, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         search = await async_client.load_balancers.searches.get(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            page={},
-            per_page={},
+            page=1,
+            per_page=1,
             search_params={
                 "query": "primary",
                 "references": "",
             },
         )
-        assert_matches_type(Optional[SearchGetResponse], search, path=["response"])
+        assert_matches_type(SearchGetResponse, search, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -109,7 +109,7 @@ class TestAsyncSearches:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         search = await response.parse()
-        assert_matches_type(Optional[SearchGetResponse], search, path=["response"])
+        assert_matches_type(SearchGetResponse, search, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -121,7 +121,7 @@ class TestAsyncSearches:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             search = await response.parse()
-            assert_matches_type(Optional[SearchGetResponse], search, path=["response"])
+            assert_matches_type(SearchGetResponse, search, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -40,8 +40,8 @@ class SearchesResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        page: object | NotGiven = NOT_GIVEN,
-        per_page: object | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
         search_params: search_get_params.SearchParams | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -49,7 +49,7 @@ class SearchesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SearchGetResponse]:
+    ) -> SearchGetResponse:
         """
         Search for Load Balancing resources.
 
@@ -81,9 +81,9 @@ class SearchesResource(SyncAPIResource):
                     },
                     search_get_params.SearchGetParams,
                 ),
-                post_parser=ResultWrapper[Optional[SearchGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[SearchGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SearchGetResponse]], ResultWrapper[SearchGetResponse]),
+            cast_to=cast(Type[SearchGetResponse], ResultWrapper[SearchGetResponse]),
         )
 
 
@@ -100,8 +100,8 @@ class AsyncSearchesResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        page: object | NotGiven = NOT_GIVEN,
-        per_page: object | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
         search_params: search_get_params.SearchParams | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -109,7 +109,7 @@ class AsyncSearchesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[SearchGetResponse]:
+    ) -> SearchGetResponse:
         """
         Search for Load Balancing resources.
 
@@ -141,9 +141,9 @@ class AsyncSearchesResource(AsyncAPIResource):
                     },
                     search_get_params.SearchGetParams,
                 ),
-                post_parser=ResultWrapper[Optional[SearchGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[SearchGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[SearchGetResponse]], ResultWrapper[SearchGetResponse]),
+            cast_to=cast(Type[SearchGetResponse], ResultWrapper[SearchGetResponse]),
         )
 
 

@@ -11,7 +11,7 @@ from .session_affinity import SessionAffinity
 from .location_strategy import LocationStrategy
 from .session_affinity_attributes import SessionAffinityAttributes
 
-__all__ = ["Rules", "FixedResponse", "Overrides"]
+__all__ = ["Rules", "FixedResponse", "Overrides", "OverridesCountryPools", "OverridesPopPools", "OverridesRegionPools"]
 
 
 class FixedResponse(BaseModel):
@@ -28,6 +28,18 @@ class FixedResponse(BaseModel):
     """The http status code to respond with."""
 
 
+class OverridesCountryPools(BaseModel):
+    country_code: Optional[List[str]] = None
+
+
+class OverridesPopPools(BaseModel):
+    pop: Optional[List[str]] = None
+
+
+class OverridesRegionPools(BaseModel):
+    region_code: Optional[List[str]] = None
+
+
 class Overrides(BaseModel):
     adaptive_routing: Optional[AdaptiveRouting] = None
     """
@@ -39,7 +51,7 @@ class Overrides(BaseModel):
     is retried once against this alternate origin.
     """
 
-    country_pools: Optional[object] = None
+    country_pools: Optional[OverridesCountryPools] = None
     """
     A mapping of country codes to a list of pool IDs (ordered by their failover
     priority) for the given country. Any country not explicitly defined will fall
@@ -54,7 +66,7 @@ class Overrides(BaseModel):
     for a given region.
     """
 
-    fallback_pool: Optional[object] = None
+    fallback_pool: Optional[str] = None
     """The pool ID to use when all other pools are detected as unhealthy."""
 
     location_strategy: Optional[LocationStrategy] = None
@@ -63,7 +75,7 @@ class Overrides(BaseModel):
     See `steering_policy` to learn how steering is affected.
     """
 
-    pop_pools: Optional[object] = None
+    pop_pools: Optional[OverridesPopPools] = None
     """
     (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
     (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -82,7 +94,7 @@ class Overrides(BaseModel):
       open connections.
     """
 
-    region_pools: Optional[object] = None
+    region_pools: Optional[OverridesRegionPools] = None
     """
     A mapping of region codes to a list of pool IDs (ordered by their failover
     priority) for the given region. Any regions not explicitly defined will fall

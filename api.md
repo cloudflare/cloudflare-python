@@ -486,7 +486,7 @@ from cloudflare.types.load_balancers.monitors import ReferenceGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/load_balancers/monitors/{monitor_id}/references">client.load_balancers.monitors.references.<a href="./src/cloudflare/resources/load_balancers/monitors/references.py">get</a>(monitor_id, \*, account_id) -> <a href="./src/cloudflare/types/load_balancers/monitors/reference_get_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/load_balancers/monitors/{monitor_id}/references">client.load_balancers.monitors.references.<a href="./src/cloudflare/resources/load_balancers/monitors/references.py">get</a>(monitor_id, \*, account_id) -> <a href="./src/cloudflare/types/load_balancers/monitors/reference_get_response.py">ReferenceGetResponse</a></code>
 
 ## Pools
 
@@ -528,7 +528,7 @@ from cloudflare.types.load_balancers.pools import ReferenceGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/load_balancers/pools/{pool_id}/references">client.load_balancers.pools.references.<a href="./src/cloudflare/resources/load_balancers/pools/references.py">get</a>(pool_id, \*, account_id) -> <a href="./src/cloudflare/types/load_balancers/pools/reference_get_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/load_balancers/pools/{pool_id}/references">client.load_balancers.pools.references.<a href="./src/cloudflare/resources/load_balancers/pools/references.py">get</a>(pool_id, \*, account_id) -> <a href="./src/cloudflare/types/load_balancers/pools/reference_get_response.py">ReferenceGetResponse</a></code>
 
 ## Previews
 
@@ -565,7 +565,7 @@ from cloudflare.types.load_balancers import SearchGetResponse
 
 Methods:
 
-- <code title="get /accounts/{account_id}/load_balancers/search">client.load_balancers.searches.<a href="./src/cloudflare/resources/load_balancers/searches.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/search_get_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/search_get_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/load_balancers/search">client.load_balancers.searches.<a href="./src/cloudflare/resources/load_balancers/searches.py">get</a>(\*, account_id, \*\*<a href="src/cloudflare/types/load_balancers/search_get_params.py">params</a>) -> <a href="./src/cloudflare/types/load_balancers/search_get_response.py">SearchGetResponse</a></code>
 
 # Cache
 

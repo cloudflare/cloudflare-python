@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 
 import httpx
 
@@ -42,7 +42,7 @@ class ReferencesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ReferenceGetResponse]:
+    ) -> ReferenceGetResponse:
         """
         Get the list of resources that reference the provided monitor.
 
@@ -68,9 +68,9 @@ class ReferencesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ReferenceGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[ReferenceGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ReferenceGetResponse]], ResultWrapper[ReferenceGetResponse]),
+            cast_to=cast(Type[ReferenceGetResponse], ResultWrapper[ReferenceGetResponse]),
         )
 
 
@@ -94,7 +94,7 @@ class AsyncReferencesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ReferenceGetResponse]:
+    ) -> ReferenceGetResponse:
         """
         Get the list of resources that reference the provided monitor.
 
@@ -120,9 +120,9 @@ class AsyncReferencesResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[ReferenceGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[ReferenceGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[ReferenceGetResponse]], ResultWrapper[ReferenceGetResponse]),
+            cast_to=cast(Type[ReferenceGetResponse], ResultWrapper[ReferenceGetResponse]),
         )
 
 
