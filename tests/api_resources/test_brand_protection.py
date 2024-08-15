@@ -77,8 +77,8 @@ class TestBrandProtection:
     def test_method_url_info_with_all_params(self, client: Cloudflare) -> None:
         brand_protection = client.brand_protection.url_info(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            url="url",
-            url_id_param={"url_id": 0},
+            url=["string", "string", "string"],
+            url_id=[0, 0, 0],
         )
         assert_matches_type(Optional[Info], brand_protection, path=["response"])
 
@@ -174,8 +174,8 @@ class TestAsyncBrandProtection:
     async def test_method_url_info_with_all_params(self, async_client: AsyncCloudflare) -> None:
         brand_protection = await async_client.brand_protection.url_info(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            url="url",
-            url_id_param={"url_id": 0},
+            url=["string", "string", "string"],
+            url_id=[0, 0, 0],
         )
         assert_matches_type(Optional[Info], brand_protection, path=["response"])
 

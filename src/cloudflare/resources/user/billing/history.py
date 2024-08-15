@@ -39,9 +39,8 @@ class HistoryResource(SyncAPIResource):
         self,
         *,
         action: str | NotGiven = NOT_GIVEN,
-        occured_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         occurred_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        order: Literal["type", "occured_at", "action"] | NotGiven = NOT_GIVEN,
+        order: Literal["type", "occurred_at", "action"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
@@ -57,8 +56,6 @@ class HistoryResource(SyncAPIResource):
 
         Args:
           action: The billing item action.
-
-          occured_at: When the billing item was created.
 
           occurred_at: When the billing item was created.
 
@@ -89,7 +86,6 @@ class HistoryResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "action": action,
-                        "occured_at": occured_at,
                         "occurred_at": occurred_at,
                         "order": order,
                         "page": page,
@@ -116,9 +112,8 @@ class AsyncHistoryResource(AsyncAPIResource):
         self,
         *,
         action: str | NotGiven = NOT_GIVEN,
-        occured_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
         occurred_at: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        order: Literal["type", "occured_at", "action"] | NotGiven = NOT_GIVEN,
+        order: Literal["type", "occurred_at", "action"] | NotGiven = NOT_GIVEN,
         page: float | NotGiven = NOT_GIVEN,
         per_page: float | NotGiven = NOT_GIVEN,
         type: str | NotGiven = NOT_GIVEN,
@@ -134,8 +129,6 @@ class AsyncHistoryResource(AsyncAPIResource):
 
         Args:
           action: The billing item action.
-
-          occured_at: When the billing item was created.
 
           occurred_at: When the billing item was created.
 
@@ -166,7 +159,6 @@ class AsyncHistoryResource(AsyncAPIResource):
                 query=maybe_transform(
                     {
                         "action": action,
-                        "occured_at": occured_at,
                         "occurred_at": occurred_at,
                         "order": order,
                         "page": page,

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Type, cast
 
 import httpx
 
@@ -42,21 +42,16 @@ class ProfileResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ProfileGetResponse:
         """Accesses your billing profile object."""
-        return cast(
-            ProfileGetResponse,
-            self._get(
-                "/user/billing/profile",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ProfileGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ProfileGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            "/user/billing/profile",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ProfileGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[ProfileGetResponse], ResultWrapper[ProfileGetResponse]),
         )
 
 
@@ -80,21 +75,16 @@ class AsyncProfileResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> ProfileGetResponse:
         """Accesses your billing profile object."""
-        return cast(
-            ProfileGetResponse,
-            await self._get(
-                "/user/billing/profile",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ProfileGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ProfileGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            "/user/billing/profile",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ProfileGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[ProfileGetResponse], ResultWrapper[ProfileGetResponse]),
         )
 
 

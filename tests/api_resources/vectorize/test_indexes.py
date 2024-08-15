@@ -480,7 +480,7 @@ class TestIndexes:
                 "has_viewed": {"$ne": True},
                 "streaming_platform": "netflix",
             },
-            return_metadata=True,
+            return_metadata="none",
             return_values=True,
             top_k=5,
         )
@@ -1056,7 +1056,7 @@ class TestAsyncIndexes:
                 "has_viewed": {"$ne": True},
                 "streaming_platform": "netflix",
             },
-            return_metadata=True,
+            return_metadata="none",
             return_values=True,
             top_k=5,
         )

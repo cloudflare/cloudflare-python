@@ -1,8 +1,21 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union
-from typing_extensions import TypeAlias
+from typing import List, Optional
 
-__all__ = ["LogGetResponse"]
+from ......_models import BaseModel
 
-LogGetResponse: TypeAlias = Union[List[object], str, object]
+__all__ = ["LogGetResponse", "Data"]
+
+
+class Data(BaseModel):
+    line: Optional[str] = None
+
+    ts: Optional[str] = None
+
+
+class LogGetResponse(BaseModel):
+    data: Optional[List[Data]] = None
+
+    includes_container_logs: Optional[bool] = None
+
+    total: Optional[int] = None

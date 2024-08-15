@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import List, Type, Iterable, Optional, cast
 
 import httpx
 
@@ -84,8 +84,8 @@ class BrandProtectionResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        url: str | NotGiven = NOT_GIVEN,
-        url_id_param: brand_protection_url_info_params.URLIDParam | NotGiven = NOT_GIVEN,
+        url: List[str] | NotGiven = NOT_GIVEN,
+        url_id: Iterable[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -98,6 +98,10 @@ class BrandProtectionResource(SyncAPIResource):
 
         Args:
           account_id: Identifier
+
+          url: Submission URL(s) to filter submission results by.
+
+          url_id: Submission ID(s) to filter submission results by.
 
           extra_headers: Send extra headers
 
@@ -119,7 +123,7 @@ class BrandProtectionResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "url": url,
-                        "url_id_param": url_id_param,
+                        "url_id": url_id,
                     },
                     brand_protection_url_info_params.BrandProtectionURLInfoParams,
                 ),
@@ -185,8 +189,8 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        url: str | NotGiven = NOT_GIVEN,
-        url_id_param: brand_protection_url_info_params.URLIDParam | NotGiven = NOT_GIVEN,
+        url: List[str] | NotGiven = NOT_GIVEN,
+        url_id: Iterable[int] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -199,6 +203,10 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
 
         Args:
           account_id: Identifier
+
+          url: Submission URL(s) to filter submission results by.
+
+          url_id: Submission ID(s) to filter submission results by.
 
           extra_headers: Send extra headers
 
@@ -220,7 +228,7 @@ class AsyncBrandProtectionResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "url": url,
-                        "url_id_param": url_id_param,
+                        "url_id": url_id,
                     },
                     brand_protection_url_info_params.BrandProtectionURLInfoParams,
                 ),
