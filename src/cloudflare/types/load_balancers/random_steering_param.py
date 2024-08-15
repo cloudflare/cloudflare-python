@@ -4,7 +4,15 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["RandomSteeringParam"]
+__all__ = ["RandomSteeringParam", "PoolWeights"]
+
+
+class PoolWeights(TypedDict, total=False):
+    key: str
+    """Pool ID"""
+
+    value: float
+    """Weight"""
 
 
 class RandomSteeringParam(TypedDict, total=False):
@@ -14,7 +22,7 @@ class RandomSteeringParam(TypedDict, total=False):
     pool_weights map.
     """
 
-    pool_weights: object
+    pool_weights: PoolWeights
     """A mapping of pool IDs to custom weights.
 
     The weight is relative to other pools in the load balancer.
