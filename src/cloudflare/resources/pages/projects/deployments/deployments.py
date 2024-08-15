@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Type, Optional, cast
 from typing_extensions import Literal
 
 import httpx
@@ -199,9 +199,13 @@ class DeploymentsResource(SyncAPIResource):
         return self._delete(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=object,
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     def get(
@@ -514,9 +518,13 @@ class AsyncDeploymentsResource(AsyncAPIResource):
         return await self._delete(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
             ),
-            cast_to=object,
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
     async def get(

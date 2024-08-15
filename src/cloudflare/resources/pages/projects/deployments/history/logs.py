@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Type, cast
 
 import httpx
 
@@ -68,21 +68,16 @@ class LogsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         if not deployment_id:
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
-        return cast(
-            LogGetResponse,
-            self._get(
-                f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/history/logs",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[LogGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[LogGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/history/logs",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[LogGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[LogGetResponse], ResultWrapper[LogGetResponse]),
         )
 
 
@@ -132,21 +127,16 @@ class AsyncLogsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `project_name` but received {project_name!r}")
         if not deployment_id:
             raise ValueError(f"Expected a non-empty value for `deployment_id` but received {deployment_id!r}")
-        return cast(
-            LogGetResponse,
-            await self._get(
-                f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/history/logs",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[LogGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[LogGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}/history/logs",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[LogGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[LogGetResponse], ResultWrapper[LogGetResponse]),
         )
 
 

@@ -13,24 +13,16 @@ class DeviceListParams(TypedDict, total=False):
     account_id: Required[str]
 
     from_: Required[Annotated[str, PropertyInfo(alias="from")]]
-    """Timestamp in ISO format"""
+    """Time range beginning in ISO format"""
 
     page: Required[float]
-    """Page number of paginated results"""
+    """Page number"""
 
     per_page: Required[float]
-    """Number of items per page"""
-
-    source: Required[Literal["last_seen", "hourly", "raw"]]
-    """Source:
-
-    - `hourly` - device details aggregated hourly, up to 7 days prior
-    - `last_seen` - device details, up to 24 hours prior
-    - `raw` - device details, up to 7 days prior
-    """
+    """Number of results per page"""
 
     to: Required[str]
-    """Timestamp in ISO format"""
+    """Time range end in ISO format"""
 
     colo: str
     """Cloudflare colo"""
@@ -46,6 +38,14 @@ class DeviceListParams(TypedDict, total=False):
 
     sort_by: Literal["colo", "device_id", "mode", "platform", "status", "timestamp", "version"]
     """Dimension to sort results by"""
+
+    source: Literal["last_seen", "hourly", "raw"]
+    """Source:
+
+    - `hourly` - device details aggregated hourly, up to 7 days prior
+    - `last_seen` - device details, up to 24 hours prior
+    - `raw` - device details, up to 7 days prior
+    """
 
     status: str
     """Network status"""

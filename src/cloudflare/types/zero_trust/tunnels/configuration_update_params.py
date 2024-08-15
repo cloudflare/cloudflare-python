@@ -15,13 +15,12 @@ __all__ = [
     "ConfigIngressOriginRequestAccess",
     "ConfigOriginRequest",
     "ConfigOriginRequestAccess",
-    "ConfigWARPRouting",
 ]
 
 
 class ConfigurationUpdateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Cloudflare account ID"""
+    """Identifier"""
 
     config: Config
     """The tunnel configuration and ingress rules."""
@@ -225,19 +224,15 @@ class ConfigOriginRequest(TypedDict, total=False):
     """
 
 
-class ConfigWARPRouting(TypedDict, total=False):
-    enabled: bool
-
-
 class Config(TypedDict, total=False):
     ingress: Iterable[ConfigIngress]
-    """List of public hostname definitions"""
+    """List of public hostname definitions.
+
+    At least one ingress rule needs to be defined for the tunnel.
+    """
 
     origin_request: Annotated[ConfigOriginRequest, PropertyInfo(alias="originRequest")]
     """
     Configuration parameters for the public hostname specific connection settings
     between cloudflared and origin server.
     """
-
-    warp_routing: Annotated[ConfigWARPRouting, PropertyInfo(alias="warp-routing")]
-    """Enable private network access from WARP users to private network routes"""

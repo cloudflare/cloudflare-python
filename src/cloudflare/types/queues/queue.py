@@ -5,7 +5,13 @@ from typing import List, Optional
 from .consumer import Consumer
 from ..._models import BaseModel
 
-__all__ = ["Queue"]
+__all__ = ["Queue", "Producer"]
+
+
+class Producer(BaseModel):
+    environment: Optional[str] = None
+
+    service: Optional[str] = None
 
 
 class Queue(BaseModel):
@@ -17,7 +23,7 @@ class Queue(BaseModel):
 
     modified_on: Optional[str] = None
 
-    producers: Optional[List[object]] = None
+    producers: Optional[List[Producer]] = None
 
     producers_total_count: Optional[float] = None
 

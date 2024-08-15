@@ -2,11 +2,32 @@
 
 from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .stage import Stage
 from ..._models import BaseModel
 
-__all__ = ["Deployment", "DeploymentTrigger", "DeploymentTriggerMetadata"]
+__all__ = ["Deployment", "BuildConfig", "DeploymentTrigger", "DeploymentTriggerMetadata", "Source", "SourceConfig"]
+
+
+class BuildConfig(BaseModel):
+    build_caching: Optional[bool] = None
+    """Enable build caching for the project."""
+
+    build_command: Optional[str] = None
+    """Command used to build project."""
+
+    destination_dir: Optional[str] = None
+    """Output directory of the build."""
+
+    root_dir: Optional[str] = None
+    """Directory to run the command."""
+
+    web_analytics_tag: Optional[str] = None
+    """The classifying tag for analytics."""
+
+    web_analytics_token: Optional[str] = None
+    """The auth token for analytics."""
 
 
 class DeploymentTriggerMetadata(BaseModel):
@@ -28,14 +49,45 @@ class DeploymentTrigger(BaseModel):
     """What caused the deployment."""
 
 
+class SourceConfig(BaseModel):
+    deployments_enabled: Optional[bool] = None
+
+    owner: Optional[str] = None
+
+    path_excludes: Optional[List[str]] = None
+
+    path_includes: Optional[List[str]] = None
+
+    pr_comments_enabled: Optional[bool] = None
+
+    preview_branch_excludes: Optional[List[str]] = None
+
+    preview_branch_includes: Optional[List[str]] = None
+
+    preview_deployment_setting: Optional[Literal["all", "none", "custom"]] = None
+
+    production_branch: Optional[str] = None
+
+    production_deployments_enabled: Optional[bool] = None
+
+    repo_name: Optional[str] = None
+
+
+class Source(BaseModel):
+    config: Optional[SourceConfig] = None
+
+    type: Optional[str] = None
+
+
 class Deployment(BaseModel):
     id: Optional[str] = None
     """Id of the deployment."""
 
-    aliases: Optional[List[object]] = None
+    aliases: Optional[List[str]] = None
     """A list of alias URLs pointing to this deployment."""
 
-    build_config: Optional[object] = None
+    build_config: Optional[BuildConfig] = None
+    """Configs for the project build process."""
 
     created_on: Optional[datetime] = None
     """When the deployment was created."""
@@ -52,7 +104,8 @@ class Deployment(BaseModel):
     is_skipped: Optional[bool] = None
     """If the deployment has been skipped."""
 
-    latest_stage: Optional[object] = None
+    latest_stage: Optional[Stage] = None
+    """The status of the deployment."""
 
     modified_on: Optional[datetime] = None
     """When the deployment was last modified."""
@@ -66,7 +119,7 @@ class Deployment(BaseModel):
     short_id: Optional[str] = None
     """Short Id (8 character) of the deployment."""
 
-    source: Optional[object] = None
+    source: Optional[Source] = None
 
     stages: Optional[List[Stage]] = None
     """List of past stages."""

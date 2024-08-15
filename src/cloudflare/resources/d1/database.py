@@ -36,7 +36,6 @@ from ..._base_client import AsyncPaginator, make_request_options
 from ...types.d1.database_raw_response import DatabaseRawResponse
 from ...types.d1.database_list_response import DatabaseListResponse
 from ...types.d1.database_query_response import DatabaseQueryResponse
-from ...types.d1.database_create_response import DatabaseCreateResponse
 from ...types.d1.database_export_response import DatabaseExportResponse
 from ...types.d1.database_import_response import DatabaseImportResponse
 
@@ -64,7 +63,7 @@ class DatabaseResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatabaseCreateResponse:
+    ) -> D1:
         """
         Returns the created D1 database.
 
@@ -98,9 +97,9 @@ class DatabaseResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DatabaseCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[D1]._unwrapper,
             ),
-            cast_to=cast(Type[DatabaseCreateResponse], ResultWrapper[DatabaseCreateResponse]),
+            cast_to=cast(Type[D1], ResultWrapper[D1]),
         )
 
     def list(
@@ -600,7 +599,7 @@ class AsyncDatabaseResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> DatabaseCreateResponse:
+    ) -> D1:
         """
         Returns the created D1 database.
 
@@ -634,9 +633,9 @@ class AsyncDatabaseResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[DatabaseCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[D1]._unwrapper,
             ),
-            cast_to=cast(Type[DatabaseCreateResponse], ResultWrapper[DatabaseCreateResponse]),
+            cast_to=cast(Type[D1], ResultWrapper[D1]),
         )
 
     def list(

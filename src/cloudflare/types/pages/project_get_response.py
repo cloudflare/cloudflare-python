@@ -10,7 +10,7 @@ from ..._models import BaseModel
 from .deployment import Deployment
 
 __all__ = [
-    "Project",
+    "ProjectGetResponse",
     "BuildConfig",
     "DeploymentConfigs",
     "DeploymentConfigsPreview",
@@ -67,6 +67,8 @@ __all__ = [
     "DeploymentConfigsProductionServicesServiceBinding",
     "DeploymentConfigsProductionVectorizeBindings",
     "DeploymentConfigsProductionVectorizeBindingsVectorize",
+    "Source",
+    "SourceConfig",
 ]
 
 
@@ -91,7 +93,7 @@ class BuildConfig(BaseModel):
 
 
 class DeploymentConfigsPreviewAIBindingsAIBinding(BaseModel):
-    project_id: Optional[object] = None
+    project_id: Optional[str] = None
 
 
 class DeploymentConfigsPreviewAIBindings(BaseModel):
@@ -253,7 +255,7 @@ class DeploymentConfigsPreview(BaseModel):
     compatibility_date: Optional[str] = None
     """Compatibility date used for Pages Functions."""
 
-    compatibility_flags: Optional[List[object]] = None
+    compatibility_flags: Optional[List[str]] = None
     """Compatibility flags used for Pages Functions."""
 
     d1_databases: Optional[DeploymentConfigsPreviewD1Databases] = None
@@ -291,7 +293,7 @@ class DeploymentConfigsPreview(BaseModel):
 
 
 class DeploymentConfigsProductionAIBindingsAIBinding(BaseModel):
-    project_id: Optional[object] = None
+    project_id: Optional[str] = None
 
 
 class DeploymentConfigsProductionAIBindings(BaseModel):
@@ -455,7 +457,7 @@ class DeploymentConfigsProduction(BaseModel):
     compatibility_date: Optional[str] = None
     """Compatibility date used for Pages Functions."""
 
-    compatibility_flags: Optional[List[object]] = None
+    compatibility_flags: Optional[List[str]] = None
     """Compatibility flags used for Pages Functions."""
 
     d1_databases: Optional[DeploymentConfigsProductionD1Databases] = None
@@ -500,7 +502,37 @@ class DeploymentConfigs(BaseModel):
     """Configs for production deploys."""
 
 
-class Project(BaseModel):
+class SourceConfig(BaseModel):
+    deployments_enabled: Optional[bool] = None
+
+    owner: Optional[str] = None
+
+    path_excludes: Optional[List[str]] = None
+
+    path_includes: Optional[List[str]] = None
+
+    pr_comments_enabled: Optional[bool] = None
+
+    preview_branch_excludes: Optional[List[str]] = None
+
+    preview_branch_includes: Optional[List[str]] = None
+
+    preview_deployment_setting: Optional[Literal["all", "none", "custom"]] = None
+
+    production_branch: Optional[str] = None
+
+    production_deployments_enabled: Optional[bool] = None
+
+    repo_name: Optional[str] = None
+
+
+class Source(BaseModel):
+    config: Optional[SourceConfig] = None
+
+    type: Optional[str] = None
+
+
+class ProjectGetResponse(BaseModel):
     id: Optional[str] = None
     """Id of the project."""
 
@@ -508,6 +540,7 @@ class Project(BaseModel):
     """Configs for the project build process."""
 
     canonical_deployment: Optional[Deployment] = None
+    """Most recent deployment to the repo."""
 
     created_on: Optional[datetime] = None
     """When the project was created."""
@@ -515,10 +548,11 @@ class Project(BaseModel):
     deployment_configs: Optional[DeploymentConfigs] = None
     """Configs for deployments in a project."""
 
-    domains: Optional[List[object]] = None
+    domains: Optional[List[str]] = None
     """A list of associated custom domains for the project."""
 
     latest_deployment: Optional[Deployment] = None
+    """Most recent deployment to the repo."""
 
     name: Optional[str] = None
     """Name of the project."""
@@ -526,7 +560,7 @@ class Project(BaseModel):
     production_branch: Optional[str] = None
     """Production branch of the project. Used to identify production deployments."""
 
-    source: Optional[object] = None
+    source: Optional[Source] = None
 
     subdomain: Optional[str] = None
     """The Cloudflare subdomain associated with the project."""

@@ -5,7 +5,7 @@ from typing_extensions import Literal
 
 from ...._models import BaseModel
 
-__all__ = ["DomainGetResponse", "ValidationData", "VerificationData"]
+__all__ = ["DomainListResponse", "ValidationData", "VerificationData"]
 
 
 class ValidationData(BaseModel):
@@ -26,7 +26,7 @@ class VerificationData(BaseModel):
     status: Optional[Literal["pending", "active", "deactivated", "blocked", "error"]] = None
 
 
-class DomainGetResponse(BaseModel):
+class DomainListResponse(BaseModel):
     id: Optional[str] = None
 
     certificate_authority: Optional[Literal["google", "lets_encrypt"]] = None

@@ -26,7 +26,6 @@ class TestDevices:
             from_="2023-10-11T00:00:00Z",
             page=1,
             per_page=10,
-            source="last_seen",
             to="2023-10-11T00:00:00Z",
         )
         assert_matches_type(SyncV4PagePaginationArray[DeviceListResponse], device, path=["response"])
@@ -39,13 +38,13 @@ class TestDevices:
             from_="2023-10-11T00:00:00Z",
             page=1,
             per_page=10,
-            source="last_seen",
             to="2023-10-11T00:00:00Z",
             colo="SJC",
             device_id="cb49c27f-7f97-49c5-b6f3-f7c01ead0fd7",
             mode="proxy",
             platform="windows",
             sort_by="colo",
+            source="last_seen",
             status="connected",
             version="1.0.0",
         )
@@ -59,7 +58,6 @@ class TestDevices:
             from_="2023-10-11T00:00:00Z",
             page=1,
             per_page=10,
-            source="last_seen",
             to="2023-10-11T00:00:00Z",
         )
 
@@ -76,7 +74,6 @@ class TestDevices:
             from_="2023-10-11T00:00:00Z",
             page=1,
             per_page=10,
-            source="last_seen",
             to="2023-10-11T00:00:00Z",
         ) as response:
             assert not response.is_closed
@@ -96,7 +93,6 @@ class TestDevices:
                 from_="2023-10-11T00:00:00Z",
                 page=1,
                 per_page=10,
-                source="last_seen",
                 to="2023-10-11T00:00:00Z",
             )
 
@@ -112,7 +108,6 @@ class TestAsyncDevices:
             from_="2023-10-11T00:00:00Z",
             page=1,
             per_page=10,
-            source="last_seen",
             to="2023-10-11T00:00:00Z",
         )
         assert_matches_type(AsyncV4PagePaginationArray[DeviceListResponse], device, path=["response"])
@@ -125,13 +120,13 @@ class TestAsyncDevices:
             from_="2023-10-11T00:00:00Z",
             page=1,
             per_page=10,
-            source="last_seen",
             to="2023-10-11T00:00:00Z",
             colo="SJC",
             device_id="cb49c27f-7f97-49c5-b6f3-f7c01ead0fd7",
             mode="proxy",
             platform="windows",
             sort_by="colo",
+            source="last_seen",
             status="connected",
             version="1.0.0",
         )
@@ -145,7 +140,6 @@ class TestAsyncDevices:
             from_="2023-10-11T00:00:00Z",
             page=1,
             per_page=10,
-            source="last_seen",
             to="2023-10-11T00:00:00Z",
         )
 
@@ -162,7 +156,6 @@ class TestAsyncDevices:
             from_="2023-10-11T00:00:00Z",
             page=1,
             per_page=10,
-            source="last_seen",
             to="2023-10-11T00:00:00Z",
         ) as response:
             assert not response.is_closed
@@ -182,6 +175,5 @@ class TestAsyncDevices:
                 from_="2023-10-11T00:00:00Z",
                 page=1,
                 per_page=10,
-                source="last_seen",
                 to="2023-10-11T00:00:00Z",
             )

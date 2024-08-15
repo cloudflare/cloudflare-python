@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Type, cast
 
 import httpx
 
@@ -34,7 +34,7 @@ class ProfilesResource(SyncAPIResource):
     def get(
         self,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -46,6 +46,8 @@ class ProfilesResource(SyncAPIResource):
         Gets the current billing profile for the account.
 
         Args:
+          account_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -54,21 +56,18 @@ class ProfilesResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            ProfileGetResponse,
-            self._get(
-                f"/accounts/{account_id}/billing/profile",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ProfileGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ProfileGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return self._get(
+            f"/accounts/{account_id}/billing/profile",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ProfileGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[ProfileGetResponse], ResultWrapper[ProfileGetResponse]),
         )
 
 
@@ -84,7 +83,7 @@ class AsyncProfilesResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -96,6 +95,8 @@ class AsyncProfilesResource(AsyncAPIResource):
         Gets the current billing profile for the account.
 
         Args:
+          account_id: Identifier
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -104,21 +105,18 @@ class AsyncProfilesResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        return cast(
-            ProfileGetResponse,
-            await self._get(
-                f"/accounts/{account_id}/billing/profile",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[ProfileGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[ProfileGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        return await self._get(
+            f"/accounts/{account_id}/billing/profile",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ProfileGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[ProfileGetResponse], ResultWrapper[ProfileGetResponse]),
         )
 
 

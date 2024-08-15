@@ -436,7 +436,7 @@ class IndexesResource(SyncAPIResource):
         account_id: str,
         vector: Iterable[float],
         filter: object | NotGiven = NOT_GIVEN,
-        return_metadata: bool | NotGiven = NOT_GIVEN,
+        return_metadata: Literal["none", "indexed", "all"] | NotGiven = NOT_GIVEN,
         return_values: bool | NotGiven = NOT_GIVEN,
         top_k: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -456,7 +456,8 @@ class IndexesResource(SyncAPIResource):
 
           filter: A metadata filter expression used to limit nearest neighbor results.
 
-          return_metadata: Whether to return the metadata associated with the closest vectors.
+          return_metadata: Whether to return no metadata, indexed metadata or all metadata associated with
+              the closest vectors.
 
           return_values: Whether to return the values associated with the closest vectors.
 
@@ -936,7 +937,7 @@ class AsyncIndexesResource(AsyncAPIResource):
         account_id: str,
         vector: Iterable[float],
         filter: object | NotGiven = NOT_GIVEN,
-        return_metadata: bool | NotGiven = NOT_GIVEN,
+        return_metadata: Literal["none", "indexed", "all"] | NotGiven = NOT_GIVEN,
         return_values: bool | NotGiven = NOT_GIVEN,
         top_k: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -956,7 +957,8 @@ class AsyncIndexesResource(AsyncAPIResource):
 
           filter: A metadata filter expression used to limit nearest neighbor results.
 
-          return_metadata: Whether to return the metadata associated with the closest vectors.
+          return_metadata: Whether to return no metadata, indexed metadata or all metadata associated with
+              the closest vectors.
 
           return_values: Whether to return the values associated with the closest vectors.
 
