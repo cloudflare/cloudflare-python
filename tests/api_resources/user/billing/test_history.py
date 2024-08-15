@@ -28,7 +28,6 @@ class TestHistory:
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         history = client.user.billing.history.list(
             action="subscription",
-            occured_at=parse_datetime("2014-03-01T12:21:59.3456Z"),
             occurred_at=parse_datetime("2014-03-01T12:21:59.3456Z"),
             order="type",
             page=1,
@@ -70,7 +69,6 @@ class TestAsyncHistory:
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         history = await async_client.user.billing.history.list(
             action="subscription",
-            occured_at=parse_datetime("2014-03-01T12:21:59.3456Z"),
             occurred_at=parse_datetime("2014-03-01T12:21:59.3456Z"),
             order="type",
             page=1,

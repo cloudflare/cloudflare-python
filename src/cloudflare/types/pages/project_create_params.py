@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import List, Optional
 from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from ..._utils import PropertyInfo
-from .deployment_param import DeploymentParam
 
 __all__ = [
     "ProjectCreateParams",
@@ -76,12 +75,8 @@ class ProjectCreateParams(TypedDict, total=False):
     build_config: BuildConfig
     """Configs for the project build process."""
 
-    canonical_deployment: DeploymentParam
-
     deployment_configs: DeploymentConfigs
     """Configs for deployments in a project."""
-
-    latest_deployment: DeploymentParam
 
     name: str
     """Name of the project."""
@@ -111,7 +106,7 @@ class BuildConfig(TypedDict, total=False):
 
 
 class DeploymentConfigsPreviewAIBindingsAIBinding(TypedDict, total=False):
-    project_id: object
+    project_id: str
 
 
 class DeploymentConfigsPreviewAIBindings(TypedDict, total=False):
@@ -268,7 +263,7 @@ class DeploymentConfigsPreview(TypedDict, total=False):
     compatibility_date: str
     """Compatibility date used for Pages Functions."""
 
-    compatibility_flags: Iterable[object]
+    compatibility_flags: List[str]
     """Compatibility flags used for Pages Functions."""
 
     d1_databases: Optional[DeploymentConfigsPreviewD1Databases]
@@ -306,7 +301,7 @@ class DeploymentConfigsPreview(TypedDict, total=False):
 
 
 class DeploymentConfigsProductionAIBindingsAIBinding(TypedDict, total=False):
-    project_id: object
+    project_id: str
 
 
 class DeploymentConfigsProductionAIBindings(TypedDict, total=False):
@@ -463,7 +458,7 @@ class DeploymentConfigsProduction(TypedDict, total=False):
     compatibility_date: str
     """Compatibility date used for Pages Functions."""
 
-    compatibility_flags: Iterable[object]
+    compatibility_flags: List[str]
     """Compatibility flags used for Pages Functions."""
 
     d1_databases: Optional[DeploymentConfigsProductionD1Databases]

@@ -108,9 +108,9 @@ class FleetStatusResource(SyncAPIResource):
         List details for devices using WARP, up to 7 days
 
         Args:
-          from_: Timestamp in ISO format
+          from_: Time range beginning in ISO format
 
-          to: Timestamp in ISO format
+          to: Time range end in ISO format
 
           colo: Cloudflare colo
 
@@ -223,9 +223,9 @@ class AsyncFleetStatusResource(AsyncAPIResource):
         List details for devices using WARP, up to 7 days
 
         Args:
-          from_: Timestamp in ISO format
+          from_: Time range beginning in ISO format
 
-          to: Timestamp in ISO format
+          to: Time range end in ISO format
 
           colo: Cloudflare colo
 

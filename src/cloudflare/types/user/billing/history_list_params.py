@@ -15,13 +15,10 @@ class HistoryListParams(TypedDict, total=False):
     action: str
     """The billing item action."""
 
-    occured_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
-    """When the billing item was created."""
-
     occurred_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """When the billing item was created."""
 
-    order: Literal["type", "occured_at", "action"]
+    order: Literal["type", "occurred_at", "action"]
     """Field to order billing history by."""
 
     page: float
