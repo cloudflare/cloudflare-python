@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Type, cast
+from typing import Dict, List, Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -50,7 +50,7 @@ class HealthResource(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         expected_body: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: object | NotGiven = NOT_GIVEN,
+        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         method: str | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
@@ -198,21 +198,16 @@ class HealthResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
-        return cast(
-            HealthGetResponse,
-            self._get(
-                f"/accounts/{account_id}/load_balancers/pools/{pool_id}/health",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[HealthGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[HealthGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return self._get(
+            f"/accounts/{account_id}/load_balancers/pools/{pool_id}/health",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[HealthGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[HealthGetResponse], ResultWrapper[HealthGetResponse]),
         )
 
 
@@ -237,7 +232,7 @@ class AsyncHealthResource(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         expected_body: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: object | NotGiven = NOT_GIVEN,
+        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         method: str | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
@@ -385,21 +380,16 @@ class AsyncHealthResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not pool_id:
             raise ValueError(f"Expected a non-empty value for `pool_id` but received {pool_id!r}")
-        return cast(
-            HealthGetResponse,
-            await self._get(
-                f"/accounts/{account_id}/load_balancers/pools/{pool_id}/health",
-                options=make_request_options(
-                    extra_headers=extra_headers,
-                    extra_query=extra_query,
-                    extra_body=extra_body,
-                    timeout=timeout,
-                    post_parser=ResultWrapper[HealthGetResponse]._unwrapper,
-                ),
-                cast_to=cast(
-                    Any, ResultWrapper[HealthGetResponse]
-                ),  # Union types cannot be passed in as arguments in the type system
+        return await self._get(
+            f"/accounts/{account_id}/load_balancers/pools/{pool_id}/health",
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[HealthGetResponse]._unwrapper,
             ),
+            cast_to=cast(Type[HealthGetResponse], ResultWrapper[HealthGetResponse]),
         )
 
 

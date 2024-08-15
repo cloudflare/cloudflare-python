@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, cast
+from typing import Dict, List, Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -49,7 +49,7 @@ class PreviewsResource(SyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         expected_body: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: object | NotGiven = NOT_GIVEN,
+        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         method: str | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
@@ -189,7 +189,7 @@ class AsyncPreviewsResource(AsyncAPIResource):
         description: str | NotGiven = NOT_GIVEN,
         expected_body: str | NotGiven = NOT_GIVEN,
         follow_redirects: bool | NotGiven = NOT_GIVEN,
-        header: object | NotGiven = NOT_GIVEN,
+        header: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
         interval: int | NotGiven = NOT_GIVEN,
         method: str | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,

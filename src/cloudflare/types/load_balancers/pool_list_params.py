@@ -11,7 +11,7 @@ class PoolListParams(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
 
-    monitor: object
+    monitor: str
     """
     The ID of the Monitor to use for checking the health of origins within this
     pool.
