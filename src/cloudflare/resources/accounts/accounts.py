@@ -64,7 +64,7 @@ class AccountsResource(SyncAPIResource):
     def update(
         self,
         *,
-        account_id: object,
+        account_id: str,
         name: str,
         settings: account_update_params.Settings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -78,6 +78,8 @@ class AccountsResource(SyncAPIResource):
         Update an existing account.
 
         Args:
+          account_id: Account identifier tag.
+
           name: Account name
 
           settings: Account settings
@@ -90,6 +92,8 @@ class AccountsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
             f"/accounts/{account_id}",
             body=maybe_transform(
@@ -167,7 +171,7 @@ class AccountsResource(SyncAPIResource):
     def get(
         self,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -179,6 +183,8 @@ class AccountsResource(SyncAPIResource):
         Get information about a specific account that you are a member of.
 
         Args:
+          account_id: Account identifier tag.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -187,6 +193,8 @@ class AccountsResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
             f"/accounts/{account_id}",
             options=make_request_options(
@@ -220,7 +228,7 @@ class AsyncAccountsResource(AsyncAPIResource):
     async def update(
         self,
         *,
-        account_id: object,
+        account_id: str,
         name: str,
         settings: account_update_params.Settings | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -234,6 +242,8 @@ class AsyncAccountsResource(AsyncAPIResource):
         Update an existing account.
 
         Args:
+          account_id: Account identifier tag.
+
           name: Account name
 
           settings: Account settings
@@ -246,6 +256,8 @@ class AsyncAccountsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
             f"/accounts/{account_id}",
             body=await async_maybe_transform(
@@ -323,7 +335,7 @@ class AsyncAccountsResource(AsyncAPIResource):
     async def get(
         self,
         *,
-        account_id: object,
+        account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -335,6 +347,8 @@ class AsyncAccountsResource(AsyncAPIResource):
         Get information about a specific account that you are a member of.
 
         Args:
+          account_id: Account identifier tag.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -343,6 +357,8 @@ class AsyncAccountsResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not account_id:
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
             f"/accounts/{account_id}",
             options=make_request_options(
