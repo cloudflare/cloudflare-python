@@ -47,13 +47,20 @@ class TestLoadBalancers:
             fallback_pool="fallback_pool",
             name="www.example.com",
             adaptive_routing={"failover_across_pools": True},
-            country_pools={"country_code": ["string", "string", "string"]},
+            country_pools={
+                "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+            },
             description="Load Balancer for www.example.com",
             location_strategy={
                 "mode": "pop",
                 "prefer_ecs": "always",
             },
-            pop_pools={"pop": ["string", "string", "string"]},
+            pop_pools={
+                "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+            },
             proxied=True,
             random_steering={
                 "default_weight": 0.2,
@@ -62,7 +69,10 @@ class TestLoadBalancers:
                     "value": 0,
                 },
             },
-            region_pools={"region_code": ["string", "string", "string"]},
+            region_pools={
+                "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+            },
             rules=[
                 {
                     "condition": 'http.request.uri.path contains "/testing"',
@@ -76,7 +86,10 @@ class TestLoadBalancers:
                     "name": "route the path /testing to testing datacenter.",
                     "overrides": {
                         "adaptive_routing": {"failover_across_pools": True},
-                        "country_pools": {"country_code": ["string", "string", "string"]},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "default_pools": [
                             "17b5962d775c646f3f9725cbc7a53df4",
                             "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -87,7 +100,11 @@ class TestLoadBalancers:
                             "mode": "pop",
                             "prefer_ecs": "always",
                         },
-                        "pop_pools": {"pop": ["string", "string", "string"]},
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "random_steering": {
                             "default_weight": 0.2,
                             "pool_weights": {
@@ -95,7 +112,10 @@ class TestLoadBalancers:
                                 "value": 0,
                             },
                         },
-                        "region_pools": {"region_code": ["string", "string", "string"]},
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
                         "session_affinity": "none",
                         "session_affinity_attributes": {
                             "drain_duration": 100,
@@ -124,7 +144,10 @@ class TestLoadBalancers:
                     "name": "route the path /testing to testing datacenter.",
                     "overrides": {
                         "adaptive_routing": {"failover_across_pools": True},
-                        "country_pools": {"country_code": ["string", "string", "string"]},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "default_pools": [
                             "17b5962d775c646f3f9725cbc7a53df4",
                             "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -135,7 +158,11 @@ class TestLoadBalancers:
                             "mode": "pop",
                             "prefer_ecs": "always",
                         },
-                        "pop_pools": {"pop": ["string", "string", "string"]},
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "random_steering": {
                             "default_weight": 0.2,
                             "pool_weights": {
@@ -143,7 +170,10 @@ class TestLoadBalancers:
                                 "value": 0,
                             },
                         },
-                        "region_pools": {"region_code": ["string", "string", "string"]},
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
                         "session_affinity": "none",
                         "session_affinity_attributes": {
                             "drain_duration": 100,
@@ -172,7 +202,10 @@ class TestLoadBalancers:
                     "name": "route the path /testing to testing datacenter.",
                     "overrides": {
                         "adaptive_routing": {"failover_across_pools": True},
-                        "country_pools": {"country_code": ["string", "string", "string"]},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "default_pools": [
                             "17b5962d775c646f3f9725cbc7a53df4",
                             "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -183,7 +216,11 @@ class TestLoadBalancers:
                             "mode": "pop",
                             "prefer_ecs": "always",
                         },
-                        "pop_pools": {"pop": ["string", "string", "string"]},
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "random_steering": {
                             "default_weight": 0.2,
                             "pool_weights": {
@@ -191,7 +228,10 @@ class TestLoadBalancers:
                                 "value": 0,
                             },
                         },
-                        "region_pools": {"region_code": ["string", "string", "string"]},
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
                         "session_affinity": "none",
                         "session_affinity_attributes": {
                             "drain_duration": 100,
@@ -304,14 +344,21 @@ class TestLoadBalancers:
             fallback_pool="fallback_pool",
             name="www.example.com",
             adaptive_routing={"failover_across_pools": True},
-            country_pools={"country_code": ["string", "string", "string"]},
+            country_pools={
+                "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+            },
             description="Load Balancer for www.example.com",
             enabled=True,
             location_strategy={
                 "mode": "pop",
                 "prefer_ecs": "always",
             },
-            pop_pools={"pop": ["string", "string", "string"]},
+            pop_pools={
+                "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+            },
             proxied=True,
             random_steering={
                 "default_weight": 0.2,
@@ -320,7 +367,10 @@ class TestLoadBalancers:
                     "value": 0,
                 },
             },
-            region_pools={"region_code": ["string", "string", "string"]},
+            region_pools={
+                "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+            },
             rules=[
                 {
                     "condition": 'http.request.uri.path contains "/testing"',
@@ -334,7 +384,10 @@ class TestLoadBalancers:
                     "name": "route the path /testing to testing datacenter.",
                     "overrides": {
                         "adaptive_routing": {"failover_across_pools": True},
-                        "country_pools": {"country_code": ["string", "string", "string"]},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "default_pools": [
                             "17b5962d775c646f3f9725cbc7a53df4",
                             "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -345,7 +398,11 @@ class TestLoadBalancers:
                             "mode": "pop",
                             "prefer_ecs": "always",
                         },
-                        "pop_pools": {"pop": ["string", "string", "string"]},
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "random_steering": {
                             "default_weight": 0.2,
                             "pool_weights": {
@@ -353,7 +410,10 @@ class TestLoadBalancers:
                                 "value": 0,
                             },
                         },
-                        "region_pools": {"region_code": ["string", "string", "string"]},
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
                         "session_affinity": "none",
                         "session_affinity_attributes": {
                             "drain_duration": 100,
@@ -382,7 +442,10 @@ class TestLoadBalancers:
                     "name": "route the path /testing to testing datacenter.",
                     "overrides": {
                         "adaptive_routing": {"failover_across_pools": True},
-                        "country_pools": {"country_code": ["string", "string", "string"]},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "default_pools": [
                             "17b5962d775c646f3f9725cbc7a53df4",
                             "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -393,7 +456,11 @@ class TestLoadBalancers:
                             "mode": "pop",
                             "prefer_ecs": "always",
                         },
-                        "pop_pools": {"pop": ["string", "string", "string"]},
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "random_steering": {
                             "default_weight": 0.2,
                             "pool_weights": {
@@ -401,7 +468,10 @@ class TestLoadBalancers:
                                 "value": 0,
                             },
                         },
-                        "region_pools": {"region_code": ["string", "string", "string"]},
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
                         "session_affinity": "none",
                         "session_affinity_attributes": {
                             "drain_duration": 100,
@@ -430,7 +500,10 @@ class TestLoadBalancers:
                     "name": "route the path /testing to testing datacenter.",
                     "overrides": {
                         "adaptive_routing": {"failover_across_pools": True},
-                        "country_pools": {"country_code": ["string", "string", "string"]},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "default_pools": [
                             "17b5962d775c646f3f9725cbc7a53df4",
                             "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -441,7 +514,11 @@ class TestLoadBalancers:
                             "mode": "pop",
                             "prefer_ecs": "always",
                         },
-                        "pop_pools": {"pop": ["string", "string", "string"]},
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "random_steering": {
                             "default_weight": 0.2,
                             "pool_weights": {
@@ -449,7 +526,10 @@ class TestLoadBalancers:
                                 "value": 0,
                             },
                         },
-                        "region_pools": {"region_code": ["string", "string", "string"]},
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
                         "session_affinity": "none",
                         "session_affinity_attributes": {
                             "drain_duration": 100,
@@ -650,7 +730,10 @@ class TestLoadBalancers:
             load_balancer_id="699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
             adaptive_routing={"failover_across_pools": True},
-            country_pools={"country_code": ["string", "string", "string"]},
+            country_pools={
+                "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+            },
             default_pools=[
                 "17b5962d775c646f3f9725cbc7a53df4",
                 "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -664,7 +747,11 @@ class TestLoadBalancers:
                 "prefer_ecs": "always",
             },
             name="www.example.com",
-            pop_pools={"pop": ["string", "string", "string"]},
+            pop_pools={
+                "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+            },
             proxied=True,
             random_steering={
                 "default_weight": 0.2,
@@ -673,7 +760,10 @@ class TestLoadBalancers:
                     "value": 0,
                 },
             },
-            region_pools={"region_code": ["string", "string", "string"]},
+            region_pools={
+                "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+            },
             rules=[
                 {
                     "condition": 'http.request.uri.path contains "/testing"',
@@ -687,7 +777,10 @@ class TestLoadBalancers:
                     "name": "route the path /testing to testing datacenter.",
                     "overrides": {
                         "adaptive_routing": {"failover_across_pools": True},
-                        "country_pools": {"country_code": ["string", "string", "string"]},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "default_pools": [
                             "17b5962d775c646f3f9725cbc7a53df4",
                             "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -698,7 +791,11 @@ class TestLoadBalancers:
                             "mode": "pop",
                             "prefer_ecs": "always",
                         },
-                        "pop_pools": {"pop": ["string", "string", "string"]},
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "random_steering": {
                             "default_weight": 0.2,
                             "pool_weights": {
@@ -706,7 +803,10 @@ class TestLoadBalancers:
                                 "value": 0,
                             },
                         },
-                        "region_pools": {"region_code": ["string", "string", "string"]},
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
                         "session_affinity": "none",
                         "session_affinity_attributes": {
                             "drain_duration": 100,
@@ -735,7 +835,10 @@ class TestLoadBalancers:
                     "name": "route the path /testing to testing datacenter.",
                     "overrides": {
                         "adaptive_routing": {"failover_across_pools": True},
-                        "country_pools": {"country_code": ["string", "string", "string"]},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "default_pools": [
                             "17b5962d775c646f3f9725cbc7a53df4",
                             "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -746,7 +849,11 @@ class TestLoadBalancers:
                             "mode": "pop",
                             "prefer_ecs": "always",
                         },
-                        "pop_pools": {"pop": ["string", "string", "string"]},
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "random_steering": {
                             "default_weight": 0.2,
                             "pool_weights": {
@@ -754,7 +861,10 @@ class TestLoadBalancers:
                                 "value": 0,
                             },
                         },
-                        "region_pools": {"region_code": ["string", "string", "string"]},
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
                         "session_affinity": "none",
                         "session_affinity_attributes": {
                             "drain_duration": 100,
@@ -783,7 +893,10 @@ class TestLoadBalancers:
                     "name": "route the path /testing to testing datacenter.",
                     "overrides": {
                         "adaptive_routing": {"failover_across_pools": True},
-                        "country_pools": {"country_code": ["string", "string", "string"]},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "default_pools": [
                             "17b5962d775c646f3f9725cbc7a53df4",
                             "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -794,7 +907,11 @@ class TestLoadBalancers:
                             "mode": "pop",
                             "prefer_ecs": "always",
                         },
-                        "pop_pools": {"pop": ["string", "string", "string"]},
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "random_steering": {
                             "default_weight": 0.2,
                             "pool_weights": {
@@ -802,7 +919,10 @@ class TestLoadBalancers:
                                 "value": 0,
                             },
                         },
-                        "region_pools": {"region_code": ["string", "string", "string"]},
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
                         "session_affinity": "none",
                         "session_affinity_attributes": {
                             "drain_duration": 100,
@@ -953,13 +1073,20 @@ class TestAsyncLoadBalancers:
             fallback_pool="fallback_pool",
             name="www.example.com",
             adaptive_routing={"failover_across_pools": True},
-            country_pools={"country_code": ["string", "string", "string"]},
+            country_pools={
+                "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+            },
             description="Load Balancer for www.example.com",
             location_strategy={
                 "mode": "pop",
                 "prefer_ecs": "always",
             },
-            pop_pools={"pop": ["string", "string", "string"]},
+            pop_pools={
+                "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+            },
             proxied=True,
             random_steering={
                 "default_weight": 0.2,
@@ -968,7 +1095,10 @@ class TestAsyncLoadBalancers:
                     "value": 0,
                 },
             },
-            region_pools={"region_code": ["string", "string", "string"]},
+            region_pools={
+                "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+            },
             rules=[
                 {
                     "condition": 'http.request.uri.path contains "/testing"',
@@ -982,7 +1112,10 @@ class TestAsyncLoadBalancers:
                     "name": "route the path /testing to testing datacenter.",
                     "overrides": {
                         "adaptive_routing": {"failover_across_pools": True},
-                        "country_pools": {"country_code": ["string", "string", "string"]},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "default_pools": [
                             "17b5962d775c646f3f9725cbc7a53df4",
                             "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -993,7 +1126,11 @@ class TestAsyncLoadBalancers:
                             "mode": "pop",
                             "prefer_ecs": "always",
                         },
-                        "pop_pools": {"pop": ["string", "string", "string"]},
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "random_steering": {
                             "default_weight": 0.2,
                             "pool_weights": {
@@ -1001,7 +1138,10 @@ class TestAsyncLoadBalancers:
                                 "value": 0,
                             },
                         },
-                        "region_pools": {"region_code": ["string", "string", "string"]},
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
                         "session_affinity": "none",
                         "session_affinity_attributes": {
                             "drain_duration": 100,
@@ -1030,7 +1170,10 @@ class TestAsyncLoadBalancers:
                     "name": "route the path /testing to testing datacenter.",
                     "overrides": {
                         "adaptive_routing": {"failover_across_pools": True},
-                        "country_pools": {"country_code": ["string", "string", "string"]},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "default_pools": [
                             "17b5962d775c646f3f9725cbc7a53df4",
                             "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -1041,7 +1184,11 @@ class TestAsyncLoadBalancers:
                             "mode": "pop",
                             "prefer_ecs": "always",
                         },
-                        "pop_pools": {"pop": ["string", "string", "string"]},
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "random_steering": {
                             "default_weight": 0.2,
                             "pool_weights": {
@@ -1049,7 +1196,10 @@ class TestAsyncLoadBalancers:
                                 "value": 0,
                             },
                         },
-                        "region_pools": {"region_code": ["string", "string", "string"]},
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
                         "session_affinity": "none",
                         "session_affinity_attributes": {
                             "drain_duration": 100,
@@ -1078,7 +1228,10 @@ class TestAsyncLoadBalancers:
                     "name": "route the path /testing to testing datacenter.",
                     "overrides": {
                         "adaptive_routing": {"failover_across_pools": True},
-                        "country_pools": {"country_code": ["string", "string", "string"]},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "default_pools": [
                             "17b5962d775c646f3f9725cbc7a53df4",
                             "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -1089,7 +1242,11 @@ class TestAsyncLoadBalancers:
                             "mode": "pop",
                             "prefer_ecs": "always",
                         },
-                        "pop_pools": {"pop": ["string", "string", "string"]},
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "random_steering": {
                             "default_weight": 0.2,
                             "pool_weights": {
@@ -1097,7 +1254,10 @@ class TestAsyncLoadBalancers:
                                 "value": 0,
                             },
                         },
-                        "region_pools": {"region_code": ["string", "string", "string"]},
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
                         "session_affinity": "none",
                         "session_affinity_attributes": {
                             "drain_duration": 100,
@@ -1210,14 +1370,21 @@ class TestAsyncLoadBalancers:
             fallback_pool="fallback_pool",
             name="www.example.com",
             adaptive_routing={"failover_across_pools": True},
-            country_pools={"country_code": ["string", "string", "string"]},
+            country_pools={
+                "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+            },
             description="Load Balancer for www.example.com",
             enabled=True,
             location_strategy={
                 "mode": "pop",
                 "prefer_ecs": "always",
             },
-            pop_pools={"pop": ["string", "string", "string"]},
+            pop_pools={
+                "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+            },
             proxied=True,
             random_steering={
                 "default_weight": 0.2,
@@ -1226,7 +1393,10 @@ class TestAsyncLoadBalancers:
                     "value": 0,
                 },
             },
-            region_pools={"region_code": ["string", "string", "string"]},
+            region_pools={
+                "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+            },
             rules=[
                 {
                     "condition": 'http.request.uri.path contains "/testing"',
@@ -1240,7 +1410,10 @@ class TestAsyncLoadBalancers:
                     "name": "route the path /testing to testing datacenter.",
                     "overrides": {
                         "adaptive_routing": {"failover_across_pools": True},
-                        "country_pools": {"country_code": ["string", "string", "string"]},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "default_pools": [
                             "17b5962d775c646f3f9725cbc7a53df4",
                             "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -1251,7 +1424,11 @@ class TestAsyncLoadBalancers:
                             "mode": "pop",
                             "prefer_ecs": "always",
                         },
-                        "pop_pools": {"pop": ["string", "string", "string"]},
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "random_steering": {
                             "default_weight": 0.2,
                             "pool_weights": {
@@ -1259,7 +1436,10 @@ class TestAsyncLoadBalancers:
                                 "value": 0,
                             },
                         },
-                        "region_pools": {"region_code": ["string", "string", "string"]},
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
                         "session_affinity": "none",
                         "session_affinity_attributes": {
                             "drain_duration": 100,
@@ -1288,7 +1468,10 @@ class TestAsyncLoadBalancers:
                     "name": "route the path /testing to testing datacenter.",
                     "overrides": {
                         "adaptive_routing": {"failover_across_pools": True},
-                        "country_pools": {"country_code": ["string", "string", "string"]},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "default_pools": [
                             "17b5962d775c646f3f9725cbc7a53df4",
                             "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -1299,7 +1482,11 @@ class TestAsyncLoadBalancers:
                             "mode": "pop",
                             "prefer_ecs": "always",
                         },
-                        "pop_pools": {"pop": ["string", "string", "string"]},
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "random_steering": {
                             "default_weight": 0.2,
                             "pool_weights": {
@@ -1307,7 +1494,10 @@ class TestAsyncLoadBalancers:
                                 "value": 0,
                             },
                         },
-                        "region_pools": {"region_code": ["string", "string", "string"]},
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
                         "session_affinity": "none",
                         "session_affinity_attributes": {
                             "drain_duration": 100,
@@ -1336,7 +1526,10 @@ class TestAsyncLoadBalancers:
                     "name": "route the path /testing to testing datacenter.",
                     "overrides": {
                         "adaptive_routing": {"failover_across_pools": True},
-                        "country_pools": {"country_code": ["string", "string", "string"]},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "default_pools": [
                             "17b5962d775c646f3f9725cbc7a53df4",
                             "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -1347,7 +1540,11 @@ class TestAsyncLoadBalancers:
                             "mode": "pop",
                             "prefer_ecs": "always",
                         },
-                        "pop_pools": {"pop": ["string", "string", "string"]},
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "random_steering": {
                             "default_weight": 0.2,
                             "pool_weights": {
@@ -1355,7 +1552,10 @@ class TestAsyncLoadBalancers:
                                 "value": 0,
                             },
                         },
-                        "region_pools": {"region_code": ["string", "string", "string"]},
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
                         "session_affinity": "none",
                         "session_affinity_attributes": {
                             "drain_duration": 100,
@@ -1556,7 +1756,10 @@ class TestAsyncLoadBalancers:
             load_balancer_id="699d98642c564d2e855e9661899b7252",
             zone_id="699d98642c564d2e855e9661899b7252",
             adaptive_routing={"failover_across_pools": True},
-            country_pools={"country_code": ["string", "string", "string"]},
+            country_pools={
+                "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+            },
             default_pools=[
                 "17b5962d775c646f3f9725cbc7a53df4",
                 "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -1570,7 +1773,11 @@ class TestAsyncLoadBalancers:
                 "prefer_ecs": "always",
             },
             name="www.example.com",
-            pop_pools={"pop": ["string", "string", "string"]},
+            pop_pools={
+                "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+            },
             proxied=True,
             random_steering={
                 "default_weight": 0.2,
@@ -1579,7 +1786,10 @@ class TestAsyncLoadBalancers:
                     "value": 0,
                 },
             },
-            region_pools={"region_code": ["string", "string", "string"]},
+            region_pools={
+                "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+            },
             rules=[
                 {
                     "condition": 'http.request.uri.path contains "/testing"',
@@ -1593,7 +1803,10 @@ class TestAsyncLoadBalancers:
                     "name": "route the path /testing to testing datacenter.",
                     "overrides": {
                         "adaptive_routing": {"failover_across_pools": True},
-                        "country_pools": {"country_code": ["string", "string", "string"]},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "default_pools": [
                             "17b5962d775c646f3f9725cbc7a53df4",
                             "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -1604,7 +1817,11 @@ class TestAsyncLoadBalancers:
                             "mode": "pop",
                             "prefer_ecs": "always",
                         },
-                        "pop_pools": {"pop": ["string", "string", "string"]},
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "random_steering": {
                             "default_weight": 0.2,
                             "pool_weights": {
@@ -1612,7 +1829,10 @@ class TestAsyncLoadBalancers:
                                 "value": 0,
                             },
                         },
-                        "region_pools": {"region_code": ["string", "string", "string"]},
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
                         "session_affinity": "none",
                         "session_affinity_attributes": {
                             "drain_duration": 100,
@@ -1641,7 +1861,10 @@ class TestAsyncLoadBalancers:
                     "name": "route the path /testing to testing datacenter.",
                     "overrides": {
                         "adaptive_routing": {"failover_across_pools": True},
-                        "country_pools": {"country_code": ["string", "string", "string"]},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "default_pools": [
                             "17b5962d775c646f3f9725cbc7a53df4",
                             "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -1652,7 +1875,11 @@ class TestAsyncLoadBalancers:
                             "mode": "pop",
                             "prefer_ecs": "always",
                         },
-                        "pop_pools": {"pop": ["string", "string", "string"]},
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "random_steering": {
                             "default_weight": 0.2,
                             "pool_weights": {
@@ -1660,7 +1887,10 @@ class TestAsyncLoadBalancers:
                                 "value": 0,
                             },
                         },
-                        "region_pools": {"region_code": ["string", "string", "string"]},
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
                         "session_affinity": "none",
                         "session_affinity_attributes": {
                             "drain_duration": 100,
@@ -1689,7 +1919,10 @@ class TestAsyncLoadBalancers:
                     "name": "route the path /testing to testing datacenter.",
                     "overrides": {
                         "adaptive_routing": {"failover_across_pools": True},
-                        "country_pools": {"country_code": ["string", "string", "string"]},
+                        "country_pools": {
+                            "GB": ["abd90f38ced07c2e2f4df50b1f61d4194"],
+                            "US": ["de90f38ced07c2e2f4df50b1f61d4194", "00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "default_pools": [
                             "17b5962d775c646f3f9725cbc7a53df4",
                             "9290f38c5d07c2e2f4df57b1f61d4196",
@@ -1700,7 +1933,11 @@ class TestAsyncLoadBalancers:
                             "mode": "pop",
                             "prefer_ecs": "always",
                         },
-                        "pop_pools": {"pop": ["string", "string", "string"]},
+                        "pop_pools": {
+                            "LAX": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                            "LHR": ["abd90f38ced07c2e2f4df50b1f61d4194", "f9138c5d07c2e2f4df57b1f61d4196"],
+                            "SJC": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                        },
                         "random_steering": {
                             "default_weight": 0.2,
                             "pool_weights": {
@@ -1708,7 +1945,10 @@ class TestAsyncLoadBalancers:
                                 "value": 0,
                             },
                         },
-                        "region_pools": {"region_code": ["string", "string", "string"]},
+                        "region_pools": {
+                            "ENAM": ["00920f38ce07c2e2f4df50b1f61d4194"],
+                            "WNAM": ["de90f38ced07c2e2f4df50b1f61d4194", "9290f38c5d07c2e2f4df57b1f61d4196"],
+                        },
                         "session_affinity": "none",
                         "session_affinity_attributes": {
                             "drain_duration": 100,

@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 
 from .rules import Rules
@@ -13,19 +13,7 @@ from .session_affinity import SessionAffinity
 from .location_strategy import LocationStrategy
 from .session_affinity_attributes import SessionAffinityAttributes
 
-__all__ = ["LoadBalancer", "CountryPools", "PopPools", "RegionPools"]
-
-
-class CountryPools(BaseModel):
-    country_code: Optional[List[str]] = None
-
-
-class PopPools(BaseModel):
-    pop: Optional[List[str]] = None
-
-
-class RegionPools(BaseModel):
-    region_code: Optional[List[str]] = None
+__all__ = ["LoadBalancer"]
 
 
 class LoadBalancer(BaseModel):
@@ -41,7 +29,7 @@ class LoadBalancer(BaseModel):
     is retried once against this alternate origin.
     """
 
-    country_pools: Optional[CountryPools] = None
+    country_pools: Optional[Dict[str, List[str]]] = None
     """
     A mapping of country codes to a list of pool IDs (ordered by their failover
     priority) for the given country. Any country not explicitly defined will fall
@@ -82,7 +70,7 @@ class LoadBalancer(BaseModel):
     Balancer will take precedence and the DNS record will not be used.
     """
 
-    pop_pools: Optional[PopPools] = None
+    pop_pools: Optional[Dict[str, List[str]]] = None
     """
     (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
     (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -104,7 +92,7 @@ class LoadBalancer(BaseModel):
       open connections.
     """
 
-    region_pools: Optional[RegionPools] = None
+    region_pools: Optional[Dict[str, List[str]]] = None
     """
     A mapping of region codes to a list of pool IDs (ordered by their failover
     priority) for the given region. Any regions not explicitly defined will fall

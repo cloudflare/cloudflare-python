@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Iterable
+from typing import Dict, List, Iterable
 from typing_extensions import Required, TypedDict
 
 from .rules_param import RulesParam
@@ -14,7 +14,7 @@ from .adaptive_routing_param import AdaptiveRoutingParam
 from .location_strategy_param import LocationStrategyParam
 from .session_affinity_attributes_param import SessionAffinityAttributesParam
 
-__all__ = ["LoadBalancerEditParams", "CountryPools", "PopPools", "RegionPools"]
+__all__ = ["LoadBalancerEditParams"]
 
 
 class LoadBalancerEditParams(TypedDict, total=False):
@@ -30,7 +30,7 @@ class LoadBalancerEditParams(TypedDict, total=False):
     is retried once against this alternate origin.
     """
 
-    country_pools: CountryPools
+    country_pools: Dict[str, List[str]]
     """
     A mapping of country codes to a list of pool IDs (ordered by their failover
     priority) for the given country. Any country not explicitly defined will fall
@@ -67,7 +67,7 @@ class LoadBalancerEditParams(TypedDict, total=False):
     Balancer will take precedence and the DNS record will not be used.
     """
 
-    pop_pools: PopPools
+    pop_pools: Dict[str, List[str]]
     """
     (Enterprise only): A mapping of Cloudflare PoP identifiers to a list of pool IDs
     (ordered by their failover priority) for the PoP (datacenter). Any PoPs not
@@ -89,7 +89,7 @@ class LoadBalancerEditParams(TypedDict, total=False):
       open connections.
     """
 
-    region_pools: RegionPools
+    region_pools: Dict[str, List[str]]
     """
     A mapping of region codes to a list of pool IDs (ordered by their failover
     priority) for the given region. Any regions not explicitly defined will fall
@@ -176,15 +176,3 @@ class LoadBalancerEditParams(TypedDict, total=False):
     Time to live (TTL) of the DNS entry for the IP address returned by this load
     balancer. This only applies to gray-clouded (unproxied) load balancers.
     """
-
-
-class CountryPools(TypedDict, total=False):
-    country_code: List[str]
-
-
-class PopPools(TypedDict, total=False):
-    pop: List[str]
-
-
-class RegionPools(TypedDict, total=False):
-    region_code: List[str]
