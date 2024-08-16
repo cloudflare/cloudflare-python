@@ -39,11 +39,9 @@ from ...._wrappers import ResultWrapper
 from ....pagination import SyncSinglePage, AsyncSinglePage
 from ....types.pages import project_edit_params, project_create_params
 from ...._base_client import AsyncPaginator, make_request_options
+from ....types.pages.project import Project
 from .deployments.deployments import DeploymentsResource, AsyncDeploymentsResource
 from ....types.pages.deployment import Deployment
-from ....types.pages.project_get_response import ProjectGetResponse
-from ....types.pages.project_edit_response import ProjectEditResponse
-from ....types.pages.project_create_response import ProjectCreateResponse
 
 __all__ = ["ProjectsResource", "AsyncProjectsResource"]
 
@@ -79,7 +77,7 @@ class ProjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectCreateResponse:
+    ) -> Project:
         """
         Create a new project.
 
@@ -120,9 +118,9 @@ class ProjectsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ProjectCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Project]._unwrapper,
             ),
-            cast_to=cast(Type[ProjectCreateResponse], ResultWrapper[ProjectCreateResponse]),
+            cast_to=cast(Type[Project], ResultWrapper[Project]),
         )
 
     def list(
@@ -220,7 +218,7 @@ class ProjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectEditResponse:
+    ) -> Project:
         """Set new attributes for an existing project.
 
         Modify environment variables. To
@@ -267,9 +265,9 @@ class ProjectsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ProjectEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Project]._unwrapper,
             ),
-            cast_to=cast(Type[ProjectEditResponse], ResultWrapper[ProjectEditResponse]),
+            cast_to=cast(Type[Project], ResultWrapper[Project]),
         )
 
     def get(
@@ -283,7 +281,7 @@ class ProjectsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectGetResponse:
+    ) -> Project:
         """
         Fetch a project by name.
 
@@ -311,9 +309,9 @@ class ProjectsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ProjectGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Project]._unwrapper,
             ),
-            cast_to=cast(Type[ProjectGetResponse], ResultWrapper[ProjectGetResponse]),
+            cast_to=cast(Type[Project], ResultWrapper[Project]),
         )
 
     def purge_build_cache(
@@ -392,7 +390,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectCreateResponse:
+    ) -> Project:
         """
         Create a new project.
 
@@ -433,9 +431,9 @@ class AsyncProjectsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ProjectCreateResponse]._unwrapper,
+                post_parser=ResultWrapper[Project]._unwrapper,
             ),
-            cast_to=cast(Type[ProjectCreateResponse], ResultWrapper[ProjectCreateResponse]),
+            cast_to=cast(Type[Project], ResultWrapper[Project]),
         )
 
     def list(
@@ -533,7 +531,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectEditResponse:
+    ) -> Project:
         """Set new attributes for an existing project.
 
         Modify environment variables. To
@@ -580,9 +578,9 @@ class AsyncProjectsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ProjectEditResponse]._unwrapper,
+                post_parser=ResultWrapper[Project]._unwrapper,
             ),
-            cast_to=cast(Type[ProjectEditResponse], ResultWrapper[ProjectEditResponse]),
+            cast_to=cast(Type[Project], ResultWrapper[Project]),
         )
 
     async def get(
@@ -596,7 +594,7 @@ class AsyncProjectsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProjectGetResponse:
+    ) -> Project:
         """
         Fetch a project by name.
 
@@ -624,9 +622,9 @@ class AsyncProjectsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[ProjectGetResponse]._unwrapper,
+                post_parser=ResultWrapper[Project]._unwrapper,
             ),
-            cast_to=cast(Type[ProjectGetResponse], ResultWrapper[ProjectGetResponse]),
+            cast_to=cast(Type[Project], ResultWrapper[Project]),
         )
 
     async def purge_build_cache(

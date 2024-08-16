@@ -10,12 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.pages import (
-    Deployment,
-    ProjectGetResponse,
-    ProjectEditResponse,
-    ProjectCreateResponse,
-)
+from cloudflare.types.pages import Project, Deployment
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -28,7 +23,7 @@ class TestProjects:
         project = client.pages.projects.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ProjectCreateResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_method_create_with_all_params(self, client: Cloudflare) -> None:
@@ -115,7 +110,7 @@ class TestProjects:
             name="NextJS Blog",
             production_branch="main",
         )
-        assert_matches_type(ProjectCreateResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
@@ -126,7 +121,7 @@ class TestProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = response.parse()
-        assert_matches_type(ProjectCreateResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_streaming_response_create(self, client: Cloudflare) -> None:
@@ -137,7 +132,7 @@ class TestProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = response.parse()
-            assert_matches_type(ProjectCreateResponse, project, path=["response"])
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -240,7 +235,7 @@ class TestProjects:
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ProjectEditResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_method_edit_with_all_params(self, client: Cloudflare) -> None:
@@ -328,7 +323,7 @@ class TestProjects:
             name="NextJS Blog",
             production_branch="main",
         )
-        assert_matches_type(ProjectEditResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -340,7 +335,7 @@ class TestProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = response.parse()
-        assert_matches_type(ProjectEditResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -352,7 +347,7 @@ class TestProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = response.parse()
-            assert_matches_type(ProjectEditResponse, project, path=["response"])
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -376,7 +371,7 @@ class TestProjects:
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ProjectGetResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -388,7 +383,7 @@ class TestProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = response.parse()
-        assert_matches_type(ProjectGetResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -400,7 +395,7 @@ class TestProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = response.parse()
-            assert_matches_type(ProjectGetResponse, project, path=["response"])
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -475,7 +470,7 @@ class TestAsyncProjects:
         project = await async_client.pages.projects.create(
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ProjectCreateResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_method_create_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -562,7 +557,7 @@ class TestAsyncProjects:
             name="NextJS Blog",
             production_branch="main",
         )
-        assert_matches_type(ProjectCreateResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -573,7 +568,7 @@ class TestAsyncProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = await response.parse()
-        assert_matches_type(ProjectCreateResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_streaming_response_create(self, async_client: AsyncCloudflare) -> None:
@@ -584,7 +579,7 @@ class TestAsyncProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = await response.parse()
-            assert_matches_type(ProjectCreateResponse, project, path=["response"])
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -687,7 +682,7 @@ class TestAsyncProjects:
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ProjectEditResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_method_edit_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -775,7 +770,7 @@ class TestAsyncProjects:
             name="NextJS Blog",
             production_branch="main",
         )
-        assert_matches_type(ProjectEditResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -787,7 +782,7 @@ class TestAsyncProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = await response.parse()
-        assert_matches_type(ProjectEditResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -799,7 +794,7 @@ class TestAsyncProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = await response.parse()
-            assert_matches_type(ProjectEditResponse, project, path=["response"])
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -823,7 +818,7 @@ class TestAsyncProjects:
             project_name="this-is-my-project-01",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ProjectGetResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -835,7 +830,7 @@ class TestAsyncProjects:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         project = await response.parse()
-        assert_matches_type(ProjectGetResponse, project, path=["response"])
+        assert_matches_type(Project, project, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -847,7 +842,7 @@ class TestAsyncProjects:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             project = await response.parse()
-            assert_matches_type(ProjectGetResponse, project, path=["response"])
+            assert_matches_type(Project, project, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

@@ -14,7 +14,6 @@ from .execute_rule import ExecuteRule as ExecuteRule
 from .rewrite_rule import RewriteRule as RewriteRule
 from .logging_param import LoggingParam as LoggingParam
 from .redirect_rule import RedirectRule as RedirectRule
-from .challenge_rule import ChallengeRule as ChallengeRule
 from .log_rule_param import LogRuleParam as LogRuleParam
 from .set_config_rule import SetConfigRule as SetConfigRule
 from .skip_rule_param import SkipRuleParam as SkipRuleParam
@@ -25,7 +24,6 @@ from .rule_edit_params import RuleEditParams as RuleEditParams
 from .score_rule_param import ScoreRuleParam as ScoreRuleParam
 from .serve_error_rule import ServeErrorRule as ServeErrorRule
 from .ddos_dynamic_rule import DDoSDynamicRule as DDoSDynamicRule
-from .js_challenge_rule import JSChallengeRule as JSChallengeRule
 from .execute_rule_param import ExecuteRuleParam as ExecuteRuleParam
 from .phase_get_response import PhaseGetResponse as PhaseGetResponse
 from .rewrite_rule_param import RewriteRuleParam as RewriteRuleParam
@@ -33,7 +31,6 @@ from .rule_create_params import RuleCreateParams as RuleCreateParams
 from .rule_edit_response import RuleEditResponse as RuleEditResponse
 from .phase_update_params import PhaseUpdateParams as PhaseUpdateParams
 from .redirect_rule_param import RedirectRuleParam as RedirectRuleParam
-from .challenge_rule_param import ChallengeRuleParam as ChallengeRuleParam
 from .rule_create_response import RuleCreateResponse as RuleCreateResponse
 from .rule_delete_response import RuleDeleteResponse as RuleDeleteResponse
 from .ruleset_get_response import RulesetGetResponse as RulesetGetResponse
@@ -50,7 +47,6 @@ from .managed_challenge_rule import ManagedChallengeRule as ManagedChallengeRule
 from .rewrite_uri_part_param import RewriteURIPartParam as RewriteURIPartParam
 from .serve_error_rule_param import ServeErrorRuleParam as ServeErrorRuleParam
 from .ddos_dynamic_rule_param import DDoSDynamicRuleParam as DDoSDynamicRuleParam
-from .js_challenge_rule_param import JSChallengeRuleParam as JSChallengeRuleParam
 from .ruleset_create_response import RulesetCreateResponse as RulesetCreateResponse
 from .ruleset_update_response import RulesetUpdateResponse as RulesetUpdateResponse
 from .set_cache_settings_rule import SetCacheSettingsRule as SetCacheSettingsRule

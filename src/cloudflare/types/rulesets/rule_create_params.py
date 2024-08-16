@@ -14,7 +14,7 @@ __all__ = [
     "BlockRule",
     "BlockRuleActionParameters",
     "BlockRuleActionParametersResponse",
-    "ChallengeRule",
+    "RulesetsChallengeRule",
     "CompressResponseRule",
     "CompressResponseRuleActionParameters",
     "CompressResponseRuleActionParametersAlgorithm",
@@ -24,7 +24,7 @@ __all__ = [
     "ExecuteRuleActionParametersOverrides",
     "ExecuteRuleActionParametersOverridesCategory",
     "ExecuteRuleActionParametersOverridesRule",
-    "JSChallengeRule",
+    "RulesetsJSChallengeRule",
     "LogRule",
     "ManagedChallengeRule",
     "RedirectRule",
@@ -129,7 +129,7 @@ class BlockRuleActionParameters(TypedDict, total=False):
     """The response to show when the block is applied."""
 
 
-class ChallengeRule(TypedDict, total=False):
+class RulesetsChallengeRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
@@ -312,7 +312,7 @@ class ExecuteRuleActionParameters(TypedDict, total=False):
     """A set of overrides to apply to the target ruleset."""
 
 
-class JSChallengeRule(TypedDict, total=False):
+class RulesetsJSChallengeRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
 
@@ -1281,10 +1281,10 @@ class ForceConnectionCloseRule(TypedDict, total=False):
 
 RuleCreateParams: TypeAlias = Union[
     BlockRule,
-    ChallengeRule,
+    RulesetsChallengeRule,
     CompressResponseRule,
     ExecuteRule,
-    JSChallengeRule,
+    RulesetsJSChallengeRule,
     LogRule,
     ManagedChallengeRule,
     RedirectRule,
