@@ -70,7 +70,7 @@ class RolesResource(SyncAPIResource):
 
     def get(
         self,
-        role_id: object,
+        role_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -86,6 +86,8 @@ class RolesResource(SyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          role_id: Role identifier tag.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -96,6 +98,8 @@ class RolesResource(SyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not role_id:
+            raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return self._get(
             f"/accounts/{account_id}/roles/{role_id}",
             options=make_request_options(
@@ -156,7 +160,7 @@ class AsyncRolesResource(AsyncAPIResource):
 
     async def get(
         self,
-        role_id: object,
+        role_id: str,
         *,
         account_id: str,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -172,6 +176,8 @@ class AsyncRolesResource(AsyncAPIResource):
         Args:
           account_id: Account identifier tag.
 
+          role_id: Role identifier tag.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -182,6 +188,8 @@ class AsyncRolesResource(AsyncAPIResource):
         """
         if not account_id:
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        if not role_id:
+            raise ValueError(f"Expected a non-empty value for `role_id` but received {role_id!r}")
         return await self._get(
             f"/accounts/{account_id}/roles/{role_id}",
             options=make_request_options(

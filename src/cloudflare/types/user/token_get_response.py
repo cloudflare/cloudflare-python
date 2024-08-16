@@ -3,6 +3,6 @@
 from typing import List
 from typing_extensions import TypeAlias
 
-__all__ = ["TokenCreateResponse"]
+__all__ = ["TokenGetResponse"]
 
-TokenCreateResponse: TypeAlias = List[object]
+TokenGetResponse: TypeAlias = List[object]
