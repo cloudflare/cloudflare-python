@@ -38,7 +38,7 @@ class ValueResource(SyncAPIResource):
 
     def update(
         self,
-        token_id: object,
+        token_id: str,
         *,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -52,6 +52,8 @@ class ValueResource(SyncAPIResource):
         Roll the token secret.
 
         Args:
+          token_id: Token identifier tag.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -60,6 +62,8 @@ class ValueResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not token_id:
+            raise ValueError(f"Expected a non-empty value for `token_id` but received {token_id!r}")
         return self._put(
             f"/user/tokens/{token_id}/value",
             body=maybe_transform(body, value_update_params.ValueUpdateParams),
@@ -85,7 +89,7 @@ class AsyncValueResource(AsyncAPIResource):
 
     async def update(
         self,
-        token_id: object,
+        token_id: str,
         *,
         body: object,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -99,6 +103,8 @@ class AsyncValueResource(AsyncAPIResource):
         Roll the token secret.
 
         Args:
+          token_id: Token identifier tag.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -107,6 +113,8 @@ class AsyncValueResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        if not token_id:
+            raise ValueError(f"Expected a non-empty value for `token_id` but received {token_id!r}")
         return await self._put(
             f"/user/tokens/{token_id}/value",
             body=await async_maybe_transform(body, value_update_params.ValueUpdateParams),
