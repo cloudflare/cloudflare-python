@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Optional
 
 import httpx
 
@@ -19,7 +19,6 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.zero_trust.dlp import payload_log_update_params
 from ....types.zero_trust.dlp.payload_log_get_response import PayloadLogGetResponse
@@ -41,7 +40,7 @@ class PayloadLogsResource(SyncAPIResource):
         self,
         *,
         account_id: str,
-        public_key: Optional[str],
+        public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -50,13 +49,9 @@ class PayloadLogsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PayloadLogUpdateResponse:
         """
-        Updates the DLP payload log settings for this account.
+        Set payload log settings
 
         Args:
-          account_id: Identifier
-
-          public_key: The public key to use when encrypting extracted payloads, as a base64 string
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -71,13 +66,9 @@ class PayloadLogsResource(SyncAPIResource):
             f"/accounts/{account_id}/dlp/payload_log",
             body=maybe_transform({"public_key": public_key}, payload_log_update_params.PayloadLogUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[PayloadLogUpdateResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[PayloadLogUpdateResponse], ResultWrapper[PayloadLogUpdateResponse]),
+            cast_to=PayloadLogUpdateResponse,
         )
 
     def get(
@@ -92,11 +83,9 @@ class PayloadLogsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PayloadLogGetResponse:
         """
-        Gets the current DLP payload log settings for this account.
+        Get payload log settings
 
         Args:
-          account_id: Identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -110,13 +99,9 @@ class PayloadLogsResource(SyncAPIResource):
         return self._get(
             f"/accounts/{account_id}/dlp/payload_log",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[PayloadLogGetResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[PayloadLogGetResponse], ResultWrapper[PayloadLogGetResponse]),
+            cast_to=PayloadLogGetResponse,
         )
 
 
@@ -133,7 +118,7 @@ class AsyncPayloadLogsResource(AsyncAPIResource):
         self,
         *,
         account_id: str,
-        public_key: Optional[str],
+        public_key: Optional[str] | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -142,13 +127,9 @@ class AsyncPayloadLogsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PayloadLogUpdateResponse:
         """
-        Updates the DLP payload log settings for this account.
+        Set payload log settings
 
         Args:
-          account_id: Identifier
-
-          public_key: The public key to use when encrypting extracted payloads, as a base64 string
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -165,13 +146,9 @@ class AsyncPayloadLogsResource(AsyncAPIResource):
                 {"public_key": public_key}, payload_log_update_params.PayloadLogUpdateParams
             ),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[PayloadLogUpdateResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[PayloadLogUpdateResponse], ResultWrapper[PayloadLogUpdateResponse]),
+            cast_to=PayloadLogUpdateResponse,
         )
 
     async def get(
@@ -186,11 +163,9 @@ class AsyncPayloadLogsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> PayloadLogGetResponse:
         """
-        Gets the current DLP payload log settings for this account.
+        Get payload log settings
 
         Args:
-          account_id: Identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -204,13 +179,9 @@ class AsyncPayloadLogsResource(AsyncAPIResource):
         return await self._get(
             f"/accounts/{account_id}/dlp/payload_log",
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[PayloadLogGetResponse]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[PayloadLogGetResponse], ResultWrapper[PayloadLogGetResponse]),
+            cast_to=PayloadLogGetResponse,
         )
 
 

@@ -9,7 +9,5 @@ __all__ = ["PatternValidateParams"]
 
 class PatternValidateParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier"""
 
     regex: Required[str]
-    """The regex pattern."""

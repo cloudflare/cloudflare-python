@@ -50,7 +50,7 @@ class UploadResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[NewVersion]:
         """
-        Prepare to upload a new version of a dataset.
+        Prepare to upload a new version of a dataset
 
         Args:
           extra_headers: Send extra headers
@@ -91,8 +91,12 @@ class UploadResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Dataset]:
-        """
-        Upload a new version of a dataset.
+        """This is used for single-column EDMv1 and Custom Word Lists.
+
+        The EDM format can
+        only be created in the Cloudflare dashboard. For other clients, this operation
+        can only be used for non-secret Custom Word Lists. The body must be a UTF-8
+        encoded, newline (NL or CRNL) separated list of words to be matched.
 
         Args:
           extra_headers: Send extra headers
@@ -143,7 +147,7 @@ class AsyncUploadResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[NewVersion]:
         """
-        Prepare to upload a new version of a dataset.
+        Prepare to upload a new version of a dataset
 
         Args:
           extra_headers: Send extra headers
@@ -184,8 +188,12 @@ class AsyncUploadResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[Dataset]:
-        """
-        Upload a new version of a dataset.
+        """This is used for single-column EDMv1 and Custom Word Lists.
+
+        The EDM format can
+        only be created in the Cloudflare dashboard. For other clients, this operation
+        can only be used for non-secret Custom Word Lists. The body must be a UTF-8
+        encoded, newline (NL or CRNL) separated list of words to be matched.
 
         Args:
           extra_headers: Send extra headers

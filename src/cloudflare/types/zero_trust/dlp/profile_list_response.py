@@ -9,7 +9,7 @@ from ...._models import BaseModel
 from .context_awareness import ContextAwareness
 
 __all__ = [
-    "ProfileGetResponse",
+    "ProfileListResponse",
     "Custom",
     "CustomEntry",
     "CustomEntryCustom",
@@ -398,4 +398,4 @@ class Integration(BaseModel):
     """The description of the profile"""
 
 
-ProfileGetResponse: TypeAlias = Annotated[Union[Custom, Predefined, Integration], PropertyInfo(discriminator="type")]
+ProfileListResponse: TypeAlias = Annotated[Union[Custom, Predefined, Integration], PropertyInfo(discriminator="type")]

@@ -5458,9 +5458,15 @@ Methods:
 
 ### Patterns
 
+Types:
+
+```python
+from cloudflare.types.zero_trust.dlp import PatternValidateResponse
+```
+
 Methods:
 
-- <code title="post /accounts/{account_id}/dlp/patterns/validate">client.zero_trust.dlp.patterns.<a href="./src/cloudflare/resources/zero_trust/dlp/patterns.py">validate</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/pattern_validate_params.py">params</a>) -> <a href="./src/cloudflare/types/logpush/ownership_validation.py">Optional</a></code>
+- <code title="post /accounts/{account_id}/dlp/patterns/validate">client.zero_trust.dlp.patterns.<a href="./src/cloudflare/resources/zero_trust/dlp/patterns.py">validate</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/pattern_validate_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/pattern_validate_response.py">PatternValidateResponse</a></code>
 
 ### PayloadLogs
 
@@ -5482,16 +5488,16 @@ Types:
 ```python
 from cloudflare.types.zero_trust.dlp import (
     ContextAwareness,
-    Profile,
     SkipConfiguration,
+    ProfileListResponse,
     ProfileGetResponse,
 )
 ```
 
 Methods:
 
-- <code title="get /accounts/{account_id}/dlp/profiles">client.zero_trust.dlp.profiles.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/profiles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/profile.py">SyncSinglePage[Profile]</a></code>
-- <code title="get /accounts/{account_id}/dlp/profiles/{profile_id}">client.zero_trust.dlp.profiles.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/profiles.py">get</a>(profile_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/profile_get_response.py">ProfileGetResponse</a></code>
+- <code title="get /accounts/{account_id}/dlp/profiles">client.zero_trust.dlp.profiles.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/profiles.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/profile_list_response.py">SyncSinglePage[ProfileListResponse]</a></code>
+- <code title="get /accounts/{account_id}/dlp/profiles/{profile_id}">client.zero_trust.dlp.profiles.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/profiles.py">get</a>(profile_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/profile_get_response.py">Optional</a></code>
 
 #### Custom
 
@@ -5499,32 +5505,32 @@ Types:
 
 ```python
 from cloudflare.types.zero_trust.dlp.profiles import (
-    CustomProfile,
-    Pattern,
     CustomCreateResponse,
+    CustomUpdateResponse,
     CustomDeleteResponse,
+    CustomGetResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/dlp/profiles/custom">client.zero_trust.dlp.profiles.custom.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/custom.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/profiles/custom_create_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/profiles/custom_create_response.py">Optional</a></code>
-- <code title="put /accounts/{account_id}/dlp/profiles/custom/{profile_id}">client.zero_trust.dlp.profiles.custom.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/custom.py">update</a>(profile_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/profiles/custom_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/profiles/custom_profile.py">CustomProfile</a></code>
-- <code title="delete /accounts/{account_id}/dlp/profiles/custom/{profile_id}">client.zero_trust.dlp.profiles.custom.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/custom.py">delete</a>(profile_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/profiles/custom_delete_response.py">CustomDeleteResponse</a></code>
-- <code title="get /accounts/{account_id}/dlp/profiles/custom/{profile_id}">client.zero_trust.dlp.profiles.custom.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/custom.py">get</a>(profile_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/profiles/custom_profile.py">CustomProfile</a></code>
+- <code title="post /accounts/{account_id}/dlp/profiles/custom">client.zero_trust.dlp.profiles.custom.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/custom.py">create</a>(\*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/profiles/custom_create_response.py">Optional</a></code>
+- <code title="put /accounts/{account_id}/dlp/profiles/custom/{profile_id}">client.zero_trust.dlp.profiles.custom.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/custom.py">update</a>(profile_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/profiles/custom_update_response.py">Optional</a></code>
+- <code title="delete /accounts/{account_id}/dlp/profiles/custom/{profile_id}">client.zero_trust.dlp.profiles.custom.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/custom.py">delete</a>(profile_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/profiles/custom_delete_response.py">object</a></code>
+- <code title="get /accounts/{account_id}/dlp/profiles/custom/{profile_id}">client.zero_trust.dlp.profiles.custom.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/custom.py">get</a>(profile_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/profiles/custom_get_response.py">Optional</a></code>
 
 #### Predefined
 
 Types:
 
 ```python
-from cloudflare.types.zero_trust.dlp.profiles import PredefinedProfile
+from cloudflare.types.zero_trust.dlp.profiles import PredefinedUpdateResponse, PredefinedGetResponse
 ```
 
 Methods:
 
-- <code title="put /accounts/{account_id}/dlp/profiles/predefined/{profile_id}">client.zero_trust.dlp.profiles.predefined.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/predefined.py">update</a>(profile_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/dlp/profiles/predefined_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/dlp/profiles/predefined_profile.py">PredefinedProfile</a></code>
-- <code title="get /accounts/{account_id}/dlp/profiles/predefined/{profile_id}">client.zero_trust.dlp.profiles.predefined.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/predefined.py">get</a>(profile_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/profiles/predefined_profile.py">PredefinedProfile</a></code>
+- <code title="put /accounts/{account_id}/dlp/profiles/predefined/{profile_id}">client.zero_trust.dlp.profiles.predefined.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/predefined.py">update</a>(profile_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/profiles/predefined_update_response.py">Optional</a></code>
+- <code title="get /accounts/{account_id}/dlp/profiles/predefined/{profile_id}">client.zero_trust.dlp.profiles.predefined.<a href="./src/cloudflare/resources/zero_trust/dlp/profiles/predefined.py">get</a>(profile_id, \*, account_id) -> <a href="./src/cloudflare/types/zero_trust/dlp/profiles/predefined_get_response.py">Optional</a></code>
 
 ## Gateway
 
@@ -5795,42 +5801,6 @@ Methods:
 - <code title="patch /accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}">client.zero_trust.networks.virtual_networks.<a href="./src/cloudflare/resources/zero_trust/networks/virtual_networks.py">edit</a>(virtual_network_id, \*, account_id, \*\*<a href="src/cloudflare/types/zero_trust/networks/virtual_network_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/networks/virtual_network.py">VirtualNetwork</a></code>
 
 ## RiskScoring
-
-Types:
-
-```python
-from cloudflare.types.zero_trust import RiskScoringGetResponse, RiskScoringResetResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_identifier}/zt_risk_scoring/{user_id}">client.zero_trust.risk_scoring.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/risk_scoring.py">get</a>(user_id, \*, account_identifier, \*\*<a href="src/cloudflare/types/zero_trust/risk_scoring_get_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring_get_response.py">RiskScoringGetResponse</a></code>
-- <code title="post /accounts/{account_identifier}/zt_risk_scoring/{user_id}/reset">client.zero_trust.risk_scoring.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/risk_scoring.py">reset</a>(user_id, \*, account_identifier) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring_reset_response.py">RiskScoringResetResponse</a></code>
-
-### Behaviours
-
-Types:
-
-```python
-from cloudflare.types.zero_trust.risk_scoring import BehaviourUpdateResponse, BehaviourGetResponse
-```
-
-Methods:
-
-- <code title="put /accounts/{account_identifier}/zt_risk_scoring/behaviors">client.zero_trust.risk_scoring.behaviours.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/behaviours.py">update</a>(account_identifier, \*\*<a href="src/cloudflare/types/zero_trust/risk_scoring/behaviour_update_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring/behaviour_update_response.py">BehaviourUpdateResponse</a></code>
-- <code title="get /accounts/{account_identifier}/zt_risk_scoring/behaviors">client.zero_trust.risk_scoring.behaviours.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/behaviours.py">get</a>(account_identifier) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring/behaviour_get_response.py">BehaviourGetResponse</a></code>
-
-### Summary
-
-Types:
-
-```python
-from cloudflare.types.zero_trust.risk_scoring import SummaryGetResponse
-```
-
-Methods:
-
-- <code title="get /accounts/{account_identifier}/zt_risk_scoring/summary">client.zero_trust.risk_scoring.summary.<a href="./src/cloudflare/resources/zero_trust/risk_scoring/summary.py">get</a>(account_identifier, \*\*<a href="src/cloudflare/types/zero_trust/risk_scoring/summary_get_params.py">params</a>) -> <a href="./src/cloudflare/types/zero_trust/risk_scoring/summary_get_response.py">SummaryGetResponse</a></code>
 
 ### Integrations
 
