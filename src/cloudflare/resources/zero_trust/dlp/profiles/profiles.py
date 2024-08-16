@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import httpx
 
@@ -34,8 +34,8 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import AsyncPaginator, make_request_options
-from .....types.zero_trust.dlp.profile import Profile
 from .....types.zero_trust.dlp.profile_get_response import ProfileGetResponse
+from .....types.zero_trust.dlp.profile_list_response import ProfileListResponse
 
 __all__ = ["ProfilesResource", "AsyncProfilesResource"]
 
@@ -67,13 +67,11 @@ class ProfilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[Profile]:
+    ) -> SyncSinglePage[ProfileListResponse]:
         """
         Lists all DLP profiles in an account.
 
         Args:
-          account_id: Identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -86,11 +84,11 @@ class ProfilesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dlp/profiles",
-            page=SyncSinglePage[Profile],
+            page=SyncSinglePage[ProfileListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=cast(Any, Profile),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, ProfileListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     def get(
@@ -104,16 +102,11 @@ class ProfilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProfileGetResponse:
-        """Fetches a DLP profile by ID.
-
-        Supports both predefined and custom profiles
+    ) -> Optional[ProfileGetResponse]:
+        """
+        Fetches a DLP profile by ID
 
         Args:
-          account_id: Identifier
-
-          profile_id: Unique identifier for a DLP profile
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -127,7 +120,7 @@ class ProfilesResource(SyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            ProfileGetResponse,
+            Optional[ProfileGetResponse],
             self._get(
                 f"/accounts/{account_id}/dlp/profiles/{profile_id}",
                 options=make_request_options(
@@ -135,7 +128,7 @@ class ProfilesResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[ProfileGetResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[ProfileGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ProfileGetResponse]
@@ -171,13 +164,11 @@ class AsyncProfilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[Profile, AsyncSinglePage[Profile]]:
+    ) -> AsyncPaginator[ProfileListResponse, AsyncSinglePage[ProfileListResponse]]:
         """
         Lists all DLP profiles in an account.
 
         Args:
-          account_id: Identifier
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -190,11 +181,11 @@ class AsyncProfilesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dlp/profiles",
-            page=AsyncSinglePage[Profile],
+            page=AsyncSinglePage[ProfileListResponse],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=cast(Any, Profile),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, ProfileListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def get(
@@ -208,16 +199,11 @@ class AsyncProfilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> ProfileGetResponse:
-        """Fetches a DLP profile by ID.
-
-        Supports both predefined and custom profiles
+    ) -> Optional[ProfileGetResponse]:
+        """
+        Fetches a DLP profile by ID
 
         Args:
-          account_id: Identifier
-
-          profile_id: Unique identifier for a DLP profile
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -231,7 +217,7 @@ class AsyncProfilesResource(AsyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            ProfileGetResponse,
+            Optional[ProfileGetResponse],
             await self._get(
                 f"/accounts/{account_id}/dlp/profiles/{profile_id}",
                 options=make_request_options(
@@ -239,7 +225,7 @@ class AsyncProfilesResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[ProfileGetResponse]._unwrapper,
+                    post_parser=ResultWrapper[Optional[ProfileGetResponse]]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[ProfileGetResponse]
