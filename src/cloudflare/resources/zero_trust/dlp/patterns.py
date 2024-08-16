@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
-
 import httpx
 
 from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
@@ -19,10 +17,9 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.zero_trust.dlp import pattern_validate_params
-from ....types.logpush.ownership_validation import OwnershipValidation
+from ....types.zero_trust.dlp.pattern_validate_response import PatternValidateResponse
 
 __all__ = ["PatternsResource", "AsyncPatternsResource"]
 
@@ -47,19 +44,15 @@ class PatternsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OwnershipValidation]:
+    ) -> PatternValidateResponse:
         """Validates whether this pattern is a valid regular expression.
 
         Rejects it if the
-        regular expression is too complex or can match an unbounded-length string. Your
-        regex will be rejected if it uses the Kleene Star -- be sure to bound the
-        maximum number of characters that can be matched.
+        regular expression is too complex or can match an unbounded-length string. The
+        regex will be rejected if it uses `*` or `+`. Bound the maximum number of
+        characters that can be matched using a range, e.g. `{1,100}`.
 
         Args:
-          account_id: Identifier
-
-          regex: The regex pattern.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -74,13 +67,9 @@ class PatternsResource(SyncAPIResource):
             f"/accounts/{account_id}/dlp/patterns/validate",
             body=maybe_transform({"regex": regex}, pattern_validate_params.PatternValidateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[OwnershipValidation]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[OwnershipValidation]], ResultWrapper[OwnershipValidation]),
+            cast_to=PatternValidateResponse,
         )
 
 
@@ -104,19 +93,15 @@ class AsyncPatternsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[OwnershipValidation]:
+    ) -> PatternValidateResponse:
         """Validates whether this pattern is a valid regular expression.
 
         Rejects it if the
-        regular expression is too complex or can match an unbounded-length string. Your
-        regex will be rejected if it uses the Kleene Star -- be sure to bound the
-        maximum number of characters that can be matched.
+        regular expression is too complex or can match an unbounded-length string. The
+        regex will be rejected if it uses `*` or `+`. Bound the maximum number of
+        characters that can be matched using a range, e.g. `{1,100}`.
 
         Args:
-          account_id: Identifier
-
-          regex: The regex pattern.
-
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -131,13 +116,9 @@ class AsyncPatternsResource(AsyncAPIResource):
             f"/accounts/{account_id}/dlp/patterns/validate",
             body=await async_maybe_transform({"regex": regex}, pattern_validate_params.PatternValidateParams),
             options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                post_parser=ResultWrapper[Optional[OwnershipValidation]]._unwrapper,
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=cast(Type[Optional[OwnershipValidation]], ResultWrapper[OwnershipValidation]),
+            cast_to=PatternValidateResponse,
         )
 
 

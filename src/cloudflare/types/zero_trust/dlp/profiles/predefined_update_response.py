@@ -4,12 +4,12 @@ from typing import List, Union, Optional
 from datetime import datetime
 from typing_extensions import Literal, Annotated, TypeAlias
 
-from ...._utils import PropertyInfo
-from ...._models import BaseModel
-from .context_awareness import ContextAwareness
+from ....._utils import PropertyInfo
+from ....._models import BaseModel
+from ..context_awareness import ContextAwareness
 
 __all__ = [
-    "ProfileGetResponse",
+    "PredefinedUpdateResponse",
     "Custom",
     "CustomEntry",
     "CustomEntryCustom",
@@ -398,4 +398,6 @@ class Integration(BaseModel):
     """The description of the profile"""
 
 
-ProfileGetResponse: TypeAlias = Annotated[Union[Custom, Predefined, Integration], PropertyInfo(discriminator="type")]
+PredefinedUpdateResponse: TypeAlias = Annotated[
+    Union[Custom, Predefined, Integration], PropertyInfo(discriminator="type")
+]

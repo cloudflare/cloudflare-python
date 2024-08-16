@@ -20,16 +20,22 @@ class TestPayloadLogs:
     @parametrize
     def test_method_update(self, client: Cloudflare) -> None:
         payload_log = client.zero_trust.dlp.payload_logs.update(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            public_key="EmpOvSXw8BfbrGCi0fhGiD/3yXk2SiV1Nzg2lru3oj0=",
+            account_id="account_id",
+        )
+        assert_matches_type(PayloadLogUpdateResponse, payload_log, path=["response"])
+
+    @parametrize
+    def test_method_update_with_all_params(self, client: Cloudflare) -> None:
+        payload_log = client.zero_trust.dlp.payload_logs.update(
+            account_id="account_id",
+            public_key="public_key",
         )
         assert_matches_type(PayloadLogUpdateResponse, payload_log, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.payload_logs.with_raw_response.update(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            public_key="EmpOvSXw8BfbrGCi0fhGiD/3yXk2SiV1Nzg2lru3oj0=",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -40,8 +46,7 @@ class TestPayloadLogs:
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
         with client.zero_trust.dlp.payload_logs.with_streaming_response.update(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            public_key="EmpOvSXw8BfbrGCi0fhGiD/3yXk2SiV1Nzg2lru3oj0=",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -56,20 +61,19 @@ class TestPayloadLogs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             client.zero_trust.dlp.payload_logs.with_raw_response.update(
                 account_id="",
-                public_key="EmpOvSXw8BfbrGCi0fhGiD/3yXk2SiV1Nzg2lru3oj0=",
             )
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         payload_log = client.zero_trust.dlp.payload_logs.get(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
         assert_matches_type(PayloadLogGetResponse, payload_log, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
         response = client.zero_trust.dlp.payload_logs.with_raw_response.get(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -80,7 +84,7 @@ class TestPayloadLogs:
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
         with client.zero_trust.dlp.payload_logs.with_streaming_response.get(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -104,16 +108,22 @@ class TestAsyncPayloadLogs:
     @parametrize
     async def test_method_update(self, async_client: AsyncCloudflare) -> None:
         payload_log = await async_client.zero_trust.dlp.payload_logs.update(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            public_key="EmpOvSXw8BfbrGCi0fhGiD/3yXk2SiV1Nzg2lru3oj0=",
+            account_id="account_id",
+        )
+        assert_matches_type(PayloadLogUpdateResponse, payload_log, path=["response"])
+
+    @parametrize
+    async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
+        payload_log = await async_client.zero_trust.dlp.payload_logs.update(
+            account_id="account_id",
+            public_key="public_key",
         )
         assert_matches_type(PayloadLogUpdateResponse, payload_log, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dlp.payload_logs.with_raw_response.update(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            public_key="EmpOvSXw8BfbrGCi0fhGiD/3yXk2SiV1Nzg2lru3oj0=",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -124,8 +134,7 @@ class TestAsyncPayloadLogs:
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dlp.payload_logs.with_streaming_response.update(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
-            public_key="EmpOvSXw8BfbrGCi0fhGiD/3yXk2SiV1Nzg2lru3oj0=",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -140,20 +149,19 @@ class TestAsyncPayloadLogs:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
             await async_client.zero_trust.dlp.payload_logs.with_raw_response.update(
                 account_id="",
-                public_key="EmpOvSXw8BfbrGCi0fhGiD/3yXk2SiV1Nzg2lru3oj0=",
             )
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         payload_log = await async_client.zero_trust.dlp.payload_logs.get(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
         assert_matches_type(PayloadLogGetResponse, payload_log, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
         response = await async_client.zero_trust.dlp.payload_logs.with_raw_response.get(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         )
 
         assert response.is_closed is True
@@ -164,7 +172,7 @@ class TestAsyncPayloadLogs:
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.dlp.payload_logs.with_streaming_response.get(
-            account_id="023e105f4ecef8ad9ca31a8372d0c353",
+            account_id="account_id",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"

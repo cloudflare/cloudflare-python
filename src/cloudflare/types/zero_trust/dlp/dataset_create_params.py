@@ -14,6 +14,16 @@ class DatasetCreateParams(TypedDict, total=False):
     name: Required[str]
 
     description: Optional[str]
+    """The description of the dataset"""
+
+    encoding_version: int
+    """Dataset encoding version
+
+    Non-secret custom word lists with no header are always version 1. Secret EDM
+    lists with no header are version 1. Multicolumn CSV with headers are version 2.
+    Omitting this field provides the default value 0, which is interpreted the same
+    as 1.
+    """
 
     secret: bool
     """Generate a secret dataset.

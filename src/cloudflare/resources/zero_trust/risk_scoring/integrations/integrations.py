@@ -123,8 +123,6 @@ class IntegrationsResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[IntegrationUpdateResponse]:
         """
-        Update a risk score integration.
-
         Overwrite the reference_id, tenant_url, and active values with the ones provided
 
         Args:
@@ -367,8 +365,6 @@ class AsyncIntegrationsResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> Optional[IntegrationUpdateResponse]:
         """
-        Update a risk score integration.
-
         Overwrite the reference_id, tenant_url, and active values with the ones provided
 
         Args:
