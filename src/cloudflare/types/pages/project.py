@@ -10,7 +10,7 @@ from ..._models import BaseModel
 from .deployment import Deployment
 
 __all__ = [
-    "ProjectEditResponse",
+    "Project",
     "BuildConfig",
     "DeploymentConfigs",
     "DeploymentConfigsPreview",
@@ -532,7 +532,7 @@ class Source(BaseModel):
     type: Optional[str] = None
 
 
-class ProjectEditResponse(BaseModel):
+class Project(BaseModel):
     id: Optional[str] = None
     """Id of the project."""
 

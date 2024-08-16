@@ -2780,12 +2780,10 @@ Types:
 ```python
 from cloudflare.types.rulesets import (
     BlockRule,
-    ChallengeRule,
     CompressResponseRule,
     DDoSDynamicRule,
     ExecuteRule,
     ForceConnectionCloseRule,
-    JSChallengeRule,
     LogCustomFieldRule,
     LogRule,
     Logging,
@@ -2864,6 +2862,20 @@ from cloudflare.types.spectrum import DNS, EdgeIPs, OriginDNS, OriginPort
 
 ## Analytics
 
+### Aggregates
+
+#### Currents
+
+Types:
+
+```python
+from cloudflare.types.spectrum.analytics.aggregates import CurrentGetResponse
+```
+
+Methods:
+
+- <code title="get /zones/{zone_id}/spectrum/analytics/aggregate/current">client.spectrum.analytics.aggregates.currents.<a href="./src/cloudflare/resources/spectrum/analytics/aggregates/currents.py">get</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/spectrum/analytics/aggregates/current_get_params.py">params</a>) -> <a href="./src/cloudflare/types/spectrum/analytics/aggregates/current_get_response.py">Optional</a></code>
+
 ### Events
 
 Types:
@@ -2871,6 +2883,52 @@ Types:
 ```python
 from cloudflare.types.spectrum.analytics import Dimension
 ```
+
+#### Bytimes
+
+Types:
+
+```python
+from cloudflare.types.spectrum.analytics.events import BytimeGetResponse
+```
+
+Methods:
+
+- <code title="get /zones/{zone_id}/spectrum/analytics/events/bytime">client.spectrum.analytics.events.bytimes.<a href="./src/cloudflare/resources/spectrum/analytics/events/bytimes.py">get</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/spectrum/analytics/events/bytime_get_params.py">params</a>) -> <a href="./src/cloudflare/types/spectrum/analytics/events/bytime_get_response.py">Optional</a></code>
+
+#### Summaries
+
+Types:
+
+```python
+from cloudflare.types.spectrum.analytics.events import SummaryGetResponse
+```
+
+Methods:
+
+- <code title="get /zones/{zone_id}/spectrum/analytics/events/summary">client.spectrum.analytics.events.summaries.<a href="./src/cloudflare/resources/spectrum/analytics/events/summaries.py">get</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/spectrum/analytics/events/summary_get_params.py">params</a>) -> <a href="./src/cloudflare/types/spectrum/analytics/events/summary_get_response.py">Optional</a></code>
+
+## Apps
+
+Types:
+
+```python
+from cloudflare.types.spectrum import (
+    AppCreateResponse,
+    AppUpdateResponse,
+    AppListResponse,
+    AppDeleteResponse,
+    AppGetResponse,
+)
+```
+
+Methods:
+
+- <code title="post /zones/{zone_id}/spectrum/apps">client.spectrum.apps.<a href="./src/cloudflare/resources/spectrum/apps.py">create</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/spectrum/app_create_params.py">params</a>) -> <a href="./src/cloudflare/types/spectrum/app_create_response.py">Optional</a></code>
+- <code title="put /zones/{zone_id}/spectrum/apps/{app_id}">client.spectrum.apps.<a href="./src/cloudflare/resources/spectrum/apps.py">update</a>(app_id, \*, zone_id, \*\*<a href="src/cloudflare/types/spectrum/app_update_params.py">params</a>) -> <a href="./src/cloudflare/types/spectrum/app_update_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/spectrum/apps">client.spectrum.apps.<a href="./src/cloudflare/resources/spectrum/apps.py">list</a>(\*, zone_id, \*\*<a href="src/cloudflare/types/spectrum/app_list_params.py">params</a>) -> <a href="./src/cloudflare/types/spectrum/app_list_response.py">Optional</a></code>
+- <code title="delete /zones/{zone_id}/spectrum/apps/{app_id}">client.spectrum.apps.<a href="./src/cloudflare/resources/spectrum/apps.py">delete</a>(app_id, \*, zone_id) -> <a href="./src/cloudflare/types/spectrum/app_delete_response.py">Optional</a></code>
+- <code title="get /zones/{zone_id}/spectrum/apps/{app_id}">client.spectrum.apps.<a href="./src/cloudflare/resources/spectrum/apps.py">get</a>(app_id, \*, zone_id) -> <a href="./src/cloudflare/types/spectrum/app_get_response.py">Optional</a></code>
 
 # Addressing
 
@@ -3755,22 +3813,20 @@ Types:
 ```python
 from cloudflare.types.pages import (
     Deployment,
+    Project,
     Stage,
-    ProjectCreateResponse,
     ProjectDeleteResponse,
-    ProjectEditResponse,
-    ProjectGetResponse,
     ProjectPurgeBuildCacheResponse,
 )
 ```
 
 Methods:
 
-- <code title="post /accounts/{account_id}/pages/projects">client.pages.projects.<a href="./src/cloudflare/resources/pages/projects/projects.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/pages/project_create_params.py">params</a>) -> <a href="./src/cloudflare/types/pages/project_create_response.py">ProjectCreateResponse</a></code>
+- <code title="post /accounts/{account_id}/pages/projects">client.pages.projects.<a href="./src/cloudflare/resources/pages/projects/projects.py">create</a>(\*, account_id, \*\*<a href="src/cloudflare/types/pages/project_create_params.py">params</a>) -> <a href="./src/cloudflare/types/pages/project.py">Project</a></code>
 - <code title="get /accounts/{account_id}/pages/projects">client.pages.projects.<a href="./src/cloudflare/resources/pages/projects/projects.py">list</a>(\*, account_id) -> <a href="./src/cloudflare/types/pages/deployment.py">SyncSinglePage[Deployment]</a></code>
 - <code title="delete /accounts/{account_id}/pages/projects/{project_name}">client.pages.projects.<a href="./src/cloudflare/resources/pages/projects/projects.py">delete</a>(project_name, \*, account_id) -> <a href="./src/cloudflare/types/pages/project_delete_response.py">object</a></code>
-- <code title="patch /accounts/{account_id}/pages/projects/{project_name}">client.pages.projects.<a href="./src/cloudflare/resources/pages/projects/projects.py">edit</a>(project_name, \*, account_id, \*\*<a href="src/cloudflare/types/pages/project_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/pages/project_edit_response.py">ProjectEditResponse</a></code>
-- <code title="get /accounts/{account_id}/pages/projects/{project_name}">client.pages.projects.<a href="./src/cloudflare/resources/pages/projects/projects.py">get</a>(project_name, \*, account_id) -> <a href="./src/cloudflare/types/pages/project_get_response.py">ProjectGetResponse</a></code>
+- <code title="patch /accounts/{account_id}/pages/projects/{project_name}">client.pages.projects.<a href="./src/cloudflare/resources/pages/projects/projects.py">edit</a>(project_name, \*, account_id, \*\*<a href="src/cloudflare/types/pages/project_edit_params.py">params</a>) -> <a href="./src/cloudflare/types/pages/project.py">Project</a></code>
+- <code title="get /accounts/{account_id}/pages/projects/{project_name}">client.pages.projects.<a href="./src/cloudflare/resources/pages/projects/projects.py">get</a>(project_name, \*, account_id) -> <a href="./src/cloudflare/types/pages/project.py">Project</a></code>
 - <code title="post /accounts/{account_id}/pages/projects/{project_name}/purge_build_cache">client.pages.projects.<a href="./src/cloudflare/resources/pages/projects/projects.py">purge_build_cache</a>(project_name, \*, account_id) -> <a href="./src/cloudflare/types/pages/project_purge_build_cache_response.py">object</a></code>
 
 ### Deployments
