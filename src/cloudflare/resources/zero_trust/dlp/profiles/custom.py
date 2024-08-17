@@ -17,9 +17,8 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
-from .....types.zero_trust.dlp.profiles.custom_get_response import CustomGetResponse
+from .....types.zero_trust.dlp.profile import Profile
 from .....types.zero_trust.dlp.profiles.custom_create_response import CustomCreateResponse
-from .....types.zero_trust.dlp.profiles.custom_update_response import CustomUpdateResponse
 
 __all__ = ["CustomResource", "AsyncCustomResource"]
 
@@ -81,7 +80,7 @@ class CustomResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomUpdateResponse]:
+    ) -> Optional[Profile]:
         """
         Updates a DLP custom profile.
 
@@ -99,7 +98,7 @@ class CustomResource(SyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            Optional[CustomUpdateResponse],
+            Optional[Profile],
             self._put(
                 f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
                 options=make_request_options(
@@ -107,10 +106,10 @@ class CustomResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomUpdateResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomUpdateResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -166,7 +165,7 @@ class CustomResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomGetResponse]:
+    ) -> Optional[Profile]:
         """
         Fetches a custom DLP profile by id.
 
@@ -184,7 +183,7 @@ class CustomResource(SyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            Optional[CustomGetResponse],
+            Optional[Profile],
             self._get(
                 f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
                 options=make_request_options(
@@ -192,10 +191,10 @@ class CustomResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomGetResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomGetResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -258,7 +257,7 @@ class AsyncCustomResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomUpdateResponse]:
+    ) -> Optional[Profile]:
         """
         Updates a DLP custom profile.
 
@@ -276,7 +275,7 @@ class AsyncCustomResource(AsyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            Optional[CustomUpdateResponse],
+            Optional[Profile],
             await self._put(
                 f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
                 options=make_request_options(
@@ -284,10 +283,10 @@ class AsyncCustomResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomUpdateResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomUpdateResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -343,7 +342,7 @@ class AsyncCustomResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[CustomGetResponse]:
+    ) -> Optional[Profile]:
         """
         Fetches a custom DLP profile by id.
 
@@ -361,7 +360,7 @@ class AsyncCustomResource(AsyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            Optional[CustomGetResponse],
+            Optional[Profile],
             await self._get(
                 f"/accounts/{account_id}/dlp/profiles/custom/{profile_id}",
                 options=make_request_options(
@@ -369,10 +368,10 @@ class AsyncCustomResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[CustomGetResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[CustomGetResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

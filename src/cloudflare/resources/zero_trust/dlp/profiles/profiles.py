@@ -34,8 +34,7 @@ from ....._response import (
 from ....._wrappers import ResultWrapper
 from .....pagination import SyncSinglePage, AsyncSinglePage
 from ....._base_client import AsyncPaginator, make_request_options
-from .....types.zero_trust.dlp.profile_get_response import ProfileGetResponse
-from .....types.zero_trust.dlp.profile_list_response import ProfileListResponse
+from .....types.zero_trust.dlp.profile import Profile
 
 __all__ = ["ProfilesResource", "AsyncProfilesResource"]
 
@@ -67,7 +66,7 @@ class ProfilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[ProfileListResponse]:
+    ) -> SyncSinglePage[Profile]:
         """
         Lists all DLP profiles in an account.
 
@@ -84,11 +83,11 @@ class ProfilesResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dlp/profiles",
-            page=SyncSinglePage[ProfileListResponse],
+            page=SyncSinglePage[Profile],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=cast(Any, ProfileListResponse),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, Profile),  # Union types cannot be passed in as arguments in the type system
         )
 
     def get(
@@ -102,7 +101,7 @@ class ProfilesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ProfileGetResponse]:
+    ) -> Optional[Profile]:
         """
         Fetches a DLP profile by ID
 
@@ -120,7 +119,7 @@ class ProfilesResource(SyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            Optional[ProfileGetResponse],
+            Optional[Profile],
             self._get(
                 f"/accounts/{account_id}/dlp/profiles/{profile_id}",
                 options=make_request_options(
@@ -128,10 +127,10 @@ class ProfilesResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ProfileGetResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ProfileGetResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -164,7 +163,7 @@ class AsyncProfilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[ProfileListResponse, AsyncSinglePage[ProfileListResponse]]:
+    ) -> AsyncPaginator[Profile, AsyncSinglePage[Profile]]:
         """
         Lists all DLP profiles in an account.
 
@@ -181,11 +180,11 @@ class AsyncProfilesResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/dlp/profiles",
-            page=AsyncSinglePage[ProfileListResponse],
+            page=AsyncSinglePage[Profile],
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            model=cast(Any, ProfileListResponse),  # Union types cannot be passed in as arguments in the type system
+            model=cast(Any, Profile),  # Union types cannot be passed in as arguments in the type system
         )
 
     async def get(
@@ -199,7 +198,7 @@ class AsyncProfilesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[ProfileGetResponse]:
+    ) -> Optional[Profile]:
         """
         Fetches a DLP profile by ID
 
@@ -217,7 +216,7 @@ class AsyncProfilesResource(AsyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            Optional[ProfileGetResponse],
+            Optional[Profile],
             await self._get(
                 f"/accounts/{account_id}/dlp/profiles/{profile_id}",
                 options=make_request_options(
@@ -225,10 +224,10 @@ class AsyncProfilesResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[ProfileGetResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[ProfileGetResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )

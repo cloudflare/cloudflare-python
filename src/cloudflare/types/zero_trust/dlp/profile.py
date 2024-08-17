@@ -6,14 +6,14 @@ from typing_extensions import Literal, Annotated, TypeAlias
 
 from ...._utils import PropertyInfo
 from ...._models import BaseModel
+from .profiles.pattern import Pattern
 from .context_awareness import ContextAwareness
 
 __all__ = [
-    "ProfileListResponse",
+    "Profile",
     "Custom",
     "CustomEntry",
     "CustomEntryCustom",
-    "CustomEntryCustomPattern",
     "CustomEntryPredefined",
     "CustomEntryIntegration",
     "CustomEntryExactData",
@@ -21,7 +21,6 @@ __all__ = [
     "Predefined",
     "PredefinedEntry",
     "PredefinedEntryCustom",
-    "PredefinedEntryCustomPattern",
     "PredefinedEntryPredefined",
     "PredefinedEntryIntegration",
     "PredefinedEntryExactData",
@@ -29,18 +28,11 @@ __all__ = [
     "Integration",
     "IntegrationEntry",
     "IntegrationEntryCustom",
-    "IntegrationEntryCustomPattern",
     "IntegrationEntryPredefined",
     "IntegrationEntryIntegration",
     "IntegrationEntryExactData",
     "IntegrationEntryWordList",
 ]
-
-
-class CustomEntryCustomPattern(BaseModel):
-    regex: str
-
-    validation: Optional[Literal["luhn"]] = None
 
 
 class CustomEntryCustom(BaseModel):
@@ -52,7 +44,7 @@ class CustomEntryCustom(BaseModel):
 
     name: str
 
-    pattern: CustomEntryCustomPattern
+    pattern: Pattern
 
     type: Literal["custom"]
 
@@ -161,12 +153,6 @@ class Custom(BaseModel):
     """The description of the profile"""
 
 
-class PredefinedEntryCustomPattern(BaseModel):
-    regex: str
-
-    validation: Optional[Literal["luhn"]] = None
-
-
 class PredefinedEntryCustom(BaseModel):
     id: str
 
@@ -176,7 +162,7 @@ class PredefinedEntryCustom(BaseModel):
 
     name: str
 
-    pattern: PredefinedEntryCustomPattern
+    pattern: Pattern
 
     type: Literal["custom"]
 
@@ -283,12 +269,6 @@ class Predefined(BaseModel):
     open_access: Optional[bool] = None
 
 
-class IntegrationEntryCustomPattern(BaseModel):
-    regex: str
-
-    validation: Optional[Literal["luhn"]] = None
-
-
 class IntegrationEntryCustom(BaseModel):
     id: str
 
@@ -298,7 +278,7 @@ class IntegrationEntryCustom(BaseModel):
 
     name: str
 
-    pattern: IntegrationEntryCustomPattern
+    pattern: Pattern
 
     type: Literal["custom"]
 
@@ -398,4 +378,4 @@ class Integration(BaseModel):
     """The description of the profile"""
 
 
-ProfileListResponse: TypeAlias = Annotated[Union[Custom, Predefined, Integration], PropertyInfo(discriminator="type")]
+Profile: TypeAlias = Annotated[Union[Custom, Predefined, Integration], PropertyInfo(discriminator="type")]
