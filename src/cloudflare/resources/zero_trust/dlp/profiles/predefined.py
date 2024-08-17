@@ -17,8 +17,7 @@ from ....._response import (
 )
 from ....._wrappers import ResultWrapper
 from ....._base_client import make_request_options
-from .....types.zero_trust.dlp.profiles.predefined_get_response import PredefinedGetResponse
-from .....types.zero_trust.dlp.profiles.predefined_update_response import PredefinedUpdateResponse
+from .....types.zero_trust.dlp.profile import Profile
 
 __all__ = ["PredefinedResource", "AsyncPredefinedResource"]
 
@@ -43,7 +42,7 @@ class PredefinedResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PredefinedUpdateResponse]:
+    ) -> Optional[Profile]:
         """Updates a DLP predefined profile.
 
         Only supports enabling/disabling entries.
@@ -62,7 +61,7 @@ class PredefinedResource(SyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            Optional[PredefinedUpdateResponse],
+            Optional[Profile],
             self._put(
                 f"/accounts/{account_id}/dlp/profiles/predefined/{profile_id}",
                 options=make_request_options(
@@ -70,10 +69,10 @@ class PredefinedResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[PredefinedUpdateResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[PredefinedUpdateResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -89,7 +88,7 @@ class PredefinedResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PredefinedGetResponse]:
+    ) -> Optional[Profile]:
         """
         Fetches a predefined DLP profile by id.
 
@@ -107,7 +106,7 @@ class PredefinedResource(SyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            Optional[PredefinedGetResponse],
+            Optional[Profile],
             self._get(
                 f"/accounts/{account_id}/dlp/profiles/predefined/{profile_id}",
                 options=make_request_options(
@@ -115,10 +114,10 @@ class PredefinedResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[PredefinedGetResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[PredefinedGetResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -144,7 +143,7 @@ class AsyncPredefinedResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PredefinedUpdateResponse]:
+    ) -> Optional[Profile]:
         """Updates a DLP predefined profile.
 
         Only supports enabling/disabling entries.
@@ -163,7 +162,7 @@ class AsyncPredefinedResource(AsyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            Optional[PredefinedUpdateResponse],
+            Optional[Profile],
             await self._put(
                 f"/accounts/{account_id}/dlp/profiles/predefined/{profile_id}",
                 options=make_request_options(
@@ -171,10 +170,10 @@ class AsyncPredefinedResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[PredefinedUpdateResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[PredefinedUpdateResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
@@ -190,7 +189,7 @@ class AsyncPredefinedResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[PredefinedGetResponse]:
+    ) -> Optional[Profile]:
         """
         Fetches a predefined DLP profile by id.
 
@@ -208,7 +207,7 @@ class AsyncPredefinedResource(AsyncAPIResource):
         if not profile_id:
             raise ValueError(f"Expected a non-empty value for `profile_id` but received {profile_id!r}")
         return cast(
-            Optional[PredefinedGetResponse],
+            Optional[Profile],
             await self._get(
                 f"/accounts/{account_id}/dlp/profiles/predefined/{profile_id}",
                 options=make_request_options(
@@ -216,10 +215,10 @@ class AsyncPredefinedResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[PredefinedGetResponse]]._unwrapper,
+                    post_parser=ResultWrapper[Optional[Profile]]._unwrapper,
                 ),
                 cast_to=cast(
-                    Any, ResultWrapper[PredefinedGetResponse]
+                    Any, ResultWrapper[Profile]
                 ),  # Union types cannot be passed in as arguments in the type system
             ),
         )
