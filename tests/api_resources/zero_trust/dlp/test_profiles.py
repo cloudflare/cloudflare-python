@@ -10,7 +10,7 @@ import pytest
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-from cloudflare.types.zero_trust.dlp import ProfileGetResponse, ProfileListResponse
+from cloudflare.types.zero_trust.dlp import Profile
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestProfiles:
         profile = client.zero_trust.dlp.profiles.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[ProfileListResponse], profile, path=["response"])
+        assert_matches_type(SyncSinglePage[Profile], profile, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -34,7 +34,7 @@ class TestProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         profile = response.parse()
-        assert_matches_type(SyncSinglePage[ProfileListResponse], profile, path=["response"])
+        assert_matches_type(SyncSinglePage[Profile], profile, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -45,7 +45,7 @@ class TestProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             profile = response.parse()
-            assert_matches_type(SyncSinglePage[ProfileListResponse], profile, path=["response"])
+            assert_matches_type(SyncSinglePage[Profile], profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -62,7 +62,7 @@ class TestProfiles:
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ProfileGetResponse], profile, path=["response"])
+        assert_matches_type(Optional[Profile], profile, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -74,7 +74,7 @@ class TestProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         profile = response.parse()
-        assert_matches_type(Optional[ProfileGetResponse], profile, path=["response"])
+        assert_matches_type(Optional[Profile], profile, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -86,7 +86,7 @@ class TestProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             profile = response.parse()
-            assert_matches_type(Optional[ProfileGetResponse], profile, path=["response"])
+            assert_matches_type(Optional[Profile], profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -113,7 +113,7 @@ class TestAsyncProfiles:
         profile = await async_client.zero_trust.dlp.profiles.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[ProfileListResponse], profile, path=["response"])
+        assert_matches_type(AsyncSinglePage[Profile], profile, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -124,7 +124,7 @@ class TestAsyncProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         profile = await response.parse()
-        assert_matches_type(AsyncSinglePage[ProfileListResponse], profile, path=["response"])
+        assert_matches_type(AsyncSinglePage[Profile], profile, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -135,7 +135,7 @@ class TestAsyncProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             profile = await response.parse()
-            assert_matches_type(AsyncSinglePage[ProfileListResponse], profile, path=["response"])
+            assert_matches_type(AsyncSinglePage[Profile], profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -152,7 +152,7 @@ class TestAsyncProfiles:
             profile_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
         )
-        assert_matches_type(Optional[ProfileGetResponse], profile, path=["response"])
+        assert_matches_type(Optional[Profile], profile, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -164,7 +164,7 @@ class TestAsyncProfiles:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         profile = await response.parse()
-        assert_matches_type(Optional[ProfileGetResponse], profile, path=["response"])
+        assert_matches_type(Optional[Profile], profile, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -176,7 +176,7 @@ class TestAsyncProfiles:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             profile = await response.parse()
-            assert_matches_type(Optional[ProfileGetResponse], profile, path=["response"])
+            assert_matches_type(Optional[Profile], profile, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
