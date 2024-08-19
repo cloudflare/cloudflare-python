@@ -40,6 +40,7 @@ from ..._wrappers import ResultWrapper
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.accounts import account_list_params, account_update_params
+from ...types.accounts.account import Account
 
 __all__ = ["AccountsResource", "AsyncAccountsResource"]
 
@@ -73,7 +74,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Account]:
         """
         Update an existing account.
 
@@ -108,9 +109,9 @@ class AccountsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Account]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Account]], ResultWrapper[Account]),
         )
 
     def list(
@@ -126,7 +127,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncV4PagePaginationArray[object]:
+    ) -> SyncV4PagePaginationArray[Account]:
         """
         List all accounts you have ownership or verified access to.
 
@@ -149,7 +150,7 @@ class AccountsResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/accounts",
-            page=SyncV4PagePaginationArray[object],
+            page=SyncV4PagePaginationArray[Account],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -165,7 +166,7 @@ class AccountsResource(SyncAPIResource):
                     account_list_params.AccountListParams,
                 ),
             ),
-            model=object,
+            model=Account,
         )
 
     def get(
@@ -178,7 +179,7 @@ class AccountsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Account]:
         """
         Get information about a specific account that you are a member of.
 
@@ -202,9 +203,9 @@ class AccountsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Account]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Account]], ResultWrapper[Account]),
         )
 
 
@@ -237,7 +238,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Account]:
         """
         Update an existing account.
 
@@ -272,9 +273,9 @@ class AsyncAccountsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Account]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Account]], ResultWrapper[Account]),
         )
 
     def list(
@@ -290,7 +291,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[object, AsyncV4PagePaginationArray[object]]:
+    ) -> AsyncPaginator[Account, AsyncV4PagePaginationArray[Account]]:
         """
         List all accounts you have ownership or verified access to.
 
@@ -313,7 +314,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/accounts",
-            page=AsyncV4PagePaginationArray[object],
+            page=AsyncV4PagePaginationArray[Account],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -329,7 +330,7 @@ class AsyncAccountsResource(AsyncAPIResource):
                     account_list_params.AccountListParams,
                 ),
             ),
-            model=object,
+            model=Account,
         )
 
     async def get(
@@ -342,7 +343,7 @@ class AsyncAccountsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> object:
+    ) -> Optional[Account]:
         """
         Get information about a specific account that you are a member of.
 
@@ -366,9 +367,9 @@ class AsyncAccountsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+                post_parser=ResultWrapper[Optional[Account]]._unwrapper,
             ),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            cast_to=cast(Type[Optional[Account]], ResultWrapper[Account]),
         )
 
 
