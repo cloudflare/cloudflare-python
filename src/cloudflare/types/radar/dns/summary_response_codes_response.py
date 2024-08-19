@@ -58,8 +58,6 @@ class Meta(BaseModel):
 
 
 class Summary0(BaseModel):
-    formerr: str = FieldInfo(alias="FORMERR")
-
     noerror: str = FieldInfo(alias="NOERROR")
 
     notimp: str = FieldInfo(alias="NOTIMP")
