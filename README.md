@@ -141,7 +141,7 @@ Or just work directly with the returned data:
 ```python
 first_page = await client.accounts.list()
 for account in first_page.result:
-    print(account)
+    print(account.id)
 
 # Remove `await` for non-async usage.
 ```
