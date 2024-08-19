@@ -3,6 +3,6 @@
 from typing import Union, Optional
 from typing_extensions import TypeAlias
 
-__all__ = ["RevokeCreateResponse"]
+__all__ = ["OriginPostQuantumEncryptionGetResponse"]
 
-RevokeCreateResponse: TypeAlias = Union[Optional[str], Optional[object]]
+OriginPostQuantumEncryptionGetResponse: TypeAlias = Union[Optional[str], Optional[object]]
