@@ -39,7 +39,9 @@ from .tunnel_edit_params import TunnelEditParams as TunnelEditParams
 from .tunnel_list_params import TunnelListParams as TunnelListParams
 from .device_get_response import DeviceGetResponse as DeviceGetResponse
 from .everyone_rule_param import EveryoneRuleParam as EveryoneRuleParam
+from .tunnel_get_response import TunnelGetResponse as TunnelGetResponse
 from .generic_oauth_config import GenericOAuthConfig as GenericOAuthConfig
+from .tunnel_create_params import TunnelCreateParams as TunnelCreateParams
 from .tunnel_edit_response import TunnelEditResponse as TunnelEditResponse
 from .tunnel_list_response import TunnelListResponse as TunnelListResponse
 from .email_list_rule_param import EmailListRuleParam as EmailListRuleParam
@@ -50,12 +52,15 @@ from .saml_group_rule_param import SAMLGroupRuleParam as SAMLGroupRuleParam
 from .azure_group_rule_param import AzureGroupRuleParam as AzureGroupRuleParam
 from .certificate_rule_param import CertificateRuleParam as CertificateRuleParam
 from .identity_provider_type import IdentityProviderType as IdentityProviderType
+from .tunnel_create_response import TunnelCreateResponse as TunnelCreateResponse
+from .tunnel_delete_response import TunnelDeleteResponse as TunnelDeleteResponse
 from .gateway_create_response import GatewayCreateResponse as GatewayCreateResponse
 from .gsuite_group_rule_param import GSuiteGroupRuleParam as GSuiteGroupRuleParam
 from .external_evaluation_rule import ExternalEvaluationRule as ExternalEvaluationRule
 from .github_organization_rule import GitHubOrganizationRule as GitHubOrganizationRule
 from .service_token_rule_param import ServiceTokenRuleParam as ServiceTokenRuleParam
 from .device_experience_monitor import DeviceExperienceMonitor as DeviceExperienceMonitor
+from .risk_scoring_get_response import RiskScoringGetResponse as RiskScoringGetResponse
 from .access_device_posture_rule import AccessDevicePostureRule as AccessDevicePostureRule
 from .authentication_method_rule import AuthenticationMethodRule as AuthenticationMethodRule
 from .generic_oauth_config_param import GenericOAuthConfigParam as GenericOAuthConfigParam
