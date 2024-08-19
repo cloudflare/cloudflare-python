@@ -55,9 +55,9 @@ class MessagesResource(SyncAPIResource):
         Acknowledge + Retry messages from a Queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -108,9 +108,9 @@ class MessagesResource(SyncAPIResource):
         Pull a batch of messages from a Queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           batch_size: The maximum number of messages to include in a batch.
 
@@ -176,9 +176,9 @@ class AsyncMessagesResource(AsyncAPIResource):
         Acknowledge + Retry messages from a Queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           extra_headers: Send extra headers
 
@@ -229,9 +229,9 @@ class AsyncMessagesResource(AsyncAPIResource):
         Pull a batch of messages from a Queue.
 
         Args:
-          account_id: Identifier
+          account_id: Identifier.
 
-          queue_id: Identifier
+          queue_id: Identifier.
 
           batch_size: The maximum number of messages to include in a batch.
 
