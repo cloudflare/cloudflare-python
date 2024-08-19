@@ -10,8 +10,6 @@ __all__ = ["TimeseriesGroupResponseCodesResponse", "Serie0"]
 
 
 class Serie0(BaseModel):
-    formerr: List[str] = FieldInfo(alias="FORMERR")
-
     noerror: List[str] = FieldInfo(alias="NOERROR")
 
     notimp: List[str] = FieldInfo(alias="NOTIMP")
