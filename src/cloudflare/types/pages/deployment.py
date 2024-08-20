@@ -1,13 +1,21 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .stage import Stage
 from ..._models import BaseModel
 
-__all__ = ["Deployment", "BuildConfig", "DeploymentTrigger", "DeploymentTriggerMetadata", "Source", "SourceConfig"]
+__all__ = [
+    "Deployment",
+    "BuildConfig",
+    "DeploymentTrigger",
+    "DeploymentTriggerMetadata",
+    "EnvVars",
+    "Source",
+    "SourceConfig",
+]
 
 
 class BuildConfig(BaseModel):
@@ -47,6 +55,14 @@ class DeploymentTrigger(BaseModel):
 
     type: Optional[str] = None
     """What caused the deployment."""
+
+
+class EnvVars(BaseModel):
+    value: str
+    """Environment variable value."""
+
+    type: Optional[str] = None
+    """The type of environment variable."""
 
 
 class SourceConfig(BaseModel):
@@ -95,7 +111,7 @@ class Deployment(BaseModel):
     deployment_trigger: Optional[DeploymentTrigger] = None
     """Info about what caused the deployment."""
 
-    env_vars: Optional[object] = None
+    env_vars: Optional[Dict[str, Optional[EnvVars]]] = None
     """A dict of env variables to build this deploy."""
 
     environment: Optional[str] = None
