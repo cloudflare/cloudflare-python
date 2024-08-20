@@ -39,72 +39,72 @@ class TestProjects:
             },
             deployment_configs={
                 "preview": {
-                    "ai_bindings": {"ai_binding": {"project_id": "project_id"}},
-                    "analytics_engine_datasets": {"analytics_engine_binding": {"dataset": "api_analytics"}},
-                    "browsers": {"browser": {}},
+                    "ai_bindings": {"AI_BINDING": {"project_id": "some-project-id"}},
+                    "analytics_engine_datasets": {"ANALYTICS_ENGINE_BINDING": {"dataset": "api_analytics"}},
+                    "browsers": {"BROWSER": "bar"},
                     "compatibility_date": "2022-01-01",
                     "compatibility_flags": ["url_standard"],
-                    "d1_databases": {"d1_binding": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
-                    "durable_object_namespaces": {"do_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "d1_databases": {"D1_BINDING": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
+                    "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
-                        "environment_variable": {
-                            "type": "plain_text",
+                        "foo": {
                             "value": "hello world",
+                            "type": "plain_text",
                         }
                     },
-                    "hyperdrive_bindings": {"hyperdrive": {"id": "a76a99bc342644deb02c38d66082262a"}},
-                    "kv_namespaces": {"kv_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
-                    "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
+                    "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
+                    "kv_namespaces": {"KV_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"MTLS": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
-                    "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
+                    "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
-                        "r2_binding": {
+                        "R2_BINDING": {
                             "jurisdiction": "eu",
                             "name": "some-bucket",
                         }
                     },
                     "services": {
-                        "service_binding": {
+                        "SERVICE_BINDING": {
                             "entrypoint": "MyHandler",
                             "environment": "production",
                             "service": "example-worker",
                         }
                     },
-                    "vectorize_bindings": {"vectorize": {"index_name": "my_index"}},
+                    "vectorize_bindings": {"VECTORIZE": {"index_name": "my_index"}},
                 },
                 "production": {
-                    "ai_bindings": {"ai_binding": {"project_id": "project_id"}},
-                    "analytics_engine_datasets": {"analytics_engine_binding": {"dataset": "api_analytics"}},
-                    "browsers": {"browser": {}},
+                    "ai_bindings": {"AI_BINDING": {"project_id": "some-project-id"}},
+                    "analytics_engine_datasets": {"ANALYTICS_ENGINE_BINDING": {"dataset": "api_analytics"}},
+                    "browsers": {"BROWSER": "bar"},
                     "compatibility_date": "2022-01-01",
                     "compatibility_flags": ["url_standard"],
-                    "d1_databases": {"d1_binding": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
-                    "durable_object_namespaces": {"do_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "d1_databases": {"D1_BINDING": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
+                    "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
-                        "environment_variable": {
-                            "type": "plain_text",
+                        "foo": {
                             "value": "hello world",
+                            "type": "plain_text",
                         }
                     },
-                    "hyperdrive_bindings": {"hyperdrive": {"id": "a76a99bc342644deb02c38d66082262a"}},
-                    "kv_namespaces": {"kv_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
-                    "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
+                    "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
+                    "kv_namespaces": {"KV_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"MTLS": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
-                    "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
+                    "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
-                        "r2_binding": {
+                        "R2_BINDING": {
                             "jurisdiction": "eu",
                             "name": "some-bucket",
                         }
                     },
                     "services": {
-                        "service_binding": {
+                        "SERVICE_BINDING": {
                             "entrypoint": "MyHandler",
                             "environment": "production",
                             "service": "example-worker",
                         }
                     },
-                    "vectorize_bindings": {"vectorize": {"index_name": "my_index"}},
+                    "vectorize_bindings": {"VECTORIZE": {"index_name": "my_index"}},
                 },
             },
             name="NextJS Blog",
@@ -252,72 +252,80 @@ class TestProjects:
             },
             deployment_configs={
                 "preview": {
-                    "ai_bindings": {"ai_binding": {"project_id": "project_id"}},
-                    "analytics_engine_datasets": {"analytics_engine_binding": {"dataset": "api_analytics"}},
-                    "browsers": {"browser": {}},
+                    "ai_bindings": {"AI_BINDING": {"project_id": "some-project-id"}},
+                    "analytics_engine_datasets": {"ANALYTICS_ENGINE_BINDING": {"dataset": "api_analytics"}},
+                    "browsers": {"BROWSER": "bar"},
                     "compatibility_date": "2022-01-01",
                     "compatibility_flags": ["url_standard"],
-                    "d1_databases": {"d1_binding": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
-                    "durable_object_namespaces": {"do_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "d1_databases": {"D1_BINDING": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
+                    "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
-                        "environment_variable": {
-                            "type": "plain_text",
+                        "foo": {
                             "value": "hello world",
+                            "type": "plain_text",
                         }
                     },
-                    "hyperdrive_bindings": {"hyperdrive": {"id": "a76a99bc342644deb02c38d66082262a"}},
-                    "kv_namespaces": {"kv_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
-                    "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
+                    "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
+                    "kv_namespaces": {"KV_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"MTLS": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
-                    "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
+                    "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
-                        "r2_binding": {
+                        "R2_BINDING": {
                             "jurisdiction": "eu",
                             "name": "some-bucket",
                         }
                     },
                     "services": {
-                        "service_binding": {
+                        "SERVICE_BINDING": {
                             "entrypoint": "MyHandler",
                             "environment": "production",
                             "service": "example-worker",
                         }
                     },
-                    "vectorize_bindings": {"vectorize": {"index_name": "my_index"}},
+                    "vectorize_bindings": {"VECTORIZE": {"index_name": "my_index"}},
                 },
                 "production": {
-                    "ai_bindings": {"ai_binding": {"project_id": "project_id"}},
-                    "analytics_engine_datasets": {"analytics_engine_binding": {"dataset": "api_analytics"}},
-                    "browsers": {"browser": {}},
+                    "ai_bindings": {"AI_BINDING": {"project_id": "some-project-id"}},
+                    "analytics_engine_datasets": {"ANALYTICS_ENGINE_BINDING": {"dataset": "api_analytics"}},
+                    "browsers": {"BROWSER": "bar"},
                     "compatibility_date": "2022-01-01",
                     "compatibility_flags": ["url_standard"],
-                    "d1_databases": {"d1_binding": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
-                    "durable_object_namespaces": {"do_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "d1_databases": {"D1_BINDING": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
+                    "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
-                        "environment_variable": {
+                        "BUILD_VERSION": {
+                            "value": "3.3",
                             "type": "plain_text",
-                            "value": "hello world",
-                        }
+                        },
+                        "delete_this_env_var": {
+                            "value": "value",
+                            "type": "plain_text",
+                        },
+                        "secret_var": {
+                            "value": "A_CMS_API_TOKEN",
+                            "type": "plain_text",
+                        },
                     },
-                    "hyperdrive_bindings": {"hyperdrive": {"id": "a76a99bc342644deb02c38d66082262a"}},
-                    "kv_namespaces": {"kv_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
-                    "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
+                    "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
+                    "kv_namespaces": {"KV_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"MTLS": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
-                    "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
+                    "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
-                        "r2_binding": {
+                        "R2_BINDING": {
                             "jurisdiction": "eu",
                             "name": "some-bucket",
                         }
                     },
                     "services": {
-                        "service_binding": {
+                        "SERVICE_BINDING": {
                             "entrypoint": "MyHandler",
                             "environment": "production",
                             "service": "example-worker",
                         }
                     },
-                    "vectorize_bindings": {"vectorize": {"index_name": "my_index"}},
+                    "vectorize_bindings": {"VECTORIZE": {"index_name": "my_index"}},
                 },
             },
             name="NextJS Blog",
@@ -486,72 +494,72 @@ class TestAsyncProjects:
             },
             deployment_configs={
                 "preview": {
-                    "ai_bindings": {"ai_binding": {"project_id": "project_id"}},
-                    "analytics_engine_datasets": {"analytics_engine_binding": {"dataset": "api_analytics"}},
-                    "browsers": {"browser": {}},
+                    "ai_bindings": {"AI_BINDING": {"project_id": "some-project-id"}},
+                    "analytics_engine_datasets": {"ANALYTICS_ENGINE_BINDING": {"dataset": "api_analytics"}},
+                    "browsers": {"BROWSER": "bar"},
                     "compatibility_date": "2022-01-01",
                     "compatibility_flags": ["url_standard"],
-                    "d1_databases": {"d1_binding": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
-                    "durable_object_namespaces": {"do_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "d1_databases": {"D1_BINDING": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
+                    "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
-                        "environment_variable": {
-                            "type": "plain_text",
+                        "foo": {
                             "value": "hello world",
+                            "type": "plain_text",
                         }
                     },
-                    "hyperdrive_bindings": {"hyperdrive": {"id": "a76a99bc342644deb02c38d66082262a"}},
-                    "kv_namespaces": {"kv_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
-                    "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
+                    "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
+                    "kv_namespaces": {"KV_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"MTLS": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
-                    "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
+                    "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
-                        "r2_binding": {
+                        "R2_BINDING": {
                             "jurisdiction": "eu",
                             "name": "some-bucket",
                         }
                     },
                     "services": {
-                        "service_binding": {
+                        "SERVICE_BINDING": {
                             "entrypoint": "MyHandler",
                             "environment": "production",
                             "service": "example-worker",
                         }
                     },
-                    "vectorize_bindings": {"vectorize": {"index_name": "my_index"}},
+                    "vectorize_bindings": {"VECTORIZE": {"index_name": "my_index"}},
                 },
                 "production": {
-                    "ai_bindings": {"ai_binding": {"project_id": "project_id"}},
-                    "analytics_engine_datasets": {"analytics_engine_binding": {"dataset": "api_analytics"}},
-                    "browsers": {"browser": {}},
+                    "ai_bindings": {"AI_BINDING": {"project_id": "some-project-id"}},
+                    "analytics_engine_datasets": {"ANALYTICS_ENGINE_BINDING": {"dataset": "api_analytics"}},
+                    "browsers": {"BROWSER": "bar"},
                     "compatibility_date": "2022-01-01",
                     "compatibility_flags": ["url_standard"],
-                    "d1_databases": {"d1_binding": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
-                    "durable_object_namespaces": {"do_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "d1_databases": {"D1_BINDING": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
+                    "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
-                        "environment_variable": {
-                            "type": "plain_text",
+                        "foo": {
                             "value": "hello world",
+                            "type": "plain_text",
                         }
                     },
-                    "hyperdrive_bindings": {"hyperdrive": {"id": "a76a99bc342644deb02c38d66082262a"}},
-                    "kv_namespaces": {"kv_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
-                    "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
+                    "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
+                    "kv_namespaces": {"KV_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"MTLS": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
-                    "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
+                    "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
-                        "r2_binding": {
+                        "R2_BINDING": {
                             "jurisdiction": "eu",
                             "name": "some-bucket",
                         }
                     },
                     "services": {
-                        "service_binding": {
+                        "SERVICE_BINDING": {
                             "entrypoint": "MyHandler",
                             "environment": "production",
                             "service": "example-worker",
                         }
                     },
-                    "vectorize_bindings": {"vectorize": {"index_name": "my_index"}},
+                    "vectorize_bindings": {"VECTORIZE": {"index_name": "my_index"}},
                 },
             },
             name="NextJS Blog",
@@ -699,72 +707,80 @@ class TestAsyncProjects:
             },
             deployment_configs={
                 "preview": {
-                    "ai_bindings": {"ai_binding": {"project_id": "project_id"}},
-                    "analytics_engine_datasets": {"analytics_engine_binding": {"dataset": "api_analytics"}},
-                    "browsers": {"browser": {}},
+                    "ai_bindings": {"AI_BINDING": {"project_id": "some-project-id"}},
+                    "analytics_engine_datasets": {"ANALYTICS_ENGINE_BINDING": {"dataset": "api_analytics"}},
+                    "browsers": {"BROWSER": "bar"},
                     "compatibility_date": "2022-01-01",
                     "compatibility_flags": ["url_standard"],
-                    "d1_databases": {"d1_binding": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
-                    "durable_object_namespaces": {"do_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "d1_databases": {"D1_BINDING": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
+                    "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
-                        "environment_variable": {
-                            "type": "plain_text",
+                        "foo": {
                             "value": "hello world",
+                            "type": "plain_text",
                         }
                     },
-                    "hyperdrive_bindings": {"hyperdrive": {"id": "a76a99bc342644deb02c38d66082262a"}},
-                    "kv_namespaces": {"kv_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
-                    "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
+                    "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
+                    "kv_namespaces": {"KV_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"MTLS": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
-                    "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
+                    "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
-                        "r2_binding": {
+                        "R2_BINDING": {
                             "jurisdiction": "eu",
                             "name": "some-bucket",
                         }
                     },
                     "services": {
-                        "service_binding": {
+                        "SERVICE_BINDING": {
                             "entrypoint": "MyHandler",
                             "environment": "production",
                             "service": "example-worker",
                         }
                     },
-                    "vectorize_bindings": {"vectorize": {"index_name": "my_index"}},
+                    "vectorize_bindings": {"VECTORIZE": {"index_name": "my_index"}},
                 },
                 "production": {
-                    "ai_bindings": {"ai_binding": {"project_id": "project_id"}},
-                    "analytics_engine_datasets": {"analytics_engine_binding": {"dataset": "api_analytics"}},
-                    "browsers": {"browser": {}},
+                    "ai_bindings": {"AI_BINDING": {"project_id": "some-project-id"}},
+                    "analytics_engine_datasets": {"ANALYTICS_ENGINE_BINDING": {"dataset": "api_analytics"}},
+                    "browsers": {"BROWSER": "bar"},
                     "compatibility_date": "2022-01-01",
                     "compatibility_flags": ["url_standard"],
-                    "d1_databases": {"d1_binding": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
-                    "durable_object_namespaces": {"do_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "d1_databases": {"D1_BINDING": {"id": "445e2955-951a-43f8-a35b-a4d0c8138f63"}},
+                    "durable_object_namespaces": {"DO_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
                     "env_vars": {
-                        "environment_variable": {
+                        "BUILD_VERSION": {
+                            "value": "3.3",
                             "type": "plain_text",
-                            "value": "hello world",
-                        }
+                        },
+                        "delete_this_env_var": {
+                            "value": "value",
+                            "type": "plain_text",
+                        },
+                        "secret_var": {
+                            "value": "A_CMS_API_TOKEN",
+                            "type": "plain_text",
+                        },
                     },
-                    "hyperdrive_bindings": {"hyperdrive": {"id": "a76a99bc342644deb02c38d66082262a"}},
-                    "kv_namespaces": {"kv_binding": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
-                    "mtls_certificates": {"mtls": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
+                    "hyperdrive_bindings": {"HYPERDRIVE": {"id": "a76a99bc342644deb02c38d66082262a"}},
+                    "kv_namespaces": {"KV_BINDING": {"namespace_id": "5eb63bbbe01eeed093cb22bb8f5acdc3"}},
+                    "mtls_certificates": {"MTLS": {"certificate_id": "d7cdd17c-916f-4cb7-aabe-585eb382ec4e"}},
                     "placement": {"mode": "smart"},
-                    "queue_producers": {"queue_producer_binding": {"name": "some-queue"}},
+                    "queue_producers": {"QUEUE_PRODUCER_BINDING": {"name": "some-queue"}},
                     "r2_buckets": {
-                        "r2_binding": {
+                        "R2_BINDING": {
                             "jurisdiction": "eu",
                             "name": "some-bucket",
                         }
                     },
                     "services": {
-                        "service_binding": {
+                        "SERVICE_BINDING": {
                             "entrypoint": "MyHandler",
                             "environment": "production",
                             "service": "example-worker",
                         }
                     },
-                    "vectorize_bindings": {"vectorize": {"index_name": "my_index"}},
+                    "vectorize_bindings": {"VECTORIZE": {"index_name": "my_index"}},
                 },
             },
             name="NextJS Blog",
