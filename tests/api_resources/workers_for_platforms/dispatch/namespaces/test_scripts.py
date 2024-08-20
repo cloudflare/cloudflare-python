@@ -42,7 +42,6 @@ class TestScripts:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "text": "my_data",
                         "type": "plain_text",
                     }
                 ],
@@ -109,7 +108,7 @@ class TestScripts:
                     },
                 ],
                 "usage_model": "bundled",
-                "version_tags": {},
+                "version_tags": {"foo": "string"},
             },
         )
         assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
@@ -399,7 +398,6 @@ class TestAsyncScripts:
                 "bindings": [
                     {
                         "name": "MY_ENV_VAR",
-                        "text": "my_data",
                         "type": "plain_text",
                     }
                 ],
@@ -466,7 +464,7 @@ class TestAsyncScripts:
                     },
                 ],
                 "usage_model": "bundled",
-                "version_tags": {},
+                "version_tags": {"foo": "string"},
             },
         )
         assert_matches_type(Optional[ScriptUpdateResponse], script, path=["response"])
