@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.waiting_rooms import (
     Event,
     EventDeleteResponse,
@@ -211,17 +211,17 @@ class TestEvents:
             waiting_room_id="699d98642c564d2e855e9661899b7252",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[Event], event, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Event], event, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         event = client.waiting_rooms.events.list(
             waiting_room_id="699d98642c564d2e855e9661899b7252",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            page={},
-            per_page={},
+            page=1,
+            per_page=5,
         )
-        assert_matches_type(SyncSinglePage[Event], event, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Event], event, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -233,7 +233,7 @@ class TestEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event = response.parse()
-        assert_matches_type(SyncSinglePage[Event], event, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Event], event, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -245,7 +245,7 @@ class TestEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event = response.parse()
-            assert_matches_type(SyncSinglePage[Event], event, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[Event], event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -677,17 +677,17 @@ class TestAsyncEvents:
             waiting_room_id="699d98642c564d2e855e9661899b7252",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[Event], event, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Event], event, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         event = await async_client.waiting_rooms.events.list(
             waiting_room_id="699d98642c564d2e855e9661899b7252",
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            page={},
-            per_page={},
+            page=1,
+            per_page=5,
         )
-        assert_matches_type(AsyncSinglePage[Event], event, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Event], event, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -699,7 +699,7 @@ class TestAsyncEvents:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         event = await response.parse()
-        assert_matches_type(AsyncSinglePage[Event], event, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Event], event, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -711,7 +711,7 @@ class TestAsyncEvents:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             event = await response.parse()
-            assert_matches_type(AsyncSinglePage[Event], event, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[Event], event, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

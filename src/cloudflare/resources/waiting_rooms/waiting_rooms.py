@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Iterable, cast
+from typing import List, Type, Iterable, cast
 from typing_extensions import Literal
 
 import httpx
@@ -61,7 +61,7 @@ from ..._response import (
     async_to_streamed_response_wrapper,
 )
 from ..._wrappers import ResultWrapper
-from ...pagination import SyncSinglePage, AsyncSinglePage
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from .events.events import EventsResource, AsyncEventsResource
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.waiting_rooms import (
@@ -141,6 +141,7 @@ class WaitingRoomsResource(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         disable_session_renewal: bool | NotGiven = NOT_GIVEN,
+        enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
         json_response_enabled: bool | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
         queue_all: bool | NotGiven = NOT_GIVEN,
@@ -224,6 +225,8 @@ class WaitingRoomsResource(SyncAPIResource):
               session_duration minutes to browse the site. After that, they will have to go
               through the waiting room again. If `false`, a user's session cookie will be
               automatically renewed on every request.
+
+          enabled_origin_commands: A list of enabled origin commands.
 
           json_response_enabled: Only available for the Waiting Room Advanced subscription. If `true`, requests
               to the waiting room with the header `Accept: application/json` will receive a
@@ -442,6 +445,7 @@ class WaitingRoomsResource(SyncAPIResource):
                     "default_template_language": default_template_language,
                     "description": description,
                     "disable_session_renewal": disable_session_renewal,
+                    "enabled_origin_commands": enabled_origin_commands,
                     "json_response_enabled": json_response_enabled,
                     "path": path,
                     "queue_all": queue_all,
@@ -497,6 +501,7 @@ class WaitingRoomsResource(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         disable_session_renewal: bool | NotGiven = NOT_GIVEN,
+        enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
         json_response_enabled: bool | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
         queue_all: bool | NotGiven = NOT_GIVEN,
@@ -580,6 +585,8 @@ class WaitingRoomsResource(SyncAPIResource):
               session_duration minutes to browse the site. After that, they will have to go
               through the waiting room again. If `false`, a user's session cookie will be
               automatically renewed on every request.
+
+          enabled_origin_commands: A list of enabled origin commands.
 
           json_response_enabled: Only available for the Waiting Room Advanced subscription. If `true`, requests
               to the waiting room with the header `Accept: application/json` will receive a
@@ -800,6 +807,7 @@ class WaitingRoomsResource(SyncAPIResource):
                     "default_template_language": default_template_language,
                     "description": description,
                     "disable_session_renewal": disable_session_renewal,
+                    "enabled_origin_commands": enabled_origin_commands,
                     "json_response_enabled": json_response_enabled,
                     "path": path,
                     "queue_all": queue_all,
@@ -824,15 +832,15 @@ class WaitingRoomsResource(SyncAPIResource):
         self,
         *,
         zone_id: str,
-        page: object | NotGiven = NOT_GIVEN,
-        per_page: object | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> SyncSinglePage[WaitingRoom]:
+    ) -> SyncV4PagePaginationArray[WaitingRoom]:
         """
         Lists waiting rooms.
 
@@ -855,7 +863,7 @@ class WaitingRoomsResource(SyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms",
-            page=SyncSinglePage[WaitingRoom],
+            page=SyncV4PagePaginationArray[WaitingRoom],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -949,6 +957,7 @@ class WaitingRoomsResource(SyncAPIResource):
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         disable_session_renewal: bool | NotGiven = NOT_GIVEN,
+        enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
         json_response_enabled: bool | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
         queue_all: bool | NotGiven = NOT_GIVEN,
@@ -1032,6 +1041,8 @@ class WaitingRoomsResource(SyncAPIResource):
               session_duration minutes to browse the site. After that, they will have to go
               through the waiting room again. If `false`, a user's session cookie will be
               automatically renewed on every request.
+
+          enabled_origin_commands: A list of enabled origin commands.
 
           json_response_enabled: Only available for the Waiting Room Advanced subscription. If `true`, requests
               to the waiting room with the header `Accept: application/json` will receive a
@@ -1252,6 +1263,7 @@ class WaitingRoomsResource(SyncAPIResource):
                     "default_template_language": default_template_language,
                     "description": description,
                     "disable_session_renewal": disable_session_renewal,
+                    "enabled_origin_commands": enabled_origin_commands,
                     "json_response_enabled": json_response_enabled,
                     "path": path,
                     "queue_all": queue_all,
@@ -1378,6 +1390,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         disable_session_renewal: bool | NotGiven = NOT_GIVEN,
+        enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
         json_response_enabled: bool | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
         queue_all: bool | NotGiven = NOT_GIVEN,
@@ -1461,6 +1474,8 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
               session_duration minutes to browse the site. After that, they will have to go
               through the waiting room again. If `false`, a user's session cookie will be
               automatically renewed on every request.
+
+          enabled_origin_commands: A list of enabled origin commands.
 
           json_response_enabled: Only available for the Waiting Room Advanced subscription. If `true`, requests
               to the waiting room with the header `Accept: application/json` will receive a
@@ -1679,6 +1694,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
                     "default_template_language": default_template_language,
                     "description": description,
                     "disable_session_renewal": disable_session_renewal,
+                    "enabled_origin_commands": enabled_origin_commands,
                     "json_response_enabled": json_response_enabled,
                     "path": path,
                     "queue_all": queue_all,
@@ -1734,6 +1750,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         disable_session_renewal: bool | NotGiven = NOT_GIVEN,
+        enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
         json_response_enabled: bool | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
         queue_all: bool | NotGiven = NOT_GIVEN,
@@ -1817,6 +1834,8 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
               session_duration minutes to browse the site. After that, they will have to go
               through the waiting room again. If `false`, a user's session cookie will be
               automatically renewed on every request.
+
+          enabled_origin_commands: A list of enabled origin commands.
 
           json_response_enabled: Only available for the Waiting Room Advanced subscription. If `true`, requests
               to the waiting room with the header `Accept: application/json` will receive a
@@ -2037,6 +2056,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
                     "default_template_language": default_template_language,
                     "description": description,
                     "disable_session_renewal": disable_session_renewal,
+                    "enabled_origin_commands": enabled_origin_commands,
                     "json_response_enabled": json_response_enabled,
                     "path": path,
                     "queue_all": queue_all,
@@ -2061,15 +2081,15 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         self,
         *,
         zone_id: str,
-        page: object | NotGiven = NOT_GIVEN,
-        per_page: object | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> AsyncPaginator[WaitingRoom, AsyncSinglePage[WaitingRoom]]:
+    ) -> AsyncPaginator[WaitingRoom, AsyncV4PagePaginationArray[WaitingRoom]]:
         """
         Lists waiting rooms.
 
@@ -2092,7 +2112,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
             raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms",
-            page=AsyncSinglePage[WaitingRoom],
+            page=AsyncV4PagePaginationArray[WaitingRoom],
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -2186,6 +2206,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
         | NotGiven = NOT_GIVEN,
         description: str | NotGiven = NOT_GIVEN,
         disable_session_renewal: bool | NotGiven = NOT_GIVEN,
+        enabled_origin_commands: List[Literal["revoke"]] | NotGiven = NOT_GIVEN,
         json_response_enabled: bool | NotGiven = NOT_GIVEN,
         path: str | NotGiven = NOT_GIVEN,
         queue_all: bool | NotGiven = NOT_GIVEN,
@@ -2269,6 +2290,8 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
               session_duration minutes to browse the site. After that, they will have to go
               through the waiting room again. If `false`, a user's session cookie will be
               automatically renewed on every request.
+
+          enabled_origin_commands: A list of enabled origin commands.
 
           json_response_enabled: Only available for the Waiting Room Advanced subscription. If `true`, requests
               to the waiting room with the header `Accept: application/json` will receive a
@@ -2489,6 +2512,7 @@ class AsyncWaitingRoomsResource(AsyncAPIResource):
                     "default_template_language": default_template_language,
                     "description": description,
                     "disable_session_renewal": disable_session_renewal,
+                    "enabled_origin_commands": enabled_origin_commands,
                     "json_response_enabled": json_response_enabled,
                     "path": path,
                     "queue_all": queue_all,
