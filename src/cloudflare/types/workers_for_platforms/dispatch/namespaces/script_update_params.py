@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable
+from typing import Dict, List, Union, Iterable
 from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ....._types import FileTypes
@@ -12,7 +12,14 @@ from ....workers.single_step_migration_param import SingleStepMigrationParam
 from ....workers.placement_configuration_param import PlacementConfigurationParam
 from ....workers.scripts.consumer_script_param import ConsumerScriptParam
 
-__all__ = ["ScriptUpdateParams", "Variant0", "Variant0Metadata", "Variant0MetadataMigrations", "Variant1"]
+__all__ = [
+    "ScriptUpdateParams",
+    "Variant0",
+    "Variant0Metadata",
+    "Variant0MetadataBinding",
+    "Variant0MetadataMigrations",
+    "Variant1",
+]
 
 
 class Variant0(TypedDict, total=False):
@@ -35,11 +42,25 @@ class Variant0(TypedDict, total=False):
     """JSON encoded metadata about the uploaded parts and Worker configuration."""
 
 
+class Variant0MetadataBindingTyped(TypedDict, total=False):
+    name: str
+    """Name of the binding variable."""
+
+    type: str
+    """Type of binding.
+
+    You can find more about bindings on our docs:
+    https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/#bindings.
+    """
+
+
+Variant0MetadataBinding: TypeAlias = Union[Variant0MetadataBindingTyped, Dict[str, object]]
+
 Variant0MetadataMigrations: TypeAlias = Union[SingleStepMigrationParam, SteppedMigrationParam]
 
 
 class Variant0Metadata(TypedDict, total=False):
-    bindings: Iterable[object]
+    bindings: Iterable[Variant0MetadataBinding]
     """List of bindings available to the worker."""
 
     body_part: str
@@ -89,7 +110,7 @@ class Variant0Metadata(TypedDict, total=False):
     usage_model: Literal["bundled", "unbound"]
     """Usage model to apply to invocations."""
 
-    version_tags: object
+    version_tags: Dict[str, str]
     """Key-value pairs to use as tags for this version of this Worker"""
 
 
