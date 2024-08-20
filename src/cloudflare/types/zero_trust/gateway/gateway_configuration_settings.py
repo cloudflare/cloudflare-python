@@ -21,7 +21,8 @@ class Certificate(BaseModel):
     id: str
     """UUID of certificate to be used for interception.
 
-    Certificate must be active on the edge.
+    Certificate must be active on the edge. A nil UUID will indicate the Cloudflare
+    Root CA should be used.
     """
 
 
