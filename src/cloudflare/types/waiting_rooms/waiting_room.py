@@ -102,6 +102,9 @@ class WaitingRoom(BaseModel):
     automatically renewed on every request.
     """
 
+    enabled_origin_commands: Optional[List[Literal["revoke"]]] = None
+    """A list of enabled origin commands."""
+
     host: Optional[str] = None
     """The host name to which the waiting room will be applied (no wildcards).
 
