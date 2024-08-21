@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Optional, cast
+from typing import Any, cast
 
 import httpx
 
@@ -176,7 +176,7 @@ class DevicesResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceGetResponse]:
+    ) -> DeviceGetResponse:
         """
         Fetches details for a single device.
 
@@ -196,7 +196,7 @@ class DevicesResource(SyncAPIResource):
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return cast(
-            Optional[DeviceGetResponse],
+            DeviceGetResponse,
             self._get(
                 f"/accounts/{account_id}/devices/{device_id}",
                 options=make_request_options(
@@ -204,7 +204,7 @@ class DevicesResource(SyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[DeviceGetResponse]]._unwrapper,
+                    post_parser=ResultWrapper[DeviceGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DeviceGetResponse]
@@ -299,7 +299,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[DeviceGetResponse]:
+    ) -> DeviceGetResponse:
         """
         Fetches details for a single device.
 
@@ -319,7 +319,7 @@ class AsyncDevicesResource(AsyncAPIResource):
         if not device_id:
             raise ValueError(f"Expected a non-empty value for `device_id` but received {device_id!r}")
         return cast(
-            Optional[DeviceGetResponse],
+            DeviceGetResponse,
             await self._get(
                 f"/accounts/{account_id}/devices/{device_id}",
                 options=make_request_options(
@@ -327,7 +327,7 @@ class AsyncDevicesResource(AsyncAPIResource):
                     extra_query=extra_query,
                     extra_body=extra_body,
                     timeout=timeout,
-                    post_parser=ResultWrapper[Optional[DeviceGetResponse]]._unwrapper,
+                    post_parser=ResultWrapper[DeviceGetResponse]._unwrapper,
                 ),
                 cast_to=cast(
                     Any, ResultWrapper[DeviceGetResponse]
