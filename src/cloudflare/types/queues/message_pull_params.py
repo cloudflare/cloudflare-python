@@ -9,12 +9,12 @@ __all__ = ["MessagePullParams"]
 
 class MessagePullParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
+    """Identifier"""
 
     batch_size: float
     """The maximum number of messages to include in a batch."""
 
-    visibility_timeout_ms: float
+    visibility_timeout: float
     """The number of milliseconds that a message is exclusively leased.
 
     After the timeout, the message becomes available for another attempt.
