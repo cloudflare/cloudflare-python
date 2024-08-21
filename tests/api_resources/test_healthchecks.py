@@ -9,7 +9,7 @@ import pytest
 
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 from cloudflare.types.healthchecks import (
     Healthcheck,
     HealthcheckDeleteResponse,
@@ -201,16 +201,16 @@ class TestHealthchecks:
         healthcheck = client.healthchecks.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(SyncSinglePage[Healthcheck], healthcheck, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Healthcheck], healthcheck, path=["response"])
 
     @parametrize
     def test_method_list_with_all_params(self, client: Cloudflare) -> None:
         healthcheck = client.healthchecks.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            page={},
-            per_page={},
+            page=1,
+            per_page=5,
         )
-        assert_matches_type(SyncSinglePage[Healthcheck], healthcheck, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Healthcheck], healthcheck, path=["response"])
 
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
@@ -221,7 +221,7 @@ class TestHealthchecks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         healthcheck = response.parse()
-        assert_matches_type(SyncSinglePage[Healthcheck], healthcheck, path=["response"])
+        assert_matches_type(SyncV4PagePaginationArray[Healthcheck], healthcheck, path=["response"])
 
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
@@ -232,7 +232,7 @@ class TestHealthchecks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             healthcheck = response.parse()
-            assert_matches_type(SyncSinglePage[Healthcheck], healthcheck, path=["response"])
+            assert_matches_type(SyncV4PagePaginationArray[Healthcheck], healthcheck, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -617,16 +617,16 @@ class TestAsyncHealthchecks:
         healthcheck = await async_client.healthchecks.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(AsyncSinglePage[Healthcheck], healthcheck, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Healthcheck], healthcheck, path=["response"])
 
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncCloudflare) -> None:
         healthcheck = await async_client.healthchecks.list(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
-            page={},
-            per_page={},
+            page=1,
+            per_page=5,
         )
-        assert_matches_type(AsyncSinglePage[Healthcheck], healthcheck, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Healthcheck], healthcheck, path=["response"])
 
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -637,7 +637,7 @@ class TestAsyncHealthchecks:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         healthcheck = await response.parse()
-        assert_matches_type(AsyncSinglePage[Healthcheck], healthcheck, path=["response"])
+        assert_matches_type(AsyncV4PagePaginationArray[Healthcheck], healthcheck, path=["response"])
 
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
@@ -648,7 +648,7 @@ class TestAsyncHealthchecks:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             healthcheck = await response.parse()
-            assert_matches_type(AsyncSinglePage[Healthcheck], healthcheck, path=["response"])
+            assert_matches_type(AsyncV4PagePaginationArray[Healthcheck], healthcheck, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
