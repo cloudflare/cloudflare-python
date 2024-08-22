@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -23,7 +23,7 @@ class TestPatterns:
             account_id="account_id",
             regex="regex",
         )
-        assert_matches_type(PatternValidateResponse, pattern, path=["response"])
+        assert_matches_type(Optional[PatternValidateResponse], pattern, path=["response"])
 
     @parametrize
     def test_raw_response_validate(self, client: Cloudflare) -> None:
@@ -35,7 +35,7 @@ class TestPatterns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pattern = response.parse()
-        assert_matches_type(PatternValidateResponse, pattern, path=["response"])
+        assert_matches_type(Optional[PatternValidateResponse], pattern, path=["response"])
 
     @parametrize
     def test_streaming_response_validate(self, client: Cloudflare) -> None:
@@ -47,7 +47,7 @@ class TestPatterns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pattern = response.parse()
-            assert_matches_type(PatternValidateResponse, pattern, path=["response"])
+            assert_matches_type(Optional[PatternValidateResponse], pattern, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -69,7 +69,7 @@ class TestAsyncPatterns:
             account_id="account_id",
             regex="regex",
         )
-        assert_matches_type(PatternValidateResponse, pattern, path=["response"])
+        assert_matches_type(Optional[PatternValidateResponse], pattern, path=["response"])
 
     @parametrize
     async def test_raw_response_validate(self, async_client: AsyncCloudflare) -> None:
@@ -81,7 +81,7 @@ class TestAsyncPatterns:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         pattern = await response.parse()
-        assert_matches_type(PatternValidateResponse, pattern, path=["response"])
+        assert_matches_type(Optional[PatternValidateResponse], pattern, path=["response"])
 
     @parametrize
     async def test_streaming_response_validate(self, async_client: AsyncCloudflare) -> None:
@@ -93,7 +93,7 @@ class TestAsyncPatterns:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             pattern = await response.parse()
-            assert_matches_type(PatternValidateResponse, pattern, path=["response"])
+            assert_matches_type(Optional[PatternValidateResponse], pattern, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

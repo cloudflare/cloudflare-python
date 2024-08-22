@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -22,7 +22,7 @@ class TestPayloadLogs:
         payload_log = client.zero_trust.dlp.payload_logs.update(
             account_id="account_id",
         )
-        assert_matches_type(PayloadLogUpdateResponse, payload_log, path=["response"])
+        assert_matches_type(Optional[PayloadLogUpdateResponse], payload_log, path=["response"])
 
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
@@ -30,7 +30,7 @@ class TestPayloadLogs:
             account_id="account_id",
             public_key="public_key",
         )
-        assert_matches_type(PayloadLogUpdateResponse, payload_log, path=["response"])
+        assert_matches_type(Optional[PayloadLogUpdateResponse], payload_log, path=["response"])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -41,7 +41,7 @@ class TestPayloadLogs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payload_log = response.parse()
-        assert_matches_type(PayloadLogUpdateResponse, payload_log, path=["response"])
+        assert_matches_type(Optional[PayloadLogUpdateResponse], payload_log, path=["response"])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -52,7 +52,7 @@ class TestPayloadLogs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payload_log = response.parse()
-            assert_matches_type(PayloadLogUpdateResponse, payload_log, path=["response"])
+            assert_matches_type(Optional[PayloadLogUpdateResponse], payload_log, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -68,7 +68,7 @@ class TestPayloadLogs:
         payload_log = client.zero_trust.dlp.payload_logs.get(
             account_id="account_id",
         )
-        assert_matches_type(PayloadLogGetResponse, payload_log, path=["response"])
+        assert_matches_type(Optional[PayloadLogGetResponse], payload_log, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -79,7 +79,7 @@ class TestPayloadLogs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payload_log = response.parse()
-        assert_matches_type(PayloadLogGetResponse, payload_log, path=["response"])
+        assert_matches_type(Optional[PayloadLogGetResponse], payload_log, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -90,7 +90,7 @@ class TestPayloadLogs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payload_log = response.parse()
-            assert_matches_type(PayloadLogGetResponse, payload_log, path=["response"])
+            assert_matches_type(Optional[PayloadLogGetResponse], payload_log, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -110,7 +110,7 @@ class TestAsyncPayloadLogs:
         payload_log = await async_client.zero_trust.dlp.payload_logs.update(
             account_id="account_id",
         )
-        assert_matches_type(PayloadLogUpdateResponse, payload_log, path=["response"])
+        assert_matches_type(Optional[PayloadLogUpdateResponse], payload_log, path=["response"])
 
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
@@ -118,7 +118,7 @@ class TestAsyncPayloadLogs:
             account_id="account_id",
             public_key="public_key",
         )
-        assert_matches_type(PayloadLogUpdateResponse, payload_log, path=["response"])
+        assert_matches_type(Optional[PayloadLogUpdateResponse], payload_log, path=["response"])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -129,7 +129,7 @@ class TestAsyncPayloadLogs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payload_log = await response.parse()
-        assert_matches_type(PayloadLogUpdateResponse, payload_log, path=["response"])
+        assert_matches_type(Optional[PayloadLogUpdateResponse], payload_log, path=["response"])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -140,7 +140,7 @@ class TestAsyncPayloadLogs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payload_log = await response.parse()
-            assert_matches_type(PayloadLogUpdateResponse, payload_log, path=["response"])
+            assert_matches_type(Optional[PayloadLogUpdateResponse], payload_log, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -156,7 +156,7 @@ class TestAsyncPayloadLogs:
         payload_log = await async_client.zero_trust.dlp.payload_logs.get(
             account_id="account_id",
         )
-        assert_matches_type(PayloadLogGetResponse, payload_log, path=["response"])
+        assert_matches_type(Optional[PayloadLogGetResponse], payload_log, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -167,7 +167,7 @@ class TestAsyncPayloadLogs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         payload_log = await response.parse()
-        assert_matches_type(PayloadLogGetResponse, payload_log, path=["response"])
+        assert_matches_type(Optional[PayloadLogGetResponse], payload_log, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -178,7 +178,7 @@ class TestAsyncPayloadLogs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             payload_log = await response.parse()
-            assert_matches_type(PayloadLogGetResponse, payload_log, path=["response"])
+            assert_matches_type(Optional[PayloadLogGetResponse], payload_log, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

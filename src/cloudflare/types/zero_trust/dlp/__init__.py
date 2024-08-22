@@ -8,6 +8,7 @@ from .dataset_array import DatasetArray as DatasetArray
 from .dataset_creation import DatasetCreation as DatasetCreation
 from .context_awareness import ContextAwareness as ContextAwareness
 from .skip_configuration import SkipConfiguration as SkipConfiguration
+from .profile_list_params import ProfileListParams as ProfileListParams
 from .dataset_create_params import DatasetCreateParams as DatasetCreateParams
 from .dataset_update_params import DatasetUpdateParams as DatasetUpdateParams
 from .pattern_validate_params import PatternValidateParams as PatternValidateParams

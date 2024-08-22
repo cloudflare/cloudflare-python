@@ -4,14 +4,14 @@ from __future__ import annotations
 
 from typing_extensions import Required, TypedDict
 
-__all__ = ["ConsumerUpdateParams"]
+__all__ = ["ProfileListParams"]
 
 
-class ConsumerUpdateParams(TypedDict, total=False):
+class ProfileListParams(TypedDict, total=False):
     account_id: Required[str]
-    """Identifier."""
 
-    queue_id: Required[str]
-    """Identifier."""
-
-    body: Required[object]
+    all: bool
+    """
+    Return all profiles, including those that current account does not have access
+    to.
+    """

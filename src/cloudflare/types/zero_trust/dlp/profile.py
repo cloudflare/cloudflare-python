@@ -267,6 +267,7 @@ class Predefined(BaseModel):
     ocr_enabled: Optional[bool] = None
 
     open_access: Optional[bool] = None
+    """Whether this profile can be accessed by anyone"""
 
 
 class IntegrationEntryCustom(BaseModel):

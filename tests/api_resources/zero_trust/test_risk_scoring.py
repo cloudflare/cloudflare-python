@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, cast
+from typing import Any, Optional, cast
 
 import pytest
 
@@ -23,7 +23,7 @@ class TestRiskScoring:
             user_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
         )
-        assert_matches_type(RiskScoringGetResponse, risk_scoring, path=["response"])
+        assert_matches_type(Optional[RiskScoringGetResponse], risk_scoring, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -35,7 +35,7 @@ class TestRiskScoring:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         risk_scoring = response.parse()
-        assert_matches_type(RiskScoringGetResponse, risk_scoring, path=["response"])
+        assert_matches_type(Optional[RiskScoringGetResponse], risk_scoring, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -47,7 +47,7 @@ class TestRiskScoring:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             risk_scoring = response.parse()
-            assert_matches_type(RiskScoringGetResponse, risk_scoring, path=["response"])
+            assert_matches_type(Optional[RiskScoringGetResponse], risk_scoring, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -123,7 +123,7 @@ class TestAsyncRiskScoring:
             user_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             account_id="account_id",
         )
-        assert_matches_type(RiskScoringGetResponse, risk_scoring, path=["response"])
+        assert_matches_type(Optional[RiskScoringGetResponse], risk_scoring, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -135,7 +135,7 @@ class TestAsyncRiskScoring:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         risk_scoring = await response.parse()
-        assert_matches_type(RiskScoringGetResponse, risk_scoring, path=["response"])
+        assert_matches_type(Optional[RiskScoringGetResponse], risk_scoring, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -147,7 +147,7 @@ class TestAsyncRiskScoring:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             risk_scoring = await response.parse()
-            assert_matches_type(RiskScoringGetResponse, risk_scoring, path=["response"])
+            assert_matches_type(Optional[RiskScoringGetResponse], risk_scoring, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

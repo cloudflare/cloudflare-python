@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, Type, Optional, cast
 
 import httpx
 
@@ -19,6 +19,7 @@ from ...._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
+from ...._wrappers import ResultWrapper
 from ...._base_client import make_request_options
 from ....types.zero_trust.risk_scoring import behaviour_update_params
 from ....types.zero_trust.risk_scoring.behaviour_get_response import BehaviourGetResponse
@@ -47,7 +48,7 @@ class BehavioursResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BehaviourUpdateResponse:
+    ) -> Optional[BehaviourUpdateResponse]:
         """
         Update configuration for risk behaviors
 
@@ -66,9 +67,13 @@ class BehavioursResource(SyncAPIResource):
             f"/accounts/{account_id}/zt_risk_scoring/behaviors",
             body=maybe_transform({"behaviors": behaviors}, behaviour_update_params.BehaviourUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[BehaviourUpdateResponse]]._unwrapper,
             ),
-            cast_to=BehaviourUpdateResponse,
+            cast_to=cast(Type[Optional[BehaviourUpdateResponse]], ResultWrapper[BehaviourUpdateResponse]),
         )
 
     def get(
@@ -81,7 +86,7 @@ class BehavioursResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BehaviourGetResponse:
+    ) -> Optional[BehaviourGetResponse]:
         """
         Get all behaviors and associated configuration
 
@@ -99,9 +104,13 @@ class BehavioursResource(SyncAPIResource):
         return self._get(
             f"/accounts/{account_id}/zt_risk_scoring/behaviors",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[BehaviourGetResponse]]._unwrapper,
             ),
-            cast_to=BehaviourGetResponse,
+            cast_to=cast(Type[Optional[BehaviourGetResponse]], ResultWrapper[BehaviourGetResponse]),
         )
 
 
@@ -125,7 +134,7 @@ class AsyncBehavioursResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BehaviourUpdateResponse:
+    ) -> Optional[BehaviourUpdateResponse]:
         """
         Update configuration for risk behaviors
 
@@ -144,9 +153,13 @@ class AsyncBehavioursResource(AsyncAPIResource):
             f"/accounts/{account_id}/zt_risk_scoring/behaviors",
             body=await async_maybe_transform({"behaviors": behaviors}, behaviour_update_params.BehaviourUpdateParams),
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[BehaviourUpdateResponse]]._unwrapper,
             ),
-            cast_to=BehaviourUpdateResponse,
+            cast_to=cast(Type[Optional[BehaviourUpdateResponse]], ResultWrapper[BehaviourUpdateResponse]),
         )
 
     async def get(
@@ -159,7 +172,7 @@ class AsyncBehavioursResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> BehaviourGetResponse:
+    ) -> Optional[BehaviourGetResponse]:
         """
         Get all behaviors and associated configuration
 
@@ -177,9 +190,13 @@ class AsyncBehavioursResource(AsyncAPIResource):
         return await self._get(
             f"/accounts/{account_id}/zt_risk_scoring/behaviors",
             options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[BehaviourGetResponse]]._unwrapper,
             ),
-            cast_to=BehaviourGetResponse,
+            cast_to=cast(Type[Optional[BehaviourGetResponse]], ResultWrapper[BehaviourGetResponse]),
         )
 
 
