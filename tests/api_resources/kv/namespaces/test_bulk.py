@@ -6,6 +6,8 @@ from cloudflare import Cloudflare, AsyncCloudflare
 
 from typing import Optional, Any, cast
 
+from cloudflare.types.kv.namespaces import BulkUpdateResponse, BulkDeleteResponse
+
 import os
 import pytest
 import httpx
@@ -29,7 +31,7 @@ class TestBulk:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body=[{}, {}, {}],
         )
-        assert_matches_type(object, bulk, path=['response'])
+        assert_matches_type(Optional[BulkUpdateResponse], bulk, path=['response'])
 
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
@@ -43,7 +45,7 @@ class TestBulk:
         assert response.is_closed is True
         assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         bulk = response.parse()
-        assert_matches_type(object, bulk, path=['response'])
+        assert_matches_type(Optional[BulkUpdateResponse], bulk, path=['response'])
 
     @parametrize
     def test_streaming_response_update(self, client: Cloudflare) -> None:
@@ -56,7 +58,7 @@ class TestBulk:
             assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             bulk = response.parse()
-            assert_matches_type(object, bulk, path=['response'])
+            assert_matches_type(Optional[BulkUpdateResponse], bulk, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -82,7 +84,7 @@ class TestBulk:
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, bulk, path=['response'])
+        assert_matches_type(Optional[BulkDeleteResponse], bulk, path=['response'])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -95,7 +97,7 @@ class TestBulk:
         assert response.is_closed is True
         assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         bulk = response.parse()
-        assert_matches_type(object, bulk, path=['response'])
+        assert_matches_type(Optional[BulkDeleteResponse], bulk, path=['response'])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -107,7 +109,7 @@ class TestBulk:
             assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             bulk = response.parse()
-            assert_matches_type(object, bulk, path=['response'])
+            assert_matches_type(Optional[BulkDeleteResponse], bulk, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -135,7 +137,7 @@ class TestAsyncBulk:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             body=[{}, {}, {}],
         )
-        assert_matches_type(object, bulk, path=['response'])
+        assert_matches_type(Optional[BulkUpdateResponse], bulk, path=['response'])
 
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -149,7 +151,7 @@ class TestAsyncBulk:
         assert response.is_closed is True
         assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         bulk = await response.parse()
-        assert_matches_type(object, bulk, path=['response'])
+        assert_matches_type(Optional[BulkUpdateResponse], bulk, path=['response'])
 
     @parametrize
     async def test_streaming_response_update(self, async_client: AsyncCloudflare) -> None:
@@ -162,7 +164,7 @@ class TestAsyncBulk:
             assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             bulk = await response.parse()
-            assert_matches_type(object, bulk, path=['response'])
+            assert_matches_type(Optional[BulkUpdateResponse], bulk, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -188,7 +190,7 @@ class TestAsyncBulk:
             namespace_id="0f2ac74b498b48028cb68387c421e279",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(object, bulk, path=['response'])
+        assert_matches_type(Optional[BulkDeleteResponse], bulk, path=['response'])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -201,7 +203,7 @@ class TestAsyncBulk:
         assert response.is_closed is True
         assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         bulk = await response.parse()
-        assert_matches_type(object, bulk, path=['response'])
+        assert_matches_type(Optional[BulkDeleteResponse], bulk, path=['response'])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -213,7 +215,7 @@ class TestAsyncBulk:
             assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             bulk = await response.parse()
-            assert_matches_type(object, bulk, path=['response'])
+            assert_matches_type(Optional[BulkDeleteResponse], bulk, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 

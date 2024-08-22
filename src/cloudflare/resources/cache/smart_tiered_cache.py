@@ -10,9 +10,9 @@ from ...types.cache.smart_tiered_cache_delete_response import SmartTieredCacheDe
 
 from ..._wrappers import ResultWrapper
 
-from typing import Optional, Type
-
 from ..._base_client import make_request_options
+
+from typing import Type
 
 from ...types.cache.smart_tiered_cache_edit_response import SmartTieredCacheEditResponse
 
@@ -58,7 +58,7 @@ class SmartTieredCacheResource(SyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[SmartTieredCacheDeleteResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SmartTieredCacheDeleteResponse:
         """
         Remvoves enablement of Smart Tiered Cache
 
@@ -79,8 +79,8 @@ class SmartTieredCacheResource(SyncAPIResource):
           )
         return self._delete(
             f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[SmartTieredCacheDeleteResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[SmartTieredCacheDeleteResponse]], ResultWrapper[SmartTieredCacheDeleteResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[SmartTieredCacheDeleteResponse]._unwrapper),
+            cast_to=cast(Type[SmartTieredCacheDeleteResponse], ResultWrapper[SmartTieredCacheDeleteResponse]),
         )
 
     def edit(self,
@@ -92,7 +92,7 @@ class SmartTieredCacheResource(SyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[SmartTieredCacheEditResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SmartTieredCacheEditResponse:
         """
         Updates enablement of Tiered Cache
 
@@ -118,8 +118,8 @@ class SmartTieredCacheResource(SyncAPIResource):
             body=maybe_transform({
                 "value": value
             }, smart_tiered_cache_edit_params.SmartTieredCacheEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[SmartTieredCacheEditResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[SmartTieredCacheEditResponse]], ResultWrapper[SmartTieredCacheEditResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[SmartTieredCacheEditResponse]._unwrapper),
+            cast_to=cast(Type[SmartTieredCacheEditResponse], ResultWrapper[SmartTieredCacheEditResponse]),
         )
 
     def get(self,
@@ -130,7 +130,7 @@ class SmartTieredCacheResource(SyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[SmartTieredCacheGetResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SmartTieredCacheGetResponse:
         """
         Get Smart Tiered Cache setting
 
@@ -151,8 +151,8 @@ class SmartTieredCacheResource(SyncAPIResource):
           )
         return self._get(
             f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[SmartTieredCacheGetResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[SmartTieredCacheGetResponse]], ResultWrapper[SmartTieredCacheGetResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[SmartTieredCacheGetResponse]._unwrapper),
+            cast_to=cast(Type[SmartTieredCacheGetResponse], ResultWrapper[SmartTieredCacheGetResponse]),
         )
 
 class AsyncSmartTieredCacheResource(AsyncAPIResource):
@@ -172,7 +172,7 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[SmartTieredCacheDeleteResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SmartTieredCacheDeleteResponse:
         """
         Remvoves enablement of Smart Tiered Cache
 
@@ -193,8 +193,8 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
           )
         return await self._delete(
             f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[SmartTieredCacheDeleteResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[SmartTieredCacheDeleteResponse]], ResultWrapper[SmartTieredCacheDeleteResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[SmartTieredCacheDeleteResponse]._unwrapper),
+            cast_to=cast(Type[SmartTieredCacheDeleteResponse], ResultWrapper[SmartTieredCacheDeleteResponse]),
         )
 
     async def edit(self,
@@ -206,7 +206,7 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[SmartTieredCacheEditResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SmartTieredCacheEditResponse:
         """
         Updates enablement of Tiered Cache
 
@@ -232,8 +232,8 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
             body=await async_maybe_transform({
                 "value": value
             }, smart_tiered_cache_edit_params.SmartTieredCacheEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[SmartTieredCacheEditResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[SmartTieredCacheEditResponse]], ResultWrapper[SmartTieredCacheEditResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[SmartTieredCacheEditResponse]._unwrapper),
+            cast_to=cast(Type[SmartTieredCacheEditResponse], ResultWrapper[SmartTieredCacheEditResponse]),
         )
 
     async def get(self,
@@ -244,7 +244,7 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[SmartTieredCacheGetResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SmartTieredCacheGetResponse:
         """
         Get Smart Tiered Cache setting
 
@@ -265,8 +265,8 @@ class AsyncSmartTieredCacheResource(AsyncAPIResource):
           )
         return await self._get(
             f"/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[SmartTieredCacheGetResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[SmartTieredCacheGetResponse]], ResultWrapper[SmartTieredCacheGetResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[SmartTieredCacheGetResponse]._unwrapper),
+            cast_to=cast(Type[SmartTieredCacheGetResponse], ResultWrapper[SmartTieredCacheGetResponse]),
         )
 
 class SmartTieredCacheResourceWithRawResponse:

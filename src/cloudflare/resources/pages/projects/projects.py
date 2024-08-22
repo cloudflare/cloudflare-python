@@ -18,7 +18,7 @@ from ...._utils import maybe_transform, async_maybe_transform
 
 from ...._base_client import make_request_options, AsyncPaginator
 
-from typing import Type
+from typing import Type, Optional
 
 from ....types.pages.deployment import Deployment
 
@@ -190,7 +190,7 @@ class ProjectsResource(SyncAPIResource):
           )
         return self._delete(
             f"/accounts/{account_id}/pages/projects/{project_name}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[object]._unwrapper),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
@@ -330,7 +330,7 @@ class ProjectsResource(SyncAPIResource):
           )
         return self._post(
             f"/accounts/{account_id}/pages/projects/{project_name}/purge_build_cache",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[object]._unwrapper),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
@@ -472,7 +472,7 @@ class AsyncProjectsResource(AsyncAPIResource):
           )
         return await self._delete(
             f"/accounts/{account_id}/pages/projects/{project_name}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[object]._unwrapper),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
@@ -612,7 +612,7 @@ class AsyncProjectsResource(AsyncAPIResource):
           )
         return await self._post(
             f"/accounts/{account_id}/pages/projects/{project_name}/purge_build_cache",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[object]._unwrapper),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 

@@ -8,7 +8,7 @@ from cloudflare.types.zero_trust import Device, DeviceGetResponse
 
 from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
 
-from typing import Any, cast, Optional
+from typing import Any, cast
 
 import os
 import pytest
@@ -70,7 +70,7 @@ class TestDevices:
             device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[DeviceGetResponse], device, path=['response'])
+        assert_matches_type(DeviceGetResponse, device, path=['response'])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -83,7 +83,7 @@ class TestDevices:
         assert response.is_closed is True
         assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         device = response.parse()
-        assert_matches_type(Optional[DeviceGetResponse], device, path=['response'])
+        assert_matches_type(DeviceGetResponse, device, path=['response'])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -95,7 +95,7 @@ class TestDevices:
             assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             device = response.parse()
-            assert_matches_type(Optional[DeviceGetResponse], device, path=['response'])
+            assert_matches_type(DeviceGetResponse, device, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -161,7 +161,7 @@ class TestAsyncDevices:
             device_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[DeviceGetResponse], device, path=['response'])
+        assert_matches_type(DeviceGetResponse, device, path=['response'])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -174,7 +174,7 @@ class TestAsyncDevices:
         assert response.is_closed is True
         assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         device = await response.parse()
-        assert_matches_type(Optional[DeviceGetResponse], device, path=['response'])
+        assert_matches_type(DeviceGetResponse, device, path=['response'])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -186,7 +186,7 @@ class TestAsyncDevices:
             assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             device = await response.parse()
-            assert_matches_type(Optional[DeviceGetResponse], device, path=['response'])
+            assert_matches_type(DeviceGetResponse, device, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 

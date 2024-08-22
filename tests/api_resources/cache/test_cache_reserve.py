@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from cloudflare import Cloudflare, AsyncCloudflare
 
-from typing import Optional, Any, cast
-
 from cloudflare.types.cache import CacheReserveClearResponse, CacheReserveEditResponse, CacheReserveGetResponse, CacheReserveStatusResponse
+
+from typing import Any, cast
 
 import os
 import pytest
@@ -31,7 +31,7 @@ class TestCacheReserve:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="{}",
         )
-        assert_matches_type(Optional[CacheReserveClearResponse], cache_reserve, path=['response'])
+        assert_matches_type(CacheReserveClearResponse, cache_reserve, path=['response'])
 
     @parametrize
     def test_raw_response_clear(self, client: Cloudflare) -> None:
@@ -44,7 +44,7 @@ class TestCacheReserve:
         assert response.is_closed is True
         assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         cache_reserve = response.parse()
-        assert_matches_type(Optional[CacheReserveClearResponse], cache_reserve, path=['response'])
+        assert_matches_type(CacheReserveClearResponse, cache_reserve, path=['response'])
 
     @parametrize
     def test_streaming_response_clear(self, client: Cloudflare) -> None:
@@ -56,7 +56,7 @@ class TestCacheReserve:
             assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             cache_reserve = response.parse()
-            assert_matches_type(Optional[CacheReserveClearResponse], cache_reserve, path=['response'])
+            assert_matches_type(CacheReserveClearResponse, cache_reserve, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -74,7 +74,7 @@ class TestCacheReserve:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(Optional[CacheReserveEditResponse], cache_reserve, path=['response'])
+        assert_matches_type(CacheReserveEditResponse, cache_reserve, path=['response'])
 
     @parametrize
     def test_raw_response_edit(self, client: Cloudflare) -> None:
@@ -87,7 +87,7 @@ class TestCacheReserve:
         assert response.is_closed is True
         assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         cache_reserve = response.parse()
-        assert_matches_type(Optional[CacheReserveEditResponse], cache_reserve, path=['response'])
+        assert_matches_type(CacheReserveEditResponse, cache_reserve, path=['response'])
 
     @parametrize
     def test_streaming_response_edit(self, client: Cloudflare) -> None:
@@ -99,7 +99,7 @@ class TestCacheReserve:
             assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             cache_reserve = response.parse()
-            assert_matches_type(Optional[CacheReserveEditResponse], cache_reserve, path=['response'])
+            assert_matches_type(CacheReserveEditResponse, cache_reserve, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -116,7 +116,7 @@ class TestCacheReserve:
         cache_reserve = client.cache.cache_reserve.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[CacheReserveGetResponse], cache_reserve, path=['response'])
+        assert_matches_type(CacheReserveGetResponse, cache_reserve, path=['response'])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
@@ -128,7 +128,7 @@ class TestCacheReserve:
         assert response.is_closed is True
         assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         cache_reserve = response.parse()
-        assert_matches_type(Optional[CacheReserveGetResponse], cache_reserve, path=['response'])
+        assert_matches_type(CacheReserveGetResponse, cache_reserve, path=['response'])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
@@ -139,7 +139,7 @@ class TestCacheReserve:
             assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             cache_reserve = response.parse()
-            assert_matches_type(Optional[CacheReserveGetResponse], cache_reserve, path=['response'])
+            assert_matches_type(CacheReserveGetResponse, cache_reserve, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -155,7 +155,7 @@ class TestCacheReserve:
         cache_reserve = client.cache.cache_reserve.status(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[CacheReserveStatusResponse], cache_reserve, path=['response'])
+        assert_matches_type(CacheReserveStatusResponse, cache_reserve, path=['response'])
 
     @parametrize
     def test_raw_response_status(self, client: Cloudflare) -> None:
@@ -167,7 +167,7 @@ class TestCacheReserve:
         assert response.is_closed is True
         assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         cache_reserve = response.parse()
-        assert_matches_type(Optional[CacheReserveStatusResponse], cache_reserve, path=['response'])
+        assert_matches_type(CacheReserveStatusResponse, cache_reserve, path=['response'])
 
     @parametrize
     def test_streaming_response_status(self, client: Cloudflare) -> None:
@@ -178,7 +178,7 @@ class TestCacheReserve:
             assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             cache_reserve = response.parse()
-            assert_matches_type(Optional[CacheReserveStatusResponse], cache_reserve, path=['response'])
+            assert_matches_type(CacheReserveStatusResponse, cache_reserve, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -198,7 +198,7 @@ class TestAsyncCacheReserve:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             body="{}",
         )
-        assert_matches_type(Optional[CacheReserveClearResponse], cache_reserve, path=['response'])
+        assert_matches_type(CacheReserveClearResponse, cache_reserve, path=['response'])
 
     @parametrize
     async def test_raw_response_clear(self, async_client: AsyncCloudflare) -> None:
@@ -211,7 +211,7 @@ class TestAsyncCacheReserve:
         assert response.is_closed is True
         assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         cache_reserve = await response.parse()
-        assert_matches_type(Optional[CacheReserveClearResponse], cache_reserve, path=['response'])
+        assert_matches_type(CacheReserveClearResponse, cache_reserve, path=['response'])
 
     @parametrize
     async def test_streaming_response_clear(self, async_client: AsyncCloudflare) -> None:
@@ -223,7 +223,7 @@ class TestAsyncCacheReserve:
             assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             cache_reserve = await response.parse()
-            assert_matches_type(Optional[CacheReserveClearResponse], cache_reserve, path=['response'])
+            assert_matches_type(CacheReserveClearResponse, cache_reserve, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -241,7 +241,7 @@ class TestAsyncCacheReserve:
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
             value="on",
         )
-        assert_matches_type(Optional[CacheReserveEditResponse], cache_reserve, path=['response'])
+        assert_matches_type(CacheReserveEditResponse, cache_reserve, path=['response'])
 
     @parametrize
     async def test_raw_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -254,7 +254,7 @@ class TestAsyncCacheReserve:
         assert response.is_closed is True
         assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         cache_reserve = await response.parse()
-        assert_matches_type(Optional[CacheReserveEditResponse], cache_reserve, path=['response'])
+        assert_matches_type(CacheReserveEditResponse, cache_reserve, path=['response'])
 
     @parametrize
     async def test_streaming_response_edit(self, async_client: AsyncCloudflare) -> None:
@@ -266,7 +266,7 @@ class TestAsyncCacheReserve:
             assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             cache_reserve = await response.parse()
-            assert_matches_type(Optional[CacheReserveEditResponse], cache_reserve, path=['response'])
+            assert_matches_type(CacheReserveEditResponse, cache_reserve, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -283,7 +283,7 @@ class TestAsyncCacheReserve:
         cache_reserve = await async_client.cache.cache_reserve.get(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[CacheReserveGetResponse], cache_reserve, path=['response'])
+        assert_matches_type(CacheReserveGetResponse, cache_reserve, path=['response'])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -295,7 +295,7 @@ class TestAsyncCacheReserve:
         assert response.is_closed is True
         assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         cache_reserve = await response.parse()
-        assert_matches_type(Optional[CacheReserveGetResponse], cache_reserve, path=['response'])
+        assert_matches_type(CacheReserveGetResponse, cache_reserve, path=['response'])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
@@ -306,7 +306,7 @@ class TestAsyncCacheReserve:
             assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             cache_reserve = await response.parse()
-            assert_matches_type(Optional[CacheReserveGetResponse], cache_reserve, path=['response'])
+            assert_matches_type(CacheReserveGetResponse, cache_reserve, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -322,7 +322,7 @@ class TestAsyncCacheReserve:
         cache_reserve = await async_client.cache.cache_reserve.status(
             zone_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(Optional[CacheReserveStatusResponse], cache_reserve, path=['response'])
+        assert_matches_type(CacheReserveStatusResponse, cache_reserve, path=['response'])
 
     @parametrize
     async def test_raw_response_status(self, async_client: AsyncCloudflare) -> None:
@@ -334,7 +334,7 @@ class TestAsyncCacheReserve:
         assert response.is_closed is True
         assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         cache_reserve = await response.parse()
-        assert_matches_type(Optional[CacheReserveStatusResponse], cache_reserve, path=['response'])
+        assert_matches_type(CacheReserveStatusResponse, cache_reserve, path=['response'])
 
     @parametrize
     async def test_streaming_response_status(self, async_client: AsyncCloudflare) -> None:
@@ -345,7 +345,7 @@ class TestAsyncCacheReserve:
             assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             cache_reserve = await response.parse()
-            assert_matches_type(Optional[CacheReserveStatusResponse], cache_reserve, path=['response'])
+            assert_matches_type(CacheReserveStatusResponse, cache_reserve, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 

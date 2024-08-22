@@ -16,7 +16,7 @@ from ....._utils import maybe_transform, async_maybe_transform
 
 from ....._base_client import make_request_options, AsyncPaginator
 
-from typing import Type
+from typing import Type, Optional
 
 from .....pagination import SyncSinglePage, AsyncSinglePage
 
@@ -204,7 +204,7 @@ class DeploymentsResource(SyncAPIResource):
           )
         return self._delete(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[object]._unwrapper),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
@@ -510,7 +510,7 @@ class AsyncDeploymentsResource(AsyncAPIResource):
           )
         return await self._delete(
             f"/accounts/{account_id}/pages/projects/{project_name}/deployments/{deployment_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[object]._unwrapper),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
