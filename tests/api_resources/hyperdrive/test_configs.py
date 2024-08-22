@@ -267,7 +267,7 @@ class TestConfigs:
             hyperdrive_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ConfigDeleteResponse, config, path=["response"])
+        assert_matches_type(Optional[ConfigDeleteResponse], config, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -279,7 +279,7 @@ class TestConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = response.parse()
-        assert_matches_type(ConfigDeleteResponse, config, path=["response"])
+        assert_matches_type(Optional[ConfigDeleteResponse], config, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -291,7 +291,7 @@ class TestConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = response.parse()
-            assert_matches_type(ConfigDeleteResponse, config, path=["response"])
+            assert_matches_type(Optional[ConfigDeleteResponse], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -682,7 +682,7 @@ class TestAsyncConfigs:
             hyperdrive_id="023e105f4ecef8ad9ca31a8372d0c353",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
         )
-        assert_matches_type(ConfigDeleteResponse, config, path=["response"])
+        assert_matches_type(Optional[ConfigDeleteResponse], config, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -694,7 +694,7 @@ class TestAsyncConfigs:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         config = await response.parse()
-        assert_matches_type(ConfigDeleteResponse, config, path=["response"])
+        assert_matches_type(Optional[ConfigDeleteResponse], config, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -706,7 +706,7 @@ class TestAsyncConfigs:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             config = await response.parse()
-            assert_matches_type(ConfigDeleteResponse, config, path=["response"])
+            assert_matches_type(Optional[ConfigDeleteResponse], config, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
