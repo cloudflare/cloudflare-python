@@ -2,58 +2,35 @@
 
 from __future__ import annotations
 
+from typing import Type, Union, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
-from ..._compat import cached_property
-
-from ...types.email_security.investigate_list_response import InvestigateListResponse
-
-from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ..._utils import maybe_transform
-
-from ..._base_client import make_request_options, AsyncPaginator
-
-from typing import Union, Type
-
-from datetime import datetime
-
-from typing_extensions import Literal
-
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.email_security import investigate_list_params
+from ...types.email_security.investigate_get_response import InvestigateGetResponse
+from ...types.email_security.investigate_raw_response import InvestigateRawResponse
+from ...types.email_security.investigate_list_response import InvestigateListResponse
+from ...types.email_security.investigate_trace_response import InvestigateTraceResponse
+from ...types.email_security.investigate_preview_response import InvestigatePreviewResponse
 from ...types.email_security.investigate_detections_response import InvestigateDetectionsResponse
 
-from ..._wrappers import ResultWrapper
-
-from ...types.email_security.investigate_get_response import InvestigateGetResponse
-
-from ...types.email_security.investigate_preview_response import InvestigatePreviewResponse
-
-from ...types.email_security.investigate_raw_response import InvestigateRawResponse
-
-from ...types.email_security.investigate_trace_response import InvestigateTraceResponse
-
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.email_security import investigate_list_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["InvestigateResource", "AsyncInvestigateResource"]
+
 
 class InvestigateResource(SyncAPIResource):
     @cached_property
@@ -64,30 +41,32 @@ class InvestigateResource(SyncAPIResource):
     def with_streaming_response(self) -> InvestigateResourceWithStreamingResponse:
         return InvestigateResourceWithStreamingResponse(self)
 
-    def list(self,
-    *,
-    account_id: str,
-    action_log: bool | NotGiven = NOT_GIVEN,
-    alert_id: str | NotGiven = NOT_GIVEN,
-    detections_only: bool | NotGiven = NOT_GIVEN,
-    domain: str | NotGiven = NOT_GIVEN,
-    end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK"] | NotGiven = NOT_GIVEN,
-    message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"] | NotGiven = NOT_GIVEN,
-    message_id: str | NotGiven = NOT_GIVEN,
-    metric: str | NotGiven = NOT_GIVEN,
-    page: int | NotGiven = NOT_GIVEN,
-    per_page: int | NotGiven = NOT_GIVEN,
-    query: str | NotGiven = NOT_GIVEN,
-    recipient: str | NotGiven = NOT_GIVEN,
-    sender: str | NotGiven = NOT_GIVEN,
-    start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[InvestigateListResponse]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        action_log: bool | NotGiven = NOT_GIVEN,
+        alert_id: str | NotGiven = NOT_GIVEN,
+        detections_only: bool | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
+        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK"] | NotGiven = NOT_GIVEN,
+        message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"] | NotGiven = NOT_GIVEN,
+        message_id: str | NotGiven = NOT_GIVEN,
+        metric: str | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        query: str | NotGiven = NOT_GIVEN,
+        recipient: str | NotGiven = NOT_GIVEN,
+        sender: str | NotGiven = NOT_GIVEN,
+        start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncV4PagePaginationArray[InvestigateListResponse]:
         """
         This endpoint returns information for each email that matches the search
         parameter(s).
@@ -147,42 +126,51 @@ class InvestigateResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/email-security/investigate",
-            page = SyncV4PagePaginationArray[InvestigateListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "action_log": action_log,
-                "alert_id": alert_id,
-                "detections_only": detections_only,
-                "domain": domain,
-                "end": end,
-                "final_disposition": final_disposition,
-                "message_action": message_action,
-                "message_id": message_id,
-                "metric": metric,
-                "page": page,
-                "per_page": per_page,
-                "query": query,
-                "recipient": recipient,
-                "sender": sender,
-                "start": start,
-            }, investigate_list_params.InvestigateListParams)),
+            page=SyncV4PagePaginationArray[InvestigateListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "action_log": action_log,
+                        "alert_id": alert_id,
+                        "detections_only": detections_only,
+                        "domain": domain,
+                        "end": end,
+                        "final_disposition": final_disposition,
+                        "message_action": message_action,
+                        "message_id": message_id,
+                        "metric": metric,
+                        "page": page,
+                        "per_page": per_page,
+                        "query": query,
+                        "recipient": recipient,
+                        "sender": sender,
+                        "start": start,
+                    },
+                    investigate_list_params.InvestigateListParams,
+                ),
+            ),
             model=InvestigateListResponse,
         )
 
-    def detections(self,
-    postfix_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> InvestigateDetectionsResponse:
+    def detections(
+        self,
+        postfix_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> InvestigateDetectionsResponse:
         """
         For emails that have a detection, this endpoint returns detection details such
         as threat categories, sender information, and links.
@@ -201,29 +189,33 @@ class InvestigateResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not postfix_id:
-          raise ValueError(
-            f'Expected a non-empty value for `postfix_id` but received {postfix_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
         return self._get(
             f"/accounts/{account_id}/email-security/investigate/{postfix_id}/detections",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[InvestigateDetectionsResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[InvestigateDetectionsResponse]._unwrapper,
+            ),
             cast_to=cast(Type[InvestigateDetectionsResponse], ResultWrapper[InvestigateDetectionsResponse]),
         )
 
-    def get(self,
-    postfix_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> InvestigateGetResponse:
+    def get(
+        self,
+        postfix_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> InvestigateGetResponse:
         """
         Get message details
 
@@ -241,29 +233,33 @@ class InvestigateResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not postfix_id:
-          raise ValueError(
-            f'Expected a non-empty value for `postfix_id` but received {postfix_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
         return self._get(
             f"/accounts/{account_id}/email-security/investigate/{postfix_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[InvestigateGetResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[InvestigateGetResponse]._unwrapper,
+            ),
             cast_to=cast(Type[InvestigateGetResponse], ResultWrapper[InvestigateGetResponse]),
         )
 
-    def preview(self,
-    postfix_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> InvestigatePreviewResponse:
+    def preview(
+        self,
+        postfix_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> InvestigatePreviewResponse:
         """
         For emails that have a detection, this endpoint returns a preview of the message
         body as a base64 encoded PNG image.
@@ -282,29 +278,33 @@ class InvestigateResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not postfix_id:
-          raise ValueError(
-            f'Expected a non-empty value for `postfix_id` but received {postfix_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
         return self._get(
             f"/accounts/{account_id}/email-security/investigate/{postfix_id}/preview",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[InvestigatePreviewResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[InvestigatePreviewResponse]._unwrapper,
+            ),
             cast_to=cast(Type[InvestigatePreviewResponse], ResultWrapper[InvestigatePreviewResponse]),
         )
 
-    def raw(self,
-    postfix_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> InvestigateRawResponse:
+    def raw(
+        self,
+        postfix_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> InvestigateRawResponse:
         """
         For emails that have a detection, this endpoint returns the raw email as an EML
         file.
@@ -323,29 +323,33 @@ class InvestigateResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not postfix_id:
-          raise ValueError(
-            f'Expected a non-empty value for `postfix_id` but received {postfix_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
         return self._get(
             f"/accounts/{account_id}/email-security/investigate/{postfix_id}/raw",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[InvestigateRawResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[InvestigateRawResponse]._unwrapper,
+            ),
             cast_to=cast(Type[InvestigateRawResponse], ResultWrapper[InvestigateRawResponse]),
         )
 
-    def trace(self,
-    postfix_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> InvestigateTraceResponse:
+    def trace(
+        self,
+        postfix_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> InvestigateTraceResponse:
         """
         Get email trace
 
@@ -363,18 +367,21 @@ class InvestigateResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not postfix_id:
-          raise ValueError(
-            f'Expected a non-empty value for `postfix_id` but received {postfix_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
         return self._get(
             f"/accounts/{account_id}/email-security/investigate/{postfix_id}/trace",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[InvestigateTraceResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[InvestigateTraceResponse]._unwrapper,
+            ),
             cast_to=cast(Type[InvestigateTraceResponse], ResultWrapper[InvestigateTraceResponse]),
         )
+
 
 class AsyncInvestigateResource(AsyncAPIResource):
     @cached_property
@@ -385,30 +392,32 @@ class AsyncInvestigateResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncInvestigateResourceWithStreamingResponse:
         return AsyncInvestigateResourceWithStreamingResponse(self)
 
-    def list(self,
-    *,
-    account_id: str,
-    action_log: bool | NotGiven = NOT_GIVEN,
-    alert_id: str | NotGiven = NOT_GIVEN,
-    detections_only: bool | NotGiven = NOT_GIVEN,
-    domain: str | NotGiven = NOT_GIVEN,
-    end: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK"] | NotGiven = NOT_GIVEN,
-    message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"] | NotGiven = NOT_GIVEN,
-    message_id: str | NotGiven = NOT_GIVEN,
-    metric: str | NotGiven = NOT_GIVEN,
-    page: int | NotGiven = NOT_GIVEN,
-    per_page: int | NotGiven = NOT_GIVEN,
-    query: str | NotGiven = NOT_GIVEN,
-    recipient: str | NotGiven = NOT_GIVEN,
-    sender: str | NotGiven = NOT_GIVEN,
-    start: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[InvestigateListResponse, AsyncV4PagePaginationArray[InvestigateListResponse]]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        action_log: bool | NotGiven = NOT_GIVEN,
+        alert_id: str | NotGiven = NOT_GIVEN,
+        detections_only: bool | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
+        end: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        final_disposition: Literal["MALICIOUS", "SUSPICIOUS", "SPOOF", "SPAM", "BULK"] | NotGiven = NOT_GIVEN,
+        message_action: Literal["PREVIEW", "QUARANTINE_RELEASED", "MOVED"] | NotGiven = NOT_GIVEN,
+        message_id: str | NotGiven = NOT_GIVEN,
+        metric: str | NotGiven = NOT_GIVEN,
+        page: int | NotGiven = NOT_GIVEN,
+        per_page: int | NotGiven = NOT_GIVEN,
+        query: str | NotGiven = NOT_GIVEN,
+        recipient: str | NotGiven = NOT_GIVEN,
+        sender: str | NotGiven = NOT_GIVEN,
+        start: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[InvestigateListResponse, AsyncV4PagePaginationArray[InvestigateListResponse]]:
         """
         This endpoint returns information for each email that matches the search
         parameter(s).
@@ -468,42 +477,51 @@ class AsyncInvestigateResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/email-security/investigate",
-            page = AsyncV4PagePaginationArray[InvestigateListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "action_log": action_log,
-                "alert_id": alert_id,
-                "detections_only": detections_only,
-                "domain": domain,
-                "end": end,
-                "final_disposition": final_disposition,
-                "message_action": message_action,
-                "message_id": message_id,
-                "metric": metric,
-                "page": page,
-                "per_page": per_page,
-                "query": query,
-                "recipient": recipient,
-                "sender": sender,
-                "start": start,
-            }, investigate_list_params.InvestigateListParams)),
+            page=AsyncV4PagePaginationArray[InvestigateListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "action_log": action_log,
+                        "alert_id": alert_id,
+                        "detections_only": detections_only,
+                        "domain": domain,
+                        "end": end,
+                        "final_disposition": final_disposition,
+                        "message_action": message_action,
+                        "message_id": message_id,
+                        "metric": metric,
+                        "page": page,
+                        "per_page": per_page,
+                        "query": query,
+                        "recipient": recipient,
+                        "sender": sender,
+                        "start": start,
+                    },
+                    investigate_list_params.InvestigateListParams,
+                ),
+            ),
             model=InvestigateListResponse,
         )
 
-    async def detections(self,
-    postfix_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> InvestigateDetectionsResponse:
+    async def detections(
+        self,
+        postfix_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> InvestigateDetectionsResponse:
         """
         For emails that have a detection, this endpoint returns detection details such
         as threat categories, sender information, and links.
@@ -522,29 +540,33 @@ class AsyncInvestigateResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not postfix_id:
-          raise ValueError(
-            f'Expected a non-empty value for `postfix_id` but received {postfix_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
         return await self._get(
             f"/accounts/{account_id}/email-security/investigate/{postfix_id}/detections",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[InvestigateDetectionsResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[InvestigateDetectionsResponse]._unwrapper,
+            ),
             cast_to=cast(Type[InvestigateDetectionsResponse], ResultWrapper[InvestigateDetectionsResponse]),
         )
 
-    async def get(self,
-    postfix_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> InvestigateGetResponse:
+    async def get(
+        self,
+        postfix_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> InvestigateGetResponse:
         """
         Get message details
 
@@ -562,29 +584,33 @@ class AsyncInvestigateResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not postfix_id:
-          raise ValueError(
-            f'Expected a non-empty value for `postfix_id` but received {postfix_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
         return await self._get(
             f"/accounts/{account_id}/email-security/investigate/{postfix_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[InvestigateGetResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[InvestigateGetResponse]._unwrapper,
+            ),
             cast_to=cast(Type[InvestigateGetResponse], ResultWrapper[InvestigateGetResponse]),
         )
 
-    async def preview(self,
-    postfix_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> InvestigatePreviewResponse:
+    async def preview(
+        self,
+        postfix_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> InvestigatePreviewResponse:
         """
         For emails that have a detection, this endpoint returns a preview of the message
         body as a base64 encoded PNG image.
@@ -603,29 +629,33 @@ class AsyncInvestigateResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not postfix_id:
-          raise ValueError(
-            f'Expected a non-empty value for `postfix_id` but received {postfix_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
         return await self._get(
             f"/accounts/{account_id}/email-security/investigate/{postfix_id}/preview",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[InvestigatePreviewResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[InvestigatePreviewResponse]._unwrapper,
+            ),
             cast_to=cast(Type[InvestigatePreviewResponse], ResultWrapper[InvestigatePreviewResponse]),
         )
 
-    async def raw(self,
-    postfix_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> InvestigateRawResponse:
+    async def raw(
+        self,
+        postfix_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> InvestigateRawResponse:
         """
         For emails that have a detection, this endpoint returns the raw email as an EML
         file.
@@ -644,29 +674,33 @@ class AsyncInvestigateResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not postfix_id:
-          raise ValueError(
-            f'Expected a non-empty value for `postfix_id` but received {postfix_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
         return await self._get(
             f"/accounts/{account_id}/email-security/investigate/{postfix_id}/raw",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[InvestigateRawResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[InvestigateRawResponse]._unwrapper,
+            ),
             cast_to=cast(Type[InvestigateRawResponse], ResultWrapper[InvestigateRawResponse]),
         )
 
-    async def trace(self,
-    postfix_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> InvestigateTraceResponse:
+    async def trace(
+        self,
+        postfix_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> InvestigateTraceResponse:
         """
         Get email trace
 
@@ -684,18 +718,21 @@ class AsyncInvestigateResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not postfix_id:
-          raise ValueError(
-            f'Expected a non-empty value for `postfix_id` but received {postfix_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `postfix_id` but received {postfix_id!r}")
         return await self._get(
             f"/accounts/{account_id}/email-security/investigate/{postfix_id}/trace",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[InvestigateTraceResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[InvestigateTraceResponse]._unwrapper,
+            ),
             cast_to=cast(Type[InvestigateTraceResponse], ResultWrapper[InvestigateTraceResponse]),
         )
+
 
 class InvestigateResourceWithRawResponse:
     def __init__(self, investigate: InvestigateResource) -> None:
@@ -720,6 +757,7 @@ class InvestigateResourceWithRawResponse:
             investigate.trace,
         )
 
+
 class AsyncInvestigateResourceWithRawResponse:
     def __init__(self, investigate: AsyncInvestigateResource) -> None:
         self._investigate = investigate
@@ -743,6 +781,7 @@ class AsyncInvestigateResourceWithRawResponse:
             investigate.trace,
         )
 
+
 class InvestigateResourceWithStreamingResponse:
     def __init__(self, investigate: InvestigateResource) -> None:
         self._investigate = investigate
@@ -765,6 +804,7 @@ class InvestigateResourceWithStreamingResponse:
         self.trace = to_streamed_response_wrapper(
             investigate.trace,
         )
+
 
 class AsyncInvestigateResourceWithStreamingResponse:
     def __init__(self, investigate: AsyncInvestigateResource) -> None:

@@ -2,26 +2,35 @@
 
 from __future__ import annotations
 
-from .buckets import BucketsResource, AsyncBucketsResource
-
+from .sippy import (
+    SippyResource,
+    AsyncSippyResource,
+    SippyResourceWithRawResponse,
+    AsyncSippyResourceWithRawResponse,
+    SippyResourceWithStreamingResponse,
+    AsyncSippyResourceWithStreamingResponse,
+)
+from .buckets import (
+    BucketsResource,
+    AsyncBucketsResource,
+    BucketsResourceWithRawResponse,
+    AsyncBucketsResourceWithRawResponse,
+    BucketsResourceWithStreamingResponse,
+    AsyncBucketsResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
-
-from .sippy import SippyResource, AsyncSippyResource
-
-from .temporary_credentials import TemporaryCredentialsResource, AsyncTemporaryCredentialsResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from .buckets import BucketsResource, AsyncBucketsResource, BucketsResourceWithRawResponse, AsyncBucketsResourceWithRawResponse, BucketsResourceWithStreamingResponse, AsyncBucketsResourceWithStreamingResponse
-from .sippy import SippyResource, AsyncSippyResource, SippyResourceWithRawResponse, AsyncSippyResourceWithRawResponse, SippyResourceWithStreamingResponse, AsyncSippyResourceWithStreamingResponse
-from .temporary_credentials import TemporaryCredentialsResource, AsyncTemporaryCredentialsResource, TemporaryCredentialsResourceWithRawResponse, AsyncTemporaryCredentialsResourceWithRawResponse, TemporaryCredentialsResourceWithStreamingResponse, AsyncTemporaryCredentialsResourceWithStreamingResponse
+from .temporary_credentials import (
+    TemporaryCredentialsResource,
+    AsyncTemporaryCredentialsResource,
+    TemporaryCredentialsResourceWithRawResponse,
+    AsyncTemporaryCredentialsResourceWithRawResponse,
+    TemporaryCredentialsResourceWithStreamingResponse,
+    AsyncTemporaryCredentialsResourceWithStreamingResponse,
+)
 
 __all__ = ["R2Resource", "AsyncR2Resource"]
+
 
 class R2Resource(SyncAPIResource):
     @cached_property
@@ -44,6 +53,7 @@ class R2Resource(SyncAPIResource):
     def with_streaming_response(self) -> R2ResourceWithStreamingResponse:
         return R2ResourceWithStreamingResponse(self)
 
+
 class AsyncR2Resource(AsyncAPIResource):
     @cached_property
     def buckets(self) -> AsyncBucketsResource:
@@ -65,6 +75,7 @@ class AsyncR2Resource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncR2ResourceWithStreamingResponse:
         return AsyncR2ResourceWithStreamingResponse(self)
 
+
 class R2ResourceWithRawResponse:
     def __init__(self, r2: R2Resource) -> None:
         self._r2 = r2
@@ -80,6 +91,7 @@ class R2ResourceWithRawResponse:
     @cached_property
     def temporary_credentials(self) -> TemporaryCredentialsResourceWithRawResponse:
         return TemporaryCredentialsResourceWithRawResponse(self._r2.temporary_credentials)
+
 
 class AsyncR2ResourceWithRawResponse:
     def __init__(self, r2: AsyncR2Resource) -> None:
@@ -97,6 +109,7 @@ class AsyncR2ResourceWithRawResponse:
     def temporary_credentials(self) -> AsyncTemporaryCredentialsResourceWithRawResponse:
         return AsyncTemporaryCredentialsResourceWithRawResponse(self._r2.temporary_credentials)
 
+
 class R2ResourceWithStreamingResponse:
     def __init__(self, r2: R2Resource) -> None:
         self._r2 = r2
@@ -112,6 +125,7 @@ class R2ResourceWithStreamingResponse:
     @cached_property
     def temporary_credentials(self) -> TemporaryCredentialsResourceWithStreamingResponse:
         return TemporaryCredentialsResourceWithStreamingResponse(self._r2.temporary_credentials)
+
 
 class AsyncR2ResourceWithStreamingResponse:
     def __init__(self, r2: AsyncR2Resource) -> None:

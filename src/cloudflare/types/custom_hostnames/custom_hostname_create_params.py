@@ -2,24 +2,16 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal
-
-from .bundle_method import BundleMethod
-
-from ..shared.certificate_ca import CertificateCA
+from typing import List
+from typing_extensions import Literal, Required, TypedDict
 
 from .dcv_method import DCVMethod
-
+from .bundle_method import BundleMethod
+from ..shared.certificate_ca import CertificateCA
 from .domain_validation_type import DomainValidationType
 
-from typing import List
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-
 __all__ = ["CustomHostnameCreateParams", "SSL", "SSLSettings", "CustomMetadata"]
+
 
 class CustomHostnameCreateParams(TypedDict, total=False):
     zone_id: Required[str]
@@ -33,6 +25,7 @@ class CustomHostnameCreateParams(TypedDict, total=False):
 
     custom_metadata: CustomMetadata
     """These are per-hostname (customer) settings."""
+
 
 class SSLSettings(TypedDict, total=False):
     ciphers: List[str]
@@ -52,6 +45,7 @@ class SSLSettings(TypedDict, total=False):
 
     tls_1_3: Literal["on", "off"]
     """Whether or not TLS 1.3 is enabled."""
+
 
 class SSL(TypedDict, total=False):
     bundle_method: BundleMethod
@@ -85,6 +79,7 @@ class SSL(TypedDict, total=False):
 
     wildcard: bool
     """Indicates whether the certificate covers a wildcard."""
+
 
 class CustomMetadata(TypedDict, total=False):
     key: str

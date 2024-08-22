@@ -2,17 +2,25 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict, Required
+from typing import Iterable
+from typing_extensions import Literal, Required, TypedDict
 
 from .logging_param import LoggingParam
 
-from typing import Iterable
+__all__ = [
+    "ExecuteRuleParam",
+    "ActionParameters",
+    "ActionParametersMatchedData",
+    "ActionParametersOverrides",
+    "ActionParametersOverridesCategory",
+    "ActionParametersOverridesRule",
+]
 
-__all__ = ["ExecuteRuleParam", "ActionParameters", "ActionParametersMatchedData", "ActionParametersOverrides", "ActionParametersOverridesCategory", "ActionParametersOverridesRule"]
 
 class ActionParametersMatchedData(TypedDict, total=False):
     public_key: Required[str]
     """The public key to encrypt matched data logs with."""
+
 
 class ActionParametersOverridesCategory(TypedDict, total=False):
     category: Required[str]
@@ -26,6 +34,7 @@ class ActionParametersOverridesCategory(TypedDict, total=False):
 
     sensitivity_level: Literal["default", "medium", "low", "eoff"]
     """The sensitivity level to use for rules in the category."""
+
 
 class ActionParametersOverridesRule(TypedDict, total=False):
     id: Required[str]
@@ -42,6 +51,7 @@ class ActionParametersOverridesRule(TypedDict, total=False):
 
     sensitivity_level: Literal["default", "medium", "low", "eoff"]
     """The sensitivity level to use for the rule."""
+
 
 class ActionParametersOverrides(TypedDict, total=False):
     action: str
@@ -72,6 +82,7 @@ class ActionParametersOverrides(TypedDict, total=False):
     applicable for DDoS phases.
     """
 
+
 class ActionParameters(TypedDict, total=False):
     id: Required[str]
     """The ID of the ruleset to execute."""
@@ -81,6 +92,7 @@ class ActionParameters(TypedDict, total=False):
 
     overrides: ActionParametersOverrides
     """A set of overrides to apply to the target ruleset."""
+
 
 class ExecuteRuleParam(TypedDict, total=False):
     id: str

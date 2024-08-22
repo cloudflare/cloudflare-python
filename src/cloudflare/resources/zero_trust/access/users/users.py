@@ -4,34 +4,45 @@ from __future__ import annotations
 
 import httpx
 
-from .active_sessions import ActiveSessionsResource, AsyncActiveSessionsResource
-
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ....._compat import cached_property
-
-from .last_seen_identity import LastSeenIdentityResource, AsyncLastSeenIdentityResource
-
-from .failed_logins import FailedLoginsResource, AsyncFailedLoginsResource
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from .failed_logins import (
+    FailedLoginsResource,
+    AsyncFailedLoginsResource,
+    FailedLoginsResourceWithRawResponse,
+    AsyncFailedLoginsResourceWithRawResponse,
+    FailedLoginsResourceWithStreamingResponse,
+    AsyncFailedLoginsResourceWithStreamingResponse,
+)
+from .....pagination import SyncSinglePage, AsyncSinglePage
+from .active_sessions import (
+    ActiveSessionsResource,
+    AsyncActiveSessionsResource,
+    ActiveSessionsResourceWithRawResponse,
+    AsyncActiveSessionsResourceWithRawResponse,
+    ActiveSessionsResourceWithStreamingResponse,
+    AsyncActiveSessionsResourceWithStreamingResponse,
+)
+from ....._base_client import AsyncPaginator, make_request_options
+from .last_seen_identity import (
+    LastSeenIdentityResource,
+    AsyncLastSeenIdentityResource,
+    LastSeenIdentityResourceWithRawResponse,
+    AsyncLastSeenIdentityResourceWithRawResponse,
+    LastSeenIdentityResourceWithStreamingResponse,
+    AsyncLastSeenIdentityResourceWithStreamingResponse,
+)
 from .....types.zero_trust.access.access_user import AccessUser
 
-from .....pagination import SyncSinglePage, AsyncSinglePage
-
-from ....._base_client import make_request_options, AsyncPaginator
-
-from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .active_sessions import ActiveSessionsResource, AsyncActiveSessionsResource, ActiveSessionsResourceWithRawResponse, AsyncActiveSessionsResourceWithRawResponse, ActiveSessionsResourceWithStreamingResponse, AsyncActiveSessionsResourceWithStreamingResponse
-from .last_seen_identity import LastSeenIdentityResource, AsyncLastSeenIdentityResource, LastSeenIdentityResourceWithRawResponse, AsyncLastSeenIdentityResourceWithRawResponse, LastSeenIdentityResourceWithStreamingResponse, AsyncLastSeenIdentityResourceWithStreamingResponse
-from .failed_logins import FailedLoginsResource, AsyncFailedLoginsResource, FailedLoginsResourceWithRawResponse, AsyncFailedLoginsResourceWithRawResponse, FailedLoginsResourceWithStreamingResponse, AsyncFailedLoginsResourceWithStreamingResponse
-
 __all__ = ["UsersResource", "AsyncUsersResource"]
+
 
 class UsersResource(SyncAPIResource):
     @cached_property
@@ -54,15 +65,17 @@ class UsersResource(SyncAPIResource):
     def with_streaming_response(self) -> UsersResourceWithStreamingResponse:
         return UsersResourceWithStreamingResponse(self)
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[AccessUser]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[AccessUser]:
         """
         Gets a list of users for an account.
 
@@ -78,15 +91,16 @@ class UsersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/access/users",
-            page = SyncSinglePage[AccessUser],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=SyncSinglePage[AccessUser],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=AccessUser,
         )
+
 
 class AsyncUsersResource(AsyncAPIResource):
     @cached_property
@@ -109,15 +123,17 @@ class AsyncUsersResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncUsersResourceWithStreamingResponse:
         return AsyncUsersResourceWithStreamingResponse(self)
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[AccessUser, AsyncSinglePage[AccessUser]]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[AccessUser, AsyncSinglePage[AccessUser]]:
         """
         Gets a list of users for an account.
 
@@ -133,15 +149,16 @@ class AsyncUsersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/access/users",
-            page = AsyncSinglePage[AccessUser],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=AsyncSinglePage[AccessUser],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=AccessUser,
         )
+
 
 class UsersResourceWithRawResponse:
     def __init__(self, users: UsersResource) -> None:
@@ -163,6 +180,7 @@ class UsersResourceWithRawResponse:
     def failed_logins(self) -> FailedLoginsResourceWithRawResponse:
         return FailedLoginsResourceWithRawResponse(self._users.failed_logins)
 
+
 class AsyncUsersResourceWithRawResponse:
     def __init__(self, users: AsyncUsersResource) -> None:
         self._users = users
@@ -183,6 +201,7 @@ class AsyncUsersResourceWithRawResponse:
     def failed_logins(self) -> AsyncFailedLoginsResourceWithRawResponse:
         return AsyncFailedLoginsResourceWithRawResponse(self._users.failed_logins)
 
+
 class UsersResourceWithStreamingResponse:
     def __init__(self, users: UsersResource) -> None:
         self._users = users
@@ -202,6 +221,7 @@ class UsersResourceWithStreamingResponse:
     @cached_property
     def failed_logins(self) -> FailedLoginsResourceWithStreamingResponse:
         return FailedLoginsResourceWithStreamingResponse(self._users.failed_logins)
+
 
 class AsyncUsersResourceWithStreamingResponse:
     def __init__(self, users: AsyncUsersResource) -> None:

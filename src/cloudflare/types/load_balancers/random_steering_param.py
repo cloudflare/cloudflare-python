@@ -6,12 +6,14 @@ from typing_extensions import TypedDict
 
 __all__ = ["RandomSteeringParam", "PoolWeights"]
 
+
 class PoolWeights(TypedDict, total=False):
     key: str
     """Pool ID"""
 
     value: float
     """Weight"""
+
 
 class RandomSteeringParam(TypedDict, total=False):
     default_weight: float

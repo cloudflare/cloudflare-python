@@ -2,94 +2,25 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from typing import Optional, Any, cast
-
-from cloudflare.types.zero_trust import IdentityProvider, IdentityProviderListResponse, IdentityProviderDeleteResponse
-
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-
 import os
+from typing import Any, Optional, cast
+
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.zero_trust import identity_provider_create_params
-from cloudflare.types.zero_trust import identity_provider_update_params
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import GenericOAuthConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import GenericOAuthConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import GenericOAuthConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import GenericOAuthConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import GenericOAuthConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import GenericOAuthConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import GenericOAuthConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import GenericOAuthConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
-from cloudflare.types.zero_trust import IdentityProviderType
-from cloudflare.types.zero_trust import IdentityProviderSCIMConfig
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.zero_trust import (
+    IdentityProvider,
+    IdentityProviderListResponse,
+    IdentityProviderDeleteResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-class TestIdentityProviders:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
 
+class TestIdentityProviders:
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -100,7 +31,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -128,12 +59,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_1(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -142,9 +72,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -154,12 +84,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -167,20 +97,20 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_create_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -191,7 +121,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -217,12 +147,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_2(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -231,9 +160,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -243,12 +172,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -256,20 +185,20 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_create_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -280,7 +209,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -302,12 +231,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_3(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -316,9 +244,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -328,12 +256,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -341,20 +269,20 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_create_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -365,7 +293,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -387,12 +315,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_4(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -401,9 +328,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -413,12 +340,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -426,20 +353,20 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_create_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -450,7 +377,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -474,12 +401,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_5(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -488,9 +414,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -500,12 +426,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -513,20 +439,20 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_create_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -537,7 +463,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -562,12 +488,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_6(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -576,9 +501,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -588,12 +513,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -601,20 +526,20 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_create_overload_6(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -625,7 +550,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -647,12 +572,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_7(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -661,9 +585,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -673,12 +597,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -686,20 +610,20 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_create_overload_7(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -710,7 +634,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -738,12 +662,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_8(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -752,9 +675,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -764,12 +687,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -777,20 +700,20 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_create_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -801,7 +724,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -827,12 +750,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_9(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -841,9 +763,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -853,12 +775,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -866,20 +788,20 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_create_overload_9(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -890,7 +812,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -915,12 +837,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_10(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -929,9 +850,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -941,12 +862,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -954,20 +875,20 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_create_overload_10(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -978,7 +899,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1003,12 +924,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_11(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -1017,9 +937,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1029,12 +949,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1042,20 +962,20 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_create_overload_11(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1066,7 +986,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1075,16 +995,20 @@ class TestIdentityProviders:
             config={
                 "attributes": ["group", "department_code", "divison"],
                 "email_attribute_name": "Email",
-                "header_attributes": [{
-                    "attribute_name": "attribute_name",
-                    "header_name": "header_name",
-                }, {
-                    "attribute_name": "attribute_name",
-                    "header_name": "header_name",
-                }, {
-                    "attribute_name": "attribute_name",
-                    "header_name": "header_name",
-                }],
+                "header_attributes": [
+                    {
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
+                    },
+                    {
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
+                    },
+                    {
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
+                    },
+                ],
                 "idp_public_certs": ["string", "string", "string"],
                 "issuer_url": "https://whoami.com",
                 "sign_request": True,
@@ -1102,12 +1026,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_12(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -1116,9 +1039,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1128,12 +1051,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1141,20 +1064,20 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_create_overload_12(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1165,7 +1088,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1187,12 +1110,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_13(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -1201,9 +1123,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1213,12 +1135,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1226,20 +1148,20 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_create_overload_13(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1250,7 +1172,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1269,12 +1191,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create_overload_14(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -1283,9 +1204,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1295,12 +1216,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1308,20 +1229,20 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_create_overload_14(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1333,7 +1254,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1362,12 +1283,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_1(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -1377,9 +1297,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1390,12 +1310,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1403,31 +1323,31 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_update_overload_1(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1439,7 +1359,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1466,12 +1386,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_2(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -1481,9 +1400,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1494,12 +1413,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1507,31 +1426,31 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_update_overload_2(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1543,7 +1462,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1566,12 +1485,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_3(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -1581,9 +1499,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1594,12 +1512,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1607,31 +1525,31 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_update_overload_3(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1643,7 +1561,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1666,12 +1584,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_4(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -1681,9 +1598,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1694,12 +1611,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1707,31 +1624,31 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_update_overload_4(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1743,7 +1660,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1768,12 +1685,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_5(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -1783,9 +1699,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1796,12 +1712,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1809,31 +1725,31 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_update_overload_5(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1845,7 +1761,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1871,12 +1787,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_6(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -1886,9 +1801,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1899,12 +1814,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -1912,31 +1827,31 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_update_overload_6(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1948,7 +1863,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1971,12 +1886,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_7(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -1986,9 +1900,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -1999,12 +1913,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2012,31 +1926,31 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_update_overload_7(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2048,7 +1962,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2077,12 +1991,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_8(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -2092,9 +2005,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2105,12 +2018,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2118,31 +2031,31 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_update_overload_8(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2154,7 +2067,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2181,12 +2094,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_9(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -2196,9 +2108,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2209,12 +2121,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2222,31 +2134,31 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_update_overload_9(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2258,7 +2170,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2284,12 +2196,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_10(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -2299,9 +2210,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2312,12 +2223,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2325,31 +2236,31 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_update_overload_10(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2361,7 +2272,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2387,12 +2298,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_11(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -2402,9 +2312,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2415,12 +2325,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2428,31 +2338,31 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_update_overload_11(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2464,7 +2374,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2474,16 +2384,20 @@ class TestIdentityProviders:
             config={
                 "attributes": ["group", "department_code", "divison"],
                 "email_attribute_name": "Email",
-                "header_attributes": [{
-                    "attribute_name": "attribute_name",
-                    "header_name": "header_name",
-                }, {
-                    "attribute_name": "attribute_name",
-                    "header_name": "header_name",
-                }, {
-                    "attribute_name": "attribute_name",
-                    "header_name": "header_name",
-                }],
+                "header_attributes": [
+                    {
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
+                    },
+                    {
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
+                    },
+                    {
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
+                    },
+                ],
                 "idp_public_certs": ["string", "string", "string"],
                 "issuer_url": "https://whoami.com",
                 "sign_request": True,
@@ -2501,12 +2415,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_12(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -2516,9 +2429,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2529,12 +2442,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2542,31 +2455,31 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_update_overload_12(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2578,7 +2491,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2601,12 +2514,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_13(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -2616,9 +2528,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2629,12 +2541,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2642,31 +2554,31 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_update_overload_13(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2678,7 +2590,7 @@ class TestIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2698,12 +2610,11 @@ class TestIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update_overload_14(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -2713,9 +2624,9 @@ class TestIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2726,12 +2637,12 @@ class TestIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2739,31 +2650,31 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_update_overload_14(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2771,7 +2682,7 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[IdentityProviderListResponse], identity_provider, path=['response'])
+        assert_matches_type(SyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2779,32 +2690,31 @@ class TestIdentityProviders:
         identity_provider = client.zero_trust.identity_providers.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[IdentityProviderListResponse], identity_provider, path=['response'])
+        assert_matches_type(SyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.list(
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(SyncSinglePage[IdentityProviderListResponse], identity_provider, path=['response'])
+        assert_matches_type(SyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.zero_trust.identity_providers.with_streaming_response.list(
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(SyncSinglePage[IdentityProviderListResponse], identity_provider, path=['response'])
+            assert_matches_type(SyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2812,14 +2722,14 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.list(
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.list(
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.list(
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.list(
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2828,7 +2738,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2837,21 +2747,20 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.delete(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2859,12 +2768,12 @@ class TestIdentityProviders:
         with client.zero_trust.identity_providers.with_streaming_response.delete(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2872,22 +2781,22 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.delete(
-              identity_provider_id="",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.delete(
+                identity_provider_id="",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.delete(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.delete(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.delete(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.delete(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2896,7 +2805,7 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2905,21 +2814,20 @@ class TestIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-
         response = client.zero_trust.identity_providers.with_raw_response.get(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2927,12 +2835,12 @@ class TestIdentityProviders:
         with client.zero_trust.identity_providers.with_streaming_response.get(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -2940,25 +2848,26 @@ class TestIdentityProviders:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.get(
-              identity_provider_id="",
-              account_id="account_id",
-          )
+            client.zero_trust.identity_providers.with_raw_response.get(
+                identity_provider_id="",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.get(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              account_id="",
-          )
+            client.zero_trust.identity_providers.with_raw_response.get(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.zero_trust.identity_providers.with_raw_response.get(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              account_id="account_id",
-          )
-class TestAsyncIdentityProviders:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+            client.zero_trust.identity_providers.with_raw_response.get(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="account_id",
+            )
 
+
+class TestAsyncIdentityProviders:
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2969,7 +2878,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -2997,12 +2906,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_1(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -3011,9 +2919,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3023,12 +2931,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3036,20 +2944,20 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_create_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3060,7 +2968,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3086,12 +2994,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_2(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -3100,9 +3007,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3112,12 +3019,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3125,20 +3032,20 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_create_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3149,7 +3056,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3171,12 +3078,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_3(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -3185,9 +3091,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3197,12 +3103,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3210,20 +3116,20 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_create_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3234,7 +3140,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3256,12 +3162,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_4(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -3270,9 +3175,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3282,12 +3187,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3295,20 +3200,20 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_create_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3319,7 +3224,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3343,12 +3248,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_5(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -3357,9 +3261,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3369,12 +3273,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3382,20 +3286,20 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_create_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3406,7 +3310,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3431,12 +3335,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_6(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -3445,9 +3348,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3457,12 +3360,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3470,20 +3373,20 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_create_overload_6(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3494,7 +3397,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3516,12 +3419,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_7(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -3530,9 +3432,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3542,12 +3444,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3555,20 +3457,20 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_create_overload_7(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3579,7 +3481,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3607,12 +3509,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_8(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -3621,9 +3522,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3633,12 +3534,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3646,20 +3547,20 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_create_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3670,7 +3571,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3696,12 +3597,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_9(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -3710,9 +3610,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3722,12 +3622,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3735,20 +3635,20 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_create_overload_9(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3759,7 +3659,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3784,12 +3684,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_10(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -3798,9 +3697,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3810,12 +3709,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3823,20 +3722,20 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_create_overload_10(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3847,7 +3746,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3872,12 +3771,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_11(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -3886,9 +3784,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3898,12 +3796,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -3911,20 +3809,20 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_create_overload_11(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3935,7 +3833,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3944,16 +3842,20 @@ class TestAsyncIdentityProviders:
             config={
                 "attributes": ["group", "department_code", "divison"],
                 "email_attribute_name": "Email",
-                "header_attributes": [{
-                    "attribute_name": "attribute_name",
-                    "header_name": "header_name",
-                }, {
-                    "attribute_name": "attribute_name",
-                    "header_name": "header_name",
-                }, {
-                    "attribute_name": "attribute_name",
-                    "header_name": "header_name",
-                }],
+                "header_attributes": [
+                    {
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
+                    },
+                    {
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
+                    },
+                    {
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
+                    },
+                ],
                 "idp_public_certs": ["string", "string", "string"],
                 "issuer_url": "https://whoami.com",
                 "sign_request": True,
@@ -3971,12 +3873,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_12(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -3985,9 +3886,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -3997,12 +3898,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4010,20 +3911,20 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_create_overload_12(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4034,7 +3935,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4056,12 +3957,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_13(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -4070,9 +3970,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4082,12 +3982,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4095,20 +3995,20 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_create_overload_13(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4119,7 +4019,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4138,12 +4038,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create_overload_14(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.create(
             config={},
             name="Widget Corps IDP",
@@ -4152,9 +4051,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4164,12 +4063,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4177,20 +4076,20 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_create_overload_14(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.create(
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.create(
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4202,7 +4101,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4231,12 +4130,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_1(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -4246,9 +4144,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4259,12 +4157,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4272,31 +4170,31 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_update_overload_1(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4308,7 +4206,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4335,12 +4233,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_2(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -4350,9 +4247,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4363,12 +4260,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4376,31 +4273,31 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_update_overload_2(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4412,7 +4309,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4435,12 +4332,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_3(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -4450,9 +4346,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4463,12 +4359,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4476,31 +4372,31 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_update_overload_3(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4512,7 +4408,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4535,12 +4431,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_4(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -4550,9 +4445,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4563,12 +4458,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4576,31 +4471,31 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_update_overload_4(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4612,7 +4507,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4637,12 +4532,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_5(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -4652,9 +4546,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4665,12 +4559,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4678,31 +4572,31 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_update_overload_5(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4714,7 +4608,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4740,12 +4634,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_6(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -4755,9 +4648,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4768,12 +4661,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4781,31 +4674,31 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_update_overload_6(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4817,7 +4710,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4840,12 +4733,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_7(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -4855,9 +4747,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4868,12 +4760,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4881,31 +4773,31 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_update_overload_7(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4917,7 +4809,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4946,12 +4838,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_8(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -4961,9 +4852,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -4974,12 +4865,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -4987,31 +4878,31 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_update_overload_8(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5023,7 +4914,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5050,12 +4941,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_9(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -5065,9 +4955,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5078,12 +4968,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5091,31 +4981,31 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_update_overload_9(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5127,7 +5017,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5153,12 +5043,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_10(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -5168,9 +5057,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5181,12 +5070,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5194,31 +5083,31 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_update_overload_10(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5230,7 +5119,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5256,12 +5145,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_11(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -5271,9 +5159,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5284,12 +5172,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5297,31 +5185,31 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_update_overload_11(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5333,7 +5221,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5343,16 +5231,20 @@ class TestAsyncIdentityProviders:
             config={
                 "attributes": ["group", "department_code", "divison"],
                 "email_attribute_name": "Email",
-                "header_attributes": [{
-                    "attribute_name": "attribute_name",
-                    "header_name": "header_name",
-                }, {
-                    "attribute_name": "attribute_name",
-                    "header_name": "header_name",
-                }, {
-                    "attribute_name": "attribute_name",
-                    "header_name": "header_name",
-                }],
+                "header_attributes": [
+                    {
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
+                    },
+                    {
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
+                    },
+                    {
+                        "attribute_name": "attribute_name",
+                        "header_name": "header_name",
+                    },
+                ],
                 "idp_public_certs": ["string", "string", "string"],
                 "issuer_url": "https://whoami.com",
                 "sign_request": True,
@@ -5370,12 +5262,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_12(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -5385,9 +5276,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5398,12 +5289,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5411,31 +5302,31 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_update_overload_12(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5447,7 +5338,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5470,12 +5361,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_13(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -5485,9 +5375,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5498,12 +5388,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5511,31 +5401,31 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_update_overload_13(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5547,7 +5437,7 @@ class TestAsyncIdentityProviders:
             type="onetimepin",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5567,12 +5457,11 @@ class TestAsyncIdentityProviders:
                 "user_deprovision": True,
             },
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update_overload_14(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.update(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             config={},
@@ -5582,9 +5471,9 @@ class TestAsyncIdentityProviders:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5595,12 +5484,12 @@ class TestAsyncIdentityProviders:
             name="Widget Corps IDP",
             type="onetimepin",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5608,31 +5497,31 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_update_overload_14(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.update(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              config={},
-              name="Widget Corps IDP",
-              type="onetimepin",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.update(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                config={},
+                name="Widget Corps IDP",
+                type="onetimepin",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5640,7 +5529,7 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[IdentityProviderListResponse], identity_provider, path=['response'])
+        assert_matches_type(AsyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5648,32 +5537,31 @@ class TestAsyncIdentityProviders:
         identity_provider = await async_client.zero_trust.identity_providers.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[IdentityProviderListResponse], identity_provider, path=['response'])
+        assert_matches_type(AsyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.list(
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(AsyncSinglePage[IdentityProviderListResponse], identity_provider, path=['response'])
+        assert_matches_type(AsyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.zero_trust.identity_providers.with_streaming_response.list(
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(AsyncSinglePage[IdentityProviderListResponse], identity_provider, path=['response'])
+            assert_matches_type(AsyncSinglePage[IdentityProviderListResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5681,14 +5569,14 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.list(
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.list(
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.list(
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.list(
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5697,7 +5585,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5706,21 +5594,20 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.delete(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5728,12 +5615,12 @@ class TestAsyncIdentityProviders:
         async with async_client.zero_trust.identity_providers.with_streaming_response.delete(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProviderDeleteResponse], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5741,22 +5628,22 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.delete(
-              identity_provider_id="",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.delete(
+                identity_provider_id="",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.delete(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.delete(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.delete(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.delete(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5765,7 +5652,7 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5774,21 +5661,20 @@ class TestAsyncIdentityProviders:
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.zero_trust.identity_providers.with_raw_response.get(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         identity_provider = await response.parse()
-        assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+        assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -5796,12 +5682,12 @@ class TestAsyncIdentityProviders:
         async with async_client.zero_trust.identity_providers.with_streaming_response.get(
             identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             identity_provider = await response.parse()
-            assert_matches_type(Optional[IdentityProvider], identity_provider, path=['response'])
+            assert_matches_type(Optional[IdentityProvider], identity_provider, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -5809,19 +5695,19 @@ class TestAsyncIdentityProviders:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `identity_provider_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.get(
-              identity_provider_id="",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.get(
+                identity_provider_id="",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.get(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              account_id="",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.get(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.zero_trust.identity_providers.with_raw_response.get(
-              identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
-              account_id="account_id",
-          )
+            await async_client.zero_trust.identity_providers.with_raw_response.get(
+                identity_provider_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+                account_id="account_id",
+            )

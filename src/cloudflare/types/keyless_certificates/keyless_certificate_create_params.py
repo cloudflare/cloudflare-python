@@ -2,18 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required
-
-from ..custom_hostnames.bundle_method import BundleMethod
+from typing_extensions import Required, TypedDict
 
 from .tunnel_param import TunnelParam
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
+from ..custom_hostnames.bundle_method import BundleMethod
 
 __all__ = ["KeylessCertificateCreateParams"]
+
 
 class KeylessCertificateCreateParams(TypedDict, total=False):
     zone_id: Required[str]

@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Annotated
+from typing_extensions import Annotated, TypedDict
 
 from ...._utils import PropertyInfo
 
 __all__ = ["DeploymentParam"]
+
 
 class DeploymentParam(TypedDict, total=False):
     workers_message: Annotated[str, PropertyInfo(alias="workers/message")]

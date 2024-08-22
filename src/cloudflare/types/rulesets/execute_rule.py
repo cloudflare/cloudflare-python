@@ -1,24 +1,26 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import Optional, List
-
-from typing_extensions import Literal
-
+from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .logging import Logging
+from ..._models import BaseModel
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+__all__ = [
+    "ExecuteRule",
+    "ActionParameters",
+    "ActionParametersMatchedData",
+    "ActionParametersOverrides",
+    "ActionParametersOverridesCategory",
+    "ActionParametersOverridesRule",
+]
 
-__all__ = ["ExecuteRule", "ActionParameters", "ActionParametersMatchedData", "ActionParametersOverrides", "ActionParametersOverridesCategory", "ActionParametersOverridesRule"]
 
 class ActionParametersMatchedData(BaseModel):
     public_key: str
     """The public key to encrypt matched data logs with."""
+
 
 class ActionParametersOverridesCategory(BaseModel):
     category: str
@@ -32,6 +34,7 @@ class ActionParametersOverridesCategory(BaseModel):
 
     sensitivity_level: Optional[Literal["default", "medium", "low", "eoff"]] = None
     """The sensitivity level to use for rules in the category."""
+
 
 class ActionParametersOverridesRule(BaseModel):
     id: str
@@ -48,6 +51,7 @@ class ActionParametersOverridesRule(BaseModel):
 
     sensitivity_level: Optional[Literal["default", "medium", "low", "eoff"]] = None
     """The sensitivity level to use for the rule."""
+
 
 class ActionParametersOverrides(BaseModel):
     action: Optional[str] = None
@@ -78,6 +82,7 @@ class ActionParametersOverrides(BaseModel):
     applicable for DDoS phases.
     """
 
+
 class ActionParameters(BaseModel):
     id: str
     """The ID of the ruleset to execute."""
@@ -87,6 +92,7 @@ class ActionParameters(BaseModel):
 
     overrides: Optional[ActionParametersOverrides] = None
     """A set of overrides to apply to the target ruleset."""
+
 
 class ExecuteRule(BaseModel):
     last_updated: datetime

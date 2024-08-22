@@ -6,5 +6,6 @@ from typing_extensions import TypedDict
 
 __all__ = ["SubscriptionZoneParam"]
 
+
 class SubscriptionZoneParam(TypedDict, total=False):
     pass

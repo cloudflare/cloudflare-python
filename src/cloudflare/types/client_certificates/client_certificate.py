@@ -1,21 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
 from typing import Optional
 
+from ..._models import BaseModel
 from ..custom_certificates.status import Status
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["ClientCertificate", "CertificateAuthority"]
+
 
 class CertificateAuthority(BaseModel):
     id: Optional[str] = None
 
     name: Optional[str] = None
+
 
 class ClientCertificate(BaseModel):
     id: Optional[str] = None

@@ -2,53 +2,115 @@
 
 from __future__ import annotations
 
-from .devices.devices import DevicesResource, AsyncDevicesResource
-
-from ..._compat import cached_property
-
-from .identity_providers import IdentityProvidersResource, AsyncIdentityProvidersResource
-
-from .organizations import OrganizationsResource, AsyncOrganizationsResource
-
-from .seats import SeatsResource, AsyncSeatsResource
-
-from .access.access import AccessResource, AsyncAccessResource
-
+from .dex import (
+    DEXResource,
+    AsyncDEXResource,
+    DEXResourceWithRawResponse,
+    AsyncDEXResourceWithRawResponse,
+    DEXResourceWithStreamingResponse,
+    AsyncDEXResourceWithStreamingResponse,
+)
+from .dlp import (
+    DLPResource,
+    AsyncDLPResource,
+    DLPResourceWithRawResponse,
+    AsyncDLPResourceWithRawResponse,
+    DLPResourceWithStreamingResponse,
+    AsyncDLPResourceWithStreamingResponse,
+)
+from .seats import (
+    SeatsResource,
+    AsyncSeatsResource,
+    SeatsResourceWithRawResponse,
+    AsyncSeatsResourceWithRawResponse,
+    SeatsResourceWithStreamingResponse,
+    AsyncSeatsResourceWithStreamingResponse,
+)
+from .access import (
+    AccessResource,
+    AsyncAccessResource,
+    AccessResourceWithRawResponse,
+    AsyncAccessResourceWithRawResponse,
+    AccessResourceWithStreamingResponse,
+    AsyncAccessResourceWithStreamingResponse,
+)
+from .devices import (
+    DevicesResource,
+    AsyncDevicesResource,
+    DevicesResourceWithRawResponse,
+    AsyncDevicesResourceWithRawResponse,
+    DevicesResourceWithStreamingResponse,
+    AsyncDevicesResourceWithStreamingResponse,
+)
 from .dex.dex import DEXResource, AsyncDEXResource
-
-from .tunnels.tunnels import TunnelsResource, AsyncTunnelsResource
-
-from .connectivity_settings import ConnectivitySettingsResource, AsyncConnectivitySettingsResource
-
 from .dlp.dlp import DLPResource, AsyncDLPResource
-
+from .gateway import (
+    GatewayResource,
+    AsyncGatewayResource,
+    GatewayResourceWithRawResponse,
+    AsyncGatewayResourceWithRawResponse,
+    GatewayResourceWithStreamingResponse,
+    AsyncGatewayResourceWithStreamingResponse,
+)
+from .tunnels import (
+    TunnelsResource,
+    AsyncTunnelsResource,
+    TunnelsResourceWithRawResponse,
+    AsyncTunnelsResourceWithRawResponse,
+    TunnelsResourceWithStreamingResponse,
+    AsyncTunnelsResourceWithStreamingResponse,
+)
+from .networks import (
+    NetworksResource,
+    AsyncNetworksResource,
+    NetworksResourceWithRawResponse,
+    AsyncNetworksResourceWithRawResponse,
+    NetworksResourceWithStreamingResponse,
+    AsyncNetworksResourceWithStreamingResponse,
+)
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .risk_scoring import (
+    RiskScoringResource,
+    AsyncRiskScoringResource,
+    RiskScoringResourceWithRawResponse,
+    AsyncRiskScoringResourceWithRawResponse,
+    RiskScoringResourceWithStreamingResponse,
+    AsyncRiskScoringResourceWithStreamingResponse,
+)
+from .access.access import AccessResource, AsyncAccessResource
+from .organizations import (
+    OrganizationsResource,
+    AsyncOrganizationsResource,
+    OrganizationsResourceWithRawResponse,
+    AsyncOrganizationsResourceWithRawResponse,
+    OrganizationsResourceWithStreamingResponse,
+    AsyncOrganizationsResourceWithStreamingResponse,
+)
+from .devices.devices import DevicesResource, AsyncDevicesResource
 from .gateway.gateway import GatewayResource, AsyncGatewayResource
-
+from .tunnels.tunnels import TunnelsResource, AsyncTunnelsResource
 from .networks.networks import NetworksResource, AsyncNetworksResource
-
+from .identity_providers import (
+    IdentityProvidersResource,
+    AsyncIdentityProvidersResource,
+    IdentityProvidersResourceWithRawResponse,
+    AsyncIdentityProvidersResourceWithRawResponse,
+    IdentityProvidersResourceWithStreamingResponse,
+    AsyncIdentityProvidersResourceWithStreamingResponse,
+)
+from .connectivity_settings import (
+    ConnectivitySettingsResource,
+    AsyncConnectivitySettingsResource,
+    ConnectivitySettingsResourceWithRawResponse,
+    AsyncConnectivitySettingsResourceWithRawResponse,
+    ConnectivitySettingsResourceWithStreamingResponse,
+    AsyncConnectivitySettingsResourceWithStreamingResponse,
+)
 from .risk_scoring.risk_scoring import RiskScoringResource, AsyncRiskScoringResource
 
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from .devices import DevicesResource, AsyncDevicesResource, DevicesResourceWithRawResponse, AsyncDevicesResourceWithRawResponse, DevicesResourceWithStreamingResponse, AsyncDevicesResourceWithStreamingResponse
-from .identity_providers import IdentityProvidersResource, AsyncIdentityProvidersResource, IdentityProvidersResourceWithRawResponse, AsyncIdentityProvidersResourceWithRawResponse, IdentityProvidersResourceWithStreamingResponse, AsyncIdentityProvidersResourceWithStreamingResponse
-from .organizations import OrganizationsResource, AsyncOrganizationsResource, OrganizationsResourceWithRawResponse, AsyncOrganizationsResourceWithRawResponse, OrganizationsResourceWithStreamingResponse, AsyncOrganizationsResourceWithStreamingResponse
-from .seats import SeatsResource, AsyncSeatsResource, SeatsResourceWithRawResponse, AsyncSeatsResourceWithRawResponse, SeatsResourceWithStreamingResponse, AsyncSeatsResourceWithStreamingResponse
-from .access import AccessResource, AsyncAccessResource, AccessResourceWithRawResponse, AsyncAccessResourceWithRawResponse, AccessResourceWithStreamingResponse, AsyncAccessResourceWithStreamingResponse
-from .dex import DEXResource, AsyncDEXResource, DEXResourceWithRawResponse, AsyncDEXResourceWithRawResponse, DEXResourceWithStreamingResponse, AsyncDEXResourceWithStreamingResponse
-from .tunnels import TunnelsResource, AsyncTunnelsResource, TunnelsResourceWithRawResponse, AsyncTunnelsResourceWithRawResponse, TunnelsResourceWithStreamingResponse, AsyncTunnelsResourceWithStreamingResponse
-from .connectivity_settings import ConnectivitySettingsResource, AsyncConnectivitySettingsResource, ConnectivitySettingsResourceWithRawResponse, AsyncConnectivitySettingsResourceWithRawResponse, ConnectivitySettingsResourceWithStreamingResponse, AsyncConnectivitySettingsResourceWithStreamingResponse
-from .dlp import DLPResource, AsyncDLPResource, DLPResourceWithRawResponse, AsyncDLPResourceWithRawResponse, DLPResourceWithStreamingResponse, AsyncDLPResourceWithStreamingResponse
-from .gateway import GatewayResource, AsyncGatewayResource, GatewayResourceWithRawResponse, AsyncGatewayResourceWithRawResponse, GatewayResourceWithStreamingResponse, AsyncGatewayResourceWithStreamingResponse
-from .networks import NetworksResource, AsyncNetworksResource, NetworksResourceWithRawResponse, AsyncNetworksResourceWithRawResponse, NetworksResourceWithStreamingResponse, AsyncNetworksResourceWithStreamingResponse
-from .risk_scoring import RiskScoringResource, AsyncRiskScoringResource, RiskScoringResourceWithRawResponse, AsyncRiskScoringResourceWithRawResponse, RiskScoringResourceWithStreamingResponse, AsyncRiskScoringResourceWithStreamingResponse
-
 __all__ = ["ZeroTrustResource", "AsyncZeroTrustResource"]
+
 
 class ZeroTrustResource(SyncAPIResource):
     @cached_property
@@ -107,6 +169,7 @@ class ZeroTrustResource(SyncAPIResource):
     def with_streaming_response(self) -> ZeroTrustResourceWithStreamingResponse:
         return ZeroTrustResourceWithStreamingResponse(self)
 
+
 class AsyncZeroTrustResource(AsyncAPIResource):
     @cached_property
     def devices(self) -> AsyncDevicesResource:
@@ -164,6 +227,7 @@ class AsyncZeroTrustResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncZeroTrustResourceWithStreamingResponse:
         return AsyncZeroTrustResourceWithStreamingResponse(self)
 
+
 class ZeroTrustResourceWithRawResponse:
     def __init__(self, zero_trust: ZeroTrustResource) -> None:
         self._zero_trust = zero_trust
@@ -215,6 +279,7 @@ class ZeroTrustResourceWithRawResponse:
     @cached_property
     def risk_scoring(self) -> RiskScoringResourceWithRawResponse:
         return RiskScoringResourceWithRawResponse(self._zero_trust.risk_scoring)
+
 
 class AsyncZeroTrustResourceWithRawResponse:
     def __init__(self, zero_trust: AsyncZeroTrustResource) -> None:
@@ -268,6 +333,7 @@ class AsyncZeroTrustResourceWithRawResponse:
     def risk_scoring(self) -> AsyncRiskScoringResourceWithRawResponse:
         return AsyncRiskScoringResourceWithRawResponse(self._zero_trust.risk_scoring)
 
+
 class ZeroTrustResourceWithStreamingResponse:
     def __init__(self, zero_trust: ZeroTrustResource) -> None:
         self._zero_trust = zero_trust
@@ -319,6 +385,7 @@ class ZeroTrustResourceWithStreamingResponse:
     @cached_property
     def risk_scoring(self) -> RiskScoringResourceWithStreamingResponse:
         return RiskScoringResourceWithStreamingResponse(self._zero_trust.risk_scoring)
+
 
 class AsyncZeroTrustResourceWithStreamingResponse:
     def __init__(self, zero_trust: AsyncZeroTrustResource) -> None:

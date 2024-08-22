@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict, Required
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["OSVersionInputParam"]
+
 
 class OSVersionInputParam(TypedDict, total=False):
     operating_system: Required[Literal["windows"]]

@@ -6,6 +6,7 @@ from typing_extensions import Literal, TypedDict
 
 __all__ = ["CountryConfigurationParam"]
 
+
 class CountryConfigurationParam(TypedDict, total=False):
     target: Literal["country"]
     """The configuration target.

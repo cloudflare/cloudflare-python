@@ -1,24 +1,39 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ...._models import BaseModel
-
+from typing import List, Union, Optional
 from datetime import datetime
-
-from .profiles.pattern import Pattern
-
-from typing_extensions import Literal, TypeAlias, Annotated
-
-from typing import Optional, List
+from typing_extensions import Literal, Annotated, TypeAlias
 
 from ...._utils import PropertyInfo
-
+from ...._models import BaseModel
+from .profiles.pattern import Pattern
 from .context_awareness import ContextAwareness
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+__all__ = [
+    "Profile",
+    "Custom",
+    "CustomEntry",
+    "CustomEntryCustom",
+    "CustomEntryPredefined",
+    "CustomEntryIntegration",
+    "CustomEntryExactData",
+    "CustomEntryWordList",
+    "Predefined",
+    "PredefinedEntry",
+    "PredefinedEntryCustom",
+    "PredefinedEntryPredefined",
+    "PredefinedEntryIntegration",
+    "PredefinedEntryExactData",
+    "PredefinedEntryWordList",
+    "Integration",
+    "IntegrationEntry",
+    "IntegrationEntryCustom",
+    "IntegrationEntryPredefined",
+    "IntegrationEntryIntegration",
+    "IntegrationEntryExactData",
+    "IntegrationEntryWordList",
+]
 
-__all__ = ["Profile", "Custom", "CustomEntry", "CustomEntryCustom", "CustomEntryPredefined", "CustomEntryIntegration", "CustomEntryExactData", "CustomEntryWordList", "Predefined", "PredefinedEntry", "PredefinedEntryCustom", "PredefinedEntryPredefined", "PredefinedEntryIntegration", "PredefinedEntryExactData", "PredefinedEntryWordList", "Integration", "IntegrationEntry", "IntegrationEntryCustom", "IntegrationEntryPredefined", "IntegrationEntryIntegration", "IntegrationEntryExactData", "IntegrationEntryWordList"]
 
 class CustomEntryCustom(BaseModel):
     id: str
@@ -37,6 +52,7 @@ class CustomEntryCustom(BaseModel):
 
     profile_id: Optional[str] = None
 
+
 class CustomEntryPredefined(BaseModel):
     id: str
 
@@ -47,6 +63,7 @@ class CustomEntryPredefined(BaseModel):
     type: Literal["predefined"]
 
     profile_id: Optional[str] = None
+
 
 class CustomEntryIntegration(BaseModel):
     id: str
@@ -63,6 +80,7 @@ class CustomEntryIntegration(BaseModel):
 
     profile_id: Optional[str] = None
 
+
 class CustomEntryExactData(BaseModel):
     id: str
 
@@ -77,6 +95,7 @@ class CustomEntryExactData(BaseModel):
     type: Literal["exact_data"]
 
     updated_at: datetime
+
 
 class CustomEntryWordList(BaseModel):
     id: str
@@ -95,7 +114,12 @@ class CustomEntryWordList(BaseModel):
 
     profile_id: Optional[str] = None
 
-CustomEntry: TypeAlias = Annotated[Union[CustomEntryCustom, CustomEntryPredefined, CustomEntryIntegration, CustomEntryExactData, CustomEntryWordList], PropertyInfo(discriminator="type")]
+
+CustomEntry: TypeAlias = Annotated[
+    Union[CustomEntryCustom, CustomEntryPredefined, CustomEntryIntegration, CustomEntryExactData, CustomEntryWordList],
+    PropertyInfo(discriminator="type"),
+]
+
 
 class Custom(BaseModel):
     id: str
@@ -128,6 +152,7 @@ class Custom(BaseModel):
     description: Optional[str] = None
     """The description of the profile"""
 
+
 class PredefinedEntryCustom(BaseModel):
     id: str
 
@@ -145,6 +170,7 @@ class PredefinedEntryCustom(BaseModel):
 
     profile_id: Optional[str] = None
 
+
 class PredefinedEntryPredefined(BaseModel):
     id: str
 
@@ -155,6 +181,7 @@ class PredefinedEntryPredefined(BaseModel):
     type: Literal["predefined"]
 
     profile_id: Optional[str] = None
+
 
 class PredefinedEntryIntegration(BaseModel):
     id: str
@@ -171,6 +198,7 @@ class PredefinedEntryIntegration(BaseModel):
 
     profile_id: Optional[str] = None
 
+
 class PredefinedEntryExactData(BaseModel):
     id: str
 
@@ -185,6 +213,7 @@ class PredefinedEntryExactData(BaseModel):
     type: Literal["exact_data"]
 
     updated_at: datetime
+
 
 class PredefinedEntryWordList(BaseModel):
     id: str
@@ -203,7 +232,18 @@ class PredefinedEntryWordList(BaseModel):
 
     profile_id: Optional[str] = None
 
-PredefinedEntry: TypeAlias = Annotated[Union[PredefinedEntryCustom, PredefinedEntryPredefined, PredefinedEntryIntegration, PredefinedEntryExactData, PredefinedEntryWordList], PropertyInfo(discriminator="type")]
+
+PredefinedEntry: TypeAlias = Annotated[
+    Union[
+        PredefinedEntryCustom,
+        PredefinedEntryPredefined,
+        PredefinedEntryIntegration,
+        PredefinedEntryExactData,
+        PredefinedEntryWordList,
+    ],
+    PropertyInfo(discriminator="type"),
+]
+
 
 class Predefined(BaseModel):
     id: str
@@ -228,6 +268,7 @@ class Predefined(BaseModel):
 
     open_access: Optional[bool] = None
 
+
 class IntegrationEntryCustom(BaseModel):
     id: str
 
@@ -245,6 +286,7 @@ class IntegrationEntryCustom(BaseModel):
 
     profile_id: Optional[str] = None
 
+
 class IntegrationEntryPredefined(BaseModel):
     id: str
 
@@ -255,6 +297,7 @@ class IntegrationEntryPredefined(BaseModel):
     type: Literal["predefined"]
 
     profile_id: Optional[str] = None
+
 
 class IntegrationEntryIntegration(BaseModel):
     id: str
@@ -271,6 +314,7 @@ class IntegrationEntryIntegration(BaseModel):
 
     profile_id: Optional[str] = None
 
+
 class IntegrationEntryExactData(BaseModel):
     id: str
 
@@ -285,6 +329,7 @@ class IntegrationEntryExactData(BaseModel):
     type: Literal["exact_data"]
 
     updated_at: datetime
+
 
 class IntegrationEntryWordList(BaseModel):
     id: str
@@ -303,7 +348,18 @@ class IntegrationEntryWordList(BaseModel):
 
     profile_id: Optional[str] = None
 
-IntegrationEntry: TypeAlias = Annotated[Union[IntegrationEntryCustom, IntegrationEntryPredefined, IntegrationEntryIntegration, IntegrationEntryExactData, IntegrationEntryWordList], PropertyInfo(discriminator="type")]
+
+IntegrationEntry: TypeAlias = Annotated[
+    Union[
+        IntegrationEntryCustom,
+        IntegrationEntryPredefined,
+        IntegrationEntryIntegration,
+        IntegrationEntryExactData,
+        IntegrationEntryWordList,
+    ],
+    PropertyInfo(discriminator="type"),
+]
+
 
 class Integration(BaseModel):
     id: str
@@ -320,5 +376,6 @@ class Integration(BaseModel):
 
     description: Optional[str] = None
     """The description of the profile"""
+
 
 Profile: TypeAlias = Annotated[Union[Custom, Predefined, Integration], PropertyInfo(discriminator="type")]

@@ -2,26 +2,35 @@
 
 from __future__ import annotations
 
-from .eligible import EligibleResource, AsyncEligibleResource
-
+from .eligible import (
+    EligibleResource,
+    AsyncEligibleResource,
+    EligibleResourceWithRawResponse,
+    AsyncEligibleResourceWithRawResponse,
+    EligibleResourceWithStreamingResponse,
+    AsyncEligibleResourceWithStreamingResponse,
+)
+from .webhooks import (
+    WebhooksResource,
+    AsyncWebhooksResource,
+    WebhooksResourceWithRawResponse,
+    AsyncWebhooksResourceWithRawResponse,
+    WebhooksResourceWithStreamingResponse,
+    AsyncWebhooksResourceWithStreamingResponse,
+)
+from .pagerduty import (
+    PagerdutyResource,
+    AsyncPagerdutyResource,
+    PagerdutyResourceWithRawResponse,
+    AsyncPagerdutyResourceWithRawResponse,
+    PagerdutyResourceWithStreamingResponse,
+    AsyncPagerdutyResourceWithStreamingResponse,
+)
 from ...._compat import cached_property
-
-from .pagerduty import PagerdutyResource, AsyncPagerdutyResource
-
-from .webhooks import WebhooksResource, AsyncWebhooksResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
 from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from .eligible import EligibleResource, AsyncEligibleResource, EligibleResourceWithRawResponse, AsyncEligibleResourceWithRawResponse, EligibleResourceWithStreamingResponse, AsyncEligibleResourceWithStreamingResponse
-from .pagerduty import PagerdutyResource, AsyncPagerdutyResource, PagerdutyResourceWithRawResponse, AsyncPagerdutyResourceWithRawResponse, PagerdutyResourceWithStreamingResponse, AsyncPagerdutyResourceWithStreamingResponse
-from .webhooks import WebhooksResource, AsyncWebhooksResource, WebhooksResourceWithRawResponse, AsyncWebhooksResourceWithRawResponse, WebhooksResourceWithStreamingResponse, AsyncWebhooksResourceWithStreamingResponse
 
 __all__ = ["DestinationsResource", "AsyncDestinationsResource"]
+
 
 class DestinationsResource(SyncAPIResource):
     @cached_property
@@ -44,6 +53,7 @@ class DestinationsResource(SyncAPIResource):
     def with_streaming_response(self) -> DestinationsResourceWithStreamingResponse:
         return DestinationsResourceWithStreamingResponse(self)
 
+
 class AsyncDestinationsResource(AsyncAPIResource):
     @cached_property
     def eligible(self) -> AsyncEligibleResource:
@@ -65,6 +75,7 @@ class AsyncDestinationsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncDestinationsResourceWithStreamingResponse:
         return AsyncDestinationsResourceWithStreamingResponse(self)
 
+
 class DestinationsResourceWithRawResponse:
     def __init__(self, destinations: DestinationsResource) -> None:
         self._destinations = destinations
@@ -80,6 +91,7 @@ class DestinationsResourceWithRawResponse:
     @cached_property
     def webhooks(self) -> WebhooksResourceWithRawResponse:
         return WebhooksResourceWithRawResponse(self._destinations.webhooks)
+
 
 class AsyncDestinationsResourceWithRawResponse:
     def __init__(self, destinations: AsyncDestinationsResource) -> None:
@@ -97,6 +109,7 @@ class AsyncDestinationsResourceWithRawResponse:
     def webhooks(self) -> AsyncWebhooksResourceWithRawResponse:
         return AsyncWebhooksResourceWithRawResponse(self._destinations.webhooks)
 
+
 class DestinationsResourceWithStreamingResponse:
     def __init__(self, destinations: DestinationsResource) -> None:
         self._destinations = destinations
@@ -112,6 +125,7 @@ class DestinationsResourceWithStreamingResponse:
     @cached_property
     def webhooks(self) -> WebhooksResourceWithStreamingResponse:
         return WebhooksResourceWithStreamingResponse(self._destinations.webhooks)
+
 
 class AsyncDestinationsResourceWithStreamingResponse:
     def __init__(self, destinations: AsyncDestinationsResource) -> None:

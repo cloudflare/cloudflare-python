@@ -6,6 +6,7 @@ from typing_extensions import TypedDict
 
 __all__ = ["PermissionGrant"]
 
+
 class PermissionGrant(TypedDict, total=False):
     read: bool
 

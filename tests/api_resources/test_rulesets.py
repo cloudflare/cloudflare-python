@@ -2,34 +2,26 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from cloudflare.types.rulesets import RulesetCreateResponse, RulesetUpdateResponse, RulesetListResponse, RulesetGetResponse
-
+import os
 from typing import Any, cast
 
-from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
-
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.rulesets import ruleset_create_params
-from cloudflare.types.rulesets import ruleset_update_params
-from cloudflare.types.rulesets import Kind
-from cloudflare.types.rulesets import Phase
-from cloudflare.types.rulesets import Kind
-from cloudflare.types.rulesets import Phase
+from cloudflare.pagination import SyncSinglePage, AsyncSinglePage
+from cloudflare.types.rulesets import (
+    RulesetGetResponse,
+    RulesetListResponse,
+    RulesetCreateResponse,
+    RulesetUpdateResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-class TestRulesets:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
 
+class TestRulesets:
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -41,7 +33,7 @@ class TestRulesets:
             rules=[{}, {}, {}],
             account_id="account_id",
         )
-        assert_matches_type(RulesetCreateResponse, ruleset, path=['response'])
+        assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -50,67 +42,64 @@ class TestRulesets:
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
-            rules=[{
-                "id": "3a03d665bac047339bb530ecb439a90d",
-                "action": "block",
-                "action_parameters": {
-                    "response": {
-                        "content": "{\n  \"success\": false,\n  \"error\": \"you have been blocked\"\n}",
-                        "content_type": "application/json",
-                        "status_code": 400,
-                    }
+            rules=[
+                {
+                    "id": "3a03d665bac047339bb530ecb439a90d",
+                    "action": "block",
+                    "action_parameters": {
+                        "response": {
+                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
+                            "content_type": "application/json",
+                            "status_code": 400,
+                        }
+                    },
+                    "description": "Block when the IP address is not 1.1.1.1",
+                    "enabled": True,
+                    "expression": "ip.src ne 1.1.1.1",
+                    "logging": {"enabled": True},
+                    "ref": "my_ref",
                 },
-                "description": "Block when the IP address is not 1.1.1.1",
-                "enabled": True,
-                "expression": "ip.src ne 1.1.1.1",
-                "logging": {
-                    "enabled": True
+                {
+                    "id": "3a03d665bac047339bb530ecb439a90d",
+                    "action": "block",
+                    "action_parameters": {
+                        "response": {
+                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
+                            "content_type": "application/json",
+                            "status_code": 400,
+                        }
+                    },
+                    "description": "Block when the IP address is not 1.1.1.1",
+                    "enabled": True,
+                    "expression": "ip.src ne 1.1.1.1",
+                    "logging": {"enabled": True},
+                    "ref": "my_ref",
                 },
-                "ref": "my_ref",
-            }, {
-                "id": "3a03d665bac047339bb530ecb439a90d",
-                "action": "block",
-                "action_parameters": {
-                    "response": {
-                        "content": "{\n  \"success\": false,\n  \"error\": \"you have been blocked\"\n}",
-                        "content_type": "application/json",
-                        "status_code": 400,
-                    }
+                {
+                    "id": "3a03d665bac047339bb530ecb439a90d",
+                    "action": "block",
+                    "action_parameters": {
+                        "response": {
+                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
+                            "content_type": "application/json",
+                            "status_code": 400,
+                        }
+                    },
+                    "description": "Block when the IP address is not 1.1.1.1",
+                    "enabled": True,
+                    "expression": "ip.src ne 1.1.1.1",
+                    "logging": {"enabled": True},
+                    "ref": "my_ref",
                 },
-                "description": "Block when the IP address is not 1.1.1.1",
-                "enabled": True,
-                "expression": "ip.src ne 1.1.1.1",
-                "logging": {
-                    "enabled": True
-                },
-                "ref": "my_ref",
-            }, {
-                "id": "3a03d665bac047339bb530ecb439a90d",
-                "action": "block",
-                "action_parameters": {
-                    "response": {
-                        "content": "{\n  \"success\": false,\n  \"error\": \"you have been blocked\"\n}",
-                        "content_type": "application/json",
-                        "status_code": 400,
-                    }
-                },
-                "description": "Block when the IP address is not 1.1.1.1",
-                "enabled": True,
-                "expression": "ip.src ne 1.1.1.1",
-                "logging": {
-                    "enabled": True
-                },
-                "ref": "my_ref",
-            }],
+            ],
             account_id="account_id",
             description="My ruleset to execute managed rulesets",
         )
-        assert_matches_type(RulesetCreateResponse, ruleset, path=['response'])
+        assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_create(self, client: Cloudflare) -> None:
-
         response = client.rulesets.with_raw_response.create(
             kind="managed",
             name="My ruleset",
@@ -120,9 +109,9 @@ class TestRulesets:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = response.parse()
-        assert_matches_type(RulesetCreateResponse, ruleset, path=['response'])
+        assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -133,12 +122,12 @@ class TestRulesets:
             phase="ddos_l4",
             rules=[{}, {}, {}],
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = response.parse()
-            assert_matches_type(RulesetCreateResponse, ruleset, path=['response'])
+            assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -146,22 +135,22 @@ class TestRulesets:
     @parametrize
     def test_path_params_create(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.rulesets.with_raw_response.create(
-              kind="managed",
-              name="My ruleset",
-              phase="ddos_l4",
-              rules=[{}, {}, {}],
-              account_id="",
-          )
+            client.rulesets.with_raw_response.create(
+                kind="managed",
+                name="My ruleset",
+                phase="ddos_l4",
+                rules=[{}, {}, {}],
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.rulesets.with_raw_response.create(
-              kind="managed",
-              name="My ruleset",
-              phase="ddos_l4",
-              rules=[{}, {}, {}],
-              account_id="account_id",
-          )
+            client.rulesets.with_raw_response.create(
+                kind="managed",
+                name="My ruleset",
+                phase="ddos_l4",
+                rules=[{}, {}, {}],
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -171,77 +160,74 @@ class TestRulesets:
             rules=[{}, {}, {}],
             account_id="account_id",
         )
-        assert_matches_type(RulesetUpdateResponse, ruleset, path=['response'])
+        assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_method_update_with_all_params(self, client: Cloudflare) -> None:
         ruleset = client.rulesets.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{
-                "id": "3a03d665bac047339bb530ecb439a90d",
-                "action": "block",
-                "action_parameters": {
-                    "response": {
-                        "content": "{\n  \"success\": false,\n  \"error\": \"you have been blocked\"\n}",
-                        "content_type": "application/json",
-                        "status_code": 400,
-                    }
+            rules=[
+                {
+                    "id": "3a03d665bac047339bb530ecb439a90d",
+                    "action": "block",
+                    "action_parameters": {
+                        "response": {
+                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
+                            "content_type": "application/json",
+                            "status_code": 400,
+                        }
+                    },
+                    "description": "Block when the IP address is not 1.1.1.1",
+                    "enabled": True,
+                    "expression": "ip.src ne 1.1.1.1",
+                    "logging": {"enabled": True},
+                    "ref": "my_ref",
                 },
-                "description": "Block when the IP address is not 1.1.1.1",
-                "enabled": True,
-                "expression": "ip.src ne 1.1.1.1",
-                "logging": {
-                    "enabled": True
+                {
+                    "id": "3a03d665bac047339bb530ecb439a90d",
+                    "action": "block",
+                    "action_parameters": {
+                        "response": {
+                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
+                            "content_type": "application/json",
+                            "status_code": 400,
+                        }
+                    },
+                    "description": "Block when the IP address is not 1.1.1.1",
+                    "enabled": True,
+                    "expression": "ip.src ne 1.1.1.1",
+                    "logging": {"enabled": True},
+                    "ref": "my_ref",
                 },
-                "ref": "my_ref",
-            }, {
-                "id": "3a03d665bac047339bb530ecb439a90d",
-                "action": "block",
-                "action_parameters": {
-                    "response": {
-                        "content": "{\n  \"success\": false,\n  \"error\": \"you have been blocked\"\n}",
-                        "content_type": "application/json",
-                        "status_code": 400,
-                    }
+                {
+                    "id": "3a03d665bac047339bb530ecb439a90d",
+                    "action": "block",
+                    "action_parameters": {
+                        "response": {
+                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
+                            "content_type": "application/json",
+                            "status_code": 400,
+                        }
+                    },
+                    "description": "Block when the IP address is not 1.1.1.1",
+                    "enabled": True,
+                    "expression": "ip.src ne 1.1.1.1",
+                    "logging": {"enabled": True},
+                    "ref": "my_ref",
                 },
-                "description": "Block when the IP address is not 1.1.1.1",
-                "enabled": True,
-                "expression": "ip.src ne 1.1.1.1",
-                "logging": {
-                    "enabled": True
-                },
-                "ref": "my_ref",
-            }, {
-                "id": "3a03d665bac047339bb530ecb439a90d",
-                "action": "block",
-                "action_parameters": {
-                    "response": {
-                        "content": "{\n  \"success\": false,\n  \"error\": \"you have been blocked\"\n}",
-                        "content_type": "application/json",
-                        "status_code": 400,
-                    }
-                },
-                "description": "Block when the IP address is not 1.1.1.1",
-                "enabled": True,
-                "expression": "ip.src ne 1.1.1.1",
-                "logging": {
-                    "enabled": True
-                },
-                "ref": "my_ref",
-            }],
+            ],
             account_id="account_id",
             description="My ruleset to execute managed rulesets",
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
         )
-        assert_matches_type(RulesetUpdateResponse, ruleset, path=['response'])
+        assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
-
         response = client.rulesets.with_raw_response.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
@@ -249,9 +235,9 @@ class TestRulesets:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = response.parse()
-        assert_matches_type(RulesetUpdateResponse, ruleset, path=['response'])
+        assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -260,12 +246,12 @@ class TestRulesets:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = response.parse()
-            assert_matches_type(RulesetUpdateResponse, ruleset, path=['response'])
+            assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -273,25 +259,25 @@ class TestRulesets:
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
-          client.rulesets.with_raw_response.update(
-              ruleset_id="",
-              rules=[{}, {}, {}],
-              account_id="account_id",
-          )
+            client.rulesets.with_raw_response.update(
+                ruleset_id="",
+                rules=[{}, {}, {}],
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.rulesets.with_raw_response.update(
-              ruleset_id="2f2feab2026849078ba485f918791bdc",
-              rules=[{}, {}, {}],
-              account_id="",
-          )
+            client.rulesets.with_raw_response.update(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                rules=[{}, {}, {}],
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.rulesets.with_raw_response.update(
-              ruleset_id="2f2feab2026849078ba485f918791bdc",
-              rules=[{}, {}, {}],
-              account_id="account_id",
-          )
+            client.rulesets.with_raw_response.update(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                rules=[{}, {}, {}],
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -299,7 +285,7 @@ class TestRulesets:
         ruleset = client.rulesets.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[RulesetListResponse], ruleset, path=['response'])
+        assert_matches_type(SyncSinglePage[RulesetListResponse], ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -307,32 +293,31 @@ class TestRulesets:
         ruleset = client.rulesets.list(
             account_id="account_id",
         )
-        assert_matches_type(SyncSinglePage[RulesetListResponse], ruleset, path=['response'])
+        assert_matches_type(SyncSinglePage[RulesetListResponse], ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_list(self, client: Cloudflare) -> None:
-
         response = client.rulesets.with_raw_response.list(
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = response.parse()
-        assert_matches_type(SyncSinglePage[RulesetListResponse], ruleset, path=['response'])
+        assert_matches_type(SyncSinglePage[RulesetListResponse], ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_streaming_response_list(self, client: Cloudflare) -> None:
         with client.rulesets.with_streaming_response.list(
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = response.parse()
-            assert_matches_type(SyncSinglePage[RulesetListResponse], ruleset, path=['response'])
+            assert_matches_type(SyncSinglePage[RulesetListResponse], ruleset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -340,14 +325,14 @@ class TestRulesets:
     @parametrize
     def test_path_params_list(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.rulesets.with_raw_response.list(
-              account_id="",
-          )
+            client.rulesets.with_raw_response.list(
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.rulesets.with_raw_response.list(
-              account_id="account_id",
-          )
+            client.rulesets.with_raw_response.list(
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -370,14 +355,13 @@ class TestRulesets:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
-
         response = client.rulesets.with_raw_response.delete(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = response.parse()
         assert ruleset is None
 
@@ -387,9 +371,9 @@ class TestRulesets:
         with client.rulesets.with_streaming_response.delete(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = response.parse()
             assert ruleset is None
@@ -400,22 +384,22 @@ class TestRulesets:
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
-          client.rulesets.with_raw_response.delete(
-              ruleset_id="",
-              account_id="account_id",
-          )
+            client.rulesets.with_raw_response.delete(
+                ruleset_id="",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.rulesets.with_raw_response.delete(
-              ruleset_id="2f2feab2026849078ba485f918791bdc",
-              account_id="",
-          )
+            client.rulesets.with_raw_response.delete(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.rulesets.with_raw_response.delete(
-              ruleset_id="2f2feab2026849078ba485f918791bdc",
-              account_id="account_id",
-          )
+            client.rulesets.with_raw_response.delete(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -424,7 +408,7 @@ class TestRulesets:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
         )
-        assert_matches_type(RulesetGetResponse, ruleset, path=['response'])
+        assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -433,21 +417,20 @@ class TestRulesets:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
         )
-        assert_matches_type(RulesetGetResponse, ruleset, path=['response'])
+        assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-
         response = client.rulesets.with_raw_response.get(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = response.parse()
-        assert_matches_type(RulesetGetResponse, ruleset, path=['response'])
+        assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -455,12 +438,12 @@ class TestRulesets:
         with client.rulesets.with_streaming_response.get(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = response.parse()
-            assert_matches_type(RulesetGetResponse, ruleset, path=['response'])
+            assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -468,25 +451,26 @@ class TestRulesets:
     @parametrize
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
-          client.rulesets.with_raw_response.get(
-              ruleset_id="",
-              account_id="account_id",
-          )
+            client.rulesets.with_raw_response.get(
+                ruleset_id="",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.rulesets.with_raw_response.get(
-              ruleset_id="2f2feab2026849078ba485f918791bdc",
-              account_id="",
-          )
+            client.rulesets.with_raw_response.get(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          client.rulesets.with_raw_response.get(
-              ruleset_id="2f2feab2026849078ba485f918791bdc",
-              account_id="account_id",
-          )
-class TestAsyncRulesets:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+            client.rulesets.with_raw_response.get(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
 
+
+class TestAsyncRulesets:
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -498,7 +482,7 @@ class TestAsyncRulesets:
             rules=[{}, {}, {}],
             account_id="account_id",
         )
-        assert_matches_type(RulesetCreateResponse, ruleset, path=['response'])
+        assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -507,67 +491,64 @@ class TestAsyncRulesets:
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
-            rules=[{
-                "id": "3a03d665bac047339bb530ecb439a90d",
-                "action": "block",
-                "action_parameters": {
-                    "response": {
-                        "content": "{\n  \"success\": false,\n  \"error\": \"you have been blocked\"\n}",
-                        "content_type": "application/json",
-                        "status_code": 400,
-                    }
+            rules=[
+                {
+                    "id": "3a03d665bac047339bb530ecb439a90d",
+                    "action": "block",
+                    "action_parameters": {
+                        "response": {
+                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
+                            "content_type": "application/json",
+                            "status_code": 400,
+                        }
+                    },
+                    "description": "Block when the IP address is not 1.1.1.1",
+                    "enabled": True,
+                    "expression": "ip.src ne 1.1.1.1",
+                    "logging": {"enabled": True},
+                    "ref": "my_ref",
                 },
-                "description": "Block when the IP address is not 1.1.1.1",
-                "enabled": True,
-                "expression": "ip.src ne 1.1.1.1",
-                "logging": {
-                    "enabled": True
+                {
+                    "id": "3a03d665bac047339bb530ecb439a90d",
+                    "action": "block",
+                    "action_parameters": {
+                        "response": {
+                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
+                            "content_type": "application/json",
+                            "status_code": 400,
+                        }
+                    },
+                    "description": "Block when the IP address is not 1.1.1.1",
+                    "enabled": True,
+                    "expression": "ip.src ne 1.1.1.1",
+                    "logging": {"enabled": True},
+                    "ref": "my_ref",
                 },
-                "ref": "my_ref",
-            }, {
-                "id": "3a03d665bac047339bb530ecb439a90d",
-                "action": "block",
-                "action_parameters": {
-                    "response": {
-                        "content": "{\n  \"success\": false,\n  \"error\": \"you have been blocked\"\n}",
-                        "content_type": "application/json",
-                        "status_code": 400,
-                    }
+                {
+                    "id": "3a03d665bac047339bb530ecb439a90d",
+                    "action": "block",
+                    "action_parameters": {
+                        "response": {
+                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
+                            "content_type": "application/json",
+                            "status_code": 400,
+                        }
+                    },
+                    "description": "Block when the IP address is not 1.1.1.1",
+                    "enabled": True,
+                    "expression": "ip.src ne 1.1.1.1",
+                    "logging": {"enabled": True},
+                    "ref": "my_ref",
                 },
-                "description": "Block when the IP address is not 1.1.1.1",
-                "enabled": True,
-                "expression": "ip.src ne 1.1.1.1",
-                "logging": {
-                    "enabled": True
-                },
-                "ref": "my_ref",
-            }, {
-                "id": "3a03d665bac047339bb530ecb439a90d",
-                "action": "block",
-                "action_parameters": {
-                    "response": {
-                        "content": "{\n  \"success\": false,\n  \"error\": \"you have been blocked\"\n}",
-                        "content_type": "application/json",
-                        "status_code": 400,
-                    }
-                },
-                "description": "Block when the IP address is not 1.1.1.1",
-                "enabled": True,
-                "expression": "ip.src ne 1.1.1.1",
-                "logging": {
-                    "enabled": True
-                },
-                "ref": "my_ref",
-            }],
+            ],
             account_id="account_id",
             description="My ruleset to execute managed rulesets",
         )
-        assert_matches_type(RulesetCreateResponse, ruleset, path=['response'])
+        assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_create(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.rulesets.with_raw_response.create(
             kind="managed",
             name="My ruleset",
@@ -577,9 +558,9 @@ class TestAsyncRulesets:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = await response.parse()
-        assert_matches_type(RulesetCreateResponse, ruleset, path=['response'])
+        assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -590,12 +571,12 @@ class TestAsyncRulesets:
             phase="ddos_l4",
             rules=[{}, {}, {}],
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = await response.parse()
-            assert_matches_type(RulesetCreateResponse, ruleset, path=['response'])
+            assert_matches_type(RulesetCreateResponse, ruleset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -603,22 +584,22 @@ class TestAsyncRulesets:
     @parametrize
     async def test_path_params_create(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.rulesets.with_raw_response.create(
-              kind="managed",
-              name="My ruleset",
-              phase="ddos_l4",
-              rules=[{}, {}, {}],
-              account_id="",
-          )
+            await async_client.rulesets.with_raw_response.create(
+                kind="managed",
+                name="My ruleset",
+                phase="ddos_l4",
+                rules=[{}, {}, {}],
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.rulesets.with_raw_response.create(
-              kind="managed",
-              name="My ruleset",
-              phase="ddos_l4",
-              rules=[{}, {}, {}],
-              account_id="account_id",
-          )
+            await async_client.rulesets.with_raw_response.create(
+                kind="managed",
+                name="My ruleset",
+                phase="ddos_l4",
+                rules=[{}, {}, {}],
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -628,77 +609,74 @@ class TestAsyncRulesets:
             rules=[{}, {}, {}],
             account_id="account_id",
         )
-        assert_matches_type(RulesetUpdateResponse, ruleset, path=['response'])
+        assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_method_update_with_all_params(self, async_client: AsyncCloudflare) -> None:
         ruleset = await async_client.rulesets.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
-            rules=[{
-                "id": "3a03d665bac047339bb530ecb439a90d",
-                "action": "block",
-                "action_parameters": {
-                    "response": {
-                        "content": "{\n  \"success\": false,\n  \"error\": \"you have been blocked\"\n}",
-                        "content_type": "application/json",
-                        "status_code": 400,
-                    }
+            rules=[
+                {
+                    "id": "3a03d665bac047339bb530ecb439a90d",
+                    "action": "block",
+                    "action_parameters": {
+                        "response": {
+                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
+                            "content_type": "application/json",
+                            "status_code": 400,
+                        }
+                    },
+                    "description": "Block when the IP address is not 1.1.1.1",
+                    "enabled": True,
+                    "expression": "ip.src ne 1.1.1.1",
+                    "logging": {"enabled": True},
+                    "ref": "my_ref",
                 },
-                "description": "Block when the IP address is not 1.1.1.1",
-                "enabled": True,
-                "expression": "ip.src ne 1.1.1.1",
-                "logging": {
-                    "enabled": True
+                {
+                    "id": "3a03d665bac047339bb530ecb439a90d",
+                    "action": "block",
+                    "action_parameters": {
+                        "response": {
+                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
+                            "content_type": "application/json",
+                            "status_code": 400,
+                        }
+                    },
+                    "description": "Block when the IP address is not 1.1.1.1",
+                    "enabled": True,
+                    "expression": "ip.src ne 1.1.1.1",
+                    "logging": {"enabled": True},
+                    "ref": "my_ref",
                 },
-                "ref": "my_ref",
-            }, {
-                "id": "3a03d665bac047339bb530ecb439a90d",
-                "action": "block",
-                "action_parameters": {
-                    "response": {
-                        "content": "{\n  \"success\": false,\n  \"error\": \"you have been blocked\"\n}",
-                        "content_type": "application/json",
-                        "status_code": 400,
-                    }
+                {
+                    "id": "3a03d665bac047339bb530ecb439a90d",
+                    "action": "block",
+                    "action_parameters": {
+                        "response": {
+                            "content": '{\n  "success": false,\n  "error": "you have been blocked"\n}',
+                            "content_type": "application/json",
+                            "status_code": 400,
+                        }
+                    },
+                    "description": "Block when the IP address is not 1.1.1.1",
+                    "enabled": True,
+                    "expression": "ip.src ne 1.1.1.1",
+                    "logging": {"enabled": True},
+                    "ref": "my_ref",
                 },
-                "description": "Block when the IP address is not 1.1.1.1",
-                "enabled": True,
-                "expression": "ip.src ne 1.1.1.1",
-                "logging": {
-                    "enabled": True
-                },
-                "ref": "my_ref",
-            }, {
-                "id": "3a03d665bac047339bb530ecb439a90d",
-                "action": "block",
-                "action_parameters": {
-                    "response": {
-                        "content": "{\n  \"success\": false,\n  \"error\": \"you have been blocked\"\n}",
-                        "content_type": "application/json",
-                        "status_code": 400,
-                    }
-                },
-                "description": "Block when the IP address is not 1.1.1.1",
-                "enabled": True,
-                "expression": "ip.src ne 1.1.1.1",
-                "logging": {
-                    "enabled": True
-                },
-                "ref": "my_ref",
-            }],
+            ],
             account_id="account_id",
             description="My ruleset to execute managed rulesets",
             kind="managed",
             name="My ruleset",
             phase="ddos_l4",
         )
-        assert_matches_type(RulesetUpdateResponse, ruleset, path=['response'])
+        assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.rulesets.with_raw_response.update(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
@@ -706,9 +684,9 @@ class TestAsyncRulesets:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = await response.parse()
-        assert_matches_type(RulesetUpdateResponse, ruleset, path=['response'])
+        assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -717,12 +695,12 @@ class TestAsyncRulesets:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             rules=[{}, {}, {}],
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = await response.parse()
-            assert_matches_type(RulesetUpdateResponse, ruleset, path=['response'])
+            assert_matches_type(RulesetUpdateResponse, ruleset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -730,25 +708,25 @@ class TestAsyncRulesets:
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
-          await async_client.rulesets.with_raw_response.update(
-              ruleset_id="",
-              rules=[{}, {}, {}],
-              account_id="account_id",
-          )
+            await async_client.rulesets.with_raw_response.update(
+                ruleset_id="",
+                rules=[{}, {}, {}],
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.rulesets.with_raw_response.update(
-              ruleset_id="2f2feab2026849078ba485f918791bdc",
-              rules=[{}, {}, {}],
-              account_id="",
-          )
+            await async_client.rulesets.with_raw_response.update(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                rules=[{}, {}, {}],
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.rulesets.with_raw_response.update(
-              ruleset_id="2f2feab2026849078ba485f918791bdc",
-              rules=[{}, {}, {}],
-              account_id="account_id",
-          )
+            await async_client.rulesets.with_raw_response.update(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                rules=[{}, {}, {}],
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -756,7 +734,7 @@ class TestAsyncRulesets:
         ruleset = await async_client.rulesets.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[RulesetListResponse], ruleset, path=['response'])
+        assert_matches_type(AsyncSinglePage[RulesetListResponse], ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -764,32 +742,31 @@ class TestAsyncRulesets:
         ruleset = await async_client.rulesets.list(
             account_id="account_id",
         )
-        assert_matches_type(AsyncSinglePage[RulesetListResponse], ruleset, path=['response'])
+        assert_matches_type(AsyncSinglePage[RulesetListResponse], ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.rulesets.with_raw_response.list(
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = await response.parse()
-        assert_matches_type(AsyncSinglePage[RulesetListResponse], ruleset, path=['response'])
+        assert_matches_type(AsyncSinglePage[RulesetListResponse], ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncCloudflare) -> None:
         async with async_client.rulesets.with_streaming_response.list(
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = await response.parse()
-            assert_matches_type(AsyncSinglePage[RulesetListResponse], ruleset, path=['response'])
+            assert_matches_type(AsyncSinglePage[RulesetListResponse], ruleset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -797,14 +774,14 @@ class TestAsyncRulesets:
     @parametrize
     async def test_path_params_list(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.rulesets.with_raw_response.list(
-              account_id="",
-          )
+            await async_client.rulesets.with_raw_response.list(
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.rulesets.with_raw_response.list(
-              account_id="account_id",
-          )
+            await async_client.rulesets.with_raw_response.list(
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -827,14 +804,13 @@ class TestAsyncRulesets:
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.rulesets.with_raw_response.delete(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = await response.parse()
         assert ruleset is None
 
@@ -844,9 +820,9 @@ class TestAsyncRulesets:
         async with async_client.rulesets.with_streaming_response.delete(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = await response.parse()
             assert ruleset is None
@@ -857,22 +833,22 @@ class TestAsyncRulesets:
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
-          await async_client.rulesets.with_raw_response.delete(
-              ruleset_id="",
-              account_id="account_id",
-          )
+            await async_client.rulesets.with_raw_response.delete(
+                ruleset_id="",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.rulesets.with_raw_response.delete(
-              ruleset_id="2f2feab2026849078ba485f918791bdc",
-              account_id="",
-          )
+            await async_client.rulesets.with_raw_response.delete(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.rulesets.with_raw_response.delete(
-              ruleset_id="2f2feab2026849078ba485f918791bdc",
-              account_id="account_id",
-          )
+            await async_client.rulesets.with_raw_response.delete(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -881,7 +857,7 @@ class TestAsyncRulesets:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
         )
-        assert_matches_type(RulesetGetResponse, ruleset, path=['response'])
+        assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -890,21 +866,20 @@ class TestAsyncRulesets:
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
         )
-        assert_matches_type(RulesetGetResponse, ruleset, path=['response'])
+        assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.rulesets.with_raw_response.get(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         ruleset = await response.parse()
-        assert_matches_type(RulesetGetResponse, ruleset, path=['response'])
+        assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -912,12 +887,12 @@ class TestAsyncRulesets:
         async with async_client.rulesets.with_streaming_response.get(
             ruleset_id="2f2feab2026849078ba485f918791bdc",
             account_id="account_id",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             ruleset = await response.parse()
-            assert_matches_type(RulesetGetResponse, ruleset, path=['response'])
+            assert_matches_type(RulesetGetResponse, ruleset, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -925,19 +900,19 @@ class TestAsyncRulesets:
     @parametrize
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `ruleset_id` but received ''"):
-          await async_client.rulesets.with_raw_response.get(
-              ruleset_id="",
-              account_id="account_id",
-          )
+            await async_client.rulesets.with_raw_response.get(
+                ruleset_id="",
+                account_id="account_id",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.rulesets.with_raw_response.get(
-              ruleset_id="2f2feab2026849078ba485f918791bdc",
-              account_id="",
-          )
+            await async_client.rulesets.with_raw_response.get(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `zone_id` but received ''"):
-          await async_client.rulesets.with_raw_response.get(
-              ruleset_id="2f2feab2026849078ba485f918791bdc",
-              account_id="account_id",
-          )
+            await async_client.rulesets.with_raw_response.get(
+                ruleset_id="2f2feab2026849078ba485f918791bdc",
+                account_id="account_id",
+            )

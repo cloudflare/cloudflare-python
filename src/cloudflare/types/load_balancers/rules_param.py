@@ -2,25 +2,19 @@
 
 from __future__ import annotations
 
+from typing import Dict, List
 from typing_extensions import TypedDict
 
-from .adaptive_routing_param import AdaptiveRoutingParam
-
-from typing import Dict, List
-
 from .default_pools import DefaultPools
-
-from .location_strategy_param import LocationStrategyParam
-
-from .random_steering_param import RandomSteeringParam
-
+from .steering_policy import SteeringPolicy
 from .session_affinity import SessionAffinity
-
+from .random_steering_param import RandomSteeringParam
+from .adaptive_routing_param import AdaptiveRoutingParam
+from .location_strategy_param import LocationStrategyParam
 from .session_affinity_attributes_param import SessionAffinityAttributesParam
 
-from .steering_policy import SteeringPolicy
-
 __all__ = ["RulesParam", "FixedResponse", "Overrides"]
+
 
 class FixedResponse(TypedDict, total=False):
     content_type: str
@@ -34,6 +28,7 @@ class FixedResponse(TypedDict, total=False):
 
     status_code: int
     """The http status code to respond with."""
+
 
 class Overrides(TypedDict, total=False):
     adaptive_routing: AdaptiveRoutingParam
@@ -170,6 +165,7 @@ class Overrides(TypedDict, total=False):
     Time to live (TTL) of the DNS entry for the IP address returned by this load
     balancer. This only applies to gray-clouded (unproxied) load balancers.
     """
+
 
 class RulesParam(TypedDict, total=False):
     condition: str

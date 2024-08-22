@@ -1,18 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
+from datetime import datetime
+from typing_extensions import Literal
+
 from ..._models import BaseModel
 
-from typing_extensions import Literal
-
-from typing import Optional
-
-from datetime import datetime
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["TLS1_3"]
+
 
 class TLS1_3(BaseModel):
     id: Literal["tls_1_3"]

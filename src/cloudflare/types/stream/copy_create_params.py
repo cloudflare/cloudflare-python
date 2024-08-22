@@ -2,22 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Annotated
-
 from typing import List, Union
+from datetime import datetime
+from typing_extensions import Required, Annotated, TypedDict
 
+from ..._utils import PropertyInfo
 from .allowed_origins import AllowedOrigins
 
-from ..._utils import PropertyInfo
-
-from datetime import datetime
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-
 __all__ = ["CopyCreateParams", "Watermark"]
+
 
 class CopyCreateParams(TypedDict, total=False):
     account_id: Required[str]
@@ -54,7 +47,7 @@ class CopyCreateParams(TypedDict, total=False):
     the video.
     """
 
-    scheduled_deletion: Annotated[Union[str, datetime], PropertyInfo(alias="scheduledDeletion", format = "iso8601")]
+    scheduled_deletion: Annotated[Union[str, datetime], PropertyInfo(alias="scheduledDeletion", format="iso8601")]
     """Indicates the date and time at which the video will be deleted.
 
     Omit the field to indicate no change, or include with a `null` value to remove
@@ -81,6 +74,7 @@ class CopyCreateParams(TypedDict, total=False):
     Values are Base-64 encoded. Supported keys: `name`, `requiresignedurls`,
     `allowedorigins`, `thumbnailtimestamppct`, `watermark`, `scheduleddeletion`.
     """
+
 
 class Watermark(TypedDict, total=False):
     uid: str

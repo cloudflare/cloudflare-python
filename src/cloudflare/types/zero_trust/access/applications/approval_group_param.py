@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 from typing import List
-
-from typing_extensions import TypedDict, Required
+from typing_extensions import Required, TypedDict
 
 __all__ = ["ApprovalGroupParam"]
+
 
 class ApprovalGroupParam(TypedDict, total=False):
     approvals_needed: Required[float]

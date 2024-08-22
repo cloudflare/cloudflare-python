@@ -2,36 +2,30 @@
 
 from __future__ import annotations
 
+from typing import Type, Iterable, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ..._base_client import make_request_options
+from ...types.stream import token_create_params
 from ...types.stream.token_create_response import TokenCreateResponse
 
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type, Iterable
-
-from ..._base_client import make_request_options
-
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-from ...types.stream import token_create_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.stream import token_create_params
-from typing import cast
-from typing import cast
-
 __all__ = ["TokenResource", "AsyncTokenResource"]
+
 
 class TokenResource(SyncAPIResource):
     @cached_property
@@ -42,22 +36,24 @@ class TokenResource(SyncAPIResource):
     def with_streaming_response(self) -> TokenResourceWithStreamingResponse:
         return TokenResourceWithStreamingResponse(self)
 
-    def create(self,
-    identifier: str,
-    *,
-    account_id: str,
-    id: str | NotGiven = NOT_GIVEN,
-    access_rules: Iterable[token_create_params.AccessRule] | NotGiven = NOT_GIVEN,
-    downloadable: bool | NotGiven = NOT_GIVEN,
-    exp: int | NotGiven = NOT_GIVEN,
-    nbf: int | NotGiven = NOT_GIVEN,
-    pem: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TokenCreateResponse]:
+    def create(
+        self,
+        identifier: str,
+        *,
+        account_id: str,
+        id: str | NotGiven = NOT_GIVEN,
+        access_rules: Iterable[token_create_params.AccessRule] | NotGiven = NOT_GIVEN,
+        downloadable: bool | NotGiven = NOT_GIVEN,
+        exp: int | NotGiven = NOT_GIVEN,
+        nbf: int | NotGiven = NOT_GIVEN,
+        pem: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TokenCreateResponse]:
         """Creates a signed URL token for a video.
 
         If a body is not provided in the
@@ -98,26 +94,32 @@ class TokenResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._post(
             f"/accounts/{account_id}/stream/{identifier}/token",
-            body=maybe_transform({
-                "id": id,
-                "access_rules": access_rules,
-                "downloadable": downloadable,
-                "exp": exp,
-                "nbf": nbf,
-                "pem": pem,
-            }, token_create_params.TokenCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TokenCreateResponse]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "id": id,
+                    "access_rules": access_rules,
+                    "downloadable": downloadable,
+                    "exp": exp,
+                    "nbf": nbf,
+                    "pem": pem,
+                },
+                token_create_params.TokenCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TokenCreateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TokenCreateResponse]], ResultWrapper[TokenCreateResponse]),
         )
+
 
 class AsyncTokenResource(AsyncAPIResource):
     @cached_property
@@ -128,22 +130,24 @@ class AsyncTokenResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTokenResourceWithStreamingResponse:
         return AsyncTokenResourceWithStreamingResponse(self)
 
-    async def create(self,
-    identifier: str,
-    *,
-    account_id: str,
-    id: str | NotGiven = NOT_GIVEN,
-    access_rules: Iterable[token_create_params.AccessRule] | NotGiven = NOT_GIVEN,
-    downloadable: bool | NotGiven = NOT_GIVEN,
-    exp: int | NotGiven = NOT_GIVEN,
-    nbf: int | NotGiven = NOT_GIVEN,
-    pem: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TokenCreateResponse]:
+    async def create(
+        self,
+        identifier: str,
+        *,
+        account_id: str,
+        id: str | NotGiven = NOT_GIVEN,
+        access_rules: Iterable[token_create_params.AccessRule] | NotGiven = NOT_GIVEN,
+        downloadable: bool | NotGiven = NOT_GIVEN,
+        exp: int | NotGiven = NOT_GIVEN,
+        nbf: int | NotGiven = NOT_GIVEN,
+        pem: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TokenCreateResponse]:
         """Creates a signed URL token for a video.
 
         If a body is not provided in the
@@ -184,26 +188,32 @@ class AsyncTokenResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._post(
             f"/accounts/{account_id}/stream/{identifier}/token",
-            body=await async_maybe_transform({
-                "id": id,
-                "access_rules": access_rules,
-                "downloadable": downloadable,
-                "exp": exp,
-                "nbf": nbf,
-                "pem": pem,
-            }, token_create_params.TokenCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TokenCreateResponse]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "id": id,
+                    "access_rules": access_rules,
+                    "downloadable": downloadable,
+                    "exp": exp,
+                    "nbf": nbf,
+                    "pem": pem,
+                },
+                token_create_params.TokenCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TokenCreateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TokenCreateResponse]], ResultWrapper[TokenCreateResponse]),
         )
+
 
 class TokenResourceWithRawResponse:
     def __init__(self, token: TokenResource) -> None:
@@ -213,6 +223,7 @@ class TokenResourceWithRawResponse:
             token.create,
         )
 
+
 class AsyncTokenResourceWithRawResponse:
     def __init__(self, token: AsyncTokenResource) -> None:
         self._token = token
@@ -221,6 +232,7 @@ class AsyncTokenResourceWithRawResponse:
             token.create,
         )
 
+
 class TokenResourceWithStreamingResponse:
     def __init__(self, token: TokenResource) -> None:
         self._token = token
@@ -228,6 +240,7 @@ class TokenResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             token.create,
         )
+
 
 class AsyncTokenResourceWithStreamingResponse:
     def __init__(self, token: AsyncTokenResource) -> None:

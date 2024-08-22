@@ -2,20 +2,14 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal
-
-from typing import Iterable, List
+from typing import List, Iterable
+from typing_extensions import Literal, Required, TypedDict
 
 from .additional_routes_param import AdditionalRoutesParam
-
 from .cookie_attributes_param import CookieAttributesParam
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-
 __all__ = ["WaitingRoomCreateParams"]
+
 
 class WaitingRoomCreateParams(TypedDict, total=False):
     zone_id: Required[str]
@@ -99,7 +93,25 @@ class WaitingRoomCreateParams(TypedDict, total=False):
     under the `json_response_enabled` property in other Waiting Room API calls.
     """
 
-    default_template_language: Literal["en-US", "es-ES", "de-DE", "fr-FR", "it-IT", "ja-JP", "ko-KR", "pt-BR", "zh-CN", "zh-TW", "nl-NL", "pl-PL", "id-ID", "tr-TR", "ar-EG", "ru-RU", "fa-IR"]
+    default_template_language: Literal[
+        "en-US",
+        "es-ES",
+        "de-DE",
+        "fr-FR",
+        "it-IT",
+        "ja-JP",
+        "ko-KR",
+        "pt-BR",
+        "zh-CN",
+        "zh-TW",
+        "nl-NL",
+        "pl-PL",
+        "id-ID",
+        "tr-TR",
+        "ar-EG",
+        "ru-RU",
+        "fa-IR",
+    ]
     """The language of the default page template.
 
     If no default_template_language is provided, then `en-US` (English) will be

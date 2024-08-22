@@ -2,45 +2,32 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
-
-from ...types.secondary_dns.tsig import TSIG
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from ..._base_client import make_request_options, AsyncPaginator
-
 from ...pagination import SyncSinglePage, AsyncSinglePage
-
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.secondary_dns import tsig_create_params, tsig_update_params
+from ...types.secondary_dns.tsig import TSIG
 from ...types.secondary_dns.tsig_delete_response import TSIGDeleteResponse
 
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.secondary_dns import tsig_create_params
-from ...types.secondary_dns import tsig_update_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["TSIGsResource", "AsyncTSIGsResource"]
+
 
 class TSIGsResource(SyncAPIResource):
     @cached_property
@@ -51,18 +38,20 @@ class TSIGsResource(SyncAPIResource):
     def with_streaming_response(self) -> TSIGsResourceWithStreamingResponse:
         return TSIGsResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    account_id: str,
-    algo: str,
-    name: str,
-    secret: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TSIG]:
+    def create(
+        self,
+        *,
+        account_id: str,
+        algo: str,
+        name: str,
+        secret: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TSIG]:
         """
         Create TSIG.
 
@@ -82,33 +71,42 @@ class TSIGsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/secondary_dns/tsigs",
-            body=maybe_transform({
-                "algo": algo,
-                "name": name,
-                "secret": secret,
-            }, tsig_create_params.TSIGCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TSIG]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "algo": algo,
+                    "name": name,
+                    "secret": secret,
+                },
+                tsig_create_params.TSIGCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TSIG]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TSIG]], ResultWrapper[TSIG]),
         )
 
-    def update(self,
-    tsig_id: str,
-    *,
-    account_id: str,
-    algo: str,
-    name: str,
-    secret: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TSIG]:
+    def update(
+        self,
+        tsig_id: str,
+        *,
+        account_id: str,
+        algo: str,
+        name: str,
+        secret: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TSIG]:
         """
         Modify TSIG.
 
@@ -128,33 +126,40 @@ class TSIGsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tsig_id:
-          raise ValueError(
-            f'Expected a non-empty value for `tsig_id` but received {tsig_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return self._put(
             f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
-            body=maybe_transform({
-                "algo": algo,
-                "name": name,
-                "secret": secret,
-            }, tsig_update_params.TSIGUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TSIG]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "algo": algo,
+                    "name": name,
+                    "secret": secret,
+                },
+                tsig_update_params.TSIGUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TSIG]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TSIG]], ResultWrapper[TSIG]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[TSIG]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[TSIG]:
         """
         List TSIGs.
 
@@ -168,26 +173,28 @@ class TSIGsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/secondary_dns/tsigs",
-            page = SyncSinglePage[TSIG],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=SyncSinglePage[TSIG],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=TSIG,
         )
 
-    def delete(self,
-    tsig_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TSIGDeleteResponse]:
+    def delete(
+        self,
+        tsig_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TSIGDeleteResponse]:
         """
         Delete TSIG.
 
@@ -201,29 +208,33 @@ class TSIGsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tsig_id:
-          raise ValueError(
-            f'Expected a non-empty value for `tsig_id` but received {tsig_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return self._delete(
             f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TSIGDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TSIGDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TSIGDeleteResponse]], ResultWrapper[TSIGDeleteResponse]),
         )
 
-    def get(self,
-    tsig_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TSIG]:
+    def get(
+        self,
+        tsig_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TSIG]:
         """
         Get TSIG.
 
@@ -237,18 +248,21 @@ class TSIGsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tsig_id:
-          raise ValueError(
-            f'Expected a non-empty value for `tsig_id` but received {tsig_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return self._get(
             f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TSIG]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TSIG]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TSIG]], ResultWrapper[TSIG]),
         )
+
 
 class AsyncTSIGsResource(AsyncAPIResource):
     @cached_property
@@ -259,18 +273,20 @@ class AsyncTSIGsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTSIGsResourceWithStreamingResponse:
         return AsyncTSIGsResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    account_id: str,
-    algo: str,
-    name: str,
-    secret: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TSIG]:
+    async def create(
+        self,
+        *,
+        account_id: str,
+        algo: str,
+        name: str,
+        secret: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TSIG]:
         """
         Create TSIG.
 
@@ -290,33 +306,42 @@ class AsyncTSIGsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/secondary_dns/tsigs",
-            body=await async_maybe_transform({
-                "algo": algo,
-                "name": name,
-                "secret": secret,
-            }, tsig_create_params.TSIGCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TSIG]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "algo": algo,
+                    "name": name,
+                    "secret": secret,
+                },
+                tsig_create_params.TSIGCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TSIG]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TSIG]], ResultWrapper[TSIG]),
         )
 
-    async def update(self,
-    tsig_id: str,
-    *,
-    account_id: str,
-    algo: str,
-    name: str,
-    secret: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TSIG]:
+    async def update(
+        self,
+        tsig_id: str,
+        *,
+        account_id: str,
+        algo: str,
+        name: str,
+        secret: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TSIG]:
         """
         Modify TSIG.
 
@@ -336,33 +361,40 @@ class AsyncTSIGsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tsig_id:
-          raise ValueError(
-            f'Expected a non-empty value for `tsig_id` but received {tsig_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return await self._put(
             f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
-            body=await async_maybe_transform({
-                "algo": algo,
-                "name": name,
-                "secret": secret,
-            }, tsig_update_params.TSIGUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TSIG]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "algo": algo,
+                    "name": name,
+                    "secret": secret,
+                },
+                tsig_update_params.TSIGUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TSIG]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TSIG]], ResultWrapper[TSIG]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[TSIG, AsyncSinglePage[TSIG]]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[TSIG, AsyncSinglePage[TSIG]]:
         """
         List TSIGs.
 
@@ -376,26 +408,28 @@ class AsyncTSIGsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/secondary_dns/tsigs",
-            page = AsyncSinglePage[TSIG],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=AsyncSinglePage[TSIG],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=TSIG,
         )
 
-    async def delete(self,
-    tsig_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TSIGDeleteResponse]:
+    async def delete(
+        self,
+        tsig_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TSIGDeleteResponse]:
         """
         Delete TSIG.
 
@@ -409,29 +443,33 @@ class AsyncTSIGsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tsig_id:
-          raise ValueError(
-            f'Expected a non-empty value for `tsig_id` but received {tsig_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TSIGDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TSIGDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TSIGDeleteResponse]], ResultWrapper[TSIGDeleteResponse]),
         )
 
-    async def get(self,
-    tsig_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TSIG]:
+    async def get(
+        self,
+        tsig_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TSIG]:
         """
         Get TSIG.
 
@@ -445,18 +483,21 @@ class AsyncTSIGsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tsig_id:
-          raise ValueError(
-            f'Expected a non-empty value for `tsig_id` but received {tsig_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `tsig_id` but received {tsig_id!r}")
         return await self._get(
             f"/accounts/{account_id}/secondary_dns/tsigs/{tsig_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TSIG]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TSIG]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TSIG]], ResultWrapper[TSIG]),
         )
+
 
 class TSIGsResourceWithRawResponse:
     def __init__(self, tsigs: TSIGsResource) -> None:
@@ -478,6 +519,7 @@ class TSIGsResourceWithRawResponse:
             tsigs.get,
         )
 
+
 class AsyncTSIGsResourceWithRawResponse:
     def __init__(self, tsigs: AsyncTSIGsResource) -> None:
         self._tsigs = tsigs
@@ -498,6 +540,7 @@ class AsyncTSIGsResourceWithRawResponse:
             tsigs.get,
         )
 
+
 class TSIGsResourceWithStreamingResponse:
     def __init__(self, tsigs: TSIGsResource) -> None:
         self._tsigs = tsigs
@@ -517,6 +560,7 @@ class TSIGsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             tsigs.get,
         )
+
 
 class AsyncTSIGsResourceWithStreamingResponse:
     def __init__(self, tsigs: AsyncTSIGsResource) -> None:

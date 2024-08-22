@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict, Required
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["DurableObjectBindingParam"]
+
 
 class DurableObjectBindingParam(TypedDict, total=False):
     class_name: Required[str]

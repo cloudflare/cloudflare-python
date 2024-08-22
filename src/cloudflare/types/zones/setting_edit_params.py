@@ -2,18 +2,75 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal, TypeAlias
-
-from typing import List, Optional
+from typing import List, Union, Optional
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .automatic_platform_optimization_param import AutomaticPlatformOptimizationParam
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
+__all__ = [
+    "SettingEditParams",
+    "ZeroRTT",
+    "AdvancedDDoS",
+    "AlwaysOnline",
+    "AlwaysUseHTTPS",
+    "AutomaticHTTPSRewrites",
+    "Brotli",
+    "BrowserCacheTTL",
+    "BrowserCheck",
+    "CacheLevel",
+    "ChallengeTTL",
+    "Ciphers",
+    "ZonesCNAMEFlattening",
+    "DevelopmentMode",
+    "EarlyHints",
+    "ZonesEdgeCacheTTL",
+    "EmailObfuscation",
+    "H2Prioritization",
+    "HotlinkProtection",
+    "HTTP2",
+    "HTTP3",
+    "ImageResizing",
+    "IPGeolocation",
+    "IPV6",
+    "ZonesMaxUpload",
+    "MinTLSVersion",
+    "Minify",
+    "MinifyValue",
+    "Mirage",
+    "MobileRedirect",
+    "MobileRedirectValue",
+    "NEL",
+    "NELValue",
+    "OpportunisticEncryption",
+    "OpportunisticOnion",
+    "OrangeToOrange",
+    "OriginErrorPagePassThru",
+    "Polish",
+    "PrefetchPreload",
+    "ProxyReadTimeout",
+    "PseudoIPV4",
+    "ZonesReplaceInsecureJS",
+    "ResponseBuffering",
+    "RocketLoader",
+    "ZonesSchemasAutomaticPlatformOptimization",
+    "SecurityHeaders",
+    "SecurityHeadersValue",
+    "SecurityHeadersValueStrictTransportSecurity",
+    "SecurityLevel",
+    "ServerSideExcludes",
+    "ZonesSha1Support",
+    "SortQueryStringForCache",
+    "SSL",
+    "SSLRecommender",
+    "ZonesTLS1_2Only",
+    "TLS1_3",
+    "TLSClientAuth",
+    "TrueClientIPHeader",
+    "WAF",
+    "WebP",
+    "Websocket",
+]
 
-__all__ = ["SettingEditParams", "ZeroRTT", "AdvancedDDoS", "AlwaysOnline", "AlwaysUseHTTPS", "AutomaticHTTPSRewrites", "Brotli", "BrowserCacheTTL", "BrowserCheck", "CacheLevel", "ChallengeTTL", "Ciphers", "ZonesCNAMEFlattening", "DevelopmentMode", "EarlyHints", "ZonesEdgeCacheTTL", "EmailObfuscation", "H2Prioritization", "HotlinkProtection", "HTTP2", "HTTP3", "ImageResizing", "IPGeolocation", "IPV6", "ZonesMaxUpload", "MinTLSVersion", "Minify", "MinifyValue", "Mirage", "MobileRedirect", "MobileRedirectValue", "NEL", "NELValue", "OpportunisticEncryption", "OpportunisticOnion", "OrangeToOrange", "OriginErrorPagePassThru", "Polish", "PrefetchPreload", "ProxyReadTimeout", "PseudoIPV4", "ZonesReplaceInsecureJS", "ResponseBuffering", "RocketLoader", "ZonesSchemasAutomaticPlatformOptimization", "SecurityHeaders", "SecurityHeadersValue", "SecurityHeadersValueStrictTransportSecurity", "SecurityLevel", "ServerSideExcludes", "ZonesSha1Support", "SortQueryStringForCache", "SSL", "SSLRecommender", "ZonesTLS1_2Only", "TLS1_3", "TLSClientAuth", "TrueClientIPHeader", "WAF", "WebP", "Websocket"]
 
 class ZeroRTT(TypedDict, total=False):
     zone_id: Required[str]
@@ -25,6 +82,7 @@ class ZeroRTT(TypedDict, total=False):
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
 
+
 class AdvancedDDoS(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -34,6 +92,7 @@ class AdvancedDDoS(TypedDict, total=False):
 
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
+
 
 class AlwaysOnline(TypedDict, total=False):
     zone_id: Required[str]
@@ -45,6 +104,7 @@ class AlwaysOnline(TypedDict, total=False):
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
 
+
 class AlwaysUseHTTPS(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -54,6 +114,7 @@ class AlwaysUseHTTPS(TypedDict, total=False):
 
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
+
 
 class AutomaticHTTPSRewrites(TypedDict, total=False):
     zone_id: Required[str]
@@ -65,6 +126,7 @@ class AutomaticHTTPSRewrites(TypedDict, total=False):
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
 
+
 class Brotli(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -75,6 +137,7 @@ class Brotli(TypedDict, total=False):
     value: Required[Literal["off", "on"]]
     """Current value of the zone setting."""
 
+
 class BrowserCacheTTL(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -82,8 +145,40 @@ class BrowserCacheTTL(TypedDict, total=False):
     id: Required[Literal["browser_cache_ttl"]]
     """ID of the zone setting."""
 
-    value: Required[Literal[0, 30, 60, 120, 300, 1200, 1800, 3600, 7200, 10800, 14400, 18000, 28800, 43200, 57600, 72000, 86400, 172800, 259200, 345600, 432000, 691200, 1382400, 2073600, 2678400, 5356800, 16070400, 31536000]]
+    value: Required[
+        Literal[
+            0,
+            30,
+            60,
+            120,
+            300,
+            1200,
+            1800,
+            3600,
+            7200,
+            10800,
+            14400,
+            18000,
+            28800,
+            43200,
+            57600,
+            72000,
+            86400,
+            172800,
+            259200,
+            345600,
+            432000,
+            691200,
+            1382400,
+            2073600,
+            2678400,
+            5356800,
+            16070400,
+            31536000,
+        ]
+    ]
     """Current value of the zone setting."""
+
 
 class BrowserCheck(TypedDict, total=False):
     zone_id: Required[str]
@@ -95,6 +190,7 @@ class BrowserCheck(TypedDict, total=False):
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
 
+
 class CacheLevel(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -105,6 +201,7 @@ class CacheLevel(TypedDict, total=False):
     value: Required[Literal["aggressive", "basic", "simplified"]]
     """Current value of the zone setting."""
 
+
 class ChallengeTTL(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -112,8 +209,11 @@ class ChallengeTTL(TypedDict, total=False):
     id: Required[Literal["challenge_ttl"]]
     """ID of the zone setting."""
 
-    value: Required[Literal[300, 900, 1800, 2700, 3600, 7200, 10800, 14400, 28800, 57600, 86400, 604800, 2592000, 31536000]]
+    value: Required[
+        Literal[300, 900, 1800, 2700, 3600, 7200, 10800, 14400, 28800, 57600, 86400, 604800, 2592000, 31536000]
+    ]
     """Current value of the zone setting."""
+
 
 class Ciphers(TypedDict, total=False):
     zone_id: Required[str]
@@ -125,6 +225,7 @@ class Ciphers(TypedDict, total=False):
     value: Required[List[str]]
     """Current value of the zone setting."""
 
+
 class ZonesCNAMEFlattening(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -134,6 +235,7 @@ class ZonesCNAMEFlattening(TypedDict, total=False):
 
     value: Required[Literal["flatten_at_root", "flatten_all"]]
     """Current value of the zone setting."""
+
 
 class DevelopmentMode(TypedDict, total=False):
     zone_id: Required[str]
@@ -145,6 +247,7 @@ class DevelopmentMode(TypedDict, total=False):
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
 
+
 class EarlyHints(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -155,6 +258,7 @@ class EarlyHints(TypedDict, total=False):
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
 
+
 class ZonesEdgeCacheTTL(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -162,8 +266,33 @@ class ZonesEdgeCacheTTL(TypedDict, total=False):
     id: Required[Literal["edge_cache_ttl"]]
     """ID of the zone setting."""
 
-    value: Required[Literal[30, 60, 300, 1200, 1800, 3600, 7200, 10800, 14400, 18000, 28800, 43200, 57600, 72000, 86400, 172800, 259200, 345600, 432000, 518400, 604800]]
+    value: Required[
+        Literal[
+            30,
+            60,
+            300,
+            1200,
+            1800,
+            3600,
+            7200,
+            10800,
+            14400,
+            18000,
+            28800,
+            43200,
+            57600,
+            72000,
+            86400,
+            172800,
+            259200,
+            345600,
+            432000,
+            518400,
+            604800,
+        ]
+    ]
     """Current value of the zone setting."""
+
 
 class EmailObfuscation(TypedDict, total=False):
     zone_id: Required[str]
@@ -175,6 +304,7 @@ class EmailObfuscation(TypedDict, total=False):
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
 
+
 class H2Prioritization(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -184,6 +314,7 @@ class H2Prioritization(TypedDict, total=False):
 
     value: Required[Literal["on", "off", "custom"]]
     """Current value of the zone setting."""
+
 
 class HotlinkProtection(TypedDict, total=False):
     zone_id: Required[str]
@@ -195,6 +326,7 @@ class HotlinkProtection(TypedDict, total=False):
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
 
+
 class HTTP2(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -204,6 +336,7 @@ class HTTP2(TypedDict, total=False):
 
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
+
 
 class HTTP3(TypedDict, total=False):
     zone_id: Required[str]
@@ -215,6 +348,7 @@ class HTTP3(TypedDict, total=False):
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
 
+
 class ImageResizing(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -224,6 +358,7 @@ class ImageResizing(TypedDict, total=False):
 
     value: Required[Literal["on", "off", "open"]]
     """Current value of the zone setting."""
+
 
 class IPGeolocation(TypedDict, total=False):
     zone_id: Required[str]
@@ -235,6 +370,7 @@ class IPGeolocation(TypedDict, total=False):
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
 
+
 class IPV6(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -244,6 +380,7 @@ class IPV6(TypedDict, total=False):
 
     value: Required[Literal["off", "on"]]
     """Current value of the zone setting."""
+
 
 class ZonesMaxUpload(TypedDict, total=False):
     zone_id: Required[str]
@@ -255,6 +392,7 @@ class ZonesMaxUpload(TypedDict, total=False):
     value: Required[Literal[100, 200, 500]]
     """Current value of the zone setting."""
 
+
 class MinTLSVersion(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -264,6 +402,7 @@ class MinTLSVersion(TypedDict, total=False):
 
     value: Required[Literal["1.0", "1.1", "1.2", "1.3"]]
     """Current value of the zone setting."""
+
 
 class Minify(TypedDict, total=False):
     zone_id: Required[str]
@@ -275,6 +414,7 @@ class Minify(TypedDict, total=False):
     value: Required[MinifyValue]
     """Current value of the zone setting."""
 
+
 class MinifyValue(TypedDict, total=False):
     css: Literal["on", "off"]
     """Automatically minify all CSS files for your website."""
@@ -284,6 +424,7 @@ class MinifyValue(TypedDict, total=False):
 
     js: Literal["on", "off"]
     """Automatically minify all JavaScript files for your website."""
+
 
 class Mirage(TypedDict, total=False):
     zone_id: Required[str]
@@ -295,6 +436,7 @@ class Mirage(TypedDict, total=False):
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
 
+
 class MobileRedirect(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -304,6 +446,7 @@ class MobileRedirect(TypedDict, total=False):
 
     value: Required[MobileRedirectValue]
     """Current value of the zone setting."""
+
 
 class MobileRedirectValue(TypedDict, total=False):
     mobile_subdomain: Optional[str]
@@ -325,6 +468,7 @@ class MobileRedirectValue(TypedDict, total=False):
     root, or keep the path and redirect to the same page on the mobile subdomain.
     """
 
+
 class NEL(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -335,8 +479,10 @@ class NEL(TypedDict, total=False):
     value: Required[NELValue]
     """Current value of the zone setting."""
 
+
 class NELValue(TypedDict, total=False):
     enabled: bool
+
 
 class OpportunisticEncryption(TypedDict, total=False):
     zone_id: Required[str]
@@ -348,6 +494,7 @@ class OpportunisticEncryption(TypedDict, total=False):
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
 
+
 class OpportunisticOnion(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -357,6 +504,7 @@ class OpportunisticOnion(TypedDict, total=False):
 
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
+
 
 class OrangeToOrange(TypedDict, total=False):
     zone_id: Required[str]
@@ -368,6 +516,7 @@ class OrangeToOrange(TypedDict, total=False):
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
 
+
 class OriginErrorPagePassThru(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -377,6 +526,7 @@ class OriginErrorPagePassThru(TypedDict, total=False):
 
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
+
 
 class Polish(TypedDict, total=False):
     zone_id: Required[str]
@@ -388,6 +538,7 @@ class Polish(TypedDict, total=False):
     value: Required[Literal["off", "lossless", "lossy"]]
     """Current value of the zone setting."""
 
+
 class PrefetchPreload(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -397,6 +548,7 @@ class PrefetchPreload(TypedDict, total=False):
 
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
+
 
 class ProxyReadTimeout(TypedDict, total=False):
     zone_id: Required[str]
@@ -408,6 +560,7 @@ class ProxyReadTimeout(TypedDict, total=False):
     value: Required[float]
     """Current value of the zone setting."""
 
+
 class PseudoIPV4(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -417,6 +570,7 @@ class PseudoIPV4(TypedDict, total=False):
 
     value: Required[Literal["off", "add_header", "overwrite_header"]]
     """Current value of the zone setting."""
+
 
 class ZonesReplaceInsecureJS(TypedDict, total=False):
     zone_id: Required[str]
@@ -428,6 +582,7 @@ class ZonesReplaceInsecureJS(TypedDict, total=False):
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
 
+
 class ResponseBuffering(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -437,6 +592,7 @@ class ResponseBuffering(TypedDict, total=False):
 
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
+
 
 class RocketLoader(TypedDict, total=False):
     zone_id: Required[str]
@@ -448,6 +604,7 @@ class RocketLoader(TypedDict, total=False):
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
 
+
 class ZonesSchemasAutomaticPlatformOptimization(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -458,6 +615,7 @@ class ZonesSchemasAutomaticPlatformOptimization(TypedDict, total=False):
     value: Required[AutomaticPlatformOptimizationParam]
     """Current value of the zone setting."""
 
+
 class SecurityHeaders(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -467,6 +625,7 @@ class SecurityHeaders(TypedDict, total=False):
 
     value: Required[SecurityHeadersValue]
     """Current value of the zone setting."""
+
 
 class SecurityHeadersValueStrictTransportSecurity(TypedDict, total=False):
     enabled: bool
@@ -484,9 +643,11 @@ class SecurityHeadersValueStrictTransportSecurity(TypedDict, total=False):
     preload: bool
     """Enable automatic preload of the HSTS configuration."""
 
+
 class SecurityHeadersValue(TypedDict, total=False):
     strict_transport_security: SecurityHeadersValueStrictTransportSecurity
     """Strict Transport Security."""
+
 
 class SecurityLevel(TypedDict, total=False):
     zone_id: Required[str]
@@ -498,6 +659,7 @@ class SecurityLevel(TypedDict, total=False):
     value: Required[Literal["off", "essentially_off", "low", "medium", "high", "under_attack"]]
     """Current value of the zone setting."""
 
+
 class ServerSideExcludes(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -507,6 +669,7 @@ class ServerSideExcludes(TypedDict, total=False):
 
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
+
 
 class ZonesSha1Support(TypedDict, total=False):
     zone_id: Required[str]
@@ -518,6 +681,7 @@ class ZonesSha1Support(TypedDict, total=False):
     value: Required[Literal["off", "on"]]
     """Current value of the zone setting."""
 
+
 class SortQueryStringForCache(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -527,6 +691,7 @@ class SortQueryStringForCache(TypedDict, total=False):
 
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
+
 
 class SSL(TypedDict, total=False):
     zone_id: Required[str]
@@ -538,6 +703,7 @@ class SSL(TypedDict, total=False):
     value: Required[Literal["off", "flexible", "full", "strict"]]
     """Current value of the zone setting."""
 
+
 class SSLRecommender(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -547,6 +713,7 @@ class SSLRecommender(TypedDict, total=False):
 
     enabled: bool
     """ssl-recommender enrollment setting."""
+
 
 class ZonesTLS1_2Only(TypedDict, total=False):
     zone_id: Required[str]
@@ -558,6 +725,7 @@ class ZonesTLS1_2Only(TypedDict, total=False):
     value: Required[Literal["off", "on"]]
     """Current value of the zone setting."""
 
+
 class TLS1_3(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -567,6 +735,7 @@ class TLS1_3(TypedDict, total=False):
 
     value: Required[Literal["on", "off", "zrt"]]
     """Current value of the zone setting."""
+
 
 class TLSClientAuth(TypedDict, total=False):
     zone_id: Required[str]
@@ -578,6 +747,7 @@ class TLSClientAuth(TypedDict, total=False):
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
 
+
 class TrueClientIPHeader(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -587,6 +757,7 @@ class TrueClientIPHeader(TypedDict, total=False):
 
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
+
 
 class WAF(TypedDict, total=False):
     zone_id: Required[str]
@@ -598,6 +769,7 @@ class WAF(TypedDict, total=False):
     value: Required[Literal["on", "off"]]
     """Current value of the zone setting."""
 
+
 class WebP(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -607,6 +779,7 @@ class WebP(TypedDict, total=False):
 
     value: Required[Literal["off", "on"]]
     """Current value of the zone setting."""
+
 
 class Websocket(TypedDict, total=False):
     zone_id: Required[str]
@@ -618,4 +791,61 @@ class Websocket(TypedDict, total=False):
     value: Required[Literal["off", "on"]]
     """Current value of the zone setting."""
 
-SettingEditParams: TypeAlias = Union[ZeroRTT, AdvancedDDoS, AlwaysOnline, AlwaysUseHTTPS, AutomaticHTTPSRewrites, Brotli, BrowserCacheTTL, BrowserCheck, CacheLevel, ChallengeTTL, Ciphers, ZonesCNAMEFlattening, DevelopmentMode, EarlyHints, ZonesEdgeCacheTTL, EmailObfuscation, H2Prioritization, HotlinkProtection, HTTP2, HTTP3, ImageResizing, IPGeolocation, IPV6, ZonesMaxUpload, MinTLSVersion, Minify, Mirage, MobileRedirect, NEL, OpportunisticEncryption, OpportunisticOnion, OrangeToOrange, OriginErrorPagePassThru, Polish, PrefetchPreload, ProxyReadTimeout, PseudoIPV4, ZonesReplaceInsecureJS, ResponseBuffering, RocketLoader, ZonesSchemasAutomaticPlatformOptimization, SecurityHeaders, SecurityLevel, ServerSideExcludes, ZonesSha1Support, SortQueryStringForCache, SSL, SSLRecommender, ZonesTLS1_2Only, TLS1_3, TLSClientAuth, TrueClientIPHeader, WAF, WebP, Websocket]
+
+SettingEditParams: TypeAlias = Union[
+    ZeroRTT,
+    AdvancedDDoS,
+    AlwaysOnline,
+    AlwaysUseHTTPS,
+    AutomaticHTTPSRewrites,
+    Brotli,
+    BrowserCacheTTL,
+    BrowserCheck,
+    CacheLevel,
+    ChallengeTTL,
+    Ciphers,
+    ZonesCNAMEFlattening,
+    DevelopmentMode,
+    EarlyHints,
+    ZonesEdgeCacheTTL,
+    EmailObfuscation,
+    H2Prioritization,
+    HotlinkProtection,
+    HTTP2,
+    HTTP3,
+    ImageResizing,
+    IPGeolocation,
+    IPV6,
+    ZonesMaxUpload,
+    MinTLSVersion,
+    Minify,
+    Mirage,
+    MobileRedirect,
+    NEL,
+    OpportunisticEncryption,
+    OpportunisticOnion,
+    OrangeToOrange,
+    OriginErrorPagePassThru,
+    Polish,
+    PrefetchPreload,
+    ProxyReadTimeout,
+    PseudoIPV4,
+    ZonesReplaceInsecureJS,
+    ResponseBuffering,
+    RocketLoader,
+    ZonesSchemasAutomaticPlatformOptimization,
+    SecurityHeaders,
+    SecurityLevel,
+    ServerSideExcludes,
+    ZonesSha1Support,
+    SortQueryStringForCache,
+    SSL,
+    SSLRecommender,
+    ZonesTLS1_2Only,
+    TLS1_3,
+    TLSClientAuth,
+    TrueClientIPHeader,
+    WAF,
+    WebP,
+    Websocket,
+]

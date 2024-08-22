@@ -2,23 +2,27 @@
 
 from __future__ import annotations
 
-from .bytimes import BytimesResource, AsyncBytimesResource
-
+from .bytimes import (
+    BytimesResource,
+    AsyncBytimesResource,
+    BytimesResourceWithRawResponse,
+    AsyncBytimesResourceWithRawResponse,
+    BytimesResourceWithStreamingResponse,
+    AsyncBytimesResourceWithStreamingResponse,
+)
+from .summaries import (
+    SummariesResource,
+    AsyncSummariesResource,
+    SummariesResourceWithRawResponse,
+    AsyncSummariesResourceWithRawResponse,
+    SummariesResourceWithStreamingResponse,
+    AsyncSummariesResourceWithStreamingResponse,
+)
 from ....._compat import cached_property
-
-from .summaries import SummariesResource, AsyncSummariesResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
 from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .bytimes import BytimesResource, AsyncBytimesResource, BytimesResourceWithRawResponse, AsyncBytimesResourceWithRawResponse, BytimesResourceWithStreamingResponse, AsyncBytimesResourceWithStreamingResponse
-from .summaries import SummariesResource, AsyncSummariesResource, SummariesResourceWithRawResponse, AsyncSummariesResourceWithRawResponse, SummariesResourceWithStreamingResponse, AsyncSummariesResourceWithStreamingResponse
 
 __all__ = ["EventsResource", "AsyncEventsResource"]
+
 
 class EventsResource(SyncAPIResource):
     @cached_property
@@ -37,6 +41,7 @@ class EventsResource(SyncAPIResource):
     def with_streaming_response(self) -> EventsResourceWithStreamingResponse:
         return EventsResourceWithStreamingResponse(self)
 
+
 class AsyncEventsResource(AsyncAPIResource):
     @cached_property
     def bytimes(self) -> AsyncBytimesResource:
@@ -54,6 +59,7 @@ class AsyncEventsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncEventsResourceWithStreamingResponse:
         return AsyncEventsResourceWithStreamingResponse(self)
 
+
 class EventsResourceWithRawResponse:
     def __init__(self, events: EventsResource) -> None:
         self._events = events
@@ -65,6 +71,7 @@ class EventsResourceWithRawResponse:
     @cached_property
     def summaries(self) -> SummariesResourceWithRawResponse:
         return SummariesResourceWithRawResponse(self._events.summaries)
+
 
 class AsyncEventsResourceWithRawResponse:
     def __init__(self, events: AsyncEventsResource) -> None:
@@ -78,6 +85,7 @@ class AsyncEventsResourceWithRawResponse:
     def summaries(self) -> AsyncSummariesResourceWithRawResponse:
         return AsyncSummariesResourceWithRawResponse(self._events.summaries)
 
+
 class EventsResourceWithStreamingResponse:
     def __init__(self, events: EventsResource) -> None:
         self._events = events
@@ -89,6 +97,7 @@ class EventsResourceWithStreamingResponse:
     @cached_property
     def summaries(self) -> SummariesResourceWithStreamingResponse:
         return SummariesResourceWithStreamingResponse(self._events.summaries)
+
 
 class AsyncEventsResourceWithStreamingResponse:
     def __init__(self, events: AsyncEventsResource) -> None:

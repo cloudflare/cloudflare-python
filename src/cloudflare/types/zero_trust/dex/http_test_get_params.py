@@ -2,18 +2,13 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Annotated, Literal
-
-from ...._utils import PropertyInfo
-
 from typing import List
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ...._types import FileTypes
 from ...._utils import PropertyInfo
 
 __all__ = ["HTTPTestGetParams"]
+
 
 class HTTPTestGetParams(TypedDict, total=False):
     account_id: Required[str]

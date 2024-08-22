@@ -2,22 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Annotated
-
 from typing import Union
-
 from datetime import datetime
+from typing_extensions import Required, Annotated, TypedDict
 
 from ....._utils import PropertyInfo
-
 from ...firewall.delta import Delta
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ....._types import FileTypes
-from ....._utils import PropertyInfo
-
 __all__ = ["BytimeGetParams"]
+
 
 class BytimeGetParams(TypedDict, total=False):
     zone_id: Required[str]
@@ -35,7 +28,7 @@ class BytimeGetParams(TypedDict, total=False):
     metrics: str
     """A comma-separated list of metrics to query."""
 
-    since: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
+    since: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Start date and time of requesting data period in ISO 8601 format."""
 
     sort: str
@@ -47,5 +40,5 @@ class BytimeGetParams(TypedDict, total=False):
     time_delta: Delta
     """Unit of time to group data by."""
 
-    until: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
+    until: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """End date and time of requesting data period in ISO 8601 format."""

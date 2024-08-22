@@ -1,16 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import List, Optional
+from typing_extensions import Literal
+
 from ..._models import BaseModel
 
-from typing import Optional, List
-
-from typing_extensions import Literal
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["DatabaseImportResponse", "Result", "ResultMeta"]
+
 
 class ResultMeta(BaseModel):
     changed_db: Optional[bool] = None
@@ -27,6 +23,7 @@ class ResultMeta(BaseModel):
 
     size_after: Optional[float] = None
 
+
 class Result(BaseModel):
     final_bookmark: Optional[str] = None
     """
@@ -38,6 +35,7 @@ class Result(BaseModel):
 
     num_queries: Optional[float] = None
     """The total number of queries that were executed during the import."""
+
 
 class DatabaseImportResponse(BaseModel):
     at_bookmark: Optional[str] = None

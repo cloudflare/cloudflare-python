@@ -1,18 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ...._models import BaseModel
-
-from typing import Optional
-
+from typing import Union, Optional
 from datetime import datetime
-
 from typing_extensions import TypeAlias
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ...._models import BaseModel
 
 __all__ = ["AppType", "ZeroTrustGatewayApplication", "ZeroTrustGatewayApplicationType"]
+
 
 class ZeroTrustGatewayApplication(BaseModel):
     id: Optional[int] = None
@@ -30,6 +25,7 @@ class ZeroTrustGatewayApplication(BaseModel):
     name: Optional[str] = None
     """The name of the application or application type."""
 
+
 class ZeroTrustGatewayApplicationType(BaseModel):
     id: Optional[int] = None
     """The identifier for the type of this application.
@@ -45,5 +41,6 @@ class ZeroTrustGatewayApplicationType(BaseModel):
 
     name: Optional[str] = None
     """The name of the application or application type."""
+
 
 AppType: TypeAlias = Union[ZeroTrustGatewayApplication, ZeroTrustGatewayApplicationType]

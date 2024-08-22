@@ -6,6 +6,7 @@ from typing_extensions import Literal, TypedDict
 
 __all__ = ["PlacementConfigurationParam"]
 
+
 class PlacementConfigurationParam(TypedDict, total=False):
     mode: Literal["smart"]
     """

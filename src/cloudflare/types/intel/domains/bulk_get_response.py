@@ -1,25 +1,30 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ...._models import BaseModel
-
-from typing import Optional, List
-
+from typing import List, Optional
 from typing_extensions import TypeAlias
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ...._models import BaseModel
 
-__all__ = ["BulkGetResponse", "BulkGetResponseItem", "BulkGetResponseItemAdditionalInformation", "BulkGetResponseItemApplication", "BulkGetResponseItemInheritedContentCategory", "BulkGetResponseItemInheritedRiskType"]
+__all__ = [
+    "BulkGetResponse",
+    "BulkGetResponseItem",
+    "BulkGetResponseItemAdditionalInformation",
+    "BulkGetResponseItemApplication",
+    "BulkGetResponseItemInheritedContentCategory",
+    "BulkGetResponseItemInheritedRiskType",
+]
+
 
 class BulkGetResponseItemAdditionalInformation(BaseModel):
     suspected_malware_family: Optional[str] = None
     """Suspected DGA malware family."""
 
+
 class BulkGetResponseItemApplication(BaseModel):
     id: Optional[int] = None
 
     name: Optional[str] = None
+
 
 class BulkGetResponseItemInheritedContentCategory(BaseModel):
     id: Optional[int] = None
@@ -28,12 +33,14 @@ class BulkGetResponseItemInheritedContentCategory(BaseModel):
 
     super_category_id: Optional[int] = None
 
+
 class BulkGetResponseItemInheritedRiskType(BaseModel):
     id: Optional[int] = None
 
     name: Optional[str] = None
 
     super_category_id: Optional[int] = None
+
 
 class BulkGetResponseItem(BaseModel):
     additional_information: Optional[BulkGetResponseItemAdditionalInformation] = None
@@ -70,5 +77,6 @@ class BulkGetResponseItem(BaseModel):
     """
 
     risk_types: Optional[List[object]] = None
+
 
 BulkGetResponse: TypeAlias = List[BulkGetResponseItem]

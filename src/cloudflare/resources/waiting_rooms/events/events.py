@@ -2,52 +2,40 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
-from .details import DetailsResource, AsyncDetailsResource
-
+from .details import (
+    DetailsResource,
+    AsyncDetailsResource,
+    DetailsResourceWithRawResponse,
+    AsyncDetailsResourceWithRawResponse,
+    DetailsResourceWithStreamingResponse,
+    AsyncDetailsResourceWithStreamingResponse,
+)
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from ....types.waiting_rooms.event import Event
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from ...._base_client import make_request_options, AsyncPaginator
-
-from typing import Type, Optional
-
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.waiting_rooms import event_edit_params, event_list_params, event_create_params, event_update_params
+from ....types.waiting_rooms.event import Event
 from ....types.waiting_rooms.event_delete_response import EventDeleteResponse
 
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.waiting_rooms import event_create_params
-from ....types.waiting_rooms import event_update_params
-from ....types.waiting_rooms import event_list_params
-from ....types.waiting_rooms import event_edit_params
-from .details import DetailsResource, AsyncDetailsResource, DetailsResourceWithRawResponse, AsyncDetailsResourceWithRawResponse, DetailsResourceWithStreamingResponse, AsyncDetailsResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["EventsResource", "AsyncEventsResource"]
+
 
 class EventsResource(SyncAPIResource):
     @cached_property
@@ -62,29 +50,31 @@ class EventsResource(SyncAPIResource):
     def with_streaming_response(self) -> EventsResourceWithStreamingResponse:
         return EventsResourceWithStreamingResponse(self)
 
-    def create(self,
-    waiting_room_id: str,
-    *,
-    zone_id: str,
-    event_end_time: str,
-    event_start_time: str,
-    name: str,
-    custom_page_html: Optional[str] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    disable_session_renewal: Optional[bool] | NotGiven = NOT_GIVEN,
-    new_users_per_minute: Optional[int] | NotGiven = NOT_GIVEN,
-    prequeue_start_time: Optional[str] | NotGiven = NOT_GIVEN,
-    queueing_method: Optional[str] | NotGiven = NOT_GIVEN,
-    session_duration: Optional[int] | NotGiven = NOT_GIVEN,
-    shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
-    suspended: bool | NotGiven = NOT_GIVEN,
-    total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Event:
+    def create(
+        self,
+        waiting_room_id: str,
+        *,
+        zone_id: str,
+        event_end_time: str,
+        event_start_time: str,
+        name: str,
+        custom_page_html: Optional[str] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        disable_session_renewal: Optional[bool] | NotGiven = NOT_GIVEN,
+        new_users_per_minute: Optional[int] | NotGiven = NOT_GIVEN,
+        prequeue_start_time: Optional[str] | NotGiven = NOT_GIVEN,
+        queueing_method: Optional[str] | NotGiven = NOT_GIVEN,
+        session_duration: Optional[int] | NotGiven = NOT_GIVEN,
+        shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
+        suspended: bool | NotGiven = NOT_GIVEN,
+        total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Event:
         """Only available for the Waiting Room Advanced subscription.
 
         Creates an event for
@@ -151,58 +141,65 @@ class EventsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._post(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events",
-            body=maybe_transform({
-                "event_end_time": event_end_time,
-                "event_start_time": event_start_time,
-                "name": name,
-                "custom_page_html": custom_page_html,
-                "description": description,
-                "disable_session_renewal": disable_session_renewal,
-                "new_users_per_minute": new_users_per_minute,
-                "prequeue_start_time": prequeue_start_time,
-                "queueing_method": queueing_method,
-                "session_duration": session_duration,
-                "shuffle_at_event_start": shuffle_at_event_start,
-                "suspended": suspended,
-                "total_active_users": total_active_users,
-            }, event_create_params.EventCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Event]._unwrapper),
+            body=maybe_transform(
+                {
+                    "event_end_time": event_end_time,
+                    "event_start_time": event_start_time,
+                    "name": name,
+                    "custom_page_html": custom_page_html,
+                    "description": description,
+                    "disable_session_renewal": disable_session_renewal,
+                    "new_users_per_minute": new_users_per_minute,
+                    "prequeue_start_time": prequeue_start_time,
+                    "queueing_method": queueing_method,
+                    "session_duration": session_duration,
+                    "shuffle_at_event_start": shuffle_at_event_start,
+                    "suspended": suspended,
+                    "total_active_users": total_active_users,
+                },
+                event_create_params.EventCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Event]._unwrapper,
+            ),
             cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
 
-    def update(self,
-    event_id: str,
-    *,
-    zone_id: str,
-    waiting_room_id: str,
-    event_end_time: str,
-    event_start_time: str,
-    name: str,
-    custom_page_html: Optional[str] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    disable_session_renewal: Optional[bool] | NotGiven = NOT_GIVEN,
-    new_users_per_minute: Optional[int] | NotGiven = NOT_GIVEN,
-    prequeue_start_time: Optional[str] | NotGiven = NOT_GIVEN,
-    queueing_method: Optional[str] | NotGiven = NOT_GIVEN,
-    session_duration: Optional[int] | NotGiven = NOT_GIVEN,
-    shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
-    suspended: bool | NotGiven = NOT_GIVEN,
-    total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Event:
+    def update(
+        self,
+        event_id: str,
+        *,
+        zone_id: str,
+        waiting_room_id: str,
+        event_end_time: str,
+        event_start_time: str,
+        name: str,
+        custom_page_html: Optional[str] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        disable_session_renewal: Optional[bool] | NotGiven = NOT_GIVEN,
+        new_users_per_minute: Optional[int] | NotGiven = NOT_GIVEN,
+        prequeue_start_time: Optional[str] | NotGiven = NOT_GIVEN,
+        queueing_method: Optional[str] | NotGiven = NOT_GIVEN,
+        session_duration: Optional[int] | NotGiven = NOT_GIVEN,
+        shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
+        suspended: bool | NotGiven = NOT_GIVEN,
+        total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Event:
         """
         Updates a configured event for a waiting room.
 
@@ -263,50 +260,55 @@ class EventsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         if not event_id:
-          raise ValueError(
-            f'Expected a non-empty value for `event_id` but received {event_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._put(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
-            body=maybe_transform({
-                "event_end_time": event_end_time,
-                "event_start_time": event_start_time,
-                "name": name,
-                "custom_page_html": custom_page_html,
-                "description": description,
-                "disable_session_renewal": disable_session_renewal,
-                "new_users_per_minute": new_users_per_minute,
-                "prequeue_start_time": prequeue_start_time,
-                "queueing_method": queueing_method,
-                "session_duration": session_duration,
-                "shuffle_at_event_start": shuffle_at_event_start,
-                "suspended": suspended,
-                "total_active_users": total_active_users,
-            }, event_update_params.EventUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Event]._unwrapper),
+            body=maybe_transform(
+                {
+                    "event_end_time": event_end_time,
+                    "event_start_time": event_start_time,
+                    "name": name,
+                    "custom_page_html": custom_page_html,
+                    "description": description,
+                    "disable_session_renewal": disable_session_renewal,
+                    "new_users_per_minute": new_users_per_minute,
+                    "prequeue_start_time": prequeue_start_time,
+                    "queueing_method": queueing_method,
+                    "session_duration": session_duration,
+                    "shuffle_at_event_start": shuffle_at_event_start,
+                    "suspended": suspended,
+                    "total_active_users": total_active_users,
+                },
+                event_update_params.EventUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Event]._unwrapper,
+            ),
             cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
 
-    def list(self,
-    waiting_room_id: str,
-    *,
-    zone_id: str,
-    page: float | NotGiven = NOT_GIVEN,
-    per_page: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[Event]:
+    def list(
+        self,
+        waiting_room_id: str,
+        *,
+        zone_id: str,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncV4PagePaginationArray[Event]:
         """
         Lists events for a waiting room.
 
@@ -326,34 +328,41 @@ class EventsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events",
-            page = SyncV4PagePaginationArray[Event],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "page": page,
-                "per_page": per_page,
-            }, event_list_params.EventListParams)),
+            page=SyncV4PagePaginationArray[Event],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    event_list_params.EventListParams,
+                ),
+            ),
             model=Event,
         )
 
-    def delete(self,
-    event_id: str,
-    *,
-    zone_id: str,
-    waiting_room_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> EventDeleteResponse:
+    def delete(
+        self,
+        event_id: str,
+        *,
+        zone_id: str,
+        waiting_room_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> EventDeleteResponse:
         """
         Deletes an event for a waiting room.
 
@@ -369,47 +378,49 @@ class EventsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         if not event_id:
-          raise ValueError(
-            f'Expected a non-empty value for `event_id` but received {event_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._delete(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[EventDeleteResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[EventDeleteResponse]._unwrapper,
+            ),
             cast_to=cast(Type[EventDeleteResponse], ResultWrapper[EventDeleteResponse]),
         )
 
-    def edit(self,
-    event_id: str,
-    *,
-    zone_id: str,
-    waiting_room_id: str,
-    event_end_time: str,
-    event_start_time: str,
-    name: str,
-    custom_page_html: Optional[str] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    disable_session_renewal: Optional[bool] | NotGiven = NOT_GIVEN,
-    new_users_per_minute: Optional[int] | NotGiven = NOT_GIVEN,
-    prequeue_start_time: Optional[str] | NotGiven = NOT_GIVEN,
-    queueing_method: Optional[str] | NotGiven = NOT_GIVEN,
-    session_duration: Optional[int] | NotGiven = NOT_GIVEN,
-    shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
-    suspended: bool | NotGiven = NOT_GIVEN,
-    total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Event:
+    def edit(
+        self,
+        event_id: str,
+        *,
+        zone_id: str,
+        waiting_room_id: str,
+        event_end_time: str,
+        event_start_time: str,
+        name: str,
+        custom_page_html: Optional[str] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        disable_session_renewal: Optional[bool] | NotGiven = NOT_GIVEN,
+        new_users_per_minute: Optional[int] | NotGiven = NOT_GIVEN,
+        prequeue_start_time: Optional[str] | NotGiven = NOT_GIVEN,
+        queueing_method: Optional[str] | NotGiven = NOT_GIVEN,
+        session_duration: Optional[int] | NotGiven = NOT_GIVEN,
+        shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
+        suspended: bool | NotGiven = NOT_GIVEN,
+        total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Event:
         """
         Patches a configured event for a waiting room.
 
@@ -470,49 +481,54 @@ class EventsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         if not event_id:
-          raise ValueError(
-            f'Expected a non-empty value for `event_id` but received {event_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._patch(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
-            body=maybe_transform({
-                "event_end_time": event_end_time,
-                "event_start_time": event_start_time,
-                "name": name,
-                "custom_page_html": custom_page_html,
-                "description": description,
-                "disable_session_renewal": disable_session_renewal,
-                "new_users_per_minute": new_users_per_minute,
-                "prequeue_start_time": prequeue_start_time,
-                "queueing_method": queueing_method,
-                "session_duration": session_duration,
-                "shuffle_at_event_start": shuffle_at_event_start,
-                "suspended": suspended,
-                "total_active_users": total_active_users,
-            }, event_edit_params.EventEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Event]._unwrapper),
+            body=maybe_transform(
+                {
+                    "event_end_time": event_end_time,
+                    "event_start_time": event_start_time,
+                    "name": name,
+                    "custom_page_html": custom_page_html,
+                    "description": description,
+                    "disable_session_renewal": disable_session_renewal,
+                    "new_users_per_minute": new_users_per_minute,
+                    "prequeue_start_time": prequeue_start_time,
+                    "queueing_method": queueing_method,
+                    "session_duration": session_duration,
+                    "shuffle_at_event_start": shuffle_at_event_start,
+                    "suspended": suspended,
+                    "total_active_users": total_active_users,
+                },
+                event_edit_params.EventEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Event]._unwrapper,
+            ),
             cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
 
-    def get(self,
-    event_id: str,
-    *,
-    zone_id: str,
-    waiting_room_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Event:
+    def get(
+        self,
+        event_id: str,
+        *,
+        zone_id: str,
+        waiting_room_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Event:
         """
         Fetches a single configured event for a waiting room.
 
@@ -528,22 +544,23 @@ class EventsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         if not event_id:
-          raise ValueError(
-            f'Expected a non-empty value for `event_id` but received {event_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return self._get(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Event]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Event]._unwrapper,
+            ),
             cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
+
 
 class AsyncEventsResource(AsyncAPIResource):
     @cached_property
@@ -558,29 +575,31 @@ class AsyncEventsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncEventsResourceWithStreamingResponse:
         return AsyncEventsResourceWithStreamingResponse(self)
 
-    async def create(self,
-    waiting_room_id: str,
-    *,
-    zone_id: str,
-    event_end_time: str,
-    event_start_time: str,
-    name: str,
-    custom_page_html: Optional[str] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    disable_session_renewal: Optional[bool] | NotGiven = NOT_GIVEN,
-    new_users_per_minute: Optional[int] | NotGiven = NOT_GIVEN,
-    prequeue_start_time: Optional[str] | NotGiven = NOT_GIVEN,
-    queueing_method: Optional[str] | NotGiven = NOT_GIVEN,
-    session_duration: Optional[int] | NotGiven = NOT_GIVEN,
-    shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
-    suspended: bool | NotGiven = NOT_GIVEN,
-    total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Event:
+    async def create(
+        self,
+        waiting_room_id: str,
+        *,
+        zone_id: str,
+        event_end_time: str,
+        event_start_time: str,
+        name: str,
+        custom_page_html: Optional[str] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        disable_session_renewal: Optional[bool] | NotGiven = NOT_GIVEN,
+        new_users_per_minute: Optional[int] | NotGiven = NOT_GIVEN,
+        prequeue_start_time: Optional[str] | NotGiven = NOT_GIVEN,
+        queueing_method: Optional[str] | NotGiven = NOT_GIVEN,
+        session_duration: Optional[int] | NotGiven = NOT_GIVEN,
+        shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
+        suspended: bool | NotGiven = NOT_GIVEN,
+        total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Event:
         """Only available for the Waiting Room Advanced subscription.
 
         Creates an event for
@@ -647,58 +666,65 @@ class AsyncEventsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return await self._post(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events",
-            body=await async_maybe_transform({
-                "event_end_time": event_end_time,
-                "event_start_time": event_start_time,
-                "name": name,
-                "custom_page_html": custom_page_html,
-                "description": description,
-                "disable_session_renewal": disable_session_renewal,
-                "new_users_per_minute": new_users_per_minute,
-                "prequeue_start_time": prequeue_start_time,
-                "queueing_method": queueing_method,
-                "session_duration": session_duration,
-                "shuffle_at_event_start": shuffle_at_event_start,
-                "suspended": suspended,
-                "total_active_users": total_active_users,
-            }, event_create_params.EventCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Event]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "event_end_time": event_end_time,
+                    "event_start_time": event_start_time,
+                    "name": name,
+                    "custom_page_html": custom_page_html,
+                    "description": description,
+                    "disable_session_renewal": disable_session_renewal,
+                    "new_users_per_minute": new_users_per_minute,
+                    "prequeue_start_time": prequeue_start_time,
+                    "queueing_method": queueing_method,
+                    "session_duration": session_duration,
+                    "shuffle_at_event_start": shuffle_at_event_start,
+                    "suspended": suspended,
+                    "total_active_users": total_active_users,
+                },
+                event_create_params.EventCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Event]._unwrapper,
+            ),
             cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
 
-    async def update(self,
-    event_id: str,
-    *,
-    zone_id: str,
-    waiting_room_id: str,
-    event_end_time: str,
-    event_start_time: str,
-    name: str,
-    custom_page_html: Optional[str] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    disable_session_renewal: Optional[bool] | NotGiven = NOT_GIVEN,
-    new_users_per_minute: Optional[int] | NotGiven = NOT_GIVEN,
-    prequeue_start_time: Optional[str] | NotGiven = NOT_GIVEN,
-    queueing_method: Optional[str] | NotGiven = NOT_GIVEN,
-    session_duration: Optional[int] | NotGiven = NOT_GIVEN,
-    shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
-    suspended: bool | NotGiven = NOT_GIVEN,
-    total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Event:
+    async def update(
+        self,
+        event_id: str,
+        *,
+        zone_id: str,
+        waiting_room_id: str,
+        event_end_time: str,
+        event_start_time: str,
+        name: str,
+        custom_page_html: Optional[str] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        disable_session_renewal: Optional[bool] | NotGiven = NOT_GIVEN,
+        new_users_per_minute: Optional[int] | NotGiven = NOT_GIVEN,
+        prequeue_start_time: Optional[str] | NotGiven = NOT_GIVEN,
+        queueing_method: Optional[str] | NotGiven = NOT_GIVEN,
+        session_duration: Optional[int] | NotGiven = NOT_GIVEN,
+        shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
+        suspended: bool | NotGiven = NOT_GIVEN,
+        total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Event:
         """
         Updates a configured event for a waiting room.
 
@@ -759,50 +785,55 @@ class AsyncEventsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         if not event_id:
-          raise ValueError(
-            f'Expected a non-empty value for `event_id` but received {event_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._put(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
-            body=await async_maybe_transform({
-                "event_end_time": event_end_time,
-                "event_start_time": event_start_time,
-                "name": name,
-                "custom_page_html": custom_page_html,
-                "description": description,
-                "disable_session_renewal": disable_session_renewal,
-                "new_users_per_minute": new_users_per_minute,
-                "prequeue_start_time": prequeue_start_time,
-                "queueing_method": queueing_method,
-                "session_duration": session_duration,
-                "shuffle_at_event_start": shuffle_at_event_start,
-                "suspended": suspended,
-                "total_active_users": total_active_users,
-            }, event_update_params.EventUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Event]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "event_end_time": event_end_time,
+                    "event_start_time": event_start_time,
+                    "name": name,
+                    "custom_page_html": custom_page_html,
+                    "description": description,
+                    "disable_session_renewal": disable_session_renewal,
+                    "new_users_per_minute": new_users_per_minute,
+                    "prequeue_start_time": prequeue_start_time,
+                    "queueing_method": queueing_method,
+                    "session_duration": session_duration,
+                    "shuffle_at_event_start": shuffle_at_event_start,
+                    "suspended": suspended,
+                    "total_active_users": total_active_users,
+                },
+                event_update_params.EventUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Event]._unwrapper,
+            ),
             cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
 
-    def list(self,
-    waiting_room_id: str,
-    *,
-    zone_id: str,
-    page: float | NotGiven = NOT_GIVEN,
-    per_page: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Event, AsyncV4PagePaginationArray[Event]]:
+    def list(
+        self,
+        waiting_room_id: str,
+        *,
+        zone_id: str,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[Event, AsyncV4PagePaginationArray[Event]]:
         """
         Lists events for a waiting room.
 
@@ -822,34 +853,41 @@ class AsyncEventsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events",
-            page = AsyncV4PagePaginationArray[Event],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "page": page,
-                "per_page": per_page,
-            }, event_list_params.EventListParams)),
+            page=AsyncV4PagePaginationArray[Event],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    event_list_params.EventListParams,
+                ),
+            ),
             model=Event,
         )
 
-    async def delete(self,
-    event_id: str,
-    *,
-    zone_id: str,
-    waiting_room_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> EventDeleteResponse:
+    async def delete(
+        self,
+        event_id: str,
+        *,
+        zone_id: str,
+        waiting_room_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> EventDeleteResponse:
         """
         Deletes an event for a waiting room.
 
@@ -865,47 +903,49 @@ class AsyncEventsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         if not event_id:
-          raise ValueError(
-            f'Expected a non-empty value for `event_id` but received {event_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._delete(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[EventDeleteResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[EventDeleteResponse]._unwrapper,
+            ),
             cast_to=cast(Type[EventDeleteResponse], ResultWrapper[EventDeleteResponse]),
         )
 
-    async def edit(self,
-    event_id: str,
-    *,
-    zone_id: str,
-    waiting_room_id: str,
-    event_end_time: str,
-    event_start_time: str,
-    name: str,
-    custom_page_html: Optional[str] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    disable_session_renewal: Optional[bool] | NotGiven = NOT_GIVEN,
-    new_users_per_minute: Optional[int] | NotGiven = NOT_GIVEN,
-    prequeue_start_time: Optional[str] | NotGiven = NOT_GIVEN,
-    queueing_method: Optional[str] | NotGiven = NOT_GIVEN,
-    session_duration: Optional[int] | NotGiven = NOT_GIVEN,
-    shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
-    suspended: bool | NotGiven = NOT_GIVEN,
-    total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Event:
+    async def edit(
+        self,
+        event_id: str,
+        *,
+        zone_id: str,
+        waiting_room_id: str,
+        event_end_time: str,
+        event_start_time: str,
+        name: str,
+        custom_page_html: Optional[str] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        disable_session_renewal: Optional[bool] | NotGiven = NOT_GIVEN,
+        new_users_per_minute: Optional[int] | NotGiven = NOT_GIVEN,
+        prequeue_start_time: Optional[str] | NotGiven = NOT_GIVEN,
+        queueing_method: Optional[str] | NotGiven = NOT_GIVEN,
+        session_duration: Optional[int] | NotGiven = NOT_GIVEN,
+        shuffle_at_event_start: bool | NotGiven = NOT_GIVEN,
+        suspended: bool | NotGiven = NOT_GIVEN,
+        total_active_users: Optional[int] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Event:
         """
         Patches a configured event for a waiting room.
 
@@ -966,49 +1006,54 @@ class AsyncEventsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         if not event_id:
-          raise ValueError(
-            f'Expected a non-empty value for `event_id` but received {event_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
-            body=await async_maybe_transform({
-                "event_end_time": event_end_time,
-                "event_start_time": event_start_time,
-                "name": name,
-                "custom_page_html": custom_page_html,
-                "description": description,
-                "disable_session_renewal": disable_session_renewal,
-                "new_users_per_minute": new_users_per_minute,
-                "prequeue_start_time": prequeue_start_time,
-                "queueing_method": queueing_method,
-                "session_duration": session_duration,
-                "shuffle_at_event_start": shuffle_at_event_start,
-                "suspended": suspended,
-                "total_active_users": total_active_users,
-            }, event_edit_params.EventEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Event]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "event_end_time": event_end_time,
+                    "event_start_time": event_start_time,
+                    "name": name,
+                    "custom_page_html": custom_page_html,
+                    "description": description,
+                    "disable_session_renewal": disable_session_renewal,
+                    "new_users_per_minute": new_users_per_minute,
+                    "prequeue_start_time": prequeue_start_time,
+                    "queueing_method": queueing_method,
+                    "session_duration": session_duration,
+                    "shuffle_at_event_start": shuffle_at_event_start,
+                    "suspended": suspended,
+                    "total_active_users": total_active_users,
+                },
+                event_edit_params.EventEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Event]._unwrapper,
+            ),
             cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
 
-    async def get(self,
-    event_id: str,
-    *,
-    zone_id: str,
-    waiting_room_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Event:
+    async def get(
+        self,
+        event_id: str,
+        *,
+        zone_id: str,
+        waiting_room_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Event:
         """
         Fetches a single configured event for a waiting room.
 
@@ -1024,22 +1069,23 @@ class AsyncEventsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not waiting_room_id:
-          raise ValueError(
-            f'Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `waiting_room_id` but received {waiting_room_id!r}")
         if not event_id:
-          raise ValueError(
-            f'Expected a non-empty value for `event_id` but received {event_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `event_id` but received {event_id!r}")
         return await self._get(
             f"/zones/{zone_id}/waiting_rooms/{waiting_room_id}/events/{event_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Event]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Event]._unwrapper,
+            ),
             cast_to=cast(Type[Event], ResultWrapper[Event]),
         )
+
 
 class EventsResourceWithRawResponse:
     def __init__(self, events: EventsResource) -> None:
@@ -1068,6 +1114,7 @@ class EventsResourceWithRawResponse:
     def details(self) -> DetailsResourceWithRawResponse:
         return DetailsResourceWithRawResponse(self._events.details)
 
+
 class AsyncEventsResourceWithRawResponse:
     def __init__(self, events: AsyncEventsResource) -> None:
         self._events = events
@@ -1095,6 +1142,7 @@ class AsyncEventsResourceWithRawResponse:
     def details(self) -> AsyncDetailsResourceWithRawResponse:
         return AsyncDetailsResourceWithRawResponse(self._events.details)
 
+
 class EventsResourceWithStreamingResponse:
     def __init__(self, events: EventsResource) -> None:
         self._events = events
@@ -1121,6 +1169,7 @@ class EventsResourceWithStreamingResponse:
     @cached_property
     def details(self) -> DetailsResourceWithStreamingResponse:
         return DetailsResourceWithStreamingResponse(self._events.details)
+
 
 class AsyncEventsResourceWithStreamingResponse:
     def __init__(self, events: AsyncEventsResource) -> None:

@@ -1,16 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ...._models import BaseModel
-
-from typing import Optional, List
-
+from typing import List, Optional
 from datetime import datetime
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ...._models import BaseModel
 
 __all__ = ["Client", "Conn"]
+
 
 class Conn(BaseModel):
     id: Optional[str] = None
@@ -41,6 +37,7 @@ class Conn(BaseModel):
 
     uuid: Optional[str] = None
     """UUID of the Cloudflare Tunnel connection."""
+
 
 class Client(BaseModel):
     id: Optional[str] = None

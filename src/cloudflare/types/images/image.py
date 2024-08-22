@@ -1,16 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import Optional, List
-
+from typing import List, Optional
 from datetime import datetime
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
+from ..._models import BaseModel
+
 __all__ = ["Image"]
+
 
 class Image(BaseModel):
     id: Optional[str] = None
@@ -26,7 +24,7 @@ class Image(BaseModel):
     images. Metadata must not exceed 1024 bytes.
     """
 
-    require_signed_urls: Optional[bool] = FieldInfo(alias = "requireSignedURLs", default = None)
+    require_signed_urls: Optional[bool] = FieldInfo(alias="requireSignedURLs", default=None)
     """Indicates whether the image can be a accessed only using it's UID.
 
     If set to true, a signed token needs to be generated with a signing key to view

@@ -2,26 +2,20 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Annotated
-
 from typing import Union
-
 from datetime import datetime
+from typing_extensions import Required, Annotated, TypedDict
 
-from ..._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
 from ..._utils import PropertyInfo
 
 __all__ = ["HistoryListParams"]
+
 
 class HistoryListParams(TypedDict, total=False):
     account_id: Required[str]
     """The account id"""
 
-    before: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
+    before: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Limit the returned results to history records older than the specified date.
 
     This must be a timestamp that conforms to RFC3339.
@@ -33,7 +27,7 @@ class HistoryListParams(TypedDict, total=False):
     per_page: float
     """Number of items per page."""
 
-    since: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
+    since: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Limit the returned results to history records newer than the specified date.
 
     This must be a timestamp that conforms to RFC3339.

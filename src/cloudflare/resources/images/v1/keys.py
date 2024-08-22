@@ -2,39 +2,27 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
 from ...._compat import cached_property
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...._wrappers import ResultWrapper
+from ...._base_client import make_request_options
+from ....types.images.v1.key_list_response import KeyListResponse
+from ....types.images.v1.key_delete_response import KeyDeleteResponse
 from ....types.images.v1.key_update_response import KeyUpdateResponse
 
-from ...._wrappers import ResultWrapper
-
-from ...._base_client import make_request_options
-
-from typing import Type
-
-from ....types.images.v1.key_list_response import KeyListResponse
-
-from ....types.images.v1.key_delete_response import KeyDeleteResponse
-
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["KeysResource", "AsyncKeysResource"]
+
 
 class KeysResource(SyncAPIResource):
     @cached_property
@@ -45,16 +33,18 @@ class KeysResource(SyncAPIResource):
     def with_streaming_response(self) -> KeysResourceWithStreamingResponse:
         return KeysResourceWithStreamingResponse(self)
 
-    def update(self,
-    signing_key_name: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> KeyUpdateResponse:
+    def update(
+        self,
+        signing_key_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> KeyUpdateResponse:
         """Create a new signing key with specified name.
 
         Returns all keys available.
@@ -71,28 +61,32 @@ class KeysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not signing_key_name:
-          raise ValueError(
-            f'Expected a non-empty value for `signing_key_name` but received {signing_key_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `signing_key_name` but received {signing_key_name!r}")
         return self._put(
             f"/accounts/{account_id}/images/v1/keys/{signing_key_name}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[KeyUpdateResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[KeyUpdateResponse]._unwrapper,
+            ),
             cast_to=cast(Type[KeyUpdateResponse], ResultWrapper[KeyUpdateResponse]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> KeyListResponse:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> KeyListResponse:
         """Lists your signing keys.
 
         These can be found on your Cloudflare Images dashboard.
@@ -109,25 +103,31 @@ class KeysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
             f"/accounts/{account_id}/images/v1/keys",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[KeyListResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[KeyListResponse]._unwrapper,
+            ),
             cast_to=cast(Type[KeyListResponse], ResultWrapper[KeyListResponse]),
         )
 
-    def delete(self,
-    signing_key_name: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> KeyDeleteResponse:
+    def delete(
+        self,
+        signing_key_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> KeyDeleteResponse:
         """Delete signing key with specified name.
 
         Returns all keys available. When last
@@ -145,18 +145,21 @@ class KeysResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not signing_key_name:
-          raise ValueError(
-            f'Expected a non-empty value for `signing_key_name` but received {signing_key_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `signing_key_name` but received {signing_key_name!r}")
         return self._delete(
             f"/accounts/{account_id}/images/v1/keys/{signing_key_name}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[KeyDeleteResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[KeyDeleteResponse]._unwrapper,
+            ),
             cast_to=cast(Type[KeyDeleteResponse], ResultWrapper[KeyDeleteResponse]),
         )
+
 
 class AsyncKeysResource(AsyncAPIResource):
     @cached_property
@@ -167,16 +170,18 @@ class AsyncKeysResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncKeysResourceWithStreamingResponse:
         return AsyncKeysResourceWithStreamingResponse(self)
 
-    async def update(self,
-    signing_key_name: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> KeyUpdateResponse:
+    async def update(
+        self,
+        signing_key_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> KeyUpdateResponse:
         """Create a new signing key with specified name.
 
         Returns all keys available.
@@ -193,28 +198,32 @@ class AsyncKeysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not signing_key_name:
-          raise ValueError(
-            f'Expected a non-empty value for `signing_key_name` but received {signing_key_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `signing_key_name` but received {signing_key_name!r}")
         return await self._put(
             f"/accounts/{account_id}/images/v1/keys/{signing_key_name}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[KeyUpdateResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[KeyUpdateResponse]._unwrapper,
+            ),
             cast_to=cast(Type[KeyUpdateResponse], ResultWrapper[KeyUpdateResponse]),
         )
 
-    async def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> KeyListResponse:
+    async def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> KeyListResponse:
         """Lists your signing keys.
 
         These can be found on your Cloudflare Images dashboard.
@@ -231,25 +240,31 @@ class AsyncKeysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
             f"/accounts/{account_id}/images/v1/keys",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[KeyListResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[KeyListResponse]._unwrapper,
+            ),
             cast_to=cast(Type[KeyListResponse], ResultWrapper[KeyListResponse]),
         )
 
-    async def delete(self,
-    signing_key_name: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> KeyDeleteResponse:
+    async def delete(
+        self,
+        signing_key_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> KeyDeleteResponse:
         """Delete signing key with specified name.
 
         Returns all keys available. When last
@@ -267,18 +282,21 @@ class AsyncKeysResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not signing_key_name:
-          raise ValueError(
-            f'Expected a non-empty value for `signing_key_name` but received {signing_key_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `signing_key_name` but received {signing_key_name!r}")
         return await self._delete(
             f"/accounts/{account_id}/images/v1/keys/{signing_key_name}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[KeyDeleteResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[KeyDeleteResponse]._unwrapper,
+            ),
             cast_to=cast(Type[KeyDeleteResponse], ResultWrapper[KeyDeleteResponse]),
         )
+
 
 class KeysResourceWithRawResponse:
     def __init__(self, keys: KeysResource) -> None:
@@ -294,6 +312,7 @@ class KeysResourceWithRawResponse:
             keys.delete,
         )
 
+
 class AsyncKeysResourceWithRawResponse:
     def __init__(self, keys: AsyncKeysResource) -> None:
         self._keys = keys
@@ -308,6 +327,7 @@ class AsyncKeysResourceWithRawResponse:
             keys.delete,
         )
 
+
 class KeysResourceWithStreamingResponse:
     def __init__(self, keys: KeysResource) -> None:
         self._keys = keys
@@ -321,6 +341,7 @@ class KeysResourceWithStreamingResponse:
         self.delete = to_streamed_response_wrapper(
             keys.delete,
         )
+
 
 class AsyncKeysResourceWithStreamingResponse:
     def __init__(self, keys: AsyncKeysResource) -> None:

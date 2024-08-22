@@ -2,15 +2,17 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required
+from typing_extensions import Required, TypedDict
 
 __all__ = ["AuthenticationMethodRuleParam", "AuthMethod"]
+
 
 class AuthMethod(TypedDict, total=False):
     auth_method: Required[str]
     """
     The type of authentication method https://datatracker.ietf.org/doc/html/rfc8176.
     """
+
 
 class AuthenticationMethodRuleParam(TypedDict, total=False):
     auth_method: Required[AuthMethod]

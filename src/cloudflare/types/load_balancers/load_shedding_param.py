@@ -6,6 +6,7 @@ from typing_extensions import Literal, TypedDict
 
 __all__ = ["LoadSheddingParam"]
 
+
 class LoadSheddingParam(TypedDict, total=False):
     default_percent: float
     """The percent of traffic to shed from the pool, according to the default policy.

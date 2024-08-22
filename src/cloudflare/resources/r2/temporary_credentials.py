@@ -2,36 +2,31 @@
 
 from __future__ import annotations
 
+from typing import List, Type, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
-
+from ...types.r2 import temporary_credential_create_params
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ..._base_client import make_request_options
 from ...types.r2.temporary_credential_create_response import TemporaryCredentialCreateResponse
 
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from ..._base_client import make_request_options
-
-from typing import Type, List
-
-from typing_extensions import Literal
-
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.r2 import temporary_credential_create_params
-from typing import cast
-from typing import cast
-
 __all__ = ["TemporaryCredentialsResource", "AsyncTemporaryCredentialsResource"]
+
 
 class TemporaryCredentialsResource(SyncAPIResource):
     @cached_property
@@ -42,21 +37,23 @@ class TemporaryCredentialsResource(SyncAPIResource):
     def with_streaming_response(self) -> TemporaryCredentialsResourceWithStreamingResponse:
         return TemporaryCredentialsResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    account_id: str,
-    bucket: str,
-    parent_access_key_id: str,
-    permission: Literal["admin-read-write", "admin-read-only", "object-read-write", "object-read-only"],
-    ttl_seconds: float,
-    objects: List[str] | NotGiven = NOT_GIVEN,
-    prefixes: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TemporaryCredentialCreateResponse:
+    def create(
+        self,
+        *,
+        account_id: str,
+        bucket: str,
+        parent_access_key_id: str,
+        permission: Literal["admin-read-write", "admin-read-only", "object-read-write", "object-read-only"],
+        ttl_seconds: float,
+        objects: List[str] | NotGiven = NOT_GIVEN,
+        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TemporaryCredentialCreateResponse:
         """
         Creates temporary access credentials on a bucket that can be optionally scoped
         to prefixes or objects.
@@ -85,22 +82,30 @@ class TemporaryCredentialsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/r2/temp-access-credentials",
-            body=maybe_transform({
-                "bucket": bucket,
-                "parent_access_key_id": parent_access_key_id,
-                "permission": permission,
-                "ttl_seconds": ttl_seconds,
-                "objects": objects,
-                "prefixes": prefixes,
-            }, temporary_credential_create_params.TemporaryCredentialCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[TemporaryCredentialCreateResponse]._unwrapper),
+            body=maybe_transform(
+                {
+                    "bucket": bucket,
+                    "parent_access_key_id": parent_access_key_id,
+                    "permission": permission,
+                    "ttl_seconds": ttl_seconds,
+                    "objects": objects,
+                    "prefixes": prefixes,
+                },
+                temporary_credential_create_params.TemporaryCredentialCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[TemporaryCredentialCreateResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TemporaryCredentialCreateResponse], ResultWrapper[TemporaryCredentialCreateResponse]),
         )
+
 
 class AsyncTemporaryCredentialsResource(AsyncAPIResource):
     @cached_property
@@ -111,21 +116,23 @@ class AsyncTemporaryCredentialsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTemporaryCredentialsResourceWithStreamingResponse:
         return AsyncTemporaryCredentialsResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    account_id: str,
-    bucket: str,
-    parent_access_key_id: str,
-    permission: Literal["admin-read-write", "admin-read-only", "object-read-write", "object-read-only"],
-    ttl_seconds: float,
-    objects: List[str] | NotGiven = NOT_GIVEN,
-    prefixes: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TemporaryCredentialCreateResponse:
+    async def create(
+        self,
+        *,
+        account_id: str,
+        bucket: str,
+        parent_access_key_id: str,
+        permission: Literal["admin-read-write", "admin-read-only", "object-read-write", "object-read-only"],
+        ttl_seconds: float,
+        objects: List[str] | NotGiven = NOT_GIVEN,
+        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TemporaryCredentialCreateResponse:
         """
         Creates temporary access credentials on a bucket that can be optionally scoped
         to prefixes or objects.
@@ -154,22 +161,30 @@ class AsyncTemporaryCredentialsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/r2/temp-access-credentials",
-            body=await async_maybe_transform({
-                "bucket": bucket,
-                "parent_access_key_id": parent_access_key_id,
-                "permission": permission,
-                "ttl_seconds": ttl_seconds,
-                "objects": objects,
-                "prefixes": prefixes,
-            }, temporary_credential_create_params.TemporaryCredentialCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[TemporaryCredentialCreateResponse]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "bucket": bucket,
+                    "parent_access_key_id": parent_access_key_id,
+                    "permission": permission,
+                    "ttl_seconds": ttl_seconds,
+                    "objects": objects,
+                    "prefixes": prefixes,
+                },
+                temporary_credential_create_params.TemporaryCredentialCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[TemporaryCredentialCreateResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TemporaryCredentialCreateResponse], ResultWrapper[TemporaryCredentialCreateResponse]),
         )
+
 
 class TemporaryCredentialsResourceWithRawResponse:
     def __init__(self, temporary_credentials: TemporaryCredentialsResource) -> None:
@@ -179,6 +194,7 @@ class TemporaryCredentialsResourceWithRawResponse:
             temporary_credentials.create,
         )
 
+
 class AsyncTemporaryCredentialsResourceWithRawResponse:
     def __init__(self, temporary_credentials: AsyncTemporaryCredentialsResource) -> None:
         self._temporary_credentials = temporary_credentials
@@ -187,6 +203,7 @@ class AsyncTemporaryCredentialsResourceWithRawResponse:
             temporary_credentials.create,
         )
 
+
 class TemporaryCredentialsResourceWithStreamingResponse:
     def __init__(self, temporary_credentials: TemporaryCredentialsResource) -> None:
         self._temporary_credentials = temporary_credentials
@@ -194,6 +211,7 @@ class TemporaryCredentialsResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             temporary_credentials.create,
         )
+
 
 class AsyncTemporaryCredentialsResourceWithStreamingResponse:
     def __init__(self, temporary_credentials: AsyncTemporaryCredentialsResource) -> None:

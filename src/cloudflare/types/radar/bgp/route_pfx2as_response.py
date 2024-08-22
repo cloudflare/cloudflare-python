@@ -1,14 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ...._models import BaseModel
-
 from typing import List
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ...._models import BaseModel
 
 __all__ = ["RoutePfx2asResponse", "Meta", "PrefixOrigin"]
+
 
 class Meta(BaseModel):
     data_time: str
@@ -16,6 +13,7 @@ class Meta(BaseModel):
     query_time: str
 
     total_peers: int
+
 
 class PrefixOrigin(BaseModel):
     origin: int
@@ -25,6 +23,7 @@ class PrefixOrigin(BaseModel):
     prefix: str
 
     rpki_validation: str
+
 
 class RoutePfx2asResponse(BaseModel):
     meta: Meta

@@ -2,20 +2,14 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Annotated, Literal
-
 from typing import Union
-
 from datetime import datetime
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ...._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ...._types import FileTypes
 from ...._utils import PropertyInfo
 
 __all__ = ["MessageGetParams"]
+
 
 class MessageGetParams(TypedDict, total=False):
     account_identifier: Required[str]
@@ -27,10 +21,10 @@ class MessageGetParams(TypedDict, total=False):
     per_page: Required[int]
     """Number of results per page"""
 
-    after: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
+    after: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Retrieve messages created after this time"""
 
-    before: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
+    before: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Retrieve messages created before this time"""
 
     sort_by: str

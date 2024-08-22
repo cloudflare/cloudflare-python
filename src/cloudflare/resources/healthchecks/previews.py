@@ -2,48 +2,34 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
-
-from ...types.healthchecks.healthcheck import Healthcheck
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
 from ..._base_client import make_request_options
-
-from typing import Type, Optional, List
-
+from ...types.healthchecks import preview_create_params
+from ...types.healthchecks.healthcheck import Healthcheck
 from ...types.healthchecks.check_region import CheckRegion
-
+from ...types.healthchecks.preview_delete_response import PreviewDeleteResponse
+from ...types.healthchecks.tcp_configuration_param import TCPConfigurationParam
 from ...types.healthchecks.http_configuration_param import HTTPConfigurationParam
 
-from ...types.healthchecks.tcp_configuration_param import TCPConfigurationParam
-
-from ...types.healthchecks.preview_delete_response import PreviewDeleteResponse
-
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.healthchecks import preview_create_params
-from ...types.healthchecks import HTTPConfiguration
-from ...types.healthchecks import TCPConfiguration
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["PreviewsResource", "AsyncPreviewsResource"]
+
 
 class PreviewsResource(SyncAPIResource):
     @cached_property
@@ -54,28 +40,30 @@ class PreviewsResource(SyncAPIResource):
     def with_streaming_response(self) -> PreviewsResourceWithStreamingResponse:
         return PreviewsResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    zone_id: str,
-    address: str,
-    name: str,
-    check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
-    consecutive_fails: int | NotGiven = NOT_GIVEN,
-    consecutive_successes: int | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    http_config: Optional[HTTPConfigurationParam] | NotGiven = NOT_GIVEN,
-    interval: int | NotGiven = NOT_GIVEN,
-    retries: int | NotGiven = NOT_GIVEN,
-    suspended: bool | NotGiven = NOT_GIVEN,
-    tcp_config: Optional[TCPConfigurationParam] | NotGiven = NOT_GIVEN,
-    healthcheck_timeout: int | NotGiven = NOT_GIVEN,
-    type: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Healthcheck:
+    def create(
+        self,
+        *,
+        zone_id: str,
+        address: str,
+        name: str,
+        check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
+        consecutive_fails: int | NotGiven = NOT_GIVEN,
+        consecutive_successes: int | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        http_config: Optional[HTTPConfigurationParam] | NotGiven = NOT_GIVEN,
+        interval: int | NotGiven = NOT_GIVEN,
+        retries: int | NotGiven = NOT_GIVEN,
+        suspended: bool | NotGiven = NOT_GIVEN,
+        tcp_config: Optional[TCPConfigurationParam] | NotGiven = NOT_GIVEN,
+        healthcheck_timeout: int | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Healthcheck:
         """
         Create a new preview health check.
 
@@ -125,40 +113,49 @@ class PreviewsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
             f"/zones/{zone_id}/healthchecks/preview",
-            body=maybe_transform({
-                "address": address,
-                "name": name,
-                "check_regions": check_regions,
-                "consecutive_fails": consecutive_fails,
-                "consecutive_successes": consecutive_successes,
-                "description": description,
-                "http_config": http_config,
-                "interval": interval,
-                "retries": retries,
-                "suspended": suspended,
-                "tcp_config": tcp_config,
-                "timeout": healthcheck_timeout,
-                "type": type,
-            }, preview_create_params.PreviewCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Healthcheck]._unwrapper),
+            body=maybe_transform(
+                {
+                    "address": address,
+                    "name": name,
+                    "check_regions": check_regions,
+                    "consecutive_fails": consecutive_fails,
+                    "consecutive_successes": consecutive_successes,
+                    "description": description,
+                    "http_config": http_config,
+                    "interval": interval,
+                    "retries": retries,
+                    "suspended": suspended,
+                    "tcp_config": tcp_config,
+                    "timeout": healthcheck_timeout,
+                    "type": type,
+                },
+                preview_create_params.PreviewCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Healthcheck]._unwrapper,
+            ),
             cast_to=cast(Type[Healthcheck], ResultWrapper[Healthcheck]),
         )
 
-    def delete(self,
-    healthcheck_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> PreviewDeleteResponse:
+    def delete(
+        self,
+        healthcheck_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PreviewDeleteResponse:
         """
         Delete a health check.
 
@@ -176,29 +173,33 @@ class PreviewsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not healthcheck_id:
-          raise ValueError(
-            f'Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}")
         return self._delete(
             f"/zones/{zone_id}/healthchecks/preview/{healthcheck_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[PreviewDeleteResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[PreviewDeleteResponse]._unwrapper,
+            ),
             cast_to=cast(Type[PreviewDeleteResponse], ResultWrapper[PreviewDeleteResponse]),
         )
 
-    def get(self,
-    healthcheck_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Healthcheck:
+    def get(
+        self,
+        healthcheck_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Healthcheck:
         """
         Fetch a single configured health check preview.
 
@@ -216,18 +217,21 @@ class PreviewsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not healthcheck_id:
-          raise ValueError(
-            f'Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}")
         return self._get(
             f"/zones/{zone_id}/healthchecks/preview/{healthcheck_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Healthcheck]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Healthcheck]._unwrapper,
+            ),
             cast_to=cast(Type[Healthcheck], ResultWrapper[Healthcheck]),
         )
+
 
 class AsyncPreviewsResource(AsyncAPIResource):
     @cached_property
@@ -238,28 +242,30 @@ class AsyncPreviewsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncPreviewsResourceWithStreamingResponse:
         return AsyncPreviewsResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    zone_id: str,
-    address: str,
-    name: str,
-    check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
-    consecutive_fails: int | NotGiven = NOT_GIVEN,
-    consecutive_successes: int | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    http_config: Optional[HTTPConfigurationParam] | NotGiven = NOT_GIVEN,
-    interval: int | NotGiven = NOT_GIVEN,
-    retries: int | NotGiven = NOT_GIVEN,
-    suspended: bool | NotGiven = NOT_GIVEN,
-    tcp_config: Optional[TCPConfigurationParam] | NotGiven = NOT_GIVEN,
-    healthcheck_timeout: int | NotGiven = NOT_GIVEN,
-    type: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Healthcheck:
+    async def create(
+        self,
+        *,
+        zone_id: str,
+        address: str,
+        name: str,
+        check_regions: Optional[List[CheckRegion]] | NotGiven = NOT_GIVEN,
+        consecutive_fails: int | NotGiven = NOT_GIVEN,
+        consecutive_successes: int | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        http_config: Optional[HTTPConfigurationParam] | NotGiven = NOT_GIVEN,
+        interval: int | NotGiven = NOT_GIVEN,
+        retries: int | NotGiven = NOT_GIVEN,
+        suspended: bool | NotGiven = NOT_GIVEN,
+        tcp_config: Optional[TCPConfigurationParam] | NotGiven = NOT_GIVEN,
+        healthcheck_timeout: int | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Healthcheck:
         """
         Create a new preview health check.
 
@@ -309,40 +315,49 @@ class AsyncPreviewsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/healthchecks/preview",
-            body=await async_maybe_transform({
-                "address": address,
-                "name": name,
-                "check_regions": check_regions,
-                "consecutive_fails": consecutive_fails,
-                "consecutive_successes": consecutive_successes,
-                "description": description,
-                "http_config": http_config,
-                "interval": interval,
-                "retries": retries,
-                "suspended": suspended,
-                "tcp_config": tcp_config,
-                "timeout": healthcheck_timeout,
-                "type": type,
-            }, preview_create_params.PreviewCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Healthcheck]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "address": address,
+                    "name": name,
+                    "check_regions": check_regions,
+                    "consecutive_fails": consecutive_fails,
+                    "consecutive_successes": consecutive_successes,
+                    "description": description,
+                    "http_config": http_config,
+                    "interval": interval,
+                    "retries": retries,
+                    "suspended": suspended,
+                    "tcp_config": tcp_config,
+                    "timeout": healthcheck_timeout,
+                    "type": type,
+                },
+                preview_create_params.PreviewCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Healthcheck]._unwrapper,
+            ),
             cast_to=cast(Type[Healthcheck], ResultWrapper[Healthcheck]),
         )
 
-    async def delete(self,
-    healthcheck_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> PreviewDeleteResponse:
+    async def delete(
+        self,
+        healthcheck_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PreviewDeleteResponse:
         """
         Delete a health check.
 
@@ -360,29 +375,33 @@ class AsyncPreviewsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not healthcheck_id:
-          raise ValueError(
-            f'Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}")
         return await self._delete(
             f"/zones/{zone_id}/healthchecks/preview/{healthcheck_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[PreviewDeleteResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[PreviewDeleteResponse]._unwrapper,
+            ),
             cast_to=cast(Type[PreviewDeleteResponse], ResultWrapper[PreviewDeleteResponse]),
         )
 
-    async def get(self,
-    healthcheck_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Healthcheck:
+    async def get(
+        self,
+        healthcheck_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Healthcheck:
         """
         Fetch a single configured health check preview.
 
@@ -400,18 +419,21 @@ class AsyncPreviewsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not healthcheck_id:
-          raise ValueError(
-            f'Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `healthcheck_id` but received {healthcheck_id!r}")
         return await self._get(
             f"/zones/{zone_id}/healthchecks/preview/{healthcheck_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Healthcheck]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Healthcheck]._unwrapper,
+            ),
             cast_to=cast(Type[Healthcheck], ResultWrapper[Healthcheck]),
         )
+
 
 class PreviewsResourceWithRawResponse:
     def __init__(self, previews: PreviewsResource) -> None:
@@ -427,6 +449,7 @@ class PreviewsResourceWithRawResponse:
             previews.get,
         )
 
+
 class AsyncPreviewsResourceWithRawResponse:
     def __init__(self, previews: AsyncPreviewsResource) -> None:
         self._previews = previews
@@ -441,6 +464,7 @@ class AsyncPreviewsResourceWithRawResponse:
             previews.get,
         )
 
+
 class PreviewsResourceWithStreamingResponse:
     def __init__(self, previews: PreviewsResource) -> None:
         self._previews = previews
@@ -454,6 +478,7 @@ class PreviewsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             previews.get,
         )
+
 
 class AsyncPreviewsResourceWithStreamingResponse:
     def __init__(self, previews: AsyncPreviewsResource) -> None:

@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 from typing import Dict
-
 from typing_extensions import TypedDict
 
 __all__ = ["SaaSAppSourceParam"]
+
 
 class SaaSAppSourceParam(TypedDict, total=False):
     name: str

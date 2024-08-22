@@ -1,21 +1,18 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
 from typing import Optional
+from typing_extensions import Literal
+
+from pydantic import Field as FieldInfo
 
 from .provider import Provider
-
-from typing_extensions import Literal
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ..._models import BaseModel
 
 __all__ = ["Sippy", "Destination", "Source"]
 
+
 class Destination(BaseModel):
-    access_key_id: Optional[str] = FieldInfo(alias = "accessKeyId", default = None)
+    access_key_id: Optional[str] = FieldInfo(alias="accessKeyId", default=None)
     """ID of the Cloudflare API token used when writing objects to this bucket"""
 
     account: Optional[str] = None
@@ -25,6 +22,7 @@ class Destination(BaseModel):
 
     provider: Optional[Provider] = None
 
+
 class Source(BaseModel):
     bucket: Optional[str] = None
     """Name of the bucket on the provider"""
@@ -33,6 +31,7 @@ class Source(BaseModel):
 
     region: Optional[str] = None
     """Region where the bucket resides (AWS only)"""
+
 
 class Sippy(BaseModel):
     destination: Optional[Destination] = None

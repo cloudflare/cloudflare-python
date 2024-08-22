@@ -1,35 +1,31 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import Optional, List
-
-from .cidr_list import CIDRList
-
+from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
+
+from pydantic import Field as FieldInfo
 
 from .policy import Policy
-
-from typing_extensions import Literal
-
+from ..._models import BaseModel
+from .cidr_list import CIDRList
 from .tokens.value import Value
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
 
 __all__ = ["TokenCreateResponse", "Condition", "ConditionRequestIP"]
 
+
 class ConditionRequestIP(BaseModel):
-    in_: Optional[List[CIDRList]] = FieldInfo(alias = "in", default = None)
+    in_: Optional[List[CIDRList]] = FieldInfo(alias="in", default=None)
     """List of IPv4/IPv6 CIDR addresses."""
 
     not_in: Optional[List[CIDRList]] = None
     """List of IPv4/IPv6 CIDR addresses."""
 
+
 class Condition(BaseModel):
-    request_ip: Optional[ConditionRequestIP] = FieldInfo(alias = "request.ip", default = None)
+    request_ip: Optional[ConditionRequestIP] = FieldInfo(alias="request.ip", default=None)
     """Client IP restrictions."""
+
 
 class TokenCreateResponse(BaseModel):
     id: Optional[str] = None

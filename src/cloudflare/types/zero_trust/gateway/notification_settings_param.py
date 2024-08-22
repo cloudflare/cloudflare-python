@@ -6,6 +6,7 @@ from typing_extensions import TypedDict
 
 __all__ = ["NotificationSettingsParam"]
 
+
 class NotificationSettingsParam(TypedDict, total=False):
     enabled: bool
     """Set notification on"""

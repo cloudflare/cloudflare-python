@@ -6,6 +6,7 @@ from typing_extensions import TypedDict
 
 __all__ = ["BlockPageSettingsParam"]
 
+
 class BlockPageSettingsParam(TypedDict, total=False):
     background_color: str
     """Block page background color in #rrggbb format."""

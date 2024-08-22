@@ -1,20 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import Optional, List
-
-from typing_extensions import Literal
-
+from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .logging import Logging
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ..._models import BaseModel
 
 __all__ = ["ServeErrorRule", "ActionParameters"]
+
 
 class ActionParameters(BaseModel):
     content: Optional[str] = None
@@ -25,6 +19,7 @@ class ActionParameters(BaseModel):
 
     status_code: Optional[float] = None
     """The status code to use for the error."""
+
 
 class ServeErrorRule(BaseModel):
     last_updated: datetime

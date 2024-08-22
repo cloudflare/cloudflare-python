@@ -2,41 +2,32 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ...types.acm import CertificateAuthority, total_tls_create_params
+from ..._base_client import make_request_options
+from ...types.acm.certificate_authority import CertificateAuthority
+from ...types.acm.total_tls_get_response import TotalTLSGetResponse
 from ...types.acm.total_tls_create_response import TotalTLSCreateResponse
 
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from ..._base_client import make_request_options
-
-from ...types.acm.certificate_authority import CertificateAuthority
-
-from ...types.acm.total_tls_get_response import TotalTLSGetResponse
-
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.acm import total_tls_create_params
-from ...types.acm import CertificateAuthority
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["TotalTLSResource", "AsyncTotalTLSResource"]
+
 
 class TotalTLSResource(SyncAPIResource):
     @cached_property
@@ -47,17 +38,19 @@ class TotalTLSResource(SyncAPIResource):
     def with_streaming_response(self) -> TotalTLSResourceWithStreamingResponse:
         return TotalTLSResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    zone_id: str,
-    enabled: bool,
-    certificate_authority: CertificateAuthority | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TotalTLSCreateResponse]:
+    def create(
+        self,
+        *,
+        zone_id: str,
+        enabled: bool,
+        certificate_authority: CertificateAuthority | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TotalTLSCreateResponse]:
         """
         Set Total TLS Settings or disable the feature for a Zone.
 
@@ -78,28 +71,37 @@ class TotalTLSResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
             f"/zones/{zone_id}/acm/total_tls",
-            body=maybe_transform({
-                "enabled": enabled,
-                "certificate_authority": certificate_authority,
-            }, total_tls_create_params.TotalTLSCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TotalTLSCreateResponse]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "enabled": enabled,
+                    "certificate_authority": certificate_authority,
+                },
+                total_tls_create_params.TotalTLSCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TotalTLSCreateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TotalTLSCreateResponse]], ResultWrapper[TotalTLSCreateResponse]),
         )
 
-    def get(self,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TotalTLSGetResponse]:
+    def get(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TotalTLSGetResponse]:
         """
         Get Total TLS Settings for a Zone.
 
@@ -115,14 +117,19 @@ class TotalTLSResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
             f"/zones/{zone_id}/acm/total_tls",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TotalTLSGetResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TotalTLSGetResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TotalTLSGetResponse]], ResultWrapper[TotalTLSGetResponse]),
         )
+
 
 class AsyncTotalTLSResource(AsyncAPIResource):
     @cached_property
@@ -133,17 +140,19 @@ class AsyncTotalTLSResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTotalTLSResourceWithStreamingResponse:
         return AsyncTotalTLSResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    zone_id: str,
-    enabled: bool,
-    certificate_authority: CertificateAuthority | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TotalTLSCreateResponse]:
+    async def create(
+        self,
+        *,
+        zone_id: str,
+        enabled: bool,
+        certificate_authority: CertificateAuthority | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TotalTLSCreateResponse]:
         """
         Set Total TLS Settings or disable the feature for a Zone.
 
@@ -164,28 +173,37 @@ class AsyncTotalTLSResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/acm/total_tls",
-            body=await async_maybe_transform({
-                "enabled": enabled,
-                "certificate_authority": certificate_authority,
-            }, total_tls_create_params.TotalTLSCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TotalTLSCreateResponse]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "enabled": enabled,
+                    "certificate_authority": certificate_authority,
+                },
+                total_tls_create_params.TotalTLSCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TotalTLSCreateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TotalTLSCreateResponse]], ResultWrapper[TotalTLSCreateResponse]),
         )
 
-    async def get(self,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TotalTLSGetResponse]:
+    async def get(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TotalTLSGetResponse]:
         """
         Get Total TLS Settings for a Zone.
 
@@ -201,14 +219,19 @@ class AsyncTotalTLSResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
             f"/zones/{zone_id}/acm/total_tls",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TotalTLSGetResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TotalTLSGetResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TotalTLSGetResponse]], ResultWrapper[TotalTLSGetResponse]),
         )
+
 
 class TotalTLSResourceWithRawResponse:
     def __init__(self, total_tls: TotalTLSResource) -> None:
@@ -221,6 +244,7 @@ class TotalTLSResourceWithRawResponse:
             total_tls.get,
         )
 
+
 class AsyncTotalTLSResourceWithRawResponse:
     def __init__(self, total_tls: AsyncTotalTLSResource) -> None:
         self._total_tls = total_tls
@@ -232,6 +256,7 @@ class AsyncTotalTLSResourceWithRawResponse:
             total_tls.get,
         )
 
+
 class TotalTLSResourceWithStreamingResponse:
     def __init__(self, total_tls: TotalTLSResource) -> None:
         self._total_tls = total_tls
@@ -242,6 +267,7 @@ class TotalTLSResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             total_tls.get,
         )
+
 
 class AsyncTotalTLSResourceWithStreamingResponse:
     def __init__(self, total_tls: AsyncTotalTLSResource) -> None:

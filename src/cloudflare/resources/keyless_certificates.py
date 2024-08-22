@@ -2,52 +2,35 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .._compat import cached_property
-
-from ..types.keyless_certificates.keyless_certificate import KeylessCertificate
-
+from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from .._wrappers import ResultWrapper
-
-from .._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from .._base_client import make_request_options, AsyncPaginator
-
-from ..types.custom_hostnames.bundle_method import BundleMethod
-
-from ..types.keyless_certificates.tunnel_param import TunnelParam
-
 from ..pagination import SyncSinglePage, AsyncSinglePage
-
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.custom_hostnames import BundleMethod
+from ..types.keyless_certificates import keyless_certificate_edit_params, keyless_certificate_create_params
+from ..types.custom_hostnames.bundle_method import BundleMethod
+from ..types.keyless_certificates.tunnel_param import TunnelParam
+from ..types.keyless_certificates.keyless_certificate import KeylessCertificate
 from ..types.keyless_certificates.keyless_certificate_delete_response import KeylessCertificateDeleteResponse
 
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from .._resource import SyncAPIResource, AsyncAPIResource
-from ..types import shared_params
-from ..types.keyless_certificates import keyless_certificate_create_params
-from ..types.keyless_certificates import keyless_certificate_edit_params
-from ..types.custom_hostnames import BundleMethod
-from ..types.keyless_certificates import Tunnel
-from ..types.keyless_certificates import Tunnel
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["KeylessCertificatesResource", "AsyncKeylessCertificatesResource"]
+
 
 class KeylessCertificatesResource(SyncAPIResource):
     @cached_property
@@ -58,21 +41,23 @@ class KeylessCertificatesResource(SyncAPIResource):
     def with_streaming_response(self) -> KeylessCertificatesResourceWithStreamingResponse:
         return KeylessCertificatesResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    zone_id: str,
-    certificate: str,
-    host: str,
-    port: float,
-    bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    tunnel: TunnelParam | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[KeylessCertificate]:
+    def create(
+        self,
+        *,
+        zone_id: str,
+        certificate: str,
+        host: str,
+        port: float,
+        bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        tunnel: TunnelParam | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[KeylessCertificate]:
         """
         Create Keyless SSL Configuration
 
@@ -104,32 +89,41 @@ class KeylessCertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
             f"/zones/{zone_id}/keyless_certificates",
-            body=maybe_transform({
-                "certificate": certificate,
-                "host": host,
-                "port": port,
-                "bundle_method": bundle_method,
-                "name": name,
-                "tunnel": tunnel,
-            }, keyless_certificate_create_params.KeylessCertificateCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[KeylessCertificate]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "certificate": certificate,
+                    "host": host,
+                    "port": port,
+                    "bundle_method": bundle_method,
+                    "name": name,
+                    "tunnel": tunnel,
+                },
+                keyless_certificate_create_params.KeylessCertificateCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[KeylessCertificate]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[KeylessCertificate]], ResultWrapper[KeylessCertificate]),
         )
 
-    def list(self,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[KeylessCertificate]:
+    def list(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[KeylessCertificate]:
         """
         List all Keyless SSL configurations for a given zone.
 
@@ -145,26 +139,28 @@ class KeylessCertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/keyless_certificates",
-            page = SyncSinglePage[KeylessCertificate],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=SyncSinglePage[KeylessCertificate],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=KeylessCertificate,
         )
 
-    def delete(self,
-    keyless_certificate_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[KeylessCertificateDeleteResponse]:
+    def delete(
+        self,
+        keyless_certificate_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[KeylessCertificateDeleteResponse]:
         """
         Delete Keyless SSL Configuration
 
@@ -182,34 +178,42 @@ class KeylessCertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not keyless_certificate_id:
-          raise ValueError(
-            f'Expected a non-empty value for `keyless_certificate_id` but received {keyless_certificate_id!r}'
-          )
+            raise ValueError(
+                f"Expected a non-empty value for `keyless_certificate_id` but received {keyless_certificate_id!r}"
+            )
         return self._delete(
             f"/zones/{zone_id}/keyless_certificates/{keyless_certificate_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[KeylessCertificateDeleteResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[KeylessCertificateDeleteResponse]], ResultWrapper[KeylessCertificateDeleteResponse]),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[KeylessCertificateDeleteResponse]]._unwrapper,
+            ),
+            cast_to=cast(
+                Type[Optional[KeylessCertificateDeleteResponse]], ResultWrapper[KeylessCertificateDeleteResponse]
+            ),
         )
 
-    def edit(self,
-    keyless_certificate_id: str,
-    *,
-    zone_id: str,
-    enabled: bool | NotGiven = NOT_GIVEN,
-    host: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    port: float | NotGiven = NOT_GIVEN,
-    tunnel: TunnelParam | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[KeylessCertificate]:
+    def edit(
+        self,
+        keyless_certificate_id: str,
+        *,
+        zone_id: str,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        host: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        port: float | NotGiven = NOT_GIVEN,
+        tunnel: TunnelParam | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[KeylessCertificate]:
         """This will update attributes of a Keyless SSL.
 
         Consists of one or more of the
@@ -240,36 +244,45 @@ class KeylessCertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not keyless_certificate_id:
-          raise ValueError(
-            f'Expected a non-empty value for `keyless_certificate_id` but received {keyless_certificate_id!r}'
-          )
+            raise ValueError(
+                f"Expected a non-empty value for `keyless_certificate_id` but received {keyless_certificate_id!r}"
+            )
         return self._patch(
             f"/zones/{zone_id}/keyless_certificates/{keyless_certificate_id}",
-            body=maybe_transform({
-                "enabled": enabled,
-                "host": host,
-                "name": name,
-                "port": port,
-                "tunnel": tunnel,
-            }, keyless_certificate_edit_params.KeylessCertificateEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[KeylessCertificate]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "enabled": enabled,
+                    "host": host,
+                    "name": name,
+                    "port": port,
+                    "tunnel": tunnel,
+                },
+                keyless_certificate_edit_params.KeylessCertificateEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[KeylessCertificate]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[KeylessCertificate]], ResultWrapper[KeylessCertificate]),
         )
 
-    def get(self,
-    keyless_certificate_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[KeylessCertificate]:
+    def get(
+        self,
+        keyless_certificate_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[KeylessCertificate]:
         """
         Get details for one Keyless SSL configuration.
 
@@ -287,18 +300,23 @@ class KeylessCertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not keyless_certificate_id:
-          raise ValueError(
-            f'Expected a non-empty value for `keyless_certificate_id` but received {keyless_certificate_id!r}'
-          )
+            raise ValueError(
+                f"Expected a non-empty value for `keyless_certificate_id` but received {keyless_certificate_id!r}"
+            )
         return self._get(
             f"/zones/{zone_id}/keyless_certificates/{keyless_certificate_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[KeylessCertificate]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[KeylessCertificate]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[KeylessCertificate]], ResultWrapper[KeylessCertificate]),
         )
+
 
 class AsyncKeylessCertificatesResource(AsyncAPIResource):
     @cached_property
@@ -309,21 +327,23 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncKeylessCertificatesResourceWithStreamingResponse:
         return AsyncKeylessCertificatesResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    zone_id: str,
-    certificate: str,
-    host: str,
-    port: float,
-    bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    tunnel: TunnelParam | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[KeylessCertificate]:
+    async def create(
+        self,
+        *,
+        zone_id: str,
+        certificate: str,
+        host: str,
+        port: float,
+        bundle_method: BundleMethod | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        tunnel: TunnelParam | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[KeylessCertificate]:
         """
         Create Keyless SSL Configuration
 
@@ -355,32 +375,41 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/keyless_certificates",
-            body=await async_maybe_transform({
-                "certificate": certificate,
-                "host": host,
-                "port": port,
-                "bundle_method": bundle_method,
-                "name": name,
-                "tunnel": tunnel,
-            }, keyless_certificate_create_params.KeylessCertificateCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[KeylessCertificate]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "certificate": certificate,
+                    "host": host,
+                    "port": port,
+                    "bundle_method": bundle_method,
+                    "name": name,
+                    "tunnel": tunnel,
+                },
+                keyless_certificate_create_params.KeylessCertificateCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[KeylessCertificate]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[KeylessCertificate]], ResultWrapper[KeylessCertificate]),
         )
 
-    def list(self,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[KeylessCertificate, AsyncSinglePage[KeylessCertificate]]:
+    def list(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[KeylessCertificate, AsyncSinglePage[KeylessCertificate]]:
         """
         List all Keyless SSL configurations for a given zone.
 
@@ -396,26 +425,28 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/keyless_certificates",
-            page = AsyncSinglePage[KeylessCertificate],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=AsyncSinglePage[KeylessCertificate],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=KeylessCertificate,
         )
 
-    async def delete(self,
-    keyless_certificate_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[KeylessCertificateDeleteResponse]:
+    async def delete(
+        self,
+        keyless_certificate_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[KeylessCertificateDeleteResponse]:
         """
         Delete Keyless SSL Configuration
 
@@ -433,34 +464,42 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not keyless_certificate_id:
-          raise ValueError(
-            f'Expected a non-empty value for `keyless_certificate_id` but received {keyless_certificate_id!r}'
-          )
+            raise ValueError(
+                f"Expected a non-empty value for `keyless_certificate_id` but received {keyless_certificate_id!r}"
+            )
         return await self._delete(
             f"/zones/{zone_id}/keyless_certificates/{keyless_certificate_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[KeylessCertificateDeleteResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[KeylessCertificateDeleteResponse]], ResultWrapper[KeylessCertificateDeleteResponse]),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[KeylessCertificateDeleteResponse]]._unwrapper,
+            ),
+            cast_to=cast(
+                Type[Optional[KeylessCertificateDeleteResponse]], ResultWrapper[KeylessCertificateDeleteResponse]
+            ),
         )
 
-    async def edit(self,
-    keyless_certificate_id: str,
-    *,
-    zone_id: str,
-    enabled: bool | NotGiven = NOT_GIVEN,
-    host: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    port: float | NotGiven = NOT_GIVEN,
-    tunnel: TunnelParam | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[KeylessCertificate]:
+    async def edit(
+        self,
+        keyless_certificate_id: str,
+        *,
+        zone_id: str,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        host: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        port: float | NotGiven = NOT_GIVEN,
+        tunnel: TunnelParam | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[KeylessCertificate]:
         """This will update attributes of a Keyless SSL.
 
         Consists of one or more of the
@@ -491,36 +530,45 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not keyless_certificate_id:
-          raise ValueError(
-            f'Expected a non-empty value for `keyless_certificate_id` but received {keyless_certificate_id!r}'
-          )
+            raise ValueError(
+                f"Expected a non-empty value for `keyless_certificate_id` but received {keyless_certificate_id!r}"
+            )
         return await self._patch(
             f"/zones/{zone_id}/keyless_certificates/{keyless_certificate_id}",
-            body=await async_maybe_transform({
-                "enabled": enabled,
-                "host": host,
-                "name": name,
-                "port": port,
-                "tunnel": tunnel,
-            }, keyless_certificate_edit_params.KeylessCertificateEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[KeylessCertificate]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "enabled": enabled,
+                    "host": host,
+                    "name": name,
+                    "port": port,
+                    "tunnel": tunnel,
+                },
+                keyless_certificate_edit_params.KeylessCertificateEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[KeylessCertificate]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[KeylessCertificate]], ResultWrapper[KeylessCertificate]),
         )
 
-    async def get(self,
-    keyless_certificate_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[KeylessCertificate]:
+    async def get(
+        self,
+        keyless_certificate_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[KeylessCertificate]:
         """
         Get details for one Keyless SSL configuration.
 
@@ -538,18 +586,23 @@ class AsyncKeylessCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not keyless_certificate_id:
-          raise ValueError(
-            f'Expected a non-empty value for `keyless_certificate_id` but received {keyless_certificate_id!r}'
-          )
+            raise ValueError(
+                f"Expected a non-empty value for `keyless_certificate_id` but received {keyless_certificate_id!r}"
+            )
         return await self._get(
             f"/zones/{zone_id}/keyless_certificates/{keyless_certificate_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[KeylessCertificate]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[KeylessCertificate]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[KeylessCertificate]], ResultWrapper[KeylessCertificate]),
         )
+
 
 class KeylessCertificatesResourceWithRawResponse:
     def __init__(self, keyless_certificates: KeylessCertificatesResource) -> None:
@@ -571,6 +624,7 @@ class KeylessCertificatesResourceWithRawResponse:
             keyless_certificates.get,
         )
 
+
 class AsyncKeylessCertificatesResourceWithRawResponse:
     def __init__(self, keyless_certificates: AsyncKeylessCertificatesResource) -> None:
         self._keyless_certificates = keyless_certificates
@@ -591,6 +645,7 @@ class AsyncKeylessCertificatesResourceWithRawResponse:
             keyless_certificates.get,
         )
 
+
 class KeylessCertificatesResourceWithStreamingResponse:
     def __init__(self, keyless_certificates: KeylessCertificatesResource) -> None:
         self._keyless_certificates = keyless_certificates
@@ -610,6 +665,7 @@ class KeylessCertificatesResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             keyless_certificates.get,
         )
+
 
 class AsyncKeylessCertificatesResourceWithStreamingResponse:
     def __init__(self, keyless_certificates: AsyncKeylessCertificatesResource) -> None:

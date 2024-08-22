@@ -2,20 +2,14 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal, Annotated
-
 from typing import List, Union
-
 from datetime import datetime
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ..._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
 from ..._utils import PropertyInfo
 
 __all__ = ["AnalyticsListParams", "Query"]
+
 
 class AnalyticsListParams(TypedDict, total=False):
     account_id: Required[str]
@@ -23,6 +17,7 @@ class AnalyticsListParams(TypedDict, total=False):
 
     query: Query
     """For specifying result metrics."""
+
 
 class Query(TypedDict, total=False):
     dimensions: List[Literal["accountId", "responseCode", "requestType"]]
@@ -54,7 +49,7 @@ class Query(TypedDict, total=False):
     metrics: List[Literal["requests", "writeKiB", "readKiB"]]
     """One or more metrics to compute."""
 
-    since: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
+    since: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Start of time interval to query, defaults to 6 hours before request received."""
 
     sort: List[str]
@@ -63,5 +58,5 @@ class Query(TypedDict, total=False):
     by - (descending) or + (ascending).
     """
 
-    until: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
+    until: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """End of time interval to query, defaults to current time."""

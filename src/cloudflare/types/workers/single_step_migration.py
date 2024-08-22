@@ -1,26 +1,27 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
+from typing import List, Optional
 
-from typing import Optional, List
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
+
+from ..._models import BaseModel
 
 __all__ = ["SingleStepMigration", "RenamedClass", "TransferredClass"]
 
+
 class RenamedClass(BaseModel):
-    from_: Optional[str] = FieldInfo(alias = "from", default = None)
+    from_: Optional[str] = FieldInfo(alias="from", default=None)
 
     to: Optional[str] = None
 
+
 class TransferredClass(BaseModel):
-    from_: Optional[str] = FieldInfo(alias = "from", default = None)
+    from_: Optional[str] = FieldInfo(alias="from", default=None)
 
     from_script: Optional[str] = None
 
     to: Optional[str] = None
+
 
 class SingleStepMigration(BaseModel):
     deleted_classes: Optional[List[str]] = None

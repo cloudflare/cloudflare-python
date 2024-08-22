@@ -1,20 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ....._models import BaseModel
-
 from typing import List
-
-from ...dns_analytics_nominal_metric import DNSAnalyticsNominalMetric
-
-from ...dns_analytics_query import DNSAnalyticsQuery
-
 from datetime import datetime
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ....._models import BaseModel
+from ...dns_analytics_query import DNSAnalyticsQuery
+from ...dns_analytics_nominal_metric import DNSAnalyticsNominalMetric
 
 __all__ = ["ByTime", "Data"]
+
 
 class Data(BaseModel):
     dimensions: List[str]
@@ -28,6 +22,7 @@ class Data(BaseModel):
 
     Each item is an array of values, broken down by time interval.
     """
+
 
 class ByTime(BaseModel):
     data: List[Data]

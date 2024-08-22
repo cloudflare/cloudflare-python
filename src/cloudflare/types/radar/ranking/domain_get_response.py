@@ -1,28 +1,29 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ...._models import BaseModel
-
 from typing import List, Optional
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
+from ...._models import BaseModel
+
 __all__ = ["DomainGetResponse", "Details0", "Details0Category", "Details0TopLocation"]
+
 
 class Details0Category(BaseModel):
     id: float
 
     name: str
 
-    super_category_id: float = FieldInfo(alias = "superCategoryId")
+    super_category_id: float = FieldInfo(alias="superCategoryId")
+
 
 class Details0TopLocation(BaseModel):
-    location_code: str = FieldInfo(alias = "locationCode")
+    location_code: str = FieldInfo(alias="locationCode")
 
-    location_name: str = FieldInfo(alias = "locationName")
+    location_name: str = FieldInfo(alias="locationName")
 
     rank: int
+
 
 class Details0(BaseModel):
     categories: List[Details0Category]
@@ -33,6 +34,7 @@ class Details0(BaseModel):
     """Only available in POPULAR ranking for the most recent ranking."""
 
     rank: Optional[int] = None
+
 
 class DomainGetResponse(BaseModel):
     details_0: Details0

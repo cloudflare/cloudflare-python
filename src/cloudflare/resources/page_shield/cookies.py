@@ -2,40 +2,30 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import maybe_transform
 from ..._compat import cached_property
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.page_shield import cookie_list_params
+from ...types.page_shield.cookie_get_response import CookieGetResponse
 from ...types.page_shield.cookie_list_response import CookieListResponse
 
-from ...pagination import SyncSinglePage, AsyncSinglePage
-
-from ..._utils import maybe_transform
-
-from ..._base_client import make_request_options, AsyncPaginator
-
-from typing_extensions import Literal
-
-from ...types.page_shield.cookie_get_response import CookieGetResponse
-
-from ..._wrappers import ResultWrapper
-
-from typing import Optional, Type
-
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.page_shield import cookie_list_params
-from typing import cast
-from typing import cast
-
 __all__ = ["CookiesResource", "AsyncCookiesResource"]
+
 
 class CookiesResource(SyncAPIResource):
     @cached_property
@@ -46,29 +36,31 @@ class CookiesResource(SyncAPIResource):
     def with_streaming_response(self) -> CookiesResourceWithStreamingResponse:
         return CookiesResourceWithStreamingResponse(self)
 
-    def list(self,
-    *,
-    zone_id: str,
-    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-    domain: str | NotGiven = NOT_GIVEN,
-    export: Literal["csv"] | NotGiven = NOT_GIVEN,
-    hosts: str | NotGiven = NOT_GIVEN,
-    http_only: bool | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    order_by: Literal["first_seen_at", "last_seen_at"] | NotGiven = NOT_GIVEN,
-    page: str | NotGiven = NOT_GIVEN,
-    page_url: str | NotGiven = NOT_GIVEN,
-    path: str | NotGiven = NOT_GIVEN,
-    per_page: float | NotGiven = NOT_GIVEN,
-    same_site: Literal["lax", "strict", "none"] | NotGiven = NOT_GIVEN,
-    secure: bool | NotGiven = NOT_GIVEN,
-    type: Literal["first_party", "unknown"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[CookieListResponse]:
+    def list(
+        self,
+        *,
+        zone_id: str,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
+        export: Literal["csv"] | NotGiven = NOT_GIVEN,
+        hosts: str | NotGiven = NOT_GIVEN,
+        http_only: bool | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        order_by: Literal["first_seen_at", "last_seen_at"] | NotGiven = NOT_GIVEN,
+        page: str | NotGiven = NOT_GIVEN,
+        page_url: str | NotGiven = NOT_GIVEN,
+        path: str | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        same_site: Literal["lax", "strict", "none"] | NotGiven = NOT_GIVEN,
+        secure: bool | NotGiven = NOT_GIVEN,
+        type: Literal["first_party", "unknown"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[CookieListResponse]:
         """
         Lists all cookies collected by Page Shield.
 
@@ -125,41 +117,50 @@ class CookiesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/page_shield/cookies",
-            page = SyncSinglePage[CookieListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "direction": direction,
-                "domain": domain,
-                "export": export,
-                "hosts": hosts,
-                "http_only": http_only,
-                "name": name,
-                "order_by": order_by,
-                "page": page,
-                "page_url": page_url,
-                "path": path,
-                "per_page": per_page,
-                "same_site": same_site,
-                "secure": secure,
-                "type": type,
-            }, cookie_list_params.CookieListParams)),
+            page=SyncSinglePage[CookieListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "direction": direction,
+                        "domain": domain,
+                        "export": export,
+                        "hosts": hosts,
+                        "http_only": http_only,
+                        "name": name,
+                        "order_by": order_by,
+                        "page": page,
+                        "page_url": page_url,
+                        "path": path,
+                        "per_page": per_page,
+                        "same_site": same_site,
+                        "secure": secure,
+                        "type": type,
+                    },
+                    cookie_list_params.CookieListParams,
+                ),
+            ),
             model=CookieListResponse,
         )
 
-    def get(self,
-    cookie_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CookieGetResponse]:
+    def get(
+        self,
+        cookie_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CookieGetResponse]:
         """
         Fetches a cookie collected by Page Shield by cookie ID.
 
@@ -177,18 +178,21 @@ class CookiesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not cookie_id:
-          raise ValueError(
-            f'Expected a non-empty value for `cookie_id` but received {cookie_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `cookie_id` but received {cookie_id!r}")
         return self._get(
             f"/zones/{zone_id}/page_shield/cookies/{cookie_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CookieGetResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CookieGetResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CookieGetResponse]], ResultWrapper[CookieGetResponse]),
         )
+
 
 class AsyncCookiesResource(AsyncAPIResource):
     @cached_property
@@ -199,29 +203,31 @@ class AsyncCookiesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncCookiesResourceWithStreamingResponse:
         return AsyncCookiesResourceWithStreamingResponse(self)
 
-    def list(self,
-    *,
-    zone_id: str,
-    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-    domain: str | NotGiven = NOT_GIVEN,
-    export: Literal["csv"] | NotGiven = NOT_GIVEN,
-    hosts: str | NotGiven = NOT_GIVEN,
-    http_only: bool | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    order_by: Literal["first_seen_at", "last_seen_at"] | NotGiven = NOT_GIVEN,
-    page: str | NotGiven = NOT_GIVEN,
-    page_url: str | NotGiven = NOT_GIVEN,
-    path: str | NotGiven = NOT_GIVEN,
-    per_page: float | NotGiven = NOT_GIVEN,
-    same_site: Literal["lax", "strict", "none"] | NotGiven = NOT_GIVEN,
-    secure: bool | NotGiven = NOT_GIVEN,
-    type: Literal["first_party", "unknown"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[CookieListResponse, AsyncSinglePage[CookieListResponse]]:
+    def list(
+        self,
+        *,
+        zone_id: str,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
+        export: Literal["csv"] | NotGiven = NOT_GIVEN,
+        hosts: str | NotGiven = NOT_GIVEN,
+        http_only: bool | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        order_by: Literal["first_seen_at", "last_seen_at"] | NotGiven = NOT_GIVEN,
+        page: str | NotGiven = NOT_GIVEN,
+        page_url: str | NotGiven = NOT_GIVEN,
+        path: str | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        same_site: Literal["lax", "strict", "none"] | NotGiven = NOT_GIVEN,
+        secure: bool | NotGiven = NOT_GIVEN,
+        type: Literal["first_party", "unknown"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[CookieListResponse, AsyncSinglePage[CookieListResponse]]:
         """
         Lists all cookies collected by Page Shield.
 
@@ -278,41 +284,50 @@ class AsyncCookiesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/page_shield/cookies",
-            page = AsyncSinglePage[CookieListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "direction": direction,
-                "domain": domain,
-                "export": export,
-                "hosts": hosts,
-                "http_only": http_only,
-                "name": name,
-                "order_by": order_by,
-                "page": page,
-                "page_url": page_url,
-                "path": path,
-                "per_page": per_page,
-                "same_site": same_site,
-                "secure": secure,
-                "type": type,
-            }, cookie_list_params.CookieListParams)),
+            page=AsyncSinglePage[CookieListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "direction": direction,
+                        "domain": domain,
+                        "export": export,
+                        "hosts": hosts,
+                        "http_only": http_only,
+                        "name": name,
+                        "order_by": order_by,
+                        "page": page,
+                        "page_url": page_url,
+                        "path": path,
+                        "per_page": per_page,
+                        "same_site": same_site,
+                        "secure": secure,
+                        "type": type,
+                    },
+                    cookie_list_params.CookieListParams,
+                ),
+            ),
             model=CookieListResponse,
         )
 
-    async def get(self,
-    cookie_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CookieGetResponse]:
+    async def get(
+        self,
+        cookie_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CookieGetResponse]:
         """
         Fetches a cookie collected by Page Shield by cookie ID.
 
@@ -330,18 +345,21 @@ class AsyncCookiesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not cookie_id:
-          raise ValueError(
-            f'Expected a non-empty value for `cookie_id` but received {cookie_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `cookie_id` but received {cookie_id!r}")
         return await self._get(
             f"/zones/{zone_id}/page_shield/cookies/{cookie_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CookieGetResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CookieGetResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CookieGetResponse]], ResultWrapper[CookieGetResponse]),
         )
+
 
 class CookiesResourceWithRawResponse:
     def __init__(self, cookies: CookiesResource) -> None:
@@ -354,6 +372,7 @@ class CookiesResourceWithRawResponse:
             cookies.get,
         )
 
+
 class AsyncCookiesResourceWithRawResponse:
     def __init__(self, cookies: AsyncCookiesResource) -> None:
         self._cookies = cookies
@@ -365,6 +384,7 @@ class AsyncCookiesResourceWithRawResponse:
             cookies.get,
         )
 
+
 class CookiesResourceWithStreamingResponse:
     def __init__(self, cookies: CookiesResource) -> None:
         self._cookies = cookies
@@ -375,6 +395,7 @@ class CookiesResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             cookies.get,
         )
+
 
 class AsyncCookiesResourceWithStreamingResponse:
     def __init__(self, cookies: AsyncCookiesResource) -> None:

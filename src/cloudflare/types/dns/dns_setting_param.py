@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal, Required, TypedDict
+
 from .nameserver_param import NameserverParam
 
-from typing_extensions import Literal, TypedDict, Required
-
 __all__ = ["DNSSettingParam", "SOA"]
+
 
 class SOA(TypedDict, total=False):
     expire: Required[float]
@@ -41,6 +42,7 @@ class SOA(TypedDict, total=False):
 
     ttl: Required[float]
     """The time to live (TTL) of the SOA record itself."""
+
 
 class DNSSettingParam(TypedDict, total=False):
     foundation_dns: bool

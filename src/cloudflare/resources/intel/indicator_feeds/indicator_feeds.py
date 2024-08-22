@@ -2,58 +2,58 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
-from .snapshots import SnapshotsResource, AsyncSnapshotsResource
-
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from .downloads import (
+    DownloadsResource,
+    AsyncDownloadsResource,
+    DownloadsResourceWithRawResponse,
+    AsyncDownloadsResourceWithRawResponse,
+    DownloadsResourceWithStreamingResponse,
+    AsyncDownloadsResourceWithStreamingResponse,
+)
+from .snapshots import (
+    SnapshotsResource,
+    AsyncSnapshotsResource,
+    SnapshotsResourceWithRawResponse,
+    AsyncSnapshotsResourceWithRawResponse,
+    SnapshotsResourceWithStreamingResponse,
+    AsyncSnapshotsResourceWithStreamingResponse,
+)
 from ...._compat import cached_property
-
-from .permissions import PermissionsResource, AsyncPermissionsResource
-
-from .downloads import DownloadsResource, AsyncDownloadsResource
-
-from ....types.intel.indicator_feed_create_response import IndicatorFeedCreateResponse
-
+from .permissions import (
+    PermissionsResource,
+    AsyncPermissionsResource,
+    PermissionsResourceWithRawResponse,
+    AsyncPermissionsResourceWithRawResponse,
+    PermissionsResourceWithStreamingResponse,
+    AsyncPermissionsResourceWithStreamingResponse,
+)
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from ...._base_client import make_request_options, AsyncPaginator
-
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ....types.intel import indicator_feed_create_params, indicator_feed_update_params
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.intel.indicator_feed_get_response import IndicatorFeedGetResponse
+from ....types.intel.indicator_feed_list_response import IndicatorFeedListResponse
+from ....types.intel.indicator_feed_create_response import IndicatorFeedCreateResponse
 from ....types.intel.indicator_feed_update_response import IndicatorFeedUpdateResponse
 
-from ....types.intel.indicator_feed_list_response import IndicatorFeedListResponse
-
-from ....pagination import SyncSinglePage, AsyncSinglePage
-
-from ....types.intel.indicator_feed_data_response import IndicatorFeedDataResponse
-
-from ....types.intel.indicator_feed_get_response import IndicatorFeedGetResponse
-
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.intel import indicator_feed_create_params
-from ....types.intel import indicator_feed_update_params
-from .snapshots import SnapshotsResource, AsyncSnapshotsResource, SnapshotsResourceWithRawResponse, AsyncSnapshotsResourceWithRawResponse, SnapshotsResourceWithStreamingResponse, AsyncSnapshotsResourceWithStreamingResponse
-from .permissions import PermissionsResource, AsyncPermissionsResource, PermissionsResourceWithRawResponse, AsyncPermissionsResourceWithRawResponse, PermissionsResourceWithStreamingResponse, AsyncPermissionsResourceWithStreamingResponse
-from .downloads import DownloadsResource, AsyncDownloadsResource, DownloadsResourceWithRawResponse, AsyncDownloadsResourceWithRawResponse, DownloadsResourceWithStreamingResponse, AsyncDownloadsResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["IndicatorFeedsResource", "AsyncIndicatorFeedsResource"]
+
 
 class IndicatorFeedsResource(SyncAPIResource):
     @cached_property
@@ -76,17 +76,19 @@ class IndicatorFeedsResource(SyncAPIResource):
     def with_streaming_response(self) -> IndicatorFeedsResourceWithStreamingResponse:
         return IndicatorFeedsResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    account_id: str,
-    description: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IndicatorFeedCreateResponse]:
+    def create(
+        self,
+        *,
+        account_id: str,
+        description: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[IndicatorFeedCreateResponse]:
         """
         Create new indicator feed
 
@@ -106,34 +108,43 @@ class IndicatorFeedsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/intel/indicator-feeds",
-            body=maybe_transform({
-                "description": description,
-                "name": name,
-            }, indicator_feed_create_params.IndicatorFeedCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IndicatorFeedCreateResponse]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "name": name,
+                },
+                indicator_feed_create_params.IndicatorFeedCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[IndicatorFeedCreateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[IndicatorFeedCreateResponse]], ResultWrapper[IndicatorFeedCreateResponse]),
         )
 
-    def update(self,
-    feed_id: int,
-    *,
-    account_id: str,
-    description: str | NotGiven = NOT_GIVEN,
-    is_attributable: bool | NotGiven = NOT_GIVEN,
-    is_downloadable: bool | NotGiven = NOT_GIVEN,
-    is_public: bool | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IndicatorFeedUpdateResponse]:
+    def update(
+        self,
+        feed_id: int,
+        *,
+        account_id: str,
+        description: str | NotGiven = NOT_GIVEN,
+        is_attributable: bool | NotGiven = NOT_GIVEN,
+        is_downloadable: bool | NotGiven = NOT_GIVEN,
+        is_public: bool | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[IndicatorFeedUpdateResponse]:
         """
         Update indicator feed metadata
 
@@ -161,31 +172,40 @@ class IndicatorFeedsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._put(
             f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}",
-            body=maybe_transform({
-                "description": description,
-                "is_attributable": is_attributable,
-                "is_downloadable": is_downloadable,
-                "is_public": is_public,
-                "name": name,
-            }, indicator_feed_update_params.IndicatorFeedUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IndicatorFeedUpdateResponse]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "description": description,
+                    "is_attributable": is_attributable,
+                    "is_downloadable": is_downloadable,
+                    "is_public": is_public,
+                    "name": name,
+                },
+                indicator_feed_update_params.IndicatorFeedUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[IndicatorFeedUpdateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[IndicatorFeedUpdateResponse]], ResultWrapper[IndicatorFeedUpdateResponse]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[IndicatorFeedListResponse]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[IndicatorFeedListResponse]:
         """
         Get indicator feeds owned by this account
 
@@ -201,26 +221,28 @@ class IndicatorFeedsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/intel/indicator-feeds",
-            page = SyncSinglePage[IndicatorFeedListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=SyncSinglePage[IndicatorFeedListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=IndicatorFeedListResponse,
         )
 
-    def data(self,
-    feed_id: int,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> str:
+    def data(
+        self,
+        feed_id: int,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> str:
         """
         Get indicator feed data
 
@@ -238,26 +260,28 @@ class IndicatorFeedsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "text/csv", **(extra_headers or {})}
         return self._get(
             f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}/data",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=str,
         )
 
-    def get(self,
-    feed_id: int,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IndicatorFeedGetResponse]:
+    def get(
+        self,
+        feed_id: int,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[IndicatorFeedGetResponse]:
         """
         Get indicator feed metadata
 
@@ -275,14 +299,19 @@ class IndicatorFeedsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
             f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IndicatorFeedGetResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[IndicatorFeedGetResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[IndicatorFeedGetResponse]], ResultWrapper[IndicatorFeedGetResponse]),
         )
+
 
 class AsyncIndicatorFeedsResource(AsyncAPIResource):
     @cached_property
@@ -305,17 +334,19 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncIndicatorFeedsResourceWithStreamingResponse:
         return AsyncIndicatorFeedsResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    account_id: str,
-    description: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IndicatorFeedCreateResponse]:
+    async def create(
+        self,
+        *,
+        account_id: str,
+        description: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[IndicatorFeedCreateResponse]:
         """
         Create new indicator feed
 
@@ -335,34 +366,43 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/intel/indicator-feeds",
-            body=await async_maybe_transform({
-                "description": description,
-                "name": name,
-            }, indicator_feed_create_params.IndicatorFeedCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IndicatorFeedCreateResponse]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "description": description,
+                    "name": name,
+                },
+                indicator_feed_create_params.IndicatorFeedCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[IndicatorFeedCreateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[IndicatorFeedCreateResponse]], ResultWrapper[IndicatorFeedCreateResponse]),
         )
 
-    async def update(self,
-    feed_id: int,
-    *,
-    account_id: str,
-    description: str | NotGiven = NOT_GIVEN,
-    is_attributable: bool | NotGiven = NOT_GIVEN,
-    is_downloadable: bool | NotGiven = NOT_GIVEN,
-    is_public: bool | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IndicatorFeedUpdateResponse]:
+    async def update(
+        self,
+        feed_id: int,
+        *,
+        account_id: str,
+        description: str | NotGiven = NOT_GIVEN,
+        is_attributable: bool | NotGiven = NOT_GIVEN,
+        is_downloadable: bool | NotGiven = NOT_GIVEN,
+        is_public: bool | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[IndicatorFeedUpdateResponse]:
         """
         Update indicator feed metadata
 
@@ -390,31 +430,40 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._put(
             f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}",
-            body=await async_maybe_transform({
-                "description": description,
-                "is_attributable": is_attributable,
-                "is_downloadable": is_downloadable,
-                "is_public": is_public,
-                "name": name,
-            }, indicator_feed_update_params.IndicatorFeedUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IndicatorFeedUpdateResponse]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "description": description,
+                    "is_attributable": is_attributable,
+                    "is_downloadable": is_downloadable,
+                    "is_public": is_public,
+                    "name": name,
+                },
+                indicator_feed_update_params.IndicatorFeedUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[IndicatorFeedUpdateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[IndicatorFeedUpdateResponse]], ResultWrapper[IndicatorFeedUpdateResponse]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[IndicatorFeedListResponse, AsyncSinglePage[IndicatorFeedListResponse]]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[IndicatorFeedListResponse, AsyncSinglePage[IndicatorFeedListResponse]]:
         """
         Get indicator feeds owned by this account
 
@@ -430,26 +479,28 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/intel/indicator-feeds",
-            page = AsyncSinglePage[IndicatorFeedListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=AsyncSinglePage[IndicatorFeedListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=IndicatorFeedListResponse,
         )
 
-    async def data(self,
-    feed_id: int,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> str:
+    async def data(
+        self,
+        feed_id: int,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> str:
         """
         Get indicator feed data
 
@@ -467,26 +518,28 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "text/csv", **(extra_headers or {})}
         return await self._get(
             f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}/data",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=str,
         )
 
-    async def get(self,
-    feed_id: int,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IndicatorFeedGetResponse]:
+    async def get(
+        self,
+        feed_id: int,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[IndicatorFeedGetResponse]:
         """
         Get indicator feed metadata
 
@@ -504,14 +557,19 @@ class AsyncIndicatorFeedsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
             f"/accounts/{account_id}/intel/indicator-feeds/{feed_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IndicatorFeedGetResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[IndicatorFeedGetResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[IndicatorFeedGetResponse]], ResultWrapper[IndicatorFeedGetResponse]),
         )
+
 
 class IndicatorFeedsResourceWithRawResponse:
     def __init__(self, indicator_feeds: IndicatorFeedsResource) -> None:
@@ -545,6 +603,7 @@ class IndicatorFeedsResourceWithRawResponse:
     def downloads(self) -> DownloadsResourceWithRawResponse:
         return DownloadsResourceWithRawResponse(self._indicator_feeds.downloads)
 
+
 class AsyncIndicatorFeedsResourceWithRawResponse:
     def __init__(self, indicator_feeds: AsyncIndicatorFeedsResource) -> None:
         self._indicator_feeds = indicator_feeds
@@ -577,6 +636,7 @@ class AsyncIndicatorFeedsResourceWithRawResponse:
     def downloads(self) -> AsyncDownloadsResourceWithRawResponse:
         return AsyncDownloadsResourceWithRawResponse(self._indicator_feeds.downloads)
 
+
 class IndicatorFeedsResourceWithStreamingResponse:
     def __init__(self, indicator_feeds: IndicatorFeedsResource) -> None:
         self._indicator_feeds = indicator_feeds
@@ -608,6 +668,7 @@ class IndicatorFeedsResourceWithStreamingResponse:
     @cached_property
     def downloads(self) -> DownloadsResourceWithStreamingResponse:
         return DownloadsResourceWithStreamingResponse(self._indicator_feeds.downloads)
+
 
 class AsyncIndicatorFeedsResourceWithStreamingResponse:
     def __init__(self, indicator_feeds: AsyncIndicatorFeedsResource) -> None:

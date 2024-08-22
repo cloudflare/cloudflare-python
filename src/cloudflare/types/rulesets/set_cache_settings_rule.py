@@ -1,20 +1,34 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing_extensions import Literal
-
-from typing import Optional, List, Dict
-
+from typing import Dict, List, Optional
 from datetime import datetime
-
-from .logging import Logging
-
-from typing import Optional, Union, List, Dict, Any
 from typing_extensions import Literal
+
 from pydantic import Field as FieldInfo
 
-__all__ = ["SetCacheSettingsRule", "ActionParameters", "ActionParametersBrowserTTL", "ActionParametersCacheKey", "ActionParametersCacheKeyCustomKey", "ActionParametersCacheKeyCustomKeyCookie", "ActionParametersCacheKeyCustomKeyHeader", "ActionParametersCacheKeyCustomKeyHost", "ActionParametersCacheKeyCustomKeyQueryString", "ActionParametersCacheKeyCustomKeyQueryStringExclude", "ActionParametersCacheKeyCustomKeyQueryStringInclude", "ActionParametersCacheKeyCustomKeyUser", "ActionParametersCacheReserve", "ActionParametersEdgeTTL", "ActionParametersEdgeTTLStatusCodeTTL", "ActionParametersEdgeTTLStatusCodeTTLStatusCodeRange", "ActionParametersServeStale"]
+from .logging import Logging
+from ..._models import BaseModel
+
+__all__ = [
+    "SetCacheSettingsRule",
+    "ActionParameters",
+    "ActionParametersBrowserTTL",
+    "ActionParametersCacheKey",
+    "ActionParametersCacheKeyCustomKey",
+    "ActionParametersCacheKeyCustomKeyCookie",
+    "ActionParametersCacheKeyCustomKeyHeader",
+    "ActionParametersCacheKeyCustomKeyHost",
+    "ActionParametersCacheKeyCustomKeyQueryString",
+    "ActionParametersCacheKeyCustomKeyQueryStringExclude",
+    "ActionParametersCacheKeyCustomKeyQueryStringInclude",
+    "ActionParametersCacheKeyCustomKeyUser",
+    "ActionParametersCacheReserve",
+    "ActionParametersEdgeTTL",
+    "ActionParametersEdgeTTLStatusCodeTTL",
+    "ActionParametersEdgeTTLStatusCodeTTLStatusCodeRange",
+    "ActionParametersServeStale",
+]
+
 
 class ActionParametersBrowserTTL(BaseModel):
     mode: Literal["respect_origin", "bypass_by_default", "override_origin"]
@@ -22,6 +36,7 @@ class ActionParametersBrowserTTL(BaseModel):
 
     default: Optional[int] = None
     """The TTL (in seconds) if you choose override_origin mode."""
+
 
 class ActionParametersCacheKeyCustomKeyCookie(BaseModel):
     check_presence: Optional[List[str]] = None
@@ -32,6 +47,7 @@ class ActionParametersCacheKeyCustomKeyCookie(BaseModel):
 
     include: Optional[List[str]] = None
     """Include these cookies' names and their values."""
+
 
 class ActionParametersCacheKeyCustomKeyHeader(BaseModel):
     check_presence: Optional[List[str]] = None
@@ -57,6 +73,7 @@ class ActionParametersCacheKeyCustomKeyHeader(BaseModel):
     include: Optional[List[str]] = None
     """Include these headers' names and their values."""
 
+
 class ActionParametersCacheKeyCustomKeyHost(BaseModel):
     resolved: Optional[bool] = None
     """Use the resolved host in the cache key.
@@ -65,23 +82,26 @@ class ActionParametersCacheKeyCustomKeyHost(BaseModel):
     original host.
     """
 
+
 class ActionParametersCacheKeyCustomKeyQueryStringExclude(BaseModel):
     all: Optional[bool] = None
     """Exclude all query string parameters from use in building the cache key."""
 
-    rule_list: Optional[List[str]] = FieldInfo(alias = "list", default = None)
+    rule_list: Optional[List[str]] = FieldInfo(alias="list", default=None)
     """A list of query string parameters NOT used to build the cache key.
 
     All parameters present in the request but missing in this list will be used to
     build the cache key.
     """
 
+
 class ActionParametersCacheKeyCustomKeyQueryStringInclude(BaseModel):
     all: Optional[bool] = None
     """Use all query string parameters in the cache key."""
 
-    rule_list: Optional[List[str]] = FieldInfo(alias = "list", default = None)
+    rule_list: Optional[List[str]] = FieldInfo(alias="list", default=None)
     """A list of query string parameters used to build the cache key."""
+
 
 class ActionParametersCacheKeyCustomKeyQueryString(BaseModel):
     exclude: Optional[ActionParametersCacheKeyCustomKeyQueryStringExclude] = None
@@ -96,6 +116,7 @@ class ActionParametersCacheKeyCustomKeyQueryString(BaseModel):
     request.
     """
 
+
 class ActionParametersCacheKeyCustomKeyUser(BaseModel):
     device_type: Optional[bool] = None
     """Use the user agent's device type in the cache key."""
@@ -105,6 +126,7 @@ class ActionParametersCacheKeyCustomKeyUser(BaseModel):
 
     lang: Optional[bool] = None
     """Use the user agent's language in the cache key."""
+
 
 class ActionParametersCacheKeyCustomKey(BaseModel):
     cookie: Optional[ActionParametersCacheKeyCustomKeyCookie] = None
@@ -124,6 +146,7 @@ class ActionParametersCacheKeyCustomKey(BaseModel):
 
     user: Optional[ActionParametersCacheKeyCustomKeyUser] = None
     """Characteristics of the request user agent used in building the cache key."""
+
 
 class ActionParametersCacheKey(BaseModel):
     cache_by_device_type: Optional[bool] = None
@@ -147,6 +170,7 @@ class ActionParametersCacheKey(BaseModel):
     those query parameters are in. A value of true ignores the query strings' order.
     """
 
+
 class ActionParametersCacheReserve(BaseModel):
     eligible: bool
     """Determines whether cache reserve is enabled.
@@ -158,12 +182,14 @@ class ActionParametersCacheReserve(BaseModel):
     min_file_size: int
     """The minimum file size eligible for store in cache reserve."""
 
+
 class ActionParametersEdgeTTLStatusCodeTTLStatusCodeRange(BaseModel):
-    from_: int = FieldInfo(alias = "from")
+    from_: int = FieldInfo(alias="from")
     """response status code lower bound"""
 
     to: int
     """response status code upper bound"""
+
 
 class ActionParametersEdgeTTLStatusCodeTTL(BaseModel):
     value: int
@@ -180,6 +206,7 @@ class ActionParametersEdgeTTLStatusCodeTTL(BaseModel):
     status_code_value: Optional[int] = None
     """Set the ttl for responses with this specific status code"""
 
+
 class ActionParametersEdgeTTL(BaseModel):
     default: int
     """The TTL (in seconds) if you choose override_origin mode."""
@@ -190,6 +217,7 @@ class ActionParametersEdgeTTL(BaseModel):
     status_code_ttl: List[ActionParametersEdgeTTLStatusCodeTTL]
     """List of single status codes, or status code ranges to apply the selected mode"""
 
+
 class ActionParametersServeStale(BaseModel):
     disable_stale_while_updating: bool
     """Defines whether Cloudflare should serve stale content while updating.
@@ -197,6 +225,7 @@ class ActionParametersServeStale(BaseModel):
     If true, Cloudflare will not serve stale content while getting the latest
     content from the origin.
     """
+
 
 class ActionParameters(BaseModel):
     additional_cacheable_ports: Optional[List[int]] = None
@@ -264,6 +293,7 @@ class ActionParameters(BaseModel):
     from the origin. If on, Cloudflare will not serve stale content while getting
     the latest content from the origin.
     """
+
 
 class SetCacheSettingsRule(BaseModel):
     last_updated: datetime

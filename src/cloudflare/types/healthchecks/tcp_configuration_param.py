@@ -6,6 +6,7 @@ from typing_extensions import Literal, TypedDict
 
 __all__ = ["TCPConfigurationParam"]
 
+
 class TCPConfigurationParam(TypedDict, total=False):
     method: Literal["connection_established"]
     """The TCP connection method to use for the health check."""

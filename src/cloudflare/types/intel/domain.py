@@ -1,23 +1,29 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import List, Optional
+
 from ..._models import BaseModel
 
-from typing import Optional, List
+__all__ = [
+    "Domain",
+    "AdditionalInformation",
+    "Application",
+    "InheritedContentCategory",
+    "InheritedRiskType",
+    "ResolvesToRef",
+]
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
-__all__ = ["Domain", "AdditionalInformation", "Application", "InheritedContentCategory", "InheritedRiskType", "ResolvesToRef"]
 
 class AdditionalInformation(BaseModel):
     suspected_malware_family: Optional[str] = None
     """Suspected DGA malware family."""
 
+
 class Application(BaseModel):
     id: Optional[int] = None
 
     name: Optional[str] = None
+
 
 class InheritedContentCategory(BaseModel):
     id: Optional[int] = None
@@ -26,12 +32,14 @@ class InheritedContentCategory(BaseModel):
 
     super_category_id: Optional[int] = None
 
+
 class InheritedRiskType(BaseModel):
     id: Optional[int] = None
 
     name: Optional[str] = None
 
     super_category_id: Optional[int] = None
+
 
 class ResolvesToRef(BaseModel):
     id: Optional[str] = None
@@ -42,6 +50,7 @@ class ResolvesToRef(BaseModel):
 
     value: Optional[str] = None
     """IP address or domain name."""
+
 
 class Domain(BaseModel):
     additional_information: Optional[AdditionalInformation] = None

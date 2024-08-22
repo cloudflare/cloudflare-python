@@ -2,38 +2,38 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
-from .devices import DevicesResource, AsyncDevicesResource
-
+from .devices import (
+    DevicesResource,
+    AsyncDevicesResource,
+    DevicesResourceWithRawResponse,
+    AsyncDevicesResourceWithRawResponse,
+    DevicesResourceWithStreamingResponse,
+    AsyncDevicesResourceWithStreamingResponse,
+)
+from ....._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ....._wrappers import ResultWrapper
+from ....._base_client import make_request_options
+from .....types.zero_trust.dex import fleet_status_live_params, fleet_status_over_time_params
 from .....types.zero_trust.dex.fleet_status_live_response import FleetStatusLiveResponse
 
-from ....._wrappers import ResultWrapper
-
-from ....._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from ....._base_client import make_request_options
-
-from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .....types.zero_trust.dex import fleet_status_live_params
-from .....types.zero_trust.dex import fleet_status_over_time_params
-from .devices import DevicesResource, AsyncDevicesResource, DevicesResourceWithRawResponse, AsyncDevicesResourceWithRawResponse, DevicesResourceWithStreamingResponse, AsyncDevicesResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-
 __all__ = ["FleetStatusResource", "AsyncFleetStatusResource"]
+
 
 class FleetStatusResource(SyncAPIResource):
     @cached_property
@@ -48,16 +48,18 @@ class FleetStatusResource(SyncAPIResource):
     def with_streaming_response(self) -> FleetStatusResourceWithStreamingResponse:
         return FleetStatusResourceWithStreamingResponse(self)
 
-    def live(self,
-    *,
-    account_id: str,
-    since_minutes: float,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[FleetStatusLiveResponse]:
+    def live(
+        self,
+        *,
+        account_id: str,
+        since_minutes: float,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[FleetStatusLiveResponse]:
         """
         List details for live (up to 60 minutes) devices using WARP
 
@@ -73,30 +75,35 @@ class FleetStatusResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
             f"/accounts/{account_id}/dex/fleet-status/live",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "since_minutes": since_minutes
-            }, fleet_status_live_params.FleetStatusLiveParams), post_parser=ResultWrapper[Optional[FleetStatusLiveResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"since_minutes": since_minutes}, fleet_status_live_params.FleetStatusLiveParams),
+                post_parser=ResultWrapper[Optional[FleetStatusLiveResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[FleetStatusLiveResponse]], ResultWrapper[FleetStatusLiveResponse]),
         )
 
-    def over_time(self,
-    *,
-    account_id: str,
-    from_: str,
-    to: str,
-    colo: str | NotGiven = NOT_GIVEN,
-    device_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> None:
+    def over_time(
+        self,
+        *,
+        account_id: str,
+        from_: str,
+        to: str,
+        colo: str | NotGiven = NOT_GIVEN,
+        device_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
         """
         List details for devices using WARP, up to 7 days
 
@@ -118,20 +125,28 @@ class FleetStatusResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._get(
             f"/accounts/{account_id}/dex/fleet-status/over-time",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "from_": from_,
-                "to": to,
-                "colo": colo,
-                "device_id": device_id,
-            }, fleet_status_over_time_params.FleetStatusOverTimeParams)),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "from_": from_,
+                        "to": to,
+                        "colo": colo,
+                        "device_id": device_id,
+                    },
+                    fleet_status_over_time_params.FleetStatusOverTimeParams,
+                ),
+            ),
             cast_to=NoneType,
         )
+
 
 class AsyncFleetStatusResource(AsyncAPIResource):
     @cached_property
@@ -146,16 +161,18 @@ class AsyncFleetStatusResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncFleetStatusResourceWithStreamingResponse:
         return AsyncFleetStatusResourceWithStreamingResponse(self)
 
-    async def live(self,
-    *,
-    account_id: str,
-    since_minutes: float,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[FleetStatusLiveResponse]:
+    async def live(
+        self,
+        *,
+        account_id: str,
+        since_minutes: float,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[FleetStatusLiveResponse]:
         """
         List details for live (up to 60 minutes) devices using WARP
 
@@ -171,30 +188,37 @@ class AsyncFleetStatusResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
             f"/accounts/{account_id}/dex/fleet-status/live",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "since_minutes": since_minutes
-            }, fleet_status_live_params.FleetStatusLiveParams), post_parser=ResultWrapper[Optional[FleetStatusLiveResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"since_minutes": since_minutes}, fleet_status_live_params.FleetStatusLiveParams
+                ),
+                post_parser=ResultWrapper[Optional[FleetStatusLiveResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[FleetStatusLiveResponse]], ResultWrapper[FleetStatusLiveResponse]),
         )
 
-    async def over_time(self,
-    *,
-    account_id: str,
-    from_: str,
-    to: str,
-    colo: str | NotGiven = NOT_GIVEN,
-    device_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> None:
+    async def over_time(
+        self,
+        *,
+        account_id: str,
+        from_: str,
+        to: str,
+        colo: str | NotGiven = NOT_GIVEN,
+        device_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
         """
         List details for devices using WARP, up to 7 days
 
@@ -216,20 +240,28 @@ class AsyncFleetStatusResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._get(
             f"/accounts/{account_id}/dex/fleet-status/over-time",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "from_": from_,
-                "to": to,
-                "colo": colo,
-                "device_id": device_id,
-            }, fleet_status_over_time_params.FleetStatusOverTimeParams)),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "from_": from_,
+                        "to": to,
+                        "colo": colo,
+                        "device_id": device_id,
+                    },
+                    fleet_status_over_time_params.FleetStatusOverTimeParams,
+                ),
+            ),
             cast_to=NoneType,
         )
+
 
 class FleetStatusResourceWithRawResponse:
     def __init__(self, fleet_status: FleetStatusResource) -> None:
@@ -246,6 +278,7 @@ class FleetStatusResourceWithRawResponse:
     def devices(self) -> DevicesResourceWithRawResponse:
         return DevicesResourceWithRawResponse(self._fleet_status.devices)
 
+
 class AsyncFleetStatusResourceWithRawResponse:
     def __init__(self, fleet_status: AsyncFleetStatusResource) -> None:
         self._fleet_status = fleet_status
@@ -261,6 +294,7 @@ class AsyncFleetStatusResourceWithRawResponse:
     def devices(self) -> AsyncDevicesResourceWithRawResponse:
         return AsyncDevicesResourceWithRawResponse(self._fleet_status.devices)
 
+
 class FleetStatusResourceWithStreamingResponse:
     def __init__(self, fleet_status: FleetStatusResource) -> None:
         self._fleet_status = fleet_status
@@ -275,6 +309,7 @@ class FleetStatusResourceWithStreamingResponse:
     @cached_property
     def devices(self) -> DevicesResourceWithStreamingResponse:
         return DevicesResourceWithStreamingResponse(self._fleet_status.devices)
+
 
 class AsyncFleetStatusResourceWithStreamingResponse:
     def __init__(self, fleet_status: AsyncFleetStatusResource) -> None:

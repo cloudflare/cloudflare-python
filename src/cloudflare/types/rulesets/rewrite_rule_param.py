@@ -2,18 +2,26 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict, Required, TypeAlias
+from typing import Dict, Union
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .logging_param import LoggingParam
-
-from typing import Dict, Union
-
 from .rewrite_uri_part_param import RewriteURIPartParam
 
-__all__ = ["RewriteRuleParam", "ActionParameters", "ActionParametersHeaders", "ActionParametersHeadersRemoveHeader", "ActionParametersHeadersStaticHeader", "ActionParametersHeadersDynamicHeader", "ActionParametersURI"]
+__all__ = [
+    "RewriteRuleParam",
+    "ActionParameters",
+    "ActionParametersHeaders",
+    "ActionParametersHeadersRemoveHeader",
+    "ActionParametersHeadersStaticHeader",
+    "ActionParametersHeadersDynamicHeader",
+    "ActionParametersURI",
+]
+
 
 class ActionParametersHeadersRemoveHeader(TypedDict, total=False):
     operation: Required[Literal["remove"]]
+
 
 class ActionParametersHeadersStaticHeader(TypedDict, total=False):
     operation: Required[Literal["set"]]
@@ -21,13 +29,18 @@ class ActionParametersHeadersStaticHeader(TypedDict, total=False):
     value: Required[str]
     """Static value for the header."""
 
+
 class ActionParametersHeadersDynamicHeader(TypedDict, total=False):
     expression: Required[str]
     """Expression for the header value."""
 
     operation: Required[Literal["set"]]
 
-ActionParametersHeaders: TypeAlias = Union[ActionParametersHeadersRemoveHeader, ActionParametersHeadersStaticHeader, ActionParametersHeadersDynamicHeader]
+
+ActionParametersHeaders: TypeAlias = Union[
+    ActionParametersHeadersRemoveHeader, ActionParametersHeadersStaticHeader, ActionParametersHeadersDynamicHeader
+]
+
 
 class ActionParametersURI(TypedDict, total=False):
     path: RewriteURIPartParam
@@ -36,12 +49,14 @@ class ActionParametersURI(TypedDict, total=False):
     query: RewriteURIPartParam
     """Query portion rewrite."""
 
+
 class ActionParameters(TypedDict, total=False):
     headers: Dict[str, ActionParametersHeaders]
     """Map of request headers to modify."""
 
     uri: ActionParametersURI
     """URI to rewrite the request to."""
+
 
 class RewriteRuleParam(TypedDict, total=False):
     id: str

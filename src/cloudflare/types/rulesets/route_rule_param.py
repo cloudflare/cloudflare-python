@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict, Required
+from typing_extensions import Literal, Required, TypedDict
 
 from .logging_param import LoggingParam
 
 __all__ = ["RouteRuleParam", "ActionParameters", "ActionParametersOrigin", "ActionParametersSNI"]
+
 
 class ActionParametersOrigin(TypedDict, total=False):
     host: str
@@ -15,9 +16,11 @@ class ActionParametersOrigin(TypedDict, total=False):
     port: float
     """Override the destination port."""
 
+
 class ActionParametersSNI(TypedDict, total=False):
     value: Required[str]
     """The SNI override."""
+
 
 class ActionParameters(TypedDict, total=False):
     host_header: str
@@ -28,6 +31,7 @@ class ActionParameters(TypedDict, total=False):
 
     sni: ActionParametersSNI
     """Override the Server Name Indication (SNI)."""
+
 
 class RouteRuleParam(TypedDict, total=False):
     id: str

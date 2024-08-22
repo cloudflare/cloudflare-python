@@ -2,16 +2,21 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal, TypeAlias
-
 from typing import Union
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ....._types import FileTypes
-from ....._utils import PropertyInfo
+__all__ = [
+    "IntegrationCreateParams",
+    "Config",
+    "ConfigTeamsDevicesWorkspaceOneConfigRequest",
+    "ConfigTeamsDevicesCrowdstrikeConfigRequest",
+    "ConfigTeamsDevicesUptycsConfigRequest",
+    "ConfigTeamsDevicesIntuneConfigRequest",
+    "ConfigTeamsDevicesKolideConfigRequest",
+    "ConfigTeamsDevicesTaniumConfigRequest",
+    "ConfigTeamsDevicesSentineloneS2sConfigRequest",
+]
 
-__all__ = ["IntegrationCreateParams", "Config", "ConfigTeamsDevicesWorkspaceOneConfigRequest", "ConfigTeamsDevicesCrowdstrikeConfigRequest", "ConfigTeamsDevicesUptycsConfigRequest", "ConfigTeamsDevicesIntuneConfigRequest", "ConfigTeamsDevicesKolideConfigRequest", "ConfigTeamsDevicesTaniumConfigRequest", "ConfigTeamsDevicesSentineloneS2sConfigRequest"]
 
 class IntegrationCreateParams(TypedDict, total=False):
     account_id: Required[str]
@@ -28,8 +33,11 @@ class IntegrationCreateParams(TypedDict, total=False):
     name: Required[str]
     """The name of the device posture integration."""
 
-    type: Required[Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"]]
+    type: Required[
+        Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"]
+    ]
     """The type of device posture integration."""
+
 
 class ConfigTeamsDevicesWorkspaceOneConfigRequest(TypedDict, total=False):
     api_url: Required[str]
@@ -44,6 +52,7 @@ class ConfigTeamsDevicesWorkspaceOneConfigRequest(TypedDict, total=False):
     client_secret: Required[str]
     """The Workspace One client secret provided in the Workspace One Admin Dashboard."""
 
+
 class ConfigTeamsDevicesCrowdstrikeConfigRequest(TypedDict, total=False):
     api_url: Required[str]
     """The Crowdstrike API URL."""
@@ -56,6 +65,7 @@ class ConfigTeamsDevicesCrowdstrikeConfigRequest(TypedDict, total=False):
 
     customer_id: Required[str]
     """The Crowdstrike customer ID."""
+
 
 class ConfigTeamsDevicesUptycsConfigRequest(TypedDict, total=False):
     api_url: Required[str]
@@ -70,6 +80,7 @@ class ConfigTeamsDevicesUptycsConfigRequest(TypedDict, total=False):
     customer_id: Required[str]
     """The Uptycs customer ID."""
 
+
 class ConfigTeamsDevicesIntuneConfigRequest(TypedDict, total=False):
     client_id: Required[str]
     """The Intune client ID."""
@@ -80,12 +91,14 @@ class ConfigTeamsDevicesIntuneConfigRequest(TypedDict, total=False):
     customer_id: Required[str]
     """The Intune customer ID."""
 
+
 class ConfigTeamsDevicesKolideConfigRequest(TypedDict, total=False):
     client_id: Required[str]
     """The Kolide client ID."""
 
     client_secret: Required[str]
     """The Kolide client secret."""
+
 
 class ConfigTeamsDevicesTaniumConfigRequest(TypedDict, total=False):
     api_url: Required[str]
@@ -106,6 +119,7 @@ class ConfigTeamsDevicesTaniumConfigRequest(TypedDict, total=False):
     when hitting the `api_url`
     """
 
+
 class ConfigTeamsDevicesSentineloneS2sConfigRequest(TypedDict, total=False):
     api_url: Required[str]
     """The SentinelOne S2S API URL."""
@@ -113,4 +127,13 @@ class ConfigTeamsDevicesSentineloneS2sConfigRequest(TypedDict, total=False):
     client_secret: Required[str]
     """The SentinelOne S2S client secret."""
 
-Config: TypeAlias = Union[ConfigTeamsDevicesWorkspaceOneConfigRequest, ConfigTeamsDevicesCrowdstrikeConfigRequest, ConfigTeamsDevicesUptycsConfigRequest, ConfigTeamsDevicesIntuneConfigRequest, ConfigTeamsDevicesKolideConfigRequest, ConfigTeamsDevicesTaniumConfigRequest, ConfigTeamsDevicesSentineloneS2sConfigRequest]
+
+Config: TypeAlias = Union[
+    ConfigTeamsDevicesWorkspaceOneConfigRequest,
+    ConfigTeamsDevicesCrowdstrikeConfigRequest,
+    ConfigTeamsDevicesUptycsConfigRequest,
+    ConfigTeamsDevicesIntuneConfigRequest,
+    ConfigTeamsDevicesKolideConfigRequest,
+    ConfigTeamsDevicesTaniumConfigRequest,
+    ConfigTeamsDevicesSentineloneS2sConfigRequest,
+]

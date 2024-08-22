@@ -6,6 +6,7 @@ from typing_extensions import TypedDict
 
 __all__ = ["RequestModelParam"]
 
+
 class RequestModelParam(TypedDict, total=False):
     id: str
     """Human-readable identifier of the Managed Transform."""

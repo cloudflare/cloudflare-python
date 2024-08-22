@@ -1,18 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Dict, List, Optional
+from datetime import datetime
+from typing_extensions import Literal
+
 from ...._models import BaseModel
 
-from typing import Optional, Dict, List
-
-from typing_extensions import Literal
-
-from datetime import datetime
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["OIDCSaaSApp", "CustomClaims", "CustomClaimsSource", "HybridAndImplicitOptions", "RefreshTokenOptions"]
+
 
 class CustomClaimsSource(BaseModel):
     name: Optional[str] = None
@@ -20,6 +15,7 @@ class CustomClaimsSource(BaseModel):
 
     name_by_idp: Optional[Dict[str, str]] = None
     """A mapping from IdP ID to claim name."""
+
 
 class CustomClaims(BaseModel):
     name: Optional[str] = None
@@ -33,6 +29,7 @@ class CustomClaims(BaseModel):
 
     source: Optional[CustomClaimsSource] = None
 
+
 class HybridAndImplicitOptions(BaseModel):
     return_access_token_from_authorization_endpoint: Optional[bool] = None
     """If an Access Token should be returned from the OIDC Authorization endpoint"""
@@ -40,12 +37,14 @@ class HybridAndImplicitOptions(BaseModel):
     return_id_token_from_authorization_endpoint: Optional[bool] = None
     """If an ID Token should be returned from the OIDC Authorization endpoint"""
 
+
 class RefreshTokenOptions(BaseModel):
     lifetime: Optional[str] = None
     """How long a refresh token will be valid for after creation.
 
     Valid units are m,h,d. Must be longer than 1m.
     """
+
 
 class OIDCSaaSApp(BaseModel):
     access_token_lifetime: Optional[str] = None
@@ -80,7 +79,9 @@ class OIDCSaaSApp(BaseModel):
 
     custom_claims: Optional[CustomClaims] = None
 
-    grant_types: Optional[List[Literal["authorization_code", "authorization_code_with_pkce", "refresh_tokens", "hybrid", "implicit"]]] = None
+    grant_types: Optional[
+        List[Literal["authorization_code", "authorization_code_with_pkce", "refresh_tokens", "hybrid", "implicit"]]
+    ] = None
     """The OIDC flows supported by this application"""
 
     group_filter_regex: Optional[str] = None

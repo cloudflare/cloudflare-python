@@ -3,14 +3,13 @@
 from __future__ import annotations
 
 from typing import List
-
-from .carbonblack_input import CarbonblackInput
-
-from typing_extensions import TypedDict, Annotated
+from typing_extensions import Annotated, TypedDict
 
 from ...._utils import PropertyInfo
+from .carbonblack_input import CarbonblackInput
 
 __all__ = ["DiskEncryptionInputParam"]
+
 
 class DiskEncryptionInputParam(TypedDict, total=False):
     check_disks: Annotated[List[CarbonblackInput], PropertyInfo(alias="checkDisks")]

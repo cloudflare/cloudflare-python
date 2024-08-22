@@ -2,42 +2,32 @@
 
 from __future__ import annotations
 
+from typing import Type, cast, overload
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    required_args,
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
-
-from ...types.r2.sippy import Sippy
-
+from ...types.r2 import sippy_update_params
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
 from ..._base_client import make_request_options
-
-from typing import Type
-
+from ...types.r2.sippy import Sippy
 from ...types.r2.sippy_delete_response import SippyDeleteResponse
 
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-from ...types.r2 import sippy_update_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.r2 import sippy_update_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["SippyResource", "AsyncSippyResource"]
+
 
 class SippyResource(SyncAPIResource):
     @cached_property
@@ -49,18 +39,20 @@ class SippyResource(SyncAPIResource):
         return SippyResourceWithStreamingResponse(self)
 
     @overload
-    def update(self,
-    bucket_name: str,
-    *,
-    account_id: str,
-    destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
-    source: sippy_update_params.R2EnableSippyAwsSource | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Sippy:
+    def update(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
+        source: sippy_update_params.R2EnableSippyAwsSource | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Sippy:
         """
         Sets configuration for Sippy for an existing R2 bucket.
 
@@ -82,19 +74,22 @@ class SippyResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def update(self,
-    bucket_name: str,
-    *,
-    account_id: str,
-    destination: sippy_update_params.R2EnableSippyGcsDestination | NotGiven = NOT_GIVEN,
-    source: sippy_update_params.R2EnableSippyGcsSource | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Sippy:
+    def update(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        destination: sippy_update_params.R2EnableSippyGcsDestination | NotGiven = NOT_GIVEN,
+        source: sippy_update_params.R2EnableSippyGcsSource | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Sippy:
         """
         Sets configuration for Sippy for an existing R2 bucket.
 
@@ -116,47 +111,59 @@ class SippyResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @required_args(["account_id"])
-    def update(self,
-    bucket_name: str,
-    *,
-    account_id: str,
-    destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
-    source: sippy_update_params.R2EnableSippyAwsSource | sippy_update_params.R2EnableSippyGcsSource | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Sippy:
+    def update(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
+        source: sippy_update_params.R2EnableSippyAwsSource
+        | sippy_update_params.R2EnableSippyGcsSource
+        | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Sippy:
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
-          raise ValueError(
-            f'Expected a non-empty value for `bucket_name` but received {bucket_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return self._put(
             f"/accounts/{account_id}/r2/buckets/{bucket_name}/sippy",
-            body=maybe_transform({
-                "destination": destination,
-                "source": source,
-            }, sippy_update_params.SippyUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Sippy]._unwrapper),
+            body=maybe_transform(
+                {
+                    "destination": destination,
+                    "source": source,
+                },
+                sippy_update_params.SippyUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Sippy]._unwrapper,
+            ),
             cast_to=cast(Type[Sippy], ResultWrapper[Sippy]),
         )
 
-    def delete(self,
-    bucket_name: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SippyDeleteResponse:
+    def delete(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SippyDeleteResponse:
         """
         Disables Sippy on this bucket
 
@@ -174,29 +181,33 @@ class SippyResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
-          raise ValueError(
-            f'Expected a non-empty value for `bucket_name` but received {bucket_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return self._delete(
             f"/accounts/{account_id}/r2/buckets/{bucket_name}/sippy",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[SippyDeleteResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SippyDeleteResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SippyDeleteResponse], ResultWrapper[SippyDeleteResponse]),
         )
 
-    def get(self,
-    bucket_name: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Sippy:
+    def get(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Sippy:
         """
         Gets configuration for Sippy for an existing R2 bucket.
 
@@ -214,18 +225,21 @@ class SippyResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
-          raise ValueError(
-            f'Expected a non-empty value for `bucket_name` but received {bucket_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return self._get(
             f"/accounts/{account_id}/r2/buckets/{bucket_name}/sippy",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Sippy]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Sippy]._unwrapper,
+            ),
             cast_to=cast(Type[Sippy], ResultWrapper[Sippy]),
         )
+
 
 class AsyncSippyResource(AsyncAPIResource):
     @cached_property
@@ -237,18 +251,20 @@ class AsyncSippyResource(AsyncAPIResource):
         return AsyncSippyResourceWithStreamingResponse(self)
 
     @overload
-    async def update(self,
-    bucket_name: str,
-    *,
-    account_id: str,
-    destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
-    source: sippy_update_params.R2EnableSippyAwsSource | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Sippy:
+    async def update(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
+        source: sippy_update_params.R2EnableSippyAwsSource | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Sippy:
         """
         Sets configuration for Sippy for an existing R2 bucket.
 
@@ -270,19 +286,22 @@ class AsyncSippyResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def update(self,
-    bucket_name: str,
-    *,
-    account_id: str,
-    destination: sippy_update_params.R2EnableSippyGcsDestination | NotGiven = NOT_GIVEN,
-    source: sippy_update_params.R2EnableSippyGcsSource | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Sippy:
+    async def update(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        destination: sippy_update_params.R2EnableSippyGcsDestination | NotGiven = NOT_GIVEN,
+        source: sippy_update_params.R2EnableSippyGcsSource | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Sippy:
         """
         Sets configuration for Sippy for an existing R2 bucket.
 
@@ -304,47 +323,59 @@ class AsyncSippyResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @required_args(["account_id"])
-    async def update(self,
-    bucket_name: str,
-    *,
-    account_id: str,
-    destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
-    source: sippy_update_params.R2EnableSippyAwsSource | sippy_update_params.R2EnableSippyGcsSource | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Sippy:
+    async def update(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        destination: sippy_update_params.R2EnableSippyAwsDestination | NotGiven = NOT_GIVEN,
+        source: sippy_update_params.R2EnableSippyAwsSource
+        | sippy_update_params.R2EnableSippyGcsSource
+        | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Sippy:
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
-          raise ValueError(
-            f'Expected a non-empty value for `bucket_name` but received {bucket_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return await self._put(
             f"/accounts/{account_id}/r2/buckets/{bucket_name}/sippy",
-            body=await async_maybe_transform({
-                "destination": destination,
-                "source": source,
-            }, sippy_update_params.SippyUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Sippy]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "destination": destination,
+                    "source": source,
+                },
+                sippy_update_params.SippyUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Sippy]._unwrapper,
+            ),
             cast_to=cast(Type[Sippy], ResultWrapper[Sippy]),
         )
 
-    async def delete(self,
-    bucket_name: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SippyDeleteResponse:
+    async def delete(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SippyDeleteResponse:
         """
         Disables Sippy on this bucket
 
@@ -362,29 +393,33 @@ class AsyncSippyResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
-          raise ValueError(
-            f'Expected a non-empty value for `bucket_name` but received {bucket_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return await self._delete(
             f"/accounts/{account_id}/r2/buckets/{bucket_name}/sippy",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[SippyDeleteResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SippyDeleteResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SippyDeleteResponse], ResultWrapper[SippyDeleteResponse]),
         )
 
-    async def get(self,
-    bucket_name: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Sippy:
+    async def get(
+        self,
+        bucket_name: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Sippy:
         """
         Gets configuration for Sippy for an existing R2 bucket.
 
@@ -402,18 +437,21 @@ class AsyncSippyResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not bucket_name:
-          raise ValueError(
-            f'Expected a non-empty value for `bucket_name` but received {bucket_name!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `bucket_name` but received {bucket_name!r}")
         return await self._get(
             f"/accounts/{account_id}/r2/buckets/{bucket_name}/sippy",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Sippy]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Sippy]._unwrapper,
+            ),
             cast_to=cast(Type[Sippy], ResultWrapper[Sippy]),
         )
+
 
 class SippyResourceWithRawResponse:
     def __init__(self, sippy: SippyResource) -> None:
@@ -429,6 +467,7 @@ class SippyResourceWithRawResponse:
             sippy.get,
         )
 
+
 class AsyncSippyResourceWithRawResponse:
     def __init__(self, sippy: AsyncSippyResource) -> None:
         self._sippy = sippy
@@ -443,6 +482,7 @@ class AsyncSippyResourceWithRawResponse:
             sippy.get,
         )
 
+
 class SippyResourceWithStreamingResponse:
     def __init__(self, sippy: SippyResource) -> None:
         self._sippy = sippy
@@ -456,6 +496,7 @@ class SippyResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             sippy.get,
         )
+
 
 class AsyncSippyResourceWithStreamingResponse:
     def __init__(self, sippy: AsyncSippyResource) -> None:

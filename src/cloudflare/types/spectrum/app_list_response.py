@@ -1,26 +1,17 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
-
-from ..._models import BaseModel
-
+from typing import List, Union, Optional
 from datetime import datetime
-
-from .dns import DNS
-
 from typing_extensions import Literal, TypeAlias
 
+from .dns import DNS
 from .edge_ips import EdgeIPs
-
+from ..._models import BaseModel
 from .origin_dns import OriginDNS
-
 from .origin_port import OriginPort
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["AppListResponse", "UnionMember0", "UnionMember1"]
+
 
 class UnionMember0(BaseModel):
     id: str
@@ -97,6 +88,7 @@ class UnionMember0(BaseModel):
     field.
     """
 
+
 class UnionMember1(BaseModel):
     id: str
     """App identifier."""
@@ -122,5 +114,6 @@ class UnionMember1(BaseModel):
 
     Array may contain multiple IP addresses for load balancing.
     """
+
 
 AppListResponse: TypeAlias = Union[List[UnionMember0], List[UnionMember1]]

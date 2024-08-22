@@ -2,16 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required
-
 from typing import Dict
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
+from typing_extensions import Required, TypedDict
 
 __all__ = ["TraceCreateParams", "Body", "Context", "ContextGeoloc"]
+
 
 class TraceCreateParams(TypedDict, total=False):
     account_id: Required[str]
@@ -40,6 +35,7 @@ class TraceCreateParams(TypedDict, total=False):
     skip_response: bool
     """Skip sending the request to the Origin server after all rules evaluation"""
 
+
 class Body(TypedDict, total=False):
     base64: str
     """Base64 encoded request body"""
@@ -49,6 +45,7 @@ class Body(TypedDict, total=False):
 
     plain_text: str
     """Request body as plain text"""
+
 
 class ContextGeoloc(TypedDict, total=False):
     city: str
@@ -70,6 +67,7 @@ class ContextGeoloc(TypedDict, total=False):
     subdivision_2_iso_code: str
 
     timezone: str
+
 
 class Context(TypedDict, total=False):
     bot_score: int

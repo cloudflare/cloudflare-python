@@ -2,32 +2,52 @@
 
 from __future__ import annotations
 
-from .lockdowns import LockdownsResource, AsyncLockdownsResource
-
-from ..._compat import cached_property
-
-from .rules import RulesResource, AsyncRulesResource
-
-from .access_rules import AccessRulesResource, AsyncAccessRulesResource
-
-from .ua_rules import UARulesResource, AsyncUARulesResource
-
+from .waf import (
+    WAFResource,
+    AsyncWAFResource,
+    WAFResourceWithRawResponse,
+    AsyncWAFResourceWithRawResponse,
+    WAFResourceWithStreamingResponse,
+    AsyncWAFResourceWithStreamingResponse,
+)
+from .rules import (
+    RulesResource,
+    AsyncRulesResource,
+    RulesResourceWithRawResponse,
+    AsyncRulesResourceWithRawResponse,
+    RulesResourceWithStreamingResponse,
+    AsyncRulesResourceWithStreamingResponse,
+)
 from .waf.waf import WAFResource, AsyncWAFResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from .ua_rules import (
+    UARulesResource,
+    AsyncUARulesResource,
+    UARulesResourceWithRawResponse,
+    AsyncUARulesResourceWithRawResponse,
+    UARulesResourceWithStreamingResponse,
+    AsyncUARulesResourceWithStreamingResponse,
+)
+from ..._compat import cached_property
+from .lockdowns import (
+    LockdownsResource,
+    AsyncLockdownsResource,
+    LockdownsResourceWithRawResponse,
+    AsyncLockdownsResourceWithRawResponse,
+    LockdownsResourceWithStreamingResponse,
+    AsyncLockdownsResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from .lockdowns import LockdownsResource, AsyncLockdownsResource, LockdownsResourceWithRawResponse, AsyncLockdownsResourceWithRawResponse, LockdownsResourceWithStreamingResponse, AsyncLockdownsResourceWithStreamingResponse
-from .rules import RulesResource, AsyncRulesResource, RulesResourceWithRawResponse, AsyncRulesResourceWithRawResponse, RulesResourceWithStreamingResponse, AsyncRulesResourceWithStreamingResponse
-from .access_rules import AccessRulesResource, AsyncAccessRulesResource, AccessRulesResourceWithRawResponse, AsyncAccessRulesResourceWithRawResponse, AccessRulesResourceWithStreamingResponse, AsyncAccessRulesResourceWithStreamingResponse
-from .ua_rules import UARulesResource, AsyncUARulesResource, UARulesResourceWithRawResponse, AsyncUARulesResourceWithRawResponse, UARulesResourceWithStreamingResponse, AsyncUARulesResourceWithStreamingResponse
-from .waf import WAFResource, AsyncWAFResource, WAFResourceWithRawResponse, AsyncWAFResourceWithRawResponse, WAFResourceWithStreamingResponse, AsyncWAFResourceWithStreamingResponse
+from .access_rules import (
+    AccessRulesResource,
+    AsyncAccessRulesResource,
+    AccessRulesResourceWithRawResponse,
+    AsyncAccessRulesResourceWithRawResponse,
+    AccessRulesResourceWithStreamingResponse,
+    AsyncAccessRulesResourceWithStreamingResponse,
+)
 
 __all__ = ["FirewallResource", "AsyncFirewallResource"]
+
 
 class FirewallResource(SyncAPIResource):
     @cached_property
@@ -58,6 +78,7 @@ class FirewallResource(SyncAPIResource):
     def with_streaming_response(self) -> FirewallResourceWithStreamingResponse:
         return FirewallResourceWithStreamingResponse(self)
 
+
 class AsyncFirewallResource(AsyncAPIResource):
     @cached_property
     def lockdowns(self) -> AsyncLockdownsResource:
@@ -87,6 +108,7 @@ class AsyncFirewallResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncFirewallResourceWithStreamingResponse:
         return AsyncFirewallResourceWithStreamingResponse(self)
 
+
 class FirewallResourceWithRawResponse:
     def __init__(self, firewall: FirewallResource) -> None:
         self._firewall = firewall
@@ -110,6 +132,7 @@ class FirewallResourceWithRawResponse:
     @cached_property
     def waf(self) -> WAFResourceWithRawResponse:
         return WAFResourceWithRawResponse(self._firewall.waf)
+
 
 class AsyncFirewallResourceWithRawResponse:
     def __init__(self, firewall: AsyncFirewallResource) -> None:
@@ -135,6 +158,7 @@ class AsyncFirewallResourceWithRawResponse:
     def waf(self) -> AsyncWAFResourceWithRawResponse:
         return AsyncWAFResourceWithRawResponse(self._firewall.waf)
 
+
 class FirewallResourceWithStreamingResponse:
     def __init__(self, firewall: FirewallResource) -> None:
         self._firewall = firewall
@@ -158,6 +182,7 @@ class FirewallResourceWithStreamingResponse:
     @cached_property
     def waf(self) -> WAFResourceWithStreamingResponse:
         return WAFResourceWithStreamingResponse(self._firewall.waf)
+
 
 class AsyncFirewallResourceWithStreamingResponse:
     def __init__(self, firewall: AsyncFirewallResource) -> None:

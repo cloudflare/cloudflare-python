@@ -2,32 +2,53 @@
 
 from __future__ import annotations
 
+from .ai import (
+    AIResource,
+    AsyncAIResource,
+    AIResourceWithRawResponse,
+    AsyncAIResourceWithRawResponse,
+    AIResourceWithStreamingResponse,
+    AsyncAIResourceWithStreamingResponse,
+)
 from .ai.ai import AIResource, AsyncAIResource
-
+from .domains import (
+    DomainsResource,
+    AsyncDomainsResource,
+    DomainsResourceWithRawResponse,
+    AsyncDomainsResourceWithRawResponse,
+    DomainsResourceWithStreamingResponse,
+    AsyncDomainsResourceWithStreamingResponse,
+)
+from .scripts import (
+    ScriptsResource,
+    AsyncScriptsResource,
+    ScriptsResourceWithRawResponse,
+    AsyncScriptsResourceWithRawResponse,
+    ScriptsResourceWithStreamingResponse,
+    AsyncScriptsResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
-
-from .scripts.scripts import ScriptsResource, AsyncScriptsResource
-
-from .account_settings import AccountSettingsResource, AsyncAccountSettingsResource
-
-from .domains import DomainsResource, AsyncDomainsResource
-
-from .subdomains import SubdomainsResource, AsyncSubdomainsResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from .subdomains import (
+    SubdomainsResource,
+    AsyncSubdomainsResource,
+    SubdomainsResourceWithRawResponse,
+    AsyncSubdomainsResourceWithRawResponse,
+    SubdomainsResourceWithStreamingResponse,
+    AsyncSubdomainsResourceWithStreamingResponse,
+)
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from .ai import AIResource, AsyncAIResource, AIResourceWithRawResponse, AsyncAIResourceWithRawResponse, AIResourceWithStreamingResponse, AsyncAIResourceWithStreamingResponse
-from .scripts import ScriptsResource, AsyncScriptsResource, ScriptsResourceWithRawResponse, AsyncScriptsResourceWithRawResponse, ScriptsResourceWithStreamingResponse, AsyncScriptsResourceWithStreamingResponse
-from .account_settings import AccountSettingsResource, AsyncAccountSettingsResource, AccountSettingsResourceWithRawResponse, AsyncAccountSettingsResourceWithRawResponse, AccountSettingsResourceWithStreamingResponse, AsyncAccountSettingsResourceWithStreamingResponse
-from .domains import DomainsResource, AsyncDomainsResource, DomainsResourceWithRawResponse, AsyncDomainsResourceWithRawResponse, DomainsResourceWithStreamingResponse, AsyncDomainsResourceWithStreamingResponse
-from .subdomains import SubdomainsResource, AsyncSubdomainsResource, SubdomainsResourceWithRawResponse, AsyncSubdomainsResourceWithRawResponse, SubdomainsResourceWithStreamingResponse, AsyncSubdomainsResourceWithStreamingResponse
+from .scripts.scripts import ScriptsResource, AsyncScriptsResource
+from .account_settings import (
+    AccountSettingsResource,
+    AsyncAccountSettingsResource,
+    AccountSettingsResourceWithRawResponse,
+    AsyncAccountSettingsResourceWithRawResponse,
+    AccountSettingsResourceWithStreamingResponse,
+    AsyncAccountSettingsResourceWithStreamingResponse,
+)
 
 __all__ = ["WorkersResource", "AsyncWorkersResource"]
+
 
 class WorkersResource(SyncAPIResource):
     @cached_property
@@ -58,6 +79,7 @@ class WorkersResource(SyncAPIResource):
     def with_streaming_response(self) -> WorkersResourceWithStreamingResponse:
         return WorkersResourceWithStreamingResponse(self)
 
+
 class AsyncWorkersResource(AsyncAPIResource):
     @cached_property
     def ai(self) -> AsyncAIResource:
@@ -87,6 +109,7 @@ class AsyncWorkersResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncWorkersResourceWithStreamingResponse:
         return AsyncWorkersResourceWithStreamingResponse(self)
 
+
 class WorkersResourceWithRawResponse:
     def __init__(self, workers: WorkersResource) -> None:
         self._workers = workers
@@ -110,6 +133,7 @@ class WorkersResourceWithRawResponse:
     @cached_property
     def subdomains(self) -> SubdomainsResourceWithRawResponse:
         return SubdomainsResourceWithRawResponse(self._workers.subdomains)
+
 
 class AsyncWorkersResourceWithRawResponse:
     def __init__(self, workers: AsyncWorkersResource) -> None:
@@ -135,6 +159,7 @@ class AsyncWorkersResourceWithRawResponse:
     def subdomains(self) -> AsyncSubdomainsResourceWithRawResponse:
         return AsyncSubdomainsResourceWithRawResponse(self._workers.subdomains)
 
+
 class WorkersResourceWithStreamingResponse:
     def __init__(self, workers: WorkersResource) -> None:
         self._workers = workers
@@ -158,6 +183,7 @@ class WorkersResourceWithStreamingResponse:
     @cached_property
     def subdomains(self) -> SubdomainsResourceWithStreamingResponse:
         return SubdomainsResourceWithStreamingResponse(self._workers.subdomains)
+
 
 class AsyncWorkersResourceWithStreamingResponse:
     def __init__(self, workers: AsyncWorkersResource) -> None:

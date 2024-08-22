@@ -2,45 +2,39 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
-from .vtt import VttResource, AsyncVttResource
-
+from .vtt import (
+    VttResource,
+    AsyncVttResource,
+    VttResourceWithRawResponse,
+    AsyncVttResourceWithRawResponse,
+    VttResourceWithStreamingResponse,
+    AsyncVttResourceWithStreamingResponse,
+)
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
-
-from .....types.stream.caption import Caption
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ....._wrappers import ResultWrapper
-
-from typing import Optional, Type
-
 from ....._base_client import make_request_options
-
-from ....._utils import maybe_transform, async_maybe_transform
-
+from .....types.stream.caption import Caption
+from .....types.stream.captions import language_update_params
 from .....types.stream.captions.language_delete_response import LanguageDeleteResponse
 
-from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .....types.stream.captions import language_update_params
-from .vtt import VttResource, AsyncVttResource, VttResourceWithRawResponse, AsyncVttResourceWithRawResponse, VttResourceWithStreamingResponse, AsyncVttResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["LanguageResource", "AsyncLanguageResource"]
+
 
 class LanguageResource(SyncAPIResource):
     @cached_property
@@ -55,17 +49,19 @@ class LanguageResource(SyncAPIResource):
     def with_streaming_response(self) -> LanguageResourceWithStreamingResponse:
         return LanguageResourceWithStreamingResponse(self)
 
-    def create(self,
-    language: str,
-    *,
-    account_id: str,
-    identifier: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Caption]:
+    def create(
+        self,
+        language: str,
+        *,
+        account_id: str,
+        identifier: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Caption]:
         """
         Generate captions or subtitles for provided language via AI.
 
@@ -85,35 +81,37 @@ class LanguageResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not language:
-          raise ValueError(
-            f'Expected a non-empty value for `language` but received {language!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         return self._post(
             f"/accounts/{account_id}/stream/{identifier}/captions/{language}/generate",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Caption]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Caption]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Caption]], ResultWrapper[Caption]),
         )
 
-    def update(self,
-    language: str,
-    *,
-    account_id: str,
-    identifier: str,
-    file: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Caption]:
+    def update(
+        self,
+        language: str,
+        *,
+        account_id: str,
+        identifier: str,
+        file: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Caption]:
         """
         Uploads the caption or subtitle file to the endpoint for a specific BCP47
         language. One caption or subtitle file per language is allowed.
@@ -136,41 +134,41 @@ class LanguageResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not language:
-          raise ValueError(
-            f'Expected a non-empty value for `language` but received {language!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return self._put(
             f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
-            body=maybe_transform({
-                "file": file
-            }, language_update_params.LanguageUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Caption]]._unwrapper),
+            body=maybe_transform({"file": file}, language_update_params.LanguageUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Caption]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Caption]], ResultWrapper[Caption]),
         )
 
-    def delete(self,
-    language: str,
-    *,
-    account_id: str,
-    identifier: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> str:
+    def delete(
+        self,
+        language: str,
+        *,
+        account_id: str,
+        identifier: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> str:
         """
         Removes the captions or subtitles from a video.
 
@@ -190,34 +188,36 @@ class LanguageResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not language:
-          raise ValueError(
-            f'Expected a non-empty value for `language` but received {language!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         return self._delete(
             f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[LanguageDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[LanguageDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
-    def get(self,
-    language: str,
-    *,
-    account_id: str,
-    identifier: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Caption]:
+    def get(
+        self,
+        language: str,
+        *,
+        account_id: str,
+        identifier: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Caption]:
         """
         Lists the captions or subtitles for provided language.
 
@@ -237,22 +237,23 @@ class LanguageResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not language:
-          raise ValueError(
-            f'Expected a non-empty value for `language` but received {language!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         return self._get(
             f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Caption]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Caption]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Caption]], ResultWrapper[Caption]),
         )
+
 
 class AsyncLanguageResource(AsyncAPIResource):
     @cached_property
@@ -267,17 +268,19 @@ class AsyncLanguageResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncLanguageResourceWithStreamingResponse:
         return AsyncLanguageResourceWithStreamingResponse(self)
 
-    async def create(self,
-    language: str,
-    *,
-    account_id: str,
-    identifier: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Caption]:
+    async def create(
+        self,
+        language: str,
+        *,
+        account_id: str,
+        identifier: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Caption]:
         """
         Generate captions or subtitles for provided language via AI.
 
@@ -297,35 +300,37 @@ class AsyncLanguageResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not language:
-          raise ValueError(
-            f'Expected a non-empty value for `language` but received {language!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         return await self._post(
             f"/accounts/{account_id}/stream/{identifier}/captions/{language}/generate",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Caption]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Caption]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Caption]], ResultWrapper[Caption]),
         )
 
-    async def update(self,
-    language: str,
-    *,
-    account_id: str,
-    identifier: str,
-    file: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Caption]:
+    async def update(
+        self,
+        language: str,
+        *,
+        account_id: str,
+        identifier: str,
+        file: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Caption]:
         """
         Uploads the caption or subtitle file to the endpoint for a specific BCP47
         language. One caption or subtitle file per language is allowed.
@@ -348,41 +353,41 @@ class AsyncLanguageResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not language:
-          raise ValueError(
-            f'Expected a non-empty value for `language` but received {language!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         # It should be noted that the actual Content-Type header that will be
         # sent to the server will contain a `boundary` parameter, e.g.
         # multipart/form-data; boundary=---abc--
         extra_headers = {"Content-Type": "multipart/form-data", **(extra_headers or {})}
         return await self._put(
             f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
-            body=await async_maybe_transform({
-                "file": file
-            }, language_update_params.LanguageUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Caption]]._unwrapper),
+            body=await async_maybe_transform({"file": file}, language_update_params.LanguageUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Caption]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Caption]], ResultWrapper[Caption]),
         )
 
-    async def delete(self,
-    language: str,
-    *,
-    account_id: str,
-    identifier: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> str:
+    async def delete(
+        self,
+        language: str,
+        *,
+        account_id: str,
+        identifier: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> str:
         """
         Removes the captions or subtitles from a video.
 
@@ -402,34 +407,36 @@ class AsyncLanguageResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not language:
-          raise ValueError(
-            f'Expected a non-empty value for `language` but received {language!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         return await self._delete(
             f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[LanguageDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[LanguageDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
-    async def get(self,
-    language: str,
-    *,
-    account_id: str,
-    identifier: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Caption]:
+    async def get(
+        self,
+        language: str,
+        *,
+        account_id: str,
+        identifier: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Caption]:
         """
         Lists the captions or subtitles for provided language.
 
@@ -449,22 +456,23 @@ class AsyncLanguageResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         if not language:
-          raise ValueError(
-            f'Expected a non-empty value for `language` but received {language!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `language` but received {language!r}")
         return await self._get(
             f"/accounts/{account_id}/stream/{identifier}/captions/{language}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Caption]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Caption]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Caption]], ResultWrapper[Caption]),
         )
+
 
 class LanguageResourceWithRawResponse:
     def __init__(self, language: LanguageResource) -> None:
@@ -487,6 +495,7 @@ class LanguageResourceWithRawResponse:
     def vtt(self) -> VttResourceWithRawResponse:
         return VttResourceWithRawResponse(self._language.vtt)
 
+
 class AsyncLanguageResourceWithRawResponse:
     def __init__(self, language: AsyncLanguageResource) -> None:
         self._language = language
@@ -508,6 +517,7 @@ class AsyncLanguageResourceWithRawResponse:
     def vtt(self) -> AsyncVttResourceWithRawResponse:
         return AsyncVttResourceWithRawResponse(self._language.vtt)
 
+
 class LanguageResourceWithStreamingResponse:
     def __init__(self, language: LanguageResource) -> None:
         self._language = language
@@ -528,6 +538,7 @@ class LanguageResourceWithStreamingResponse:
     @cached_property
     def vtt(self) -> VttResourceWithStreamingResponse:
         return VttResourceWithStreamingResponse(self._language.vtt)
+
 
 class AsyncLanguageResourceWithStreamingResponse:
     def __init__(self, language: AsyncLanguageResource) -> None:

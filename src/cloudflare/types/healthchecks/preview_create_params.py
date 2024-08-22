@@ -2,24 +2,16 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Annotated
+from typing import List, Optional
+from typing_extensions import Required, Annotated, TypedDict
 
-from typing import Optional, List
-
+from ..._utils import PropertyInfo
 from .check_region import CheckRegion
-
+from .tcp_configuration_param import TCPConfigurationParam
 from .http_configuration_param import HTTPConfigurationParam
 
-from .tcp_configuration_param import TCPConfigurationParam
-
-from ..._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-
 __all__ = ["PreviewCreateParams"]
+
 
 class PreviewCreateParams(TypedDict, total=False):
     zone_id: Required[str]

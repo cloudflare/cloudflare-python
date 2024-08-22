@@ -2,38 +2,31 @@
 
 from __future__ import annotations
 
+from typing import Any, List, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...._wrappers import ResultWrapper
+from ...._base_client import make_request_options
+from ....types.zero_trust.tunnels import management_create_params
 from ....types.zero_trust.tunnels.management_create_response import ManagementCreateResponse
 
-from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from ...._base_client import make_request_options
-
-from typing import List
-
-from typing_extensions import Literal
-
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.zero_trust.tunnels import management_create_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["ManagementResource", "AsyncManagementResource"]
+
 
 class ManagementResource(SyncAPIResource):
     @cached_property
@@ -44,17 +37,19 @@ class ManagementResource(SyncAPIResource):
     def with_streaming_response(self) -> ManagementResourceWithStreamingResponse:
         return ManagementResourceWithStreamingResponse(self)
 
-    def create(self,
-    tunnel_id: str,
-    *,
-    account_id: str,
-    resources: List[Literal["logs"]],
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> ManagementCreateResponse:
+    def create(
+        self,
+        tunnel_id: str,
+        *,
+        account_id: str,
+        resources: List[Literal["logs"]],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ManagementCreateResponse:
         """Gets a management token used to access the management resources (i.e.
 
         Streaming
@@ -74,21 +69,27 @@ class ManagementResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
-          raise ValueError(
-            f'Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}'
-          )
-        return cast(ManagementCreateResponse, self._post(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/management",
-            body=maybe_transform({
-                "resources": resources
-            }, management_create_params.ManagementCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[ManagementCreateResponse]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[ManagementCreateResponse]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
+        return cast(
+            ManagementCreateResponse,
+            self._post(
+                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/management",
+                body=maybe_transform({"resources": resources}, management_create_params.ManagementCreateParams),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ManagementCreateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ManagementCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
 
 class AsyncManagementResource(AsyncAPIResource):
     @cached_property
@@ -99,17 +100,19 @@ class AsyncManagementResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncManagementResourceWithStreamingResponse:
         return AsyncManagementResourceWithStreamingResponse(self)
 
-    async def create(self,
-    tunnel_id: str,
-    *,
-    account_id: str,
-    resources: List[Literal["logs"]],
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> ManagementCreateResponse:
+    async def create(
+        self,
+        tunnel_id: str,
+        *,
+        account_id: str,
+        resources: List[Literal["logs"]],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ManagementCreateResponse:
         """Gets a management token used to access the management resources (i.e.
 
         Streaming
@@ -129,21 +132,29 @@ class AsyncManagementResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not tunnel_id:
-          raise ValueError(
-            f'Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}'
-          )
-        return cast(ManagementCreateResponse, await self._post(
-            f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/management",
-            body=await async_maybe_transform({
-                "resources": resources
-            }, management_create_params.ManagementCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[ManagementCreateResponse]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[ManagementCreateResponse]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            raise ValueError(f"Expected a non-empty value for `tunnel_id` but received {tunnel_id!r}")
+        return cast(
+            ManagementCreateResponse,
+            await self._post(
+                f"/accounts/{account_id}/cfd_tunnel/{tunnel_id}/management",
+                body=await async_maybe_transform(
+                    {"resources": resources}, management_create_params.ManagementCreateParams
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[ManagementCreateResponse]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ManagementCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
 
 class ManagementResourceWithRawResponse:
     def __init__(self, management: ManagementResource) -> None:
@@ -153,6 +164,7 @@ class ManagementResourceWithRawResponse:
             management.create,
         )
 
+
 class AsyncManagementResourceWithRawResponse:
     def __init__(self, management: AsyncManagementResource) -> None:
         self._management = management
@@ -161,6 +173,7 @@ class AsyncManagementResourceWithRawResponse:
             management.create,
         )
 
+
 class ManagementResourceWithStreamingResponse:
     def __init__(self, management: ManagementResource) -> None:
         self._management = management
@@ -168,6 +181,7 @@ class ManagementResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             management.create,
         )
+
 
 class AsyncManagementResourceWithStreamingResponse:
     def __init__(self, management: AsyncManagementResource) -> None:
