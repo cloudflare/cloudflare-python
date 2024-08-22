@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Type, Optional, cast
+from typing import Type, cast
 from typing_extensions import Literal
 
 import httpx
@@ -49,7 +49,7 @@ class TieredCachingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TieredCachingEditResponse]:
+    ) -> TieredCachingEditResponse:
         """
         Updates enablement of Tiered Caching
 
@@ -76,9 +76,9 @@ class TieredCachingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[TieredCachingEditResponse]]._unwrapper,
+                post_parser=ResultWrapper[TieredCachingEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TieredCachingEditResponse]], ResultWrapper[TieredCachingEditResponse]),
+            cast_to=cast(Type[TieredCachingEditResponse], ResultWrapper[TieredCachingEditResponse]),
         )
 
     def get(
@@ -91,7 +91,7 @@ class TieredCachingResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TieredCachingGetResponse]:
+    ) -> TieredCachingGetResponse:
         """
         Get Tiered Caching setting
 
@@ -115,9 +115,9 @@ class TieredCachingResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[TieredCachingGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[TieredCachingGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TieredCachingGetResponse]], ResultWrapper[TieredCachingGetResponse]),
+            cast_to=cast(Type[TieredCachingGetResponse], ResultWrapper[TieredCachingGetResponse]),
         )
 
 
@@ -141,7 +141,7 @@ class AsyncTieredCachingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TieredCachingEditResponse]:
+    ) -> TieredCachingEditResponse:
         """
         Updates enablement of Tiered Caching
 
@@ -168,9 +168,9 @@ class AsyncTieredCachingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[TieredCachingEditResponse]]._unwrapper,
+                post_parser=ResultWrapper[TieredCachingEditResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TieredCachingEditResponse]], ResultWrapper[TieredCachingEditResponse]),
+            cast_to=cast(Type[TieredCachingEditResponse], ResultWrapper[TieredCachingEditResponse]),
         )
 
     async def get(
@@ -183,7 +183,7 @@ class AsyncTieredCachingResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Optional[TieredCachingGetResponse]:
+    ) -> TieredCachingGetResponse:
         """
         Get Tiered Caching setting
 
@@ -207,9 +207,9 @@ class AsyncTieredCachingResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                post_parser=ResultWrapper[Optional[TieredCachingGetResponse]]._unwrapper,
+                post_parser=ResultWrapper[TieredCachingGetResponse]._unwrapper,
             ),
-            cast_to=cast(Type[Optional[TieredCachingGetResponse]], ResultWrapper[TieredCachingGetResponse]),
+            cast_to=cast(Type[TieredCachingGetResponse], ResultWrapper[TieredCachingGetResponse]),
         )
 
 
