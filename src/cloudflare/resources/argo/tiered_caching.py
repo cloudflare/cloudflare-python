@@ -12,9 +12,9 @@ from ..._wrappers import ResultWrapper
 
 from ..._utils import maybe_transform, async_maybe_transform
 
-from typing import Optional, Type
-
 from ..._base_client import make_request_options
+
+from typing import Type
 
 from typing_extensions import Literal
 
@@ -55,7 +55,7 @@ class TieredCachingResource(SyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TieredCachingEditResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TieredCachingEditResponse:
         """
         Updates enablement of Tiered Caching
 
@@ -81,8 +81,8 @@ class TieredCachingResource(SyncAPIResource):
             body=maybe_transform({
                 "value": value
             }, tiered_caching_edit_params.TieredCachingEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TieredCachingEditResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[TieredCachingEditResponse]], ResultWrapper[TieredCachingEditResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[TieredCachingEditResponse]._unwrapper),
+            cast_to=cast(Type[TieredCachingEditResponse], ResultWrapper[TieredCachingEditResponse]),
         )
 
     def get(self,
@@ -93,7 +93,7 @@ class TieredCachingResource(SyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TieredCachingGetResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TieredCachingGetResponse:
         """
         Get Tiered Caching setting
 
@@ -114,8 +114,8 @@ class TieredCachingResource(SyncAPIResource):
           )
         return self._get(
             f"/zones/{zone_id}/argo/tiered_caching",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TieredCachingGetResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[TieredCachingGetResponse]], ResultWrapper[TieredCachingGetResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[TieredCachingGetResponse]._unwrapper),
+            cast_to=cast(Type[TieredCachingGetResponse], ResultWrapper[TieredCachingGetResponse]),
         )
 
 class AsyncTieredCachingResource(AsyncAPIResource):
@@ -136,7 +136,7 @@ class AsyncTieredCachingResource(AsyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TieredCachingEditResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TieredCachingEditResponse:
         """
         Updates enablement of Tiered Caching
 
@@ -162,8 +162,8 @@ class AsyncTieredCachingResource(AsyncAPIResource):
             body=await async_maybe_transform({
                 "value": value
             }, tiered_caching_edit_params.TieredCachingEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TieredCachingEditResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[TieredCachingEditResponse]], ResultWrapper[TieredCachingEditResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[TieredCachingEditResponse]._unwrapper),
+            cast_to=cast(Type[TieredCachingEditResponse], ResultWrapper[TieredCachingEditResponse]),
         )
 
     async def get(self,
@@ -174,7 +174,7 @@ class AsyncTieredCachingResource(AsyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TieredCachingGetResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TieredCachingGetResponse:
         """
         Get Tiered Caching setting
 
@@ -195,8 +195,8 @@ class AsyncTieredCachingResource(AsyncAPIResource):
           )
         return await self._get(
             f"/zones/{zone_id}/argo/tiered_caching",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TieredCachingGetResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[TieredCachingGetResponse]], ResultWrapper[TieredCachingGetResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[TieredCachingGetResponse]._unwrapper),
+            cast_to=cast(Type[TieredCachingGetResponse], ResultWrapper[TieredCachingGetResponse]),
         )
 
 class TieredCachingResourceWithRawResponse:

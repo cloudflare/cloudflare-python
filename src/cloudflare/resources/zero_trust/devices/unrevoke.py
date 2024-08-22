@@ -10,7 +10,7 @@ from ....types.zero_trust.devices.unrevoke_create_response import UnrevokeCreate
 
 from ...._wrappers import ResultWrapper
 
-from typing import Optional, List
+from typing import List
 
 from ...._utils import maybe_transform, async_maybe_transform
 
@@ -51,7 +51,7 @@ class UnrevokeResource(SyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[UnrevokeCreateResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> UnrevokeCreateResponse:
         """
         Unrevokes a list of devices.
 
@@ -70,10 +70,10 @@ class UnrevokeResource(SyncAPIResource):
           raise ValueError(
             f'Expected a non-empty value for `account_id` but received {account_id!r}'
           )
-        return cast(Optional[UnrevokeCreateResponse], self._post(
+        return cast(UnrevokeCreateResponse, self._post(
             f"/accounts/{account_id}/devices/unrevoke",
             body=maybe_transform(body, List[str]),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[UnrevokeCreateResponse]]._unwrapper),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[UnrevokeCreateResponse]._unwrapper),
             cast_to=cast(Any, ResultWrapper[UnrevokeCreateResponse]),  # Union types cannot be passed in as arguments in the type system
         ))
 
@@ -95,7 +95,7 @@ class AsyncUnrevokeResource(AsyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[UnrevokeCreateResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> UnrevokeCreateResponse:
         """
         Unrevokes a list of devices.
 
@@ -114,10 +114,10 @@ class AsyncUnrevokeResource(AsyncAPIResource):
           raise ValueError(
             f'Expected a non-empty value for `account_id` but received {account_id!r}'
           )
-        return cast(Optional[UnrevokeCreateResponse], await self._post(
+        return cast(UnrevokeCreateResponse, await self._post(
             f"/accounts/{account_id}/devices/unrevoke",
             body=await async_maybe_transform(body, List[str]),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[UnrevokeCreateResponse]]._unwrapper),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[UnrevokeCreateResponse]._unwrapper),
             cast_to=cast(Any, ResultWrapper[UnrevokeCreateResponse]),  # Union types cannot be passed in as arguments in the type system
         ))
 

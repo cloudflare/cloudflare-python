@@ -163,7 +163,7 @@ class TestIntegrations:
             integration_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[IntegrationDeleteResponse], integration, path=['response'])
+        assert_matches_type(IntegrationDeleteResponse, integration, path=['response'])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
@@ -176,7 +176,7 @@ class TestIntegrations:
         assert response.is_closed is True
         assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         integration = response.parse()
-        assert_matches_type(Optional[IntegrationDeleteResponse], integration, path=['response'])
+        assert_matches_type(IntegrationDeleteResponse, integration, path=['response'])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -188,7 +188,7 @@ class TestIntegrations:
             assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             integration = response.parse()
-            assert_matches_type(Optional[IntegrationDeleteResponse], integration, path=['response'])
+            assert_matches_type(IntegrationDeleteResponse, integration, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 
@@ -460,7 +460,7 @@ class TestAsyncIntegrations:
             integration_id="f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
             account_id="699d98642c564d2e855e9661899b7252",
         )
-        assert_matches_type(Optional[IntegrationDeleteResponse], integration, path=['response'])
+        assert_matches_type(IntegrationDeleteResponse, integration, path=['response'])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -473,7 +473,7 @@ class TestAsyncIntegrations:
         assert response.is_closed is True
         assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
         integration = await response.parse()
-        assert_matches_type(Optional[IntegrationDeleteResponse], integration, path=['response'])
+        assert_matches_type(IntegrationDeleteResponse, integration, path=['response'])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -485,7 +485,7 @@ class TestAsyncIntegrations:
             assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
 
             integration = await response.parse()
-            assert_matches_type(Optional[IntegrationDeleteResponse], integration, path=['response'])
+            assert_matches_type(IntegrationDeleteResponse, integration, path=['response'])
 
         assert cast(Any, response.is_closed) is True
 

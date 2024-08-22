@@ -10,4 +10,4 @@ from pydantic import Field as FieldInfo
 
 __all__ = ["SmartRoutingEditResponse"]
 
-SmartRoutingEditResponse: TypeAlias = Union[Optional[str], object]
+SmartRoutingEditResponse: TypeAlias = Union[Optional[str], Optional[object]]
