@@ -24,9 +24,13 @@ from typing import Optional, Type
 
 from ...._base_client import make_request_options, AsyncPaginator
 
+from ....types.kv.namespace_update_response import NamespaceUpdateResponse
+
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
 
 from typing_extensions import Literal
+
+from ....types.kv.namespace_delete_response import NamespaceDeleteResponse
 
 from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
 
@@ -132,7 +136,7 @@ class NamespacesResource(SyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[NamespaceUpdateResponse]:
         """
         Modifies a namespace's title.
 
@@ -164,8 +168,8 @@ class NamespacesResource(SyncAPIResource):
             body=maybe_transform({
                 "title": title
             }, namespace_update_params.NamespaceUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[NamespaceUpdateResponse]]._unwrapper),
+            cast_to=cast(Type[Optional[NamespaceUpdateResponse]], ResultWrapper[NamespaceUpdateResponse]),
         )
 
     def list(self,
@@ -228,7 +232,7 @@ class NamespacesResource(SyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[NamespaceDeleteResponse]:
         """
         Deletes the namespace corresponding to the given ID.
 
@@ -255,8 +259,8 @@ class NamespacesResource(SyncAPIResource):
           )
         return self._delete(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[NamespaceDeleteResponse]]._unwrapper),
+            cast_to=cast(Type[Optional[NamespaceDeleteResponse]], ResultWrapper[NamespaceDeleteResponse]),
         )
 
     def get(self,
@@ -376,7 +380,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[NamespaceUpdateResponse]:
         """
         Modifies a namespace's title.
 
@@ -408,8 +412,8 @@ class AsyncNamespacesResource(AsyncAPIResource):
             body=await async_maybe_transform({
                 "title": title
             }, namespace_update_params.NamespaceUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[NamespaceUpdateResponse]]._unwrapper),
+            cast_to=cast(Type[Optional[NamespaceUpdateResponse]], ResultWrapper[NamespaceUpdateResponse]),
         )
 
     def list(self,
@@ -472,7 +476,7 @@ class AsyncNamespacesResource(AsyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[NamespaceDeleteResponse]:
         """
         Deletes the namespace corresponding to the given ID.
 
@@ -499,8 +503,8 @@ class AsyncNamespacesResource(AsyncAPIResource):
           )
         return await self._delete(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
-            cast_to=cast(Type[object], ResultWrapper[object]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[NamespaceDeleteResponse]]._unwrapper),
+            cast_to=cast(Type[Optional[NamespaceDeleteResponse]], ResultWrapper[NamespaceDeleteResponse]),
         )
 
     async def get(self,

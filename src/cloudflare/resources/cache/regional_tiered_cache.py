@@ -12,9 +12,9 @@ from ..._wrappers import ResultWrapper
 
 from ..._utils import maybe_transform, async_maybe_transform
 
-from typing import Optional, Type
-
 from ..._base_client import make_request_options
+
+from typing import Type
 
 from typing_extensions import Literal
 
@@ -55,7 +55,7 @@ class RegionalTieredCacheResource(SyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[RegionalTieredCacheEditResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> RegionalTieredCacheEditResponse:
         """
         Instructs Cloudflare to check a regional hub data center on the way to your
         upper tier. This can help improve performance for smart and custom tiered cache
@@ -83,8 +83,8 @@ class RegionalTieredCacheResource(SyncAPIResource):
             body=maybe_transform({
                 "value": value
             }, regional_tiered_cache_edit_params.RegionalTieredCacheEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[RegionalTieredCacheEditResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[RegionalTieredCacheEditResponse]], ResultWrapper[RegionalTieredCacheEditResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[RegionalTieredCacheEditResponse]._unwrapper),
+            cast_to=cast(Type[RegionalTieredCacheEditResponse], ResultWrapper[RegionalTieredCacheEditResponse]),
         )
 
     def get(self,
@@ -95,7 +95,7 @@ class RegionalTieredCacheResource(SyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[RegionalTieredCacheGetResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> RegionalTieredCacheGetResponse:
         """
         Instructs Cloudflare to check a regional hub data center on the way to your
         upper tier. This can help improve performance for smart and custom tiered cache
@@ -118,8 +118,8 @@ class RegionalTieredCacheResource(SyncAPIResource):
           )
         return self._get(
             f"/zones/{zone_id}/cache/regional_tiered_cache",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[RegionalTieredCacheGetResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[RegionalTieredCacheGetResponse]], ResultWrapper[RegionalTieredCacheGetResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[RegionalTieredCacheGetResponse]._unwrapper),
+            cast_to=cast(Type[RegionalTieredCacheGetResponse], ResultWrapper[RegionalTieredCacheGetResponse]),
         )
 
 class AsyncRegionalTieredCacheResource(AsyncAPIResource):
@@ -140,7 +140,7 @@ class AsyncRegionalTieredCacheResource(AsyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[RegionalTieredCacheEditResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> RegionalTieredCacheEditResponse:
         """
         Instructs Cloudflare to check a regional hub data center on the way to your
         upper tier. This can help improve performance for smart and custom tiered cache
@@ -168,8 +168,8 @@ class AsyncRegionalTieredCacheResource(AsyncAPIResource):
             body=await async_maybe_transform({
                 "value": value
             }, regional_tiered_cache_edit_params.RegionalTieredCacheEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[RegionalTieredCacheEditResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[RegionalTieredCacheEditResponse]], ResultWrapper[RegionalTieredCacheEditResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[RegionalTieredCacheEditResponse]._unwrapper),
+            cast_to=cast(Type[RegionalTieredCacheEditResponse], ResultWrapper[RegionalTieredCacheEditResponse]),
         )
 
     async def get(self,
@@ -180,7 +180,7 @@ class AsyncRegionalTieredCacheResource(AsyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[RegionalTieredCacheGetResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> RegionalTieredCacheGetResponse:
         """
         Instructs Cloudflare to check a regional hub data center on the way to your
         upper tier. This can help improve performance for smart and custom tiered cache
@@ -203,8 +203,8 @@ class AsyncRegionalTieredCacheResource(AsyncAPIResource):
           )
         return await self._get(
             f"/zones/{zone_id}/cache/regional_tiered_cache",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[RegionalTieredCacheGetResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[RegionalTieredCacheGetResponse]], ResultWrapper[RegionalTieredCacheGetResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[RegionalTieredCacheGetResponse]._unwrapper),
+            cast_to=cast(Type[RegionalTieredCacheGetResponse], ResultWrapper[RegionalTieredCacheGetResponse]),
         )
 
 class RegionalTieredCacheResourceWithRawResponse:

@@ -178,7 +178,7 @@ class IndexesResource(SyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IndexDeleteResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> IndexDeleteResponse:
         """
         Deletes the specified Vectorize Index.
 
@@ -201,9 +201,9 @@ class IndexesResource(SyncAPIResource):
           raise ValueError(
             f'Expected a non-empty value for `index_name` but received {index_name!r}'
           )
-        return cast(Optional[IndexDeleteResponse], self._delete(
+        return cast(IndexDeleteResponse, self._delete(
             f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IndexDeleteResponse]]._unwrapper),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[IndexDeleteResponse]._unwrapper),
             cast_to=cast(Any, ResultWrapper[IndexDeleteResponse]),  # Union types cannot be passed in as arguments in the type system
         ))
 
@@ -629,7 +629,7 @@ class AsyncIndexesResource(AsyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[IndexDeleteResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> IndexDeleteResponse:
         """
         Deletes the specified Vectorize Index.
 
@@ -652,9 +652,9 @@ class AsyncIndexesResource(AsyncAPIResource):
           raise ValueError(
             f'Expected a non-empty value for `index_name` but received {index_name!r}'
           )
-        return cast(Optional[IndexDeleteResponse], await self._delete(
+        return cast(IndexDeleteResponse, await self._delete(
             f"/accounts/{account_id}/vectorize/v2/indexes/{index_name}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[IndexDeleteResponse]]._unwrapper),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[IndexDeleteResponse]._unwrapper),
             cast_to=cast(Any, ResultWrapper[IndexDeleteResponse]),  # Union types cannot be passed in as arguments in the type system
         ))
 

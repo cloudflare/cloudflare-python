@@ -12,9 +12,9 @@ from ..._wrappers import ResultWrapper
 
 from ..._utils import maybe_transform, async_maybe_transform
 
-from typing import Optional, Type
-
 from ..._base_client import make_request_options
+
+from typing import Type
 
 from ...types.cache.cache_reserve_edit_response import CacheReserveEditResponse
 
@@ -64,7 +64,7 @@ class CacheReserveResource(SyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CacheReserveClearResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> CacheReserveClearResponse:
         """
         You can use Cache Reserve Clear to clear your Cache Reserve, but you must first
         disable Cache Reserve. In most cases, this will be accomplished within 24 hours.
@@ -89,8 +89,8 @@ class CacheReserveResource(SyncAPIResource):
         return self._post(
             f"/zones/{zone_id}/cache/cache_reserve_clear",
             body=maybe_transform(body, cache_reserve_clear_params.CacheReserveClearParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CacheReserveClearResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[CacheReserveClearResponse]], ResultWrapper[CacheReserveClearResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[CacheReserveClearResponse]._unwrapper),
+            cast_to=cast(Type[CacheReserveClearResponse], ResultWrapper[CacheReserveClearResponse]),
         )
 
     def edit(self,
@@ -102,7 +102,7 @@ class CacheReserveResource(SyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CacheReserveEditResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> CacheReserveEditResponse:
         """
         Increase cache lifetimes by automatically storing all cacheable files into
         Cloudflare's persistent object storage buckets. Requires Cache Reserve
@@ -133,8 +133,8 @@ class CacheReserveResource(SyncAPIResource):
             body=maybe_transform({
                 "value": value
             }, cache_reserve_edit_params.CacheReserveEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CacheReserveEditResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[CacheReserveEditResponse]], ResultWrapper[CacheReserveEditResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[CacheReserveEditResponse]._unwrapper),
+            cast_to=cast(Type[CacheReserveEditResponse], ResultWrapper[CacheReserveEditResponse]),
         )
 
     def get(self,
@@ -145,7 +145,7 @@ class CacheReserveResource(SyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CacheReserveGetResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> CacheReserveGetResponse:
         """
         Increase cache lifetimes by automatically storing all cacheable files into
         Cloudflare's persistent object storage buckets. Requires Cache Reserve
@@ -171,8 +171,8 @@ class CacheReserveResource(SyncAPIResource):
           )
         return self._get(
             f"/zones/{zone_id}/cache/cache_reserve",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CacheReserveGetResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[CacheReserveGetResponse]], ResultWrapper[CacheReserveGetResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[CacheReserveGetResponse]._unwrapper),
+            cast_to=cast(Type[CacheReserveGetResponse], ResultWrapper[CacheReserveGetResponse]),
         )
 
     def status(self,
@@ -183,7 +183,7 @@ class CacheReserveResource(SyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CacheReserveStatusResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> CacheReserveStatusResponse:
         """
         You can use Cache Reserve Clear to clear your Cache Reserve, but you must first
         disable Cache Reserve. In most cases, this will be accomplished within 24 hours.
@@ -207,8 +207,8 @@ class CacheReserveResource(SyncAPIResource):
           )
         return self._get(
             f"/zones/{zone_id}/cache/cache_reserve_clear",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CacheReserveStatusResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[CacheReserveStatusResponse]], ResultWrapper[CacheReserveStatusResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[CacheReserveStatusResponse]._unwrapper),
+            cast_to=cast(Type[CacheReserveStatusResponse], ResultWrapper[CacheReserveStatusResponse]),
         )
 
 class AsyncCacheReserveResource(AsyncAPIResource):
@@ -229,7 +229,7 @@ class AsyncCacheReserveResource(AsyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CacheReserveClearResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> CacheReserveClearResponse:
         """
         You can use Cache Reserve Clear to clear your Cache Reserve, but you must first
         disable Cache Reserve. In most cases, this will be accomplished within 24 hours.
@@ -254,8 +254,8 @@ class AsyncCacheReserveResource(AsyncAPIResource):
         return await self._post(
             f"/zones/{zone_id}/cache/cache_reserve_clear",
             body=await async_maybe_transform(body, cache_reserve_clear_params.CacheReserveClearParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CacheReserveClearResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[CacheReserveClearResponse]], ResultWrapper[CacheReserveClearResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[CacheReserveClearResponse]._unwrapper),
+            cast_to=cast(Type[CacheReserveClearResponse], ResultWrapper[CacheReserveClearResponse]),
         )
 
     async def edit(self,
@@ -267,7 +267,7 @@ class AsyncCacheReserveResource(AsyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CacheReserveEditResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> CacheReserveEditResponse:
         """
         Increase cache lifetimes by automatically storing all cacheable files into
         Cloudflare's persistent object storage buckets. Requires Cache Reserve
@@ -298,8 +298,8 @@ class AsyncCacheReserveResource(AsyncAPIResource):
             body=await async_maybe_transform({
                 "value": value
             }, cache_reserve_edit_params.CacheReserveEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CacheReserveEditResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[CacheReserveEditResponse]], ResultWrapper[CacheReserveEditResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[CacheReserveEditResponse]._unwrapper),
+            cast_to=cast(Type[CacheReserveEditResponse], ResultWrapper[CacheReserveEditResponse]),
         )
 
     async def get(self,
@@ -310,7 +310,7 @@ class AsyncCacheReserveResource(AsyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CacheReserveGetResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> CacheReserveGetResponse:
         """
         Increase cache lifetimes by automatically storing all cacheable files into
         Cloudflare's persistent object storage buckets. Requires Cache Reserve
@@ -336,8 +336,8 @@ class AsyncCacheReserveResource(AsyncAPIResource):
           )
         return await self._get(
             f"/zones/{zone_id}/cache/cache_reserve",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CacheReserveGetResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[CacheReserveGetResponse]], ResultWrapper[CacheReserveGetResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[CacheReserveGetResponse]._unwrapper),
+            cast_to=cast(Type[CacheReserveGetResponse], ResultWrapper[CacheReserveGetResponse]),
         )
 
     async def status(self,
@@ -348,7 +348,7 @@ class AsyncCacheReserveResource(AsyncAPIResource):
     extra_headers: Headers | None = None,
     extra_query: Query | None = None,
     extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CacheReserveStatusResponse]:
+    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> CacheReserveStatusResponse:
         """
         You can use Cache Reserve Clear to clear your Cache Reserve, but you must first
         disable Cache Reserve. In most cases, this will be accomplished within 24 hours.
@@ -372,8 +372,8 @@ class AsyncCacheReserveResource(AsyncAPIResource):
           )
         return await self._get(
             f"/zones/{zone_id}/cache/cache_reserve_clear",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CacheReserveStatusResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[CacheReserveStatusResponse]], ResultWrapper[CacheReserveStatusResponse]),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[CacheReserveStatusResponse]._unwrapper),
+            cast_to=cast(Type[CacheReserveStatusResponse], ResultWrapper[CacheReserveStatusResponse]),
         )
 
 class CacheReserveResourceWithRawResponse:

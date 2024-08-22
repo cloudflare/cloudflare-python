@@ -10,4 +10,4 @@ from pydantic import Field as FieldInfo
 
 __all__ = ["RegionGetResponse"]
 
-RegionGetResponse: TypeAlias = Union[Optional[str], object]
+RegionGetResponse: TypeAlias = Union[Optional[str], Optional[object]]

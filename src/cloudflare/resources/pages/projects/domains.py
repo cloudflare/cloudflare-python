@@ -183,7 +183,7 @@ class DomainsResource(SyncAPIResource):
           )
         return self._delete(
             f"/accounts/{account_id}/pages/projects/{project_name}/domains/{domain_name}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[object]._unwrapper),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
@@ -420,7 +420,7 @@ class AsyncDomainsResource(AsyncAPIResource):
           )
         return await self._delete(
             f"/accounts/{account_id}/pages/projects/{project_name}/domains/{domain_name}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[object]._unwrapper),
+            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
