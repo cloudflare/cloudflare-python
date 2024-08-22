@@ -2,97 +2,88 @@
 
 from __future__ import annotations
 
+from typing import Dict, List, Type, Iterable, cast
+
 import httpx
 
-from .monitors.monitors import MonitorsResource, AsyncMonitorsResource
-
+from .pools import (
+    PoolsResource,
+    AsyncPoolsResource,
+    PoolsResourceWithRawResponse,
+    AsyncPoolsResourceWithRawResponse,
+    PoolsResourceWithStreamingResponse,
+    AsyncPoolsResourceWithStreamingResponse,
+)
+from .regions import (
+    RegionsResource,
+    AsyncRegionsResource,
+    RegionsResourceWithRawResponse,
+    AsyncRegionsResourceWithRawResponse,
+    RegionsResourceWithStreamingResponse,
+    AsyncRegionsResourceWithStreamingResponse,
+)
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from .monitors import (
+    MonitorsResource,
+    AsyncMonitorsResource,
+    MonitorsResourceWithRawResponse,
+    AsyncMonitorsResourceWithRawResponse,
+    MonitorsResourceWithStreamingResponse,
+    AsyncMonitorsResourceWithStreamingResponse,
+)
+from .previews import (
+    PreviewsResource,
+    AsyncPreviewsResource,
+    PreviewsResourceWithRawResponse,
+    AsyncPreviewsResourceWithRawResponse,
+    PreviewsResourceWithStreamingResponse,
+    AsyncPreviewsResourceWithStreamingResponse,
+)
+from .searches import (
+    SearchesResource,
+    AsyncSearchesResource,
+    SearchesResourceWithRawResponse,
+    AsyncSearchesResourceWithRawResponse,
+    SearchesResourceWithStreamingResponse,
+    AsyncSearchesResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
-
-from .pools.pools import PoolsResource, AsyncPoolsResource
-
-from .previews import PreviewsResource, AsyncPreviewsResource
-
-from .regions import RegionsResource, AsyncRegionsResource
-
-from .searches import SearchesResource, AsyncSearchesResource
-
-from ...types.load_balancers.load_balancer import LoadBalancer
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from ..._base_client import make_request_options, AsyncPaginator
-
-from typing import Type, List, Dict, Iterable
-
-from ...types.load_balancers.default_pools import DefaultPools
-
-from ...types.load_balancers.adaptive_routing_param import AdaptiveRoutingParam
-
-from ...types.load_balancers.location_strategy_param import LocationStrategyParam
-
-from ...types.load_balancers.random_steering_param import RandomSteeringParam
-
+from .pools.pools import PoolsResource, AsyncPoolsResource
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
+from .monitors.monitors import MonitorsResource, AsyncMonitorsResource
+from ...types.load_balancers import (
+    SteeringPolicy,
+    SessionAffinity,
+    load_balancer_edit_params,
+    load_balancer_create_params,
+    load_balancer_update_params,
+)
 from ...types.load_balancers.rules_param import RulesParam
-
+from ...types.load_balancers.default_pools import DefaultPools
+from ...types.load_balancers.load_balancer import LoadBalancer
+from ...types.load_balancers.steering_policy import SteeringPolicy
 from ...types.load_balancers.session_affinity import SessionAffinity
-
+from ...types.load_balancers.random_steering_param import RandomSteeringParam
+from ...types.load_balancers.adaptive_routing_param import AdaptiveRoutingParam
+from ...types.load_balancers.location_strategy_param import LocationStrategyParam
+from ...types.load_balancers.load_balancer_delete_response import LoadBalancerDeleteResponse
 from ...types.load_balancers.session_affinity_attributes_param import SessionAffinityAttributesParam
 
-from ...types.load_balancers.steering_policy import SteeringPolicy
-
-from ...pagination import SyncSinglePage, AsyncSinglePage
-
-from ...types.load_balancers.load_balancer_delete_response import LoadBalancerDeleteResponse
-
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.load_balancers import load_balancer_create_params
-from ...types.load_balancers import load_balancer_update_params
-from ...types.load_balancers import load_balancer_edit_params
-from ...types.load_balancers import AdaptiveRouting
-from ...types.load_balancers import LocationStrategy
-from ...types.load_balancers import RandomSteering
-from ...types.load_balancers import SessionAffinity
-from ...types.load_balancers import SessionAffinityAttributes
-from ...types.load_balancers import SteeringPolicy
-from ...types.load_balancers import AdaptiveRouting
-from ...types.load_balancers import LocationStrategy
-from ...types.load_balancers import RandomSteering
-from ...types.load_balancers import SessionAffinity
-from ...types.load_balancers import SessionAffinityAttributes
-from ...types.load_balancers import SteeringPolicy
-from ...types.load_balancers import AdaptiveRouting
-from ...types.load_balancers import LocationStrategy
-from ...types.load_balancers import RandomSteering
-from ...types.load_balancers import SessionAffinity
-from ...types.load_balancers import SessionAffinityAttributes
-from ...types.load_balancers import SteeringPolicy
-from .monitors import MonitorsResource, AsyncMonitorsResource, MonitorsResourceWithRawResponse, AsyncMonitorsResourceWithRawResponse, MonitorsResourceWithStreamingResponse, AsyncMonitorsResourceWithStreamingResponse
-from .pools import PoolsResource, AsyncPoolsResource, PoolsResourceWithRawResponse, AsyncPoolsResourceWithRawResponse, PoolsResourceWithStreamingResponse, AsyncPoolsResourceWithStreamingResponse
-from .previews import PreviewsResource, AsyncPreviewsResource, PreviewsResourceWithRawResponse, AsyncPreviewsResourceWithRawResponse, PreviewsResourceWithStreamingResponse, AsyncPreviewsResourceWithStreamingResponse
-from .regions import RegionsResource, AsyncRegionsResource, RegionsResourceWithRawResponse, AsyncRegionsResourceWithRawResponse, RegionsResourceWithStreamingResponse, AsyncRegionsResourceWithStreamingResponse
-from .searches import SearchesResource, AsyncSearchesResource, SearchesResourceWithRawResponse, AsyncSearchesResourceWithRawResponse, SearchesResourceWithStreamingResponse, AsyncSearchesResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["LoadBalancersResource", "AsyncLoadBalancersResource"]
+
 
 class LoadBalancersResource(SyncAPIResource):
     @cached_property
@@ -123,32 +114,34 @@ class LoadBalancersResource(SyncAPIResource):
     def with_streaming_response(self) -> LoadBalancersResourceWithStreamingResponse:
         return LoadBalancersResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    zone_id: str,
-    default_pools: List[DefaultPools],
-    fallback_pool: str,
-    name: str,
-    adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
-    country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
-    pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-    proxied: bool | NotGiven = NOT_GIVEN,
-    random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
-    region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-    rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
-    session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
-    session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
-    session_affinity_ttl: float | NotGiven = NOT_GIVEN,
-    steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
-    ttl: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> LoadBalancer:
+    def create(
+        self,
+        *,
+        zone_id: str,
+        default_pools: List[DefaultPools],
+        fallback_pool: str,
+        name: str,
+        adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
+        country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
+        pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
+        region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
+        session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
+        session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
+        session_affinity_ttl: float | NotGiven = NOT_GIVEN,
+        steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
+        ttl: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> LoadBalancer:
         """
         Create a new load balancer.
 
@@ -274,62 +267,71 @@ class LoadBalancersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
             f"/zones/{zone_id}/load_balancers",
-            body=maybe_transform({
-                "default_pools": default_pools,
-                "fallback_pool": fallback_pool,
-                "name": name,
-                "adaptive_routing": adaptive_routing,
-                "country_pools": country_pools,
-                "description": description,
-                "location_strategy": location_strategy,
-                "pop_pools": pop_pools,
-                "proxied": proxied,
-                "random_steering": random_steering,
-                "region_pools": region_pools,
-                "rules": rules,
-                "session_affinity": session_affinity,
-                "session_affinity_attributes": session_affinity_attributes,
-                "session_affinity_ttl": session_affinity_ttl,
-                "steering_policy": steering_policy,
-                "ttl": ttl,
-            }, load_balancer_create_params.LoadBalancerCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[LoadBalancer]._unwrapper),
+            body=maybe_transform(
+                {
+                    "default_pools": default_pools,
+                    "fallback_pool": fallback_pool,
+                    "name": name,
+                    "adaptive_routing": adaptive_routing,
+                    "country_pools": country_pools,
+                    "description": description,
+                    "location_strategy": location_strategy,
+                    "pop_pools": pop_pools,
+                    "proxied": proxied,
+                    "random_steering": random_steering,
+                    "region_pools": region_pools,
+                    "rules": rules,
+                    "session_affinity": session_affinity,
+                    "session_affinity_attributes": session_affinity_attributes,
+                    "session_affinity_ttl": session_affinity_ttl,
+                    "steering_policy": steering_policy,
+                    "ttl": ttl,
+                },
+                load_balancer_create_params.LoadBalancerCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
+            ),
             cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
 
-    def update(self,
-    load_balancer_id: str,
-    *,
-    zone_id: str,
-    default_pools: List[DefaultPools],
-    fallback_pool: str,
-    name: str,
-    adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
-    country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    enabled: bool | NotGiven = NOT_GIVEN,
-    location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
-    pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-    proxied: bool | NotGiven = NOT_GIVEN,
-    random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
-    region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-    rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
-    session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
-    session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
-    session_affinity_ttl: float | NotGiven = NOT_GIVEN,
-    steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
-    ttl: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> LoadBalancer:
+    def update(
+        self,
+        load_balancer_id: str,
+        *,
+        zone_id: str,
+        default_pools: List[DefaultPools],
+        fallback_pool: str,
+        name: str,
+        adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
+        country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
+        pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
+        region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
+        session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
+        session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
+        session_affinity_ttl: float | NotGiven = NOT_GIVEN,
+        steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
+        ttl: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> LoadBalancer:
         """
         Update a configured load balancer.
 
@@ -457,48 +459,55 @@ class LoadBalancersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
-          raise ValueError(
-            f'Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return self._put(
             f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
-            body=maybe_transform({
-                "default_pools": default_pools,
-                "fallback_pool": fallback_pool,
-                "name": name,
-                "adaptive_routing": adaptive_routing,
-                "country_pools": country_pools,
-                "description": description,
-                "enabled": enabled,
-                "location_strategy": location_strategy,
-                "pop_pools": pop_pools,
-                "proxied": proxied,
-                "random_steering": random_steering,
-                "region_pools": region_pools,
-                "rules": rules,
-                "session_affinity": session_affinity,
-                "session_affinity_attributes": session_affinity_attributes,
-                "session_affinity_ttl": session_affinity_ttl,
-                "steering_policy": steering_policy,
-                "ttl": ttl,
-            }, load_balancer_update_params.LoadBalancerUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[LoadBalancer]._unwrapper),
+            body=maybe_transform(
+                {
+                    "default_pools": default_pools,
+                    "fallback_pool": fallback_pool,
+                    "name": name,
+                    "adaptive_routing": adaptive_routing,
+                    "country_pools": country_pools,
+                    "description": description,
+                    "enabled": enabled,
+                    "location_strategy": location_strategy,
+                    "pop_pools": pop_pools,
+                    "proxied": proxied,
+                    "random_steering": random_steering,
+                    "region_pools": region_pools,
+                    "rules": rules,
+                    "session_affinity": session_affinity,
+                    "session_affinity_attributes": session_affinity_attributes,
+                    "session_affinity_ttl": session_affinity_ttl,
+                    "steering_policy": steering_policy,
+                    "ttl": ttl,
+                },
+                load_balancer_update_params.LoadBalancerUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
+            ),
             cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
 
-    def list(self,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[LoadBalancer]:
+    def list(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[LoadBalancer]:
         """
         List configured load balancers.
 
@@ -512,26 +521,28 @@ class LoadBalancersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/load_balancers",
-            page = SyncSinglePage[LoadBalancer],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=SyncSinglePage[LoadBalancer],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=LoadBalancer,
         )
 
-    def delete(self,
-    load_balancer_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> LoadBalancerDeleteResponse:
+    def delete(
+        self,
+        load_balancer_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> LoadBalancerDeleteResponse:
         """
         Delete a configured load balancer.
 
@@ -545,47 +556,51 @@ class LoadBalancersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
-          raise ValueError(
-            f'Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return self._delete(
             f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[LoadBalancerDeleteResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[LoadBalancerDeleteResponse]._unwrapper,
+            ),
             cast_to=cast(Type[LoadBalancerDeleteResponse], ResultWrapper[LoadBalancerDeleteResponse]),
         )
 
-    def edit(self,
-    load_balancer_id: str,
-    *,
-    zone_id: str,
-    adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
-    country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-    default_pools: List[DefaultPools] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    enabled: bool | NotGiven = NOT_GIVEN,
-    fallback_pool: str | NotGiven = NOT_GIVEN,
-    location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-    proxied: bool | NotGiven = NOT_GIVEN,
-    random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
-    region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-    rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
-    session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
-    session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
-    session_affinity_ttl: float | NotGiven = NOT_GIVEN,
-    steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
-    ttl: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> LoadBalancer:
+    def edit(
+        self,
+        load_balancer_id: str,
+        *,
+        zone_id: str,
+        adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
+        country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        default_pools: List[DefaultPools] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        fallback_pool: str | NotGiven = NOT_GIVEN,
+        location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
+        region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
+        session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
+        session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
+        session_affinity_ttl: float | NotGiven = NOT_GIVEN,
+        steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
+        ttl: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> LoadBalancer:
         """
         Apply changes to an existing load balancer, overwriting the supplied properties.
 
@@ -713,49 +728,56 @@ class LoadBalancersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
-          raise ValueError(
-            f'Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return self._patch(
             f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
-            body=maybe_transform({
-                "adaptive_routing": adaptive_routing,
-                "country_pools": country_pools,
-                "default_pools": default_pools,
-                "description": description,
-                "enabled": enabled,
-                "fallback_pool": fallback_pool,
-                "location_strategy": location_strategy,
-                "name": name,
-                "pop_pools": pop_pools,
-                "proxied": proxied,
-                "random_steering": random_steering,
-                "region_pools": region_pools,
-                "rules": rules,
-                "session_affinity": session_affinity,
-                "session_affinity_attributes": session_affinity_attributes,
-                "session_affinity_ttl": session_affinity_ttl,
-                "steering_policy": steering_policy,
-                "ttl": ttl,
-            }, load_balancer_edit_params.LoadBalancerEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[LoadBalancer]._unwrapper),
+            body=maybe_transform(
+                {
+                    "adaptive_routing": adaptive_routing,
+                    "country_pools": country_pools,
+                    "default_pools": default_pools,
+                    "description": description,
+                    "enabled": enabled,
+                    "fallback_pool": fallback_pool,
+                    "location_strategy": location_strategy,
+                    "name": name,
+                    "pop_pools": pop_pools,
+                    "proxied": proxied,
+                    "random_steering": random_steering,
+                    "region_pools": region_pools,
+                    "rules": rules,
+                    "session_affinity": session_affinity,
+                    "session_affinity_attributes": session_affinity_attributes,
+                    "session_affinity_ttl": session_affinity_ttl,
+                    "steering_policy": steering_policy,
+                    "ttl": ttl,
+                },
+                load_balancer_edit_params.LoadBalancerEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
+            ),
             cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
 
-    def get(self,
-    load_balancer_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> LoadBalancer:
+    def get(
+        self,
+        load_balancer_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> LoadBalancer:
         """
         Fetch a single configured load balancer.
 
@@ -769,18 +791,21 @@ class LoadBalancersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
-          raise ValueError(
-            f'Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return self._get(
             f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[LoadBalancer]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
+            ),
             cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
+
 
 class AsyncLoadBalancersResource(AsyncAPIResource):
     @cached_property
@@ -811,32 +836,34 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncLoadBalancersResourceWithStreamingResponse:
         return AsyncLoadBalancersResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    zone_id: str,
-    default_pools: List[DefaultPools],
-    fallback_pool: str,
-    name: str,
-    adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
-    country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
-    pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-    proxied: bool | NotGiven = NOT_GIVEN,
-    random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
-    region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-    rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
-    session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
-    session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
-    session_affinity_ttl: float | NotGiven = NOT_GIVEN,
-    steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
-    ttl: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> LoadBalancer:
+    async def create(
+        self,
+        *,
+        zone_id: str,
+        default_pools: List[DefaultPools],
+        fallback_pool: str,
+        name: str,
+        adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
+        country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
+        pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
+        region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
+        session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
+        session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
+        session_affinity_ttl: float | NotGiven = NOT_GIVEN,
+        steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
+        ttl: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> LoadBalancer:
         """
         Create a new load balancer.
 
@@ -962,62 +989,71 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/load_balancers",
-            body=await async_maybe_transform({
-                "default_pools": default_pools,
-                "fallback_pool": fallback_pool,
-                "name": name,
-                "adaptive_routing": adaptive_routing,
-                "country_pools": country_pools,
-                "description": description,
-                "location_strategy": location_strategy,
-                "pop_pools": pop_pools,
-                "proxied": proxied,
-                "random_steering": random_steering,
-                "region_pools": region_pools,
-                "rules": rules,
-                "session_affinity": session_affinity,
-                "session_affinity_attributes": session_affinity_attributes,
-                "session_affinity_ttl": session_affinity_ttl,
-                "steering_policy": steering_policy,
-                "ttl": ttl,
-            }, load_balancer_create_params.LoadBalancerCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[LoadBalancer]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "default_pools": default_pools,
+                    "fallback_pool": fallback_pool,
+                    "name": name,
+                    "adaptive_routing": adaptive_routing,
+                    "country_pools": country_pools,
+                    "description": description,
+                    "location_strategy": location_strategy,
+                    "pop_pools": pop_pools,
+                    "proxied": proxied,
+                    "random_steering": random_steering,
+                    "region_pools": region_pools,
+                    "rules": rules,
+                    "session_affinity": session_affinity,
+                    "session_affinity_attributes": session_affinity_attributes,
+                    "session_affinity_ttl": session_affinity_ttl,
+                    "steering_policy": steering_policy,
+                    "ttl": ttl,
+                },
+                load_balancer_create_params.LoadBalancerCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
+            ),
             cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
 
-    async def update(self,
-    load_balancer_id: str,
-    *,
-    zone_id: str,
-    default_pools: List[DefaultPools],
-    fallback_pool: str,
-    name: str,
-    adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
-    country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    enabled: bool | NotGiven = NOT_GIVEN,
-    location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
-    pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-    proxied: bool | NotGiven = NOT_GIVEN,
-    random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
-    region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-    rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
-    session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
-    session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
-    session_affinity_ttl: float | NotGiven = NOT_GIVEN,
-    steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
-    ttl: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> LoadBalancer:
+    async def update(
+        self,
+        load_balancer_id: str,
+        *,
+        zone_id: str,
+        default_pools: List[DefaultPools],
+        fallback_pool: str,
+        name: str,
+        adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
+        country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
+        pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
+        region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
+        session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
+        session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
+        session_affinity_ttl: float | NotGiven = NOT_GIVEN,
+        steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
+        ttl: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> LoadBalancer:
         """
         Update a configured load balancer.
 
@@ -1145,48 +1181,55 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
-          raise ValueError(
-            f'Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return await self._put(
             f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
-            body=await async_maybe_transform({
-                "default_pools": default_pools,
-                "fallback_pool": fallback_pool,
-                "name": name,
-                "adaptive_routing": adaptive_routing,
-                "country_pools": country_pools,
-                "description": description,
-                "enabled": enabled,
-                "location_strategy": location_strategy,
-                "pop_pools": pop_pools,
-                "proxied": proxied,
-                "random_steering": random_steering,
-                "region_pools": region_pools,
-                "rules": rules,
-                "session_affinity": session_affinity,
-                "session_affinity_attributes": session_affinity_attributes,
-                "session_affinity_ttl": session_affinity_ttl,
-                "steering_policy": steering_policy,
-                "ttl": ttl,
-            }, load_balancer_update_params.LoadBalancerUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[LoadBalancer]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "default_pools": default_pools,
+                    "fallback_pool": fallback_pool,
+                    "name": name,
+                    "adaptive_routing": adaptive_routing,
+                    "country_pools": country_pools,
+                    "description": description,
+                    "enabled": enabled,
+                    "location_strategy": location_strategy,
+                    "pop_pools": pop_pools,
+                    "proxied": proxied,
+                    "random_steering": random_steering,
+                    "region_pools": region_pools,
+                    "rules": rules,
+                    "session_affinity": session_affinity,
+                    "session_affinity_attributes": session_affinity_attributes,
+                    "session_affinity_ttl": session_affinity_ttl,
+                    "steering_policy": steering_policy,
+                    "ttl": ttl,
+                },
+                load_balancer_update_params.LoadBalancerUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
+            ),
             cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
 
-    def list(self,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[LoadBalancer, AsyncSinglePage[LoadBalancer]]:
+    def list(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[LoadBalancer, AsyncSinglePage[LoadBalancer]]:
         """
         List configured load balancers.
 
@@ -1200,26 +1243,28 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/load_balancers",
-            page = AsyncSinglePage[LoadBalancer],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=AsyncSinglePage[LoadBalancer],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=LoadBalancer,
         )
 
-    async def delete(self,
-    load_balancer_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> LoadBalancerDeleteResponse:
+    async def delete(
+        self,
+        load_balancer_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> LoadBalancerDeleteResponse:
         """
         Delete a configured load balancer.
 
@@ -1233,47 +1278,51 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
-          raise ValueError(
-            f'Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return await self._delete(
             f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[LoadBalancerDeleteResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[LoadBalancerDeleteResponse]._unwrapper,
+            ),
             cast_to=cast(Type[LoadBalancerDeleteResponse], ResultWrapper[LoadBalancerDeleteResponse]),
         )
 
-    async def edit(self,
-    load_balancer_id: str,
-    *,
-    zone_id: str,
-    adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
-    country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-    default_pools: List[DefaultPools] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    enabled: bool | NotGiven = NOT_GIVEN,
-    fallback_pool: str | NotGiven = NOT_GIVEN,
-    location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-    proxied: bool | NotGiven = NOT_GIVEN,
-    random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
-    region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
-    rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
-    session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
-    session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
-    session_affinity_ttl: float | NotGiven = NOT_GIVEN,
-    steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
-    ttl: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> LoadBalancer:
+    async def edit(
+        self,
+        load_balancer_id: str,
+        *,
+        zone_id: str,
+        adaptive_routing: AdaptiveRoutingParam | NotGiven = NOT_GIVEN,
+        country_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        default_pools: List[DefaultPools] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        fallback_pool: str | NotGiven = NOT_GIVEN,
+        location_strategy: LocationStrategyParam | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        pop_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        proxied: bool | NotGiven = NOT_GIVEN,
+        random_steering: RandomSteeringParam | NotGiven = NOT_GIVEN,
+        region_pools: Dict[str, List[str]] | NotGiven = NOT_GIVEN,
+        rules: Iterable[RulesParam] | NotGiven = NOT_GIVEN,
+        session_affinity: SessionAffinity | NotGiven = NOT_GIVEN,
+        session_affinity_attributes: SessionAffinityAttributesParam | NotGiven = NOT_GIVEN,
+        session_affinity_ttl: float | NotGiven = NOT_GIVEN,
+        steering_policy: SteeringPolicy | NotGiven = NOT_GIVEN,
+        ttl: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> LoadBalancer:
         """
         Apply changes to an existing load balancer, overwriting the supplied properties.
 
@@ -1401,49 +1450,56 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
-          raise ValueError(
-            f'Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
-            body=await async_maybe_transform({
-                "adaptive_routing": adaptive_routing,
-                "country_pools": country_pools,
-                "default_pools": default_pools,
-                "description": description,
-                "enabled": enabled,
-                "fallback_pool": fallback_pool,
-                "location_strategy": location_strategy,
-                "name": name,
-                "pop_pools": pop_pools,
-                "proxied": proxied,
-                "random_steering": random_steering,
-                "region_pools": region_pools,
-                "rules": rules,
-                "session_affinity": session_affinity,
-                "session_affinity_attributes": session_affinity_attributes,
-                "session_affinity_ttl": session_affinity_ttl,
-                "steering_policy": steering_policy,
-                "ttl": ttl,
-            }, load_balancer_edit_params.LoadBalancerEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[LoadBalancer]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "adaptive_routing": adaptive_routing,
+                    "country_pools": country_pools,
+                    "default_pools": default_pools,
+                    "description": description,
+                    "enabled": enabled,
+                    "fallback_pool": fallback_pool,
+                    "location_strategy": location_strategy,
+                    "name": name,
+                    "pop_pools": pop_pools,
+                    "proxied": proxied,
+                    "random_steering": random_steering,
+                    "region_pools": region_pools,
+                    "rules": rules,
+                    "session_affinity": session_affinity,
+                    "session_affinity_attributes": session_affinity_attributes,
+                    "session_affinity_ttl": session_affinity_ttl,
+                    "steering_policy": steering_policy,
+                    "ttl": ttl,
+                },
+                load_balancer_edit_params.LoadBalancerEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
+            ),
             cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
 
-    async def get(self,
-    load_balancer_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> LoadBalancer:
+    async def get(
+        self,
+        load_balancer_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> LoadBalancer:
         """
         Fetch a single configured load balancer.
 
@@ -1457,18 +1513,21 @@ class AsyncLoadBalancersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not load_balancer_id:
-          raise ValueError(
-            f'Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `load_balancer_id` but received {load_balancer_id!r}")
         return await self._get(
             f"/zones/{zone_id}/load_balancers/{load_balancer_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[LoadBalancer]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[LoadBalancer]._unwrapper,
+            ),
             cast_to=cast(Type[LoadBalancer], ResultWrapper[LoadBalancer]),
         )
+
 
 class LoadBalancersResourceWithRawResponse:
     def __init__(self, load_balancers: LoadBalancersResource) -> None:
@@ -1513,6 +1572,7 @@ class LoadBalancersResourceWithRawResponse:
     def searches(self) -> SearchesResourceWithRawResponse:
         return SearchesResourceWithRawResponse(self._load_balancers.searches)
 
+
 class AsyncLoadBalancersResourceWithRawResponse:
     def __init__(self, load_balancers: AsyncLoadBalancersResource) -> None:
         self._load_balancers = load_balancers
@@ -1556,6 +1616,7 @@ class AsyncLoadBalancersResourceWithRawResponse:
     def searches(self) -> AsyncSearchesResourceWithRawResponse:
         return AsyncSearchesResourceWithRawResponse(self._load_balancers.searches)
 
+
 class LoadBalancersResourceWithStreamingResponse:
     def __init__(self, load_balancers: LoadBalancersResource) -> None:
         self._load_balancers = load_balancers
@@ -1598,6 +1659,7 @@ class LoadBalancersResourceWithStreamingResponse:
     @cached_property
     def searches(self) -> SearchesResourceWithStreamingResponse:
         return SearchesResourceWithStreamingResponse(self._load_balancers.searches)
+
 
 class AsyncLoadBalancersResourceWithStreamingResponse:
     def __init__(self, load_balancers: AsyncLoadBalancersResource) -> None:

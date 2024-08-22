@@ -2,14 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
+from typing_extensions import Required, TypedDict
 
 __all__ = ["SnippetUpdateParams", "Metadata"]
+
 
 class SnippetUpdateParams(TypedDict, total=False):
     zone_id: Required[str]
@@ -19,6 +15,7 @@ class SnippetUpdateParams(TypedDict, total=False):
     """Content files of uploaded snippet"""
 
     metadata: Metadata
+
 
 class Metadata(TypedDict, total=False):
     main_module: str

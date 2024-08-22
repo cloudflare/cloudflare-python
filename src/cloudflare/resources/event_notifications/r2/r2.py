@@ -2,20 +2,20 @@
 
 from __future__ import annotations
 
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from .configuration import (
+    ConfigurationResource,
+    AsyncConfigurationResource,
+    ConfigurationResourceWithRawResponse,
+    AsyncConfigurationResourceWithRawResponse,
+    ConfigurationResourceWithStreamingResponse,
+    AsyncConfigurationResourceWithStreamingResponse,
+)
 from .configuration.configuration import ConfigurationResource, AsyncConfigurationResource
 
-from ...._compat import cached_property
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from .configuration import ConfigurationResource, AsyncConfigurationResource, ConfigurationResourceWithRawResponse, AsyncConfigurationResourceWithRawResponse, ConfigurationResourceWithStreamingResponse, AsyncConfigurationResourceWithStreamingResponse
-
 __all__ = ["R2Resource", "AsyncR2Resource"]
+
 
 class R2Resource(SyncAPIResource):
     @cached_property
@@ -30,6 +30,7 @@ class R2Resource(SyncAPIResource):
     def with_streaming_response(self) -> R2ResourceWithStreamingResponse:
         return R2ResourceWithStreamingResponse(self)
 
+
 class AsyncR2Resource(AsyncAPIResource):
     @cached_property
     def configuration(self) -> AsyncConfigurationResource:
@@ -43,6 +44,7 @@ class AsyncR2Resource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncR2ResourceWithStreamingResponse:
         return AsyncR2ResourceWithStreamingResponse(self)
 
+
 class R2ResourceWithRawResponse:
     def __init__(self, r2: R2Resource) -> None:
         self._r2 = r2
@@ -50,6 +52,7 @@ class R2ResourceWithRawResponse:
     @cached_property
     def configuration(self) -> ConfigurationResourceWithRawResponse:
         return ConfigurationResourceWithRawResponse(self._r2.configuration)
+
 
 class AsyncR2ResourceWithRawResponse:
     def __init__(self, r2: AsyncR2Resource) -> None:
@@ -59,6 +62,7 @@ class AsyncR2ResourceWithRawResponse:
     def configuration(self) -> AsyncConfigurationResourceWithRawResponse:
         return AsyncConfigurationResourceWithRawResponse(self._r2.configuration)
 
+
 class R2ResourceWithStreamingResponse:
     def __init__(self, r2: R2Resource) -> None:
         self._r2 = r2
@@ -66,6 +70,7 @@ class R2ResourceWithStreamingResponse:
     @cached_property
     def configuration(self) -> ConfigurationResourceWithStreamingResponse:
         return ConfigurationResourceWithStreamingResponse(self._r2.configuration)
+
 
 class AsyncR2ResourceWithStreamingResponse:
     def __init__(self, r2: AsyncR2Resource) -> None:

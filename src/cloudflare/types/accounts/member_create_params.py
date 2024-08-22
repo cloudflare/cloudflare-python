@@ -2,16 +2,18 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal, TypeAlias
+from typing import List, Union, Iterable
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from typing import List, Iterable
+__all__ = [
+    "MemberCreateParams",
+    "IAMCreateMemberWithRoles",
+    "IAMCreateMemberWithPolicies",
+    "IAMCreateMemberWithPoliciesPolicy",
+    "IAMCreateMemberWithPoliciesPolicyPermissionGroup",
+    "IAMCreateMemberWithPoliciesPolicyResourceGroup",
+]
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-
-__all__ = ["MemberCreateParams", "IAMCreateMemberWithRoles", "IAMCreateMemberWithPolicies", "IAMCreateMemberWithPoliciesPolicy", "IAMCreateMemberWithPoliciesPolicyPermissionGroup", "IAMCreateMemberWithPoliciesPolicyResourceGroup"]
 
 class IAMCreateMemberWithRoles(TypedDict, total=False):
     account_id: Required[str]
@@ -25,6 +27,7 @@ class IAMCreateMemberWithRoles(TypedDict, total=False):
 
     status: Literal["accepted", "pending"]
 
+
 class IAMCreateMemberWithPolicies(TypedDict, total=False):
     account_id: Required[str]
     """Account identifier tag."""
@@ -37,13 +40,16 @@ class IAMCreateMemberWithPolicies(TypedDict, total=False):
 
     status: Literal["accepted", "pending"]
 
+
 class IAMCreateMemberWithPoliciesPolicyPermissionGroup(TypedDict, total=False):
     id: Required[str]
     """Identifier of the group."""
 
+
 class IAMCreateMemberWithPoliciesPolicyResourceGroup(TypedDict, total=False):
     id: Required[str]
     """Identifier of the group."""
+
 
 class IAMCreateMemberWithPoliciesPolicy(TypedDict, total=False):
     access: Required[Literal["allow", "deny"]]
@@ -54,5 +60,6 @@ class IAMCreateMemberWithPoliciesPolicy(TypedDict, total=False):
 
     resource_groups: Required[Iterable[IAMCreateMemberWithPoliciesPolicyResourceGroup]]
     """A list of resource groups that the policy applies to."""
+
 
 MemberCreateParams: TypeAlias = Union[IAMCreateMemberWithRoles, IAMCreateMemberWithPolicies]

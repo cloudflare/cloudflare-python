@@ -1,28 +1,24 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import Optional, List
-
-from typing_extensions import Literal
-
+from typing import List, Optional
 from datetime import datetime
+from typing_extensions import Literal
 
 from .logging import Logging
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ..._models import BaseModel
 
 __all__ = ["CompressResponseRule", "ActionParameters", "ActionParametersAlgorithm"]
+
 
 class ActionParametersAlgorithm(BaseModel):
     name: Optional[Literal["none", "auto", "default", "gzip", "brotli"]] = None
     """Name of compression algorithm to enable."""
 
+
 class ActionParameters(BaseModel):
     algorithms: Optional[List[ActionParametersAlgorithm]] = None
     """Custom order for compression algorithms."""
+
 
 class CompressResponseRule(BaseModel):
     last_updated: datetime

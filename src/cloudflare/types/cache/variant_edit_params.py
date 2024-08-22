@@ -2,16 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required
-
 from typing import List
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
+from typing_extensions import Required, TypedDict
 
 __all__ = ["VariantEditParams", "Value"]
+
 
 class VariantEditParams(TypedDict, total=False):
     zone_id: Required[str]
@@ -19,6 +14,7 @@ class VariantEditParams(TypedDict, total=False):
 
     value: Required[Value]
     """Value of the zone setting."""
+
 
 class Value(TypedDict, total=False):
     avif: List[str]

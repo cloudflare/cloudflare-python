@@ -1,25 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ....._models import BaseModel
-
-from typing import Optional, List, Union, Dict
+from typing import Dict, List, Union, Optional
+from datetime import datetime
+from typing_extensions import Literal
 
 from ..dimension import Dimension
-
-from typing_extensions import Literal
-
-from datetime import datetime
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ....._models import BaseModel
 
 __all__ = ["SummaryGetResponse", "Data", "Query"]
+
 
 class Data(BaseModel):
     dimensions: Optional[List[str]] = None
 
     metrics: Union[List[float], List[List[float]], None] = None
+
 
 class Query(BaseModel):
     dimensions: Optional[List[Dimension]] = None
@@ -56,7 +51,13 @@ class Query(BaseModel):
     limit: Optional[float] = None
     """Limit number of returned metrics."""
 
-    metrics: Optional[List[Literal["count", "bytesIngress", "bytesEgress", "durationAvg", "durationMedian", "duration90th", "duration99th"]]] = None
+    metrics: Optional[
+        List[
+            Literal[
+                "count", "bytesIngress", "bytesEgress", "durationAvg", "durationMedian", "duration90th", "duration99th"
+            ]
+        ]
+    ] = None
     """One or more metrics to compute. Options are:
 
     | Metric         | Name                                | Example | Unit                  |
@@ -87,6 +88,7 @@ class Query(BaseModel):
 
     Timestamp must be in RFC3339 format and uses UTC unless otherwise specified.
     """
+
 
 class SummaryGetResponse(BaseModel):
     data: List[Data]

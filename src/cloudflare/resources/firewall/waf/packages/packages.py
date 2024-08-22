@@ -2,46 +2,45 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .groups import GroupsResource, AsyncGroupsResource
-
+from .rules import (
+    RulesResource,
+    AsyncRulesResource,
+    RulesResourceWithRawResponse,
+    AsyncRulesResourceWithRawResponse,
+    RulesResourceWithStreamingResponse,
+    AsyncRulesResourceWithStreamingResponse,
+)
+from .groups import (
+    GroupsResource,
+    AsyncGroupsResource,
+    GroupsResourceWithRawResponse,
+    AsyncGroupsResourceWithRawResponse,
+    GroupsResourceWithStreamingResponse,
+    AsyncGroupsResourceWithStreamingResponse,
+)
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import maybe_transform
 from ....._compat import cached_property
-
-from .rules import RulesResource, AsyncRulesResource
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.firewall.waf import package_list_params
+from .....types.firewall.waf.package_get_response import PackageGetResponse
 from .....types.firewall.waf.package_list_response import PackageListResponse
 
-from .....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
-from ....._utils import maybe_transform
-
-from ....._base_client import make_request_options, AsyncPaginator
-
-from typing_extensions import Literal
-
-from .....types.firewall.waf.package_get_response import PackageGetResponse
-
-from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .....types.firewall.waf import package_list_params
-from .groups import GroupsResource, AsyncGroupsResource, GroupsResourceWithRawResponse, AsyncGroupsResourceWithRawResponse, GroupsResourceWithStreamingResponse, AsyncGroupsResourceWithStreamingResponse
-from .rules import RulesResource, AsyncRulesResource, RulesResourceWithRawResponse, AsyncRulesResourceWithRawResponse, RulesResourceWithStreamingResponse, AsyncRulesResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["PackagesResource", "AsyncPackagesResource"]
+
 
 class PackagesResource(SyncAPIResource):
     @cached_property
@@ -60,21 +59,23 @@ class PackagesResource(SyncAPIResource):
     def with_streaming_response(self) -> PackagesResourceWithStreamingResponse:
         return PackagesResourceWithStreamingResponse(self)
 
-    def list(self,
-    zone_identifier: str,
-    *,
-    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-    match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    order: Literal["name"] | NotGiven = NOT_GIVEN,
-    page: float | NotGiven = NOT_GIVEN,
-    per_page: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[PackageListResponse]:
+    def list(
+        self,
+        zone_identifier: str,
+        *,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        order: Literal["name"] | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncV4PagePaginationArray[PackageListResponse]:
         """
         Fetches WAF packages for a zone.
 
@@ -106,33 +107,42 @@ class PackagesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/firewall/waf/packages",
-            page = SyncV4PagePaginationArray[PackageListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "direction": direction,
-                "match": match,
-                "name": name,
-                "order": order,
-                "page": page,
-                "per_page": per_page,
-            }, package_list_params.PackageListParams)),
+            page=SyncV4PagePaginationArray[PackageListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "direction": direction,
+                        "match": match,
+                        "name": name,
+                        "order": order,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    package_list_params.PackageListParams,
+                ),
+            ),
             model=cast(Any, PackageListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
-    def get(self,
-    identifier: str,
-    *,
-    zone_identifier: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> PackageGetResponse:
+    def get(
+        self,
+        identifier: str,
+        *,
+        zone_identifier: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PackageGetResponse:
         """
         Fetches the details of a WAF package.
 
@@ -153,18 +163,22 @@ class PackagesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
-        return cast(PackageGetResponse, self._get(
-            f"/zones/{zone_identifier}/firewall/waf/packages/{identifier}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=cast(Any, PackageGetResponse),  # Union types cannot be passed in as arguments in the type system
-        ))
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        return cast(
+            PackageGetResponse,
+            self._get(
+                f"/zones/{zone_identifier}/firewall/waf/packages/{identifier}",
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(
+                    Any, PackageGetResponse
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
 
 class AsyncPackagesResource(AsyncAPIResource):
     @cached_property
@@ -183,21 +197,23 @@ class AsyncPackagesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncPackagesResourceWithStreamingResponse:
         return AsyncPackagesResourceWithStreamingResponse(self)
 
-    def list(self,
-    zone_identifier: str,
-    *,
-    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-    match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    order: Literal["name"] | NotGiven = NOT_GIVEN,
-    page: float | NotGiven = NOT_GIVEN,
-    per_page: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[PackageListResponse, AsyncV4PagePaginationArray[PackageListResponse]]:
+    def list(
+        self,
+        zone_identifier: str,
+        *,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        match: Literal["any", "all"] | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        order: Literal["name"] | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[PackageListResponse, AsyncV4PagePaginationArray[PackageListResponse]]:
         """
         Fetches WAF packages for a zone.
 
@@ -229,33 +245,42 @@ class AsyncPackagesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/firewall/waf/packages",
-            page = AsyncV4PagePaginationArray[PackageListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "direction": direction,
-                "match": match,
-                "name": name,
-                "order": order,
-                "page": page,
-                "per_page": per_page,
-            }, package_list_params.PackageListParams)),
+            page=AsyncV4PagePaginationArray[PackageListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "direction": direction,
+                        "match": match,
+                        "name": name,
+                        "order": order,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    package_list_params.PackageListParams,
+                ),
+            ),
             model=cast(Any, PackageListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
-    async def get(self,
-    identifier: str,
-    *,
-    zone_identifier: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> PackageGetResponse:
+    async def get(
+        self,
+        identifier: str,
+        *,
+        zone_identifier: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> PackageGetResponse:
         """
         Fetches the details of a WAF package.
 
@@ -276,18 +301,22 @@ class AsyncPackagesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
-        return cast(PackageGetResponse, await self._get(
-            f"/zones/{zone_identifier}/firewall/waf/packages/{identifier}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
-            cast_to=cast(Any, PackageGetResponse),  # Union types cannot be passed in as arguments in the type system
-        ))
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
+        return cast(
+            PackageGetResponse,
+            await self._get(
+                f"/zones/{zone_identifier}/firewall/waf/packages/{identifier}",
+                options=make_request_options(
+                    extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+                ),
+                cast_to=cast(
+                    Any, PackageGetResponse
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
+
 
 class PackagesResourceWithRawResponse:
     def __init__(self, packages: PackagesResource) -> None:
@@ -308,6 +337,7 @@ class PackagesResourceWithRawResponse:
     def rules(self) -> RulesResourceWithRawResponse:
         return RulesResourceWithRawResponse(self._packages.rules)
 
+
 class AsyncPackagesResourceWithRawResponse:
     def __init__(self, packages: AsyncPackagesResource) -> None:
         self._packages = packages
@@ -327,6 +357,7 @@ class AsyncPackagesResourceWithRawResponse:
     def rules(self) -> AsyncRulesResourceWithRawResponse:
         return AsyncRulesResourceWithRawResponse(self._packages.rules)
 
+
 class PackagesResourceWithStreamingResponse:
     def __init__(self, packages: PackagesResource) -> None:
         self._packages = packages
@@ -345,6 +376,7 @@ class PackagesResourceWithStreamingResponse:
     @cached_property
     def rules(self) -> RulesResourceWithStreamingResponse:
         return RulesResourceWithStreamingResponse(self._packages.rules)
+
 
 class AsyncPackagesResourceWithStreamingResponse:
     def __init__(self, packages: AsyncPackagesResource) -> None:

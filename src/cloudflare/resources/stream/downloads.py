@@ -2,38 +2,30 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
 from ..._base_client import make_request_options
-
+from ...types.stream import download_create_params
 from ...types.stream.download_delete_response import DownloadDeleteResponse
 
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.stream import download_create_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["DownloadsResource", "AsyncDownloadsResource"]
+
 
 class DownloadsResource(SyncAPIResource):
     @cached_property
@@ -44,17 +36,19 @@ class DownloadsResource(SyncAPIResource):
     def with_streaming_response(self) -> DownloadsResourceWithStreamingResponse:
         return DownloadsResourceWithStreamingResponse(self)
 
-    def create(self,
-    identifier: str,
-    *,
-    account_id: str,
-    body: object,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    def create(
+        self,
+        identifier: str,
+        *,
+        account_id: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Creates a download for a video when a video is ready to view.
 
@@ -72,30 +66,34 @@ class DownloadsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._post(
             f"/accounts/{account_id}/stream/{identifier}/downloads",
             body=maybe_transform(body, download_create_params.DownloadCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    def delete(self,
-    identifier: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> str:
+    def delete(
+        self,
+        identifier: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> str:
         """
         Delete the downloads for a video.
 
@@ -113,29 +111,33 @@ class DownloadsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._delete(
             f"/accounts/{account_id}/stream/{identifier}/downloads",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DownloadDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DownloadDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
-    def get(self,
-    identifier: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    def get(
+        self,
+        identifier: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Lists the downloads created for a video.
 
@@ -153,18 +155,21 @@ class DownloadsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return self._get(
             f"/accounts/{account_id}/stream/{identifier}/downloads",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
+
 
 class AsyncDownloadsResource(AsyncAPIResource):
     @cached_property
@@ -175,17 +180,19 @@ class AsyncDownloadsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncDownloadsResourceWithStreamingResponse:
         return AsyncDownloadsResourceWithStreamingResponse(self)
 
-    async def create(self,
-    identifier: str,
-    *,
-    account_id: str,
-    body: object,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    async def create(
+        self,
+        identifier: str,
+        *,
+        account_id: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Creates a download for a video when a video is ready to view.
 
@@ -203,30 +210,34 @@ class AsyncDownloadsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._post(
             f"/accounts/{account_id}/stream/{identifier}/downloads",
             body=await async_maybe_transform(body, download_create_params.DownloadCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    async def delete(self,
-    identifier: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> str:
+    async def delete(
+        self,
+        identifier: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> str:
         """
         Delete the downloads for a video.
 
@@ -244,29 +255,33 @@ class AsyncDownloadsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._delete(
             f"/accounts/{account_id}/stream/{identifier}/downloads",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[DownloadDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[DownloadDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[str], ResultWrapper[str]),
         )
 
-    async def get(self,
-    identifier: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    async def get(
+        self,
+        identifier: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Lists the downloads created for a video.
 
@@ -284,18 +299,21 @@ class AsyncDownloadsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `identifier` but received {identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `identifier` but received {identifier!r}")
         return await self._get(
             f"/accounts/{account_id}/stream/{identifier}/downloads",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
+
 
 class DownloadsResourceWithRawResponse:
     def __init__(self, downloads: DownloadsResource) -> None:
@@ -311,6 +329,7 @@ class DownloadsResourceWithRawResponse:
             downloads.get,
         )
 
+
 class AsyncDownloadsResourceWithRawResponse:
     def __init__(self, downloads: AsyncDownloadsResource) -> None:
         self._downloads = downloads
@@ -325,6 +344,7 @@ class AsyncDownloadsResourceWithRawResponse:
             downloads.get,
         )
 
+
 class DownloadsResourceWithStreamingResponse:
     def __init__(self, downloads: DownloadsResource) -> None:
         self._downloads = downloads
@@ -338,6 +358,7 @@ class DownloadsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             downloads.get,
         )
+
 
 class AsyncDownloadsResourceWithStreamingResponse:
     def __init__(self, downloads: AsyncDownloadsResource) -> None:

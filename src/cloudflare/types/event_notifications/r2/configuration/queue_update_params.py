@@ -2,16 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal
-
-from typing import Iterable, List
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ....._types import FileTypes
-from ....._utils import PropertyInfo
+from typing import List, Iterable
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["QueueUpdateParams", "Rule"]
+
 
 class QueueUpdateParams(TypedDict, total=False):
     account_id: Required[str]
@@ -23,8 +18,11 @@ class QueueUpdateParams(TypedDict, total=False):
     rules: Iterable[Rule]
     """Array of rules to drive notifications"""
 
+
 class Rule(TypedDict, total=False):
-    actions: Required[List[Literal["PutObject", "CopyObject", "DeleteObject", "CompleteMultipartUpload", "AbortMultipartUpload"]]]
+    actions: Required[
+        List[Literal["PutObject", "CopyObject", "DeleteObject", "CompleteMultipartUpload", "AbortMultipartUpload"]]
+    ]
     """Array of R2 object actions that will trigger notifications"""
 
     prefix: str

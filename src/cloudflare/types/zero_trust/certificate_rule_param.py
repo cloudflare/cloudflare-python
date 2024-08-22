@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required
+from typing_extensions import Required, TypedDict
 
 __all__ = ["CertificateRuleParam"]
+
 
 class CertificateRuleParam(TypedDict, total=False):
     certificate: Required[object]

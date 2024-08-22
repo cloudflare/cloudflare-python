@@ -2,26 +2,20 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Annotated, Literal
-
 from typing import Union
-
 from datetime import datetime
+from typing_extensions import Literal, Annotated, TypedDict
 
-from ..._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
 from ..._utils import PropertyInfo
 
 __all__ = ["AnnotationListParams"]
+
 
 class AnnotationListParams(TypedDict, total=False):
     asn: int
     """Single ASN as integer."""
 
-    date_end: Annotated[Union[str, datetime], PropertyInfo(alias="dateEnd", format = "iso8601")]
+    date_end: Annotated[Union[str, datetime], PropertyInfo(alias="dateEnd", format="iso8601")]
     """End of the date range (inclusive)."""
 
     date_range: Annotated[str, PropertyInfo(alias="dateRange")]
@@ -30,7 +24,7 @@ class AnnotationListParams(TypedDict, total=False):
     start and end dates.
     """
 
-    date_start: Annotated[Union[str, datetime], PropertyInfo(alias="dateStart", format = "iso8601")]
+    date_start: Annotated[Union[str, datetime], PropertyInfo(alias="dateStart", format="iso8601")]
     """Start of the date range (inclusive)."""
 
     format: Literal["JSON", "CSV"]

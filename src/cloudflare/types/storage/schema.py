@@ -1,22 +1,19 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import List, Optional, Dict
-
+from typing import Dict, List, Optional
 from datetime import datetime
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ..._models import BaseModel
 
 __all__ = ["Schema", "Data", "Query"]
+
 
 class Data(BaseModel):
     metrics: List[List[float]]
     """List of metrics returned by the query."""
 
     dimensions: Optional[List[str]] = None
+
 
 class Query(BaseModel):
     dimensions: Optional[List[str]] = None
@@ -59,6 +56,7 @@ class Query(BaseModel):
 
     until: Optional[datetime] = None
     """End of time interval to query, defaults to current time."""
+
 
 class Schema(BaseModel):
     data: Optional[List[Data]] = None

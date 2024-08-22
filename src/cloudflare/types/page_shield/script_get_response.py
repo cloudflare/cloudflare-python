@@ -1,16 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import Optional, List
-
+from typing import List, Optional
 from datetime import datetime
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ..._models import BaseModel
 
 __all__ = ["ScriptGetResponse", "Version"]
+
 
 class Version(BaseModel):
     dataflow_score: Optional[int] = None
@@ -27,6 +23,7 @@ class Version(BaseModel):
 
     obfuscation_score: Optional[int] = None
     """The obfuscation score of the JavaScript content."""
+
 
 class ScriptGetResponse(BaseModel):
     id: str

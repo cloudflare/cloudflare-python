@@ -8,12 +8,14 @@ from .logging_param import LoggingParam
 
 __all__ = ["ScoreRuleParam", "ActionParameters"]
 
+
 class ActionParameters(TypedDict, total=False):
     increment: int
     """
     Increment contains the delta to change the score and can be either positive or
     negative.
     """
+
 
 class ScoreRuleParam(TypedDict, total=False):
     id: str

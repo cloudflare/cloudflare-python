@@ -2,10 +2,8 @@
 
 from typing_extensions import Literal, TypeAlias
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["SteeringPolicy"]
 
-SteeringPolicy: TypeAlias = Literal["off", "geo", "random", "dynamic_latency", "proximity", "least_outstanding_requests", "least_connections", "\"\""]
+SteeringPolicy: TypeAlias = Literal[
+    "off", "geo", "random", "dynamic_latency", "proximity", "least_outstanding_requests", "least_connections", '""'
+]

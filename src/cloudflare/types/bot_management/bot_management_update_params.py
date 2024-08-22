@@ -2,14 +2,17 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal, TypeAlias
+from typing import Union
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
+__all__ = [
+    "BotManagementUpdateParams",
+    "BotFightModeConfiguration",
+    "SuperBotFightModeDefinitelyConfiguration",
+    "SuperBotFightModeLikelyConfiguration",
+    "SubscriptionConfiguration",
+]
 
-__all__ = ["BotManagementUpdateParams", "BotFightModeConfiguration", "SuperBotFightModeDefinitelyConfiguration", "SuperBotFightModeLikelyConfiguration", "SubscriptionConfiguration"]
 
 class BotFightModeConfiguration(TypedDict, total=False):
     zone_id: Required[str]
@@ -23,6 +26,7 @@ class BotFightModeConfiguration(TypedDict, total=False):
 
     fight_mode: bool
     """Whether to enable Bot Fight Mode."""
+
 
 class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
     zone_id: Required[str]
@@ -49,6 +53,7 @@ class SuperBotFightModeDefinitelyConfiguration(TypedDict, total=False):
 
     sbfm_verified_bots: Literal["allow", "block"]
     """Super Bot Fight Mode (SBFM) action to take on verified bots requests."""
+
 
 class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
     zone_id: Required[str]
@@ -79,6 +84,7 @@ class SuperBotFightModeLikelyConfiguration(TypedDict, total=False):
     sbfm_verified_bots: Literal["allow", "block"]
     """Super Bot Fight Mode (SBFM) action to take on verified bots requests."""
 
+
 class SubscriptionConfiguration(TypedDict, total=False):
     zone_id: Required[str]
     """Identifier"""
@@ -102,4 +108,10 @@ class SubscriptionConfiguration(TypedDict, total=False):
     Management cookie.
     """
 
-BotManagementUpdateParams: TypeAlias = Union[BotFightModeConfiguration, SuperBotFightModeDefinitelyConfiguration, SuperBotFightModeLikelyConfiguration, SubscriptionConfiguration]
+
+BotManagementUpdateParams: TypeAlias = Union[
+    BotFightModeConfiguration,
+    SuperBotFightModeDefinitelyConfiguration,
+    SuperBotFightModeLikelyConfiguration,
+    SubscriptionConfiguration,
+]

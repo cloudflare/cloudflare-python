@@ -1,20 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import List, Optional
+from typing_extensions import Literal
+
 from ...._models import BaseModel
-
-from typing import Optional, List
-
+from .tests.tests import Tests
 from ...shared.response_info import ResponseInfo
 
-from typing_extensions import Literal
-
-from .tests.tests import Tests
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["TestListResponse", "ResultInfo"]
+
 
 class ResultInfo(BaseModel):
     count: Optional[float] = None
@@ -28,6 +22,7 @@ class ResultInfo(BaseModel):
 
     total_count: Optional[float] = None
     """Total results available without any search parameters"""
+
 
 class TestListResponse(BaseModel):
     __test__ = False

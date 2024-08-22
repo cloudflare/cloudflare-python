@@ -2,67 +2,45 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Optional, cast, overload
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    required_args,
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
-
-from ...types.d1.d1 import D1
-
+from ...types.d1 import (
+    database_raw_params,
+    database_list_params,
+    database_query_params,
+    database_create_params,
+    database_export_params,
+    database_import_params,
+)
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from ..._base_client import make_request_options, AsyncPaginator
-
-from typing import Type, Optional, List
-
-from typing_extensions import Literal
-
-from ...types.d1.database_list_response import DatabaseListResponse
-
 from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
+from ...types.d1.d1 import D1
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.d1.database_raw_response import DatabaseRawResponse
+from ...types.d1.database_list_response import DatabaseListResponse
+from ...types.d1.database_query_response import DatabaseQueryResponse
 from ...types.d1.database_export_response import DatabaseExportResponse
-
 from ...types.d1.database_import_response import DatabaseImportResponse
 
-from ...types.d1.database_query_response import DatabaseQueryResponse
-
-from ...types.d1.database_raw_response import DatabaseRawResponse
-
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-from ...types.d1 import database_export_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.d1 import database_create_params
-from ...types.d1 import database_list_params
-from ...types.d1 import database_export_params
-from ...types.d1 import database_import_params
-from ...types.d1 import database_query_params
-from ...types.d1 import database_raw_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["DatabaseResource", "AsyncDatabaseResource"]
+
 
 class DatabaseResource(SyncAPIResource):
     @cached_property
@@ -73,17 +51,19 @@ class DatabaseResource(SyncAPIResource):
     def with_streaming_response(self) -> DatabaseResourceWithStreamingResponse:
         return DatabaseResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    account_id: str,
-    name: str,
-    primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> D1:
+    def create(
+        self,
+        *,
+        account_id: str,
+        name: str,
+        primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> D1:
         """
         Returns the created D1 database.
 
@@ -102,31 +82,40 @@ class DatabaseResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/d1/database",
-            body=maybe_transform({
-                "name": name,
-                "primary_location_hint": primary_location_hint,
-            }, database_create_params.DatabaseCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[D1]._unwrapper),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "primary_location_hint": primary_location_hint,
+                },
+                database_create_params.DatabaseCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[D1]._unwrapper,
+            ),
             cast_to=cast(Type[D1], ResultWrapper[D1]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    name: str | NotGiven = NOT_GIVEN,
-    page: float | NotGiven = NOT_GIVEN,
-    per_page: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[DatabaseListResponse]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        name: str | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncV4PagePaginationArray[DatabaseListResponse]:
         """
         Returns a list of D1 databases.
 
@@ -148,30 +137,39 @@ class DatabaseResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/d1/database",
-            page = SyncV4PagePaginationArray[DatabaseListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "name": name,
-                "page": page,
-                "per_page": per_page,
-            }, database_list_params.DatabaseListParams)),
+            page=SyncV4PagePaginationArray[DatabaseListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "name": name,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    database_list_params.DatabaseListParams,
+                ),
+            ),
             model=DatabaseListResponse,
         )
 
-    def delete(self,
-    database_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    def delete(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Deletes the specified D1 database.
 
@@ -187,32 +185,36 @@ class DatabaseResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
-          raise ValueError(
-            f'Expected a non-empty value for `database_id` but received {database_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._delete(
             f"/accounts/{account_id}/d1/database/{database_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    def export(self,
-    database_id: str,
-    *,
-    account_id: str,
-    output_format: Literal["polling"],
-    current_bookmark: str | NotGiven = NOT_GIVEN,
-    dump_options: database_export_params.DumpOptions | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DatabaseExportResponse:
+    def export(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        output_format: Literal["polling"],
+        current_bookmark: str | NotGiven = NOT_GIVEN,
+        dump_options: database_export_params.DumpOptions | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseExportResponse:
         """Returns a URL where the SQL contents of your D1 can be downloaded.
 
         Note: this
@@ -237,34 +239,41 @@ class DatabaseResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
-          raise ValueError(
-            f'Expected a non-empty value for `database_id` but received {database_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._post(
             f"/accounts/{account_id}/d1/database/{database_id}/export",
-            body=maybe_transform({
-                "output_format": output_format,
-                "current_bookmark": current_bookmark,
-                "dump_options": dump_options,
-            }, database_export_params.DatabaseExportParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[DatabaseExportResponse]._unwrapper),
+            body=maybe_transform(
+                {
+                    "output_format": output_format,
+                    "current_bookmark": current_bookmark,
+                    "dump_options": dump_options,
+                },
+                database_export_params.DatabaseExportParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DatabaseExportResponse]._unwrapper,
+            ),
             cast_to=cast(Type[DatabaseExportResponse], ResultWrapper[DatabaseExportResponse]),
         )
 
-    def get(self,
-    database_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> D1:
+    def get(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> D1:
         """
         Returns the specified D1 database.
 
@@ -280,32 +289,36 @@ class DatabaseResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
-          raise ValueError(
-            f'Expected a non-empty value for `database_id` but received {database_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._get(
             f"/accounts/{account_id}/d1/database/{database_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[D1]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[D1]._unwrapper,
+            ),
             cast_to=cast(Type[D1], ResultWrapper[D1]),
         )
 
     @overload
-    def import_(self,
-    database_id: str,
-    *,
-    account_id: str,
-    action: Literal["init"],
-    etag: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DatabaseImportResponse:
+    def import_(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        action: Literal["init"],
+        etag: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseImportResponse:
         """
         Generates a temporary URL for uploading an SQL file to, then instructing the D1
         to import it and polling it for status updates. Imports block the D1 for their
@@ -329,20 +342,23 @@ class DatabaseResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def import_(self,
-    database_id: str,
-    *,
-    account_id: str,
-    action: Literal["ingest"],
-    etag: str,
-    filename: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DatabaseImportResponse:
+    def import_(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        action: Literal["ingest"],
+        etag: str,
+        filename: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseImportResponse:
         """
         Generates a temporary URL for uploading an SQL file to, then instructing the D1
         to import it and polling it for status updates. Imports block the D1 for their
@@ -367,19 +383,22 @@ class DatabaseResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def import_(self,
-    database_id: str,
-    *,
-    account_id: str,
-    action: Literal["poll"],
-    current_bookmark: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DatabaseImportResponse:
+    def import_(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        action: Literal["poll"],
+        current_bookmark: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseImportResponse:
         """
         Generates a temporary URL for uploading an SQL file to, then instructing the D1
         to import it and polling it for status updates. Imports block the D1 for their
@@ -401,53 +420,67 @@ class DatabaseResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-    @required_args(["account_id", "action", "etag"], ["account_id", "action", "etag", "filename"], ["account_id", "action", "current_bookmark"])
-    def import_(self,
-    database_id: str,
-    *,
-    account_id: str,
-    action: Literal["init"] | Literal["ingest"] | Literal["poll"],
-    etag: str | NotGiven = NOT_GIVEN,
-    filename: str | NotGiven = NOT_GIVEN,
-    current_bookmark: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DatabaseImportResponse:
+
+    @required_args(
+        ["account_id", "action", "etag"],
+        ["account_id", "action", "etag", "filename"],
+        ["account_id", "action", "current_bookmark"],
+    )
+    def import_(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        action: Literal["init"] | Literal["ingest"] | Literal["poll"],
+        etag: str | NotGiven = NOT_GIVEN,
+        filename: str | NotGiven = NOT_GIVEN,
+        current_bookmark: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseImportResponse:
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
-          raise ValueError(
-            f'Expected a non-empty value for `database_id` but received {database_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._post(
             f"/accounts/{account_id}/d1/database/{database_id}/import",
-            body=maybe_transform({
-                "action": action,
-                "etag": etag,
-                "filename": filename,
-                "current_bookmark": current_bookmark,
-            }, database_import_params.DatabaseImportParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[DatabaseImportResponse]._unwrapper),
+            body=maybe_transform(
+                {
+                    "action": action,
+                    "etag": etag,
+                    "filename": filename,
+                    "current_bookmark": current_bookmark,
+                },
+                database_import_params.DatabaseImportParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DatabaseImportResponse]._unwrapper,
+            ),
             cast_to=cast(Type[DatabaseImportResponse], ResultWrapper[DatabaseImportResponse]),
         )
 
-    def query(self,
-    database_id: str,
-    *,
-    account_id: str,
-    sql: str,
-    params: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DatabaseQueryResponse:
+    def query(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        sql: str,
+        params: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseQueryResponse:
         """
         Returns the query result as an object.
 
@@ -466,35 +499,42 @@ class DatabaseResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
-          raise ValueError(
-            f'Expected a non-empty value for `database_id` but received {database_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._post(
             f"/accounts/{account_id}/d1/database/{database_id}/query",
-            body=maybe_transform({
-                "sql": sql,
-                "params": params,
-            }, database_query_params.DatabaseQueryParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[DatabaseQueryResponse]._unwrapper),
+            body=maybe_transform(
+                {
+                    "sql": sql,
+                    "params": params,
+                },
+                database_query_params.DatabaseQueryParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DatabaseQueryResponse]._unwrapper,
+            ),
             cast_to=cast(Type[DatabaseQueryResponse], ResultWrapper[DatabaseQueryResponse]),
         )
 
-    def raw(self,
-    database_id: str,
-    *,
-    account_id: str,
-    sql: str,
-    params: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DatabaseRawResponse:
+    def raw(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        sql: str,
+        params: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseRawResponse:
         """Returns the query result rows as arrays rather than objects.
 
         This is a
@@ -515,22 +555,28 @@ class DatabaseResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
-          raise ValueError(
-            f'Expected a non-empty value for `database_id` but received {database_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return self._post(
             f"/accounts/{account_id}/d1/database/{database_id}/raw",
-            body=maybe_transform({
-                "sql": sql,
-                "params": params,
-            }, database_raw_params.DatabaseRawParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[DatabaseRawResponse]._unwrapper),
+            body=maybe_transform(
+                {
+                    "sql": sql,
+                    "params": params,
+                },
+                database_raw_params.DatabaseRawParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DatabaseRawResponse]._unwrapper,
+            ),
             cast_to=cast(Type[DatabaseRawResponse], ResultWrapper[DatabaseRawResponse]),
         )
+
 
 class AsyncDatabaseResource(AsyncAPIResource):
     @cached_property
@@ -541,17 +587,19 @@ class AsyncDatabaseResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncDatabaseResourceWithStreamingResponse:
         return AsyncDatabaseResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    account_id: str,
-    name: str,
-    primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> D1:
+    async def create(
+        self,
+        *,
+        account_id: str,
+        name: str,
+        primary_location_hint: Literal["wnam", "enam", "weur", "eeur", "apac", "oc"] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> D1:
         """
         Returns the created D1 database.
 
@@ -570,31 +618,40 @@ class AsyncDatabaseResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/d1/database",
-            body=await async_maybe_transform({
-                "name": name,
-                "primary_location_hint": primary_location_hint,
-            }, database_create_params.DatabaseCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[D1]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "primary_location_hint": primary_location_hint,
+                },
+                database_create_params.DatabaseCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[D1]._unwrapper,
+            ),
             cast_to=cast(Type[D1], ResultWrapper[D1]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    name: str | NotGiven = NOT_GIVEN,
-    page: float | NotGiven = NOT_GIVEN,
-    per_page: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[DatabaseListResponse, AsyncV4PagePaginationArray[DatabaseListResponse]]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        name: str | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[DatabaseListResponse, AsyncV4PagePaginationArray[DatabaseListResponse]]:
         """
         Returns a list of D1 databases.
 
@@ -616,30 +673,39 @@ class AsyncDatabaseResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/d1/database",
-            page = AsyncV4PagePaginationArray[DatabaseListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "name": name,
-                "page": page,
-                "per_page": per_page,
-            }, database_list_params.DatabaseListParams)),
+            page=AsyncV4PagePaginationArray[DatabaseListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "name": name,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    database_list_params.DatabaseListParams,
+                ),
+            ),
             model=DatabaseListResponse,
         )
 
-    async def delete(self,
-    database_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    async def delete(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Deletes the specified D1 database.
 
@@ -655,32 +721,36 @@ class AsyncDatabaseResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
-          raise ValueError(
-            f'Expected a non-empty value for `database_id` but received {database_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/d1/database/{database_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    async def export(self,
-    database_id: str,
-    *,
-    account_id: str,
-    output_format: Literal["polling"],
-    current_bookmark: str | NotGiven = NOT_GIVEN,
-    dump_options: database_export_params.DumpOptions | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DatabaseExportResponse:
+    async def export(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        output_format: Literal["polling"],
+        current_bookmark: str | NotGiven = NOT_GIVEN,
+        dump_options: database_export_params.DumpOptions | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseExportResponse:
         """Returns a URL where the SQL contents of your D1 can be downloaded.
 
         Note: this
@@ -705,34 +775,41 @@ class AsyncDatabaseResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
-          raise ValueError(
-            f'Expected a non-empty value for `database_id` but received {database_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return await self._post(
             f"/accounts/{account_id}/d1/database/{database_id}/export",
-            body=await async_maybe_transform({
-                "output_format": output_format,
-                "current_bookmark": current_bookmark,
-                "dump_options": dump_options,
-            }, database_export_params.DatabaseExportParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[DatabaseExportResponse]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "output_format": output_format,
+                    "current_bookmark": current_bookmark,
+                    "dump_options": dump_options,
+                },
+                database_export_params.DatabaseExportParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DatabaseExportResponse]._unwrapper,
+            ),
             cast_to=cast(Type[DatabaseExportResponse], ResultWrapper[DatabaseExportResponse]),
         )
 
-    async def get(self,
-    database_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> D1:
+    async def get(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> D1:
         """
         Returns the specified D1 database.
 
@@ -748,32 +825,36 @@ class AsyncDatabaseResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
-          raise ValueError(
-            f'Expected a non-empty value for `database_id` but received {database_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return await self._get(
             f"/accounts/{account_id}/d1/database/{database_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[D1]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[D1]._unwrapper,
+            ),
             cast_to=cast(Type[D1], ResultWrapper[D1]),
         )
 
     @overload
-    async def import_(self,
-    database_id: str,
-    *,
-    account_id: str,
-    action: Literal["init"],
-    etag: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DatabaseImportResponse:
+    async def import_(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        action: Literal["init"],
+        etag: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseImportResponse:
         """
         Generates a temporary URL for uploading an SQL file to, then instructing the D1
         to import it and polling it for status updates. Imports block the D1 for their
@@ -797,20 +878,23 @@ class AsyncDatabaseResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def import_(self,
-    database_id: str,
-    *,
-    account_id: str,
-    action: Literal["ingest"],
-    etag: str,
-    filename: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DatabaseImportResponse:
+    async def import_(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        action: Literal["ingest"],
+        etag: str,
+        filename: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseImportResponse:
         """
         Generates a temporary URL for uploading an SQL file to, then instructing the D1
         to import it and polling it for status updates. Imports block the D1 for their
@@ -835,19 +919,22 @@ class AsyncDatabaseResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def import_(self,
-    database_id: str,
-    *,
-    account_id: str,
-    action: Literal["poll"],
-    current_bookmark: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DatabaseImportResponse:
+    async def import_(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        action: Literal["poll"],
+        current_bookmark: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseImportResponse:
         """
         Generates a temporary URL for uploading an SQL file to, then instructing the D1
         to import it and polling it for status updates. Imports block the D1 for their
@@ -869,53 +956,67 @@ class AsyncDatabaseResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-    @required_args(["account_id", "action", "etag"], ["account_id", "action", "etag", "filename"], ["account_id", "action", "current_bookmark"])
-    async def import_(self,
-    database_id: str,
-    *,
-    account_id: str,
-    action: Literal["init"] | Literal["ingest"] | Literal["poll"],
-    etag: str | NotGiven = NOT_GIVEN,
-    filename: str | NotGiven = NOT_GIVEN,
-    current_bookmark: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DatabaseImportResponse:
+
+    @required_args(
+        ["account_id", "action", "etag"],
+        ["account_id", "action", "etag", "filename"],
+        ["account_id", "action", "current_bookmark"],
+    )
+    async def import_(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        action: Literal["init"] | Literal["ingest"] | Literal["poll"],
+        etag: str | NotGiven = NOT_GIVEN,
+        filename: str | NotGiven = NOT_GIVEN,
+        current_bookmark: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseImportResponse:
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
-          raise ValueError(
-            f'Expected a non-empty value for `database_id` but received {database_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return await self._post(
             f"/accounts/{account_id}/d1/database/{database_id}/import",
-            body=await async_maybe_transform({
-                "action": action,
-                "etag": etag,
-                "filename": filename,
-                "current_bookmark": current_bookmark,
-            }, database_import_params.DatabaseImportParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[DatabaseImportResponse]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "action": action,
+                    "etag": etag,
+                    "filename": filename,
+                    "current_bookmark": current_bookmark,
+                },
+                database_import_params.DatabaseImportParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DatabaseImportResponse]._unwrapper,
+            ),
             cast_to=cast(Type[DatabaseImportResponse], ResultWrapper[DatabaseImportResponse]),
         )
 
-    async def query(self,
-    database_id: str,
-    *,
-    account_id: str,
-    sql: str,
-    params: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DatabaseQueryResponse:
+    async def query(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        sql: str,
+        params: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseQueryResponse:
         """
         Returns the query result as an object.
 
@@ -934,35 +1035,42 @@ class AsyncDatabaseResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
-          raise ValueError(
-            f'Expected a non-empty value for `database_id` but received {database_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return await self._post(
             f"/accounts/{account_id}/d1/database/{database_id}/query",
-            body=await async_maybe_transform({
-                "sql": sql,
-                "params": params,
-            }, database_query_params.DatabaseQueryParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[DatabaseQueryResponse]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "sql": sql,
+                    "params": params,
+                },
+                database_query_params.DatabaseQueryParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DatabaseQueryResponse]._unwrapper,
+            ),
             cast_to=cast(Type[DatabaseQueryResponse], ResultWrapper[DatabaseQueryResponse]),
         )
 
-    async def raw(self,
-    database_id: str,
-    *,
-    account_id: str,
-    sql: str,
-    params: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DatabaseRawResponse:
+    async def raw(
+        self,
+        database_id: str,
+        *,
+        account_id: str,
+        sql: str,
+        params: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DatabaseRawResponse:
         """Returns the query result rows as arrays rather than objects.
 
         This is a
@@ -983,22 +1091,28 @@ class AsyncDatabaseResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not database_id:
-          raise ValueError(
-            f'Expected a non-empty value for `database_id` but received {database_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `database_id` but received {database_id!r}")
         return await self._post(
             f"/accounts/{account_id}/d1/database/{database_id}/raw",
-            body=await async_maybe_transform({
-                "sql": sql,
-                "params": params,
-            }, database_raw_params.DatabaseRawParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[DatabaseRawResponse]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "sql": sql,
+                    "params": params,
+                },
+                database_raw_params.DatabaseRawParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[DatabaseRawResponse]._unwrapper,
+            ),
             cast_to=cast(Type[DatabaseRawResponse], ResultWrapper[DatabaseRawResponse]),
         )
+
 
 class DatabaseResourceWithRawResponse:
     def __init__(self, database: DatabaseResource) -> None:
@@ -1029,6 +1143,7 @@ class DatabaseResourceWithRawResponse:
             database.raw,
         )
 
+
 class AsyncDatabaseResourceWithRawResponse:
     def __init__(self, database: AsyncDatabaseResource) -> None:
         self._database = database
@@ -1058,6 +1173,7 @@ class AsyncDatabaseResourceWithRawResponse:
             database.raw,
         )
 
+
 class DatabaseResourceWithStreamingResponse:
     def __init__(self, database: DatabaseResource) -> None:
         self._database = database
@@ -1086,6 +1202,7 @@ class DatabaseResourceWithStreamingResponse:
         self.raw = to_streamed_response_wrapper(
             database.raw,
         )
+
 
 class AsyncDatabaseResourceWithStreamingResponse:
     def __init__(self, database: AsyncDatabaseResource) -> None:

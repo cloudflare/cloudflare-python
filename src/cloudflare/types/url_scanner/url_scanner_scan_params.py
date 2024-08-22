@@ -2,20 +2,14 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Annotated
-
 from typing import Union
-
 from datetime import datetime
+from typing_extensions import Annotated, TypedDict
 
-from ..._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
 from ..._utils import PropertyInfo
 
 __all__ = ["URLScannerScanParams"]
+
 
 class URLScannerScanParams(TypedDict, total=False):
     account_scans: bool
@@ -27,10 +21,10 @@ class URLScannerScanParams(TypedDict, total=False):
     webpage.
     """
 
-    date_end: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
+    date_end: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Filter scans requested before date (inclusive)."""
 
-    date_start: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
+    date_start: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Filter scans requested after date (inclusive)."""
 
     hash: str

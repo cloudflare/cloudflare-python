@@ -2,16 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required
+from typing_extensions import Required, TypedDict
 
 from .login_design_param import LoginDesignParam
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-
 __all__ = ["OrganizationCreateParams"]
+
 
 class OrganizationCreateParams(TypedDict, total=False):
     auth_domain: Required[str]

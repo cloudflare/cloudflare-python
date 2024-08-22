@@ -1,14 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
 from typing import Optional
-
-from typing_extensions import Literal
-
 from datetime import datetime
-
-from typing import Optional, Union, List, Dict, Any
 from typing_extensions import Literal
 
 from pydantic import Field as FieldInfo
@@ -17,12 +10,14 @@ from ..._models import BaseModel
 
 __all__ = ["AuditLog", "Action", "Actor", "Owner", "Resource"]
 
+
 class Action(BaseModel):
     result: Optional[bool] = None
     """A boolean that indicates if the action attempted was successful."""
 
     type: Optional[str] = None
     """A short string that describes the action that was performed."""
+
 
 class Actor(BaseModel):
     id: Optional[str] = None
@@ -40,9 +35,11 @@ class Actor(BaseModel):
     type: Optional[Literal["user", "admin", "Cloudflare"]] = None
     """The type of actor, whether a User, Cloudflare Admin, or an Automated System."""
 
+
 class Owner(BaseModel):
     id: Optional[str] = None
     """Identifier"""
+
 
 class Resource(BaseModel):
     id: Optional[str] = None
@@ -50,6 +47,7 @@ class Resource(BaseModel):
 
     type: Optional[str] = None
     """A short string that describes the resource that was affected by the action."""
+
 
 class AuditLog(BaseModel):
     id: Optional[str] = None
@@ -68,10 +66,10 @@ class AuditLog(BaseModel):
     This is a flexible value and varies between different actions.
     """
 
-    new_value: Optional[str] = FieldInfo(alias = "newValue", default = None)
+    new_value: Optional[str] = FieldInfo(alias="newValue", default=None)
     """The new value of the resource that was modified."""
 
-    old_value: Optional[str] = FieldInfo(alias = "oldValue", default = None)
+    old_value: Optional[str] = FieldInfo(alias="oldValue", default=None)
     """The value of the resource before it was modified."""
 
     owner: Optional[Owner] = None

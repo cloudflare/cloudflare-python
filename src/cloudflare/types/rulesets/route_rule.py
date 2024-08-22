@@ -1,20 +1,14 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import Optional, List
-
+from typing import List, Optional
 from datetime import datetime
-
 from typing_extensions import Literal
 
 from .logging import Logging
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ..._models import BaseModel
 
 __all__ = ["RouteRule", "ActionParameters", "ActionParametersOrigin", "ActionParametersSNI"]
+
 
 class ActionParametersOrigin(BaseModel):
     host: Optional[str] = None
@@ -23,9 +17,11 @@ class ActionParametersOrigin(BaseModel):
     port: Optional[float] = None
     """Override the destination port."""
 
+
 class ActionParametersSNI(BaseModel):
     value: str
     """The SNI override."""
+
 
 class ActionParameters(BaseModel):
     host_header: Optional[str] = None
@@ -36,6 +32,7 @@ class ActionParameters(BaseModel):
 
     sni: Optional[ActionParametersSNI] = None
     """Override the Server Name Indication (SNI)."""
+
 
 class RouteRule(BaseModel):
     last_updated: datetime

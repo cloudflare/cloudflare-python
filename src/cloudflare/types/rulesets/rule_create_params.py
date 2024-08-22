@@ -2,22 +2,84 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Literal, Required, TypeAlias
-
-from .logging_param import LoggingParam
-
-from typing import Iterable, Union, Dict, List
-
-from .rewrite_uri_part_param import RewriteURIPartParam
+from typing import Dict, List, Union, Iterable
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .phase import Phase
+from .logging_param import LoggingParam
+from .rewrite_uri_part_param import RewriteURIPartParam
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
+__all__ = [
+    "RuleCreateParams",
+    "BlockRule",
+    "BlockRuleActionParameters",
+    "BlockRuleActionParametersResponse",
+    "RulesetsChallengeRule",
+    "CompressResponseRule",
+    "CompressResponseRuleActionParameters",
+    "CompressResponseRuleActionParametersAlgorithm",
+    "ExecuteRule",
+    "ExecuteRuleActionParameters",
+    "ExecuteRuleActionParametersMatchedData",
+    "ExecuteRuleActionParametersOverrides",
+    "ExecuteRuleActionParametersOverridesCategory",
+    "ExecuteRuleActionParametersOverridesRule",
+    "RulesetsJSChallengeRule",
+    "LogRule",
+    "ManagedChallengeRule",
+    "RedirectRule",
+    "RedirectRuleActionParameters",
+    "RedirectRuleActionParametersFromList",
+    "RedirectRuleActionParametersFromValue",
+    "RedirectRuleActionParametersFromValueTargetURL",
+    "RedirectRuleActionParametersFromValueTargetURLStaticURLRedirect",
+    "RedirectRuleActionParametersFromValueTargetURLDynamicURLRedirect",
+    "RewriteRule",
+    "RewriteRuleActionParameters",
+    "RewriteRuleActionParametersHeaders",
+    "RewriteRuleActionParametersHeadersRemoveHeader",
+    "RewriteRuleActionParametersHeadersStaticHeader",
+    "RewriteRuleActionParametersHeadersDynamicHeader",
+    "RewriteRuleActionParametersURI",
+    "RouteRule",
+    "RouteRuleActionParameters",
+    "RouteRuleActionParametersOrigin",
+    "RouteRuleActionParametersSNI",
+    "ScoreRule",
+    "ScoreRuleActionParameters",
+    "ServeErrorRule",
+    "ServeErrorRuleActionParameters",
+    "SetConfigRule",
+    "SetConfigRuleActionParameters",
+    "SetConfigRuleActionParametersAutominify",
+    "SkipRule",
+    "SkipRuleActionParameters",
+    "SetCacheSettingsRule",
+    "SetCacheSettingsRuleActionParameters",
+    "SetCacheSettingsRuleActionParametersBrowserTTL",
+    "SetCacheSettingsRuleActionParametersCacheKey",
+    "SetCacheSettingsRuleActionParametersCacheKeyCustomKey",
+    "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyCookie",
+    "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyHeader",
+    "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyHost",
+    "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryString",
+    "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExclude",
+    "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringInclude",
+    "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyUser",
+    "SetCacheSettingsRuleActionParametersCacheReserve",
+    "SetCacheSettingsRuleActionParametersEdgeTTL",
+    "SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTL",
+    "SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRange",
+    "SetCacheSettingsRuleActionParametersServeStale",
+    "LogCustomFieldRule",
+    "LogCustomFieldRuleActionParameters",
+    "LogCustomFieldRuleActionParametersCookieField",
+    "LogCustomFieldRuleActionParametersRequestField",
+    "LogCustomFieldRuleActionParametersResponseField",
+    "DDoSDynamicRule",
+    "ForceConnectionCloseRule",
+]
 
-__all__ = ["RuleCreateParams", "BlockRule", "BlockRuleActionParameters", "BlockRuleActionParametersResponse", "RulesetsChallengeRule", "CompressResponseRule", "CompressResponseRuleActionParameters", "CompressResponseRuleActionParametersAlgorithm", "ExecuteRule", "ExecuteRuleActionParameters", "ExecuteRuleActionParametersMatchedData", "ExecuteRuleActionParametersOverrides", "ExecuteRuleActionParametersOverridesCategory", "ExecuteRuleActionParametersOverridesRule", "RulesetsJSChallengeRule", "LogRule", "ManagedChallengeRule", "RedirectRule", "RedirectRuleActionParameters", "RedirectRuleActionParametersFromList", "RedirectRuleActionParametersFromValue", "RedirectRuleActionParametersFromValueTargetURL", "RedirectRuleActionParametersFromValueTargetURLStaticURLRedirect", "RedirectRuleActionParametersFromValueTargetURLDynamicURLRedirect", "RewriteRule", "RewriteRuleActionParameters", "RewriteRuleActionParametersHeaders", "RewriteRuleActionParametersHeadersRemoveHeader", "RewriteRuleActionParametersHeadersStaticHeader", "RewriteRuleActionParametersHeadersDynamicHeader", "RewriteRuleActionParametersURI", "RouteRule", "RouteRuleActionParameters", "RouteRuleActionParametersOrigin", "RouteRuleActionParametersSNI", "ScoreRule", "ScoreRuleActionParameters", "ServeErrorRule", "ServeErrorRuleActionParameters", "SetConfigRule", "SetConfigRuleActionParameters", "SetConfigRuleActionParametersAutominify", "SkipRule", "SkipRuleActionParameters", "SetCacheSettingsRule", "SetCacheSettingsRuleActionParameters", "SetCacheSettingsRuleActionParametersBrowserTTL", "SetCacheSettingsRuleActionParametersCacheKey", "SetCacheSettingsRuleActionParametersCacheKeyCustomKey", "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyCookie", "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyHeader", "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyHost", "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryString", "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExclude", "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringInclude", "SetCacheSettingsRuleActionParametersCacheKeyCustomKeyUser", "SetCacheSettingsRuleActionParametersCacheReserve", "SetCacheSettingsRuleActionParametersEdgeTTL", "SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTL", "SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRange", "SetCacheSettingsRuleActionParametersServeStale", "LogCustomFieldRule", "LogCustomFieldRuleActionParameters", "LogCustomFieldRuleActionParametersCookieField", "LogCustomFieldRuleActionParametersRequestField", "LogCustomFieldRuleActionParametersResponseField", "DDoSDynamicRule", "ForceConnectionCloseRule"]
 
 class BlockRule(TypedDict, total=False):
     account_id: str
@@ -50,6 +112,7 @@ class BlockRule(TypedDict, total=False):
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
+
 class BlockRuleActionParametersResponse(TypedDict, total=False):
     content: Required[str]
     """The content to return."""
@@ -60,9 +123,11 @@ class BlockRuleActionParametersResponse(TypedDict, total=False):
     status_code: Required[int]
     """The status code to return."""
 
+
 class BlockRuleActionParameters(TypedDict, total=False):
     response: BlockRuleActionParametersResponse
     """The response to show when the block is applied."""
+
 
 class RulesetsChallengeRule(TypedDict, total=False):
     account_id: str
@@ -95,6 +160,7 @@ class RulesetsChallengeRule(TypedDict, total=False):
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
+
 class CompressResponseRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -126,13 +192,16 @@ class CompressResponseRule(TypedDict, total=False):
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
+
 class CompressResponseRuleActionParametersAlgorithm(TypedDict, total=False):
     name: Literal["none", "auto", "default", "gzip", "brotli"]
     """Name of compression algorithm to enable."""
 
+
 class CompressResponseRuleActionParameters(TypedDict, total=False):
     algorithms: Iterable[CompressResponseRuleActionParametersAlgorithm]
     """Custom order for compression algorithms."""
+
 
 class ExecuteRule(TypedDict, total=False):
     account_id: str
@@ -165,9 +234,11 @@ class ExecuteRule(TypedDict, total=False):
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
+
 class ExecuteRuleActionParametersMatchedData(TypedDict, total=False):
     public_key: Required[str]
     """The public key to encrypt matched data logs with."""
+
 
 class ExecuteRuleActionParametersOverridesCategory(TypedDict, total=False):
     category: Required[str]
@@ -181,6 +252,7 @@ class ExecuteRuleActionParametersOverridesCategory(TypedDict, total=False):
 
     sensitivity_level: Literal["default", "medium", "low", "eoff"]
     """The sensitivity level to use for rules in the category."""
+
 
 class ExecuteRuleActionParametersOverridesRule(TypedDict, total=False):
     id: Required[str]
@@ -197,6 +269,7 @@ class ExecuteRuleActionParametersOverridesRule(TypedDict, total=False):
 
     sensitivity_level: Literal["default", "medium", "low", "eoff"]
     """The sensitivity level to use for the rule."""
+
 
 class ExecuteRuleActionParametersOverrides(TypedDict, total=False):
     action: str
@@ -227,6 +300,7 @@ class ExecuteRuleActionParametersOverrides(TypedDict, total=False):
     applicable for DDoS phases.
     """
 
+
 class ExecuteRuleActionParameters(TypedDict, total=False):
     id: Required[str]
     """The ID of the ruleset to execute."""
@@ -236,6 +310,7 @@ class ExecuteRuleActionParameters(TypedDict, total=False):
 
     overrides: ExecuteRuleActionParametersOverrides
     """A set of overrides to apply to the target ruleset."""
+
 
 class RulesetsJSChallengeRule(TypedDict, total=False):
     account_id: str
@@ -268,6 +343,7 @@ class RulesetsJSChallengeRule(TypedDict, total=False):
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
+
 class LogRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -298,6 +374,7 @@ class LogRule(TypedDict, total=False):
 
     ref: str
     """The reference of the rule (the rule ID by default)."""
+
 
 class ManagedChallengeRule(TypedDict, total=False):
     account_id: str
@@ -330,6 +407,7 @@ class ManagedChallengeRule(TypedDict, total=False):
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
+
 class RedirectRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -361,6 +439,7 @@ class RedirectRule(TypedDict, total=False):
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
+
 class RedirectRuleActionParametersFromList(TypedDict, total=False):
     key: str
     """Expression that evaluates to the list lookup key."""
@@ -368,15 +447,22 @@ class RedirectRuleActionParametersFromList(TypedDict, total=False):
     name: str
     """The name of the list to match against."""
 
+
 class RedirectRuleActionParametersFromValueTargetURLStaticURLRedirect(TypedDict, total=False):
     value: str
     """The URL to redirect the request to."""
+
 
 class RedirectRuleActionParametersFromValueTargetURLDynamicURLRedirect(TypedDict, total=False):
     expression: str
     """An expression to evaluate to get the URL to redirect the request to."""
 
-RedirectRuleActionParametersFromValueTargetURL: TypeAlias = Union[RedirectRuleActionParametersFromValueTargetURLStaticURLRedirect, RedirectRuleActionParametersFromValueTargetURLDynamicURLRedirect]
+
+RedirectRuleActionParametersFromValueTargetURL: TypeAlias = Union[
+    RedirectRuleActionParametersFromValueTargetURLStaticURLRedirect,
+    RedirectRuleActionParametersFromValueTargetURLDynamicURLRedirect,
+]
+
 
 class RedirectRuleActionParametersFromValue(TypedDict, total=False):
     preserve_query_string: bool
@@ -388,12 +474,14 @@ class RedirectRuleActionParametersFromValue(TypedDict, total=False):
     target_url: RedirectRuleActionParametersFromValueTargetURL
     """The URL to redirect the request to."""
 
+
 class RedirectRuleActionParameters(TypedDict, total=False):
     from_list: RedirectRuleActionParametersFromList
     """Serve a redirect based on a bulk list lookup."""
 
     from_value: RedirectRuleActionParametersFromValue
     """Serve a redirect based on the request properties."""
+
 
 class RewriteRule(TypedDict, total=False):
     account_id: str
@@ -426,8 +514,10 @@ class RewriteRule(TypedDict, total=False):
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
+
 class RewriteRuleActionParametersHeadersRemoveHeader(TypedDict, total=False):
     operation: Required[Literal["remove"]]
+
 
 class RewriteRuleActionParametersHeadersStaticHeader(TypedDict, total=False):
     operation: Required[Literal["set"]]
@@ -435,13 +525,20 @@ class RewriteRuleActionParametersHeadersStaticHeader(TypedDict, total=False):
     value: Required[str]
     """Static value for the header."""
 
+
 class RewriteRuleActionParametersHeadersDynamicHeader(TypedDict, total=False):
     expression: Required[str]
     """Expression for the header value."""
 
     operation: Required[Literal["set"]]
 
-RewriteRuleActionParametersHeaders: TypeAlias = Union[RewriteRuleActionParametersHeadersRemoveHeader, RewriteRuleActionParametersHeadersStaticHeader, RewriteRuleActionParametersHeadersDynamicHeader]
+
+RewriteRuleActionParametersHeaders: TypeAlias = Union[
+    RewriteRuleActionParametersHeadersRemoveHeader,
+    RewriteRuleActionParametersHeadersStaticHeader,
+    RewriteRuleActionParametersHeadersDynamicHeader,
+]
+
 
 class RewriteRuleActionParametersURI(TypedDict, total=False):
     path: RewriteURIPartParam
@@ -450,12 +547,14 @@ class RewriteRuleActionParametersURI(TypedDict, total=False):
     query: RewriteURIPartParam
     """Query portion rewrite."""
 
+
 class RewriteRuleActionParameters(TypedDict, total=False):
     headers: Dict[str, RewriteRuleActionParametersHeaders]
     """Map of request headers to modify."""
 
     uri: RewriteRuleActionParametersURI
     """URI to rewrite the request to."""
+
 
 class RouteRule(TypedDict, total=False):
     account_id: str
@@ -488,6 +587,7 @@ class RouteRule(TypedDict, total=False):
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
+
 class RouteRuleActionParametersOrigin(TypedDict, total=False):
     host: str
     """Override the resolved hostname."""
@@ -495,9 +595,11 @@ class RouteRuleActionParametersOrigin(TypedDict, total=False):
     port: float
     """Override the destination port."""
 
+
 class RouteRuleActionParametersSNI(TypedDict, total=False):
     value: Required[str]
     """The SNI override."""
+
 
 class RouteRuleActionParameters(TypedDict, total=False):
     host_header: str
@@ -508,6 +610,7 @@ class RouteRuleActionParameters(TypedDict, total=False):
 
     sni: RouteRuleActionParametersSNI
     """Override the Server Name Indication (SNI)."""
+
 
 class ScoreRule(TypedDict, total=False):
     account_id: str
@@ -540,12 +643,14 @@ class ScoreRule(TypedDict, total=False):
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
+
 class ScoreRuleActionParameters(TypedDict, total=False):
     increment: int
     """
     Increment contains the delta to change the score and can be either positive or
     negative.
     """
+
 
 class ServeErrorRule(TypedDict, total=False):
     account_id: str
@@ -578,6 +683,7 @@ class ServeErrorRule(TypedDict, total=False):
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
+
 class ServeErrorRuleActionParameters(TypedDict, total=False):
     content: str
     """Error response content."""
@@ -587,6 +693,7 @@ class ServeErrorRuleActionParameters(TypedDict, total=False):
 
     status_code: float
     """The status code to use for the error."""
+
 
 class SetConfigRule(TypedDict, total=False):
     account_id: str
@@ -619,6 +726,7 @@ class SetConfigRule(TypedDict, total=False):
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
+
 class SetConfigRuleActionParametersAutominify(TypedDict, total=False):
     css: bool
     """Minify CSS files."""
@@ -628,6 +736,7 @@ class SetConfigRuleActionParametersAutominify(TypedDict, total=False):
 
     js: bool
     """Minify JS files."""
+
 
 class SetConfigRuleActionParameters(TypedDict, total=False):
     automatic_https_rewrites: bool
@@ -681,6 +790,7 @@ class SetConfigRuleActionParameters(TypedDict, total=False):
     sxg: bool
     """Turn on or off Signed Exchanges (SXG)."""
 
+
 class SkipRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -712,6 +822,7 @@ class SkipRule(TypedDict, total=False):
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
+
 class SkipRuleActionParameters(TypedDict, total=False):
     phases: List[Phase]
     """A list of phases to skip the execution of.
@@ -739,6 +850,7 @@ class SkipRuleActionParameters(TypedDict, total=False):
 
     This option is incompatible with the ruleset and phases options.
     """
+
 
 class SetCacheSettingsRule(TypedDict, total=False):
     account_id: str
@@ -771,12 +883,14 @@ class SetCacheSettingsRule(TypedDict, total=False):
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
+
 class SetCacheSettingsRuleActionParametersBrowserTTL(TypedDict, total=False):
     mode: Required[Literal["respect_origin", "bypass_by_default", "override_origin"]]
     """Determines which browser ttl mode to use."""
 
     default: int
     """The TTL (in seconds) if you choose override_origin mode."""
+
 
 class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyCookie(TypedDict, total=False):
     check_presence: List[str]
@@ -787,6 +901,7 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyCookie(TypedDict, tot
 
     include: List[str]
     """Include these cookies' names and their values."""
+
 
 class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyHeader(TypedDict, total=False):
     check_presence: List[str]
@@ -812,6 +927,7 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyHeader(TypedDict, tot
     include: List[str]
     """Include these headers' names and their values."""
 
+
 class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyHost(TypedDict, total=False):
     resolved: bool
     """Use the resolved host in the cache key.
@@ -819,6 +935,7 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyHost(TypedDict, total
     A value of true will use the resolved host, while a value or false will use the
     original host.
     """
+
 
 class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExclude(TypedDict, total=False):
     all: bool
@@ -831,12 +948,14 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExclude(Ty
     build the cache key.
     """
 
+
 class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringInclude(TypedDict, total=False):
     all: bool
     """Use all query string parameters in the cache key."""
 
     list: List[str]
     """A list of query string parameters used to build the cache key."""
+
 
 class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryString(TypedDict, total=False):
     exclude: SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryStringExclude
@@ -851,6 +970,7 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyQueryString(TypedDict
     request.
     """
 
+
 class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyUser(TypedDict, total=False):
     device_type: bool
     """Use the user agent's device type in the cache key."""
@@ -860,6 +980,7 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKeyUser(TypedDict, total
 
     lang: bool
     """Use the user agent's language in the cache key."""
+
 
 class SetCacheSettingsRuleActionParametersCacheKeyCustomKey(TypedDict, total=False):
     cookie: SetCacheSettingsRuleActionParametersCacheKeyCustomKeyCookie
@@ -879,6 +1000,7 @@ class SetCacheSettingsRuleActionParametersCacheKeyCustomKey(TypedDict, total=Fal
 
     user: SetCacheSettingsRuleActionParametersCacheKeyCustomKeyUser
     """Characteristics of the request user agent used in building the cache key."""
+
 
 class SetCacheSettingsRuleActionParametersCacheKey(TypedDict, total=False):
     cache_by_device_type: bool
@@ -902,6 +1024,7 @@ class SetCacheSettingsRuleActionParametersCacheKey(TypedDict, total=False):
     those query parameters are in. A value of true ignores the query strings' order.
     """
 
+
 class SetCacheSettingsRuleActionParametersCacheReserve(TypedDict, total=False):
     eligible: Required[bool]
     """Determines whether cache reserve is enabled.
@@ -913,13 +1036,22 @@ class SetCacheSettingsRuleActionParametersCacheReserve(TypedDict, total=False):
     min_file_size: Required[int]
     """The minimum file size eligible for store in cache reserve."""
 
-_SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRangeReservedKeywords = TypedDict("_SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRangeReservedKeywords", {
-    "from": int,
-}, total=False)
 
-class SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRange(_SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRangeReservedKeywords, total=False):
+_SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRangeReservedKeywords = TypedDict(
+    "_SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRangeReservedKeywords",
+    {
+        "from": int,
+    },
+    total=False,
+)
+
+
+class SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRange(
+    _SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTLStatusCodeRangeReservedKeywords, total=False
+):
     to: Required[int]
     """response status code upper bound"""
+
 
 class SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTL(TypedDict, total=False):
     value: Required[int]
@@ -936,6 +1068,7 @@ class SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTL(TypedDict, total=
     status_code_value: int
     """Set the ttl for responses with this specific status code"""
 
+
 class SetCacheSettingsRuleActionParametersEdgeTTL(TypedDict, total=False):
     default: Required[int]
     """The TTL (in seconds) if you choose override_origin mode."""
@@ -946,6 +1079,7 @@ class SetCacheSettingsRuleActionParametersEdgeTTL(TypedDict, total=False):
     status_code_ttl: Required[Iterable[SetCacheSettingsRuleActionParametersEdgeTTLStatusCodeTTL]]
     """List of single status codes, or status code ranges to apply the selected mode"""
 
+
 class SetCacheSettingsRuleActionParametersServeStale(TypedDict, total=False):
     disable_stale_while_updating: Required[bool]
     """Defines whether Cloudflare should serve stale content while updating.
@@ -953,6 +1087,7 @@ class SetCacheSettingsRuleActionParametersServeStale(TypedDict, total=False):
     If true, Cloudflare will not serve stale content while getting the latest
     content from the origin.
     """
+
 
 class SetCacheSettingsRuleActionParameters(TypedDict, total=False):
     additional_cacheable_ports: Iterable[int]
@@ -1021,6 +1156,7 @@ class SetCacheSettingsRuleActionParameters(TypedDict, total=False):
     the latest content from the origin.
     """
 
+
 class LogCustomFieldRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -1052,17 +1188,21 @@ class LogCustomFieldRule(TypedDict, total=False):
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
+
 class LogCustomFieldRuleActionParametersCookieField(TypedDict, total=False):
     name: Required[str]
     """The name of the field."""
+
 
 class LogCustomFieldRuleActionParametersRequestField(TypedDict, total=False):
     name: Required[str]
     """The name of the field."""
 
+
 class LogCustomFieldRuleActionParametersResponseField(TypedDict, total=False):
     name: Required[str]
     """The name of the field."""
+
 
 class LogCustomFieldRuleActionParameters(TypedDict, total=False):
     cookie_fields: Iterable[LogCustomFieldRuleActionParametersCookieField]
@@ -1073,6 +1213,7 @@ class LogCustomFieldRuleActionParameters(TypedDict, total=False):
 
     response_fields: Iterable[LogCustomFieldRuleActionParametersResponseField]
     """The response fields to log."""
+
 
 class DDoSDynamicRule(TypedDict, total=False):
     account_id: str
@@ -1105,6 +1246,7 @@ class DDoSDynamicRule(TypedDict, total=False):
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
+
 class ForceConnectionCloseRule(TypedDict, total=False):
     account_id: str
     """The Account ID to use for this endpoint. Mutually exclusive with the Zone ID."""
@@ -1136,4 +1278,24 @@ class ForceConnectionCloseRule(TypedDict, total=False):
     ref: str
     """The reference of the rule (the rule ID by default)."""
 
-RuleCreateParams: TypeAlias = Union[BlockRule, RulesetsChallengeRule, CompressResponseRule, ExecuteRule, RulesetsJSChallengeRule, LogRule, ManagedChallengeRule, RedirectRule, RewriteRule, RouteRule, ScoreRule, ServeErrorRule, SetConfigRule, SkipRule, SetCacheSettingsRule, LogCustomFieldRule, DDoSDynamicRule, ForceConnectionCloseRule]
+
+RuleCreateParams: TypeAlias = Union[
+    BlockRule,
+    RulesetsChallengeRule,
+    CompressResponseRule,
+    ExecuteRule,
+    RulesetsJSChallengeRule,
+    LogRule,
+    ManagedChallengeRule,
+    RedirectRule,
+    RewriteRule,
+    RouteRule,
+    ScoreRule,
+    ServeErrorRule,
+    SetConfigRule,
+    SkipRule,
+    SetCacheSettingsRule,
+    LogCustomFieldRule,
+    DDoSDynamicRule,
+    ForceConnectionCloseRule,
+]

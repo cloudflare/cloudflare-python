@@ -2,54 +2,35 @@
 
 from __future__ import annotations
 
-import httpx
-
-from ..._compat import cached_property
-
-from ...types.firewall.lockdown import Lockdown
-
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from ..._base_client import make_request_options, AsyncPaginator
-
-from typing import Type, List, Union, Optional
-
-from ...types.firewall.configuration_param import ConfigurationParam
-
-from ...types.firewall.waf.override_url import OverrideURL
-
-from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
+from typing import List, Type, Union, Optional, cast
 from datetime import datetime
 
+import httpx
+
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ...pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.firewall import lockdown_list_params, lockdown_create_params, lockdown_update_params
+from ...types.firewall.lockdown import Lockdown
+from ...types.firewall.waf.override_url import OverrideURL
+from ...types.firewall.configuration_param import ConfigurationParam
 from ...types.firewall.lockdown_delete_response import LockdownDeleteResponse
 
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.firewall import lockdown_create_params
-from ...types.firewall import lockdown_update_params
-from ...types.firewall import lockdown_list_params
-from ...types.firewall import Configuration
-from ...types.firewall import Configuration
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["LockdownsResource", "AsyncLockdownsResource"]
+
 
 class LockdownsResource(SyncAPIResource):
     @cached_property
@@ -60,17 +41,19 @@ class LockdownsResource(SyncAPIResource):
     def with_streaming_response(self) -> LockdownsResourceWithStreamingResponse:
         return LockdownsResourceWithStreamingResponse(self)
 
-    def create(self,
-    zone_identifier: str,
-    *,
-    configurations: ConfigurationParam,
-    urls: List[OverrideURL],
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Lockdown:
+    def create(
+        self,
+        zone_identifier: str,
+        *,
+        configurations: ConfigurationParam,
+        urls: List[OverrideURL],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Lockdown:
         """
         Creates a new Zone Lockdown rule.
 
@@ -94,31 +77,40 @@ class LockdownsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._post(
             f"/zones/{zone_identifier}/firewall/lockdowns",
-            body=maybe_transform({
-                "configurations": configurations,
-                "urls": urls,
-            }, lockdown_create_params.LockdownCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Lockdown]._unwrapper),
+            body=maybe_transform(
+                {
+                    "configurations": configurations,
+                    "urls": urls,
+                },
+                lockdown_create_params.LockdownCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Lockdown]._unwrapper,
+            ),
             cast_to=cast(Type[Lockdown], ResultWrapper[Lockdown]),
         )
 
-    def update(self,
-    id: str,
-    *,
-    zone_identifier: str,
-    configurations: ConfigurationParam,
-    urls: List[OverrideURL],
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Lockdown:
+    def update(
+        self,
+        id: str,
+        *,
+        zone_identifier: str,
+        configurations: ConfigurationParam,
+        urls: List[OverrideURL],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Lockdown:
         """
         Updates an existing Zone Lockdown rule.
 
@@ -144,43 +136,50 @@ class LockdownsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         if not id:
-          raise ValueError(
-            f'Expected a non-empty value for `id` but received {id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._put(
             f"/zones/{zone_identifier}/firewall/lockdowns/{id}",
-            body=maybe_transform({
-                "configurations": configurations,
-                "urls": urls,
-            }, lockdown_update_params.LockdownUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Lockdown]._unwrapper),
+            body=maybe_transform(
+                {
+                    "configurations": configurations,
+                    "urls": urls,
+                },
+                lockdown_update_params.LockdownUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Lockdown]._unwrapper,
+            ),
             cast_to=cast(Type[Lockdown], ResultWrapper[Lockdown]),
         )
 
-    def list(self,
-    zone_identifier: str,
-    *,
-    created_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    description_search: str | NotGiven = NOT_GIVEN,
-    ip: str | NotGiven = NOT_GIVEN,
-    ip_range_search: str | NotGiven = NOT_GIVEN,
-    ip_search: str | NotGiven = NOT_GIVEN,
-    modified_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    page: float | NotGiven = NOT_GIVEN,
-    per_page: float | NotGiven = NOT_GIVEN,
-    priority: float | NotGiven = NOT_GIVEN,
-    uri_search: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[Lockdown]:
+    def list(
+        self,
+        zone_identifier: str,
+        *,
+        created_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        description_search: str | NotGiven = NOT_GIVEN,
+        ip: str | NotGiven = NOT_GIVEN,
+        ip_range_search: str | NotGiven = NOT_GIVEN,
+        ip_search: str | NotGiven = NOT_GIVEN,
+        modified_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        uri_search: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncV4PagePaginationArray[Lockdown]:
         """Fetches Zone Lockdown rules.
 
         You can filter the results using several optional
@@ -223,38 +222,47 @@ class LockdownsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/firewall/lockdowns",
-            page = SyncV4PagePaginationArray[Lockdown],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "created_on": created_on,
-                "description": description,
-                "description_search": description_search,
-                "ip": ip,
-                "ip_range_search": ip_range_search,
-                "ip_search": ip_search,
-                "modified_on": modified_on,
-                "page": page,
-                "per_page": per_page,
-                "priority": priority,
-                "uri_search": uri_search,
-            }, lockdown_list_params.LockdownListParams)),
+            page=SyncV4PagePaginationArray[Lockdown],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "created_on": created_on,
+                        "description": description,
+                        "description_search": description_search,
+                        "ip": ip,
+                        "ip_range_search": ip_range_search,
+                        "ip_search": ip_search,
+                        "modified_on": modified_on,
+                        "page": page,
+                        "per_page": per_page,
+                        "priority": priority,
+                        "uri_search": uri_search,
+                    },
+                    lockdown_list_params.LockdownListParams,
+                ),
+            ),
             model=Lockdown,
         )
 
-    def delete(self,
-    id: str,
-    *,
-    zone_identifier: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[LockdownDeleteResponse]:
+    def delete(
+        self,
+        id: str,
+        *,
+        zone_identifier: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[LockdownDeleteResponse]:
         """
         Deletes an existing Zone Lockdown rule.
 
@@ -272,29 +280,33 @@ class LockdownsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         if not id:
-          raise ValueError(
-            f'Expected a non-empty value for `id` but received {id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._delete(
             f"/zones/{zone_identifier}/firewall/lockdowns/{id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[LockdownDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[LockdownDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[LockdownDeleteResponse]], ResultWrapper[LockdownDeleteResponse]),
         )
 
-    def get(self,
-    id: str,
-    *,
-    zone_identifier: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Lockdown:
+    def get(
+        self,
+        id: str,
+        *,
+        zone_identifier: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Lockdown:
         """
         Fetches the details of a Zone Lockdown rule.
 
@@ -312,18 +324,21 @@ class LockdownsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         if not id:
-          raise ValueError(
-            f'Expected a non-empty value for `id` but received {id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
             f"/zones/{zone_identifier}/firewall/lockdowns/{id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Lockdown]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Lockdown]._unwrapper,
+            ),
             cast_to=cast(Type[Lockdown], ResultWrapper[Lockdown]),
         )
+
 
 class AsyncLockdownsResource(AsyncAPIResource):
     @cached_property
@@ -334,17 +349,19 @@ class AsyncLockdownsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncLockdownsResourceWithStreamingResponse:
         return AsyncLockdownsResourceWithStreamingResponse(self)
 
-    async def create(self,
-    zone_identifier: str,
-    *,
-    configurations: ConfigurationParam,
-    urls: List[OverrideURL],
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Lockdown:
+    async def create(
+        self,
+        zone_identifier: str,
+        *,
+        configurations: ConfigurationParam,
+        urls: List[OverrideURL],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Lockdown:
         """
         Creates a new Zone Lockdown rule.
 
@@ -368,31 +385,40 @@ class AsyncLockdownsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return await self._post(
             f"/zones/{zone_identifier}/firewall/lockdowns",
-            body=await async_maybe_transform({
-                "configurations": configurations,
-                "urls": urls,
-            }, lockdown_create_params.LockdownCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Lockdown]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "configurations": configurations,
+                    "urls": urls,
+                },
+                lockdown_create_params.LockdownCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Lockdown]._unwrapper,
+            ),
             cast_to=cast(Type[Lockdown], ResultWrapper[Lockdown]),
         )
 
-    async def update(self,
-    id: str,
-    *,
-    zone_identifier: str,
-    configurations: ConfigurationParam,
-    urls: List[OverrideURL],
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Lockdown:
+    async def update(
+        self,
+        id: str,
+        *,
+        zone_identifier: str,
+        configurations: ConfigurationParam,
+        urls: List[OverrideURL],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Lockdown:
         """
         Updates an existing Zone Lockdown rule.
 
@@ -418,43 +444,50 @@ class AsyncLockdownsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         if not id:
-          raise ValueError(
-            f'Expected a non-empty value for `id` but received {id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._put(
             f"/zones/{zone_identifier}/firewall/lockdowns/{id}",
-            body=await async_maybe_transform({
-                "configurations": configurations,
-                "urls": urls,
-            }, lockdown_update_params.LockdownUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Lockdown]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "configurations": configurations,
+                    "urls": urls,
+                },
+                lockdown_update_params.LockdownUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Lockdown]._unwrapper,
+            ),
             cast_to=cast(Type[Lockdown], ResultWrapper[Lockdown]),
         )
 
-    def list(self,
-    zone_identifier: str,
-    *,
-    created_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    description_search: str | NotGiven = NOT_GIVEN,
-    ip: str | NotGiven = NOT_GIVEN,
-    ip_range_search: str | NotGiven = NOT_GIVEN,
-    ip_search: str | NotGiven = NOT_GIVEN,
-    modified_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    page: float | NotGiven = NOT_GIVEN,
-    per_page: float | NotGiven = NOT_GIVEN,
-    priority: float | NotGiven = NOT_GIVEN,
-    uri_search: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Lockdown, AsyncV4PagePaginationArray[Lockdown]]:
+    def list(
+        self,
+        zone_identifier: str,
+        *,
+        created_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        description_search: str | NotGiven = NOT_GIVEN,
+        ip: str | NotGiven = NOT_GIVEN,
+        ip_range_search: str | NotGiven = NOT_GIVEN,
+        ip_search: str | NotGiven = NOT_GIVEN,
+        modified_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        priority: float | NotGiven = NOT_GIVEN,
+        uri_search: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[Lockdown, AsyncV4PagePaginationArray[Lockdown]]:
         """Fetches Zone Lockdown rules.
 
         You can filter the results using several optional
@@ -497,38 +530,47 @@ class AsyncLockdownsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         return self._get_api_list(
             f"/zones/{zone_identifier}/firewall/lockdowns",
-            page = AsyncV4PagePaginationArray[Lockdown],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "created_on": created_on,
-                "description": description,
-                "description_search": description_search,
-                "ip": ip,
-                "ip_range_search": ip_range_search,
-                "ip_search": ip_search,
-                "modified_on": modified_on,
-                "page": page,
-                "per_page": per_page,
-                "priority": priority,
-                "uri_search": uri_search,
-            }, lockdown_list_params.LockdownListParams)),
+            page=AsyncV4PagePaginationArray[Lockdown],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "created_on": created_on,
+                        "description": description,
+                        "description_search": description_search,
+                        "ip": ip,
+                        "ip_range_search": ip_range_search,
+                        "ip_search": ip_search,
+                        "modified_on": modified_on,
+                        "page": page,
+                        "per_page": per_page,
+                        "priority": priority,
+                        "uri_search": uri_search,
+                    },
+                    lockdown_list_params.LockdownListParams,
+                ),
+            ),
             model=Lockdown,
         )
 
-    async def delete(self,
-    id: str,
-    *,
-    zone_identifier: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[LockdownDeleteResponse]:
+    async def delete(
+        self,
+        id: str,
+        *,
+        zone_identifier: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[LockdownDeleteResponse]:
         """
         Deletes an existing Zone Lockdown rule.
 
@@ -546,29 +588,33 @@ class AsyncLockdownsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         if not id:
-          raise ValueError(
-            f'Expected a non-empty value for `id` but received {id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._delete(
             f"/zones/{zone_identifier}/firewall/lockdowns/{id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[LockdownDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[LockdownDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[LockdownDeleteResponse]], ResultWrapper[LockdownDeleteResponse]),
         )
 
-    async def get(self,
-    id: str,
-    *,
-    zone_identifier: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Lockdown:
+    async def get(
+        self,
+        id: str,
+        *,
+        zone_identifier: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Lockdown:
         """
         Fetches the details of a Zone Lockdown rule.
 
@@ -586,18 +632,21 @@ class AsyncLockdownsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_identifier:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_identifier` but received {zone_identifier!r}")
         if not id:
-          raise ValueError(
-            f'Expected a non-empty value for `id` but received {id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
             f"/zones/{zone_identifier}/firewall/lockdowns/{id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Lockdown]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Lockdown]._unwrapper,
+            ),
             cast_to=cast(Type[Lockdown], ResultWrapper[Lockdown]),
         )
+
 
 class LockdownsResourceWithRawResponse:
     def __init__(self, lockdowns: LockdownsResource) -> None:
@@ -619,6 +668,7 @@ class LockdownsResourceWithRawResponse:
             lockdowns.get,
         )
 
+
 class AsyncLockdownsResourceWithRawResponse:
     def __init__(self, lockdowns: AsyncLockdownsResource) -> None:
         self._lockdowns = lockdowns
@@ -639,6 +689,7 @@ class AsyncLockdownsResourceWithRawResponse:
             lockdowns.get,
         )
 
+
 class LockdownsResourceWithStreamingResponse:
     def __init__(self, lockdowns: LockdownsResource) -> None:
         self._lockdowns = lockdowns
@@ -658,6 +709,7 @@ class LockdownsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             lockdowns.get,
         )
+
 
 class AsyncLockdownsResourceWithStreamingResponse:
     def __init__(self, lockdowns: AsyncLockdownsResource) -> None:

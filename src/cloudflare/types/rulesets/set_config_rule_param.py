@@ -8,6 +8,7 @@ from .logging_param import LoggingParam
 
 __all__ = ["SetConfigRuleParam", "ActionParameters", "ActionParametersAutominify"]
 
+
 class ActionParametersAutominify(TypedDict, total=False):
     css: bool
     """Minify CSS files."""
@@ -17,6 +18,7 @@ class ActionParametersAutominify(TypedDict, total=False):
 
     js: bool
     """Minify JS files."""
+
 
 class ActionParameters(TypedDict, total=False):
     automatic_https_rewrites: bool
@@ -69,6 +71,7 @@ class ActionParameters(TypedDict, total=False):
 
     sxg: bool
     """Turn on or off Signed Exchanges (SXG)."""
+
 
 class SetConfigRuleParam(TypedDict, total=False):
     id: str

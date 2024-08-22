@@ -2,105 +2,69 @@
 
 from __future__ import annotations
 
+from typing import Any, List, Type, Iterable, Optional, cast, overload
+
 import httpx
 
-from .cas import CAsResource, AsyncCAsResource
-
+from .cas import (
+    CAsResource,
+    AsyncCAsResource,
+    CAsResourceWithRawResponse,
+    AsyncCAsResourceWithRawResponse,
+    CAsResourceWithStreamingResponse,
+    AsyncCAsResourceWithStreamingResponse,
+)
+from .policies import (
+    PoliciesResource,
+    AsyncPoliciesResource,
+    PoliciesResourceWithRawResponse,
+    AsyncPoliciesResourceWithRawResponse,
+    PoliciesResourceWithStreamingResponse,
+    AsyncPoliciesResourceWithStreamingResponse,
+)
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
-
-from .user_policy_checks import UserPolicyChecksResource, AsyncUserPolicyChecksResource
-
-from .policies import PoliciesResource, AsyncPoliciesResource
-
-from typing import List, Optional, Iterable, Type
-
-from .....types.zero_trust.access.allowed_idps import AllowedIdPs
-
-from .....types.zero_trust.access.cors_headers_param import CORSHeadersParam
-
-from .....types.zero_trust.access.self_hosted_domains import SelfHostedDomains
-
-from .....types.zero_trust.access.application_create_response import ApplicationCreateResponse
-
-from .....types.zero_trust.access.application_type import ApplicationType
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ....._wrappers import ResultWrapper
-
-from ....._utils import maybe_transform, async_maybe_transform
-
-from ....._base_client import make_request_options, AsyncPaginator
-
+from .....pagination import SyncSinglePage, AsyncSinglePage
+from ....._base_client import AsyncPaginator, make_request_options
+from .user_policy_checks import (
+    UserPolicyChecksResource,
+    AsyncUserPolicyChecksResource,
+    UserPolicyChecksResourceWithRawResponse,
+    AsyncUserPolicyChecksResourceWithRawResponse,
+    UserPolicyChecksResourceWithStreamingResponse,
+    AsyncUserPolicyChecksResourceWithStreamingResponse,
+)
+from .....types.zero_trust.access import (
+    AppID,
+    ApplicationType,
+    application_create_params,
+    application_update_params,
+)
 from .....types.zero_trust.access.app_id import AppID
-
+from .....types.zero_trust.access.allowed_idps import AllowedIdPs
+from .....types.zero_trust.access.application_type import ApplicationType
+from .....types.zero_trust.access.cors_headers_param import CORSHeadersParam
+from .....types.zero_trust.access.self_hosted_domains import SelfHostedDomains
+from .....types.zero_trust.access.application_get_response import ApplicationGetResponse
+from .....types.zero_trust.access.application_list_response import ApplicationListResponse
+from .....types.zero_trust.access.application_create_response import ApplicationCreateResponse
+from .....types.zero_trust.access.application_delete_response import ApplicationDeleteResponse
 from .....types.zero_trust.access.application_update_response import ApplicationUpdateResponse
 
-from .....types.zero_trust.access.application_list_response import ApplicationListResponse
-
-from .....pagination import SyncSinglePage, AsyncSinglePage
-
-from .....types.zero_trust.access.application_delete_response import ApplicationDeleteResponse
-
-from .....types.zero_trust.access.application_get_response import ApplicationGetResponse
-
-from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-from .....types.zero_trust.access import application_create_params, application_update_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .....types.zero_trust.access import application_create_params
-from .....types.zero_trust.access import application_update_params
-from .....types.zero_trust.access import CORSHeaders
-from .....types.zero_trust.access import CORSHeaders
-from .....types.zero_trust.access import CORSHeaders
-from .....types.zero_trust.access import ApplicationType
-from .....types.zero_trust.access import ApplicationType
-from .....types.zero_trust.access import ApplicationType
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import CORSHeaders
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import CORSHeaders
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import CORSHeaders
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import ApplicationType
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import ApplicationType
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import ApplicationType
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import AppID
-from .....types.zero_trust.access import AppID
-from .cas import CAsResource, AsyncCAsResource, CAsResourceWithRawResponse, AsyncCAsResourceWithRawResponse, CAsResourceWithStreamingResponse, AsyncCAsResourceWithStreamingResponse
-from .user_policy_checks import UserPolicyChecksResource, AsyncUserPolicyChecksResource, UserPolicyChecksResourceWithRawResponse, AsyncUserPolicyChecksResourceWithRawResponse, UserPolicyChecksResourceWithStreamingResponse, AsyncUserPolicyChecksResourceWithStreamingResponse
-from .policies import PoliciesResource, AsyncPoliciesResource, PoliciesResourceWithRawResponse, AsyncPoliciesResourceWithRawResponse, PoliciesResourceWithStreamingResponse, AsyncPoliciesResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["ApplicationsResource", "AsyncApplicationsResource"]
+
 
 class ApplicationsResource(SyncAPIResource):
     @cached_property
@@ -124,41 +88,43 @@ class ApplicationsResource(SyncAPIResource):
         return ApplicationsResourceWithStreamingResponse(self)
 
     @overload
-    def create(self,
-    *,
-    domain: str,
-    type: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-    custom_deny_message: str | NotGiven = NOT_GIVEN,
-    custom_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-    http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-    path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
-    same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-    scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-    service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_interstitial: bool | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationCreateResponse]:
+    def create(
+        self,
+        *,
+        domain: str,
+        type: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -244,28 +210,31 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def create(self,
-    *,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    policies: List[application_create_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
-    saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-    scim_config: application_create_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    type: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationCreateResponse]:
+    def create(
+        self,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
+        saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -309,42 +278,45 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def create(self,
-    *,
-    domain: str,
-    type: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-    custom_deny_message: str | NotGiven = NOT_GIVEN,
-    custom_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-    http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-    path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    policies: List[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
-    same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-    scim_config: application_create_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-    service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_interstitial: bool | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationCreateResponse]:
+    def create(
+        self,
+        *,
+        domain: str,
+        type: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -430,42 +402,45 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def create(self,
-    *,
-    domain: str,
-    type: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-    custom_deny_message: str | NotGiven = NOT_GIVEN,
-    custom_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-    http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-    path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    policies: List[application_create_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
-    same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-    scim_config: application_create_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-    service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_interstitial: bool | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationCreateResponse]:
+    def create(
+        self,
+        *,
+        domain: str,
+        type: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -551,29 +526,32 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def create(self,
-    *,
-    type: ApplicationType,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    bg_color: str | NotGiven = NOT_GIVEN,
-    footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
-    header_bg_color: str | NotGiven = NOT_GIVEN,
-    landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-    policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
-    scim_config: application_create_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationCreateResponse]:
+    def create(
+        self,
+        *,
+        type: ApplicationType,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -622,29 +600,34 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def create(self,
-    *,
-    type: ApplicationType,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    bg_color: str | NotGiven = NOT_GIVEN,
-    footer_links: Iterable[application_create_params.DeviceEnrollmentPermissionsApplicationFooterLink] | NotGiven = NOT_GIVEN,
-    header_bg_color: str | NotGiven = NOT_GIVEN,
-    landing_page_design: application_create_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-    policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-    scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationCreateResponse]:
+    def create(
+        self,
+        *,
+        type: ApplicationType,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.DeviceEnrollmentPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -693,29 +676,34 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def create(self,
-    *,
-    type: ApplicationType,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    bg_color: str | NotGiven = NOT_GIVEN,
-    footer_links: Iterable[application_create_params.BrowserIsolationPermissionsApplicationFooterLink] | NotGiven = NOT_GIVEN,
-    header_bg_color: str | NotGiven = NOT_GIVEN,
-    landing_page_design: application_create_params.BrowserIsolationPermissionsApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-    policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-    scim_config: application_create_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationCreateResponse]:
+    def create(
+        self,
+        *,
+        type: ApplicationType,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.BrowserIsolationPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.BrowserIsolationPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -764,24 +752,27 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def create(self,
-    *,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    domain: str | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    scim_config: application_create_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    type: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationCreateResponse]:
+    def create(
+        self,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -815,137 +806,156 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-    def create(self,
-    *,
-    domain: str | NotGiven = NOT_GIVEN,
-    type: str | ApplicationType | NotGiven = NOT_GIVEN,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-    custom_deny_message: str | NotGiven = NOT_GIVEN,
-    custom_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-    http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-    path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
-    same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-    scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-    service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_interstitial: bool | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-    app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-    bg_color: str | NotGiven = NOT_GIVEN,
-    footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
-    header_bg_color: str | NotGiven = NOT_GIVEN,
-    landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-    skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationCreateResponse]:
+
+    def create(
+        self,
+        *,
+        domain: str | NotGiven = NOT_GIVEN,
+        type: str | ApplicationType | NotGiven = NOT_GIVEN,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
-        return cast(Optional[ApplicationCreateResponse], self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps",
-            body=maybe_transform({
-                "domain": domain,
-                "type": type,
-                "allow_authenticate_via_warp": allow_authenticate_via_warp,
-                "allowed_idps": allowed_idps,
-                "app_launcher_visible": app_launcher_visible,
-                "auto_redirect_to_identity": auto_redirect_to_identity,
-                "cors_headers": cors_headers,
-                "custom_deny_message": custom_deny_message,
-                "custom_deny_url": custom_deny_url,
-                "custom_non_identity_deny_url": custom_non_identity_deny_url,
-                "custom_pages": custom_pages,
-                "enable_binding_cookie": enable_binding_cookie,
-                "http_only_cookie_attribute": http_only_cookie_attribute,
-                "logo_url": logo_url,
-                "name": name,
-                "options_preflight_bypass": options_preflight_bypass,
-                "path_cookie_attribute": path_cookie_attribute,
-                "policies": policies,
-                "same_site_cookie_attribute": same_site_cookie_attribute,
-                "scim_config": scim_config,
-                "self_hosted_domains": self_hosted_domains,
-                "service_auth_401_redirect": service_auth_401_redirect,
-                "session_duration": session_duration,
-                "skip_interstitial": skip_interstitial,
-                "tags": tags,
-                "saas_app": saas_app,
-                "app_launcher_logo_url": app_launcher_logo_url,
-                "bg_color": bg_color,
-                "footer_links": footer_links,
-                "header_bg_color": header_bg_color,
-                "landing_page_design": landing_page_design,
-                "skip_app_launcher_login_page": skip_app_launcher_login_page,
-            }, application_create_params.ApplicationCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ApplicationCreateResponse]]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[ApplicationCreateResponse]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return cast(
+            Optional[ApplicationCreateResponse],
+            self._post(
+                f"/{account_or_zone}/{account_or_zone_id}/access/apps",
+                body=maybe_transform(
+                    {
+                        "domain": domain,
+                        "type": type,
+                        "allow_authenticate_via_warp": allow_authenticate_via_warp,
+                        "allowed_idps": allowed_idps,
+                        "app_launcher_visible": app_launcher_visible,
+                        "auto_redirect_to_identity": auto_redirect_to_identity,
+                        "cors_headers": cors_headers,
+                        "custom_deny_message": custom_deny_message,
+                        "custom_deny_url": custom_deny_url,
+                        "custom_non_identity_deny_url": custom_non_identity_deny_url,
+                        "custom_pages": custom_pages,
+                        "enable_binding_cookie": enable_binding_cookie,
+                        "http_only_cookie_attribute": http_only_cookie_attribute,
+                        "logo_url": logo_url,
+                        "name": name,
+                        "options_preflight_bypass": options_preflight_bypass,
+                        "path_cookie_attribute": path_cookie_attribute,
+                        "policies": policies,
+                        "same_site_cookie_attribute": same_site_cookie_attribute,
+                        "scim_config": scim_config,
+                        "self_hosted_domains": self_hosted_domains,
+                        "service_auth_401_redirect": service_auth_401_redirect,
+                        "session_duration": session_duration,
+                        "skip_interstitial": skip_interstitial,
+                        "tags": tags,
+                        "saas_app": saas_app,
+                        "app_launcher_logo_url": app_launcher_logo_url,
+                        "bg_color": bg_color,
+                        "footer_links": footer_links,
+                        "header_bg_color": header_bg_color,
+                        "landing_page_design": landing_page_design,
+                        "skip_app_launcher_login_page": skip_app_launcher_login_page,
+                    },
+                    application_create_params.ApplicationCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[ApplicationCreateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ApplicationCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
 
     @overload
-    def update(self,
-    app_id: AppID,
-    *,
-    domain: str,
-    type: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-    custom_deny_message: str | NotGiven = NOT_GIVEN,
-    custom_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-    http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-    path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
-    same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-    scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-    service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_interstitial: bool | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationUpdateResponse]:
+    def update(
+        self,
+        app_id: AppID,
+        *,
+        domain: str,
+        type: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -1033,29 +1043,32 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def update(self,
-    app_id: AppID,
-    *,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    policies: List[application_update_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
-    saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-    scim_config: application_update_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    type: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationUpdateResponse]:
+    def update(
+        self,
+        app_id: AppID,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
+        saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -1101,43 +1114,46 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def update(self,
-    app_id: AppID,
-    *,
-    domain: str,
-    type: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-    custom_deny_message: str | NotGiven = NOT_GIVEN,
-    custom_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-    http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-    path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    policies: List[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
-    same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-    scim_config: application_update_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-    service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_interstitial: bool | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationUpdateResponse]:
+    def update(
+        self,
+        app_id: AppID,
+        *,
+        domain: str,
+        type: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -1225,43 +1241,46 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def update(self,
-    app_id: AppID,
-    *,
-    domain: str,
-    type: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-    custom_deny_message: str | NotGiven = NOT_GIVEN,
-    custom_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-    http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-    path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    policies: List[application_update_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
-    same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-    scim_config: application_update_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-    service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_interstitial: bool | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationUpdateResponse]:
+    def update(
+        self,
+        app_id: AppID,
+        *,
+        domain: str,
+        type: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -1349,30 +1368,33 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def update(self,
-    app_id: AppID,
-    *,
-    type: ApplicationType,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    bg_color: str | NotGiven = NOT_GIVEN,
-    footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
-    header_bg_color: str | NotGiven = NOT_GIVEN,
-    landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-    policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
-    scim_config: application_update_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationUpdateResponse]:
+    def update(
+        self,
+        app_id: AppID,
+        *,
+        type: ApplicationType,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -1423,30 +1445,35 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def update(self,
-    app_id: AppID,
-    *,
-    type: ApplicationType,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    bg_color: str | NotGiven = NOT_GIVEN,
-    footer_links: Iterable[application_update_params.DeviceEnrollmentPermissionsApplicationFooterLink] | NotGiven = NOT_GIVEN,
-    header_bg_color: str | NotGiven = NOT_GIVEN,
-    landing_page_design: application_update_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-    policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-    scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationUpdateResponse]:
+    def update(
+        self,
+        app_id: AppID,
+        *,
+        type: ApplicationType,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.DeviceEnrollmentPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -1497,30 +1524,35 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def update(self,
-    app_id: AppID,
-    *,
-    type: ApplicationType,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    bg_color: str | NotGiven = NOT_GIVEN,
-    footer_links: Iterable[application_update_params.BrowserIsolationPermissionsApplicationFooterLink] | NotGiven = NOT_GIVEN,
-    header_bg_color: str | NotGiven = NOT_GIVEN,
-    landing_page_design: application_update_params.BrowserIsolationPermissionsApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-    policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-    scim_config: application_update_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationUpdateResponse]:
+    def update(
+        self,
+        app_id: AppID,
+        *,
+        type: ApplicationType,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.BrowserIsolationPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.BrowserIsolationPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -1571,25 +1603,28 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def update(self,
-    app_id: AppID,
-    *,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    domain: str | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    scim_config: application_update_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    type: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationUpdateResponse]:
+    def update(
+        self,
+        app_id: AppID,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -1625,115 +1660,132 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-    def update(self,
-    app_id: AppID,
-    *,
-    domain: str | NotGiven = NOT_GIVEN,
-    type: str | ApplicationType | NotGiven = NOT_GIVEN,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-    custom_deny_message: str | NotGiven = NOT_GIVEN,
-    custom_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-    http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-    path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
-    same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-    scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-    service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_interstitial: bool | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-    app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-    bg_color: str | NotGiven = NOT_GIVEN,
-    footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
-    header_bg_color: str | NotGiven = NOT_GIVEN,
-    landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-    skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationUpdateResponse]:
+
+    def update(
+        self,
+        app_id: AppID,
+        *,
+        domain: str | NotGiven = NOT_GIVEN,
+        type: str | ApplicationType | NotGiven = NOT_GIVEN,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
         if not app_id:
-          raise ValueError(
-            f'Expected a non-empty value for `app_id` but received {app_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
-        return cast(Optional[ApplicationUpdateResponse], self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
-            body=maybe_transform({
-                "domain": domain,
-                "type": type,
-                "allow_authenticate_via_warp": allow_authenticate_via_warp,
-                "allowed_idps": allowed_idps,
-                "app_launcher_visible": app_launcher_visible,
-                "auto_redirect_to_identity": auto_redirect_to_identity,
-                "cors_headers": cors_headers,
-                "custom_deny_message": custom_deny_message,
-                "custom_deny_url": custom_deny_url,
-                "custom_non_identity_deny_url": custom_non_identity_deny_url,
-                "custom_pages": custom_pages,
-                "enable_binding_cookie": enable_binding_cookie,
-                "http_only_cookie_attribute": http_only_cookie_attribute,
-                "logo_url": logo_url,
-                "name": name,
-                "options_preflight_bypass": options_preflight_bypass,
-                "path_cookie_attribute": path_cookie_attribute,
-                "policies": policies,
-                "same_site_cookie_attribute": same_site_cookie_attribute,
-                "scim_config": scim_config,
-                "self_hosted_domains": self_hosted_domains,
-                "service_auth_401_redirect": service_auth_401_redirect,
-                "session_duration": session_duration,
-                "skip_interstitial": skip_interstitial,
-                "tags": tags,
-                "saas_app": saas_app,
-                "app_launcher_logo_url": app_launcher_logo_url,
-                "bg_color": bg_color,
-                "footer_links": footer_links,
-                "header_bg_color": header_bg_color,
-                "landing_page_design": landing_page_design,
-                "skip_app_launcher_login_page": skip_app_launcher_login_page,
-            }, application_update_params.ApplicationUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ApplicationUpdateResponse]]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[ApplicationUpdateResponse]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return cast(
+            Optional[ApplicationUpdateResponse],
+            self._put(
+                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
+                body=maybe_transform(
+                    {
+                        "domain": domain,
+                        "type": type,
+                        "allow_authenticate_via_warp": allow_authenticate_via_warp,
+                        "allowed_idps": allowed_idps,
+                        "app_launcher_visible": app_launcher_visible,
+                        "auto_redirect_to_identity": auto_redirect_to_identity,
+                        "cors_headers": cors_headers,
+                        "custom_deny_message": custom_deny_message,
+                        "custom_deny_url": custom_deny_url,
+                        "custom_non_identity_deny_url": custom_non_identity_deny_url,
+                        "custom_pages": custom_pages,
+                        "enable_binding_cookie": enable_binding_cookie,
+                        "http_only_cookie_attribute": http_only_cookie_attribute,
+                        "logo_url": logo_url,
+                        "name": name,
+                        "options_preflight_bypass": options_preflight_bypass,
+                        "path_cookie_attribute": path_cookie_attribute,
+                        "policies": policies,
+                        "same_site_cookie_attribute": same_site_cookie_attribute,
+                        "scim_config": scim_config,
+                        "self_hosted_domains": self_hosted_domains,
+                        "service_auth_401_redirect": service_auth_401_redirect,
+                        "session_duration": session_duration,
+                        "skip_interstitial": skip_interstitial,
+                        "tags": tags,
+                        "saas_app": saas_app,
+                        "app_launcher_logo_url": app_launcher_logo_url,
+                        "bg_color": bg_color,
+                        "footer_links": footer_links,
+                        "header_bg_color": header_bg_color,
+                        "landing_page_design": landing_page_design,
+                        "skip_app_launcher_login_page": skip_app_launcher_login_page,
+                    },
+                    application_update_params.ApplicationUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[ApplicationUpdateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ApplicationUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
 
-    def list(self,
-    *,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[ApplicationListResponse]:
+    def list(
+        self,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[ApplicationListResponse]:
         """
         Lists all Access applications in an account or zone.
 
@@ -1751,35 +1803,39 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps",
-            page = SyncSinglePage[ApplicationListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=SyncSinglePage[ApplicationListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=cast(Any, ApplicationListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
-    def delete(self,
-    app_id: AppID,
-    *,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationDeleteResponse]:
+    def delete(
+        self,
+        app_id: AppID,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationDeleteResponse]:
         """
         Deletes an application from Access.
 
@@ -1799,38 +1855,44 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not app_id:
-          raise ValueError(
-            f'Expected a non-empty value for `app_id` but received {app_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._delete(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ApplicationDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ApplicationDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ApplicationDeleteResponse]], ResultWrapper[ApplicationDeleteResponse]),
         )
 
-    def get(self,
-    app_id: AppID,
-    *,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationGetResponse]:
+    def get(
+        self,
+        app_id: AppID,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationGetResponse]:
         """
         Fetches information about an Access application.
 
@@ -1850,38 +1912,49 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not app_id:
-          raise ValueError(
-            f'Expected a non-empty value for `app_id` but received {app_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
-        return cast(Optional[ApplicationGetResponse], self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ApplicationGetResponse]]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[ApplicationGetResponse]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return cast(
+            Optional[ApplicationGetResponse],
+            self._get(
+                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[ApplicationGetResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ApplicationGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
 
-    def revoke_tokens(self,
-    app_id: AppID,
-    *,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    def revoke_tokens(
+        self,
+        app_id: AppID,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Revokes all tokens issued for an application.
 
@@ -1901,26 +1974,31 @@ class ApplicationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not app_id:
-          raise ValueError(
-            f'Expected a non-empty value for `app_id` but received {app_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._post(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/revoke_tokens",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
+
 
 class AsyncApplicationsResource(AsyncAPIResource):
     @cached_property
@@ -1944,41 +2022,43 @@ class AsyncApplicationsResource(AsyncAPIResource):
         return AsyncApplicationsResourceWithStreamingResponse(self)
 
     @overload
-    async def create(self,
-    *,
-    domain: str,
-    type: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-    custom_deny_message: str | NotGiven = NOT_GIVEN,
-    custom_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-    http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-    path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
-    same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-    scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-    service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_interstitial: bool | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationCreateResponse]:
+    async def create(
+        self,
+        *,
+        domain: str,
+        type: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -2064,28 +2144,31 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def create(self,
-    *,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    policies: List[application_create_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
-    saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-    scim_config: application_create_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    type: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationCreateResponse]:
+    async def create(
+        self,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
+        saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -2129,42 +2212,45 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def create(self,
-    *,
-    domain: str,
-    type: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-    custom_deny_message: str | NotGiven = NOT_GIVEN,
-    custom_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-    http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-    path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    policies: List[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
-    same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-    scim_config: application_create_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-    service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_interstitial: bool | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationCreateResponse]:
+    async def create(
+        self,
+        *,
+        domain: str,
+        type: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -2250,42 +2336,45 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def create(self,
-    *,
-    domain: str,
-    type: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-    custom_deny_message: str | NotGiven = NOT_GIVEN,
-    custom_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-    http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-    path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    policies: List[application_create_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
-    same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-    scim_config: application_create_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-    service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_interstitial: bool | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationCreateResponse]:
+    async def create(
+        self,
+        *,
+        domain: str,
+        type: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -2371,29 +2460,32 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def create(self,
-    *,
-    type: ApplicationType,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    bg_color: str | NotGiven = NOT_GIVEN,
-    footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
-    header_bg_color: str | NotGiven = NOT_GIVEN,
-    landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-    policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
-    scim_config: application_create_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationCreateResponse]:
+    async def create(
+        self,
+        *,
+        type: ApplicationType,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -2442,29 +2534,34 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def create(self,
-    *,
-    type: ApplicationType,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    bg_color: str | NotGiven = NOT_GIVEN,
-    footer_links: Iterable[application_create_params.DeviceEnrollmentPermissionsApplicationFooterLink] | NotGiven = NOT_GIVEN,
-    header_bg_color: str | NotGiven = NOT_GIVEN,
-    landing_page_design: application_create_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-    policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-    scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationCreateResponse]:
+    async def create(
+        self,
+        *,
+        type: ApplicationType,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.DeviceEnrollmentPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -2513,29 +2610,34 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def create(self,
-    *,
-    type: ApplicationType,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    bg_color: str | NotGiven = NOT_GIVEN,
-    footer_links: Iterable[application_create_params.BrowserIsolationPermissionsApplicationFooterLink] | NotGiven = NOT_GIVEN,
-    header_bg_color: str | NotGiven = NOT_GIVEN,
-    landing_page_design: application_create_params.BrowserIsolationPermissionsApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-    policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-    scim_config: application_create_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationCreateResponse]:
+    async def create(
+        self,
+        *,
+        type: ApplicationType,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.BrowserIsolationPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.BrowserIsolationPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -2584,24 +2686,27 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def create(self,
-    *,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    domain: str | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    scim_config: application_create_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    type: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationCreateResponse]:
+    async def create(
+        self,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
         """
         Adds a new application to Access.
 
@@ -2635,137 +2740,156 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-    async def create(self,
-    *,
-    domain: str | NotGiven = NOT_GIVEN,
-    type: str | ApplicationType | NotGiven = NOT_GIVEN,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-    custom_deny_message: str | NotGiven = NOT_GIVEN,
-    custom_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-    http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-    path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
-    same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-    scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-    service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_interstitial: bool | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-    app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-    bg_color: str | NotGiven = NOT_GIVEN,
-    footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
-    header_bg_color: str | NotGiven = NOT_GIVEN,
-    landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-    skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationCreateResponse]:
+
+    async def create(
+        self,
+        *,
+        domain: str | NotGiven = NOT_GIVEN,
+        type: str | ApplicationType | NotGiven = NOT_GIVEN,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_create_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_create_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        saas_app: application_create_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_create_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_create_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationCreateResponse]:
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
-        return cast(Optional[ApplicationCreateResponse], await self._post(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps",
-            body=await async_maybe_transform({
-                "domain": domain,
-                "type": type,
-                "allow_authenticate_via_warp": allow_authenticate_via_warp,
-                "allowed_idps": allowed_idps,
-                "app_launcher_visible": app_launcher_visible,
-                "auto_redirect_to_identity": auto_redirect_to_identity,
-                "cors_headers": cors_headers,
-                "custom_deny_message": custom_deny_message,
-                "custom_deny_url": custom_deny_url,
-                "custom_non_identity_deny_url": custom_non_identity_deny_url,
-                "custom_pages": custom_pages,
-                "enable_binding_cookie": enable_binding_cookie,
-                "http_only_cookie_attribute": http_only_cookie_attribute,
-                "logo_url": logo_url,
-                "name": name,
-                "options_preflight_bypass": options_preflight_bypass,
-                "path_cookie_attribute": path_cookie_attribute,
-                "policies": policies,
-                "same_site_cookie_attribute": same_site_cookie_attribute,
-                "scim_config": scim_config,
-                "self_hosted_domains": self_hosted_domains,
-                "service_auth_401_redirect": service_auth_401_redirect,
-                "session_duration": session_duration,
-                "skip_interstitial": skip_interstitial,
-                "tags": tags,
-                "saas_app": saas_app,
-                "app_launcher_logo_url": app_launcher_logo_url,
-                "bg_color": bg_color,
-                "footer_links": footer_links,
-                "header_bg_color": header_bg_color,
-                "landing_page_design": landing_page_design,
-                "skip_app_launcher_login_page": skip_app_launcher_login_page,
-            }, application_create_params.ApplicationCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ApplicationCreateResponse]]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[ApplicationCreateResponse]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return cast(
+            Optional[ApplicationCreateResponse],
+            await self._post(
+                f"/{account_or_zone}/{account_or_zone_id}/access/apps",
+                body=await async_maybe_transform(
+                    {
+                        "domain": domain,
+                        "type": type,
+                        "allow_authenticate_via_warp": allow_authenticate_via_warp,
+                        "allowed_idps": allowed_idps,
+                        "app_launcher_visible": app_launcher_visible,
+                        "auto_redirect_to_identity": auto_redirect_to_identity,
+                        "cors_headers": cors_headers,
+                        "custom_deny_message": custom_deny_message,
+                        "custom_deny_url": custom_deny_url,
+                        "custom_non_identity_deny_url": custom_non_identity_deny_url,
+                        "custom_pages": custom_pages,
+                        "enable_binding_cookie": enable_binding_cookie,
+                        "http_only_cookie_attribute": http_only_cookie_attribute,
+                        "logo_url": logo_url,
+                        "name": name,
+                        "options_preflight_bypass": options_preflight_bypass,
+                        "path_cookie_attribute": path_cookie_attribute,
+                        "policies": policies,
+                        "same_site_cookie_attribute": same_site_cookie_attribute,
+                        "scim_config": scim_config,
+                        "self_hosted_domains": self_hosted_domains,
+                        "service_auth_401_redirect": service_auth_401_redirect,
+                        "session_duration": session_duration,
+                        "skip_interstitial": skip_interstitial,
+                        "tags": tags,
+                        "saas_app": saas_app,
+                        "app_launcher_logo_url": app_launcher_logo_url,
+                        "bg_color": bg_color,
+                        "footer_links": footer_links,
+                        "header_bg_color": header_bg_color,
+                        "landing_page_design": landing_page_design,
+                        "skip_app_launcher_login_page": skip_app_launcher_login_page,
+                    },
+                    application_create_params.ApplicationCreateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[ApplicationCreateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ApplicationCreateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
 
     @overload
-    async def update(self,
-    app_id: AppID,
-    *,
-    domain: str,
-    type: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-    custom_deny_message: str | NotGiven = NOT_GIVEN,
-    custom_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-    http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-    path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
-    same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-    scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-    service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_interstitial: bool | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationUpdateResponse]:
+    async def update(
+        self,
+        app_id: AppID,
+        *,
+        domain: str,
+        type: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -2853,29 +2977,32 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def update(self,
-    app_id: AppID,
-    *,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    policies: List[application_update_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
-    saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-    scim_config: application_update_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    type: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationUpdateResponse]:
+    async def update(
+        self,
+        app_id: AppID,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SaaSApplicationPolicy] | NotGiven = NOT_GIVEN,
+        saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SaaSApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -2921,43 +3048,46 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def update(self,
-    app_id: AppID,
-    *,
-    domain: str,
-    type: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-    custom_deny_message: str | NotGiven = NOT_GIVEN,
-    custom_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-    http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-    path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    policies: List[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
-    same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-    scim_config: application_update_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-    service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_interstitial: bool | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationUpdateResponse]:
+    async def update(
+        self,
+        app_id: AppID,
+        *,
+        domain: str,
+        type: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserSSHApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserSSHApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -3045,43 +3175,46 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def update(self,
-    app_id: AppID,
-    *,
-    domain: str,
-    type: str,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-    custom_deny_message: str | NotGiven = NOT_GIVEN,
-    custom_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-    http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-    path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    policies: List[application_update_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
-    same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-    scim_config: application_update_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-    service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_interstitial: bool | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationUpdateResponse]:
+    async def update(
+        self,
+        app_id: AppID,
+        *,
+        domain: str,
+        type: str,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserVNCApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserVNCApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -3169,30 +3302,33 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def update(self,
-    app_id: AppID,
-    *,
-    type: ApplicationType,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    bg_color: str | NotGiven = NOT_GIVEN,
-    footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
-    header_bg_color: str | NotGiven = NOT_GIVEN,
-    landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-    policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
-    scim_config: application_update_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationUpdateResponse]:
+    async def update(
+        self,
+        app_id: AppID,
+        *,
+        type: ApplicationType,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.AppLauncherApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.AppLauncherApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -3243,30 +3379,35 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def update(self,
-    app_id: AppID,
-    *,
-    type: ApplicationType,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    bg_color: str | NotGiven = NOT_GIVEN,
-    footer_links: Iterable[application_update_params.DeviceEnrollmentPermissionsApplicationFooterLink] | NotGiven = NOT_GIVEN,
-    header_bg_color: str | NotGiven = NOT_GIVEN,
-    landing_page_design: application_update_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-    policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-    scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationUpdateResponse]:
+    async def update(
+        self,
+        app_id: AppID,
+        *,
+        type: ApplicationType,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.DeviceEnrollmentPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.DeviceEnrollmentPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.DeviceEnrollmentPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.DeviceEnrollmentPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -3317,30 +3458,35 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def update(self,
-    app_id: AppID,
-    *,
-    type: ApplicationType,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    bg_color: str | NotGiven = NOT_GIVEN,
-    footer_links: Iterable[application_update_params.BrowserIsolationPermissionsApplicationFooterLink] | NotGiven = NOT_GIVEN,
-    header_bg_color: str | NotGiven = NOT_GIVEN,
-    landing_page_design: application_update_params.BrowserIsolationPermissionsApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-    policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
-    scim_config: application_update_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationUpdateResponse]:
+    async def update(
+        self,
+        app_id: AppID,
+        *,
+        type: ApplicationType,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.BrowserIsolationPermissionsApplicationFooterLink]
+        | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.BrowserIsolationPermissionsApplicationLandingPageDesign
+        | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.BrowserIsolationPermissionsApplicationPolicy] | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BrowserIsolationPermissionsApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -3391,25 +3537,28 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def update(self,
-    app_id: AppID,
-    *,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    domain: str | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    scim_config: application_update_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    type: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationUpdateResponse]:
+    async def update(
+        self,
+        app_id: AppID,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        domain: str | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.BookmarkApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
         """
         Updates an Access application.
 
@@ -3445,115 +3594,132 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
-    async def update(self,
-    app_id: AppID,
-    *,
-    domain: str | NotGiven = NOT_GIVEN,
-    type: str | ApplicationType | NotGiven = NOT_GIVEN,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
-    allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
-    app_launcher_visible: bool | NotGiven = NOT_GIVEN,
-    auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
-    cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
-    custom_deny_message: str | NotGiven = NOT_GIVEN,
-    custom_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
-    custom_pages: List[str] | NotGiven = NOT_GIVEN,
-    enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
-    http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    logo_url: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
-    path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
-    policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
-    same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
-    scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
-    self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
-    service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
-    session_duration: str | NotGiven = NOT_GIVEN,
-    skip_interstitial: bool | NotGiven = NOT_GIVEN,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
-    app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
-    bg_color: str | NotGiven = NOT_GIVEN,
-    footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
-    header_bg_color: str | NotGiven = NOT_GIVEN,
-    landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
-    skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationUpdateResponse]:
+
+    async def update(
+        self,
+        app_id: AppID,
+        *,
+        domain: str | NotGiven = NOT_GIVEN,
+        type: str | ApplicationType | NotGiven = NOT_GIVEN,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        allow_authenticate_via_warp: bool | NotGiven = NOT_GIVEN,
+        allowed_idps: List[AllowedIdPs] | NotGiven = NOT_GIVEN,
+        app_launcher_visible: bool | NotGiven = NOT_GIVEN,
+        auto_redirect_to_identity: bool | NotGiven = NOT_GIVEN,
+        cors_headers: CORSHeadersParam | NotGiven = NOT_GIVEN,
+        custom_deny_message: str | NotGiven = NOT_GIVEN,
+        custom_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_non_identity_deny_url: str | NotGiven = NOT_GIVEN,
+        custom_pages: List[str] | NotGiven = NOT_GIVEN,
+        enable_binding_cookie: bool | NotGiven = NOT_GIVEN,
+        http_only_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        logo_url: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        options_preflight_bypass: bool | NotGiven = NOT_GIVEN,
+        path_cookie_attribute: bool | NotGiven = NOT_GIVEN,
+        policies: List[application_update_params.SelfHostedApplicationPolicy] | NotGiven = NOT_GIVEN,
+        same_site_cookie_attribute: str | NotGiven = NOT_GIVEN,
+        scim_config: application_update_params.SelfHostedApplicationSCIMConfig | NotGiven = NOT_GIVEN,
+        self_hosted_domains: List[SelfHostedDomains] | NotGiven = NOT_GIVEN,
+        service_auth_401_redirect: bool | NotGiven = NOT_GIVEN,
+        session_duration: str | NotGiven = NOT_GIVEN,
+        skip_interstitial: bool | NotGiven = NOT_GIVEN,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        saas_app: application_update_params.SaaSApplicationSaaSApp | NotGiven = NOT_GIVEN,
+        app_launcher_logo_url: str | NotGiven = NOT_GIVEN,
+        bg_color: str | NotGiven = NOT_GIVEN,
+        footer_links: Iterable[application_update_params.AppLauncherApplicationFooterLink] | NotGiven = NOT_GIVEN,
+        header_bg_color: str | NotGiven = NOT_GIVEN,
+        landing_page_design: application_update_params.AppLauncherApplicationLandingPageDesign | NotGiven = NOT_GIVEN,
+        skip_app_launcher_login_page: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationUpdateResponse]:
         if not app_id:
-          raise ValueError(
-            f'Expected a non-empty value for `app_id` but received {app_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
-        return cast(Optional[ApplicationUpdateResponse], await self._put(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
-            body=await async_maybe_transform({
-                "domain": domain,
-                "type": type,
-                "allow_authenticate_via_warp": allow_authenticate_via_warp,
-                "allowed_idps": allowed_idps,
-                "app_launcher_visible": app_launcher_visible,
-                "auto_redirect_to_identity": auto_redirect_to_identity,
-                "cors_headers": cors_headers,
-                "custom_deny_message": custom_deny_message,
-                "custom_deny_url": custom_deny_url,
-                "custom_non_identity_deny_url": custom_non_identity_deny_url,
-                "custom_pages": custom_pages,
-                "enable_binding_cookie": enable_binding_cookie,
-                "http_only_cookie_attribute": http_only_cookie_attribute,
-                "logo_url": logo_url,
-                "name": name,
-                "options_preflight_bypass": options_preflight_bypass,
-                "path_cookie_attribute": path_cookie_attribute,
-                "policies": policies,
-                "same_site_cookie_attribute": same_site_cookie_attribute,
-                "scim_config": scim_config,
-                "self_hosted_domains": self_hosted_domains,
-                "service_auth_401_redirect": service_auth_401_redirect,
-                "session_duration": session_duration,
-                "skip_interstitial": skip_interstitial,
-                "tags": tags,
-                "saas_app": saas_app,
-                "app_launcher_logo_url": app_launcher_logo_url,
-                "bg_color": bg_color,
-                "footer_links": footer_links,
-                "header_bg_color": header_bg_color,
-                "landing_page_design": landing_page_design,
-                "skip_app_launcher_login_page": skip_app_launcher_login_page,
-            }, application_update_params.ApplicationUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ApplicationUpdateResponse]]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[ApplicationUpdateResponse]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return cast(
+            Optional[ApplicationUpdateResponse],
+            await self._put(
+                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
+                body=await async_maybe_transform(
+                    {
+                        "domain": domain,
+                        "type": type,
+                        "allow_authenticate_via_warp": allow_authenticate_via_warp,
+                        "allowed_idps": allowed_idps,
+                        "app_launcher_visible": app_launcher_visible,
+                        "auto_redirect_to_identity": auto_redirect_to_identity,
+                        "cors_headers": cors_headers,
+                        "custom_deny_message": custom_deny_message,
+                        "custom_deny_url": custom_deny_url,
+                        "custom_non_identity_deny_url": custom_non_identity_deny_url,
+                        "custom_pages": custom_pages,
+                        "enable_binding_cookie": enable_binding_cookie,
+                        "http_only_cookie_attribute": http_only_cookie_attribute,
+                        "logo_url": logo_url,
+                        "name": name,
+                        "options_preflight_bypass": options_preflight_bypass,
+                        "path_cookie_attribute": path_cookie_attribute,
+                        "policies": policies,
+                        "same_site_cookie_attribute": same_site_cookie_attribute,
+                        "scim_config": scim_config,
+                        "self_hosted_domains": self_hosted_domains,
+                        "service_auth_401_redirect": service_auth_401_redirect,
+                        "session_duration": session_duration,
+                        "skip_interstitial": skip_interstitial,
+                        "tags": tags,
+                        "saas_app": saas_app,
+                        "app_launcher_logo_url": app_launcher_logo_url,
+                        "bg_color": bg_color,
+                        "footer_links": footer_links,
+                        "header_bg_color": header_bg_color,
+                        "landing_page_design": landing_page_design,
+                        "skip_app_launcher_login_page": skip_app_launcher_login_page,
+                    },
+                    application_update_params.ApplicationUpdateParams,
+                ),
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[ApplicationUpdateResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ApplicationUpdateResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
 
-    def list(self,
-    *,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[ApplicationListResponse, AsyncSinglePage[ApplicationListResponse]]:
+    def list(
+        self,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[ApplicationListResponse, AsyncSinglePage[ApplicationListResponse]]:
         """
         Lists all Access applications in an account or zone.
 
@@ -3571,35 +3737,39 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return self._get_api_list(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps",
-            page = AsyncSinglePage[ApplicationListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=AsyncSinglePage[ApplicationListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=cast(Any, ApplicationListResponse),  # Union types cannot be passed in as arguments in the type system
         )
 
-    async def delete(self,
-    app_id: AppID,
-    *,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationDeleteResponse]:
+    async def delete(
+        self,
+        app_id: AppID,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationDeleteResponse]:
         """
         Deletes an application from Access.
 
@@ -3619,38 +3789,44 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not app_id:
-          raise ValueError(
-            f'Expected a non-empty value for `app_id` but received {app_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._delete(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ApplicationDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[ApplicationDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[ApplicationDeleteResponse]], ResultWrapper[ApplicationDeleteResponse]),
         )
 
-    async def get(self,
-    app_id: AppID,
-    *,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[ApplicationGetResponse]:
+    async def get(
+        self,
+        app_id: AppID,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[ApplicationGetResponse]:
         """
         Fetches information about an Access application.
 
@@ -3670,38 +3846,49 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not app_id:
-          raise ValueError(
-            f'Expected a non-empty value for `app_id` but received {app_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
-        return cast(Optional[ApplicationGetResponse], await self._get(
-            f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[ApplicationGetResponse]]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[ApplicationGetResponse]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
+        return cast(
+            Optional[ApplicationGetResponse],
+            await self._get(
+                f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[ApplicationGetResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[ApplicationGetResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
 
-    async def revoke_tokens(self,
-    app_id: AppID,
-    *,
-    account_id: str | NotGiven = NOT_GIVEN,
-    zone_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> object:
+    async def revoke_tokens(
+        self,
+        app_id: AppID,
+        *,
+        account_id: str | NotGiven = NOT_GIVEN,
+        zone_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Revokes all tokens issued for an application.
 
@@ -3721,26 +3908,31 @@ class AsyncApplicationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not app_id:
-          raise ValueError(
-            f'Expected a non-empty value for `app_id` but received {app_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `app_id` but received {app_id!r}")
         if account_id and zone_id:
-          raise ValueError('You cannot provide both account_id and zone_id');
+            raise ValueError("You cannot provide both account_id and zone_id")
 
         if account_id:
-          account_or_zone = "accounts"
-          account_or_zone_id = account_id
+            account_or_zone = "accounts"
+            account_or_zone_id = account_id
         else:
-          if not zone_id:
-            raise ValueError('You must provide either account_id or zone_id');
+            if not zone_id:
+                raise ValueError("You must provide either account_id or zone_id")
 
-          account_or_zone = "zones"
-          account_or_zone_id = zone_id
+            account_or_zone = "zones"
+            account_or_zone_id = zone_id
         return await self._post(
             f"/{account_or_zone}/{account_or_zone_id}/access/apps/{app_id}/revoke_tokens",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[object]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
             cast_to=cast(Type[object], ResultWrapper[object]),
         )
+
 
 class ApplicationsResourceWithRawResponse:
     def __init__(self, applications: ApplicationsResource) -> None:
@@ -3777,6 +3969,7 @@ class ApplicationsResourceWithRawResponse:
     def policies(self) -> PoliciesResourceWithRawResponse:
         return PoliciesResourceWithRawResponse(self._applications.policies)
 
+
 class AsyncApplicationsResourceWithRawResponse:
     def __init__(self, applications: AsyncApplicationsResource) -> None:
         self._applications = applications
@@ -3812,6 +4005,7 @@ class AsyncApplicationsResourceWithRawResponse:
     def policies(self) -> AsyncPoliciesResourceWithRawResponse:
         return AsyncPoliciesResourceWithRawResponse(self._applications.policies)
 
+
 class ApplicationsResourceWithStreamingResponse:
     def __init__(self, applications: ApplicationsResource) -> None:
         self._applications = applications
@@ -3846,6 +4040,7 @@ class ApplicationsResourceWithStreamingResponse:
     @cached_property
     def policies(self) -> PoliciesResourceWithStreamingResponse:
         return PoliciesResourceWithStreamingResponse(self._applications.policies)
+
 
 class AsyncApplicationsResourceWithStreamingResponse:
     def __init__(self, applications: AsyncApplicationsResource) -> None:

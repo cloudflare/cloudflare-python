@@ -2,48 +2,49 @@
 
 from __future__ import annotations
 
-import httpx
-
 import os
-
-from ._streaming import AsyncStream as AsyncStream, Stream as Stream
-
-from typing_extensions import override, Self
-
-from typing import Any
-
-from ._exceptions import APIStatusError
-
-from ._utils import get_async_library
-
-from . import _exceptions
-
-import os
-import asyncio
-import warnings
-from typing import Optional, Union, Dict, Any, Mapping, overload, cast
-from typing_extensions import Literal
+from typing import Any, Union, Mapping
+from typing_extensions import Self, override
 
 import httpx
 
-from ._version import __version__
+from . import resources, _exceptions
 from ._qs import Querystring
-from ._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, maybe_coerce_integer, maybe_coerce_float, maybe_coerce_boolean, is_given
-from ._types import Omit, NotGiven, Timeout, Transport, ProxiesTypes, RequestOptions, Headers, NoneType, Query, Body, NOT_GIVEN
+from ._types import (
+    NOT_GIVEN,
+    Omit,
+    Headers,
+    Timeout,
+    NotGiven,
+    Transport,
+    ProxiesTypes,
+    RequestOptions,
+)
+from ._utils import (
+    is_given,
+    get_async_library,
+)
+from ._version import __version__
+from ._streaming import Stream as Stream, AsyncStream as AsyncStream
+from ._exceptions import APIStatusError
 from ._base_client import (
-    DEFAULT_CONNECTION_LIMITS,
-    DEFAULT_TIMEOUT,
     DEFAULT_MAX_RETRIES,
-    ResponseT,
-    SyncHttpxClientWrapper,
-    AsyncHttpxClientWrapper,
     SyncAPIClient,
     AsyncAPIClient,
-    make_request_options,
 )
-from . import resources
 
-__all__ = ["Timeout", "Transport", "ProxiesTypes", "RequestOptions", "resources", "Cloudflare", "AsyncCloudflare", "Client", "AsyncClient"]
+__all__ = [
+    "Timeout",
+    "Transport",
+    "ProxiesTypes",
+    "RequestOptions",
+    "resources",
+    "Cloudflare",
+    "AsyncCloudflare",
+    "Client",
+    "AsyncClient",
+]
+
 
 class Cloudflare(SyncAPIClient):
     accounts: resources.AccountsResource
@@ -141,20 +142,32 @@ class Cloudflare(SyncAPIClient):
     api_email: str | None
     user_service_key: str | None
 
-    def __init__(self, *, api_token: str | None = None, api_key: str | None = None, api_email: str | None = None, user_service_key: str | None = None, base_url: str | httpx.URL | None = None, timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN, max_retries: int = DEFAULT_MAX_RETRIES, default_headers: Mapping[str, str] | None = None, default_query: Mapping[str, object] | None = None, 
-    # Configure a custom httpx client.
-    # We provide a `DefaultHttpxClient` class that you can pass to retain the default values we use for `limits`, `timeout` & `follow_redirects`.
-    # See the [httpx documentation](https://www.python-httpx.org/api/#client) for more details.
-    http_client: httpx.Client | None = None, 
-    # Enable or disable schema validation for data returned by the API.
-    # When enabled an error APIResponseValidationError is raised
-    # if the API responds with invalid data for the expected schema.
-    # 
-    # This parameter may be removed or changed in the future.
-    # If you rely on this feature, please open a GitHub issue
-    # outlining your use-case to help us decide if it should be
-    # part of our public interface in the future.
-    _strict_response_validation: bool = False) -> None:
+    def __init__(
+        self,
+        *,
+        api_token: str | None = None,
+        api_key: str | None = None,
+        api_email: str | None = None,
+        user_service_key: str | None = None,
+        base_url: str | httpx.URL | None = None,
+        timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
+        max_retries: int = DEFAULT_MAX_RETRIES,
+        default_headers: Mapping[str, str] | None = None,
+        default_query: Mapping[str, object] | None = None,
+        # Configure a custom httpx client.
+        # We provide a `DefaultHttpxClient` class that you can pass to retain the default values we use for `limits`, `timeout` & `follow_redirects`.
+        # See the [httpx documentation](https://www.python-httpx.org/api/#client) for more details.
+        http_client: httpx.Client | None = None,
+        # Enable or disable schema validation for data returned by the API.
+        # When enabled an error APIResponseValidationError is raised
+        # if the API responds with invalid data for the expected schema.
+        #
+        # This parameter may be removed or changed in the future.
+        # If you rely on this feature, please open a GitHub issue
+        # outlining your use-case to help us decide if it should be
+        # part of our public interface in the future.
+        _strict_response_validation: bool = False,
+    ) -> None:
         """Construct a new synchronous cloudflare client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
@@ -164,27 +177,36 @@ class Cloudflare(SyncAPIClient):
         - `user_service_key` from `CLOUDFLARE_API_USER_SERVICE_KEY`
         """
         if api_token is None:
-          api_token = os.environ.get("CLOUDFLARE_API_TOKEN")
+            api_token = os.environ.get("CLOUDFLARE_API_TOKEN")
         self.api_token = api_token
 
         if api_key is None:
-          api_key = os.environ.get("CLOUDFLARE_API_KEY")
+            api_key = os.environ.get("CLOUDFLARE_API_KEY")
         self.api_key = api_key
 
         if api_email is None:
-          api_email = os.environ.get("CLOUDFLARE_EMAIL")
+            api_email = os.environ.get("CLOUDFLARE_EMAIL")
         self.api_email = api_email
 
         if user_service_key is None:
-          user_service_key = os.environ.get("CLOUDFLARE_API_USER_SERVICE_KEY")
+            user_service_key = os.environ.get("CLOUDFLARE_API_USER_SERVICE_KEY")
         self.user_service_key = user_service_key
 
         if base_url is None:
-          base_url = os.environ.get("CLOUDFLARE_BASE_URL")
+            base_url = os.environ.get("CLOUDFLARE_BASE_URL")
         if base_url is None:
-          base_url = f"https://api.cloudflare.com/client/v4"
+            base_url = f"https://api.cloudflare.com/client/v4"
 
-        super().__init__(version=__version__, base_url=base_url, max_retries=max_retries, timeout=timeout, http_client=http_client, custom_headers=default_headers, custom_query=default_query, _strict_response_validation=_strict_response_validation)
+        super().__init__(
+            version=__version__,
+            base_url=base_url,
+            max_retries=max_retries,
+            timeout=timeout,
+            http_client=http_client,
+            custom_headers=default_headers,
+            custom_query=default_query,
+            _strict_response_validation=_strict_response_validation,
+        )
 
         self.accounts = resources.AccountsResource(self)
         self.origin_ca_certificates = resources.OriginCACertificatesResource(self)
@@ -298,46 +320,38 @@ class Cloudflare(SyncAPIClient):
         api_email = self.api_email
         if api_email is None:
             return {}
-        return {
-            "X-Auth-Email": api_email
-        }
+        return {"X-Auth-Email": api_email}
 
     @property
     def _api_key(self) -> dict[str, str]:
         api_key = self.api_key
         if api_key is None:
             return {}
-        return {
-            "X-Auth-Key": api_key
-        }
+        return {"X-Auth-Key": api_key}
 
     @property
     def _api_token(self) -> dict[str, str]:
         api_token = self.api_token
         if api_token is None:
             return {}
-        return {
-            "Authorization": f"Bearer {api_token}"
-        }
+        return {"Authorization": f"Bearer {api_token}"}
 
     @property
     def _user_service_key(self) -> dict[str, str]:
         user_service_key = self.user_service_key
         if user_service_key is None:
             return {}
-        return {
-            "X-Auth-User-Service-Key": user_service_key
-        }
+        return {"X-Auth-User-Service-Key": user_service_key}
 
     @property
     @override
     def default_headers(self) -> dict[str, str | Omit]:
         return {
-          **super().default_headers,
-          "X-Stainless-Async": "false",
-          "X-Auth-Key": self.api_key if self.api_key is not None else Omit(),
-          "X-Auth-Email": self.api_email if self.api_email is not None else Omit(),
-          **self._custom_headers,
+            **super().default_headers,
+            "X-Stainless-Async": "false",
+            "X-Auth-Key": self.api_key if self.api_key is not None else Omit(),
+            "X-Auth-Email": self.api_email if self.api_email is not None else Omit(),
+            **self._custom_headers,
         }
 
     @override
@@ -362,21 +376,35 @@ class Cloudflare(SyncAPIClient):
         if isinstance(custom_headers.get("X-Auth-User-Service-Key"), Omit):
             return
 
-        raise TypeError("\"Could not resolve authentication method. Expected one of api_email, api_key, api_token or user_service_key to be set. Or for one of the `X-Auth-Email`, `X-Auth-Key`, `Authorization` or `X-Auth-User-Service-Key` headers to be explicitly omitted\"")
+        raise TypeError(
+            '"Could not resolve authentication method. Expected one of api_email, api_key, api_token or user_service_key to be set. Or for one of the `X-Auth-Email`, `X-Auth-Key`, `Authorization` or `X-Auth-User-Service-Key` headers to be explicitly omitted"'
+        )
 
-    def copy(self, *, api_token: str | None = None, api_key: str | None = None, api_email: str | None = None, user_service_key: str | None = None, base_url: str | httpx.URL | None = None, timeout: float | Timeout | None | NotGiven = NOT_GIVEN, http_client: httpx.Client | None = None, max_retries: int | NotGiven = NOT_GIVEN, default_headers: Mapping[str, str] | None = None, set_default_headers: Mapping[str, str] | None = None, default_query: Mapping[str, object] | None = None, set_default_query: Mapping[str, object] | None = None, _extra_kwargs: Mapping[str, Any] = {}) -> Self:
+    def copy(
+        self,
+        *,
+        api_token: str | None = None,
+        api_key: str | None = None,
+        api_email: str | None = None,
+        user_service_key: str | None = None,
+        base_url: str | httpx.URL | None = None,
+        timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
+        http_client: httpx.Client | None = None,
+        max_retries: int | NotGiven = NOT_GIVEN,
+        default_headers: Mapping[str, str] | None = None,
+        set_default_headers: Mapping[str, str] | None = None,
+        default_query: Mapping[str, object] | None = None,
+        set_default_query: Mapping[str, object] | None = None,
+        _extra_kwargs: Mapping[str, Any] = {},
+    ) -> Self:
         """
         Create a new client instance re-using the same options given to the current client with optional overriding.
         """
         if default_headers is not None and set_default_headers is not None:
-          raise ValueError(
-            'The `default_headers` and `set_default_headers` arguments are mutually exclusive'
-          )
+            raise ValueError("The `default_headers` and `set_default_headers` arguments are mutually exclusive")
 
         if default_query is not None and set_default_query is not None:
-          raise ValueError(
-            'The `default_query` and `set_default_query` arguments are mutually exclusive'
-          )
+            raise ValueError("The `default_query` and `set_default_query` arguments are mutually exclusive")
 
         headers = self._custom_headers
         if default_headers is not None:
@@ -391,14 +419,32 @@ class Cloudflare(SyncAPIClient):
             params = set_default_query
 
         http_client = http_client or self._client
-        return self.__class__(api_token = api_token or self.api_token, api_key = api_key or self.api_key, api_email = api_email or self.api_email, user_service_key = user_service_key or self.user_service_key, base_url=base_url or self.base_url, timeout=self.timeout if isinstance(timeout, NotGiven) else timeout, http_client=http_client, max_retries=max_retries if is_given(max_retries) else self.max_retries, default_headers=headers, default_query=params, **_extra_kwargs)
+        return self.__class__(
+            api_token=api_token or self.api_token,
+            api_key=api_key or self.api_key,
+            api_email=api_email or self.api_email,
+            user_service_key=user_service_key or self.user_service_key,
+            base_url=base_url or self.base_url,
+            timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
+            http_client=http_client,
+            max_retries=max_retries if is_given(max_retries) else self.max_retries,
+            default_headers=headers,
+            default_query=params,
+            **_extra_kwargs,
+        )
 
     # Alias for `copy` for nicer inline usage, e.g.
     # client.with_options(timeout=10).foo.create(...)
     with_options = copy
 
     @override
-    def _make_status_error(self, err_msg: str, *, body: object, response: httpx.Response,) -> APIStatusError:
+    def _make_status_error(
+        self,
+        err_msg: str,
+        *,
+        body: object,
+        response: httpx.Response,
+    ) -> APIStatusError:
         if response.status_code == 400:
             return _exceptions.BadRequestError(err_msg, response=response, body=body)
 
@@ -423,6 +469,7 @@ class Cloudflare(SyncAPIClient):
         if response.status_code >= 500:
             return _exceptions.InternalServerError(err_msg, response=response, body=body)
         return APIStatusError(err_msg, response=response, body=body)
+
 
 class AsyncCloudflare(AsyncAPIClient):
     accounts: resources.AsyncAccountsResource
@@ -520,20 +567,32 @@ class AsyncCloudflare(AsyncAPIClient):
     api_email: str | None
     user_service_key: str | None
 
-    def __init__(self, *, api_token: str | None = None, api_key: str | None = None, api_email: str | None = None, user_service_key: str | None = None, base_url: str | httpx.URL | None = None, timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN, max_retries: int = DEFAULT_MAX_RETRIES, default_headers: Mapping[str, str] | None = None, default_query: Mapping[str, object] | None = None, 
-    # Configure a custom httpx client.
-    # We provide a `DefaultAsyncHttpxClient` class that you can pass to retain the default values we use for `limits`, `timeout` & `follow_redirects`.
-    # See the [httpx documentation](https://www.python-httpx.org/api/#asyncclient) for more details.
-    http_client: httpx.AsyncClient | None = None, 
-    # Enable or disable schema validation for data returned by the API.
-    # When enabled an error APIResponseValidationError is raised
-    # if the API responds with invalid data for the expected schema.
-    # 
-    # This parameter may be removed or changed in the future.
-    # If you rely on this feature, please open a GitHub issue
-    # outlining your use-case to help us decide if it should be
-    # part of our public interface in the future.
-    _strict_response_validation: bool = False) -> None:
+    def __init__(
+        self,
+        *,
+        api_token: str | None = None,
+        api_key: str | None = None,
+        api_email: str | None = None,
+        user_service_key: str | None = None,
+        base_url: str | httpx.URL | None = None,
+        timeout: Union[float, Timeout, None, NotGiven] = NOT_GIVEN,
+        max_retries: int = DEFAULT_MAX_RETRIES,
+        default_headers: Mapping[str, str] | None = None,
+        default_query: Mapping[str, object] | None = None,
+        # Configure a custom httpx client.
+        # We provide a `DefaultAsyncHttpxClient` class that you can pass to retain the default values we use for `limits`, `timeout` & `follow_redirects`.
+        # See the [httpx documentation](https://www.python-httpx.org/api/#asyncclient) for more details.
+        http_client: httpx.AsyncClient | None = None,
+        # Enable or disable schema validation for data returned by the API.
+        # When enabled an error APIResponseValidationError is raised
+        # if the API responds with invalid data for the expected schema.
+        #
+        # This parameter may be removed or changed in the future.
+        # If you rely on this feature, please open a GitHub issue
+        # outlining your use-case to help us decide if it should be
+        # part of our public interface in the future.
+        _strict_response_validation: bool = False,
+    ) -> None:
         """Construct a new async cloudflare client instance.
 
         This automatically infers the following arguments from their corresponding environment variables if they are not provided:
@@ -543,27 +602,36 @@ class AsyncCloudflare(AsyncAPIClient):
         - `user_service_key` from `CLOUDFLARE_API_USER_SERVICE_KEY`
         """
         if api_token is None:
-          api_token = os.environ.get("CLOUDFLARE_API_TOKEN")
+            api_token = os.environ.get("CLOUDFLARE_API_TOKEN")
         self.api_token = api_token
 
         if api_key is None:
-          api_key = os.environ.get("CLOUDFLARE_API_KEY")
+            api_key = os.environ.get("CLOUDFLARE_API_KEY")
         self.api_key = api_key
 
         if api_email is None:
-          api_email = os.environ.get("CLOUDFLARE_EMAIL")
+            api_email = os.environ.get("CLOUDFLARE_EMAIL")
         self.api_email = api_email
 
         if user_service_key is None:
-          user_service_key = os.environ.get("CLOUDFLARE_API_USER_SERVICE_KEY")
+            user_service_key = os.environ.get("CLOUDFLARE_API_USER_SERVICE_KEY")
         self.user_service_key = user_service_key
 
         if base_url is None:
-          base_url = os.environ.get("CLOUDFLARE_BASE_URL")
+            base_url = os.environ.get("CLOUDFLARE_BASE_URL")
         if base_url is None:
-          base_url = f"https://api.cloudflare.com/client/v4"
+            base_url = f"https://api.cloudflare.com/client/v4"
 
-        super().__init__(version=__version__, base_url=base_url, max_retries=max_retries, timeout=timeout, http_client=http_client, custom_headers=default_headers, custom_query=default_query, _strict_response_validation=_strict_response_validation)
+        super().__init__(
+            version=__version__,
+            base_url=base_url,
+            max_retries=max_retries,
+            timeout=timeout,
+            http_client=http_client,
+            custom_headers=default_headers,
+            custom_query=default_query,
+            _strict_response_validation=_strict_response_validation,
+        )
 
         self.accounts = resources.AsyncAccountsResource(self)
         self.origin_ca_certificates = resources.AsyncOriginCACertificatesResource(self)
@@ -677,46 +745,38 @@ class AsyncCloudflare(AsyncAPIClient):
         api_email = self.api_email
         if api_email is None:
             return {}
-        return {
-            "X-Auth-Email": api_email
-        }
+        return {"X-Auth-Email": api_email}
 
     @property
     def _api_key(self) -> dict[str, str]:
         api_key = self.api_key
         if api_key is None:
             return {}
-        return {
-            "X-Auth-Key": api_key
-        }
+        return {"X-Auth-Key": api_key}
 
     @property
     def _api_token(self) -> dict[str, str]:
         api_token = self.api_token
         if api_token is None:
             return {}
-        return {
-            "Authorization": f"Bearer {api_token}"
-        }
+        return {"Authorization": f"Bearer {api_token}"}
 
     @property
     def _user_service_key(self) -> dict[str, str]:
         user_service_key = self.user_service_key
         if user_service_key is None:
             return {}
-        return {
-            "X-Auth-User-Service-Key": user_service_key
-        }
+        return {"X-Auth-User-Service-Key": user_service_key}
 
     @property
     @override
     def default_headers(self) -> dict[str, str | Omit]:
         return {
-          **super().default_headers,
-          "X-Stainless-Async": f'async:{get_async_library()}',
-          "X-Auth-Key": self.api_key if self.api_key is not None else Omit(),
-          "X-Auth-Email": self.api_email if self.api_email is not None else Omit(),
-          **self._custom_headers,
+            **super().default_headers,
+            "X-Stainless-Async": f"async:{get_async_library()}",
+            "X-Auth-Key": self.api_key if self.api_key is not None else Omit(),
+            "X-Auth-Email": self.api_email if self.api_email is not None else Omit(),
+            **self._custom_headers,
         }
 
     @override
@@ -741,21 +801,35 @@ class AsyncCloudflare(AsyncAPIClient):
         if isinstance(custom_headers.get("X-Auth-User-Service-Key"), Omit):
             return
 
-        raise TypeError("\"Could not resolve authentication method. Expected one of api_email, api_key, api_token or user_service_key to be set. Or for one of the `X-Auth-Email`, `X-Auth-Key`, `Authorization` or `X-Auth-User-Service-Key` headers to be explicitly omitted\"")
+        raise TypeError(
+            '"Could not resolve authentication method. Expected one of api_email, api_key, api_token or user_service_key to be set. Or for one of the `X-Auth-Email`, `X-Auth-Key`, `Authorization` or `X-Auth-User-Service-Key` headers to be explicitly omitted"'
+        )
 
-    def copy(self, *, api_token: str | None = None, api_key: str | None = None, api_email: str | None = None, user_service_key: str | None = None, base_url: str | httpx.URL | None = None, timeout: float | Timeout | None | NotGiven = NOT_GIVEN, http_client: httpx.AsyncClient | None = None, max_retries: int | NotGiven = NOT_GIVEN, default_headers: Mapping[str, str] | None = None, set_default_headers: Mapping[str, str] | None = None, default_query: Mapping[str, object] | None = None, set_default_query: Mapping[str, object] | None = None, _extra_kwargs: Mapping[str, Any] = {}) -> Self:
+    def copy(
+        self,
+        *,
+        api_token: str | None = None,
+        api_key: str | None = None,
+        api_email: str | None = None,
+        user_service_key: str | None = None,
+        base_url: str | httpx.URL | None = None,
+        timeout: float | Timeout | None | NotGiven = NOT_GIVEN,
+        http_client: httpx.AsyncClient | None = None,
+        max_retries: int | NotGiven = NOT_GIVEN,
+        default_headers: Mapping[str, str] | None = None,
+        set_default_headers: Mapping[str, str] | None = None,
+        default_query: Mapping[str, object] | None = None,
+        set_default_query: Mapping[str, object] | None = None,
+        _extra_kwargs: Mapping[str, Any] = {},
+    ) -> Self:
         """
         Create a new client instance re-using the same options given to the current client with optional overriding.
         """
         if default_headers is not None and set_default_headers is not None:
-          raise ValueError(
-            'The `default_headers` and `set_default_headers` arguments are mutually exclusive'
-          )
+            raise ValueError("The `default_headers` and `set_default_headers` arguments are mutually exclusive")
 
         if default_query is not None and set_default_query is not None:
-          raise ValueError(
-            'The `default_query` and `set_default_query` arguments are mutually exclusive'
-          )
+            raise ValueError("The `default_query` and `set_default_query` arguments are mutually exclusive")
 
         headers = self._custom_headers
         if default_headers is not None:
@@ -770,14 +844,32 @@ class AsyncCloudflare(AsyncAPIClient):
             params = set_default_query
 
         http_client = http_client or self._client
-        return self.__class__(api_token = api_token or self.api_token, api_key = api_key or self.api_key, api_email = api_email or self.api_email, user_service_key = user_service_key or self.user_service_key, base_url=base_url or self.base_url, timeout=self.timeout if isinstance(timeout, NotGiven) else timeout, http_client=http_client, max_retries=max_retries if is_given(max_retries) else self.max_retries, default_headers=headers, default_query=params, **_extra_kwargs)
+        return self.__class__(
+            api_token=api_token or self.api_token,
+            api_key=api_key or self.api_key,
+            api_email=api_email or self.api_email,
+            user_service_key=user_service_key or self.user_service_key,
+            base_url=base_url or self.base_url,
+            timeout=self.timeout if isinstance(timeout, NotGiven) else timeout,
+            http_client=http_client,
+            max_retries=max_retries if is_given(max_retries) else self.max_retries,
+            default_headers=headers,
+            default_query=params,
+            **_extra_kwargs,
+        )
 
     # Alias for `copy` for nicer inline usage, e.g.
     # client.with_options(timeout=10).foo.create(...)
     with_options = copy
 
     @override
-    def _make_status_error(self, err_msg: str, *, body: object, response: httpx.Response,) -> APIStatusError:
+    def _make_status_error(
+        self,
+        err_msg: str,
+        *,
+        body: object,
+        response: httpx.Response,
+    ) -> APIStatusError:
         if response.status_code == 400:
             return _exceptions.BadRequestError(err_msg, response=response, body=body)
 
@@ -803,10 +895,13 @@ class AsyncCloudflare(AsyncAPIClient):
             return _exceptions.InternalServerError(err_msg, response=response, body=body)
         return APIStatusError(err_msg, response=response, body=body)
 
+
 class CloudflareWithRawResponse:
     def __init__(self, client: Cloudflare) -> None:
         self.accounts = resources.AccountsResourceWithRawResponse(client.accounts)
-        self.origin_ca_certificates = resources.OriginCACertificatesResourceWithRawResponse(client.origin_ca_certificates)
+        self.origin_ca_certificates = resources.OriginCACertificatesResourceWithRawResponse(
+            client.origin_ca_certificates
+        )
         self.ips = resources.IPsResourceWithRawResponse(client.ips)
         self.memberships = resources.MembershipsResourceWithRawResponse(client.memberships)
         self.user = resources.UserResourceWithRawResponse(client.user)
@@ -819,7 +914,9 @@ class CloudflareWithRawResponse:
         self.argo = resources.ArgoResourceWithRawResponse(client.argo)
         self.plans = resources.PlansResourceWithRawResponse(client.plans)
         self.rate_plans = resources.RatePlansResourceWithRawResponse(client.rate_plans)
-        self.certificate_authorities = resources.CertificateAuthoritiesResourceWithRawResponse(client.certificate_authorities)
+        self.certificate_authorities = resources.CertificateAuthoritiesResourceWithRawResponse(
+            client.certificate_authorities
+        )
         self.client_certificates = resources.ClientCertificatesResourceWithRawResponse(client.client_certificates)
         self.custom_certificates = resources.CustomCertificatesResourceWithRawResponse(client.custom_certificates)
         self.custom_hostnames = resources.CustomHostnamesResourceWithRawResponse(client.custom_hostnames)
@@ -834,7 +931,9 @@ class CloudflareWithRawResponse:
         self.keyless_certificates = resources.KeylessCertificatesResourceWithRawResponse(client.keyless_certificates)
         self.logpush = resources.LogpushResourceWithRawResponse(client.logpush)
         self.logs = resources.LogsResourceWithRawResponse(client.logs)
-        self.origin_tls_client_auth = resources.OriginTLSClientAuthResourceWithRawResponse(client.origin_tls_client_auth)
+        self.origin_tls_client_auth = resources.OriginTLSClientAuthResourceWithRawResponse(
+            client.origin_tls_client_auth
+        )
         self.pagerules = resources.PagerulesResourceWithRawResponse(client.pagerules)
         self.rate_limits = resources.RateLimitsResourceWithRawResponse(client.rate_limits)
         self.secondary_dns = resources.SecondaryDNSResourceWithRawResponse(client.secondary_dns)
@@ -858,7 +957,9 @@ class CloudflareWithRawResponse:
         self.images = resources.ImagesResourceWithRawResponse(client.images)
         self.intel = resources.IntelResourceWithRawResponse(client.intel)
         self.magic_transit = resources.MagicTransitResourceWithRawResponse(client.magic_transit)
-        self.magic_network_monitoring = resources.MagicNetworkMonitoringResourceWithRawResponse(client.magic_network_monitoring)
+        self.magic_network_monitoring = resources.MagicNetworkMonitoringResourceWithRawResponse(
+            client.magic_network_monitoring
+        )
         self.mtls_certificates = resources.MTLSCertificatesResourceWithRawResponse(client.mtls_certificates)
         self.pages = resources.PagesResourceWithRawResponse(client.pages)
         self.pcaps = resources.PCAPsResourceWithRawResponse(client.pcaps)
@@ -880,7 +981,9 @@ class CloudflareWithRawResponse:
         self.url_scanner = resources.URLScannerResourceWithRawResponse(client.url_scanner)
         self.radar = resources.RadarResourceWithRawResponse(client.radar)
         self.bot_management = resources.BotManagementResourceWithRawResponse(client.bot_management)
-        self.origin_post_quantum_encryption = resources.OriginPostQuantumEncryptionResourceWithRawResponse(client.origin_post_quantum_encryption)
+        self.origin_post_quantum_encryption = resources.OriginPostQuantumEncryptionResourceWithRawResponse(
+            client.origin_post_quantum_encryption
+        )
         self.speed = resources.SpeedResourceWithRawResponse(client.speed)
         self.dcv_delegation = resources.DCVDelegationResourceWithRawResponse(client.dcv_delegation)
         self.hostnames = resources.HostnamesResourceWithRawResponse(client.hostnames)
@@ -892,10 +995,13 @@ class CloudflareWithRawResponse:
         self.iam = resources.IAMResourceWithRawResponse(client.iam)
         self.cloud_connector = resources.CloudConnectorResourceWithRawResponse(client.cloud_connector)
 
+
 class AsyncCloudflareWithRawResponse:
     def __init__(self, client: AsyncCloudflare) -> None:
         self.accounts = resources.AsyncAccountsResourceWithRawResponse(client.accounts)
-        self.origin_ca_certificates = resources.AsyncOriginCACertificatesResourceWithRawResponse(client.origin_ca_certificates)
+        self.origin_ca_certificates = resources.AsyncOriginCACertificatesResourceWithRawResponse(
+            client.origin_ca_certificates
+        )
         self.ips = resources.AsyncIPsResourceWithRawResponse(client.ips)
         self.memberships = resources.AsyncMembershipsResourceWithRawResponse(client.memberships)
         self.user = resources.AsyncUserResourceWithRawResponse(client.user)
@@ -908,7 +1014,9 @@ class AsyncCloudflareWithRawResponse:
         self.argo = resources.AsyncArgoResourceWithRawResponse(client.argo)
         self.plans = resources.AsyncPlansResourceWithRawResponse(client.plans)
         self.rate_plans = resources.AsyncRatePlansResourceWithRawResponse(client.rate_plans)
-        self.certificate_authorities = resources.AsyncCertificateAuthoritiesResourceWithRawResponse(client.certificate_authorities)
+        self.certificate_authorities = resources.AsyncCertificateAuthoritiesResourceWithRawResponse(
+            client.certificate_authorities
+        )
         self.client_certificates = resources.AsyncClientCertificatesResourceWithRawResponse(client.client_certificates)
         self.custom_certificates = resources.AsyncCustomCertificatesResourceWithRawResponse(client.custom_certificates)
         self.custom_hostnames = resources.AsyncCustomHostnamesResourceWithRawResponse(client.custom_hostnames)
@@ -920,10 +1028,14 @@ class AsyncCloudflareWithRawResponse:
         self.filters = resources.AsyncFiltersResourceWithRawResponse(client.filters)
         self.firewall = resources.AsyncFirewallResourceWithRawResponse(client.firewall)
         self.healthchecks = resources.AsyncHealthchecksResourceWithRawResponse(client.healthchecks)
-        self.keyless_certificates = resources.AsyncKeylessCertificatesResourceWithRawResponse(client.keyless_certificates)
+        self.keyless_certificates = resources.AsyncKeylessCertificatesResourceWithRawResponse(
+            client.keyless_certificates
+        )
         self.logpush = resources.AsyncLogpushResourceWithRawResponse(client.logpush)
         self.logs = resources.AsyncLogsResourceWithRawResponse(client.logs)
-        self.origin_tls_client_auth = resources.AsyncOriginTLSClientAuthResourceWithRawResponse(client.origin_tls_client_auth)
+        self.origin_tls_client_auth = resources.AsyncOriginTLSClientAuthResourceWithRawResponse(
+            client.origin_tls_client_auth
+        )
         self.pagerules = resources.AsyncPagerulesResourceWithRawResponse(client.pagerules)
         self.rate_limits = resources.AsyncRateLimitsResourceWithRawResponse(client.rate_limits)
         self.secondary_dns = resources.AsyncSecondaryDNSResourceWithRawResponse(client.secondary_dns)
@@ -947,7 +1059,9 @@ class AsyncCloudflareWithRawResponse:
         self.images = resources.AsyncImagesResourceWithRawResponse(client.images)
         self.intel = resources.AsyncIntelResourceWithRawResponse(client.intel)
         self.magic_transit = resources.AsyncMagicTransitResourceWithRawResponse(client.magic_transit)
-        self.magic_network_monitoring = resources.AsyncMagicNetworkMonitoringResourceWithRawResponse(client.magic_network_monitoring)
+        self.magic_network_monitoring = resources.AsyncMagicNetworkMonitoringResourceWithRawResponse(
+            client.magic_network_monitoring
+        )
         self.mtls_certificates = resources.AsyncMTLSCertificatesResourceWithRawResponse(client.mtls_certificates)
         self.pages = resources.AsyncPagesResourceWithRawResponse(client.pages)
         self.pcaps = resources.AsyncPCAPsResourceWithRawResponse(client.pcaps)
@@ -960,7 +1074,9 @@ class AsyncCloudflareWithRawResponse:
         self.d1 = resources.AsyncD1ResourceWithRawResponse(client.d1)
         self.r2 = resources.AsyncR2ResourceWithRawResponse(client.r2)
         self.warp_connector = resources.AsyncWARPConnectorResourceWithRawResponse(client.warp_connector)
-        self.workers_for_platforms = resources.AsyncWorkersForPlatformsResourceWithRawResponse(client.workers_for_platforms)
+        self.workers_for_platforms = resources.AsyncWorkersForPlatformsResourceWithRawResponse(
+            client.workers_for_platforms
+        )
         self.zero_trust = resources.AsyncZeroTrustResourceWithRawResponse(client.zero_trust)
         self.challenges = resources.AsyncChallengesResourceWithRawResponse(client.challenges)
         self.hyperdrive = resources.AsyncHyperdriveResourceWithRawResponse(client.hyperdrive)
@@ -969,7 +1085,9 @@ class AsyncCloudflareWithRawResponse:
         self.url_scanner = resources.AsyncURLScannerResourceWithRawResponse(client.url_scanner)
         self.radar = resources.AsyncRadarResourceWithRawResponse(client.radar)
         self.bot_management = resources.AsyncBotManagementResourceWithRawResponse(client.bot_management)
-        self.origin_post_quantum_encryption = resources.AsyncOriginPostQuantumEncryptionResourceWithRawResponse(client.origin_post_quantum_encryption)
+        self.origin_post_quantum_encryption = resources.AsyncOriginPostQuantumEncryptionResourceWithRawResponse(
+            client.origin_post_quantum_encryption
+        )
         self.speed = resources.AsyncSpeedResourceWithRawResponse(client.speed)
         self.dcv_delegation = resources.AsyncDCVDelegationResourceWithRawResponse(client.dcv_delegation)
         self.hostnames = resources.AsyncHostnamesResourceWithRawResponse(client.hostnames)
@@ -981,10 +1099,13 @@ class AsyncCloudflareWithRawResponse:
         self.iam = resources.AsyncIAMResourceWithRawResponse(client.iam)
         self.cloud_connector = resources.AsyncCloudConnectorResourceWithRawResponse(client.cloud_connector)
 
+
 class CloudflareWithStreamedResponse:
     def __init__(self, client: Cloudflare) -> None:
         self.accounts = resources.AccountsResourceWithStreamingResponse(client.accounts)
-        self.origin_ca_certificates = resources.OriginCACertificatesResourceWithStreamingResponse(client.origin_ca_certificates)
+        self.origin_ca_certificates = resources.OriginCACertificatesResourceWithStreamingResponse(
+            client.origin_ca_certificates
+        )
         self.ips = resources.IPsResourceWithStreamingResponse(client.ips)
         self.memberships = resources.MembershipsResourceWithStreamingResponse(client.memberships)
         self.user = resources.UserResourceWithStreamingResponse(client.user)
@@ -997,7 +1118,9 @@ class CloudflareWithStreamedResponse:
         self.argo = resources.ArgoResourceWithStreamingResponse(client.argo)
         self.plans = resources.PlansResourceWithStreamingResponse(client.plans)
         self.rate_plans = resources.RatePlansResourceWithStreamingResponse(client.rate_plans)
-        self.certificate_authorities = resources.CertificateAuthoritiesResourceWithStreamingResponse(client.certificate_authorities)
+        self.certificate_authorities = resources.CertificateAuthoritiesResourceWithStreamingResponse(
+            client.certificate_authorities
+        )
         self.client_certificates = resources.ClientCertificatesResourceWithStreamingResponse(client.client_certificates)
         self.custom_certificates = resources.CustomCertificatesResourceWithStreamingResponse(client.custom_certificates)
         self.custom_hostnames = resources.CustomHostnamesResourceWithStreamingResponse(client.custom_hostnames)
@@ -1009,10 +1132,14 @@ class CloudflareWithStreamedResponse:
         self.filters = resources.FiltersResourceWithStreamingResponse(client.filters)
         self.firewall = resources.FirewallResourceWithStreamingResponse(client.firewall)
         self.healthchecks = resources.HealthchecksResourceWithStreamingResponse(client.healthchecks)
-        self.keyless_certificates = resources.KeylessCertificatesResourceWithStreamingResponse(client.keyless_certificates)
+        self.keyless_certificates = resources.KeylessCertificatesResourceWithStreamingResponse(
+            client.keyless_certificates
+        )
         self.logpush = resources.LogpushResourceWithStreamingResponse(client.logpush)
         self.logs = resources.LogsResourceWithStreamingResponse(client.logs)
-        self.origin_tls_client_auth = resources.OriginTLSClientAuthResourceWithStreamingResponse(client.origin_tls_client_auth)
+        self.origin_tls_client_auth = resources.OriginTLSClientAuthResourceWithStreamingResponse(
+            client.origin_tls_client_auth
+        )
         self.pagerules = resources.PagerulesResourceWithStreamingResponse(client.pagerules)
         self.rate_limits = resources.RateLimitsResourceWithStreamingResponse(client.rate_limits)
         self.secondary_dns = resources.SecondaryDNSResourceWithStreamingResponse(client.secondary_dns)
@@ -1036,7 +1163,9 @@ class CloudflareWithStreamedResponse:
         self.images = resources.ImagesResourceWithStreamingResponse(client.images)
         self.intel = resources.IntelResourceWithStreamingResponse(client.intel)
         self.magic_transit = resources.MagicTransitResourceWithStreamingResponse(client.magic_transit)
-        self.magic_network_monitoring = resources.MagicNetworkMonitoringResourceWithStreamingResponse(client.magic_network_monitoring)
+        self.magic_network_monitoring = resources.MagicNetworkMonitoringResourceWithStreamingResponse(
+            client.magic_network_monitoring
+        )
         self.mtls_certificates = resources.MTLSCertificatesResourceWithStreamingResponse(client.mtls_certificates)
         self.pages = resources.PagesResourceWithStreamingResponse(client.pages)
         self.pcaps = resources.PCAPsResourceWithStreamingResponse(client.pcaps)
@@ -1049,7 +1178,9 @@ class CloudflareWithStreamedResponse:
         self.d1 = resources.D1ResourceWithStreamingResponse(client.d1)
         self.r2 = resources.R2ResourceWithStreamingResponse(client.r2)
         self.warp_connector = resources.WARPConnectorResourceWithStreamingResponse(client.warp_connector)
-        self.workers_for_platforms = resources.WorkersForPlatformsResourceWithStreamingResponse(client.workers_for_platforms)
+        self.workers_for_platforms = resources.WorkersForPlatformsResourceWithStreamingResponse(
+            client.workers_for_platforms
+        )
         self.zero_trust = resources.ZeroTrustResourceWithStreamingResponse(client.zero_trust)
         self.challenges = resources.ChallengesResourceWithStreamingResponse(client.challenges)
         self.hyperdrive = resources.HyperdriveResourceWithStreamingResponse(client.hyperdrive)
@@ -1058,7 +1189,9 @@ class CloudflareWithStreamedResponse:
         self.url_scanner = resources.URLScannerResourceWithStreamingResponse(client.url_scanner)
         self.radar = resources.RadarResourceWithStreamingResponse(client.radar)
         self.bot_management = resources.BotManagementResourceWithStreamingResponse(client.bot_management)
-        self.origin_post_quantum_encryption = resources.OriginPostQuantumEncryptionResourceWithStreamingResponse(client.origin_post_quantum_encryption)
+        self.origin_post_quantum_encryption = resources.OriginPostQuantumEncryptionResourceWithStreamingResponse(
+            client.origin_post_quantum_encryption
+        )
         self.speed = resources.SpeedResourceWithStreamingResponse(client.speed)
         self.dcv_delegation = resources.DCVDelegationResourceWithStreamingResponse(client.dcv_delegation)
         self.hostnames = resources.HostnamesResourceWithStreamingResponse(client.hostnames)
@@ -1070,10 +1203,13 @@ class CloudflareWithStreamedResponse:
         self.iam = resources.IAMResourceWithStreamingResponse(client.iam)
         self.cloud_connector = resources.CloudConnectorResourceWithStreamingResponse(client.cloud_connector)
 
+
 class AsyncCloudflareWithStreamedResponse:
     def __init__(self, client: AsyncCloudflare) -> None:
         self.accounts = resources.AsyncAccountsResourceWithStreamingResponse(client.accounts)
-        self.origin_ca_certificates = resources.AsyncOriginCACertificatesResourceWithStreamingResponse(client.origin_ca_certificates)
+        self.origin_ca_certificates = resources.AsyncOriginCACertificatesResourceWithStreamingResponse(
+            client.origin_ca_certificates
+        )
         self.ips = resources.AsyncIPsResourceWithStreamingResponse(client.ips)
         self.memberships = resources.AsyncMembershipsResourceWithStreamingResponse(client.memberships)
         self.user = resources.AsyncUserResourceWithStreamingResponse(client.user)
@@ -1086,11 +1222,19 @@ class AsyncCloudflareWithStreamedResponse:
         self.argo = resources.AsyncArgoResourceWithStreamingResponse(client.argo)
         self.plans = resources.AsyncPlansResourceWithStreamingResponse(client.plans)
         self.rate_plans = resources.AsyncRatePlansResourceWithStreamingResponse(client.rate_plans)
-        self.certificate_authorities = resources.AsyncCertificateAuthoritiesResourceWithStreamingResponse(client.certificate_authorities)
-        self.client_certificates = resources.AsyncClientCertificatesResourceWithStreamingResponse(client.client_certificates)
-        self.custom_certificates = resources.AsyncCustomCertificatesResourceWithStreamingResponse(client.custom_certificates)
+        self.certificate_authorities = resources.AsyncCertificateAuthoritiesResourceWithStreamingResponse(
+            client.certificate_authorities
+        )
+        self.client_certificates = resources.AsyncClientCertificatesResourceWithStreamingResponse(
+            client.client_certificates
+        )
+        self.custom_certificates = resources.AsyncCustomCertificatesResourceWithStreamingResponse(
+            client.custom_certificates
+        )
         self.custom_hostnames = resources.AsyncCustomHostnamesResourceWithStreamingResponse(client.custom_hostnames)
-        self.custom_nameservers = resources.AsyncCustomNameserversResourceWithStreamingResponse(client.custom_nameservers)
+        self.custom_nameservers = resources.AsyncCustomNameserversResourceWithStreamingResponse(
+            client.custom_nameservers
+        )
         self.dns = resources.AsyncDNSResourceWithStreamingResponse(client.dns)
         self.dnssec = resources.AsyncDNSSECResourceWithStreamingResponse(client.dnssec)
         self.email_security = resources.AsyncEmailSecurityResourceWithStreamingResponse(client.email_security)
@@ -1098,10 +1242,14 @@ class AsyncCloudflareWithStreamedResponse:
         self.filters = resources.AsyncFiltersResourceWithStreamingResponse(client.filters)
         self.firewall = resources.AsyncFirewallResourceWithStreamingResponse(client.firewall)
         self.healthchecks = resources.AsyncHealthchecksResourceWithStreamingResponse(client.healthchecks)
-        self.keyless_certificates = resources.AsyncKeylessCertificatesResourceWithStreamingResponse(client.keyless_certificates)
+        self.keyless_certificates = resources.AsyncKeylessCertificatesResourceWithStreamingResponse(
+            client.keyless_certificates
+        )
         self.logpush = resources.AsyncLogpushResourceWithStreamingResponse(client.logpush)
         self.logs = resources.AsyncLogsResourceWithStreamingResponse(client.logs)
-        self.origin_tls_client_auth = resources.AsyncOriginTLSClientAuthResourceWithStreamingResponse(client.origin_tls_client_auth)
+        self.origin_tls_client_auth = resources.AsyncOriginTLSClientAuthResourceWithStreamingResponse(
+            client.origin_tls_client_auth
+        )
         self.pagerules = resources.AsyncPagerulesResourceWithStreamingResponse(client.pagerules)
         self.rate_limits = resources.AsyncRateLimitsResourceWithStreamingResponse(client.rate_limits)
         self.secondary_dns = resources.AsyncSecondaryDNSResourceWithStreamingResponse(client.secondary_dns)
@@ -1125,7 +1273,9 @@ class AsyncCloudflareWithStreamedResponse:
         self.images = resources.AsyncImagesResourceWithStreamingResponse(client.images)
         self.intel = resources.AsyncIntelResourceWithStreamingResponse(client.intel)
         self.magic_transit = resources.AsyncMagicTransitResourceWithStreamingResponse(client.magic_transit)
-        self.magic_network_monitoring = resources.AsyncMagicNetworkMonitoringResourceWithStreamingResponse(client.magic_network_monitoring)
+        self.magic_network_monitoring = resources.AsyncMagicNetworkMonitoringResourceWithStreamingResponse(
+            client.magic_network_monitoring
+        )
         self.mtls_certificates = resources.AsyncMTLSCertificatesResourceWithStreamingResponse(client.mtls_certificates)
         self.pages = resources.AsyncPagesResourceWithStreamingResponse(client.pages)
         self.pcaps = resources.AsyncPCAPsResourceWithStreamingResponse(client.pcaps)
@@ -1138,7 +1288,9 @@ class AsyncCloudflareWithStreamedResponse:
         self.d1 = resources.AsyncD1ResourceWithStreamingResponse(client.d1)
         self.r2 = resources.AsyncR2ResourceWithStreamingResponse(client.r2)
         self.warp_connector = resources.AsyncWARPConnectorResourceWithStreamingResponse(client.warp_connector)
-        self.workers_for_platforms = resources.AsyncWorkersForPlatformsResourceWithStreamingResponse(client.workers_for_platforms)
+        self.workers_for_platforms = resources.AsyncWorkersForPlatformsResourceWithStreamingResponse(
+            client.workers_for_platforms
+        )
         self.zero_trust = resources.AsyncZeroTrustResourceWithStreamingResponse(client.zero_trust)
         self.challenges = resources.AsyncChallengesResourceWithStreamingResponse(client.challenges)
         self.hyperdrive = resources.AsyncHyperdriveResourceWithStreamingResponse(client.hyperdrive)
@@ -1147,17 +1299,22 @@ class AsyncCloudflareWithStreamedResponse:
         self.url_scanner = resources.AsyncURLScannerResourceWithStreamingResponse(client.url_scanner)
         self.radar = resources.AsyncRadarResourceWithStreamingResponse(client.radar)
         self.bot_management = resources.AsyncBotManagementResourceWithStreamingResponse(client.bot_management)
-        self.origin_post_quantum_encryption = resources.AsyncOriginPostQuantumEncryptionResourceWithStreamingResponse(client.origin_post_quantum_encryption)
+        self.origin_post_quantum_encryption = resources.AsyncOriginPostQuantumEncryptionResourceWithStreamingResponse(
+            client.origin_post_quantum_encryption
+        )
         self.speed = resources.AsyncSpeedResourceWithStreamingResponse(client.speed)
         self.dcv_delegation = resources.AsyncDCVDelegationResourceWithStreamingResponse(client.dcv_delegation)
         self.hostnames = resources.AsyncHostnamesResourceWithStreamingResponse(client.hostnames)
         self.snippets = resources.AsyncSnippetsResourceWithStreamingResponse(client.snippets)
         self.calls = resources.AsyncCallsResourceWithStreamingResponse(client.calls)
         self.cloudforce_one = resources.AsyncCloudforceOneResourceWithStreamingResponse(client.cloudforce_one)
-        self.event_notifications = resources.AsyncEventNotificationsResourceWithStreamingResponse(client.event_notifications)
+        self.event_notifications = resources.AsyncEventNotificationsResourceWithStreamingResponse(
+            client.event_notifications
+        )
         self.ai_gateway = resources.AsyncAIGatewayResourceWithStreamingResponse(client.ai_gateway)
         self.iam = resources.AsyncIAMResourceWithStreamingResponse(client.iam)
         self.cloud_connector = resources.AsyncCloudConnectorResourceWithStreamingResponse(client.cloud_connector)
+
 
 Client = Cloudflare
 

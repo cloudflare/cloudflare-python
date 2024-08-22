@@ -1,16 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import Optional, List
-
+from typing import List, Optional
 from datetime import date
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ..._models import BaseModel
 
 __all__ = ["DNS", "ReverseRecord"]
+
 
 class ReverseRecord(BaseModel):
     first_seen: Optional[date] = None
@@ -21,6 +17,7 @@ class ReverseRecord(BaseModel):
 
     last_seen: Optional[date] = None
     """Last seen date of the DNS record during the time period."""
+
 
 class DNS(BaseModel):
     count: Optional[float] = None

@@ -2,158 +2,97 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from cloudflare.types.radar.attacks.layer7 import SummaryGetResponse, SummaryHTTPMethodResponse, SummaryHTTPVersionResponse, SummaryIPVersionResponse, SummaryManagedRulesResponse, SummaryMitigationProductResponse
-
+import os
 from typing import Any, cast
 
-import os
 import pytest
-import httpx
-from typing_extensions import get_args
-from typing import Optional
-from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.radar.attacks.layer7 import summary_get_params
-from cloudflare.types.radar.attacks.layer7 import summary_http_method_params
-from cloudflare.types.radar.attacks.layer7 import summary_http_version_params
-from cloudflare.types.radar.attacks.layer7 import summary_ip_version_params
-from cloudflare.types.radar.attacks.layer7 import summary_managed_rules_params
-from cloudflare.types.radar.attacks.layer7 import summary_mitigation_product_params
 from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
-from cloudflare._utils import parse_datetime
+from cloudflare.types.radar.attacks.layer7 import (
+    SummaryGetResponse,
+    SummaryIPVersionResponse,
+    SummaryHTTPMethodResponse,
+    SummaryHTTPVersionResponse,
+    SummaryManagedRulesResponse,
+    SummaryMitigationProductResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-class TestSummary:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
 
+class TestSummary:
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     def test_method_get(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.get()
-        assert_matches_type(SummaryGetResponse, summary, path=['response'])
+        assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
     @parametrize
     def test_method_get_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.get(
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             date_range=["7d", "7d", "7d"],
-            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             format="JSON",
             location=["string", "string", "string"],
             name=["string", "string", "string"],
         )
-        assert_matches_type(SummaryGetResponse, summary, path=['response'])
+        assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
     @parametrize
     def test_raw_response_get(self, client: Cloudflare) -> None:
-
         response = client.radar.attacks.layer7.summary.with_raw_response.get()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         summary = response.parse()
-        assert_matches_type(SummaryGetResponse, summary, path=['response'])
+        assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
     @parametrize
     def test_streaming_response_get(self, client: Cloudflare) -> None:
-        with client.radar.attacks.layer7.summary.with_streaming_response.get() as response :
+        with client.radar.attacks.layer7.summary.with_streaming_response.get() as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             summary = response.parse()
-            assert_matches_type(SummaryGetResponse, summary, path=['response'])
+            assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_http_method(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.http_method()
-        assert_matches_type(SummaryHTTPMethodResponse, summary, path=['response'])
+        assert_matches_type(SummaryHTTPMethodResponse, summary, path=["response"])
 
     @parametrize
     def test_method_http_method_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.http_method(
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             date_range=["7d", "7d", "7d"],
-            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             format="JSON",
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
             ip_version=["IPv4", "IPv6"],
@@ -161,42 +100,49 @@ class TestSummary:
             mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
             name=["string", "string", "string"],
         )
-        assert_matches_type(SummaryHTTPMethodResponse, summary, path=['response'])
+        assert_matches_type(SummaryHTTPMethodResponse, summary, path=["response"])
 
     @parametrize
     def test_raw_response_http_method(self, client: Cloudflare) -> None:
-
         response = client.radar.attacks.layer7.summary.with_raw_response.http_method()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         summary = response.parse()
-        assert_matches_type(SummaryHTTPMethodResponse, summary, path=['response'])
+        assert_matches_type(SummaryHTTPMethodResponse, summary, path=["response"])
 
     @parametrize
     def test_streaming_response_http_method(self, client: Cloudflare) -> None:
-        with client.radar.attacks.layer7.summary.with_streaming_response.http_method() as response :
+        with client.radar.attacks.layer7.summary.with_streaming_response.http_method() as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             summary = response.parse()
-            assert_matches_type(SummaryHTTPMethodResponse, summary, path=['response'])
+            assert_matches_type(SummaryHTTPMethodResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_http_version(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.http_version()
-        assert_matches_type(SummaryHTTPVersionResponse, summary, path=['response'])
+        assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
     @parametrize
     def test_method_http_version_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.http_version(
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             date_range=["7d", "7d", "7d"],
-            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             ip_version=["IPv4", "IPv6"],
@@ -204,42 +150,49 @@ class TestSummary:
             mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
             name=["string", "string", "string"],
         )
-        assert_matches_type(SummaryHTTPVersionResponse, summary, path=['response'])
+        assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
     @parametrize
     def test_raw_response_http_version(self, client: Cloudflare) -> None:
-
         response = client.radar.attacks.layer7.summary.with_raw_response.http_version()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         summary = response.parse()
-        assert_matches_type(SummaryHTTPVersionResponse, summary, path=['response'])
+        assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
     @parametrize
     def test_streaming_response_http_version(self, client: Cloudflare) -> None:
-        with client.radar.attacks.layer7.summary.with_streaming_response.http_version() as response :
+        with client.radar.attacks.layer7.summary.with_streaming_response.http_version() as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             summary = response.parse()
-            assert_matches_type(SummaryHTTPVersionResponse, summary, path=['response'])
+            assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_ip_version(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.ip_version()
-        assert_matches_type(SummaryIPVersionResponse, summary, path=['response'])
+        assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
     @parametrize
     def test_method_ip_version_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.ip_version(
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             date_range=["7d", "7d", "7d"],
-            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
@@ -247,42 +200,49 @@ class TestSummary:
             mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
             name=["string", "string", "string"],
         )
-        assert_matches_type(SummaryIPVersionResponse, summary, path=['response'])
+        assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
     @parametrize
     def test_raw_response_ip_version(self, client: Cloudflare) -> None:
-
         response = client.radar.attacks.layer7.summary.with_raw_response.ip_version()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         summary = response.parse()
-        assert_matches_type(SummaryIPVersionResponse, summary, path=['response'])
+        assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
     @parametrize
     def test_streaming_response_ip_version(self, client: Cloudflare) -> None:
-        with client.radar.attacks.layer7.summary.with_streaming_response.ip_version() as response :
+        with client.radar.attacks.layer7.summary.with_streaming_response.ip_version() as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             summary = response.parse()
-            assert_matches_type(SummaryIPVersionResponse, summary, path=['response'])
+            assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_managed_rules(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.managed_rules()
-        assert_matches_type(SummaryManagedRulesResponse, summary, path=['response'])
+        assert_matches_type(SummaryManagedRulesResponse, summary, path=["response"])
 
     @parametrize
     def test_method_managed_rules_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.managed_rules(
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             date_range=["7d", "7d", "7d"],
-            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
@@ -291,42 +251,49 @@ class TestSummary:
             mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
             name=["string", "string", "string"],
         )
-        assert_matches_type(SummaryManagedRulesResponse, summary, path=['response'])
+        assert_matches_type(SummaryManagedRulesResponse, summary, path=["response"])
 
     @parametrize
     def test_raw_response_managed_rules(self, client: Cloudflare) -> None:
-
         response = client.radar.attacks.layer7.summary.with_raw_response.managed_rules()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         summary = response.parse()
-        assert_matches_type(SummaryManagedRulesResponse, summary, path=['response'])
+        assert_matches_type(SummaryManagedRulesResponse, summary, path=["response"])
 
     @parametrize
     def test_streaming_response_managed_rules(self, client: Cloudflare) -> None:
-        with client.radar.attacks.layer7.summary.with_streaming_response.managed_rules() as response :
+        with client.radar.attacks.layer7.summary.with_streaming_response.managed_rules() as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             summary = response.parse()
-            assert_matches_type(SummaryManagedRulesResponse, summary, path=['response'])
+            assert_matches_type(SummaryManagedRulesResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_method_mitigation_product(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.mitigation_product()
-        assert_matches_type(SummaryMitigationProductResponse, summary, path=['response'])
+        assert_matches_type(SummaryMitigationProductResponse, summary, path=["response"])
 
     @parametrize
     def test_method_mitigation_product_with_all_params(self, client: Cloudflare) -> None:
         summary = client.radar.attacks.layer7.summary.mitigation_product(
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             date_range=["7d", "7d", "7d"],
-            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
@@ -334,85 +301,100 @@ class TestSummary:
             location=["string", "string", "string"],
             name=["string", "string", "string"],
         )
-        assert_matches_type(SummaryMitigationProductResponse, summary, path=['response'])
+        assert_matches_type(SummaryMitigationProductResponse, summary, path=["response"])
 
     @parametrize
     def test_raw_response_mitigation_product(self, client: Cloudflare) -> None:
-
         response = client.radar.attacks.layer7.summary.with_raw_response.mitigation_product()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         summary = response.parse()
-        assert_matches_type(SummaryMitigationProductResponse, summary, path=['response'])
+        assert_matches_type(SummaryMitigationProductResponse, summary, path=["response"])
 
     @parametrize
     def test_streaming_response_mitigation_product(self, client: Cloudflare) -> None:
-        with client.radar.attacks.layer7.summary.with_streaming_response.mitigation_product() as response :
+        with client.radar.attacks.layer7.summary.with_streaming_response.mitigation_product() as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             summary = response.parse()
-            assert_matches_type(SummaryMitigationProductResponse, summary, path=['response'])
+            assert_matches_type(SummaryMitigationProductResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
-class TestAsyncSummary:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
 
+
+class TestAsyncSummary:
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @parametrize
     async def test_method_get(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.get()
-        assert_matches_type(SummaryGetResponse, summary, path=['response'])
+        assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
     @parametrize
     async def test_method_get_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.get(
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             date_range=["7d", "7d", "7d"],
-            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             format="JSON",
             location=["string", "string", "string"],
             name=["string", "string", "string"],
         )
-        assert_matches_type(SummaryGetResponse, summary, path=['response'])
+        assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
     @parametrize
     async def test_raw_response_get(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.radar.attacks.layer7.summary.with_raw_response.get()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         summary = await response.parse()
-        assert_matches_type(SummaryGetResponse, summary, path=['response'])
+        assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
     @parametrize
     async def test_streaming_response_get(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.attacks.layer7.summary.with_streaming_response.get() as response :
+        async with async_client.radar.attacks.layer7.summary.with_streaming_response.get() as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             summary = await response.parse()
-            assert_matches_type(SummaryGetResponse, summary, path=['response'])
+            assert_matches_type(SummaryGetResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_http_method(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.http_method()
-        assert_matches_type(SummaryHTTPMethodResponse, summary, path=['response'])
+        assert_matches_type(SummaryHTTPMethodResponse, summary, path=["response"])
 
     @parametrize
     async def test_method_http_method_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.http_method(
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             date_range=["7d", "7d", "7d"],
-            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             format="JSON",
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
             ip_version=["IPv4", "IPv6"],
@@ -420,42 +402,49 @@ class TestAsyncSummary:
             mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
             name=["string", "string", "string"],
         )
-        assert_matches_type(SummaryHTTPMethodResponse, summary, path=['response'])
+        assert_matches_type(SummaryHTTPMethodResponse, summary, path=["response"])
 
     @parametrize
     async def test_raw_response_http_method(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.radar.attacks.layer7.summary.with_raw_response.http_method()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         summary = await response.parse()
-        assert_matches_type(SummaryHTTPMethodResponse, summary, path=['response'])
+        assert_matches_type(SummaryHTTPMethodResponse, summary, path=["response"])
 
     @parametrize
     async def test_streaming_response_http_method(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.attacks.layer7.summary.with_streaming_response.http_method() as response :
+        async with async_client.radar.attacks.layer7.summary.with_streaming_response.http_method() as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             summary = await response.parse()
-            assert_matches_type(SummaryHTTPMethodResponse, summary, path=['response'])
+            assert_matches_type(SummaryHTTPMethodResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_http_version(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.http_version()
-        assert_matches_type(SummaryHTTPVersionResponse, summary, path=['response'])
+        assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
     @parametrize
     async def test_method_http_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.http_version(
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             date_range=["7d", "7d", "7d"],
-            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             ip_version=["IPv4", "IPv6"],
@@ -463,42 +452,49 @@ class TestAsyncSummary:
             mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
             name=["string", "string", "string"],
         )
-        assert_matches_type(SummaryHTTPVersionResponse, summary, path=['response'])
+        assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
     @parametrize
     async def test_raw_response_http_version(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.radar.attacks.layer7.summary.with_raw_response.http_version()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         summary = await response.parse()
-        assert_matches_type(SummaryHTTPVersionResponse, summary, path=['response'])
+        assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
     @parametrize
     async def test_streaming_response_http_version(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.attacks.layer7.summary.with_streaming_response.http_version() as response :
+        async with async_client.radar.attacks.layer7.summary.with_streaming_response.http_version() as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             summary = await response.parse()
-            assert_matches_type(SummaryHTTPVersionResponse, summary, path=['response'])
+            assert_matches_type(SummaryHTTPVersionResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_ip_version(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.ip_version()
-        assert_matches_type(SummaryIPVersionResponse, summary, path=['response'])
+        assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
     @parametrize
     async def test_method_ip_version_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.ip_version(
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             date_range=["7d", "7d", "7d"],
-            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
@@ -506,42 +502,49 @@ class TestAsyncSummary:
             mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
             name=["string", "string", "string"],
         )
-        assert_matches_type(SummaryIPVersionResponse, summary, path=['response'])
+        assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
     @parametrize
     async def test_raw_response_ip_version(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.radar.attacks.layer7.summary.with_raw_response.ip_version()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         summary = await response.parse()
-        assert_matches_type(SummaryIPVersionResponse, summary, path=['response'])
+        assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
     @parametrize
     async def test_streaming_response_ip_version(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.attacks.layer7.summary.with_streaming_response.ip_version() as response :
+        async with async_client.radar.attacks.layer7.summary.with_streaming_response.ip_version() as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             summary = await response.parse()
-            assert_matches_type(SummaryIPVersionResponse, summary, path=['response'])
+            assert_matches_type(SummaryIPVersionResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_managed_rules(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.managed_rules()
-        assert_matches_type(SummaryManagedRulesResponse, summary, path=['response'])
+        assert_matches_type(SummaryManagedRulesResponse, summary, path=["response"])
 
     @parametrize
     async def test_method_managed_rules_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.managed_rules(
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             date_range=["7d", "7d", "7d"],
-            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
@@ -550,42 +553,49 @@ class TestAsyncSummary:
             mitigation_product=["DDOS", "WAF", "BOT_MANAGEMENT"],
             name=["string", "string", "string"],
         )
-        assert_matches_type(SummaryManagedRulesResponse, summary, path=['response'])
+        assert_matches_type(SummaryManagedRulesResponse, summary, path=["response"])
 
     @parametrize
     async def test_raw_response_managed_rules(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.radar.attacks.layer7.summary.with_raw_response.managed_rules()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         summary = await response.parse()
-        assert_matches_type(SummaryManagedRulesResponse, summary, path=['response'])
+        assert_matches_type(SummaryManagedRulesResponse, summary, path=["response"])
 
     @parametrize
     async def test_streaming_response_managed_rules(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.attacks.layer7.summary.with_streaming_response.managed_rules() as response :
+        async with async_client.radar.attacks.layer7.summary.with_streaming_response.managed_rules() as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             summary = await response.parse()
-            assert_matches_type(SummaryManagedRulesResponse, summary, path=['response'])
+            assert_matches_type(SummaryManagedRulesResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_method_mitigation_product(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.mitigation_product()
-        assert_matches_type(SummaryMitigationProductResponse, summary, path=['response'])
+        assert_matches_type(SummaryMitigationProductResponse, summary, path=["response"])
 
     @parametrize
     async def test_method_mitigation_product_with_all_params(self, async_client: AsyncCloudflare) -> None:
         summary = await async_client.radar.attacks.layer7.summary.mitigation_product(
             asn=["string", "string", "string"],
             continent=["string", "string", "string"],
-            date_end=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_end=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             date_range=["7d", "7d", "7d"],
-            date_start=[parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z"), parse_datetime("2019-12-27T18:11:19.117Z")],
+            date_start=[
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+                parse_datetime("2019-12-27T18:11:19.117Z"),
+            ],
             format="JSON",
             http_method=["GET", "POST", "DELETE"],
             http_version=["HTTPv1", "HTTPv2", "HTTPv3"],
@@ -593,25 +603,24 @@ class TestAsyncSummary:
             location=["string", "string", "string"],
             name=["string", "string", "string"],
         )
-        assert_matches_type(SummaryMitigationProductResponse, summary, path=['response'])
+        assert_matches_type(SummaryMitigationProductResponse, summary, path=["response"])
 
     @parametrize
     async def test_raw_response_mitigation_product(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.radar.attacks.layer7.summary.with_raw_response.mitigation_product()
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         summary = await response.parse()
-        assert_matches_type(SummaryMitigationProductResponse, summary, path=['response'])
+        assert_matches_type(SummaryMitigationProductResponse, summary, path=["response"])
 
     @parametrize
     async def test_streaming_response_mitigation_product(self, async_client: AsyncCloudflare) -> None:
-        async with async_client.radar.attacks.layer7.summary.with_streaming_response.mitigation_product() as response :
+        async with async_client.radar.attacks.layer7.summary.with_streaming_response.mitigation_product() as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             summary = await response.parse()
-            assert_matches_type(SummaryMitigationProductResponse, summary, path=['response'])
+            assert_matches_type(SummaryMitigationProductResponse, summary, path=["response"])
 
         assert cast(Any, response.is_closed) is True

@@ -2,46 +2,41 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Union, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
-from .top import TopResource, AsyncTopResource
-
+from .top import (
+    TopResource,
+    AsyncTopResource,
+    TopResourceWithRawResponse,
+    AsyncTopResourceWithRawResponse,
+    TopResourceWithStreamingResponse,
+    AsyncTopResourceWithStreamingResponse,
+)
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from ....types.radar.netflow_summary_response import NetflowSummaryResponse
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
+from ....types.radar import netflow_summary_params, netflow_timeseries_params
 from ...._base_client import make_request_options
-
-from typing import Type, List, Union
-
-from datetime import datetime
-
-from typing_extensions import Literal
-
+from ....types.radar.netflow_summary_response import NetflowSummaryResponse
 from ....types.radar.netflow_timeseries_response import NetflowTimeseriesResponse
 
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.radar import netflow_summary_params
-from ....types.radar import netflow_timeseries_params
-from .top import TopResource, AsyncTopResource, TopResourceWithRawResponse, AsyncTopResourceWithRawResponse, TopResourceWithStreamingResponse, AsyncTopResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["NetflowsResource", "AsyncNetflowsResource"]
+
 
 class NetflowsResource(SyncAPIResource):
     @cached_property
@@ -56,22 +51,24 @@ class NetflowsResource(SyncAPIResource):
     def with_streaming_response(self) -> NetflowsResourceWithStreamingResponse:
         return NetflowsResourceWithStreamingResponse(self)
 
-    def summary(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> NetflowSummaryResponse:
+    def summary(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> NetflowSummaryResponse:
         """
         Percentage distribution of HTTP vs other protocols traffic over a given time
         period.
@@ -111,38 +108,50 @@ class NetflowsResource(SyncAPIResource):
         """
         return self._get(
             "/radar/netflows/summary",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "location": location,
-                "name": name,
-            }, netflow_summary_params.NetflowSummaryParams), post_parser=ResultWrapper[NetflowSummaryResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                    },
+                    netflow_summary_params.NetflowSummaryParams,
+                ),
+                post_parser=ResultWrapper[NetflowSummaryResponse]._unwrapper,
+            ),
             cast_to=cast(Type[NetflowSummaryResponse], ResultWrapper[NetflowSummaryResponse]),
         )
 
-    def timeseries(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
-    product: List[Literal["HTTP", "ALL"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> NetflowTimeseriesResponse:
+    def timeseries(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        product: List[Literal["HTTP", "ALL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> NetflowTimeseriesResponse:
         """Get network traffic change over time.
 
         Visit
@@ -192,21 +201,32 @@ class NetflowsResource(SyncAPIResource):
         """
         return self._get(
             "/radar/netflows/timeseries",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "location": location,
-                "name": name,
-                "normalization": normalization,
-                "product": product,
-            }, netflow_timeseries_params.NetflowTimeseriesParams), post_parser=ResultWrapper[NetflowTimeseriesResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                        "normalization": normalization,
+                        "product": product,
+                    },
+                    netflow_timeseries_params.NetflowTimeseriesParams,
+                ),
+                post_parser=ResultWrapper[NetflowTimeseriesResponse]._unwrapper,
+            ),
             cast_to=cast(Type[NetflowTimeseriesResponse], ResultWrapper[NetflowTimeseriesResponse]),
         )
+
 
 class AsyncNetflowsResource(AsyncAPIResource):
     @cached_property
@@ -221,22 +241,24 @@ class AsyncNetflowsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncNetflowsResourceWithStreamingResponse:
         return AsyncNetflowsResourceWithStreamingResponse(self)
 
-    async def summary(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> NetflowSummaryResponse:
+    async def summary(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> NetflowSummaryResponse:
         """
         Percentage distribution of HTTP vs other protocols traffic over a given time
         period.
@@ -276,38 +298,50 @@ class AsyncNetflowsResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/netflows/summary",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "location": location,
-                "name": name,
-            }, netflow_summary_params.NetflowSummaryParams), post_parser=ResultWrapper[NetflowSummaryResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                    },
+                    netflow_summary_params.NetflowSummaryParams,
+                ),
+                post_parser=ResultWrapper[NetflowSummaryResponse]._unwrapper,
+            ),
             cast_to=cast(Type[NetflowSummaryResponse], ResultWrapper[NetflowSummaryResponse]),
         )
 
-    async def timeseries(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
-    product: List[Literal["HTTP", "ALL"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> NetflowTimeseriesResponse:
+    async def timeseries(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        normalization: Literal["PERCENTAGE_CHANGE", "MIN0_MAX"] | NotGiven = NOT_GIVEN,
+        product: List[Literal["HTTP", "ALL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> NetflowTimeseriesResponse:
         """Get network traffic change over time.
 
         Visit
@@ -357,21 +391,32 @@ class AsyncNetflowsResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/netflows/timeseries",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "location": location,
-                "name": name,
-                "normalization": normalization,
-                "product": product,
-            }, netflow_timeseries_params.NetflowTimeseriesParams), post_parser=ResultWrapper[NetflowTimeseriesResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                        "normalization": normalization,
+                        "product": product,
+                    },
+                    netflow_timeseries_params.NetflowTimeseriesParams,
+                ),
+                post_parser=ResultWrapper[NetflowTimeseriesResponse]._unwrapper,
+            ),
             cast_to=cast(Type[NetflowTimeseriesResponse], ResultWrapper[NetflowTimeseriesResponse]),
         )
+
 
 class NetflowsResourceWithRawResponse:
     def __init__(self, netflows: NetflowsResource) -> None:
@@ -388,6 +433,7 @@ class NetflowsResourceWithRawResponse:
     def top(self) -> TopResourceWithRawResponse:
         return TopResourceWithRawResponse(self._netflows.top)
 
+
 class AsyncNetflowsResourceWithRawResponse:
     def __init__(self, netflows: AsyncNetflowsResource) -> None:
         self._netflows = netflows
@@ -403,6 +449,7 @@ class AsyncNetflowsResourceWithRawResponse:
     def top(self) -> AsyncTopResourceWithRawResponse:
         return AsyncTopResourceWithRawResponse(self._netflows.top)
 
+
 class NetflowsResourceWithStreamingResponse:
     def __init__(self, netflows: NetflowsResource) -> None:
         self._netflows = netflows
@@ -417,6 +464,7 @@ class NetflowsResourceWithStreamingResponse:
     @cached_property
     def top(self) -> TopResourceWithStreamingResponse:
         return TopResourceWithStreamingResponse(self._netflows.top)
+
 
 class AsyncNetflowsResourceWithStreamingResponse:
     def __init__(self, netflows: AsyncNetflowsResource) -> None:

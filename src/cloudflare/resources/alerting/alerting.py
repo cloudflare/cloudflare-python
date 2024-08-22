@@ -2,29 +2,44 @@
 
 from __future__ import annotations
 
-from .available_alerts import AvailableAlertsResource, AsyncAvailableAlertsResource
-
+from .history import (
+    HistoryResource,
+    AsyncHistoryResource,
+    HistoryResourceWithRawResponse,
+    AsyncHistoryResourceWithRawResponse,
+    HistoryResourceWithStreamingResponse,
+    AsyncHistoryResourceWithStreamingResponse,
+)
+from .policies import (
+    PoliciesResource,
+    AsyncPoliciesResource,
+    PoliciesResourceWithRawResponse,
+    AsyncPoliciesResourceWithRawResponse,
+    PoliciesResourceWithStreamingResponse,
+    AsyncPoliciesResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from .destinations import (
+    DestinationsResource,
+    AsyncDestinationsResource,
+    DestinationsResourceWithRawResponse,
+    AsyncDestinationsResourceWithRawResponse,
+    DestinationsResourceWithStreamingResponse,
+    AsyncDestinationsResourceWithStreamingResponse,
+)
+from .available_alerts import (
+    AvailableAlertsResource,
+    AsyncAvailableAlertsResource,
+    AvailableAlertsResourceWithRawResponse,
+    AsyncAvailableAlertsResourceWithRawResponse,
+    AvailableAlertsResourceWithStreamingResponse,
+    AsyncAvailableAlertsResourceWithStreamingResponse,
+)
 from .destinations.destinations import DestinationsResource, AsyncDestinationsResource
 
-from .history import HistoryResource, AsyncHistoryResource
-
-from .policies import PoliciesResource, AsyncPoliciesResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from .available_alerts import AvailableAlertsResource, AsyncAvailableAlertsResource, AvailableAlertsResourceWithRawResponse, AsyncAvailableAlertsResourceWithRawResponse, AvailableAlertsResourceWithStreamingResponse, AsyncAvailableAlertsResourceWithStreamingResponse
-from .destinations import DestinationsResource, AsyncDestinationsResource, DestinationsResourceWithRawResponse, AsyncDestinationsResourceWithRawResponse, DestinationsResourceWithStreamingResponse, AsyncDestinationsResourceWithStreamingResponse
-from .history import HistoryResource, AsyncHistoryResource, HistoryResourceWithRawResponse, AsyncHistoryResourceWithRawResponse, HistoryResourceWithStreamingResponse, AsyncHistoryResourceWithStreamingResponse
-from .policies import PoliciesResource, AsyncPoliciesResource, PoliciesResourceWithRawResponse, AsyncPoliciesResourceWithRawResponse, PoliciesResourceWithStreamingResponse, AsyncPoliciesResourceWithStreamingResponse
-
 __all__ = ["AlertingResource", "AsyncAlertingResource"]
+
 
 class AlertingResource(SyncAPIResource):
     @cached_property
@@ -51,6 +66,7 @@ class AlertingResource(SyncAPIResource):
     def with_streaming_response(self) -> AlertingResourceWithStreamingResponse:
         return AlertingResourceWithStreamingResponse(self)
 
+
 class AsyncAlertingResource(AsyncAPIResource):
     @cached_property
     def available_alerts(self) -> AsyncAvailableAlertsResource:
@@ -76,6 +92,7 @@ class AsyncAlertingResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAlertingResourceWithStreamingResponse:
         return AsyncAlertingResourceWithStreamingResponse(self)
 
+
 class AlertingResourceWithRawResponse:
     def __init__(self, alerting: AlertingResource) -> None:
         self._alerting = alerting
@@ -95,6 +112,7 @@ class AlertingResourceWithRawResponse:
     @cached_property
     def policies(self) -> PoliciesResourceWithRawResponse:
         return PoliciesResourceWithRawResponse(self._alerting.policies)
+
 
 class AsyncAlertingResourceWithRawResponse:
     def __init__(self, alerting: AsyncAlertingResource) -> None:
@@ -116,6 +134,7 @@ class AsyncAlertingResourceWithRawResponse:
     def policies(self) -> AsyncPoliciesResourceWithRawResponse:
         return AsyncPoliciesResourceWithRawResponse(self._alerting.policies)
 
+
 class AlertingResourceWithStreamingResponse:
     def __init__(self, alerting: AlertingResource) -> None:
         self._alerting = alerting
@@ -135,6 +154,7 @@ class AlertingResourceWithStreamingResponse:
     @cached_property
     def policies(self) -> PoliciesResourceWithStreamingResponse:
         return PoliciesResourceWithStreamingResponse(self._alerting.policies)
+
 
 class AsyncAlertingResourceWithStreamingResponse:
     def __init__(self, alerting: AsyncAlertingResource) -> None:

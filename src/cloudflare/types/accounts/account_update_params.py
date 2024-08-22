@@ -2,14 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["AccountUpdateParams", "Settings"]
+
 
 class AccountUpdateParams(TypedDict, total=False):
     account_id: Required[str]
@@ -20,6 +16,7 @@ class AccountUpdateParams(TypedDict, total=False):
 
     settings: Settings
     """Account settings"""
+
 
 class Settings(TypedDict, total=False):
     abuse_contact_email: str

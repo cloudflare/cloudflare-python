@@ -2,40 +2,33 @@
 
 from __future__ import annotations
 
-import httpx
-
-from ..._compat import cached_property
-
-from ...types.stream.video import Video
-
-from ..._wrappers import ResultWrapper
-
-from ..._utils import is_given, strip_not_given, maybe_transform, async_maybe_transform
-
-from typing import Optional, Type, List, Union
-
-from ..._base_client import make_request_options
-
-from ...types.stream.allowed_origins import AllowedOrigins
-
+from typing import List, Type, Union, Optional, cast
 from datetime import datetime
 
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
+import httpx
 
-from ...types.stream import copy_create_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    strip_not_given,
+    async_maybe_transform,
+)
+from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ..._base_client import make_request_options
 from ...types.stream import copy_create_params
-from typing import cast
-from typing import cast
+from ...types.stream.video import Video
+from ...types.stream.allowed_origins import AllowedOrigins
 
 __all__ = ["CopyResource", "AsyncCopyResource"]
+
 
 class CopyResource(SyncAPIResource):
     @cached_property
@@ -46,25 +39,27 @@ class CopyResource(SyncAPIResource):
     def with_streaming_response(self) -> CopyResourceWithStreamingResponse:
         return CopyResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    account_id: str,
-    url: str,
-    allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
-    creator: str | NotGiven = NOT_GIVEN,
-    meta: object | NotGiven = NOT_GIVEN,
-    require_signed_urls: bool | NotGiven = NOT_GIVEN,
-    scheduled_deletion: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
-    watermark: copy_create_params.Watermark | NotGiven = NOT_GIVEN,
-    upload_creator: str | NotGiven = NOT_GIVEN,
-    upload_metadata: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Video]:
+    def create(
+        self,
+        *,
+        account_id: str,
+        url: str,
+        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
+        creator: str | NotGiven = NOT_GIVEN,
+        meta: object | NotGiven = NOT_GIVEN,
+        require_signed_urls: bool | NotGiven = NOT_GIVEN,
+        scheduled_deletion: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
+        watermark: copy_create_params.Watermark | NotGiven = NOT_GIVEN,
+        upload_creator: str | NotGiven = NOT_GIVEN,
+        upload_metadata: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Video]:
         """
         Uploads a video to Stream from a provided URL.
 
@@ -111,28 +106,41 @@ class CopyResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
-        extra_headers = { **strip_not_given({
-            "Upload-Creator": upload_creator,
-            "Upload-Metadata": upload_metadata,
-        }), **(extra_headers or {}) }
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Upload-Creator": upload_creator,
+                    "Upload-Metadata": upload_metadata,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return self._post(
             f"/accounts/{account_id}/stream/copy",
-            body=maybe_transform({
-                "url": url,
-                "allowed_origins": allowed_origins,
-                "creator": creator,
-                "meta": meta,
-                "require_signed_urls": require_signed_urls,
-                "scheduled_deletion": scheduled_deletion,
-                "thumbnail_timestamp_pct": thumbnail_timestamp_pct,
-                "watermark": watermark,
-            }, copy_create_params.CopyCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Video]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "url": url,
+                    "allowed_origins": allowed_origins,
+                    "creator": creator,
+                    "meta": meta,
+                    "require_signed_urls": require_signed_urls,
+                    "scheduled_deletion": scheduled_deletion,
+                    "thumbnail_timestamp_pct": thumbnail_timestamp_pct,
+                    "watermark": watermark,
+                },
+                copy_create_params.CopyCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Video]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Video]], ResultWrapper[Video]),
         )
+
 
 class AsyncCopyResource(AsyncAPIResource):
     @cached_property
@@ -143,25 +151,27 @@ class AsyncCopyResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncCopyResourceWithStreamingResponse:
         return AsyncCopyResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    account_id: str,
-    url: str,
-    allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
-    creator: str | NotGiven = NOT_GIVEN,
-    meta: object | NotGiven = NOT_GIVEN,
-    require_signed_urls: bool | NotGiven = NOT_GIVEN,
-    scheduled_deletion: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
-    watermark: copy_create_params.Watermark | NotGiven = NOT_GIVEN,
-    upload_creator: str | NotGiven = NOT_GIVEN,
-    upload_metadata: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Video]:
+    async def create(
+        self,
+        *,
+        account_id: str,
+        url: str,
+        allowed_origins: List[AllowedOrigins] | NotGiven = NOT_GIVEN,
+        creator: str | NotGiven = NOT_GIVEN,
+        meta: object | NotGiven = NOT_GIVEN,
+        require_signed_urls: bool | NotGiven = NOT_GIVEN,
+        scheduled_deletion: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        thumbnail_timestamp_pct: float | NotGiven = NOT_GIVEN,
+        watermark: copy_create_params.Watermark | NotGiven = NOT_GIVEN,
+        upload_creator: str | NotGiven = NOT_GIVEN,
+        upload_metadata: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Video]:
         """
         Uploads a video to Stream from a provided URL.
 
@@ -208,28 +218,41 @@ class AsyncCopyResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
-        extra_headers = { **strip_not_given({
-            "Upload-Creator": upload_creator,
-            "Upload-Metadata": upload_metadata,
-        }), **(extra_headers or {}) }
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
+        extra_headers = {
+            **strip_not_given(
+                {
+                    "Upload-Creator": upload_creator,
+                    "Upload-Metadata": upload_metadata,
+                }
+            ),
+            **(extra_headers or {}),
+        }
         return await self._post(
             f"/accounts/{account_id}/stream/copy",
-            body=await async_maybe_transform({
-                "url": url,
-                "allowed_origins": allowed_origins,
-                "creator": creator,
-                "meta": meta,
-                "require_signed_urls": require_signed_urls,
-                "scheduled_deletion": scheduled_deletion,
-                "thumbnail_timestamp_pct": thumbnail_timestamp_pct,
-                "watermark": watermark,
-            }, copy_create_params.CopyCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Video]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "url": url,
+                    "allowed_origins": allowed_origins,
+                    "creator": creator,
+                    "meta": meta,
+                    "require_signed_urls": require_signed_urls,
+                    "scheduled_deletion": scheduled_deletion,
+                    "thumbnail_timestamp_pct": thumbnail_timestamp_pct,
+                    "watermark": watermark,
+                },
+                copy_create_params.CopyCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Video]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Video]], ResultWrapper[Video]),
         )
+
 
 class CopyResourceWithRawResponse:
     def __init__(self, copy: CopyResource) -> None:
@@ -239,6 +262,7 @@ class CopyResourceWithRawResponse:
             copy.create,
         )
 
+
 class AsyncCopyResourceWithRawResponse:
     def __init__(self, copy: AsyncCopyResource) -> None:
         self._copy = copy
@@ -247,6 +271,7 @@ class AsyncCopyResourceWithRawResponse:
             copy.create,
         )
 
+
 class CopyResourceWithStreamingResponse:
     def __init__(self, copy: CopyResource) -> None:
         self._copy = copy
@@ -254,6 +279,7 @@ class CopyResourceWithStreamingResponse:
         self.create = to_streamed_response_wrapper(
             copy.create,
         )
+
 
 class AsyncCopyResourceWithStreamingResponse:
     def __init__(self, copy: AsyncCopyResource) -> None:

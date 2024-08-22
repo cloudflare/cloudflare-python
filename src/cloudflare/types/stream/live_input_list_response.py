@@ -1,22 +1,20 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import Optional, List
-
+from typing import List, Optional
 from datetime import datetime
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
+from ..._models import BaseModel
+
 __all__ = ["LiveInputListResponse", "LiveInput"]
+
 
 class LiveInput(BaseModel):
     created: Optional[datetime] = None
     """The date and time the live input was created."""
 
-    delete_recording_after_days: Optional[float] = FieldInfo(alias = "deleteRecordingAfterDays", default = None)
+    delete_recording_after_days: Optional[float] = FieldInfo(alias="deleteRecordingAfterDays", default=None)
     """
     Indicates the number of days after which the live inputs recordings will be
     deleted. When a stream completes and the recording is ready, the value is used
@@ -37,8 +35,9 @@ class LiveInput(BaseModel):
     uid: Optional[str] = None
     """A unique identifier for a live input."""
 
+
 class LiveInputListResponse(BaseModel):
-    live_inputs: Optional[List[LiveInput]] = FieldInfo(alias = "liveInputs", default = None)
+    live_inputs: Optional[List[LiveInput]] = FieldInfo(alias="liveInputs", default=None)
 
     range: Optional[int] = None
     """The total number of remaining live inputs based on cursor position."""

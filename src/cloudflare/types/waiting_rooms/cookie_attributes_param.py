@@ -6,6 +6,7 @@ from typing_extensions import Literal, TypedDict
 
 __all__ = ["CookieAttributesParam"]
 
+
 class CookieAttributesParam(TypedDict, total=False):
     samesite: Literal["auto", "lax", "none", "strict"]
     """Configures the SameSite attribute on the waiting room cookie.

@@ -1,14 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ...._models import BaseModel
-
 from typing import Optional
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
 
+from ...._models import BaseModel
+
 __all__ = ["SCIMConfigMapping", "Operations"]
+
 
 class Operations(BaseModel):
     create: Optional[bool] = None
@@ -20,8 +19,9 @@ class Operations(BaseModel):
     update: Optional[bool] = None
     """Whether or not this mapping applies to update (PATCH/PUT) operations."""
 
+
 class SCIMConfigMapping(BaseModel):
-    schema_: str = FieldInfo(alias = "schema")
+    schema_: str = FieldInfo(alias="schema")
     """Which SCIM resource type this mapping applies to."""
 
     enabled: Optional[bool] = None

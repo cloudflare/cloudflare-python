@@ -2,16 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal
+from typing_extensions import Literal, Required, TypedDict
 
 from ..filters.firewall_filter_param import FirewallFilterParam
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-
 __all__ = ["RuleCreateParams", "Action", "ActionResponse"]
+
 
 class RuleCreateParams(TypedDict, total=False):
     action: Required[Action]
@@ -21,6 +17,7 @@ class RuleCreateParams(TypedDict, total=False):
     """
 
     filter: Required[FirewallFilterParam]
+
 
 class ActionResponse(TypedDict, total=False):
     body: str
@@ -34,6 +31,7 @@ class ActionResponse(TypedDict, total=False):
 
     Must be one of the following: `text/plain`, `text/xml`, or `application/json`.
     """
+
 
 class Action(TypedDict, total=False):
     mode: Literal["simulate", "ban", "challenge", "js_challenge", "managed_challenge"]

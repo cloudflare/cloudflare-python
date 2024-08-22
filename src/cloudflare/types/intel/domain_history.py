@@ -1,16 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import Optional, List
-
+from typing import List, Optional
 from datetime import date
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ..._models import BaseModel
 
 __all__ = ["DomainHistory", "Categorization"]
+
 
 class Categorization(BaseModel):
     categories: Optional[List[object]] = None
@@ -18,6 +14,7 @@ class Categorization(BaseModel):
     end: Optional[date] = None
 
     start: Optional[date] = None
+
 
 class DomainHistory(BaseModel):
     categorizations: Optional[List[Categorization]] = None

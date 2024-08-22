@@ -1,18 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import List, Optional
+
 from ..._models import BaseModel
-
-from typing import Optional, List
-
+from ..accounts.status import Status
 from ..shared.permission import Permission
 
-from ..accounts.status import Status
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["Organization"]
+
 
 class Organization(BaseModel):
     id: Optional[str] = None

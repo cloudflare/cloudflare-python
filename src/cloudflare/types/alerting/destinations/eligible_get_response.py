@@ -1,16 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ...._models import BaseModel
-
-from typing import Optional, List
-
+from typing import Dict, List, Optional
 from typing_extensions import Literal, TypeAlias
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ...._models import BaseModel
 
 __all__ = ["EligibleGetResponse", "EligibleGetResponseItem"]
+
 
 class EligibleGetResponseItem(BaseModel):
     eligible: Optional[bool] = None
@@ -25,5 +21,6 @@ class EligibleGetResponseItem(BaseModel):
 
     type: Optional[Literal["email", "pagerduty", "webhook"]] = None
     """Determines type of delivery mechanism."""
+
 
 EligibleGetResponse: TypeAlias = Dict[str, List[EligibleGetResponseItem]]

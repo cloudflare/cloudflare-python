@@ -2,27 +2,38 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal
-
 from typing import List
+from typing_extensions import Literal, Required, TypedDict
 
 from .gateway_filter import GatewayFilter
-
+from .schedule_param import ScheduleParam
 from .rule_setting_param import RuleSettingParam
 
-from .schedule_param import ScheduleParam
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ...._types import FileTypes
-from ...._utils import PropertyInfo
-
 __all__ = ["RuleUpdateParams"]
+
 
 class RuleUpdateParams(TypedDict, total=False):
     account_id: Required[str]
 
-    action: Required[Literal["on", "off", "allow", "block", "scan", "noscan", "safesearch", "ytrestricted", "isolate", "noisolate", "override", "l4_override", "egress", "audit_ssh", "resolve"]]
+    action: Required[
+        Literal[
+            "on",
+            "off",
+            "allow",
+            "block",
+            "scan",
+            "noscan",
+            "safesearch",
+            "ytrestricted",
+            "isolate",
+            "noisolate",
+            "override",
+            "l4_override",
+            "egress",
+            "audit_ssh",
+            "resolve",
+        ]
+    ]
     """
     The action to preform when the associated traffic, identity, and device posture
     expressions are either absent or evaluate to `true`.

@@ -2,43 +2,32 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ..._base_client import make_request_options
+from ...types.waiting_rooms import setting_edit_params, setting_update_params
+from ...types.waiting_rooms.setting_get_response import SettingGetResponse
+from ...types.waiting_rooms.setting_edit_response import SettingEditResponse
 from ...types.waiting_rooms.setting_update_response import SettingUpdateResponse
 
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from ..._base_client import make_request_options
-
-from typing import Type
-
-from ...types.waiting_rooms.setting_edit_response import SettingEditResponse
-
-from ...types.waiting_rooms.setting_get_response import SettingGetResponse
-
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.waiting_rooms import setting_update_params
-from ...types.waiting_rooms import setting_edit_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["SettingsResource", "AsyncSettingsResource"]
+
 
 class SettingsResource(SyncAPIResource):
     @cached_property
@@ -49,16 +38,18 @@ class SettingsResource(SyncAPIResource):
     def with_streaming_response(self) -> SettingsResourceWithStreamingResponse:
         return SettingsResourceWithStreamingResponse(self)
 
-    def update(self,
-    *,
-    zone_id: str,
-    search_engine_crawler_bypass: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SettingUpdateResponse:
+    def update(
+        self,
+        *,
+        zone_id: str,
+        search_engine_crawler_bypass: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SettingUpdateResponse:
         """
         Update zone-level Waiting Room settings
 
@@ -78,28 +69,35 @@ class SettingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._put(
             f"/zones/{zone_id}/waiting_rooms/settings",
-            body=maybe_transform({
-                "search_engine_crawler_bypass": search_engine_crawler_bypass
-            }, setting_update_params.SettingUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[SettingUpdateResponse]._unwrapper),
+            body=maybe_transform(
+                {"search_engine_crawler_bypass": search_engine_crawler_bypass},
+                setting_update_params.SettingUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SettingUpdateResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SettingUpdateResponse], ResultWrapper[SettingUpdateResponse]),
         )
 
-    def edit(self,
-    *,
-    zone_id: str,
-    search_engine_crawler_bypass: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SettingEditResponse:
+    def edit(
+        self,
+        *,
+        zone_id: str,
+        search_engine_crawler_bypass: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SettingEditResponse:
         """
         Patch zone-level Waiting Room settings
 
@@ -119,27 +117,33 @@ class SettingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._patch(
             f"/zones/{zone_id}/waiting_rooms/settings",
-            body=maybe_transform({
-                "search_engine_crawler_bypass": search_engine_crawler_bypass
-            }, setting_edit_params.SettingEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[SettingEditResponse]._unwrapper),
+            body=maybe_transform(
+                {"search_engine_crawler_bypass": search_engine_crawler_bypass}, setting_edit_params.SettingEditParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SettingEditResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SettingEditResponse], ResultWrapper[SettingEditResponse]),
         )
 
-    def get(self,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SettingGetResponse:
+    def get(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SettingGetResponse:
         """
         Get zone-level Waiting Room settings
 
@@ -155,14 +159,19 @@ class SettingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
             f"/zones/{zone_id}/waiting_rooms/settings",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[SettingGetResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SettingGetResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SettingGetResponse], ResultWrapper[SettingGetResponse]),
         )
+
 
 class AsyncSettingsResource(AsyncAPIResource):
     @cached_property
@@ -173,16 +182,18 @@ class AsyncSettingsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncSettingsResourceWithStreamingResponse:
         return AsyncSettingsResourceWithStreamingResponse(self)
 
-    async def update(self,
-    *,
-    zone_id: str,
-    search_engine_crawler_bypass: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SettingUpdateResponse:
+    async def update(
+        self,
+        *,
+        zone_id: str,
+        search_engine_crawler_bypass: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SettingUpdateResponse:
         """
         Update zone-level Waiting Room settings
 
@@ -202,28 +213,35 @@ class AsyncSettingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._put(
             f"/zones/{zone_id}/waiting_rooms/settings",
-            body=await async_maybe_transform({
-                "search_engine_crawler_bypass": search_engine_crawler_bypass
-            }, setting_update_params.SettingUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[SettingUpdateResponse]._unwrapper),
+            body=await async_maybe_transform(
+                {"search_engine_crawler_bypass": search_engine_crawler_bypass},
+                setting_update_params.SettingUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SettingUpdateResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SettingUpdateResponse], ResultWrapper[SettingUpdateResponse]),
         )
 
-    async def edit(self,
-    *,
-    zone_id: str,
-    search_engine_crawler_bypass: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SettingEditResponse:
+    async def edit(
+        self,
+        *,
+        zone_id: str,
+        search_engine_crawler_bypass: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SettingEditResponse:
         """
         Patch zone-level Waiting Room settings
 
@@ -243,27 +261,33 @@ class AsyncSettingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._patch(
             f"/zones/{zone_id}/waiting_rooms/settings",
-            body=await async_maybe_transform({
-                "search_engine_crawler_bypass": search_engine_crawler_bypass
-            }, setting_edit_params.SettingEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[SettingEditResponse]._unwrapper),
+            body=await async_maybe_transform(
+                {"search_engine_crawler_bypass": search_engine_crawler_bypass}, setting_edit_params.SettingEditParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SettingEditResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SettingEditResponse], ResultWrapper[SettingEditResponse]),
         )
 
-    async def get(self,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SettingGetResponse:
+    async def get(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SettingGetResponse:
         """
         Get zone-level Waiting Room settings
 
@@ -279,14 +303,19 @@ class AsyncSettingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
             f"/zones/{zone_id}/waiting_rooms/settings",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[SettingGetResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[SettingGetResponse]._unwrapper,
+            ),
             cast_to=cast(Type[SettingGetResponse], ResultWrapper[SettingGetResponse]),
         )
+
 
 class SettingsResourceWithRawResponse:
     def __init__(self, settings: SettingsResource) -> None:
@@ -302,6 +331,7 @@ class SettingsResourceWithRawResponse:
             settings.get,
         )
 
+
 class AsyncSettingsResourceWithRawResponse:
     def __init__(self, settings: AsyncSettingsResource) -> None:
         self._settings = settings
@@ -316,6 +346,7 @@ class AsyncSettingsResourceWithRawResponse:
             settings.get,
         )
 
+
 class SettingsResourceWithStreamingResponse:
     def __init__(self, settings: SettingsResource) -> None:
         self._settings = settings
@@ -329,6 +360,7 @@ class SettingsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             settings.get,
         )
+
 
 class AsyncSettingsResourceWithStreamingResponse:
     def __init__(self, settings: AsyncSettingsResource) -> None:

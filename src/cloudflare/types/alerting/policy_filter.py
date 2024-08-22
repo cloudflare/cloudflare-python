@@ -1,16 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import List, Optional
+from typing_extensions import Literal
+
 from ..._models import BaseModel
 
-from typing import Optional, List
-
-from typing_extensions import Literal
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["PolicyFilter"]
+
 
 class PolicyFilter(BaseModel):
     actions: Optional[List[str]] = None
@@ -55,7 +51,13 @@ class PolicyFilter(BaseModel):
     health_check_id: Optional[List[str]] = None
     """Used for configuring health_check_status_notification"""
 
-    incident_impact: Optional[List[Literal["INCIDENT_IMPACT_NONE", "INCIDENT_IMPACT_MINOR", "INCIDENT_IMPACT_MAJOR", "INCIDENT_IMPACT_CRITICAL"]]] = None
+    incident_impact: Optional[
+        List[
+            Literal[
+                "INCIDENT_IMPACT_NONE", "INCIDENT_IMPACT_MINOR", "INCIDENT_IMPACT_MAJOR", "INCIDENT_IMPACT_CRITICAL"
+            ]
+        ]
+    ] = None
     """Used for configuring incident_alert"""
 
     input_id: Optional[List[str]] = None

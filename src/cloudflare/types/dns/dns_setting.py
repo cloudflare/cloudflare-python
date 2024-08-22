@@ -1,18 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
 from typing import Optional
+from typing_extensions import Literal
 
+from ..._models import BaseModel
 from .nameserver import Nameserver
 
-from typing_extensions import Literal
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["DNSSetting", "SOA"]
+
 
 class SOA(BaseModel):
     expire: float
@@ -47,6 +42,7 @@ class SOA(BaseModel):
 
     ttl: float
     """The time to live (TTL) of the SOA record itself."""
+
 
 class DNSSetting(BaseModel):
     foundation_dns: Optional[bool] = None

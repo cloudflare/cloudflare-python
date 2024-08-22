@@ -1,16 +1,12 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import Optional, List
-
+from typing import List, Union, Optional
 from typing_extensions import TypeAlias
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ..._models import BaseModel
 
 __all__ = ["AppListResponse", "MagicAccountApp", "MagicManagedApp"]
+
 
 class MagicAccountApp(BaseModel):
     account_app_id: str
@@ -28,6 +24,7 @@ class MagicAccountApp(BaseModel):
     type: Optional[str] = None
     """Category of the app."""
 
+
 class MagicManagedApp(BaseModel):
     managed_app_id: str
     """Managed app ID."""
@@ -43,5 +40,6 @@ class MagicManagedApp(BaseModel):
 
     type: Optional[str] = None
     """Category of the app."""
+
 
 AppListResponse: TypeAlias = Union[MagicAccountApp, MagicManagedApp]

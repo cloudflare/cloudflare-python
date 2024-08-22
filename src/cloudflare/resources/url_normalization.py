@@ -4,28 +4,26 @@ from __future__ import annotations
 
 import httpx
 
+from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from .._compat import cached_property
-
+from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from .._base_client import make_request_options
+from ..types.url_normalization import url_normalization_update_params
+from ..types.url_normalization.url_normalization_get_response import URLNormalizationGetResponse
 from ..types.url_normalization.url_normalization_update_response import URLNormalizationUpdateResponse
 
-from .._utils import maybe_transform, async_maybe_transform
-
-from .._base_client import make_request_options
-
-from ..types.url_normalization.url_normalization_get_response import URLNormalizationGetResponse
-
-from .._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from .._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from .._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from .._resource import SyncAPIResource, AsyncAPIResource
-from ..types import shared_params
-from ..types.url_normalization import url_normalization_update_params
-
 __all__ = ["URLNormalizationResource", "AsyncURLNormalizationResource"]
+
 
 class URLNormalizationResource(SyncAPIResource):
     @cached_property
@@ -36,17 +34,19 @@ class URLNormalizationResource(SyncAPIResource):
     def with_streaming_response(self) -> URLNormalizationResourceWithStreamingResponse:
         return URLNormalizationResourceWithStreamingResponse(self)
 
-    def update(self,
-    *,
-    zone_id: str,
-    scope: str | NotGiven = NOT_GIVEN,
-    type: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> URLNormalizationUpdateResponse:
+    def update(
+        self,
+        *,
+        zone_id: str,
+        scope: str | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> URLNormalizationUpdateResponse:
         """
         Updates the URL normalization settings.
 
@@ -66,28 +66,33 @@ class URLNormalizationResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._put(
             f"/zones/{zone_id}/url_normalization",
-            body=maybe_transform({
-                "scope": scope,
-                "type": type,
-            }, url_normalization_update_params.URLNormalizationUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            body=maybe_transform(
+                {
+                    "scope": scope,
+                    "type": type,
+                },
+                url_normalization_update_params.URLNormalizationUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=URLNormalizationUpdateResponse,
         )
 
-    def get(self,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> URLNormalizationGetResponse:
+    def get(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> URLNormalizationGetResponse:
         """
         Fetches the current URL normalization settings.
 
@@ -103,14 +108,15 @@ class URLNormalizationResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get(
             f"/zones/{zone_id}/url_normalization",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=URLNormalizationGetResponse,
         )
+
 
 class AsyncURLNormalizationResource(AsyncAPIResource):
     @cached_property
@@ -121,17 +127,19 @@ class AsyncURLNormalizationResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncURLNormalizationResourceWithStreamingResponse:
         return AsyncURLNormalizationResourceWithStreamingResponse(self)
 
-    async def update(self,
-    *,
-    zone_id: str,
-    scope: str | NotGiven = NOT_GIVEN,
-    type: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> URLNormalizationUpdateResponse:
+    async def update(
+        self,
+        *,
+        zone_id: str,
+        scope: str | NotGiven = NOT_GIVEN,
+        type: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> URLNormalizationUpdateResponse:
         """
         Updates the URL normalization settings.
 
@@ -151,28 +159,33 @@ class AsyncURLNormalizationResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._put(
             f"/zones/{zone_id}/url_normalization",
-            body=await async_maybe_transform({
-                "scope": scope,
-                "type": type,
-            }, url_normalization_update_params.URLNormalizationUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            body=await async_maybe_transform(
+                {
+                    "scope": scope,
+                    "type": type,
+                },
+                url_normalization_update_params.URLNormalizationUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=URLNormalizationUpdateResponse,
         )
 
-    async def get(self,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> URLNormalizationGetResponse:
+    async def get(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> URLNormalizationGetResponse:
         """
         Fetches the current URL normalization settings.
 
@@ -188,14 +201,15 @@ class AsyncURLNormalizationResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._get(
             f"/zones/{zone_id}/url_normalization",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=URLNormalizationGetResponse,
         )
+
 
 class URLNormalizationResourceWithRawResponse:
     def __init__(self, url_normalization: URLNormalizationResource) -> None:
@@ -208,6 +222,7 @@ class URLNormalizationResourceWithRawResponse:
             url_normalization.get,
         )
 
+
 class AsyncURLNormalizationResourceWithRawResponse:
     def __init__(self, url_normalization: AsyncURLNormalizationResource) -> None:
         self._url_normalization = url_normalization
@@ -219,6 +234,7 @@ class AsyncURLNormalizationResourceWithRawResponse:
             url_normalization.get,
         )
 
+
 class URLNormalizationResourceWithStreamingResponse:
     def __init__(self, url_normalization: URLNormalizationResource) -> None:
         self._url_normalization = url_normalization
@@ -229,6 +245,7 @@ class URLNormalizationResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             url_normalization.get,
         )
+
 
 class AsyncURLNormalizationResourceWithStreamingResponse:
     def __init__(self, url_normalization: AsyncURLNormalizationResource) -> None:

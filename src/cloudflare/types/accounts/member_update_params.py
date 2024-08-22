@@ -2,16 +2,19 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal, TypeAlias
+from typing import Union, Iterable
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from typing import Iterable
+__all__ = [
+    "MemberUpdateParams",
+    "Member",
+    "MemberRole",
+    "IAMUpdateMemberWithPolicies",
+    "IAMUpdateMemberWithPoliciesPolicy",
+    "IAMUpdateMemberWithPoliciesPolicyPermissionGroup",
+    "IAMUpdateMemberWithPoliciesPolicyResourceGroup",
+]
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-
-__all__ = ["MemberUpdateParams", "Member", "MemberRole", "IAMUpdateMemberWithPolicies", "IAMUpdateMemberWithPoliciesPolicy", "IAMUpdateMemberWithPoliciesPolicyPermissionGroup", "IAMUpdateMemberWithPoliciesPolicyResourceGroup"]
 
 class Member(TypedDict, total=False):
     account_id: Required[str]
@@ -20,9 +23,11 @@ class Member(TypedDict, total=False):
     roles: Iterable[MemberRole]
     """Roles assigned to this member."""
 
+
 class MemberRole(TypedDict, total=False):
     id: Required[str]
     """Role identifier tag."""
+
 
 class IAMUpdateMemberWithPolicies(TypedDict, total=False):
     account_id: Required[str]
@@ -31,13 +36,16 @@ class IAMUpdateMemberWithPolicies(TypedDict, total=False):
     policies: Required[Iterable[IAMUpdateMemberWithPoliciesPolicy]]
     """Array of policies associated with this member."""
 
+
 class IAMUpdateMemberWithPoliciesPolicyPermissionGroup(TypedDict, total=False):
     id: Required[str]
     """Identifier of the group."""
 
+
 class IAMUpdateMemberWithPoliciesPolicyResourceGroup(TypedDict, total=False):
     id: Required[str]
     """Identifier of the group."""
+
 
 class IAMUpdateMemberWithPoliciesPolicy(TypedDict, total=False):
     access: Required[Literal["allow", "deny"]]
@@ -48,5 +56,6 @@ class IAMUpdateMemberWithPoliciesPolicy(TypedDict, total=False):
 
     resource_groups: Required[Iterable[IAMUpdateMemberWithPoliciesPolicyResourceGroup]]
     """A list of resource groups that the policy applies to."""
+
 
 MemberUpdateParams: TypeAlias = Union[Member, IAMUpdateMemberWithPolicies]

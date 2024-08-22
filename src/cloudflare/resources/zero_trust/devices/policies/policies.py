@@ -2,59 +2,64 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
-from .default_policy import DefaultPolicyResource, AsyncDefaultPolicyResource
-
+from .excludes import (
+    ExcludesResource,
+    AsyncExcludesResource,
+    ExcludesResourceWithRawResponse,
+    AsyncExcludesResourceWithRawResponse,
+    ExcludesResourceWithStreamingResponse,
+    AsyncExcludesResourceWithStreamingResponse,
+)
+from .includes import (
+    IncludesResource,
+    AsyncIncludesResource,
+    IncludesResourceWithRawResponse,
+    AsyncIncludesResourceWithRawResponse,
+    IncludesResourceWithStreamingResponse,
+    AsyncIncludesResourceWithStreamingResponse,
+)
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
-
-from .excludes import ExcludesResource, AsyncExcludesResource
-
-from .fallback_domains import FallbackDomainsResource, AsyncFallbackDomainsResource
-
-from .includes import IncludesResource, AsyncIncludesResource
-
-from .....types.zero_trust.devices.settings_policy import SettingsPolicy
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ....._wrappers import ResultWrapper
-
-from ....._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from ....._base_client import make_request_options, AsyncPaginator
-
 from .....pagination import SyncSinglePage, AsyncSinglePage
-
+from .default_policy import (
+    DefaultPolicyResource,
+    AsyncDefaultPolicyResource,
+    DefaultPolicyResourceWithRawResponse,
+    AsyncDefaultPolicyResourceWithRawResponse,
+    DefaultPolicyResourceWithStreamingResponse,
+    AsyncDefaultPolicyResourceWithStreamingResponse,
+)
+from ....._base_client import AsyncPaginator, make_request_options
+from .fallback_domains import (
+    FallbackDomainsResource,
+    AsyncFallbackDomainsResource,
+    FallbackDomainsResourceWithRawResponse,
+    AsyncFallbackDomainsResourceWithRawResponse,
+    FallbackDomainsResourceWithStreamingResponse,
+    AsyncFallbackDomainsResourceWithStreamingResponse,
+)
+from .....types.zero_trust.devices import policy_edit_params, policy_create_params
+from .....types.zero_trust.devices.settings_policy import SettingsPolicy
 from .....types.zero_trust.devices.policy_delete_response import PolicyDeleteResponse
 
-from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-from .....types.zero_trust.devices import policy_create_params, policy_edit_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .....types.zero_trust.devices import policy_create_params
-from .....types.zero_trust.devices import policy_edit_params
-from .default_policy import DefaultPolicyResource, AsyncDefaultPolicyResource, DefaultPolicyResourceWithRawResponse, AsyncDefaultPolicyResourceWithRawResponse, DefaultPolicyResourceWithStreamingResponse, AsyncDefaultPolicyResourceWithStreamingResponse
-from .excludes import ExcludesResource, AsyncExcludesResource, ExcludesResourceWithRawResponse, AsyncExcludesResourceWithRawResponse, ExcludesResourceWithStreamingResponse, AsyncExcludesResourceWithStreamingResponse
-from .fallback_domains import FallbackDomainsResource, AsyncFallbackDomainsResource, FallbackDomainsResourceWithRawResponse, AsyncFallbackDomainsResourceWithRawResponse, FallbackDomainsResourceWithStreamingResponse, AsyncFallbackDomainsResourceWithStreamingResponse
-from .includes import IncludesResource, AsyncIncludesResource, IncludesResourceWithRawResponse, AsyncIncludesResourceWithRawResponse, IncludesResourceWithStreamingResponse, AsyncIncludesResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
+
 
 class PoliciesResource(SyncAPIResource):
     @cached_property
@@ -81,33 +86,35 @@ class PoliciesResource(SyncAPIResource):
     def with_streaming_response(self) -> PoliciesResourceWithStreamingResponse:
         return PoliciesResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    account_id: str,
-    match: str,
-    name: str,
-    precedence: float,
-    allow_mode_switch: bool | NotGiven = NOT_GIVEN,
-    allow_updates: bool | NotGiven = NOT_GIVEN,
-    allowed_to_leave: bool | NotGiven = NOT_GIVEN,
-    auto_connect: float | NotGiven = NOT_GIVEN,
-    captive_portal: float | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
-    enabled: bool | NotGiven = NOT_GIVEN,
-    exclude_office_ips: bool | NotGiven = NOT_GIVEN,
-    lan_allow_minutes: float | NotGiven = NOT_GIVEN,
-    lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
-    service_mode_v2: policy_create_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
-    support_url: str | NotGiven = NOT_GIVEN,
-    switch_locked: bool | NotGiven = NOT_GIVEN,
-    tunnel_protocol: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[SettingsPolicy]:
+    def create(
+        self,
+        *,
+        account_id: str,
+        match: str,
+        name: str,
+        precedence: float,
+        allow_mode_switch: bool | NotGiven = NOT_GIVEN,
+        allow_updates: bool | NotGiven = NOT_GIVEN,
+        allowed_to_leave: bool | NotGiven = NOT_GIVEN,
+        auto_connect: float | NotGiven = NOT_GIVEN,
+        captive_portal: float | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        exclude_office_ips: bool | NotGiven = NOT_GIVEN,
+        lan_allow_minutes: float | NotGiven = NOT_GIVEN,
+        lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
+        service_mode_v2: policy_create_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
+        support_url: str | NotGiven = NOT_GIVEN,
+        switch_locked: bool | NotGiven = NOT_GIVEN,
+        tunnel_protocol: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SettingsPolicy]:
         """
         Creates a device settings profile to be applied to certain devices matching the
         criteria.
@@ -164,44 +171,53 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/devices/policy",
-            body=maybe_transform({
-                "match": match,
-                "name": name,
-                "precedence": precedence,
-                "allow_mode_switch": allow_mode_switch,
-                "allow_updates": allow_updates,
-                "allowed_to_leave": allowed_to_leave,
-                "auto_connect": auto_connect,
-                "captive_portal": captive_portal,
-                "description": description,
-                "disable_auto_fallback": disable_auto_fallback,
-                "enabled": enabled,
-                "exclude_office_ips": exclude_office_ips,
-                "lan_allow_minutes": lan_allow_minutes,
-                "lan_allow_subnet_size": lan_allow_subnet_size,
-                "service_mode_v2": service_mode_v2,
-                "support_url": support_url,
-                "switch_locked": switch_locked,
-                "tunnel_protocol": tunnel_protocol,
-            }, policy_create_params.PolicyCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[SettingsPolicy]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "match": match,
+                    "name": name,
+                    "precedence": precedence,
+                    "allow_mode_switch": allow_mode_switch,
+                    "allow_updates": allow_updates,
+                    "allowed_to_leave": allowed_to_leave,
+                    "auto_connect": auto_connect,
+                    "captive_portal": captive_portal,
+                    "description": description,
+                    "disable_auto_fallback": disable_auto_fallback,
+                    "enabled": enabled,
+                    "exclude_office_ips": exclude_office_ips,
+                    "lan_allow_minutes": lan_allow_minutes,
+                    "lan_allow_subnet_size": lan_allow_subnet_size,
+                    "service_mode_v2": service_mode_v2,
+                    "support_url": support_url,
+                    "switch_locked": switch_locked,
+                    "tunnel_protocol": tunnel_protocol,
+                },
+                policy_create_params.PolicyCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SettingsPolicy]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[SettingsPolicy]], ResultWrapper[SettingsPolicy]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[SettingsPolicy]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[SettingsPolicy]:
         """
         Fetches a list of the device settings profiles for an account.
 
@@ -215,26 +231,28 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/policies",
-            page = SyncSinglePage[SettingsPolicy],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=SyncSinglePage[SettingsPolicy],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=SettingsPolicy,
         )
 
-    def delete(self,
-    policy_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PolicyDeleteResponse]:
+    def delete(
+        self,
+        policy_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PolicyDeleteResponse]:
         """
         Deletes a device settings profile and fetches a list of the remaining profiles
         for an account.
@@ -251,45 +269,49 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
-          raise ValueError(
-            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._delete(
             f"/accounts/{account_id}/devices/policy/{policy_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[PolicyDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PolicyDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[PolicyDeleteResponse]], ResultWrapper[PolicyDeleteResponse]),
         )
 
-    def edit(self,
-    policy_id: str,
-    *,
-    account_id: str,
-    allow_mode_switch: bool | NotGiven = NOT_GIVEN,
-    allow_updates: bool | NotGiven = NOT_GIVEN,
-    allowed_to_leave: bool | NotGiven = NOT_GIVEN,
-    auto_connect: float | NotGiven = NOT_GIVEN,
-    captive_portal: float | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
-    enabled: bool | NotGiven = NOT_GIVEN,
-    exclude_office_ips: bool | NotGiven = NOT_GIVEN,
-    match: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    precedence: float | NotGiven = NOT_GIVEN,
-    service_mode_v2: policy_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
-    support_url: str | NotGiven = NOT_GIVEN,
-    switch_locked: bool | NotGiven = NOT_GIVEN,
-    tunnel_protocol: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[SettingsPolicy]:
+    def edit(
+        self,
+        policy_id: str,
+        *,
+        account_id: str,
+        allow_mode_switch: bool | NotGiven = NOT_GIVEN,
+        allow_updates: bool | NotGiven = NOT_GIVEN,
+        allowed_to_leave: bool | NotGiven = NOT_GIVEN,
+        auto_connect: float | NotGiven = NOT_GIVEN,
+        captive_portal: float | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        exclude_office_ips: bool | NotGiven = NOT_GIVEN,
+        match: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        precedence: float | NotGiven = NOT_GIVEN,
+        service_mode_v2: policy_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
+        support_url: str | NotGiven = NOT_GIVEN,
+        switch_locked: bool | NotGiven = NOT_GIVEN,
+        tunnel_protocol: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SettingsPolicy]:
         """
         Updates a configured device settings profile.
 
@@ -339,47 +361,54 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
-          raise ValueError(
-            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._patch(
             f"/accounts/{account_id}/devices/policy/{policy_id}",
-            body=maybe_transform({
-                "allow_mode_switch": allow_mode_switch,
-                "allow_updates": allow_updates,
-                "allowed_to_leave": allowed_to_leave,
-                "auto_connect": auto_connect,
-                "captive_portal": captive_portal,
-                "description": description,
-                "disable_auto_fallback": disable_auto_fallback,
-                "enabled": enabled,
-                "exclude_office_ips": exclude_office_ips,
-                "match": match,
-                "name": name,
-                "precedence": precedence,
-                "service_mode_v2": service_mode_v2,
-                "support_url": support_url,
-                "switch_locked": switch_locked,
-                "tunnel_protocol": tunnel_protocol,
-            }, policy_edit_params.PolicyEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[SettingsPolicy]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "allow_mode_switch": allow_mode_switch,
+                    "allow_updates": allow_updates,
+                    "allowed_to_leave": allowed_to_leave,
+                    "auto_connect": auto_connect,
+                    "captive_portal": captive_portal,
+                    "description": description,
+                    "disable_auto_fallback": disable_auto_fallback,
+                    "enabled": enabled,
+                    "exclude_office_ips": exclude_office_ips,
+                    "match": match,
+                    "name": name,
+                    "precedence": precedence,
+                    "service_mode_v2": service_mode_v2,
+                    "support_url": support_url,
+                    "switch_locked": switch_locked,
+                    "tunnel_protocol": tunnel_protocol,
+                },
+                policy_edit_params.PolicyEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SettingsPolicy]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[SettingsPolicy]], ResultWrapper[SettingsPolicy]),
         )
 
-    def get(self,
-    policy_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[SettingsPolicy]:
+    def get(
+        self,
+        policy_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SettingsPolicy]:
         """
         Fetches a device settings profile by ID.
 
@@ -395,18 +424,21 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
-          raise ValueError(
-            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._get(
             f"/accounts/{account_id}/devices/policy/{policy_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[SettingsPolicy]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SettingsPolicy]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[SettingsPolicy]], ResultWrapper[SettingsPolicy]),
         )
+
 
 class AsyncPoliciesResource(AsyncAPIResource):
     @cached_property
@@ -433,33 +465,35 @@ class AsyncPoliciesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncPoliciesResourceWithStreamingResponse:
         return AsyncPoliciesResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    account_id: str,
-    match: str,
-    name: str,
-    precedence: float,
-    allow_mode_switch: bool | NotGiven = NOT_GIVEN,
-    allow_updates: bool | NotGiven = NOT_GIVEN,
-    allowed_to_leave: bool | NotGiven = NOT_GIVEN,
-    auto_connect: float | NotGiven = NOT_GIVEN,
-    captive_portal: float | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
-    enabled: bool | NotGiven = NOT_GIVEN,
-    exclude_office_ips: bool | NotGiven = NOT_GIVEN,
-    lan_allow_minutes: float | NotGiven = NOT_GIVEN,
-    lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
-    service_mode_v2: policy_create_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
-    support_url: str | NotGiven = NOT_GIVEN,
-    switch_locked: bool | NotGiven = NOT_GIVEN,
-    tunnel_protocol: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[SettingsPolicy]:
+    async def create(
+        self,
+        *,
+        account_id: str,
+        match: str,
+        name: str,
+        precedence: float,
+        allow_mode_switch: bool | NotGiven = NOT_GIVEN,
+        allow_updates: bool | NotGiven = NOT_GIVEN,
+        allowed_to_leave: bool | NotGiven = NOT_GIVEN,
+        auto_connect: float | NotGiven = NOT_GIVEN,
+        captive_portal: float | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        exclude_office_ips: bool | NotGiven = NOT_GIVEN,
+        lan_allow_minutes: float | NotGiven = NOT_GIVEN,
+        lan_allow_subnet_size: float | NotGiven = NOT_GIVEN,
+        service_mode_v2: policy_create_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
+        support_url: str | NotGiven = NOT_GIVEN,
+        switch_locked: bool | NotGiven = NOT_GIVEN,
+        tunnel_protocol: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SettingsPolicy]:
         """
         Creates a device settings profile to be applied to certain devices matching the
         criteria.
@@ -516,44 +550,53 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/devices/policy",
-            body=await async_maybe_transform({
-                "match": match,
-                "name": name,
-                "precedence": precedence,
-                "allow_mode_switch": allow_mode_switch,
-                "allow_updates": allow_updates,
-                "allowed_to_leave": allowed_to_leave,
-                "auto_connect": auto_connect,
-                "captive_portal": captive_portal,
-                "description": description,
-                "disable_auto_fallback": disable_auto_fallback,
-                "enabled": enabled,
-                "exclude_office_ips": exclude_office_ips,
-                "lan_allow_minutes": lan_allow_minutes,
-                "lan_allow_subnet_size": lan_allow_subnet_size,
-                "service_mode_v2": service_mode_v2,
-                "support_url": support_url,
-                "switch_locked": switch_locked,
-                "tunnel_protocol": tunnel_protocol,
-            }, policy_create_params.PolicyCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[SettingsPolicy]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "match": match,
+                    "name": name,
+                    "precedence": precedence,
+                    "allow_mode_switch": allow_mode_switch,
+                    "allow_updates": allow_updates,
+                    "allowed_to_leave": allowed_to_leave,
+                    "auto_connect": auto_connect,
+                    "captive_portal": captive_portal,
+                    "description": description,
+                    "disable_auto_fallback": disable_auto_fallback,
+                    "enabled": enabled,
+                    "exclude_office_ips": exclude_office_ips,
+                    "lan_allow_minutes": lan_allow_minutes,
+                    "lan_allow_subnet_size": lan_allow_subnet_size,
+                    "service_mode_v2": service_mode_v2,
+                    "support_url": support_url,
+                    "switch_locked": switch_locked,
+                    "tunnel_protocol": tunnel_protocol,
+                },
+                policy_create_params.PolicyCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SettingsPolicy]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[SettingsPolicy]], ResultWrapper[SettingsPolicy]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[SettingsPolicy, AsyncSinglePage[SettingsPolicy]]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[SettingsPolicy, AsyncSinglePage[SettingsPolicy]]:
         """
         Fetches a list of the device settings profiles for an account.
 
@@ -567,26 +610,28 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/policies",
-            page = AsyncSinglePage[SettingsPolicy],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=AsyncSinglePage[SettingsPolicy],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=SettingsPolicy,
         )
 
-    async def delete(self,
-    policy_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PolicyDeleteResponse]:
+    async def delete(
+        self,
+        policy_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PolicyDeleteResponse]:
         """
         Deletes a device settings profile and fetches a list of the remaining profiles
         for an account.
@@ -603,45 +648,49 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
-          raise ValueError(
-            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/devices/policy/{policy_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[PolicyDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PolicyDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[PolicyDeleteResponse]], ResultWrapper[PolicyDeleteResponse]),
         )
 
-    async def edit(self,
-    policy_id: str,
-    *,
-    account_id: str,
-    allow_mode_switch: bool | NotGiven = NOT_GIVEN,
-    allow_updates: bool | NotGiven = NOT_GIVEN,
-    allowed_to_leave: bool | NotGiven = NOT_GIVEN,
-    auto_connect: float | NotGiven = NOT_GIVEN,
-    captive_portal: float | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
-    enabled: bool | NotGiven = NOT_GIVEN,
-    exclude_office_ips: bool | NotGiven = NOT_GIVEN,
-    match: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    precedence: float | NotGiven = NOT_GIVEN,
-    service_mode_v2: policy_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
-    support_url: str | NotGiven = NOT_GIVEN,
-    switch_locked: bool | NotGiven = NOT_GIVEN,
-    tunnel_protocol: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[SettingsPolicy]:
+    async def edit(
+        self,
+        policy_id: str,
+        *,
+        account_id: str,
+        allow_mode_switch: bool | NotGiven = NOT_GIVEN,
+        allow_updates: bool | NotGiven = NOT_GIVEN,
+        allowed_to_leave: bool | NotGiven = NOT_GIVEN,
+        auto_connect: float | NotGiven = NOT_GIVEN,
+        captive_portal: float | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        disable_auto_fallback: bool | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        exclude_office_ips: bool | NotGiven = NOT_GIVEN,
+        match: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        precedence: float | NotGiven = NOT_GIVEN,
+        service_mode_v2: policy_edit_params.ServiceModeV2 | NotGiven = NOT_GIVEN,
+        support_url: str | NotGiven = NOT_GIVEN,
+        switch_locked: bool | NotGiven = NOT_GIVEN,
+        tunnel_protocol: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SettingsPolicy]:
         """
         Updates a configured device settings profile.
 
@@ -691,47 +740,54 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
-          raise ValueError(
-            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/devices/policy/{policy_id}",
-            body=await async_maybe_transform({
-                "allow_mode_switch": allow_mode_switch,
-                "allow_updates": allow_updates,
-                "allowed_to_leave": allowed_to_leave,
-                "auto_connect": auto_connect,
-                "captive_portal": captive_portal,
-                "description": description,
-                "disable_auto_fallback": disable_auto_fallback,
-                "enabled": enabled,
-                "exclude_office_ips": exclude_office_ips,
-                "match": match,
-                "name": name,
-                "precedence": precedence,
-                "service_mode_v2": service_mode_v2,
-                "support_url": support_url,
-                "switch_locked": switch_locked,
-                "tunnel_protocol": tunnel_protocol,
-            }, policy_edit_params.PolicyEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[SettingsPolicy]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "allow_mode_switch": allow_mode_switch,
+                    "allow_updates": allow_updates,
+                    "allowed_to_leave": allowed_to_leave,
+                    "auto_connect": auto_connect,
+                    "captive_portal": captive_portal,
+                    "description": description,
+                    "disable_auto_fallback": disable_auto_fallback,
+                    "enabled": enabled,
+                    "exclude_office_ips": exclude_office_ips,
+                    "match": match,
+                    "name": name,
+                    "precedence": precedence,
+                    "service_mode_v2": service_mode_v2,
+                    "support_url": support_url,
+                    "switch_locked": switch_locked,
+                    "tunnel_protocol": tunnel_protocol,
+                },
+                policy_edit_params.PolicyEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SettingsPolicy]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[SettingsPolicy]], ResultWrapper[SettingsPolicy]),
         )
 
-    async def get(self,
-    policy_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[SettingsPolicy]:
+    async def get(
+        self,
+        policy_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[SettingsPolicy]:
         """
         Fetches a device settings profile by ID.
 
@@ -747,18 +803,21 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not policy_id:
-          raise ValueError(
-            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._get(
             f"/accounts/{account_id}/devices/policy/{policy_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[SettingsPolicy]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[SettingsPolicy]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[SettingsPolicy]], ResultWrapper[SettingsPolicy]),
         )
+
 
 class PoliciesResourceWithRawResponse:
     def __init__(self, policies: PoliciesResource) -> None:
@@ -796,6 +855,7 @@ class PoliciesResourceWithRawResponse:
     def includes(self) -> IncludesResourceWithRawResponse:
         return IncludesResourceWithRawResponse(self._policies.includes)
 
+
 class AsyncPoliciesResourceWithRawResponse:
     def __init__(self, policies: AsyncPoliciesResource) -> None:
         self._policies = policies
@@ -832,6 +892,7 @@ class AsyncPoliciesResourceWithRawResponse:
     def includes(self) -> AsyncIncludesResourceWithRawResponse:
         return AsyncIncludesResourceWithRawResponse(self._policies.includes)
 
+
 class PoliciesResourceWithStreamingResponse:
     def __init__(self, policies: PoliciesResource) -> None:
         self._policies = policies
@@ -867,6 +928,7 @@ class PoliciesResourceWithStreamingResponse:
     @cached_property
     def includes(self) -> IncludesResourceWithStreamingResponse:
         return IncludesResourceWithStreamingResponse(self._policies.includes)
+
 
 class AsyncPoliciesResourceWithStreamingResponse:
     def __init__(self, policies: AsyncPoliciesResource) -> None:

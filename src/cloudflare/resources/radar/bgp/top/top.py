@@ -2,41 +2,40 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Union, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
-from .ases import AsesResource, AsyncAsesResource
-
+from .ases import (
+    AsesResource,
+    AsyncAsesResource,
+    AsesResourceWithRawResponse,
+    AsyncAsesResourceWithRawResponse,
+    AsesResourceWithStreamingResponse,
+    AsyncAsesResourceWithStreamingResponse,
+)
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ....._wrappers import ResultWrapper
+from ....._base_client import make_request_options
+from .....types.radar.bgp import top_prefixes_params
 from .....types.radar.bgp.top_prefixes_response import TopPrefixesResponse
 
-from ....._wrappers import ResultWrapper
-
-from ....._utils import maybe_transform, async_maybe_transform
-
-from ....._base_client import make_request_options
-
-from typing import Type, List, Union
-
-from datetime import datetime
-
-from typing_extensions import Literal
-
-from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .....types.radar.bgp import top_prefixes_params
-from .ases import AsesResource, AsyncAsesResource, AsesResourceWithRawResponse, AsyncAsesResourceWithRawResponse, AsesResourceWithStreamingResponse, AsyncAsesResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-
 __all__ = ["TopResource", "AsyncTopResource"]
+
 
 class TopResource(SyncAPIResource):
     @cached_property
@@ -51,22 +50,24 @@ class TopResource(SyncAPIResource):
     def with_streaming_response(self) -> TopResourceWithStreamingResponse:
         return TopResourceWithStreamingResponse(self)
 
-    def prefixes(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    update_type: List[Literal["ANNOUNCEMENT", "WITHDRAWAL"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TopPrefixesResponse:
+    def prefixes(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        update_type: List[Literal["ANNOUNCEMENT", "WITHDRAWAL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TopPrefixesResponse:
         """Get the top network prefixes by BGP updates.
 
         Values are a percentage out of the
@@ -103,18 +104,29 @@ class TopResource(SyncAPIResource):
         """
         return self._get(
             "/radar/bgp/top/prefixes",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "asn": asn,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "limit": limit,
-                "name": name,
-                "update_type": update_type,
-            }, top_prefixes_params.TopPrefixesParams), post_parser=ResultWrapper[TopPrefixesResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "asn": asn,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "limit": limit,
+                        "name": name,
+                        "update_type": update_type,
+                    },
+                    top_prefixes_params.TopPrefixesParams,
+                ),
+                post_parser=ResultWrapper[TopPrefixesResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TopPrefixesResponse], ResultWrapper[TopPrefixesResponse]),
         )
+
 
 class AsyncTopResource(AsyncAPIResource):
     @cached_property
@@ -129,22 +141,24 @@ class AsyncTopResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTopResourceWithStreamingResponse:
         return AsyncTopResourceWithStreamingResponse(self)
 
-    async def prefixes(self,
-    *,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    limit: int | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    update_type: List[Literal["ANNOUNCEMENT", "WITHDRAWAL"]] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> TopPrefixesResponse:
+    async def prefixes(
+        self,
+        *,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        limit: int | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        update_type: List[Literal["ANNOUNCEMENT", "WITHDRAWAL"]] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> TopPrefixesResponse:
         """Get the top network prefixes by BGP updates.
 
         Values are a percentage out of the
@@ -181,18 +195,29 @@ class AsyncTopResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/bgp/top/prefixes",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "asn": asn,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "limit": limit,
-                "name": name,
-                "update_type": update_type,
-            }, top_prefixes_params.TopPrefixesParams), post_parser=ResultWrapper[TopPrefixesResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "asn": asn,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "limit": limit,
+                        "name": name,
+                        "update_type": update_type,
+                    },
+                    top_prefixes_params.TopPrefixesParams,
+                ),
+                post_parser=ResultWrapper[TopPrefixesResponse]._unwrapper,
+            ),
             cast_to=cast(Type[TopPrefixesResponse], ResultWrapper[TopPrefixesResponse]),
         )
+
 
 class TopResourceWithRawResponse:
     def __init__(self, top: TopResource) -> None:
@@ -206,6 +231,7 @@ class TopResourceWithRawResponse:
     def ases(self) -> AsesResourceWithRawResponse:
         return AsesResourceWithRawResponse(self._top.ases)
 
+
 class AsyncTopResourceWithRawResponse:
     def __init__(self, top: AsyncTopResource) -> None:
         self._top = top
@@ -218,6 +244,7 @@ class AsyncTopResourceWithRawResponse:
     def ases(self) -> AsyncAsesResourceWithRawResponse:
         return AsyncAsesResourceWithRawResponse(self._top.ases)
 
+
 class TopResourceWithStreamingResponse:
     def __init__(self, top: TopResource) -> None:
         self._top = top
@@ -229,6 +256,7 @@ class TopResourceWithStreamingResponse:
     @cached_property
     def ases(self) -> AsesResourceWithStreamingResponse:
         return AsesResourceWithStreamingResponse(self._top.ases)
+
 
 class AsyncTopResourceWithStreamingResponse:
     def __init__(self, top: AsyncTopResource) -> None:

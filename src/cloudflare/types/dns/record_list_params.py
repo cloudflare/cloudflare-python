@@ -2,16 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal
+from typing_extensions import Literal, Required, TypedDict
 
 from ..shared.sort_direction import SortDirection
 
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-
 __all__ = ["RecordListParams", "Comment", "Tag"]
+
 
 class RecordListParams(TypedDict, total=False):
     zone_id: Required[str]
@@ -71,8 +67,30 @@ class RecordListParams(TypedDict, total=False):
     to tags.
     """
 
-    type: Literal["A", "AAAA", "CAA", "CERT", "CNAME", "DNSKEY", "DS", "HTTPS", "LOC", "MX", "NAPTR", "NS", "PTR", "SMIMEA", "SRV", "SSHFP", "SVCB", "TLSA", "TXT", "URI"]
+    type: Literal[
+        "A",
+        "AAAA",
+        "CAA",
+        "CERT",
+        "CNAME",
+        "DNSKEY",
+        "DS",
+        "HTTPS",
+        "LOC",
+        "MX",
+        "NAPTR",
+        "NS",
+        "PTR",
+        "SMIMEA",
+        "SRV",
+        "SSHFP",
+        "SVCB",
+        "TLSA",
+        "TXT",
+        "URI",
+    ]
     """Record type."""
+
 
 class Comment(TypedDict, total=False):
     absent: str
@@ -92,6 +110,7 @@ class Comment(TypedDict, total=False):
 
     startswith: str
     """Prefix of the DNS record comment. Comment filters are case-insensitive."""
+
 
 class Tag(TypedDict, total=False):
     absent: str

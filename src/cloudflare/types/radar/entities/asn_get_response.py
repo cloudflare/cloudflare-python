@@ -1,28 +1,29 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ...._models import BaseModel
+from typing import List, Optional
 
-from typing import Optional, List
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
 from pydantic import Field as FieldInfo
+
+from ...._models import BaseModel
 
 __all__ = ["ASNGetResponse", "ASN", "ASNEstimatedUsers", "ASNEstimatedUsersLocation", "ASNRelated"]
 
+
 class ASNEstimatedUsersLocation(BaseModel):
-    location_alpha2: str = FieldInfo(alias = "locationAlpha2")
+    location_alpha2: str = FieldInfo(alias="locationAlpha2")
 
-    location_name: str = FieldInfo(alias = "locationName")
+    location_name: str = FieldInfo(alias="locationName")
 
-    estimated_users: Optional[int] = FieldInfo(alias = "estimatedUsers", default = None)
+    estimated_users: Optional[int] = FieldInfo(alias="estimatedUsers", default=None)
     """Estimated users per location"""
+
 
 class ASNEstimatedUsers(BaseModel):
     locations: List[ASNEstimatedUsersLocation]
 
-    estimated_users: Optional[int] = FieldInfo(alias = "estimatedUsers", default = None)
+    estimated_users: Optional[int] = FieldInfo(alias="estimatedUsers", default=None)
     """Total estimated users"""
+
 
 class ASNRelated(BaseModel):
     asn: int
@@ -31,23 +32,24 @@ class ASNRelated(BaseModel):
 
     aka: Optional[str] = None
 
-    estimated_users: Optional[int] = FieldInfo(alias = "estimatedUsers", default = None)
+    estimated_users: Optional[int] = FieldInfo(alias="estimatedUsers", default=None)
     """Total estimated users"""
+
 
 class ASN(BaseModel):
     asn: int
 
-    confidence_level: int = FieldInfo(alias = "confidenceLevel")
+    confidence_level: int = FieldInfo(alias="confidenceLevel")
 
     country: str
 
-    country_name: str = FieldInfo(alias = "countryName")
+    country_name: str = FieldInfo(alias="countryName")
 
-    estimated_users: ASNEstimatedUsers = FieldInfo(alias = "estimatedUsers")
+    estimated_users: ASNEstimatedUsers = FieldInfo(alias="estimatedUsers")
 
     name: str
 
-    org_name: str = FieldInfo(alias = "orgName")
+    org_name: str = FieldInfo(alias="orgName")
 
     related: List[ASNRelated]
 
@@ -58,8 +60,9 @@ class ASN(BaseModel):
 
     aka: Optional[str] = None
 
-    name_long: Optional[str] = FieldInfo(alias = "nameLong", default = None)
+    name_long: Optional[str] = FieldInfo(alias="nameLong", default=None)
     """Deprecated field. Please use 'aka'."""
+
 
 class ASNGetResponse(BaseModel):
     asn: ASN

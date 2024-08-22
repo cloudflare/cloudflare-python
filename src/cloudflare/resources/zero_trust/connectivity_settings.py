@@ -2,38 +2,31 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ..._base_client import make_request_options
+from ...types.zero_trust import connectivity_setting_edit_params
+from ...types.zero_trust.connectivity_setting_get_response import ConnectivitySettingGetResponse
 from ...types.zero_trust.connectivity_setting_edit_response import ConnectivitySettingEditResponse
 
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from ..._base_client import make_request_options
-
-from typing import Type
-
-from ...types.zero_trust.connectivity_setting_get_response import ConnectivitySettingGetResponse
-
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.zero_trust import connectivity_setting_edit_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["ConnectivitySettingsResource", "AsyncConnectivitySettingsResource"]
+
 
 class ConnectivitySettingsResource(SyncAPIResource):
     @cached_property
@@ -44,17 +37,19 @@ class ConnectivitySettingsResource(SyncAPIResource):
     def with_streaming_response(self) -> ConnectivitySettingsResourceWithStreamingResponse:
         return ConnectivitySettingsResourceWithStreamingResponse(self)
 
-    def edit(self,
-    *,
-    account_id: str,
-    icmp_proxy_enabled: bool | NotGiven = NOT_GIVEN,
-    offramp_warp_enabled: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> ConnectivitySettingEditResponse:
+    def edit(
+        self,
+        *,
+        account_id: str,
+        icmp_proxy_enabled: bool | NotGiven = NOT_GIVEN,
+        offramp_warp_enabled: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ConnectivitySettingEditResponse:
         """
         Updates the Zero Trust Connectivity Settings for the given account.
 
@@ -74,28 +69,37 @@ class ConnectivitySettingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._patch(
             f"/accounts/{account_id}/zerotrust/connectivity_settings",
-            body=maybe_transform({
-                "icmp_proxy_enabled": icmp_proxy_enabled,
-                "offramp_warp_enabled": offramp_warp_enabled,
-            }, connectivity_setting_edit_params.ConnectivitySettingEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[ConnectivitySettingEditResponse]._unwrapper),
+            body=maybe_transform(
+                {
+                    "icmp_proxy_enabled": icmp_proxy_enabled,
+                    "offramp_warp_enabled": offramp_warp_enabled,
+                },
+                connectivity_setting_edit_params.ConnectivitySettingEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ConnectivitySettingEditResponse]._unwrapper,
+            ),
             cast_to=cast(Type[ConnectivitySettingEditResponse], ResultWrapper[ConnectivitySettingEditResponse]),
         )
 
-    def get(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> ConnectivitySettingGetResponse:
+    def get(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ConnectivitySettingGetResponse:
         """
         Gets the Zero Trust Connectivity Settings for the given account.
 
@@ -111,14 +115,19 @@ class ConnectivitySettingsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get(
             f"/accounts/{account_id}/zerotrust/connectivity_settings",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[ConnectivitySettingGetResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ConnectivitySettingGetResponse]._unwrapper,
+            ),
             cast_to=cast(Type[ConnectivitySettingGetResponse], ResultWrapper[ConnectivitySettingGetResponse]),
         )
+
 
 class AsyncConnectivitySettingsResource(AsyncAPIResource):
     @cached_property
@@ -129,17 +138,19 @@ class AsyncConnectivitySettingsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncConnectivitySettingsResourceWithStreamingResponse:
         return AsyncConnectivitySettingsResourceWithStreamingResponse(self)
 
-    async def edit(self,
-    *,
-    account_id: str,
-    icmp_proxy_enabled: bool | NotGiven = NOT_GIVEN,
-    offramp_warp_enabled: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> ConnectivitySettingEditResponse:
+    async def edit(
+        self,
+        *,
+        account_id: str,
+        icmp_proxy_enabled: bool | NotGiven = NOT_GIVEN,
+        offramp_warp_enabled: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ConnectivitySettingEditResponse:
         """
         Updates the Zero Trust Connectivity Settings for the given account.
 
@@ -159,28 +170,37 @@ class AsyncConnectivitySettingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/zerotrust/connectivity_settings",
-            body=await async_maybe_transform({
-                "icmp_proxy_enabled": icmp_proxy_enabled,
-                "offramp_warp_enabled": offramp_warp_enabled,
-            }, connectivity_setting_edit_params.ConnectivitySettingEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[ConnectivitySettingEditResponse]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "icmp_proxy_enabled": icmp_proxy_enabled,
+                    "offramp_warp_enabled": offramp_warp_enabled,
+                },
+                connectivity_setting_edit_params.ConnectivitySettingEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ConnectivitySettingEditResponse]._unwrapper,
+            ),
             cast_to=cast(Type[ConnectivitySettingEditResponse], ResultWrapper[ConnectivitySettingEditResponse]),
         )
 
-    async def get(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> ConnectivitySettingGetResponse:
+    async def get(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> ConnectivitySettingGetResponse:
         """
         Gets the Zero Trust Connectivity Settings for the given account.
 
@@ -196,14 +216,19 @@ class AsyncConnectivitySettingsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._get(
             f"/accounts/{account_id}/zerotrust/connectivity_settings",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[ConnectivitySettingGetResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[ConnectivitySettingGetResponse]._unwrapper,
+            ),
             cast_to=cast(Type[ConnectivitySettingGetResponse], ResultWrapper[ConnectivitySettingGetResponse]),
         )
+
 
 class ConnectivitySettingsResourceWithRawResponse:
     def __init__(self, connectivity_settings: ConnectivitySettingsResource) -> None:
@@ -216,6 +241,7 @@ class ConnectivitySettingsResourceWithRawResponse:
             connectivity_settings.get,
         )
 
+
 class AsyncConnectivitySettingsResourceWithRawResponse:
     def __init__(self, connectivity_settings: AsyncConnectivitySettingsResource) -> None:
         self._connectivity_settings = connectivity_settings
@@ -227,6 +253,7 @@ class AsyncConnectivitySettingsResourceWithRawResponse:
             connectivity_settings.get,
         )
 
+
 class ConnectivitySettingsResourceWithStreamingResponse:
     def __init__(self, connectivity_settings: ConnectivitySettingsResource) -> None:
         self._connectivity_settings = connectivity_settings
@@ -237,6 +264,7 @@ class ConnectivitySettingsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             connectivity_settings.get,
         )
+
 
 class AsyncConnectivitySettingsResourceWithStreamingResponse:
     def __init__(self, connectivity_settings: AsyncConnectivitySettingsResource) -> None:

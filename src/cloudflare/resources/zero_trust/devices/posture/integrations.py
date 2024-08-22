@@ -2,51 +2,33 @@
 
 from __future__ import annotations
 
+from typing import Any, Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ....._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ....._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ....._compat import cached_property
-
-from .....types.zero_trust.devices.posture.integration import Integration
-
+from ....._resource import SyncAPIResource, AsyncAPIResource
+from ....._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ....._wrappers import ResultWrapper
-
-from ....._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from ....._base_client import make_request_options, AsyncPaginator
-
-from typing_extensions import Literal
-
 from .....pagination import SyncSinglePage, AsyncSinglePage
-
+from ....._base_client import AsyncPaginator, make_request_options
+from .....types.zero_trust.devices.posture import integration_edit_params, integration_create_params
+from .....types.zero_trust.devices.posture.integration import Integration
 from .....types.zero_trust.devices.posture.integration_delete_response import IntegrationDeleteResponse
 
-from ....._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-from .....types.zero_trust.devices.posture import integration_create_params, integration_edit_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ....._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ....._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ....._resource import SyncAPIResource, AsyncAPIResource
-from .....types import shared_params
-from .....types.zero_trust.devices.posture import integration_create_params
-from .....types.zero_trust.devices.posture import integration_edit_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["IntegrationsResource", "AsyncIntegrationsResource"]
+
 
 class IntegrationsResource(SyncAPIResource):
     @cached_property
@@ -57,19 +39,21 @@ class IntegrationsResource(SyncAPIResource):
     def with_streaming_response(self) -> IntegrationsResourceWithStreamingResponse:
         return IntegrationsResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    account_id: str,
-    config: integration_create_params.Config,
-    interval: str,
-    name: str,
-    type: Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"],
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Integration]:
+    def create(
+        self,
+        *,
+        account_id: str,
+        config: integration_create_params.Config,
+        interval: str,
+        name: str,
+        type: Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Integration]:
         """
         Create a new device posture integration.
 
@@ -92,30 +76,39 @@ class IntegrationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/devices/posture/integration",
-            body=maybe_transform({
-                "config": config,
-                "interval": interval,
-                "name": name,
-                "type": type,
-            }, integration_create_params.IntegrationCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Integration]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "config": config,
+                    "interval": interval,
+                    "name": name,
+                    "type": type,
+                },
+                integration_create_params.IntegrationCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Integration]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Integration]], ResultWrapper[Integration]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[Integration]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[Integration]:
         """
         Fetches the list of device posture integrations for an account.
 
@@ -129,26 +122,28 @@ class IntegrationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/posture/integration",
-            page = SyncSinglePage[Integration],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=SyncSinglePage[Integration],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=Integration,
         )
 
-    def delete(self,
-    integration_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> IntegrationDeleteResponse:
+    def delete(
+        self,
+        integration_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[IntegrationDeleteResponse]:
         """
         Delete a configured device posture integration.
 
@@ -164,33 +159,43 @@ class IntegrationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not integration_id:
-          raise ValueError(
-            f'Expected a non-empty value for `integration_id` but received {integration_id!r}'
-          )
-        return cast(IntegrationDeleteResponse, self._delete(
-            f"/accounts/{account_id}/devices/posture/integration/{integration_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[IntegrationDeleteResponse]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[IntegrationDeleteResponse]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
+        return cast(
+            Optional[IntegrationDeleteResponse],
+            self._delete(
+                f"/accounts/{account_id}/devices/posture/integration/{integration_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[IntegrationDeleteResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[IntegrationDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
 
-    def edit(self,
-    integration_id: str,
-    *,
-    account_id: str,
-    config: integration_edit_params.Config | NotGiven = NOT_GIVEN,
-    interval: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    type: Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Integration]:
+    def edit(
+        self,
+        integration_id: str,
+        *,
+        account_id: str,
+        config: integration_edit_params.Config | NotGiven = NOT_GIVEN,
+        interval: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        type: Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"]
+        | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Integration]:
         """
         Updates a configured device posture integration.
 
@@ -215,35 +220,42 @@ class IntegrationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not integration_id:
-          raise ValueError(
-            f'Expected a non-empty value for `integration_id` but received {integration_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
         return self._patch(
             f"/accounts/{account_id}/devices/posture/integration/{integration_id}",
-            body=maybe_transform({
-                "config": config,
-                "interval": interval,
-                "name": name,
-                "type": type,
-            }, integration_edit_params.IntegrationEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Integration]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "config": config,
+                    "interval": interval,
+                    "name": name,
+                    "type": type,
+                },
+                integration_edit_params.IntegrationEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Integration]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Integration]], ResultWrapper[Integration]),
         )
 
-    def get(self,
-    integration_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Integration]:
+    def get(
+        self,
+        integration_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Integration]:
         """
         Fetches details for a single device posture integration.
 
@@ -259,18 +271,21 @@ class IntegrationsResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not integration_id:
-          raise ValueError(
-            f'Expected a non-empty value for `integration_id` but received {integration_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
         return self._get(
             f"/accounts/{account_id}/devices/posture/integration/{integration_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Integration]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Integration]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Integration]], ResultWrapper[Integration]),
         )
+
 
 class AsyncIntegrationsResource(AsyncAPIResource):
     @cached_property
@@ -281,19 +296,21 @@ class AsyncIntegrationsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncIntegrationsResourceWithStreamingResponse:
         return AsyncIntegrationsResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    account_id: str,
-    config: integration_create_params.Config,
-    interval: str,
-    name: str,
-    type: Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"],
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Integration]:
+    async def create(
+        self,
+        *,
+        account_id: str,
+        config: integration_create_params.Config,
+        interval: str,
+        name: str,
+        type: Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"],
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Integration]:
         """
         Create a new device posture integration.
 
@@ -316,30 +333,39 @@ class AsyncIntegrationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/devices/posture/integration",
-            body=await async_maybe_transform({
-                "config": config,
-                "interval": interval,
-                "name": name,
-                "type": type,
-            }, integration_create_params.IntegrationCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Integration]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "config": config,
+                    "interval": interval,
+                    "name": name,
+                    "type": type,
+                },
+                integration_create_params.IntegrationCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Integration]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Integration]], ResultWrapper[Integration]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Integration, AsyncSinglePage[Integration]]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[Integration, AsyncSinglePage[Integration]]:
         """
         Fetches the list of device posture integrations for an account.
 
@@ -353,26 +379,28 @@ class AsyncIntegrationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/devices/posture/integration",
-            page = AsyncSinglePage[Integration],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=AsyncSinglePage[Integration],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=Integration,
         )
 
-    async def delete(self,
-    integration_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> IntegrationDeleteResponse:
+    async def delete(
+        self,
+        integration_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[IntegrationDeleteResponse]:
         """
         Delete a configured device posture integration.
 
@@ -388,33 +416,43 @@ class AsyncIntegrationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not integration_id:
-          raise ValueError(
-            f'Expected a non-empty value for `integration_id` but received {integration_id!r}'
-          )
-        return cast(IntegrationDeleteResponse, await self._delete(
-            f"/accounts/{account_id}/devices/posture/integration/{integration_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[IntegrationDeleteResponse]._unwrapper),
-            cast_to=cast(Any, ResultWrapper[IntegrationDeleteResponse]),  # Union types cannot be passed in as arguments in the type system
-        ))
+            raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
+        return cast(
+            Optional[IntegrationDeleteResponse],
+            await self._delete(
+                f"/accounts/{account_id}/devices/posture/integration/{integration_id}",
+                options=make_request_options(
+                    extra_headers=extra_headers,
+                    extra_query=extra_query,
+                    extra_body=extra_body,
+                    timeout=timeout,
+                    post_parser=ResultWrapper[Optional[IntegrationDeleteResponse]]._unwrapper,
+                ),
+                cast_to=cast(
+                    Any, ResultWrapper[IntegrationDeleteResponse]
+                ),  # Union types cannot be passed in as arguments in the type system
+            ),
+        )
 
-    async def edit(self,
-    integration_id: str,
-    *,
-    account_id: str,
-    config: integration_edit_params.Config | NotGiven = NOT_GIVEN,
-    interval: str | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    type: Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Integration]:
+    async def edit(
+        self,
+        integration_id: str,
+        *,
+        account_id: str,
+        config: integration_edit_params.Config | NotGiven = NOT_GIVEN,
+        interval: str | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        type: Literal["workspace_one", "crowdstrike_s2s", "uptycs", "intune", "kolide", "tanium", "sentinelone_s2s"]
+        | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Integration]:
         """
         Updates a configured device posture integration.
 
@@ -439,35 +477,42 @@ class AsyncIntegrationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not integration_id:
-          raise ValueError(
-            f'Expected a non-empty value for `integration_id` but received {integration_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/devices/posture/integration/{integration_id}",
-            body=await async_maybe_transform({
-                "config": config,
-                "interval": interval,
-                "name": name,
-                "type": type,
-            }, integration_edit_params.IntegrationEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Integration]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "config": config,
+                    "interval": interval,
+                    "name": name,
+                    "type": type,
+                },
+                integration_edit_params.IntegrationEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Integration]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Integration]], ResultWrapper[Integration]),
         )
 
-    async def get(self,
-    integration_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Integration]:
+    async def get(
+        self,
+        integration_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Integration]:
         """
         Fetches details for a single device posture integration.
 
@@ -483,18 +528,21 @@ class AsyncIntegrationsResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not integration_id:
-          raise ValueError(
-            f'Expected a non-empty value for `integration_id` but received {integration_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `integration_id` but received {integration_id!r}")
         return await self._get(
             f"/accounts/{account_id}/devices/posture/integration/{integration_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Integration]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Integration]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Integration]], ResultWrapper[Integration]),
         )
+
 
 class IntegrationsResourceWithRawResponse:
     def __init__(self, integrations: IntegrationsResource) -> None:
@@ -516,6 +564,7 @@ class IntegrationsResourceWithRawResponse:
             integrations.get,
         )
 
+
 class AsyncIntegrationsResourceWithRawResponse:
     def __init__(self, integrations: AsyncIntegrationsResource) -> None:
         self._integrations = integrations
@@ -536,6 +585,7 @@ class AsyncIntegrationsResourceWithRawResponse:
             integrations.get,
         )
 
+
 class IntegrationsResourceWithStreamingResponse:
     def __init__(self, integrations: IntegrationsResource) -> None:
         self._integrations = integrations
@@ -555,6 +605,7 @@ class IntegrationsResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             integrations.get,
         )
+
 
 class AsyncIntegrationsResourceWithStreamingResponse:
     def __init__(self, integrations: AsyncIntegrationsResource) -> None:

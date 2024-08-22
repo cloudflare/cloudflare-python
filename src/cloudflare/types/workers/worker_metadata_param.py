@@ -6,6 +6,7 @@ from typing_extensions import TypedDict
 
 __all__ = ["WorkerMetadataParam"]
 
+
 class WorkerMetadataParam(TypedDict, total=False):
     body_part: str
     """Name of the part in the multipart request that contains the script (e.g.

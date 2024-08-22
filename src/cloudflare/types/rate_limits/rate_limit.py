@@ -1,18 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from typing import Optional, List
-
+from typing import List, Optional
 from typing_extensions import Literal
 
 from .methods import Methods
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ..._models import BaseModel
 
 __all__ = ["RateLimit", "Action", "ActionResponse", "Bypass", "Match", "MatchHeader", "MatchRequest", "MatchResponse"]
+
 
 class ActionResponse(BaseModel):
     body: Optional[str] = None
@@ -26,6 +21,7 @@ class ActionResponse(BaseModel):
 
     Must be one of the following: `text/plain`, `text/xml`, or `application/json`.
     """
+
 
 class Action(BaseModel):
     mode: Optional[Literal["simulate", "ban", "challenge", "js_challenge", "managed_challenge"]] = None
@@ -49,11 +45,13 @@ class Action(BaseModel):
     zone's Challenge Passage time and you should not provide this value.
     """
 
+
 class Bypass(BaseModel):
     name: Optional[Literal["url"]] = None
 
     value: Optional[str] = None
     """The URL to bypass."""
+
 
 class MatchHeader(BaseModel):
     name: Optional[str] = None
@@ -64,6 +62,7 @@ class MatchHeader(BaseModel):
 
     value: Optional[str] = None
     """The value of the response header, which must match exactly."""
+
 
 class MatchRequest(BaseModel):
     methods: Optional[List[Methods]] = None
@@ -88,6 +87,7 @@ class MatchRequest(BaseModel):
     matched. Set the value to `*` to match all traffic to your zone.
     """
 
+
 class MatchResponse(BaseModel):
     origin_traffic: Optional[bool] = None
     """
@@ -98,12 +98,14 @@ class MatchResponse(BaseModel):
     to avoid legacy behaviour interacting with the "response_headers" property.
     """
 
+
 class Match(BaseModel):
     headers: Optional[List[MatchHeader]] = None
 
     request: Optional[MatchRequest] = None
 
     response: Optional[MatchResponse] = None
+
 
 class RateLimit(BaseModel):
     id: Optional[str] = None

@@ -2,14 +2,10 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ...._types import FileTypes
-from ...._utils import PropertyInfo
+from typing_extensions import Required, TypedDict
 
 __all__ = ["PolicyEditParams", "ServiceModeV2"]
+
 
 class PolicyEditParams(TypedDict, total=False):
     account_id: Required[str]
@@ -73,6 +69,7 @@ class PolicyEditParams(TypedDict, total=False):
 
     tunnel_protocol: str
     """Determines which tunnel protocol to use."""
+
 
 class ServiceModeV2(TypedDict, total=False):
     mode: str

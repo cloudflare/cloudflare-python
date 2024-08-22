@@ -8,6 +8,7 @@ from .logging_param import LoggingParam
 
 __all__ = ["ForceConnectionCloseRuleParam"]
 
+
 class ForceConnectionCloseRuleParam(TypedDict, total=False):
     id: str
     """The unique ID of the rule."""

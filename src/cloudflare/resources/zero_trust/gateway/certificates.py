@@ -2,56 +2,40 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from ....types.zero_trust.gateway.certificate_create_response import CertificateCreateResponse
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from ...._base_client import make_request_options, AsyncPaginator
-
-from ....types.zero_trust.gateway.certificate_list_response import CertificateListResponse
-
 from ....pagination import SyncSinglePage, AsyncSinglePage
-
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.zero_trust.gateway import (
+    certificate_create_params,
+    certificate_activate_params,
+    certificate_deactivate_params,
+)
+from ....types.zero_trust.gateway.certificate_get_response import CertificateGetResponse
+from ....types.zero_trust.gateway.certificate_list_response import CertificateListResponse
+from ....types.zero_trust.gateway.certificate_create_response import CertificateCreateResponse
 from ....types.zero_trust.gateway.certificate_delete_response import CertificateDeleteResponse
-
 from ....types.zero_trust.gateway.certificate_activate_response import CertificateActivateResponse
-
 from ....types.zero_trust.gateway.certificate_deactivate_response import CertificateDeactivateResponse
 
-from ....types.zero_trust.gateway.certificate_get_response import CertificateGetResponse
-
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.zero_trust.gateway import certificate_create_params
-from ....types.zero_trust.gateway import certificate_activate_params
-from ....types.zero_trust.gateway import certificate_deactivate_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["CertificatesResource", "AsyncCertificatesResource"]
+
 
 class CertificatesResource(SyncAPIResource):
     @cached_property
@@ -62,16 +46,18 @@ class CertificatesResource(SyncAPIResource):
     def with_streaming_response(self) -> CertificatesResourceWithStreamingResponse:
         return CertificatesResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    account_id: str,
-    validity_period_days: int | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CertificateCreateResponse]:
+    def create(
+        self,
+        *,
+        account_id: str,
+        validity_period_days: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificateCreateResponse]:
         """
         Creates a new Zero Trust certificate.
 
@@ -88,27 +74,33 @@ class CertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/gateway/certificates",
-            body=maybe_transform({
-                "validity_period_days": validity_period_days
-            }, certificate_create_params.CertificateCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CertificateCreateResponse]]._unwrapper),
+            body=maybe_transform(
+                {"validity_period_days": validity_period_days}, certificate_create_params.CertificateCreateParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificateCreateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CertificateCreateResponse]], ResultWrapper[CertificateCreateResponse]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[CertificateListResponse]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[CertificateListResponse]:
         """
         Fetches all Zero Trust certificates for an account.
 
@@ -122,26 +114,28 @@ class CertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/certificates",
-            page = SyncSinglePage[CertificateListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=SyncSinglePage[CertificateListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=CertificateListResponse,
         )
 
-    def delete(self,
-    certificate_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CertificateDeleteResponse]:
+    def delete(
+        self,
+        certificate_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificateDeleteResponse]:
         """Deletes a gateway-managed Zero Trust certificate.
 
         A certificate must be
@@ -159,30 +153,34 @@ class CertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not certificate_id:
-          raise ValueError(
-            f'Expected a non-empty value for `certificate_id` but received {certificate_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return self._delete(
             f"/accounts/{account_id}/gateway/certificates/{certificate_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CertificateDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificateDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CertificateDeleteResponse]], ResultWrapper[CertificateDeleteResponse]),
         )
 
-    def activate(self,
-    certificate_id: str,
-    *,
-    account_id: str,
-    body: object,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CertificateActivateResponse]:
+    def activate(
+        self,
+        certificate_id: str,
+        *,
+        account_id: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificateActivateResponse]:
         """
         Binds a single Zero Trust certificate to the edge.
 
@@ -198,31 +196,35 @@ class CertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not certificate_id:
-          raise ValueError(
-            f'Expected a non-empty value for `certificate_id` but received {certificate_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return self._post(
             f"/accounts/{account_id}/gateway/certificates/{certificate_id}/activate",
             body=maybe_transform(body, certificate_activate_params.CertificateActivateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CertificateActivateResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificateActivateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CertificateActivateResponse]], ResultWrapper[CertificateActivateResponse]),
         )
 
-    def deactivate(self,
-    certificate_id: str,
-    *,
-    account_id: str,
-    body: object,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CertificateDeactivateResponse]:
+    def deactivate(
+        self,
+        certificate_id: str,
+        *,
+        account_id: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificateDeactivateResponse]:
         """
         Unbinds a single Zero Trust certificate from the edge
 
@@ -238,30 +240,34 @@ class CertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not certificate_id:
-          raise ValueError(
-            f'Expected a non-empty value for `certificate_id` but received {certificate_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return self._post(
             f"/accounts/{account_id}/gateway/certificates/{certificate_id}/deactivate",
             body=maybe_transform(body, certificate_deactivate_params.CertificateDeactivateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CertificateDeactivateResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificateDeactivateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CertificateDeactivateResponse]], ResultWrapper[CertificateDeactivateResponse]),
         )
 
-    def get(self,
-    certificate_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CertificateGetResponse]:
+    def get(
+        self,
+        certificate_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificateGetResponse]:
         """
         Fetches a single Zero Trust certificate.
 
@@ -277,18 +283,21 @@ class CertificatesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not certificate_id:
-          raise ValueError(
-            f'Expected a non-empty value for `certificate_id` but received {certificate_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return self._get(
             f"/accounts/{account_id}/gateway/certificates/{certificate_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CertificateGetResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificateGetResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CertificateGetResponse]], ResultWrapper[CertificateGetResponse]),
         )
+
 
 class AsyncCertificatesResource(AsyncAPIResource):
     @cached_property
@@ -299,16 +308,18 @@ class AsyncCertificatesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncCertificatesResourceWithStreamingResponse:
         return AsyncCertificatesResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    account_id: str,
-    validity_period_days: int | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CertificateCreateResponse]:
+    async def create(
+        self,
+        *,
+        account_id: str,
+        validity_period_days: int | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificateCreateResponse]:
         """
         Creates a new Zero Trust certificate.
 
@@ -325,27 +336,33 @@ class AsyncCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/gateway/certificates",
-            body=await async_maybe_transform({
-                "validity_period_days": validity_period_days
-            }, certificate_create_params.CertificateCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CertificateCreateResponse]]._unwrapper),
+            body=await async_maybe_transform(
+                {"validity_period_days": validity_period_days}, certificate_create_params.CertificateCreateParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificateCreateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CertificateCreateResponse]], ResultWrapper[CertificateCreateResponse]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[CertificateListResponse, AsyncSinglePage[CertificateListResponse]]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[CertificateListResponse, AsyncSinglePage[CertificateListResponse]]:
         """
         Fetches all Zero Trust certificates for an account.
 
@@ -359,26 +376,28 @@ class AsyncCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/gateway/certificates",
-            page = AsyncSinglePage[CertificateListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=AsyncSinglePage[CertificateListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=CertificateListResponse,
         )
 
-    async def delete(self,
-    certificate_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CertificateDeleteResponse]:
+    async def delete(
+        self,
+        certificate_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificateDeleteResponse]:
         """Deletes a gateway-managed Zero Trust certificate.
 
         A certificate must be
@@ -396,30 +415,34 @@ class AsyncCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not certificate_id:
-          raise ValueError(
-            f'Expected a non-empty value for `certificate_id` but received {certificate_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/gateway/certificates/{certificate_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CertificateDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificateDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CertificateDeleteResponse]], ResultWrapper[CertificateDeleteResponse]),
         )
 
-    async def activate(self,
-    certificate_id: str,
-    *,
-    account_id: str,
-    body: object,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CertificateActivateResponse]:
+    async def activate(
+        self,
+        certificate_id: str,
+        *,
+        account_id: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificateActivateResponse]:
         """
         Binds a single Zero Trust certificate to the edge.
 
@@ -435,31 +458,35 @@ class AsyncCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not certificate_id:
-          raise ValueError(
-            f'Expected a non-empty value for `certificate_id` but received {certificate_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return await self._post(
             f"/accounts/{account_id}/gateway/certificates/{certificate_id}/activate",
             body=await async_maybe_transform(body, certificate_activate_params.CertificateActivateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CertificateActivateResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificateActivateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CertificateActivateResponse]], ResultWrapper[CertificateActivateResponse]),
         )
 
-    async def deactivate(self,
-    certificate_id: str,
-    *,
-    account_id: str,
-    body: object,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CertificateDeactivateResponse]:
+    async def deactivate(
+        self,
+        certificate_id: str,
+        *,
+        account_id: str,
+        body: object,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificateDeactivateResponse]:
         """
         Unbinds a single Zero Trust certificate from the edge
 
@@ -475,30 +502,34 @@ class AsyncCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not certificate_id:
-          raise ValueError(
-            f'Expected a non-empty value for `certificate_id` but received {certificate_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return await self._post(
             f"/accounts/{account_id}/gateway/certificates/{certificate_id}/deactivate",
             body=await async_maybe_transform(body, certificate_deactivate_params.CertificateDeactivateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CertificateDeactivateResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificateDeactivateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CertificateDeactivateResponse]], ResultWrapper[CertificateDeactivateResponse]),
         )
 
-    async def get(self,
-    certificate_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CertificateGetResponse]:
+    async def get(
+        self,
+        certificate_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CertificateGetResponse]:
         """
         Fetches a single Zero Trust certificate.
 
@@ -514,18 +545,21 @@ class AsyncCertificatesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not certificate_id:
-          raise ValueError(
-            f'Expected a non-empty value for `certificate_id` but received {certificate_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `certificate_id` but received {certificate_id!r}")
         return await self._get(
             f"/accounts/{account_id}/gateway/certificates/{certificate_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CertificateGetResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CertificateGetResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CertificateGetResponse]], ResultWrapper[CertificateGetResponse]),
         )
+
 
 class CertificatesResourceWithRawResponse:
     def __init__(self, certificates: CertificatesResource) -> None:
@@ -550,6 +584,7 @@ class CertificatesResourceWithRawResponse:
             certificates.get,
         )
 
+
 class AsyncCertificatesResourceWithRawResponse:
     def __init__(self, certificates: AsyncCertificatesResource) -> None:
         self._certificates = certificates
@@ -573,6 +608,7 @@ class AsyncCertificatesResourceWithRawResponse:
             certificates.get,
         )
 
+
 class CertificatesResourceWithStreamingResponse:
     def __init__(self, certificates: CertificatesResource) -> None:
         self._certificates = certificates
@@ -595,6 +631,7 @@ class CertificatesResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             certificates.get,
         )
+
 
 class AsyncCertificatesResourceWithStreamingResponse:
     def __init__(self, certificates: AsyncCertificatesResource) -> None:

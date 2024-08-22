@@ -2,49 +2,35 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NoneType, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
-
-from ...types.page_shield.policy_create_response import PolicyCreateResponse
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from ..._base_client import make_request_options, AsyncPaginator
-
-from typing_extensions import Literal
-
+from ...pagination import SyncSinglePage, AsyncSinglePage
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.page_shield import policy_create_params, policy_update_params
+from ...types.page_shield.policy_get_response import PolicyGetResponse
+from ...types.page_shield.policy_list_response import PolicyListResponse
+from ...types.page_shield.policy_create_response import PolicyCreateResponse
 from ...types.page_shield.policy_update_response import PolicyUpdateResponse
 
-from ...types.page_shield.policy_list_response import PolicyListResponse
-
-from ...pagination import SyncSinglePage, AsyncSinglePage
-
-from ...types.page_shield.policy_get_response import PolicyGetResponse
-
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.page_shield import policy_create_params
-from ...types.page_shield import policy_update_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["PoliciesResource", "AsyncPoliciesResource"]
+
 
 class PoliciesResource(SyncAPIResource):
     @cached_property
@@ -55,20 +41,22 @@ class PoliciesResource(SyncAPIResource):
     def with_streaming_response(self) -> PoliciesResourceWithStreamingResponse:
         return PoliciesResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    zone_id: str,
-    action: Literal["allow", "log"],
-    description: str,
-    enabled: bool,
-    expression: str,
-    value: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PolicyCreateResponse]:
+    def create(
+        self,
+        *,
+        zone_id: str,
+        action: Literal["allow", "log"],
+        description: str,
+        enabled: bool,
+        expression: str,
+        value: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PolicyCreateResponse]:
         """
         Create a Page Shield policy.
 
@@ -95,37 +83,46 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
             f"/zones/{zone_id}/page_shield/policies",
-            body=maybe_transform({
-                "action": action,
-                "description": description,
-                "enabled": enabled,
-                "expression": expression,
-                "value": value,
-            }, policy_create_params.PolicyCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[PolicyCreateResponse]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "action": action,
+                    "description": description,
+                    "enabled": enabled,
+                    "expression": expression,
+                    "value": value,
+                },
+                policy_create_params.PolicyCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PolicyCreateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[PolicyCreateResponse]], ResultWrapper[PolicyCreateResponse]),
         )
 
-    def update(self,
-    policy_id: str,
-    *,
-    zone_id: str,
-    action: Literal["allow", "log"] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    enabled: bool | NotGiven = NOT_GIVEN,
-    expression: str | NotGiven = NOT_GIVEN,
-    value: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PolicyUpdateResponse]:
+    def update(
+        self,
+        policy_id: str,
+        *,
+        zone_id: str,
+        action: Literal["allow", "log"] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        value: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PolicyUpdateResponse]:
         """
         Update a Page Shield policy by ID.
 
@@ -154,35 +151,42 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not policy_id:
-          raise ValueError(
-            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._put(
             f"/zones/{zone_id}/page_shield/policies/{policy_id}",
-            body=maybe_transform({
-                "action": action,
-                "description": description,
-                "enabled": enabled,
-                "expression": expression,
-                "value": value,
-            }, policy_update_params.PolicyUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[PolicyUpdateResponse]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "action": action,
+                    "description": description,
+                    "enabled": enabled,
+                    "expression": expression,
+                    "value": value,
+                },
+                policy_update_params.PolicyUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PolicyUpdateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[PolicyUpdateResponse]], ResultWrapper[PolicyUpdateResponse]),
         )
 
-    def list(self,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[PolicyListResponse]:
+    def list(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[PolicyListResponse]:
         """
         Lists all Page Shield policies.
 
@@ -198,26 +202,28 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/page_shield/policies",
-            page = SyncSinglePage[PolicyListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=SyncSinglePage[PolicyListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=PolicyListResponse,
         )
 
-    def delete(self,
-    policy_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> None:
+    def delete(
+        self,
+        policy_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
         """
         Delete a Page Shield policy by ID.
 
@@ -235,30 +241,30 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not policy_id:
-          raise ValueError(
-            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return self._delete(
             f"/zones/{zone_id}/page_shield/policies/{policy_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=NoneType,
         )
 
-    def get(self,
-    policy_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PolicyGetResponse]:
+    def get(
+        self,
+        policy_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PolicyGetResponse]:
         """
         Fetches a Page Shield policy by ID.
 
@@ -276,18 +282,21 @@ class PoliciesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not policy_id:
-          raise ValueError(
-            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return self._get(
             f"/zones/{zone_id}/page_shield/policies/{policy_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[PolicyGetResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PolicyGetResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[PolicyGetResponse]], ResultWrapper[PolicyGetResponse]),
         )
+
 
 class AsyncPoliciesResource(AsyncAPIResource):
     @cached_property
@@ -298,20 +307,22 @@ class AsyncPoliciesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncPoliciesResourceWithStreamingResponse:
         return AsyncPoliciesResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    zone_id: str,
-    action: Literal["allow", "log"],
-    description: str,
-    enabled: bool,
-    expression: str,
-    value: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PolicyCreateResponse]:
+    async def create(
+        self,
+        *,
+        zone_id: str,
+        action: Literal["allow", "log"],
+        description: str,
+        enabled: bool,
+        expression: str,
+        value: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PolicyCreateResponse]:
         """
         Create a Page Shield policy.
 
@@ -338,37 +349,46 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/page_shield/policies",
-            body=await async_maybe_transform({
-                "action": action,
-                "description": description,
-                "enabled": enabled,
-                "expression": expression,
-                "value": value,
-            }, policy_create_params.PolicyCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[PolicyCreateResponse]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "action": action,
+                    "description": description,
+                    "enabled": enabled,
+                    "expression": expression,
+                    "value": value,
+                },
+                policy_create_params.PolicyCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PolicyCreateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[PolicyCreateResponse]], ResultWrapper[PolicyCreateResponse]),
         )
 
-    async def update(self,
-    policy_id: str,
-    *,
-    zone_id: str,
-    action: Literal["allow", "log"] | NotGiven = NOT_GIVEN,
-    description: str | NotGiven = NOT_GIVEN,
-    enabled: bool | NotGiven = NOT_GIVEN,
-    expression: str | NotGiven = NOT_GIVEN,
-    value: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PolicyUpdateResponse]:
+    async def update(
+        self,
+        policy_id: str,
+        *,
+        zone_id: str,
+        action: Literal["allow", "log"] | NotGiven = NOT_GIVEN,
+        description: str | NotGiven = NOT_GIVEN,
+        enabled: bool | NotGiven = NOT_GIVEN,
+        expression: str | NotGiven = NOT_GIVEN,
+        value: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PolicyUpdateResponse]:
         """
         Update a Page Shield policy by ID.
 
@@ -397,35 +417,42 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not policy_id:
-          raise ValueError(
-            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._put(
             f"/zones/{zone_id}/page_shield/policies/{policy_id}",
-            body=await async_maybe_transform({
-                "action": action,
-                "description": description,
-                "enabled": enabled,
-                "expression": expression,
-                "value": value,
-            }, policy_update_params.PolicyUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[PolicyUpdateResponse]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "action": action,
+                    "description": description,
+                    "enabled": enabled,
+                    "expression": expression,
+                    "value": value,
+                },
+                policy_update_params.PolicyUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PolicyUpdateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[PolicyUpdateResponse]], ResultWrapper[PolicyUpdateResponse]),
         )
 
-    def list(self,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[PolicyListResponse, AsyncSinglePage[PolicyListResponse]]:
+    def list(
+        self,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[PolicyListResponse, AsyncSinglePage[PolicyListResponse]]:
         """
         Lists all Page Shield policies.
 
@@ -441,26 +468,28 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._get_api_list(
             f"/zones/{zone_id}/page_shield/policies",
-            page = AsyncSinglePage[PolicyListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=AsyncSinglePage[PolicyListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=PolicyListResponse,
         )
 
-    async def delete(self,
-    policy_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> None:
+    async def delete(
+        self,
+        policy_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> None:
         """
         Delete a Page Shield policy by ID.
 
@@ -478,30 +507,30 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not policy_id:
-          raise ValueError(
-            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
         return await self._delete(
             f"/zones/{zone_id}/page_shield/policies/{policy_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             cast_to=NoneType,
         )
 
-    async def get(self,
-    policy_id: str,
-    *,
-    zone_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PolicyGetResponse]:
+    async def get(
+        self,
+        policy_id: str,
+        *,
+        zone_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PolicyGetResponse]:
         """
         Fetches a Page Shield policy by ID.
 
@@ -519,18 +548,21 @@ class AsyncPoliciesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         if not policy_id:
-          raise ValueError(
-            f'Expected a non-empty value for `policy_id` but received {policy_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `policy_id` but received {policy_id!r}")
         return await self._get(
             f"/zones/{zone_id}/page_shield/policies/{policy_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[PolicyGetResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PolicyGetResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[PolicyGetResponse]], ResultWrapper[PolicyGetResponse]),
         )
+
 
 class PoliciesResourceWithRawResponse:
     def __init__(self, policies: PoliciesResource) -> None:
@@ -552,6 +584,7 @@ class PoliciesResourceWithRawResponse:
             policies.get,
         )
 
+
 class AsyncPoliciesResourceWithRawResponse:
     def __init__(self, policies: AsyncPoliciesResource) -> None:
         self._policies = policies
@@ -572,6 +605,7 @@ class AsyncPoliciesResourceWithRawResponse:
             policies.get,
         )
 
+
 class PoliciesResourceWithStreamingResponse:
     def __init__(self, policies: PoliciesResource) -> None:
         self._policies = policies
@@ -591,6 +625,7 @@ class PoliciesResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             policies.get,
         )
+
 
 class AsyncPoliciesResourceWithStreamingResponse:
     def __init__(self, policies: AsyncPoliciesResource) -> None:

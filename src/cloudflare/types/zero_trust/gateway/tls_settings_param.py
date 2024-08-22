@@ -6,6 +6,7 @@ from typing_extensions import TypedDict
 
 __all__ = ["TLSSettingsParam"]
 
+
 class TLSSettingsParam(TypedDict, total=False):
     enabled: bool
     """Enable inspecting encrypted HTTP traffic."""

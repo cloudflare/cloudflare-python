@@ -2,16 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Annotated, Literal
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ...._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ...._types import FileTypes
 from ...._utils import PropertyInfo
 
 __all__ = ["VariantEditParams", "Options"]
+
 
 class VariantEditParams(TypedDict, total=False):
     account_id: Required[str]
@@ -25,6 +21,7 @@ class VariantEditParams(TypedDict, total=False):
     Indicates whether the variant can access an image without a signature,
     regardless of image access control.
     """
+
 
 class Options(TypedDict, total=False):
     fit: Required[Literal["scale-down", "contain", "cover", "crop", "pad"]]

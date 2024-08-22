@@ -2,20 +2,14 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Annotated, Literal
-
 from typing import Union
-
 from datetime import datetime
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
-from ..._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
 from ..._utils import PropertyInfo
 
 __all__ = ["RequestListParams"]
+
 
 class RequestListParams(TypedDict, total=False):
     page: Required[int]
@@ -24,16 +18,16 @@ class RequestListParams(TypedDict, total=False):
     per_page: Required[int]
     """Number of results per page"""
 
-    completed_after: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
+    completed_after: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Retrieve requests completed after this time"""
 
-    completed_before: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
+    completed_before: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Retrieve requests completed before this time"""
 
-    created_after: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
+    created_after: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Retrieve requests created after this time"""
 
-    created_before: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
+    created_before: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Retrieve requests created before this time"""
 
     request_type: str

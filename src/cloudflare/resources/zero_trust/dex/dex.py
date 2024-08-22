@@ -2,35 +2,66 @@
 
 from __future__ import annotations
 
-from .colos import ColosResource, AsyncColosResource
-
+from .colos import (
+    ColosResource,
+    AsyncColosResource,
+    ColosResourceWithRawResponse,
+    AsyncColosResourceWithRawResponse,
+    ColosResourceWithStreamingResponse,
+    AsyncColosResourceWithStreamingResponse,
+)
+from .tests import (
+    TestsResource,
+    AsyncTestsResource,
+    TestsResourceWithRawResponse,
+    AsyncTestsResourceWithRawResponse,
+    TestsResourceWithStreamingResponse,
+    AsyncTestsResourceWithStreamingResponse,
+)
 from ...._compat import cached_property
-
-from .fleet_status.fleet_status import FleetStatusResource, AsyncFleetStatusResource
-
-from .http_tests.http_tests import HTTPTestsResource, AsyncHTTPTestsResource
-
+from .http_tests import (
+    HTTPTestsResource,
+    AsyncHTTPTestsResource,
+    HTTPTestsResourceWithRawResponse,
+    AsyncHTTPTestsResourceWithRawResponse,
+    HTTPTestsResourceWithStreamingResponse,
+    AsyncHTTPTestsResourceWithStreamingResponse,
+)
 from .tests.tests import TestsResource, AsyncTestsResource
-
-from .traceroute_test_results.traceroute_test_results import TracerouteTestResultsResource, AsyncTracerouteTestResultsResource
-
-from .traceroute_tests import TracerouteTestsResource, AsyncTracerouteTestsResource
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
 from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from .colos import ColosResource, AsyncColosResource, ColosResourceWithRawResponse, AsyncColosResourceWithRawResponse, ColosResourceWithStreamingResponse, AsyncColosResourceWithStreamingResponse
-from .fleet_status import FleetStatusResource, AsyncFleetStatusResource, FleetStatusResourceWithRawResponse, AsyncFleetStatusResourceWithRawResponse, FleetStatusResourceWithStreamingResponse, AsyncFleetStatusResourceWithStreamingResponse
-from .http_tests import HTTPTestsResource, AsyncHTTPTestsResource, HTTPTestsResourceWithRawResponse, AsyncHTTPTestsResourceWithRawResponse, HTTPTestsResourceWithStreamingResponse, AsyncHTTPTestsResourceWithStreamingResponse
-from .tests import TestsResource, AsyncTestsResource, TestsResourceWithRawResponse, AsyncTestsResourceWithRawResponse, TestsResourceWithStreamingResponse, AsyncTestsResourceWithStreamingResponse
-from .traceroute_test_results import TracerouteTestResultsResource, AsyncTracerouteTestResultsResource, TracerouteTestResultsResourceWithRawResponse, AsyncTracerouteTestResultsResourceWithRawResponse, TracerouteTestResultsResourceWithStreamingResponse, AsyncTracerouteTestResultsResourceWithStreamingResponse
-from .traceroute_tests import TracerouteTestsResource, AsyncTracerouteTestsResource, TracerouteTestsResourceWithRawResponse, AsyncTracerouteTestsResourceWithRawResponse, TracerouteTestsResourceWithStreamingResponse, AsyncTracerouteTestsResourceWithStreamingResponse
+from .fleet_status import (
+    FleetStatusResource,
+    AsyncFleetStatusResource,
+    FleetStatusResourceWithRawResponse,
+    AsyncFleetStatusResourceWithRawResponse,
+    FleetStatusResourceWithStreamingResponse,
+    AsyncFleetStatusResourceWithStreamingResponse,
+)
+from .traceroute_tests import (
+    TracerouteTestsResource,
+    AsyncTracerouteTestsResource,
+    TracerouteTestsResourceWithRawResponse,
+    AsyncTracerouteTestsResourceWithRawResponse,
+    TracerouteTestsResourceWithStreamingResponse,
+    AsyncTracerouteTestsResourceWithStreamingResponse,
+)
+from .http_tests.http_tests import HTTPTestsResource, AsyncHTTPTestsResource
+from .traceroute_test_results import (
+    TracerouteTestResultsResource,
+    AsyncTracerouteTestResultsResource,
+    TracerouteTestResultsResourceWithRawResponse,
+    AsyncTracerouteTestResultsResourceWithRawResponse,
+    TracerouteTestResultsResourceWithStreamingResponse,
+    AsyncTracerouteTestResultsResourceWithStreamingResponse,
+)
+from .fleet_status.fleet_status import FleetStatusResource, AsyncFleetStatusResource
+from .traceroute_test_results.traceroute_test_results import (
+    TracerouteTestResultsResource,
+    AsyncTracerouteTestResultsResource,
+)
 
 __all__ = ["DEXResource", "AsyncDEXResource"]
+
 
 class DEXResource(SyncAPIResource):
     @cached_property
@@ -65,6 +96,7 @@ class DEXResource(SyncAPIResource):
     def with_streaming_response(self) -> DEXResourceWithStreamingResponse:
         return DEXResourceWithStreamingResponse(self)
 
+
 class AsyncDEXResource(AsyncAPIResource):
     @cached_property
     def colos(self) -> AsyncColosResource:
@@ -98,6 +130,7 @@ class AsyncDEXResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncDEXResourceWithStreamingResponse:
         return AsyncDEXResourceWithStreamingResponse(self)
 
+
 class DEXResourceWithRawResponse:
     def __init__(self, dex: DEXResource) -> None:
         self._dex = dex
@@ -125,6 +158,7 @@ class DEXResourceWithRawResponse:
     @cached_property
     def traceroute_tests(self) -> TracerouteTestsResourceWithRawResponse:
         return TracerouteTestsResourceWithRawResponse(self._dex.traceroute_tests)
+
 
 class AsyncDEXResourceWithRawResponse:
     def __init__(self, dex: AsyncDEXResource) -> None:
@@ -154,6 +188,7 @@ class AsyncDEXResourceWithRawResponse:
     def traceroute_tests(self) -> AsyncTracerouteTestsResourceWithRawResponse:
         return AsyncTracerouteTestsResourceWithRawResponse(self._dex.traceroute_tests)
 
+
 class DEXResourceWithStreamingResponse:
     def __init__(self, dex: DEXResource) -> None:
         self._dex = dex
@@ -181,6 +216,7 @@ class DEXResourceWithStreamingResponse:
     @cached_property
     def traceroute_tests(self) -> TracerouteTestsResourceWithStreamingResponse:
         return TracerouteTestsResourceWithStreamingResponse(self._dex.traceroute_tests)
+
 
 class AsyncDEXResourceWithStreamingResponse:
     def __init__(self, dex: AsyncDEXResource) -> None:

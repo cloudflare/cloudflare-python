@@ -1,18 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
+from datetime import datetime
+from typing_extensions import Literal
+
 from ..._models import BaseModel
 
-from typing import Optional
-
-from typing_extensions import Literal
-
-from datetime import datetime
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["SecurityHeaders", "Value", "ValueStrictTransportSecurity"]
+
 
 class ValueStrictTransportSecurity(BaseModel):
     enabled: Optional[bool] = None
@@ -30,9 +25,11 @@ class ValueStrictTransportSecurity(BaseModel):
     preload: Optional[bool] = None
     """Enable automatic preload of the HSTS configuration."""
 
+
 class Value(BaseModel):
     strict_transport_security: Optional[ValueStrictTransportSecurity] = None
     """Strict Transport Security."""
+
 
 class SecurityHeaders(BaseModel):
     id: Literal["security_header"]

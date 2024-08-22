@@ -1,14 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ....._models import BaseModel
-
 from typing import List
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ....._models import BaseModel
 
 __all__ = ["EventListResponse", "Result", "ResultASNInfo", "ResultEvent", "ResultEventTag", "ResultInfo"]
+
 
 class ResultASNInfo(BaseModel):
     asn: int
@@ -17,10 +14,12 @@ class ResultASNInfo(BaseModel):
 
     org_name: str
 
+
 class ResultEventTag(BaseModel):
     name: str
 
     score: int
+
 
 class ResultEvent(BaseModel):
     id: int
@@ -59,12 +58,14 @@ class ResultEvent(BaseModel):
 
     victim_countries: List[str]
 
+
 class Result(BaseModel):
     asn_info: List[ResultASNInfo]
 
     events: List[ResultEvent]
 
     total_monitors: int
+
 
 class ResultInfo(BaseModel):
     count: int
@@ -74,6 +75,7 @@ class ResultInfo(BaseModel):
     per_page: int
 
     total_count: int
+
 
 class EventListResponse(BaseModel):
     result: Result

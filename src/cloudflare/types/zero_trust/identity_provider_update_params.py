@@ -2,22 +2,41 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal, TypeAlias
+from typing import List, Union, Iterable
+from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .identity_provider_type import IdentityProviderType
-
+from .generic_oauth_config_param import GenericOAuthConfigParam
 from .identity_provider_scim_config_param import IdentityProviderSCIMConfigParam
 
-from typing import List, Iterable
+__all__ = [
+    "IdentityProviderUpdateParams",
+    "AzureAD",
+    "AzureADConfig",
+    "AccessCentrify",
+    "AccessCentrifyConfig",
+    "AccessFacebook",
+    "AccessGitHub",
+    "AccessGoogle",
+    "AccessGoogleConfig",
+    "AccessGoogleApps",
+    "AccessGoogleAppsConfig",
+    "AccessLinkedin",
+    "AccessOIDC",
+    "AccessOIDCConfig",
+    "AccessOkta",
+    "AccessOktaConfig",
+    "AccessOnelogin",
+    "AccessOneloginConfig",
+    "AccessPingone",
+    "AccessPingoneConfig",
+    "AccessSAML",
+    "AccessSAMLConfig",
+    "AccessSAMLConfigHeaderAttribute",
+    "AccessYandex",
+    "AccessOnetimepin",
+]
 
-from .generic_oauth_config_param import GenericOAuthConfigParam
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-
-__all__ = ["IdentityProviderUpdateParams", "AzureAD", "AzureADConfig", "AccessCentrify", "AccessCentrifyConfig", "AccessFacebook", "AccessGitHub", "AccessGoogle", "AccessGoogleConfig", "AccessGoogleApps", "AccessGoogleAppsConfig", "AccessLinkedin", "AccessOIDC", "AccessOIDCConfig", "AccessOkta", "AccessOktaConfig", "AccessOnelogin", "AccessOneloginConfig", "AccessPingone", "AccessPingoneConfig", "AccessSAML", "AccessSAMLConfig", "AccessSAMLConfigHeaderAttribute", "AccessYandex", "AccessOnetimepin"]
 
 class AzureAD(TypedDict, total=False):
     config: Required[AzureADConfig]
@@ -51,6 +70,7 @@ class AzureAD(TypedDict, total=False):
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
+
 
 class AzureADConfig(TypedDict, total=False):
     claims: List[str]
@@ -87,6 +107,7 @@ class AzureADConfig(TypedDict, total=False):
     support_groups: bool
     """Should Cloudflare try to load groups from your account"""
 
+
 class AccessCentrify(TypedDict, total=False):
     config: Required[AccessCentrifyConfig]
     """The configuration parameters for the identity provider.
@@ -120,6 +141,7 @@ class AccessCentrify(TypedDict, total=False):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessCentrifyConfig(TypedDict, total=False):
     centrify_account: str
     """Your centrify account url"""
@@ -138,6 +160,7 @@ class AccessCentrifyConfig(TypedDict, total=False):
 
     email_claim_name: str
     """The claim name for email in the id_token response."""
+
 
 class AccessFacebook(TypedDict, total=False):
     config: Required[GenericOAuthConfigParam]
@@ -172,6 +195,7 @@ class AccessFacebook(TypedDict, total=False):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessGitHub(TypedDict, total=False):
     config: Required[GenericOAuthConfigParam]
     """The configuration parameters for the identity provider.
@@ -204,6 +228,7 @@ class AccessGitHub(TypedDict, total=False):
     The configuration settings for enabling a System for Cross-Domain Identity
     Management (SCIM) with the identity provider.
     """
+
 
 class AccessGoogle(TypedDict, total=False):
     config: Required[AccessGoogleConfig]
@@ -238,6 +263,7 @@ class AccessGoogle(TypedDict, total=False):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessGoogleConfig(TypedDict, total=False):
     claims: List[str]
     """Custom claims"""
@@ -250,6 +276,7 @@ class AccessGoogleConfig(TypedDict, total=False):
 
     email_claim_name: str
     """The claim name for email in the id_token response."""
+
 
 class AccessGoogleApps(TypedDict, total=False):
     config: Required[AccessGoogleAppsConfig]
@@ -284,6 +311,7 @@ class AccessGoogleApps(TypedDict, total=False):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessGoogleAppsConfig(TypedDict, total=False):
     apps_domain: str
     """Your companies TLD"""
@@ -299,6 +327,7 @@ class AccessGoogleAppsConfig(TypedDict, total=False):
 
     email_claim_name: str
     """The claim name for email in the id_token response."""
+
 
 class AccessLinkedin(TypedDict, total=False):
     config: Required[GenericOAuthConfigParam]
@@ -333,6 +362,7 @@ class AccessLinkedin(TypedDict, total=False):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessOIDC(TypedDict, total=False):
     config: Required[AccessOIDCConfig]
     """The configuration parameters for the identity provider.
@@ -366,6 +396,7 @@ class AccessOIDC(TypedDict, total=False):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessOIDCConfig(TypedDict, total=False):
     auth_url: str
     """The authorization_endpoint URL of your IdP"""
@@ -390,6 +421,7 @@ class AccessOIDCConfig(TypedDict, total=False):
 
     token_url: str
     """The token_endpoint URL of your IdP"""
+
 
 class AccessOkta(TypedDict, total=False):
     config: Required[AccessOktaConfig]
@@ -424,6 +456,7 @@ class AccessOkta(TypedDict, total=False):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessOktaConfig(TypedDict, total=False):
     authorization_server_id: str
     """Your okta authorization server id"""
@@ -442,6 +475,7 @@ class AccessOktaConfig(TypedDict, total=False):
 
     okta_account: str
     """Your okta account url"""
+
 
 class AccessOnelogin(TypedDict, total=False):
     config: Required[AccessOneloginConfig]
@@ -476,6 +510,7 @@ class AccessOnelogin(TypedDict, total=False):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessOneloginConfig(TypedDict, total=False):
     claims: List[str]
     """Custom claims"""
@@ -491,6 +526,7 @@ class AccessOneloginConfig(TypedDict, total=False):
 
     onelogin_account: str
     """Your OneLogin account url"""
+
 
 class AccessPingone(TypedDict, total=False):
     config: Required[AccessPingoneConfig]
@@ -525,6 +561,7 @@ class AccessPingone(TypedDict, total=False):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessPingoneConfig(TypedDict, total=False):
     claims: List[str]
     """Custom claims"""
@@ -540,6 +577,7 @@ class AccessPingoneConfig(TypedDict, total=False):
 
     ping_env_id: str
     """Your PingOne environment identifier"""
+
 
 class AccessSAML(TypedDict, total=False):
     config: Required[AccessSAMLConfig]
@@ -574,12 +612,14 @@ class AccessSAML(TypedDict, total=False):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessSAMLConfigHeaderAttribute(TypedDict, total=False):
     attribute_name: str
     """attribute name from the IDP"""
 
     header_name: str
     """header that will be added on the request to the origin"""
+
 
 class AccessSAMLConfig(TypedDict, total=False):
     attributes: List[str]
@@ -611,6 +651,7 @@ class AccessSAMLConfig(TypedDict, total=False):
 
     sso_target_url: str
     """URL to send the SAML authentication requests to"""
+
 
 class AccessYandex(TypedDict, total=False):
     config: Required[GenericOAuthConfigParam]
@@ -645,6 +686,7 @@ class AccessYandex(TypedDict, total=False):
     Management (SCIM) with the identity provider.
     """
 
+
 class AccessOnetimepin(TypedDict, total=False):
     config: Required[object]
     """The configuration parameters for the identity provider.
@@ -678,4 +720,20 @@ class AccessOnetimepin(TypedDict, total=False):
     Management (SCIM) with the identity provider.
     """
 
-IdentityProviderUpdateParams: TypeAlias = Union[AzureAD, AccessCentrify, AccessFacebook, AccessGitHub, AccessGoogle, AccessGoogleApps, AccessLinkedin, AccessOIDC, AccessOkta, AccessOnelogin, AccessPingone, AccessSAML, AccessYandex, AccessOnetimepin]
+
+IdentityProviderUpdateParams: TypeAlias = Union[
+    AzureAD,
+    AccessCentrify,
+    AccessFacebook,
+    AccessGitHub,
+    AccessGoogle,
+    AccessGoogleApps,
+    AccessLinkedin,
+    AccessOIDC,
+    AccessOkta,
+    AccessOnelogin,
+    AccessPingone,
+    AccessSAML,
+    AccessYandex,
+    AccessOnetimepin,
+]

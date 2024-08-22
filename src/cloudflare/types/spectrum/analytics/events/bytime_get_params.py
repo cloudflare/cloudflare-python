@@ -2,22 +2,15 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Literal, Annotated
-
 from typing import List, Union
+from datetime import datetime
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
+from ....._utils import PropertyInfo
 from ..dimension import Dimension
 
-from datetime import datetime
-
-from ....._utils import PropertyInfo
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ....._types import FileTypes
-from ....._utils import PropertyInfo
-
 __all__ = ["BytimeGetParams"]
+
 
 class BytimeGetParams(TypedDict, total=False):
     zone_id: Required[str]
@@ -57,7 +50,9 @@ class BytimeGetParams(TypedDict, total=False):
     | \\<<=      | Less than or equal to    | %3C%3D      |
     """
 
-    metrics: List[Literal["count", "bytesIngress", "bytesEgress", "durationAvg", "durationMedian", "duration90th", "duration99th"]]
+    metrics: List[
+        Literal["count", "bytesIngress", "bytesEgress", "durationAvg", "durationMedian", "duration90th", "duration99th"]
+    ]
     """One or more metrics to compute. Options are:
 
     | Metric         | Name                                | Example | Unit                  |
@@ -71,7 +66,7 @@ class BytimeGetParams(TypedDict, total=False):
     | duration99th   | 99th percentile connection duration | 1.0     | Time in milliseconds. |
     """
 
-    since: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
+    since: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Start of time interval to query, defaults to `until` - 6 hours.
 
     Timestamp must be in RFC3339 format and uses UTC unless otherwise specified.
@@ -83,7 +78,7 @@ class BytimeGetParams(TypedDict, total=False):
     `dimensions`.
     """
 
-    until: Annotated[Union[str, datetime], PropertyInfo(format = "iso8601")]
+    until: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """End of time interval to query, defaults to current time.
 
     Timestamp must be in RFC3339 format and uses UTC unless otherwise specified.

@@ -2,48 +2,63 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Iterable, Optional, cast, overload
+
 import httpx
 
-from .cache_reserve import CacheReserveResource, AsyncCacheReserveResource
-
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    required_args,
+    maybe_transform,
+    async_maybe_transform,
+)
+from .variants import (
+    VariantsResource,
+    AsyncVariantsResource,
+    VariantsResourceWithRawResponse,
+    AsyncVariantsResourceWithRawResponse,
+    VariantsResourceWithStreamingResponse,
+    AsyncVariantsResourceWithStreamingResponse,
+)
 from ..._compat import cached_property
-
-from .smart_tiered_cache import SmartTieredCacheResource, AsyncSmartTieredCacheResource
-
-from .variants import VariantsResource, AsyncVariantsResource
-
-from .regional_tiered_cache import RegionalTieredCacheResource, AsyncRegionalTieredCacheResource
-
-from typing import List, Optional, Iterable, Type
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..._wrappers import ResultWrapper
+from ...types.cache import cache_purge_params
+from .cache_reserve import (
+    CacheReserveResource,
+    AsyncCacheReserveResource,
+    CacheReserveResourceWithRawResponse,
+    AsyncCacheReserveResourceWithRawResponse,
+    CacheReserveResourceWithStreamingResponse,
+    AsyncCacheReserveResourceWithStreamingResponse,
+)
+from ..._base_client import make_request_options
+from .smart_tiered_cache import (
+    SmartTieredCacheResource,
+    AsyncSmartTieredCacheResource,
+    SmartTieredCacheResourceWithRawResponse,
+    AsyncSmartTieredCacheResourceWithRawResponse,
+    SmartTieredCacheResourceWithStreamingResponse,
+    AsyncSmartTieredCacheResourceWithStreamingResponse,
+)
+from .regional_tiered_cache import (
+    RegionalTieredCacheResource,
+    AsyncRegionalTieredCacheResource,
+    RegionalTieredCacheResourceWithRawResponse,
+    AsyncRegionalTieredCacheResourceWithRawResponse,
+    RegionalTieredCacheResourceWithStreamingResponse,
+    AsyncRegionalTieredCacheResourceWithStreamingResponse,
+)
 from ...types.cache.cache_purge_response import CachePurgeResponse
 
-from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from ..._base_client import make_request_options
-
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-from ...types.cache import cache_purge_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.cache import cache_purge_params
-from .cache_reserve import CacheReserveResource, AsyncCacheReserveResource, CacheReserveResourceWithRawResponse, AsyncCacheReserveResourceWithRawResponse, CacheReserveResourceWithStreamingResponse, AsyncCacheReserveResourceWithStreamingResponse
-from .smart_tiered_cache import SmartTieredCacheResource, AsyncSmartTieredCacheResource, SmartTieredCacheResourceWithRawResponse, AsyncSmartTieredCacheResourceWithRawResponse, SmartTieredCacheResourceWithStreamingResponse, AsyncSmartTieredCacheResourceWithStreamingResponse
-from .variants import VariantsResource, AsyncVariantsResource, VariantsResourceWithRawResponse, AsyncVariantsResourceWithRawResponse, VariantsResourceWithStreamingResponse, AsyncVariantsResourceWithStreamingResponse
-from .regional_tiered_cache import RegionalTieredCacheResource, AsyncRegionalTieredCacheResource, RegionalTieredCacheResourceWithRawResponse, AsyncRegionalTieredCacheResourceWithRawResponse, RegionalTieredCacheResourceWithStreamingResponse, AsyncRegionalTieredCacheResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-
 __all__ = ["CacheResource", "AsyncCacheResource"]
+
 
 class CacheResource(SyncAPIResource):
     @cached_property
@@ -71,16 +86,18 @@ class CacheResource(SyncAPIResource):
         return CacheResourceWithStreamingResponse(self)
 
     @overload
-    def purge(self,
-    *,
-    zone_id: str,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CachePurgeResponse]:
+    def purge(
+        self,
+        *,
+        zone_id: str,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
         Removes ALL files from Cloudflare's cache.
@@ -118,7 +135,18 @@ class CacheResource(SyncAPIResource):
         Single file purge example with url and header pairs:
 
         ```
-        {"files": [{url: "http://www.example.com/cat_picture.jpg", headers: { "CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN" }}, {url: "http://www.example.com/dog_picture.jpg", headers: { "CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US" }}]}
+        {
+            "files": [
+                {
+                    url: "http://www.example.com/cat_picture.jpg",
+                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                },
+                {
+                    url: "http://www.example.com/dog_picture.jpg",
+                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                },
+            ]
+        }
         ```
 
         ### Purge Cached Content by Tag, Host or Prefix
@@ -163,17 +191,20 @@ class CacheResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def purge(self,
-    *,
-    zone_id: str,
-    hosts: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CachePurgeResponse]:
+    def purge(
+        self,
+        *,
+        zone_id: str,
+        hosts: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
         Removes ALL files from Cloudflare's cache.
@@ -211,7 +242,18 @@ class CacheResource(SyncAPIResource):
         Single file purge example with url and header pairs:
 
         ```
-        {"files": [{url: "http://www.example.com/cat_picture.jpg", headers: { "CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN" }}, {url: "http://www.example.com/dog_picture.jpg", headers: { "CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US" }}]}
+        {
+            "files": [
+                {
+                    url: "http://www.example.com/cat_picture.jpg",
+                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                },
+                {
+                    url: "http://www.example.com/dog_picture.jpg",
+                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                },
+            ]
+        }
         ```
 
         ### Purge Cached Content by Tag, Host or Prefix
@@ -256,17 +298,20 @@ class CacheResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def purge(self,
-    *,
-    zone_id: str,
-    prefixes: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CachePurgeResponse]:
+    def purge(
+        self,
+        *,
+        zone_id: str,
+        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
         Removes ALL files from Cloudflare's cache.
@@ -304,7 +349,18 @@ class CacheResource(SyncAPIResource):
         Single file purge example with url and header pairs:
 
         ```
-        {"files": [{url: "http://www.example.com/cat_picture.jpg", headers: { "CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN" }}, {url: "http://www.example.com/dog_picture.jpg", headers: { "CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US" }}]}
+        {
+            "files": [
+                {
+                    url: "http://www.example.com/cat_picture.jpg",
+                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                },
+                {
+                    url: "http://www.example.com/dog_picture.jpg",
+                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                },
+            ]
+        }
         ```
 
         ### Purge Cached Content by Tag, Host or Prefix
@@ -349,17 +405,20 @@ class CacheResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def purge(self,
-    *,
-    zone_id: str,
-    purge_everything: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CachePurgeResponse]:
+    def purge(
+        self,
+        *,
+        zone_id: str,
+        purge_everything: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
         Removes ALL files from Cloudflare's cache.
@@ -397,7 +456,18 @@ class CacheResource(SyncAPIResource):
         Single file purge example with url and header pairs:
 
         ```
-        {"files": [{url: "http://www.example.com/cat_picture.jpg", headers: { "CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN" }}, {url: "http://www.example.com/dog_picture.jpg", headers: { "CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US" }}]}
+        {
+            "files": [
+                {
+                    url: "http://www.example.com/cat_picture.jpg",
+                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                },
+                {
+                    url: "http://www.example.com/dog_picture.jpg",
+                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                },
+            ]
+        }
         ```
 
         ### Purge Cached Content by Tag, Host or Prefix
@@ -442,17 +512,20 @@ class CacheResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def purge(self,
-    *,
-    zone_id: str,
-    files: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CachePurgeResponse]:
+    def purge(
+        self,
+        *,
+        zone_id: str,
+        files: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
         Removes ALL files from Cloudflare's cache.
@@ -490,7 +563,18 @@ class CacheResource(SyncAPIResource):
         Single file purge example with url and header pairs:
 
         ```
-        {"files": [{url: "http://www.example.com/cat_picture.jpg", headers: { "CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN" }}, {url: "http://www.example.com/dog_picture.jpg", headers: { "CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US" }}]}
+        {
+            "files": [
+                {
+                    url: "http://www.example.com/cat_picture.jpg",
+                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                },
+                {
+                    url: "http://www.example.com/dog_picture.jpg",
+                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                },
+            ]
+        }
         ```
 
         ### Purge Cached Content by Tag, Host or Prefix
@@ -535,17 +619,20 @@ class CacheResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    def purge(self,
-    *,
-    zone_id: str,
-    files: Iterable[cache_purge_params.CachePurgeSingleFileWithURLAndHeadersFile] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CachePurgeResponse]:
+    def purge(
+        self,
+        *,
+        zone_id: str,
+        files: Iterable[cache_purge_params.CachePurgeSingleFileWithURLAndHeadersFile] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
         Removes ALL files from Cloudflare's cache.
@@ -583,7 +670,18 @@ class CacheResource(SyncAPIResource):
         Single file purge example with url and header pairs:
 
         ```
-        {"files": [{url: "http://www.example.com/cat_picture.jpg", headers: { "CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN" }}, {url: "http://www.example.com/dog_picture.jpg", headers: { "CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US" }}]}
+        {
+            "files": [
+                {
+                    url: "http://www.example.com/cat_picture.jpg",
+                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                },
+                {
+                    url: "http://www.example.com/dog_picture.jpg",
+                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                },
+            ]
+        }
         ```
 
         ### Purge Cached Content by Tag, Host or Prefix
@@ -628,37 +726,50 @@ class CacheResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @required_args(["zone_id"])
-    def purge(self,
-    *,
-    zone_id: str,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    hosts: List[str] | NotGiven = NOT_GIVEN,
-    prefixes: List[str] | NotGiven = NOT_GIVEN,
-    purge_everything: bool | NotGiven = NOT_GIVEN,
-    files: List[str] | Iterable[cache_purge_params.CachePurgeSingleFileWithURLAndHeadersFile] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CachePurgeResponse]:
+    def purge(
+        self,
+        *,
+        zone_id: str,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        hosts: List[str] | NotGiven = NOT_GIVEN,
+        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        purge_everything: bool | NotGiven = NOT_GIVEN,
+        files: List[str]
+        | Iterable[cache_purge_params.CachePurgeSingleFileWithURLAndHeadersFile]
+        | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return self._post(
             f"/zones/{zone_id}/purge_cache",
-            body=maybe_transform({
-                "tags": tags,
-                "hosts": hosts,
-                "prefixes": prefixes,
-                "purge_everything": purge_everything,
-                "files": files,
-            }, cache_purge_params.CachePurgeParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CachePurgeResponse]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "tags": tags,
+                    "hosts": hosts,
+                    "prefixes": prefixes,
+                    "purge_everything": purge_everything,
+                    "files": files,
+                },
+                cache_purge_params.CachePurgeParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CachePurgeResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CachePurgeResponse]], ResultWrapper[CachePurgeResponse]),
         )
+
 
 class AsyncCacheResource(AsyncAPIResource):
     @cached_property
@@ -686,16 +797,18 @@ class AsyncCacheResource(AsyncAPIResource):
         return AsyncCacheResourceWithStreamingResponse(self)
 
     @overload
-    async def purge(self,
-    *,
-    zone_id: str,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CachePurgeResponse]:
+    async def purge(
+        self,
+        *,
+        zone_id: str,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
         Removes ALL files from Cloudflare's cache.
@@ -733,7 +846,18 @@ class AsyncCacheResource(AsyncAPIResource):
         Single file purge example with url and header pairs:
 
         ```
-        {"files": [{url: "http://www.example.com/cat_picture.jpg", headers: { "CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN" }}, {url: "http://www.example.com/dog_picture.jpg", headers: { "CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US" }}]}
+        {
+            "files": [
+                {
+                    url: "http://www.example.com/cat_picture.jpg",
+                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                },
+                {
+                    url: "http://www.example.com/dog_picture.jpg",
+                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                },
+            ]
+        }
         ```
 
         ### Purge Cached Content by Tag, Host or Prefix
@@ -778,17 +902,20 @@ class AsyncCacheResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def purge(self,
-    *,
-    zone_id: str,
-    hosts: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CachePurgeResponse]:
+    async def purge(
+        self,
+        *,
+        zone_id: str,
+        hosts: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
         Removes ALL files from Cloudflare's cache.
@@ -826,7 +953,18 @@ class AsyncCacheResource(AsyncAPIResource):
         Single file purge example with url and header pairs:
 
         ```
-        {"files": [{url: "http://www.example.com/cat_picture.jpg", headers: { "CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN" }}, {url: "http://www.example.com/dog_picture.jpg", headers: { "CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US" }}]}
+        {
+            "files": [
+                {
+                    url: "http://www.example.com/cat_picture.jpg",
+                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                },
+                {
+                    url: "http://www.example.com/dog_picture.jpg",
+                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                },
+            ]
+        }
         ```
 
         ### Purge Cached Content by Tag, Host or Prefix
@@ -871,17 +1009,20 @@ class AsyncCacheResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def purge(self,
-    *,
-    zone_id: str,
-    prefixes: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CachePurgeResponse]:
+    async def purge(
+        self,
+        *,
+        zone_id: str,
+        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
         Removes ALL files from Cloudflare's cache.
@@ -919,7 +1060,18 @@ class AsyncCacheResource(AsyncAPIResource):
         Single file purge example with url and header pairs:
 
         ```
-        {"files": [{url: "http://www.example.com/cat_picture.jpg", headers: { "CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN" }}, {url: "http://www.example.com/dog_picture.jpg", headers: { "CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US" }}]}
+        {
+            "files": [
+                {
+                    url: "http://www.example.com/cat_picture.jpg",
+                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                },
+                {
+                    url: "http://www.example.com/dog_picture.jpg",
+                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                },
+            ]
+        }
         ```
 
         ### Purge Cached Content by Tag, Host or Prefix
@@ -964,17 +1116,20 @@ class AsyncCacheResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def purge(self,
-    *,
-    zone_id: str,
-    purge_everything: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CachePurgeResponse]:
+    async def purge(
+        self,
+        *,
+        zone_id: str,
+        purge_everything: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
         Removes ALL files from Cloudflare's cache.
@@ -1012,7 +1167,18 @@ class AsyncCacheResource(AsyncAPIResource):
         Single file purge example with url and header pairs:
 
         ```
-        {"files": [{url: "http://www.example.com/cat_picture.jpg", headers: { "CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN" }}, {url: "http://www.example.com/dog_picture.jpg", headers: { "CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US" }}]}
+        {
+            "files": [
+                {
+                    url: "http://www.example.com/cat_picture.jpg",
+                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                },
+                {
+                    url: "http://www.example.com/dog_picture.jpg",
+                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                },
+            ]
+        }
         ```
 
         ### Purge Cached Content by Tag, Host or Prefix
@@ -1057,17 +1223,20 @@ class AsyncCacheResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def purge(self,
-    *,
-    zone_id: str,
-    files: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CachePurgeResponse]:
+    async def purge(
+        self,
+        *,
+        zone_id: str,
+        files: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
         Removes ALL files from Cloudflare's cache.
@@ -1105,7 +1274,18 @@ class AsyncCacheResource(AsyncAPIResource):
         Single file purge example with url and header pairs:
 
         ```
-        {"files": [{url: "http://www.example.com/cat_picture.jpg", headers: { "CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN" }}, {url: "http://www.example.com/dog_picture.jpg", headers: { "CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US" }}]}
+        {
+            "files": [
+                {
+                    url: "http://www.example.com/cat_picture.jpg",
+                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                },
+                {
+                    url: "http://www.example.com/dog_picture.jpg",
+                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                },
+            ]
+        }
         ```
 
         ### Purge Cached Content by Tag, Host or Prefix
@@ -1150,17 +1330,20 @@ class AsyncCacheResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @overload
-    async def purge(self,
-    *,
-    zone_id: str,
-    files: Iterable[cache_purge_params.CachePurgeSingleFileWithURLAndHeadersFile] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CachePurgeResponse]:
+    async def purge(
+        self,
+        *,
+        zone_id: str,
+        files: Iterable[cache_purge_params.CachePurgeSingleFileWithURLAndHeadersFile] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
         """### Purge All Cached Content
 
         Removes ALL files from Cloudflare's cache.
@@ -1198,7 +1381,18 @@ class AsyncCacheResource(AsyncAPIResource):
         Single file purge example with url and header pairs:
 
         ```
-        {"files": [{url: "http://www.example.com/cat_picture.jpg", headers: { "CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN" }}, {url: "http://www.example.com/dog_picture.jpg", headers: { "CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US" }}]}
+        {
+            "files": [
+                {
+                    url: "http://www.example.com/cat_picture.jpg",
+                    headers: {"CF-IPCountry": "US", "CF-Device-Type": "desktop", "Accept-Language": "zh-CN"},
+                },
+                {
+                    url: "http://www.example.com/dog_picture.jpg",
+                    headers: {"CF-IPCountry": "EU", "CF-Device-Type": "mobile", "Accept-Language": "en-US"},
+                },
+            ]
+        }
         ```
 
         ### Purge Cached Content by Tag, Host or Prefix
@@ -1243,37 +1437,50 @@ class AsyncCacheResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         ...
+
     @required_args(["zone_id"])
-    async def purge(self,
-    *,
-    zone_id: str,
-    tags: List[str] | NotGiven = NOT_GIVEN,
-    hosts: List[str] | NotGiven = NOT_GIVEN,
-    prefixes: List[str] | NotGiven = NOT_GIVEN,
-    purge_everything: bool | NotGiven = NOT_GIVEN,
-    files: List[str] | Iterable[cache_purge_params.CachePurgeSingleFileWithURLAndHeadersFile] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[CachePurgeResponse]:
+    async def purge(
+        self,
+        *,
+        zone_id: str,
+        tags: List[str] | NotGiven = NOT_GIVEN,
+        hosts: List[str] | NotGiven = NOT_GIVEN,
+        prefixes: List[str] | NotGiven = NOT_GIVEN,
+        purge_everything: bool | NotGiven = NOT_GIVEN,
+        files: List[str]
+        | Iterable[cache_purge_params.CachePurgeSingleFileWithURLAndHeadersFile]
+        | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[CachePurgeResponse]:
         if not zone_id:
-          raise ValueError(
-            f'Expected a non-empty value for `zone_id` but received {zone_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `zone_id` but received {zone_id!r}")
         return await self._post(
             f"/zones/{zone_id}/purge_cache",
-            body=await async_maybe_transform({
-                "tags": tags,
-                "hosts": hosts,
-                "prefixes": prefixes,
-                "purge_everything": purge_everything,
-                "files": files,
-            }, cache_purge_params.CachePurgeParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[CachePurgeResponse]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "tags": tags,
+                    "hosts": hosts,
+                    "prefixes": prefixes,
+                    "purge_everything": purge_everything,
+                    "files": files,
+                },
+                cache_purge_params.CachePurgeParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[CachePurgeResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[CachePurgeResponse]], ResultWrapper[CachePurgeResponse]),
         )
+
 
 class CacheResourceWithRawResponse:
     def __init__(self, cache: CacheResource) -> None:
@@ -1299,6 +1506,7 @@ class CacheResourceWithRawResponse:
     def regional_tiered_cache(self) -> RegionalTieredCacheResourceWithRawResponse:
         return RegionalTieredCacheResourceWithRawResponse(self._cache.regional_tiered_cache)
 
+
 class AsyncCacheResourceWithRawResponse:
     def __init__(self, cache: AsyncCacheResource) -> None:
         self._cache = cache
@@ -1323,6 +1531,7 @@ class AsyncCacheResourceWithRawResponse:
     def regional_tiered_cache(self) -> AsyncRegionalTieredCacheResourceWithRawResponse:
         return AsyncRegionalTieredCacheResourceWithRawResponse(self._cache.regional_tiered_cache)
 
+
 class CacheResourceWithStreamingResponse:
     def __init__(self, cache: CacheResource) -> None:
         self._cache = cache
@@ -1346,6 +1555,7 @@ class CacheResourceWithStreamingResponse:
     @cached_property
     def regional_tiered_cache(self) -> RegionalTieredCacheResourceWithStreamingResponse:
         return RegionalTieredCacheResourceWithStreamingResponse(self._cache.regional_tiered_cache)
+
 
 class AsyncCacheResourceWithStreamingResponse:
     def __init__(self, cache: AsyncCacheResource) -> None:

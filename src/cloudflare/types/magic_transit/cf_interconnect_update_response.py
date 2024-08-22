@@ -1,20 +1,19 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
 from typing import Optional
-
-from .health_check_rate import HealthCheckRate
-
-from .health_check_type import HealthCheckType
-
 from datetime import datetime
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ..._models import BaseModel
+from .health_check_rate import HealthCheckRate
+from .health_check_type import HealthCheckType
 
-__all__ = ["CfInterconnectUpdateResponse", "ModifiedInterconnect", "ModifiedInterconnectGRE", "ModifiedInterconnectHealthCheck"]
+__all__ = [
+    "CfInterconnectUpdateResponse",
+    "ModifiedInterconnect",
+    "ModifiedInterconnectGRE",
+    "ModifiedInterconnectHealthCheck",
+]
+
 
 class ModifiedInterconnectGRE(BaseModel):
     cloudflare_endpoint: Optional[str] = None
@@ -22,6 +21,7 @@ class ModifiedInterconnectGRE(BaseModel):
     The IP address assigned to the Cloudflare side of the GRE tunnel created as part
     of the Interconnect.
     """
+
 
 class ModifiedInterconnectHealthCheck(BaseModel):
     enabled: Optional[bool] = None
@@ -40,6 +40,7 @@ class ModifiedInterconnectHealthCheck(BaseModel):
 
     type: Optional[HealthCheckType] = None
     """The type of healthcheck to run, reply or request. The default value is `reply`."""
+
 
 class ModifiedInterconnect(BaseModel):
     id: Optional[str] = None
@@ -77,6 +78,7 @@ class ModifiedInterconnect(BaseModel):
 
     name: Optional[str] = None
     """The name of the interconnect. The name cannot share a name with other tunnels."""
+
 
 class CfInterconnectUpdateResponse(BaseModel):
     modified: Optional[bool] = None

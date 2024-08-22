@@ -2,26 +2,17 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, TypeAlias
-
-from typing import Iterable, List, Union
+from typing import List, Union, Iterable
+from typing_extensions import Required, TypeAlias, TypedDict
 
 from .....workers.binding_param import BindingParam
-
+from .....workers.stepped_migration_param import SteppedMigrationParam
+from .....workers.single_step_migration_param import SingleStepMigrationParam
 from .....workers.placement_configuration_param import PlacementConfigurationParam
-
 from .....workers.scripts.consumer_script_param import ConsumerScriptParam
 
-from .....workers.single_step_migration_param import SingleStepMigrationParam
-
-from .....workers.stepped_migration_param import SteppedMigrationParam
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ......_types import FileTypes
-from ......_utils import PropertyInfo
-
 __all__ = ["SettingEditParams", "Settings", "SettingsLimits", "SettingsMigrations"]
+
 
 class SettingEditParams(TypedDict, total=False):
     account_id: Required[str]
@@ -32,11 +23,14 @@ class SettingEditParams(TypedDict, total=False):
 
     settings: Settings
 
+
 class SettingsLimits(TypedDict, total=False):
     cpu_ms: int
     """The amount of CPU time this Worker can use in milliseconds."""
 
+
 SettingsMigrations: TypeAlias = Union[SingleStepMigrationParam, SteppedMigrationParam]
+
 
 class Settings(TypedDict, total=False):
     bindings: Iterable[BindingParam]

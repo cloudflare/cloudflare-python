@@ -1,22 +1,15 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
 from typing import Optional
-
-from .health_check_rate import HealthCheckRate
-
-from .health_check_type import HealthCheckType
-
 from datetime import datetime
 
+from ..._models import BaseModel
 from .psk_metadata import PSKMetadata
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from .health_check_rate import HealthCheckRate
+from .health_check_type import HealthCheckType
 
 __all__ = ["IPSECTunnelDeleteResponse", "DeletedIPSECTunnel", "DeletedIPSECTunnelTunnelHealthCheck"]
+
 
 class DeletedIPSECTunnelTunnelHealthCheck(BaseModel):
     enabled: Optional[bool] = None
@@ -35,6 +28,7 @@ class DeletedIPSECTunnelTunnelHealthCheck(BaseModel):
 
     type: Optional[HealthCheckType] = None
     """The type of healthcheck to run, reply or request. The default value is `reply`."""
+
 
 class DeletedIPSECTunnel(BaseModel):
     cloudflare_endpoint: str
@@ -84,6 +78,7 @@ class DeletedIPSECTunnel(BaseModel):
     """
 
     tunnel_health_check: Optional[DeletedIPSECTunnelTunnelHealthCheck] = None
+
 
 class IPSECTunnelDeleteResponse(BaseModel):
     deleted: Optional[bool] = None

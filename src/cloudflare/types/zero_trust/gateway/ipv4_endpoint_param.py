@@ -6,6 +6,7 @@ from typing_extensions import TypedDict
 
 __all__ = ["IPV4EndpointParam"]
 
+
 class IPV4EndpointParam(TypedDict, total=False):
     enabled: bool
     """True if the endpoint is enabled for this location."""

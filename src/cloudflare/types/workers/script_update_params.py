@@ -2,28 +2,25 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict, Required, Annotated, Literal, TypeAlias
-
-from typing import List, Iterable, Dict, Union
+from typing import Dict, List, Union, Iterable
+from typing_extensions import Literal, Required, Annotated, TypeAlias, TypedDict
 
 from ..._types import FileTypes
-
 from ..._utils import PropertyInfo
-
+from .stepped_migration_param import SteppedMigrationParam
+from .single_step_migration_param import SingleStepMigrationParam
 from .placement_configuration_param import PlacementConfigurationParam
-
 from .scripts.consumer_script_param import ConsumerScriptParam
 
-from .single_step_migration_param import SingleStepMigrationParam
+__all__ = [
+    "ScriptUpdateParams",
+    "Variant0",
+    "Variant0Metadata",
+    "Variant0MetadataBinding",
+    "Variant0MetadataMigrations",
+    "Variant1",
+]
 
-from .stepped_migration_param import SteppedMigrationParam
-
-from typing import List, Union, Dict, Optional
-from typing_extensions import Literal, TypedDict, Required, Annotated
-from ..._types import FileTypes
-from ..._utils import PropertyInfo
-
-__all__ = ["ScriptUpdateParams", "Variant0", "Variant0Metadata", "Variant0MetadataBinding", "Variant0MetadataMigrations", "Variant1"]
 
 class Variant0(TypedDict, total=False):
     account_id: Required[str]
@@ -49,6 +46,7 @@ class Variant0(TypedDict, total=False):
     metadata: Variant0Metadata
     """JSON encoded metadata about the uploaded parts and Worker configuration."""
 
+
 class Variant0MetadataBindingTyped(TypedDict, total=False):
     name: str
     """Name of the binding variable."""
@@ -60,9 +58,11 @@ class Variant0MetadataBindingTyped(TypedDict, total=False):
     https://developers.cloudflare.com/workers/configuration/multipart-upload-metadata/#bindings.
     """
 
+
 Variant0MetadataBinding: TypeAlias = Union[Variant0MetadataBindingTyped, Dict[str, object]]
 
 Variant0MetadataMigrations: TypeAlias = Union[SingleStepMigrationParam, SteppedMigrationParam]
+
 
 class Variant0Metadata(TypedDict, total=False):
     bindings: Iterable[Variant0MetadataBinding]
@@ -118,6 +118,7 @@ class Variant0Metadata(TypedDict, total=False):
     version_tags: Dict[str, str]
     """Key-value pairs to use as tags for this version of this Worker"""
 
+
 class Variant1(TypedDict, total=False):
     account_id: Required[str]
     """Identifier"""
@@ -135,5 +136,6 @@ class Variant1(TypedDict, total=False):
 
     Only parsed when query param `"rollback_to"` is present.
     """
+
 
 ScriptUpdateParams: TypeAlias = Union[Variant0, Variant1]

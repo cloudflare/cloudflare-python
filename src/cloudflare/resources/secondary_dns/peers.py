@@ -2,45 +2,32 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+
 import httpx
 
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ..._compat import cached_property
-
-from ...types.secondary_dns.peer import Peer
-
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ..._wrappers import ResultWrapper
-
-from ..._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from ..._base_client import make_request_options, AsyncPaginator
-
 from ...pagination import SyncSinglePage, AsyncSinglePage
-
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.secondary_dns import peer_create_params, peer_update_params
+from ...types.secondary_dns.peer import Peer
 from ...types.secondary_dns.peer_delete_response import PeerDeleteResponse
 
-from ..._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ..._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ..._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ..._resource import SyncAPIResource, AsyncAPIResource
-from ...types import shared_params
-from ...types.secondary_dns import peer_create_params
-from ...types.secondary_dns import peer_update_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["PeersResource", "AsyncPeersResource"]
+
 
 class PeersResource(SyncAPIResource):
     @cached_property
@@ -51,16 +38,18 @@ class PeersResource(SyncAPIResource):
     def with_streaming_response(self) -> PeersResourceWithStreamingResponse:
         return PeersResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    account_id: str,
-    name: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Peer]:
+    def create(
+        self,
+        *,
+        account_id: str,
+        name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Peer]:
         """
         Create Peer.
 
@@ -76,33 +65,37 @@ class PeersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/secondary_dns/peers",
-            body=maybe_transform({
-                "name": name
-            }, peer_create_params.PeerCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Peer]]._unwrapper),
+            body=maybe_transform({"name": name}, peer_create_params.PeerCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Peer]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Peer]], ResultWrapper[Peer]),
         )
 
-    def update(self,
-    peer_id: str,
-    *,
-    account_id: str,
-    name: str,
-    ip: str | NotGiven = NOT_GIVEN,
-    ixfr_enable: bool | NotGiven = NOT_GIVEN,
-    port: float | NotGiven = NOT_GIVEN,
-    tsig_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Peer]:
+    def update(
+        self,
+        peer_id: str,
+        *,
+        account_id: str,
+        name: str,
+        ip: str | NotGiven = NOT_GIVEN,
+        ixfr_enable: bool | NotGiven = NOT_GIVEN,
+        port: float | NotGiven = NOT_GIVEN,
+        tsig_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Peer]:
         """
         Modify Peer.
 
@@ -132,35 +125,42 @@ class PeersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not peer_id:
-          raise ValueError(
-            f'Expected a non-empty value for `peer_id` but received {peer_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `peer_id` but received {peer_id!r}")
         return self._put(
             f"/accounts/{account_id}/secondary_dns/peers/{peer_id}",
-            body=maybe_transform({
-                "name": name,
-                "ip": ip,
-                "ixfr_enable": ixfr_enable,
-                "port": port,
-                "tsig_id": tsig_id,
-            }, peer_update_params.PeerUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Peer]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "ip": ip,
+                    "ixfr_enable": ixfr_enable,
+                    "port": port,
+                    "tsig_id": tsig_id,
+                },
+                peer_update_params.PeerUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Peer]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Peer]], ResultWrapper[Peer]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[Peer]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[Peer]:
         """
         List Peers.
 
@@ -174,26 +174,28 @@ class PeersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/secondary_dns/peers",
-            page = SyncSinglePage[Peer],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=SyncSinglePage[Peer],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=Peer,
         )
 
-    def delete(self,
-    peer_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PeerDeleteResponse]:
+    def delete(
+        self,
+        peer_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PeerDeleteResponse]:
         """
         Delete Peer.
 
@@ -207,29 +209,33 @@ class PeersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not peer_id:
-          raise ValueError(
-            f'Expected a non-empty value for `peer_id` but received {peer_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `peer_id` but received {peer_id!r}")
         return self._delete(
             f"/accounts/{account_id}/secondary_dns/peers/{peer_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[PeerDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PeerDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[PeerDeleteResponse]], ResultWrapper[PeerDeleteResponse]),
         )
 
-    def get(self,
-    peer_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Peer]:
+    def get(
+        self,
+        peer_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Peer]:
         """
         Get Peer.
 
@@ -243,18 +249,21 @@ class PeersResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not peer_id:
-          raise ValueError(
-            f'Expected a non-empty value for `peer_id` but received {peer_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `peer_id` but received {peer_id!r}")
         return self._get(
             f"/accounts/{account_id}/secondary_dns/peers/{peer_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Peer]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Peer]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Peer]], ResultWrapper[Peer]),
         )
+
 
 class AsyncPeersResource(AsyncAPIResource):
     @cached_property
@@ -265,16 +274,18 @@ class AsyncPeersResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncPeersResourceWithStreamingResponse:
         return AsyncPeersResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    account_id: str,
-    name: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Peer]:
+    async def create(
+        self,
+        *,
+        account_id: str,
+        name: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Peer]:
         """
         Create Peer.
 
@@ -290,33 +301,37 @@ class AsyncPeersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/secondary_dns/peers",
-            body=await async_maybe_transform({
-                "name": name
-            }, peer_create_params.PeerCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Peer]]._unwrapper),
+            body=await async_maybe_transform({"name": name}, peer_create_params.PeerCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Peer]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Peer]], ResultWrapper[Peer]),
         )
 
-    async def update(self,
-    peer_id: str,
-    *,
-    account_id: str,
-    name: str,
-    ip: str | NotGiven = NOT_GIVEN,
-    ixfr_enable: bool | NotGiven = NOT_GIVEN,
-    port: float | NotGiven = NOT_GIVEN,
-    tsig_id: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Peer]:
+    async def update(
+        self,
+        peer_id: str,
+        *,
+        account_id: str,
+        name: str,
+        ip: str | NotGiven = NOT_GIVEN,
+        ixfr_enable: bool | NotGiven = NOT_GIVEN,
+        port: float | NotGiven = NOT_GIVEN,
+        tsig_id: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Peer]:
         """
         Modify Peer.
 
@@ -346,35 +361,42 @@ class AsyncPeersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not peer_id:
-          raise ValueError(
-            f'Expected a non-empty value for `peer_id` but received {peer_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `peer_id` but received {peer_id!r}")
         return await self._put(
             f"/accounts/{account_id}/secondary_dns/peers/{peer_id}",
-            body=await async_maybe_transform({
-                "name": name,
-                "ip": ip,
-                "ixfr_enable": ixfr_enable,
-                "port": port,
-                "tsig_id": tsig_id,
-            }, peer_update_params.PeerUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Peer]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "ip": ip,
+                    "ixfr_enable": ixfr_enable,
+                    "port": port,
+                    "tsig_id": tsig_id,
+                },
+                peer_update_params.PeerUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Peer]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Peer]], ResultWrapper[Peer]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Peer, AsyncSinglePage[Peer]]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[Peer, AsyncSinglePage[Peer]]:
         """
         List Peers.
 
@@ -388,26 +410,28 @@ class AsyncPeersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/secondary_dns/peers",
-            page = AsyncSinglePage[Peer],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout),
+            page=AsyncSinglePage[Peer],
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
             model=Peer,
         )
 
-    async def delete(self,
-    peer_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[PeerDeleteResponse]:
+    async def delete(
+        self,
+        peer_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[PeerDeleteResponse]:
         """
         Delete Peer.
 
@@ -421,29 +445,33 @@ class AsyncPeersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not peer_id:
-          raise ValueError(
-            f'Expected a non-empty value for `peer_id` but received {peer_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `peer_id` but received {peer_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/secondary_dns/peers/{peer_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[PeerDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[PeerDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[PeerDeleteResponse]], ResultWrapper[PeerDeleteResponse]),
         )
 
-    async def get(self,
-    peer_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Peer]:
+    async def get(
+        self,
+        peer_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Peer]:
         """
         Get Peer.
 
@@ -457,18 +485,21 @@ class AsyncPeersResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not peer_id:
-          raise ValueError(
-            f'Expected a non-empty value for `peer_id` but received {peer_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `peer_id` but received {peer_id!r}")
         return await self._get(
             f"/accounts/{account_id}/secondary_dns/peers/{peer_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Peer]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Peer]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Peer]], ResultWrapper[Peer]),
         )
+
 
 class PeersResourceWithRawResponse:
     def __init__(self, peers: PeersResource) -> None:
@@ -490,6 +521,7 @@ class PeersResourceWithRawResponse:
             peers.get,
         )
 
+
 class AsyncPeersResourceWithRawResponse:
     def __init__(self, peers: AsyncPeersResource) -> None:
         self._peers = peers
@@ -510,6 +542,7 @@ class AsyncPeersResourceWithRawResponse:
             peers.get,
         )
 
+
 class PeersResourceWithStreamingResponse:
     def __init__(self, peers: PeersResource) -> None:
         self._peers = peers
@@ -529,6 +562,7 @@ class PeersResourceWithStreamingResponse:
         self.get = to_streamed_response_wrapper(
             peers.get,
         )
+
 
 class AsyncPeersResourceWithStreamingResponse:
     def __init__(self, peers: AsyncPeersResource) -> None:

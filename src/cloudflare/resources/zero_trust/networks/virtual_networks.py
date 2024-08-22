@@ -2,42 +2,35 @@
 
 from __future__ import annotations
 
+from typing import Type, cast
+
 import httpx
 
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncSinglePage, AsyncSinglePage
+from ...._base_client import AsyncPaginator, make_request_options
+from ....types.zero_trust.networks import (
+    virtual_network_edit_params,
+    virtual_network_list_params,
+    virtual_network_create_params,
+)
 from ....types.zero_trust.networks.virtual_network import VirtualNetwork
 
-from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from ...._base_client import make_request_options, AsyncPaginator
-
-from typing import Type
-
-from ....pagination import SyncSinglePage, AsyncSinglePage
-
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.zero_trust.networks import virtual_network_create_params
-from ....types.zero_trust.networks import virtual_network_list_params
-from ....types.zero_trust.networks import virtual_network_edit_params
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["VirtualNetworksResource", "AsyncVirtualNetworksResource"]
+
 
 class VirtualNetworksResource(SyncAPIResource):
     @cached_property
@@ -48,18 +41,20 @@ class VirtualNetworksResource(SyncAPIResource):
     def with_streaming_response(self) -> VirtualNetworksResourceWithStreamingResponse:
         return VirtualNetworksResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    account_id: str,
-    name: str,
-    comment: str | NotGiven = NOT_GIVEN,
-    is_default: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> VirtualNetwork:
+    def create(
+        self,
+        *,
+        account_id: str,
+        name: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        is_default: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> VirtualNetwork:
         """
         Adds a new virtual network to an account.
 
@@ -81,33 +76,42 @@ class VirtualNetworksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/teamnet/virtual_networks",
-            body=maybe_transform({
-                "name": name,
-                "comment": comment,
-                "is_default": is_default,
-            }, virtual_network_create_params.VirtualNetworkCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[VirtualNetwork]._unwrapper),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "comment": comment,
+                    "is_default": is_default,
+                },
+                virtual_network_create_params.VirtualNetworkCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
+            ),
             cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    id: str | NotGiven = NOT_GIVEN,
-    is_default: bool | NotGiven = NOT_GIVEN,
-    is_deleted: bool | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncSinglePage[VirtualNetwork]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        id: str | NotGiven = NOT_GIVEN,
+        is_default: bool | NotGiven = NOT_GIVEN,
+        is_deleted: bool | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncSinglePage[VirtualNetwork]:
         """
         Lists and filters virtual networks in an account.
 
@@ -133,31 +137,40 @@ class VirtualNetworksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/teamnet/virtual_networks",
-            page = SyncSinglePage[VirtualNetwork],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "id": id,
-                "is_default": is_default,
-                "is_deleted": is_deleted,
-                "name": name,
-            }, virtual_network_list_params.VirtualNetworkListParams)),
+            page=SyncSinglePage[VirtualNetwork],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "id": id,
+                        "is_default": is_default,
+                        "is_deleted": is_deleted,
+                        "name": name,
+                    },
+                    virtual_network_list_params.VirtualNetworkListParams,
+                ),
+            ),
             model=VirtualNetwork,
         )
 
-    def delete(self,
-    virtual_network_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> VirtualNetwork:
+    def delete(
+        self,
+        virtual_network_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> VirtualNetwork:
         """
         Deletes an existing virtual network.
 
@@ -175,32 +188,36 @@ class VirtualNetworksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not virtual_network_id:
-          raise ValueError(
-            f'Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
         return self._delete(
             f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[VirtualNetwork]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
+            ),
             cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
         )
 
-    def edit(self,
-    virtual_network_id: str,
-    *,
-    account_id: str,
-    comment: str | NotGiven = NOT_GIVEN,
-    is_default_network: bool | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> VirtualNetwork:
+    def edit(
+        self,
+        virtual_network_id: str,
+        *,
+        account_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        is_default_network: bool | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> VirtualNetwork:
         """
         Updates an existing virtual network.
 
@@ -224,23 +241,29 @@ class VirtualNetworksResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not virtual_network_id:
-          raise ValueError(
-            f'Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
         return self._patch(
             f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
-            body=maybe_transform({
-                "comment": comment,
-                "is_default_network": is_default_network,
-                "name": name,
-            }, virtual_network_edit_params.VirtualNetworkEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[VirtualNetwork]._unwrapper),
+            body=maybe_transform(
+                {
+                    "comment": comment,
+                    "is_default_network": is_default_network,
+                    "name": name,
+                },
+                virtual_network_edit_params.VirtualNetworkEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
+            ),
             cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
         )
+
 
 class AsyncVirtualNetworksResource(AsyncAPIResource):
     @cached_property
@@ -251,18 +274,20 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncVirtualNetworksResourceWithStreamingResponse:
         return AsyncVirtualNetworksResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    account_id: str,
-    name: str,
-    comment: str | NotGiven = NOT_GIVEN,
-    is_default: bool | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> VirtualNetwork:
+    async def create(
+        self,
+        *,
+        account_id: str,
+        name: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        is_default: bool | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> VirtualNetwork:
         """
         Adds a new virtual network to an account.
 
@@ -284,33 +309,42 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/teamnet/virtual_networks",
-            body=await async_maybe_transform({
-                "name": name,
-                "comment": comment,
-                "is_default": is_default,
-            }, virtual_network_create_params.VirtualNetworkCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[VirtualNetwork]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "comment": comment,
+                    "is_default": is_default,
+                },
+                virtual_network_create_params.VirtualNetworkCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
+            ),
             cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    id: str | NotGiven = NOT_GIVEN,
-    is_default: bool | NotGiven = NOT_GIVEN,
-    is_deleted: bool | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[VirtualNetwork, AsyncSinglePage[VirtualNetwork]]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        id: str | NotGiven = NOT_GIVEN,
+        is_default: bool | NotGiven = NOT_GIVEN,
+        is_deleted: bool | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[VirtualNetwork, AsyncSinglePage[VirtualNetwork]]:
         """
         Lists and filters virtual networks in an account.
 
@@ -336,31 +370,40 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/teamnet/virtual_networks",
-            page = AsyncSinglePage[VirtualNetwork],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "id": id,
-                "is_default": is_default,
-                "is_deleted": is_deleted,
-                "name": name,
-            }, virtual_network_list_params.VirtualNetworkListParams)),
+            page=AsyncSinglePage[VirtualNetwork],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "id": id,
+                        "is_default": is_default,
+                        "is_deleted": is_deleted,
+                        "name": name,
+                    },
+                    virtual_network_list_params.VirtualNetworkListParams,
+                ),
+            ),
             model=VirtualNetwork,
         )
 
-    async def delete(self,
-    virtual_network_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> VirtualNetwork:
+    async def delete(
+        self,
+        virtual_network_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> VirtualNetwork:
         """
         Deletes an existing virtual network.
 
@@ -378,32 +421,36 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not virtual_network_id:
-          raise ValueError(
-            f'Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[VirtualNetwork]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
+            ),
             cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
         )
 
-    async def edit(self,
-    virtual_network_id: str,
-    *,
-    account_id: str,
-    comment: str | NotGiven = NOT_GIVEN,
-    is_default_network: bool | NotGiven = NOT_GIVEN,
-    name: str | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> VirtualNetwork:
+    async def edit(
+        self,
+        virtual_network_id: str,
+        *,
+        account_id: str,
+        comment: str | NotGiven = NOT_GIVEN,
+        is_default_network: bool | NotGiven = NOT_GIVEN,
+        name: str | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> VirtualNetwork:
         """
         Updates an existing virtual network.
 
@@ -427,23 +474,29 @@ class AsyncVirtualNetworksResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not virtual_network_id:
-          raise ValueError(
-            f'Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `virtual_network_id` but received {virtual_network_id!r}")
         return await self._patch(
             f"/accounts/{account_id}/teamnet/virtual_networks/{virtual_network_id}",
-            body=await async_maybe_transform({
-                "comment": comment,
-                "is_default_network": is_default_network,
-                "name": name,
-            }, virtual_network_edit_params.VirtualNetworkEditParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[VirtualNetwork]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "comment": comment,
+                    "is_default_network": is_default_network,
+                    "name": name,
+                },
+                virtual_network_edit_params.VirtualNetworkEditParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[VirtualNetwork]._unwrapper,
+            ),
             cast_to=cast(Type[VirtualNetwork], ResultWrapper[VirtualNetwork]),
         )
+
 
 class VirtualNetworksResourceWithRawResponse:
     def __init__(self, virtual_networks: VirtualNetworksResource) -> None:
@@ -462,6 +515,7 @@ class VirtualNetworksResourceWithRawResponse:
             virtual_networks.edit,
         )
 
+
 class AsyncVirtualNetworksResourceWithRawResponse:
     def __init__(self, virtual_networks: AsyncVirtualNetworksResource) -> None:
         self._virtual_networks = virtual_networks
@@ -479,6 +533,7 @@ class AsyncVirtualNetworksResourceWithRawResponse:
             virtual_networks.edit,
         )
 
+
 class VirtualNetworksResourceWithStreamingResponse:
     def __init__(self, virtual_networks: VirtualNetworksResource) -> None:
         self._virtual_networks = virtual_networks
@@ -495,6 +550,7 @@ class VirtualNetworksResourceWithStreamingResponse:
         self.edit = to_streamed_response_wrapper(
             virtual_networks.edit,
         )
+
 
 class AsyncVirtualNetworksResourceWithStreamingResponse:
     def __init__(self, virtual_networks: AsyncVirtualNetworksResource) -> None:

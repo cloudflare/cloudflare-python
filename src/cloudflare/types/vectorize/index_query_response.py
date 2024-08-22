@@ -1,14 +1,11 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import List, Optional
+
 from ..._models import BaseModel
 
-from typing import Optional, List
-
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["IndexQueryResponse", "Match"]
+
 
 class Match(BaseModel):
     id: Optional[str] = None
@@ -22,6 +19,7 @@ class Match(BaseModel):
     """The score of the vector according to the index's distance metric"""
 
     values: Optional[List[float]] = None
+
 
 class IndexQueryResponse(BaseModel):
     count: Optional[int] = None

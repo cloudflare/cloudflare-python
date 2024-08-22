@@ -2,47 +2,56 @@
 
 from __future__ import annotations
 
+from typing import List, Type, Union, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
-from .top import TopResource, AsyncTopResource
-
+from .top import (
+    TopResource,
+    AsyncTopResource,
+    TopResourceWithRawResponse,
+    AsyncTopResourceWithRawResponse,
+    TopResourceWithStreamingResponse,
+    AsyncTopResourceWithStreamingResponse,
+)
+from .summary import (
+    SummaryResource,
+    AsyncSummaryResource,
+    SummaryResourceWithRawResponse,
+    AsyncSummaryResourceWithRawResponse,
+    SummaryResourceWithStreamingResponse,
+    AsyncSummaryResourceWithStreamingResponse,
+)
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from .summary import SummaryResource, AsyncSummaryResource
-
-from .timeseries_groups import TimeseriesGroupsResource, AsyncTimeseriesGroupsResource
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...._wrappers import ResultWrapper
+from ....types.radar import dns_timeseries_params
+from ...._base_client import make_request_options
+from .timeseries_groups import (
+    TimeseriesGroupsResource,
+    AsyncTimeseriesGroupsResource,
+    TimeseriesGroupsResourceWithRawResponse,
+    AsyncTimeseriesGroupsResourceWithRawResponse,
+    TimeseriesGroupsResourceWithStreamingResponse,
+    AsyncTimeseriesGroupsResourceWithStreamingResponse,
+)
 from ....types.radar.dns_timeseries_response import DNSTimeseriesResponse
 
-from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from ...._base_client import make_request_options
-
-from typing import Type, List, Union
-
-from typing_extensions import Literal
-
-from datetime import datetime
-
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.radar import dns_timeseries_params
-from .top import TopResource, AsyncTopResource, TopResourceWithRawResponse, AsyncTopResourceWithRawResponse, TopResourceWithStreamingResponse, AsyncTopResourceWithStreamingResponse
-from .summary import SummaryResource, AsyncSummaryResource, SummaryResourceWithRawResponse, AsyncSummaryResourceWithRawResponse, SummaryResourceWithStreamingResponse, AsyncSummaryResourceWithStreamingResponse
-from .timeseries_groups import TimeseriesGroupsResource, AsyncTimeseriesGroupsResource, TimeseriesGroupsResourceWithRawResponse, AsyncTimeseriesGroupsResourceWithRawResponse, TimeseriesGroupsResourceWithStreamingResponse, AsyncTimeseriesGroupsResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-
 __all__ = ["DNSResource", "AsyncDNSResource"]
+
 
 class DNSResource(SyncAPIResource):
     @cached_property
@@ -65,24 +74,26 @@ class DNSResource(SyncAPIResource):
     def with_streaming_response(self) -> DNSResourceWithStreamingResponse:
         return DNSResourceWithStreamingResponse(self)
 
-    def timeseries(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    tld: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DNSTimeseriesResponse:
+    def timeseries(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        tld: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DNSTimeseriesResponse:
         """
         Get DNS queries change over time.
 
@@ -127,20 +138,31 @@ class DNSResource(SyncAPIResource):
         """
         return self._get(
             "/radar/dns/timeseries",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "location": location,
-                "name": name,
-                "tld": tld,
-            }, dns_timeseries_params.DNSTimeseriesParams), post_parser=ResultWrapper[DNSTimeseriesResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                        "tld": tld,
+                    },
+                    dns_timeseries_params.DNSTimeseriesParams,
+                ),
+                post_parser=ResultWrapper[DNSTimeseriesResponse]._unwrapper,
+            ),
             cast_to=cast(Type[DNSTimeseriesResponse], ResultWrapper[DNSTimeseriesResponse]),
         )
+
 
 class AsyncDNSResource(AsyncAPIResource):
     @cached_property
@@ -163,24 +185,26 @@ class AsyncDNSResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncDNSResourceWithStreamingResponse:
         return AsyncDNSResourceWithStreamingResponse(self)
 
-    async def timeseries(self,
-    *,
-    agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
-    asn: List[str] | NotGiven = NOT_GIVEN,
-    continent: List[str] | NotGiven = NOT_GIVEN,
-    date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    date_range: List[str] | NotGiven = NOT_GIVEN,
-    date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
-    format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
-    location: List[str] | NotGiven = NOT_GIVEN,
-    name: List[str] | NotGiven = NOT_GIVEN,
-    tld: List[str] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> DNSTimeseriesResponse:
+    async def timeseries(
+        self,
+        *,
+        agg_interval: Literal["15m", "1h", "1d", "1w"] | NotGiven = NOT_GIVEN,
+        asn: List[str] | NotGiven = NOT_GIVEN,
+        continent: List[str] | NotGiven = NOT_GIVEN,
+        date_end: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        date_range: List[str] | NotGiven = NOT_GIVEN,
+        date_start: List[Union[str, datetime]] | NotGiven = NOT_GIVEN,
+        format: Literal["JSON", "CSV"] | NotGiven = NOT_GIVEN,
+        location: List[str] | NotGiven = NOT_GIVEN,
+        name: List[str] | NotGiven = NOT_GIVEN,
+        tld: List[str] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> DNSTimeseriesResponse:
         """
         Get DNS queries change over time.
 
@@ -225,20 +249,31 @@ class AsyncDNSResource(AsyncAPIResource):
         """
         return await self._get(
             "/radar/dns/timeseries",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=await async_maybe_transform({
-                "agg_interval": agg_interval,
-                "asn": asn,
-                "continent": continent,
-                "date_end": date_end,
-                "date_range": date_range,
-                "date_start": date_start,
-                "format": format,
-                "location": location,
-                "name": name,
-                "tld": tld,
-            }, dns_timeseries_params.DNSTimeseriesParams), post_parser=ResultWrapper[DNSTimeseriesResponse]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "agg_interval": agg_interval,
+                        "asn": asn,
+                        "continent": continent,
+                        "date_end": date_end,
+                        "date_range": date_range,
+                        "date_start": date_start,
+                        "format": format,
+                        "location": location,
+                        "name": name,
+                        "tld": tld,
+                    },
+                    dns_timeseries_params.DNSTimeseriesParams,
+                ),
+                post_parser=ResultWrapper[DNSTimeseriesResponse]._unwrapper,
+            ),
             cast_to=cast(Type[DNSTimeseriesResponse], ResultWrapper[DNSTimeseriesResponse]),
         )
+
 
 class DNSResourceWithRawResponse:
     def __init__(self, dns: DNSResource) -> None:
@@ -260,6 +295,7 @@ class DNSResourceWithRawResponse:
     def timeseries_groups(self) -> TimeseriesGroupsResourceWithRawResponse:
         return TimeseriesGroupsResourceWithRawResponse(self._dns.timeseries_groups)
 
+
 class AsyncDNSResourceWithRawResponse:
     def __init__(self, dns: AsyncDNSResource) -> None:
         self._dns = dns
@@ -280,6 +316,7 @@ class AsyncDNSResourceWithRawResponse:
     def timeseries_groups(self) -> AsyncTimeseriesGroupsResourceWithRawResponse:
         return AsyncTimeseriesGroupsResourceWithRawResponse(self._dns.timeseries_groups)
 
+
 class DNSResourceWithStreamingResponse:
     def __init__(self, dns: DNSResource) -> None:
         self._dns = dns
@@ -299,6 +336,7 @@ class DNSResourceWithStreamingResponse:
     @cached_property
     def timeseries_groups(self) -> TimeseriesGroupsResourceWithStreamingResponse:
         return TimeseriesGroupsResourceWithStreamingResponse(self._dns.timeseries_groups)
+
 
 class AsyncDNSResourceWithStreamingResponse:
     def __init__(self, dns: AsyncDNSResource) -> None:

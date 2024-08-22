@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, TypedDict, TypeAlias
-
 from typing import List, Union
+from typing_extensions import Literal, TypeAlias, TypedDict
 
 __all__ = ["EdgeIPsParam", "UnionMember0", "UnionMember1"]
+
 
 class UnionMember0(TypedDict, total=False):
     connectivity: Literal["all", "ipv4", "ipv6"]
@@ -18,6 +18,7 @@ class UnionMember0(TypedDict, total=False):
     Dynamically allocated edge IPs use Spectrum anycast IPs in accordance with the
     connectivity you specify. Only valid with CNAME DNS names.
     """
+
 
 class UnionMember1(TypedDict, total=False):
     ips: List[str]
@@ -32,5 +33,6 @@ class UnionMember1(TypedDict, total=False):
     Statically allocated edge IPs use customer IPs in accordance with the ips array
     you specify. Only valid with ADDRESS DNS names.
     """
+
 
 EdgeIPsParam: TypeAlias = Union[UnionMember0, UnionMember1]

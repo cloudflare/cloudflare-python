@@ -2,62 +2,64 @@
 
 from __future__ import annotations
 
+from typing import Type, Optional, cast
+from typing_extensions import Literal
+
 import httpx
 
-from .bulk import BulkResource, AsyncBulkResource
-
+from .bulk import (
+    BulkResource,
+    AsyncBulkResource,
+    BulkResourceWithRawResponse,
+    AsyncBulkResourceWithRawResponse,
+    BulkResourceWithStreamingResponse,
+    AsyncBulkResourceWithStreamingResponse,
+)
+from .keys import (
+    KeysResource,
+    AsyncKeysResource,
+    KeysResourceWithRawResponse,
+    AsyncKeysResourceWithRawResponse,
+    KeysResourceWithStreamingResponse,
+    AsyncKeysResourceWithStreamingResponse,
+)
+from .values import (
+    ValuesResource,
+    AsyncValuesResource,
+    ValuesResourceWithRawResponse,
+    AsyncValuesResourceWithRawResponse,
+    ValuesResourceWithStreamingResponse,
+    AsyncValuesResourceWithStreamingResponse,
+)
+from .metadata import (
+    MetadataResource,
+    AsyncMetadataResource,
+    MetadataResourceWithRawResponse,
+    AsyncMetadataResourceWithRawResponse,
+    MetadataResourceWithStreamingResponse,
+    AsyncMetadataResourceWithStreamingResponse,
+)
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from .keys import KeysResource, AsyncKeysResource
-
-from .metadata import MetadataResource, AsyncMetadataResource
-
-from .values import ValuesResource, AsyncValuesResource
-
+from ....types.kv import namespace_list_params, namespace_create_params, namespace_update_params
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ...._wrappers import ResultWrapper
+from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
+from ...._base_client import AsyncPaginator, make_request_options
 from ....types.kv.namespace import Namespace
 
-from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type
-
-from ...._base_client import make_request_options, AsyncPaginator
-
-from ....types.kv.namespace_update_response import NamespaceUpdateResponse
-
-from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
-from typing_extensions import Literal
-
-from ....types.kv.namespace_delete_response import NamespaceDeleteResponse
-
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.kv import namespace_create_params
-from ....types.kv import namespace_update_params
-from ....types.kv import namespace_list_params
-from .bulk import BulkResource, AsyncBulkResource, BulkResourceWithRawResponse, AsyncBulkResourceWithRawResponse, BulkResourceWithStreamingResponse, AsyncBulkResourceWithStreamingResponse
-from .keys import KeysResource, AsyncKeysResource, KeysResourceWithRawResponse, AsyncKeysResourceWithRawResponse, KeysResourceWithStreamingResponse, AsyncKeysResourceWithStreamingResponse
-from .metadata import MetadataResource, AsyncMetadataResource, MetadataResourceWithRawResponse, AsyncMetadataResourceWithRawResponse, MetadataResourceWithStreamingResponse, AsyncMetadataResourceWithStreamingResponse
-from .values import ValuesResource, AsyncValuesResource, ValuesResourceWithRawResponse, AsyncValuesResourceWithRawResponse, ValuesResourceWithStreamingResponse, AsyncValuesResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["NamespacesResource", "AsyncNamespacesResource"]
+
 
 class NamespacesResource(SyncAPIResource):
     @cached_property
@@ -84,16 +86,18 @@ class NamespacesResource(SyncAPIResource):
     def with_streaming_response(self) -> NamespacesResourceWithStreamingResponse:
         return NamespacesResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    account_id: str,
-    title: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Namespace]:
+    def create(
+        self,
+        *,
+        account_id: str,
+        title: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Namespace]:
         """Creates a namespace under the given title.
 
         A `400` is returned if the account
@@ -114,29 +118,33 @@ class NamespacesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._post(
             f"/accounts/{account_id}/storage/kv/namespaces",
-            body=maybe_transform({
-                "title": title
-            }, namespace_create_params.NamespaceCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Namespace]]._unwrapper),
+            body=maybe_transform({"title": title}, namespace_create_params.NamespaceCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Namespace]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Namespace]], ResultWrapper[Namespace]),
         )
 
-    def update(self,
-    namespace_id: str,
-    *,
-    account_id: str,
-    title: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[NamespaceUpdateResponse]:
+    def update(
+        self,
+        namespace_id: str,
+        *,
+        account_id: str,
+        title: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Modifies a namespace's title.
 
@@ -156,35 +164,37 @@ class NamespacesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
-          raise ValueError(
-            f'Expected a non-empty value for `namespace_id` but received {namespace_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._put(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
-            body=maybe_transform({
-                "title": title
-            }, namespace_update_params.NamespaceUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[NamespaceUpdateResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[NamespaceUpdateResponse]], ResultWrapper[NamespaceUpdateResponse]),
+            body=maybe_transform({"title": title}, namespace_update_params.NamespaceUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-    order: Literal["id", "title"] | NotGiven = NOT_GIVEN,
-    page: float | NotGiven = NOT_GIVEN,
-    per_page: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[Namespace]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        order: Literal["id", "title"] | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncV4PagePaginationArray[Namespace]:
         """
         Returns the namespaces owned by an account.
 
@@ -208,31 +218,40 @@ class NamespacesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/storage/kv/namespaces",
-            page = SyncV4PagePaginationArray[Namespace],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "direction": direction,
-                "order": order,
-                "page": page,
-                "per_page": per_page,
-            }, namespace_list_params.NamespaceListParams)),
+            page=SyncV4PagePaginationArray[Namespace],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "direction": direction,
+                        "order": order,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    namespace_list_params.NamespaceListParams,
+                ),
+            ),
             model=Namespace,
         )
 
-    def delete(self,
-    namespace_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[NamespaceDeleteResponse]:
+    def delete(
+        self,
+        namespace_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Deletes the namespace corresponding to the given ID.
 
@@ -250,29 +269,33 @@ class NamespacesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
-          raise ValueError(
-            f'Expected a non-empty value for `namespace_id` but received {namespace_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._delete(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[NamespaceDeleteResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[NamespaceDeleteResponse]], ResultWrapper[NamespaceDeleteResponse]),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    def get(self,
-    namespace_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Namespace]:
+    def get(
+        self,
+        namespace_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Namespace]:
         """
         Get the namespace corresponding to the given ID.
 
@@ -290,18 +313,21 @@ class NamespacesResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
-          raise ValueError(
-            f'Expected a non-empty value for `namespace_id` but received {namespace_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return self._get(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Namespace]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Namespace]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Namespace]], ResultWrapper[Namespace]),
         )
+
 
 class AsyncNamespacesResource(AsyncAPIResource):
     @cached_property
@@ -328,16 +354,18 @@ class AsyncNamespacesResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncNamespacesResourceWithStreamingResponse:
         return AsyncNamespacesResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    account_id: str,
-    title: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Namespace]:
+    async def create(
+        self,
+        *,
+        account_id: str,
+        title: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Namespace]:
         """Creates a namespace under the given title.
 
         A `400` is returned if the account
@@ -358,29 +386,33 @@ class AsyncNamespacesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return await self._post(
             f"/accounts/{account_id}/storage/kv/namespaces",
-            body=await async_maybe_transform({
-                "title": title
-            }, namespace_create_params.NamespaceCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Namespace]]._unwrapper),
+            body=await async_maybe_transform({"title": title}, namespace_create_params.NamespaceCreateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Namespace]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Namespace]], ResultWrapper[Namespace]),
         )
 
-    async def update(self,
-    namespace_id: str,
-    *,
-    account_id: str,
-    title: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[NamespaceUpdateResponse]:
+    async def update(
+        self,
+        namespace_id: str,
+        *,
+        account_id: str,
+        title: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Modifies a namespace's title.
 
@@ -400,35 +432,37 @@ class AsyncNamespacesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
-          raise ValueError(
-            f'Expected a non-empty value for `namespace_id` but received {namespace_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return await self._put(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
-            body=await async_maybe_transform({
-                "title": title
-            }, namespace_update_params.NamespaceUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[NamespaceUpdateResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[NamespaceUpdateResponse]], ResultWrapper[NamespaceUpdateResponse]),
+            body=await async_maybe_transform({"title": title}, namespace_update_params.NamespaceUpdateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    def list(self,
-    *,
-    account_id: str,
-    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-    order: Literal["id", "title"] | NotGiven = NOT_GIVEN,
-    page: float | NotGiven = NOT_GIVEN,
-    per_page: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[Namespace, AsyncV4PagePaginationArray[Namespace]]:
+    def list(
+        self,
+        *,
+        account_id: str,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        order: Literal["id", "title"] | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[Namespace, AsyncV4PagePaginationArray[Namespace]]:
         """
         Returns the namespaces owned by an account.
 
@@ -452,31 +486,40 @@ class AsyncNamespacesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         return self._get_api_list(
             f"/accounts/{account_id}/storage/kv/namespaces",
-            page = AsyncV4PagePaginationArray[Namespace],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "direction": direction,
-                "order": order,
-                "page": page,
-                "per_page": per_page,
-            }, namespace_list_params.NamespaceListParams)),
+            page=AsyncV4PagePaginationArray[Namespace],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "direction": direction,
+                        "order": order,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    namespace_list_params.NamespaceListParams,
+                ),
+            ),
             model=Namespace,
         )
 
-    async def delete(self,
-    namespace_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[NamespaceDeleteResponse]:
+    async def delete(
+        self,
+        namespace_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> object:
         """
         Deletes the namespace corresponding to the given ID.
 
@@ -494,29 +537,33 @@ class AsyncNamespacesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
-          raise ValueError(
-            f'Expected a non-empty value for `namespace_id` but received {namespace_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return await self._delete(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[NamespaceDeleteResponse]]._unwrapper),
-            cast_to=cast(Type[Optional[NamespaceDeleteResponse]], ResultWrapper[NamespaceDeleteResponse]),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[object]]._unwrapper,
+            ),
+            cast_to=cast(Type[object], ResultWrapper[object]),
         )
 
-    async def get(self,
-    namespace_id: str,
-    *,
-    account_id: str,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[Namespace]:
+    async def get(
+        self,
+        namespace_id: str,
+        *,
+        account_id: str,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[Namespace]:
         """
         Get the namespace corresponding to the given ID.
 
@@ -534,18 +581,21 @@ class AsyncNamespacesResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not account_id:
-          raise ValueError(
-            f'Expected a non-empty value for `account_id` but received {account_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `account_id` but received {account_id!r}")
         if not namespace_id:
-          raise ValueError(
-            f'Expected a non-empty value for `namespace_id` but received {namespace_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `namespace_id` but received {namespace_id!r}")
         return await self._get(
             f"/accounts/{account_id}/storage/kv/namespaces/{namespace_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[Namespace]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[Namespace]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[Namespace]], ResultWrapper[Namespace]),
         )
+
 
 class NamespacesResourceWithRawResponse:
     def __init__(self, namespaces: NamespacesResource) -> None:
@@ -583,6 +633,7 @@ class NamespacesResourceWithRawResponse:
     def values(self) -> ValuesResourceWithRawResponse:
         return ValuesResourceWithRawResponse(self._namespaces.values)
 
+
 class AsyncNamespacesResourceWithRawResponse:
     def __init__(self, namespaces: AsyncNamespacesResource) -> None:
         self._namespaces = namespaces
@@ -619,6 +670,7 @@ class AsyncNamespacesResourceWithRawResponse:
     def values(self) -> AsyncValuesResourceWithRawResponse:
         return AsyncValuesResourceWithRawResponse(self._namespaces.values)
 
+
 class NamespacesResourceWithStreamingResponse:
     def __init__(self, namespaces: NamespacesResource) -> None:
         self._namespaces = namespaces
@@ -654,6 +706,7 @@ class NamespacesResourceWithStreamingResponse:
     @cached_property
     def values(self) -> ValuesResourceWithStreamingResponse:
         return ValuesResourceWithStreamingResponse(self._namespaces.values)
+
 
 class AsyncNamespacesResourceWithStreamingResponse:
     def __init__(self, namespaces: AsyncNamespacesResource) -> None:

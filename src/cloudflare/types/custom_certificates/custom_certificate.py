@@ -1,24 +1,16 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from ..custom_hostnames.bundle_method import BundleMethod
-
-from datetime import datetime
-
 from typing import List, Optional
-
+from datetime import datetime
 from typing_extensions import Literal
 
+from ..._models import BaseModel
 from .geo_restrictions import GeoRestrictions
-
+from ..custom_hostnames.bundle_method import BundleMethod
 from ..keyless_certificates.keyless_certificate import KeylessCertificate
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
-
 __all__ = ["CustomCertificate"]
+
 
 class CustomCertificate(BaseModel):
     id: str

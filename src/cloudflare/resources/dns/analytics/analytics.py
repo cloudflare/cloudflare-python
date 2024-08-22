@@ -2,20 +2,20 @@
 
 from __future__ import annotations
 
+from .reports import (
+    ReportsResource,
+    AsyncReportsResource,
+    ReportsResourceWithRawResponse,
+    AsyncReportsResourceWithRawResponse,
+    ReportsResourceWithStreamingResponse,
+    AsyncReportsResourceWithStreamingResponse,
+)
+from ...._compat import cached_property
+from ...._resource import SyncAPIResource, AsyncAPIResource
 from .reports.reports import ReportsResource, AsyncReportsResource
 
-from ...._compat import cached_property
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from .reports import ReportsResource, AsyncReportsResource, ReportsResourceWithRawResponse, AsyncReportsResourceWithRawResponse, ReportsResourceWithStreamingResponse, AsyncReportsResourceWithStreamingResponse
-
 __all__ = ["AnalyticsResource", "AsyncAnalyticsResource"]
+
 
 class AnalyticsResource(SyncAPIResource):
     @cached_property
@@ -30,6 +30,7 @@ class AnalyticsResource(SyncAPIResource):
     def with_streaming_response(self) -> AnalyticsResourceWithStreamingResponse:
         return AnalyticsResourceWithStreamingResponse(self)
 
+
 class AsyncAnalyticsResource(AsyncAPIResource):
     @cached_property
     def reports(self) -> AsyncReportsResource:
@@ -43,6 +44,7 @@ class AsyncAnalyticsResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncAnalyticsResourceWithStreamingResponse:
         return AsyncAnalyticsResourceWithStreamingResponse(self)
 
+
 class AnalyticsResourceWithRawResponse:
     def __init__(self, analytics: AnalyticsResource) -> None:
         self._analytics = analytics
@@ -50,6 +52,7 @@ class AnalyticsResourceWithRawResponse:
     @cached_property
     def reports(self) -> ReportsResourceWithRawResponse:
         return ReportsResourceWithRawResponse(self._analytics.reports)
+
 
 class AsyncAnalyticsResourceWithRawResponse:
     def __init__(self, analytics: AsyncAnalyticsResource) -> None:
@@ -59,6 +62,7 @@ class AsyncAnalyticsResourceWithRawResponse:
     def reports(self) -> AsyncReportsResourceWithRawResponse:
         return AsyncReportsResourceWithRawResponse(self._analytics.reports)
 
+
 class AnalyticsResourceWithStreamingResponse:
     def __init__(self, analytics: AnalyticsResource) -> None:
         self._analytics = analytics
@@ -66,6 +70,7 @@ class AnalyticsResourceWithStreamingResponse:
     @cached_property
     def reports(self) -> ReportsResourceWithStreamingResponse:
         return ReportsResourceWithStreamingResponse(self._analytics.reports)
+
 
 class AsyncAnalyticsResourceWithStreamingResponse:
     def __init__(self, analytics: AsyncAnalyticsResource) -> None:

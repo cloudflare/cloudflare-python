@@ -6,6 +6,7 @@ from typing_extensions import TypedDict
 
 __all__ = ["SchemaDataParam"]
 
+
 class SchemaDataParam(TypedDict, total=False):
     host: str
     """The desired endpoint to test."""

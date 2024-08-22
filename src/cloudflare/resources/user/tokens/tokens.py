@@ -2,70 +2,55 @@
 
 from __future__ import annotations
 
+from typing import Type, Union, Iterable, Optional, cast
+from datetime import datetime
+from typing_extensions import Literal
+
 import httpx
 
-from .permission_groups import PermissionGroupsResource, AsyncPermissionGroupsResource
-
+from .value import (
+    ValueResource,
+    AsyncValueResource,
+    ValueResourceWithRawResponse,
+    AsyncValueResourceWithRawResponse,
+    ValueResourceWithStreamingResponse,
+    AsyncValueResourceWithStreamingResponse,
+)
+from ...._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ...._utils import (
+    maybe_transform,
+    async_maybe_transform,
+)
 from ...._compat import cached_property
-
-from .value import ValueResource, AsyncValueResource
-
-from ....types.user.token_create_response import TokenCreateResponse
-
+from ...._resource import SyncAPIResource, AsyncAPIResource
+from ...._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
 from ...._wrappers import ResultWrapper
-
-from ...._utils import maybe_transform, async_maybe_transform
-
-from typing import Optional, Type, Iterable, Union
-
-from ...._base_client import make_request_options, AsyncPaginator
-
-from ....types.user.policy_param import PolicyParam
-
-from datetime import datetime
-
-from ....types.user.token_update_response import TokenUpdateResponse
-
-from typing_extensions import Literal
-
-from ....types.user.token_list_response import TokenListResponse
-
 from ....pagination import SyncV4PagePaginationArray, AsyncV4PagePaginationArray
-
-from ....types.user.token_delete_response import TokenDeleteResponse
-
+from ....types.user import token_list_params, token_create_params, token_update_params
+from ...._base_client import AsyncPaginator, make_request_options
+from .permission_groups import (
+    PermissionGroupsResource,
+    AsyncPermissionGroupsResource,
+    PermissionGroupsResourceWithRawResponse,
+    AsyncPermissionGroupsResourceWithRawResponse,
+    PermissionGroupsResourceWithStreamingResponse,
+    AsyncPermissionGroupsResourceWithStreamingResponse,
+)
+from ....types.user.policy_param import PolicyParam
 from ....types.user.token_get_response import TokenGetResponse
-
+from ....types.user.token_list_response import TokenListResponse
+from ....types.user.token_create_response import TokenCreateResponse
+from ....types.user.token_delete_response import TokenDeleteResponse
+from ....types.user.token_update_response import TokenUpdateResponse
 from ....types.user.token_verify_response import TokenVerifyResponse
 
-from ...._response import to_raw_response_wrapper, async_to_raw_response_wrapper, to_streamed_response_wrapper, async_to_streamed_response_wrapper
-
-from ....types.user import token_create_params, token_update_params
-
-import warnings
-from typing import TYPE_CHECKING, Optional, Union, List, Dict, Any, Mapping, cast, overload
-from typing_extensions import Literal
-from ...._utils import extract_files, maybe_transform, required_args, deepcopy_minimal, strip_not_given
-from ...._types import NotGiven, Timeout, Headers, NoneType, Query, Body, NOT_GIVEN, FileTypes, BinaryResponseContent
-from ...._resource import SyncAPIResource, AsyncAPIResource
-from ....types import shared_params
-from ....types.user import token_create_params
-from ....types.user import token_update_params
-from ....types.user import token_list_params
-from .permission_groups import PermissionGroupsResource, AsyncPermissionGroupsResource, PermissionGroupsResourceWithRawResponse, AsyncPermissionGroupsResourceWithRawResponse, PermissionGroupsResourceWithStreamingResponse, AsyncPermissionGroupsResourceWithStreamingResponse
-from .value import ValueResource, AsyncValueResource, ValueResourceWithRawResponse, AsyncValueResourceWithRawResponse, ValueResourceWithStreamingResponse, AsyncValueResourceWithStreamingResponse
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-from typing import cast
-
 __all__ = ["TokensResource", "AsyncTokensResource"]
+
 
 class TokensResource(SyncAPIResource):
     @cached_property
@@ -84,19 +69,21 @@ class TokensResource(SyncAPIResource):
     def with_streaming_response(self) -> TokensResourceWithStreamingResponse:
         return TokensResourceWithStreamingResponse(self)
 
-    def create(self,
-    *,
-    name: str,
-    policies: Iterable[PolicyParam],
-    condition: token_create_params.Condition | NotGiven = NOT_GIVEN,
-    expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TokenCreateResponse]:
+    def create(
+        self,
+        *,
+        name: str,
+        policies: Iterable[PolicyParam],
+        condition: token_create_params.Condition | NotGiven = NOT_GIVEN,
+        expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TokenCreateResponse]:
         """
         Create a new access token.
 
@@ -120,32 +107,43 @@ class TokensResource(SyncAPIResource):
         """
         return self._post(
             "/user/tokens",
-            body=maybe_transform({
-                "name": name,
-                "policies": policies,
-                "condition": condition,
-                "expires_on": expires_on,
-                "not_before": not_before,
-            }, token_create_params.TokenCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TokenCreateResponse]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "policies": policies,
+                    "condition": condition,
+                    "expires_on": expires_on,
+                    "not_before": not_before,
+                },
+                token_create_params.TokenCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TokenCreateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TokenCreateResponse]], ResultWrapper[TokenCreateResponse]),
         )
 
-    def update(self,
-    token_id: str,
-    *,
-    name: str,
-    policies: Iterable[PolicyParam],
-    status: Literal["active", "disabled", "expired"],
-    condition: token_update_params.Condition | NotGiven = NOT_GIVEN,
-    expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TokenUpdateResponse]:
+    def update(
+        self,
+        token_id: str,
+        *,
+        name: str,
+        policies: Iterable[PolicyParam],
+        status: Literal["active", "disabled", "expired"],
+        condition: token_update_params.Condition | NotGiven = NOT_GIVEN,
+        expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TokenUpdateResponse]:
         """
         Update an existing token.
 
@@ -172,34 +170,43 @@ class TokensResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not token_id:
-          raise ValueError(
-            f'Expected a non-empty value for `token_id` but received {token_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `token_id` but received {token_id!r}")
         return self._put(
             f"/user/tokens/{token_id}",
-            body=maybe_transform({
-                "name": name,
-                "policies": policies,
-                "status": status,
-                "condition": condition,
-                "expires_on": expires_on,
-                "not_before": not_before,
-            }, token_update_params.TokenUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TokenUpdateResponse]]._unwrapper),
+            body=maybe_transform(
+                {
+                    "name": name,
+                    "policies": policies,
+                    "status": status,
+                    "condition": condition,
+                    "expires_on": expires_on,
+                    "not_before": not_before,
+                },
+                token_update_params.TokenUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TokenUpdateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TokenUpdateResponse]], ResultWrapper[TokenUpdateResponse]),
         )
 
-    def list(self,
-    *,
-    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-    page: float | NotGiven = NOT_GIVEN,
-    per_page: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> SyncV4PagePaginationArray[TokenListResponse]:
+    def list(
+        self,
+        *,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> SyncV4PagePaginationArray[TokenListResponse]:
         """
         List all access tokens you created.
 
@@ -220,24 +227,35 @@ class TokensResource(SyncAPIResource):
         """
         return self._get_api_list(
             "/user/tokens",
-            page = SyncV4PagePaginationArray[TokenListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "direction": direction,
-                "page": page,
-                "per_page": per_page,
-            }, token_list_params.TokenListParams)),
+            page=SyncV4PagePaginationArray[TokenListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "direction": direction,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    token_list_params.TokenListParams,
+                ),
+            ),
             model=TokenListResponse,
         )
 
-    def delete(self,
-    token_id: str,
-    *,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TokenDeleteResponse]:
+    def delete(
+        self,
+        token_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TokenDeleteResponse]:
         """
         Destroy a token.
 
@@ -253,24 +271,30 @@ class TokensResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not token_id:
-          raise ValueError(
-            f'Expected a non-empty value for `token_id` but received {token_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `token_id` but received {token_id!r}")
         return self._delete(
             f"/user/tokens/{token_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TokenDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TokenDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TokenDeleteResponse]], ResultWrapper[TokenDeleteResponse]),
         )
 
-    def get(self,
-    token_id: str,
-    *,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TokenGetResponse]:
+    def get(
+        self,
+        token_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TokenGetResponse]:
         """
         Get information about a specific token.
 
@@ -286,29 +310,42 @@ class TokensResource(SyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not token_id:
-          raise ValueError(
-            f'Expected a non-empty value for `token_id` but received {token_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `token_id` but received {token_id!r}")
         return self._get(
             f"/user/tokens/{token_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TokenGetResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TokenGetResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TokenGetResponse]], ResultWrapper[TokenGetResponse]),
         )
 
-    def verify(self,
-    *,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TokenVerifyResponse]:
+    def verify(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TokenVerifyResponse]:
         """Test whether a token works."""
         return self._get(
             "/user/tokens/verify",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TokenVerifyResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TokenVerifyResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TokenVerifyResponse]], ResultWrapper[TokenVerifyResponse]),
         )
+
 
 class AsyncTokensResource(AsyncAPIResource):
     @cached_property
@@ -327,19 +364,21 @@ class AsyncTokensResource(AsyncAPIResource):
     def with_streaming_response(self) -> AsyncTokensResourceWithStreamingResponse:
         return AsyncTokensResourceWithStreamingResponse(self)
 
-    async def create(self,
-    *,
-    name: str,
-    policies: Iterable[PolicyParam],
-    condition: token_create_params.Condition | NotGiven = NOT_GIVEN,
-    expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TokenCreateResponse]:
+    async def create(
+        self,
+        *,
+        name: str,
+        policies: Iterable[PolicyParam],
+        condition: token_create_params.Condition | NotGiven = NOT_GIVEN,
+        expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TokenCreateResponse]:
         """
         Create a new access token.
 
@@ -363,32 +402,43 @@ class AsyncTokensResource(AsyncAPIResource):
         """
         return await self._post(
             "/user/tokens",
-            body=await async_maybe_transform({
-                "name": name,
-                "policies": policies,
-                "condition": condition,
-                "expires_on": expires_on,
-                "not_before": not_before,
-            }, token_create_params.TokenCreateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TokenCreateResponse]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "policies": policies,
+                    "condition": condition,
+                    "expires_on": expires_on,
+                    "not_before": not_before,
+                },
+                token_create_params.TokenCreateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TokenCreateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TokenCreateResponse]], ResultWrapper[TokenCreateResponse]),
         )
 
-    async def update(self,
-    token_id: str,
-    *,
-    name: str,
-    policies: Iterable[PolicyParam],
-    status: Literal["active", "disabled", "expired"],
-    condition: token_update_params.Condition | NotGiven = NOT_GIVEN,
-    expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TokenUpdateResponse]:
+    async def update(
+        self,
+        token_id: str,
+        *,
+        name: str,
+        policies: Iterable[PolicyParam],
+        status: Literal["active", "disabled", "expired"],
+        condition: token_update_params.Condition | NotGiven = NOT_GIVEN,
+        expires_on: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        not_before: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TokenUpdateResponse]:
         """
         Update an existing token.
 
@@ -415,34 +465,43 @@ class AsyncTokensResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not token_id:
-          raise ValueError(
-            f'Expected a non-empty value for `token_id` but received {token_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `token_id` but received {token_id!r}")
         return await self._put(
             f"/user/tokens/{token_id}",
-            body=await async_maybe_transform({
-                "name": name,
-                "policies": policies,
-                "status": status,
-                "condition": condition,
-                "expires_on": expires_on,
-                "not_before": not_before,
-            }, token_update_params.TokenUpdateParams),
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TokenUpdateResponse]]._unwrapper),
+            body=await async_maybe_transform(
+                {
+                    "name": name,
+                    "policies": policies,
+                    "status": status,
+                    "condition": condition,
+                    "expires_on": expires_on,
+                    "not_before": not_before,
+                },
+                token_update_params.TokenUpdateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TokenUpdateResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TokenUpdateResponse]], ResultWrapper[TokenUpdateResponse]),
         )
 
-    def list(self,
-    *,
-    direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
-    page: float | NotGiven = NOT_GIVEN,
-    per_page: float | NotGiven = NOT_GIVEN,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> AsyncPaginator[TokenListResponse, AsyncV4PagePaginationArray[TokenListResponse]]:
+    def list(
+        self,
+        *,
+        direction: Literal["asc", "desc"] | NotGiven = NOT_GIVEN,
+        page: float | NotGiven = NOT_GIVEN,
+        per_page: float | NotGiven = NOT_GIVEN,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> AsyncPaginator[TokenListResponse, AsyncV4PagePaginationArray[TokenListResponse]]:
         """
         List all access tokens you created.
 
@@ -463,24 +522,35 @@ class AsyncTokensResource(AsyncAPIResource):
         """
         return self._get_api_list(
             "/user/tokens",
-            page = AsyncV4PagePaginationArray[TokenListResponse],
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, query=maybe_transform({
-                "direction": direction,
-                "page": page,
-                "per_page": per_page,
-            }, token_list_params.TokenListParams)),
+            page=AsyncV4PagePaginationArray[TokenListResponse],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "direction": direction,
+                        "page": page,
+                        "per_page": per_page,
+                    },
+                    token_list_params.TokenListParams,
+                ),
+            ),
             model=TokenListResponse,
         )
 
-    async def delete(self,
-    token_id: str,
-    *,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TokenDeleteResponse]:
+    async def delete(
+        self,
+        token_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TokenDeleteResponse]:
         """
         Destroy a token.
 
@@ -496,24 +566,30 @@ class AsyncTokensResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not token_id:
-          raise ValueError(
-            f'Expected a non-empty value for `token_id` but received {token_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `token_id` but received {token_id!r}")
         return await self._delete(
             f"/user/tokens/{token_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TokenDeleteResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TokenDeleteResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TokenDeleteResponse]], ResultWrapper[TokenDeleteResponse]),
         )
 
-    async def get(self,
-    token_id: str,
-    *,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TokenGetResponse]:
+    async def get(
+        self,
+        token_id: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TokenGetResponse]:
         """
         Get information about a specific token.
 
@@ -529,29 +605,42 @@ class AsyncTokensResource(AsyncAPIResource):
           timeout: Override the client-level default timeout for this request, in seconds
         """
         if not token_id:
-          raise ValueError(
-            f'Expected a non-empty value for `token_id` but received {token_id!r}'
-          )
+            raise ValueError(f"Expected a non-empty value for `token_id` but received {token_id!r}")
         return await self._get(
             f"/user/tokens/{token_id}",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TokenGetResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TokenGetResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TokenGetResponse]], ResultWrapper[TokenGetResponse]),
         )
 
-    async def verify(self,
-    *,
-    # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-    # The extra values given here take precedence over values defined on the client or passed to this method.
-    extra_headers: Headers | None = None,
-    extra_query: Query | None = None,
-    extra_body: Body | None = None,
-    timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,) -> Optional[TokenVerifyResponse]:
+    async def verify(
+        self,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+    ) -> Optional[TokenVerifyResponse]:
         """Test whether a token works."""
         return await self._get(
             "/user/tokens/verify",
-            options=make_request_options(extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout, post_parser=ResultWrapper[Optional[TokenVerifyResponse]]._unwrapper),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                post_parser=ResultWrapper[Optional[TokenVerifyResponse]]._unwrapper,
+            ),
             cast_to=cast(Type[Optional[TokenVerifyResponse]], ResultWrapper[TokenVerifyResponse]),
         )
+
 
 class TokensResourceWithRawResponse:
     def __init__(self, tokens: TokensResource) -> None:
@@ -584,6 +673,7 @@ class TokensResourceWithRawResponse:
     def value(self) -> ValueResourceWithRawResponse:
         return ValueResourceWithRawResponse(self._tokens.value)
 
+
 class AsyncTokensResourceWithRawResponse:
     def __init__(self, tokens: AsyncTokensResource) -> None:
         self._tokens = tokens
@@ -615,6 +705,7 @@ class AsyncTokensResourceWithRawResponse:
     def value(self) -> AsyncValueResourceWithRawResponse:
         return AsyncValueResourceWithRawResponse(self._tokens.value)
 
+
 class TokensResourceWithStreamingResponse:
     def __init__(self, tokens: TokensResource) -> None:
         self._tokens = tokens
@@ -645,6 +736,7 @@ class TokensResourceWithStreamingResponse:
     @cached_property
     def value(self) -> ValueResourceWithStreamingResponse:
         return ValueResourceWithStreamingResponse(self._tokens.value)
+
 
 class AsyncTokensResourceWithStreamingResponse:
     def __init__(self, tokens: AsyncTokensResource) -> None:

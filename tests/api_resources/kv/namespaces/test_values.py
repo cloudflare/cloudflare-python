@@ -2,29 +2,27 @@
 
 from __future__ import annotations
 
-from cloudflare import Cloudflare, AsyncCloudflare
-
-from typing import Optional, Any, cast
-
-from cloudflare.types.kv.namespaces import ValueUpdateResponse, ValueDeleteResponse
-
-from cloudflare._response import BinaryAPIResponse, StreamedBinaryAPIResponse, AsyncBinaryAPIResponse, AsyncStreamedBinaryAPIResponse
-
 import os
-import pytest
+from typing import Any, cast
+
 import httpx
-from typing_extensions import get_args
-from typing import Optional
+import pytest
 from respx import MockRouter
+
 from cloudflare import Cloudflare, AsyncCloudflare
 from tests.utils import assert_matches_type
-from cloudflare.types.kv.namespaces import value_update_params
+from cloudflare._response import (
+    BinaryAPIResponse,
+    AsyncBinaryAPIResponse,
+    StreamedBinaryAPIResponse,
+    AsyncStreamedBinaryAPIResponse,
+)
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
-class TestValues:
-    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=['loose', 'strict'])
 
+class TestValues:
+    parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -33,27 +31,26 @@ class TestValues:
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            metadata="{\"someMetadataKey\": \"someMetadataValue\"}",
+            metadata='{"someMetadataKey": "someMetadataValue"}',
             value="Some Value",
         )
-        assert_matches_type(Optional[ValueUpdateResponse], value, path=['response'])
+        assert_matches_type(object, value, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     def test_raw_response_update(self, client: Cloudflare) -> None:
-
         response = client.kv.namespaces.values.with_raw_response.update(
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            metadata="{\"someMetadataKey\": \"someMetadataValue\"}",
+            metadata='{"someMetadataKey": "someMetadataValue"}',
             value="Some Value",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         value = response.parse()
-        assert_matches_type(Optional[ValueUpdateResponse], value, path=['response'])
+        assert_matches_type(object, value, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -62,14 +59,14 @@ class TestValues:
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            metadata="{\"someMetadataKey\": \"someMetadataValue\"}",
+            metadata='{"someMetadataKey": "someMetadataValue"}',
             value="Some Value",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             value = response.parse()
-            assert_matches_type(Optional[ValueUpdateResponse], value, path=['response'])
+            assert_matches_type(object, value, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -77,31 +74,31 @@ class TestValues:
     @parametrize
     def test_path_params_update(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.kv.namespaces.values.with_raw_response.update(
-              key_name="My-Key",
-              account_id="",
-              namespace_id="0f2ac74b498b48028cb68387c421e279",
-              metadata="{\"someMetadataKey\": \"someMetadataValue\"}",
-              value="Some Value",
-          )
+            client.kv.namespaces.values.with_raw_response.update(
+                key_name="My-Key",
+                account_id="",
+                namespace_id="0f2ac74b498b48028cb68387c421e279",
+                metadata='{"someMetadataKey": "someMetadataValue"}',
+                value="Some Value",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
-          client.kv.namespaces.values.with_raw_response.update(
-              key_name="My-Key",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              namespace_id="",
-              metadata="{\"someMetadataKey\": \"someMetadataValue\"}",
-              value="Some Value",
-          )
+            client.kv.namespaces.values.with_raw_response.update(
+                key_name="My-Key",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                namespace_id="",
+                metadata='{"someMetadataKey": "someMetadataValue"}',
+                value="Some Value",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_name` but received ''"):
-          client.kv.namespaces.values.with_raw_response.update(
-              key_name="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              namespace_id="0f2ac74b498b48028cb68387c421e279",
-              metadata="{\"someMetadataKey\": \"someMetadataValue\"}",
-              value="Some Value",
-          )
+            client.kv.namespaces.values.with_raw_response.update(
+                key_name="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                namespace_id="0f2ac74b498b48028cb68387c421e279",
+                metadata='{"someMetadataKey": "someMetadataValue"}',
+                value="Some Value",
+            )
 
     @parametrize
     def test_method_delete(self, client: Cloudflare) -> None:
@@ -110,11 +107,10 @@ class TestValues:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
         )
-        assert_matches_type(Optional[ValueDeleteResponse], value, path=['response'])
+        assert_matches_type(object, value, path=["response"])
 
     @parametrize
     def test_raw_response_delete(self, client: Cloudflare) -> None:
-
         response = client.kv.namespaces.values.with_raw_response.delete(
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -122,9 +118,9 @@ class TestValues:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         value = response.parse()
-        assert_matches_type(Optional[ValueDeleteResponse], value, path=['response'])
+        assert_matches_type(object, value, path=["response"])
 
     @parametrize
     def test_streaming_response_delete(self, client: Cloudflare) -> None:
@@ -132,45 +128,45 @@ class TestValues:
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             value = response.parse()
-            assert_matches_type(Optional[ValueDeleteResponse], value, path=['response'])
+            assert_matches_type(object, value, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     def test_path_params_delete(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.kv.namespaces.values.with_raw_response.delete(
-              key_name="My-Key",
-              account_id="",
-              namespace_id="0f2ac74b498b48028cb68387c421e279",
-          )
+            client.kv.namespaces.values.with_raw_response.delete(
+                key_name="My-Key",
+                account_id="",
+                namespace_id="0f2ac74b498b48028cb68387c421e279",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
-          client.kv.namespaces.values.with_raw_response.delete(
-              key_name="My-Key",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              namespace_id="",
-          )
+            client.kv.namespaces.values.with_raw_response.delete(
+                key_name="My-Key",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                namespace_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_name` but received ''"):
-          client.kv.namespaces.values.with_raw_response.delete(
-              key_name="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              namespace_id="0f2ac74b498b48028cb68387c421e279",
-          )
+            client.kv.namespaces.values.with_raw_response.delete(
+                key_name="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                namespace_id="0f2ac74b498b48028cb68387c421e279",
+            )
 
     @pytest.mark.skip(reason="HTTP 406 from prism")
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_method_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.get('/accounts/023e105f4ecef8ad9ca31a8372d0c353/storage/kv/namespaces/0f2ac74b498b48028cb68387c421e279/values/My-Key').mock(
-          return_value=httpx.Response(200, json={"foo": "bar"})
-        )
+        respx_mock.get(
+            "/accounts/023e105f4ecef8ad9ca31a8372d0c353/storage/kv/namespaces/0f2ac74b498b48028cb68387c421e279/values/My-Key"
+        ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         value = client.kv.namespaces.values.get(
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -185,9 +181,9 @@ class TestValues:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_raw_response_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.get('/accounts/023e105f4ecef8ad9ca31a8372d0c353/storage/kv/namespaces/0f2ac74b498b48028cb68387c421e279/values/My-Key').mock(
-          return_value=httpx.Response(200, json={"foo": "bar"})
-        )
+        respx_mock.get(
+            "/accounts/023e105f4ecef8ad9ca31a8372d0c353/storage/kv/namespaces/0f2ac74b498b48028cb68387c421e279/values/My-Key"
+        ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         value = client.kv.namespaces.values.with_raw_response.get(
             key_name="My-Key",
@@ -196,7 +192,7 @@ class TestValues:
         )
 
         assert value.is_closed is True
-        assert value.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert value.http_request.headers.get("X-Stainless-Lang") == "python"
         assert value.json() == {"foo": "bar"}
         assert isinstance(value, BinaryAPIResponse)
 
@@ -204,16 +200,16 @@ class TestValues:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     def test_streaming_response_get(self, client: Cloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.get('/accounts/023e105f4ecef8ad9ca31a8372d0c353/storage/kv/namespaces/0f2ac74b498b48028cb68387c421e279/values/My-Key').mock(
-          return_value=httpx.Response(200, json={"foo": "bar"})
-        )
+        respx_mock.get(
+            "/accounts/023e105f4ecef8ad9ca31a8372d0c353/storage/kv/namespaces/0f2ac74b498b48028cb68387c421e279/values/My-Key"
+        ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         with client.kv.namespaces.values.with_streaming_response.get(
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-        ) as value :
+        ) as value:
             assert not value.is_closed
-            assert value.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert value.http_request.headers.get("X-Stainless-Lang") == "python"
 
             assert value.json() == {"foo": "bar"}
             assert cast(Any, value.is_closed) is True
@@ -226,28 +222,29 @@ class TestValues:
     @pytest.mark.respx(base_url=base_url)
     def test_path_params_get(self, client: Cloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          client.kv.namespaces.values.with_raw_response.get(
-              key_name="My-Key",
-              account_id="",
-              namespace_id="0f2ac74b498b48028cb68387c421e279",
-          )
+            client.kv.namespaces.values.with_raw_response.get(
+                key_name="My-Key",
+                account_id="",
+                namespace_id="0f2ac74b498b48028cb68387c421e279",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
-          client.kv.namespaces.values.with_raw_response.get(
-              key_name="My-Key",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              namespace_id="",
-          )
+            client.kv.namespaces.values.with_raw_response.get(
+                key_name="My-Key",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                namespace_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_name` but received ''"):
-          client.kv.namespaces.values.with_raw_response.get(
-              key_name="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              namespace_id="0f2ac74b498b48028cb68387c421e279",
-          )
-class TestAsyncValues:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=['loose', 'strict'])
+            client.kv.namespaces.values.with_raw_response.get(
+                key_name="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                namespace_id="0f2ac74b498b48028cb68387c421e279",
+            )
 
+
+class TestAsyncValues:
+    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -256,27 +253,26 @@ class TestAsyncValues:
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            metadata="{\"someMetadataKey\": \"someMetadataValue\"}",
+            metadata='{"someMetadataKey": "someMetadataValue"}',
             value="Some Value",
         )
-        assert_matches_type(Optional[ValueUpdateResponse], value, path=['response'])
+        assert_matches_type(object, value, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
     async def test_raw_response_update(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.kv.namespaces.values.with_raw_response.update(
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            metadata="{\"someMetadataKey\": \"someMetadataValue\"}",
+            metadata='{"someMetadataKey": "someMetadataValue"}',
             value="Some Value",
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         value = await response.parse()
-        assert_matches_type(Optional[ValueUpdateResponse], value, path=['response'])
+        assert_matches_type(object, value, path=["response"])
 
     @pytest.mark.skip(reason="TODO: investigate broken test")
     @parametrize
@@ -285,14 +281,14 @@ class TestAsyncValues:
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-            metadata="{\"someMetadataKey\": \"someMetadataValue\"}",
+            metadata='{"someMetadataKey": "someMetadataValue"}',
             value="Some Value",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             value = await response.parse()
-            assert_matches_type(Optional[ValueUpdateResponse], value, path=['response'])
+            assert_matches_type(object, value, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -300,31 +296,31 @@ class TestAsyncValues:
     @parametrize
     async def test_path_params_update(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.kv.namespaces.values.with_raw_response.update(
-              key_name="My-Key",
-              account_id="",
-              namespace_id="0f2ac74b498b48028cb68387c421e279",
-              metadata="{\"someMetadataKey\": \"someMetadataValue\"}",
-              value="Some Value",
-          )
+            await async_client.kv.namespaces.values.with_raw_response.update(
+                key_name="My-Key",
+                account_id="",
+                namespace_id="0f2ac74b498b48028cb68387c421e279",
+                metadata='{"someMetadataKey": "someMetadataValue"}',
+                value="Some Value",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
-          await async_client.kv.namespaces.values.with_raw_response.update(
-              key_name="My-Key",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              namespace_id="",
-              metadata="{\"someMetadataKey\": \"someMetadataValue\"}",
-              value="Some Value",
-          )
+            await async_client.kv.namespaces.values.with_raw_response.update(
+                key_name="My-Key",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                namespace_id="",
+                metadata='{"someMetadataKey": "someMetadataValue"}',
+                value="Some Value",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_name` but received ''"):
-          await async_client.kv.namespaces.values.with_raw_response.update(
-              key_name="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              namespace_id="0f2ac74b498b48028cb68387c421e279",
-              metadata="{\"someMetadataKey\": \"someMetadataValue\"}",
-              value="Some Value",
-          )
+            await async_client.kv.namespaces.values.with_raw_response.update(
+                key_name="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                namespace_id="0f2ac74b498b48028cb68387c421e279",
+                metadata='{"someMetadataKey": "someMetadataValue"}',
+                value="Some Value",
+            )
 
     @parametrize
     async def test_method_delete(self, async_client: AsyncCloudflare) -> None:
@@ -333,11 +329,10 @@ class TestAsyncValues:
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
         )
-        assert_matches_type(Optional[ValueDeleteResponse], value, path=['response'])
+        assert_matches_type(object, value, path=["response"])
 
     @parametrize
     async def test_raw_response_delete(self, async_client: AsyncCloudflare) -> None:
-
         response = await async_client.kv.namespaces.values.with_raw_response.delete(
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -345,9 +340,9 @@ class TestAsyncValues:
         )
 
         assert response.is_closed is True
-        assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         value = await response.parse()
-        assert_matches_type(Optional[ValueDeleteResponse], value, path=['response'])
+        assert_matches_type(object, value, path=["response"])
 
     @parametrize
     async def test_streaming_response_delete(self, async_client: AsyncCloudflare) -> None:
@@ -355,45 +350,45 @@ class TestAsyncValues:
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-        ) as response :
+        ) as response:
             assert not response.is_closed
-            assert response.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             value = await response.parse()
-            assert_matches_type(Optional[ValueDeleteResponse], value, path=['response'])
+            assert_matches_type(object, value, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
     @parametrize
     async def test_path_params_delete(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.kv.namespaces.values.with_raw_response.delete(
-              key_name="My-Key",
-              account_id="",
-              namespace_id="0f2ac74b498b48028cb68387c421e279",
-          )
+            await async_client.kv.namespaces.values.with_raw_response.delete(
+                key_name="My-Key",
+                account_id="",
+                namespace_id="0f2ac74b498b48028cb68387c421e279",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
-          await async_client.kv.namespaces.values.with_raw_response.delete(
-              key_name="My-Key",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              namespace_id="",
-          )
+            await async_client.kv.namespaces.values.with_raw_response.delete(
+                key_name="My-Key",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                namespace_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_name` but received ''"):
-          await async_client.kv.namespaces.values.with_raw_response.delete(
-              key_name="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              namespace_id="0f2ac74b498b48028cb68387c421e279",
-          )
+            await async_client.kv.namespaces.values.with_raw_response.delete(
+                key_name="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                namespace_id="0f2ac74b498b48028cb68387c421e279",
+            )
 
     @pytest.mark.skip(reason="HTTP 406 from prism")
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_method_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.get('/accounts/023e105f4ecef8ad9ca31a8372d0c353/storage/kv/namespaces/0f2ac74b498b48028cb68387c421e279/values/My-Key').mock(
-          return_value=httpx.Response(200, json={"foo": "bar"})
-        )
+        respx_mock.get(
+            "/accounts/023e105f4ecef8ad9ca31a8372d0c353/storage/kv/namespaces/0f2ac74b498b48028cb68387c421e279/values/My-Key"
+        ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         value = await async_client.kv.namespaces.values.get(
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
@@ -408,9 +403,9 @@ class TestAsyncValues:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_raw_response_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.get('/accounts/023e105f4ecef8ad9ca31a8372d0c353/storage/kv/namespaces/0f2ac74b498b48028cb68387c421e279/values/My-Key').mock(
-          return_value=httpx.Response(200, json={"foo": "bar"})
-        )
+        respx_mock.get(
+            "/accounts/023e105f4ecef8ad9ca31a8372d0c353/storage/kv/namespaces/0f2ac74b498b48028cb68387c421e279/values/My-Key"
+        ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         value = await async_client.kv.namespaces.values.with_raw_response.get(
             key_name="My-Key",
@@ -419,7 +414,7 @@ class TestAsyncValues:
         )
 
         assert value.is_closed is True
-        assert value.http_request.headers.get('X-Stainless-Lang') == 'python'
+        assert value.http_request.headers.get("X-Stainless-Lang") == "python"
         assert await value.json() == {"foo": "bar"}
         assert isinstance(value, AsyncBinaryAPIResponse)
 
@@ -427,16 +422,16 @@ class TestAsyncValues:
     @parametrize
     @pytest.mark.respx(base_url=base_url)
     async def test_streaming_response_get(self, async_client: AsyncCloudflare, respx_mock: MockRouter) -> None:
-        respx_mock.get('/accounts/023e105f4ecef8ad9ca31a8372d0c353/storage/kv/namespaces/0f2ac74b498b48028cb68387c421e279/values/My-Key').mock(
-          return_value=httpx.Response(200, json={"foo": "bar"})
-        )
+        respx_mock.get(
+            "/accounts/023e105f4ecef8ad9ca31a8372d0c353/storage/kv/namespaces/0f2ac74b498b48028cb68387c421e279/values/My-Key"
+        ).mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         async with async_client.kv.namespaces.values.with_streaming_response.get(
             key_name="My-Key",
             account_id="023e105f4ecef8ad9ca31a8372d0c353",
             namespace_id="0f2ac74b498b48028cb68387c421e279",
-        ) as value :
+        ) as value:
             assert not value.is_closed
-            assert value.http_request.headers.get('X-Stainless-Lang') == 'python'
+            assert value.http_request.headers.get("X-Stainless-Lang") == "python"
 
             assert await value.json() == {"foo": "bar"}
             assert cast(Any, value.is_closed) is True
@@ -449,22 +444,22 @@ class TestAsyncValues:
     @pytest.mark.respx(base_url=base_url)
     async def test_path_params_get(self, async_client: AsyncCloudflare) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `account_id` but received ''"):
-          await async_client.kv.namespaces.values.with_raw_response.get(
-              key_name="My-Key",
-              account_id="",
-              namespace_id="0f2ac74b498b48028cb68387c421e279",
-          )
+            await async_client.kv.namespaces.values.with_raw_response.get(
+                key_name="My-Key",
+                account_id="",
+                namespace_id="0f2ac74b498b48028cb68387c421e279",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `namespace_id` but received ''"):
-          await async_client.kv.namespaces.values.with_raw_response.get(
-              key_name="My-Key",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              namespace_id="",
-          )
+            await async_client.kv.namespaces.values.with_raw_response.get(
+                key_name="My-Key",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                namespace_id="",
+            )
 
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key_name` but received ''"):
-          await async_client.kv.namespaces.values.with_raw_response.get(
-              key_name="",
-              account_id="023e105f4ecef8ad9ca31a8372d0c353",
-              namespace_id="0f2ac74b498b48028cb68387c421e279",
-          )
+            await async_client.kv.namespaces.values.with_raw_response.get(
+                key_name="",
+                account_id="023e105f4ecef8ad9ca31a8372d0c353",
+                namespace_id="0f2ac74b498b48028cb68387c421e279",
+            )

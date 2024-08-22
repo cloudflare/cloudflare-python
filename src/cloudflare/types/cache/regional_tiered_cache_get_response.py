@@ -1,18 +1,13 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from ..._models import BaseModel
-
-from .regional_tiered_cache import RegionalTieredCache
-
 from typing import Optional
-
 from datetime import datetime
 
-from typing import Optional, Union, List, Dict, Any
-from typing_extensions import Literal
-from pydantic import Field as FieldInfo
+from ..._models import BaseModel
+from .regional_tiered_cache import RegionalTieredCache
 
 __all__ = ["RegionalTieredCacheGetResponse", "Value"]
+
 
 class Value(BaseModel):
     id: RegionalTieredCache
@@ -20,6 +15,7 @@ class Value(BaseModel):
 
     modified_on: Optional[datetime] = None
     """last time this setting was modified."""
+
 
 class RegionalTieredCacheGetResponse(BaseModel):
     id: RegionalTieredCache
